@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -10,7 +11,7 @@
     <title>Scam Alerts — TrustAI</title>
 
     <meta name="description"
-        content="TrustAI Scam Alerts helps you recognize common scams and suspicious online activity.">
+        content="TrustAI Scam Alerts helps you identify common online scams and warning signs.">
 
     <style>
 
@@ -22,15 +23,14 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             background:
-                radial-gradient(circle at top right, #17345c 0, transparent 35%),
-                radial-gradient(circle at bottom left, #082b32 0, transparent 30%),
-                #050914;
-            color: #ffffff;
-            min-height: 100vh;
+                radial-gradient(circle at 90% 0%, #123b68, transparent 30%),
+                radial-gradient(circle at 0% 100%, #063c42, transparent 28%),
+                #050a12;
+            color: #fff;
         }
 
         /* =========================
-           3-DASH MENU
+           3 DASH MENU
         ========================= */
 
         .menu-button {
@@ -39,74 +39,79 @@
             left: 18px;
             width: 48px;
             height: 48px;
-            border: 1px solid #29496b;
-            border-radius: 14px;
-            background: rgba(10, 24, 42, .92);
-            backdrop-filter: blur(12px);
-            z-index: 1001;
+            border: 1px solid #2b5278;
+            border-radius: 13px;
+            background: #0b1828;
             cursor: pointer;
+            z-index: 2000;
 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 5px;
-
-            box-shadow: 0 8px 25px rgba(0,0,0,.3);
         }
 
         .menu-button span {
-            width: 22px;
-            height: 2px;
-            background: #ffffff;
+            display: block;
+            width: 23px;
+            height: 3px;
+            background: #fff;
             border-radius: 5px;
-            transition: .2s;
         }
 
-        .menu-button:hover {
-            background: #126fd1;
+        .menu-button:active {
+            transform: scale(.95);
         }
+
+        /* =========================
+           SIDE MENU
+        ========================= */
 
         .side-menu {
             position: fixed;
-            left: -300px;
             top: 0;
+            left: 0;
+
             width: 285px;
             height: 100vh;
+
             padding: 85px 18px 25px;
 
-            background: rgba(7, 18, 31, .98);
-            border-right: 1px solid #203852;
+            background: #081321;
+            border-right: 1px solid #203a55;
 
-            z-index: 1000;
-            transition: left .25s ease;
+            z-index: 1500;
+
+            transform: translateX(-100%);
+            transition: transform .25s ease;
+
             overflow-y: auto;
-
-            box-shadow: 12px 0 40px rgba(0,0,0,.4);
         }
 
         .side-menu.open {
-            left: 0;
+            transform: translateX(0);
         }
 
         .menu-brand {
             padding: 0 12px 18px;
-            border-bottom: 1px solid #203852;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #203a55;
         }
 
         .menu-brand strong {
             font-size: 21px;
         }
 
-        .menu-brand strong span {
-            color: #35a7ff;
+        .menu-brand span {
+            color: #35a9ff;
         }
 
         .menu-brand small {
             display: block;
-            color: #71839a;
+            color: #7e91a7;
             margin-top: 5px;
+            font-size: 12px;
         }
 
         .menu-link {
@@ -117,17 +122,18 @@
             padding: 13px 12px;
             margin: 4px 0;
 
-            color: #eaf3ff;
+            border-radius: 11px;
+
+            color: #eaf4ff;
             text-decoration: none;
-            border-radius: 12px;
 
             font-size: 14px;
             font-weight: 700;
         }
 
         .menu-link:hover {
-            background: #10263d;
-            color: #35a7ff;
+            background: #10263c;
+            color: #3caaff;
         }
 
         .menu-icon {
@@ -138,15 +144,18 @@
 
         .menu-divider {
             height: 1px;
-            background: #203852;
-            margin: 15px 0;
+            background: #203a55;
+            margin: 14px 0;
         }
 
         .menu-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,.58);
-            z-index: 999;
+
+            background: rgba(0,0,0,.65);
+
+            z-index: 1400;
+
             display: none;
         }
 
@@ -170,55 +179,41 @@
         ========================= */
 
         .hero {
-            position: relative;
-            overflow: hidden;
-
-            padding: 38px 30px;
-            border-radius: 26px;
+            padding: 34px 25px;
+            border-radius: 25px;
 
             background:
                 linear-gradient(
                     135deg,
-                    rgba(19, 50, 84, .95),
-                    rgba(7, 18, 31, .96)
+                    #102e4d,
+                    #081522
                 );
 
-            border: 1px solid #27486b;
+            border: 1px solid #285174;
 
-            box-shadow: 0 20px 60px rgba(0,0,0,.28);
+            box-shadow:
+                0 20px 55px rgba(0,0,0,.25);
 
-            margin-bottom: 20px;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 230px;
-            height: 230px;
-            right: -80px;
-            top: -90px;
-            border-radius: 50%;
-            background: rgba(37, 158, 255, .13);
+            margin-bottom: 18px;
         }
 
         .eyebrow {
-            color: #48b1ff;
-            font-size: 12px;
+            color: #42b2ff;
+            font-size: 11px;
             font-weight: 800;
-            letter-spacing: 1.7px;
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
         }
 
         .hero h1 {
             margin: 0 0 12px;
             font-size: 38px;
-            line-height: 1.12;
         }
 
         .hero p {
             margin: 0;
-            max-width: 760px;
-            color: #aebed0;
+            max-width: 750px;
+            color: #a6b7c9;
             line-height: 1.7;
             font-size: 15px;
         }
@@ -227,41 +222,9 @@
            SEARCH
         ========================= */
 
-        .search-box {
+        .search-area {
             margin-top: 25px;
             position: relative;
-            z-index: 2;
-        }
-
-        .search-box input {
-            width: 100%;
-            height: 56px;
-
-            padding: 0 20px 0 52px;
-
-            border-radius: 16px;
-            border: 1px solid #315473;
-
-            background: rgba(3, 11, 21, .82);
-
-            color: white;
-            outline: none;
-
-            font-size: 15px;
-
-            box-shadow:
-                inset 0 1px 0 rgba(255,255,255,.03),
-                0 8px 25px rgba(0,0,0,.18);
-        }
-
-        .search-box input:focus {
-            border-color: #35a7ff;
-            box-shadow:
-                0 0 0 4px rgba(53,167,255,.10);
-        }
-
-        .search-box input::placeholder {
-            color: #71839a;
         }
 
         .search-icon {
@@ -269,6 +232,36 @@
             left: 18px;
             top: 17px;
             font-size: 20px;
+            pointer-events: none;
+        }
+
+        #searchInput {
+            width: 100%;
+            height: 56px;
+
+            padding: 0 18px 0 52px;
+
+            border-radius: 15px;
+
+            border: 1px solid #315777;
+
+            background: #050d18;
+
+            color: #fff;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        #searchInput:focus {
+            border-color: #35a9ff;
+            box-shadow:
+                0 0 0 4px rgba(53,169,255,.10);
+        }
+
+        #searchInput::placeholder {
+            color: #687c92;
         }
 
         /* =========================
@@ -277,21 +270,20 @@
 
         .notice {
             display: flex;
-            gap: 15px;
-            align-items: flex-start;
+            gap: 14px;
 
-            padding: 19px;
+            padding: 18px;
 
-            border-radius: 18px;
+            margin-bottom: 32px;
 
-            background: #15140b;
-            border: 1px solid #51451a;
+            border-radius: 17px;
 
-            margin-bottom: 35px;
+            background: #17150b;
+            border: 1px solid #514718;
         }
 
         .notice-icon {
-            font-size: 24px;
+            font-size: 23px;
         }
 
         .notice h2 {
@@ -301,30 +293,30 @@
 
         .notice p {
             margin: 0;
-            color: #a9a58d;
+            color: #aaa58c;
             font-size: 13px;
             line-height: 1.6;
         }
 
         /* =========================
-           SECTION TITLE
+           RESULTS HEADER
         ========================= */
 
-        .section-heading {
+        .results-header {
             display: flex;
             justify-content: space-between;
-            align-items: end;
-            gap: 15px;
-            margin-bottom: 18px;
+            align-items: center;
+
+            margin-bottom: 17px;
         }
 
-        .section-heading h2 {
+        .results-header h2 {
             margin: 0;
             font-size: 23px;
         }
 
-        .section-heading span {
-            color: #70849a;
+        #count {
+            color: #6f849a;
             font-size: 12px;
         }
 
@@ -335,159 +327,137 @@
         .alerts-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            gap: 17px;
         }
 
         .alert-card {
-            position: relative;
-            overflow: hidden;
-
             background:
                 linear-gradient(
                     145deg,
-                    #0d1b2b,
-                    #09121e
+                    #0d1c2b,
+                    #08111c
                 );
 
-            border: 1px solid #1f3953;
-            border-radius: 21px;
+            border: 1px solid #203a54;
 
-            padding: 23px;
+            border-radius: 19px;
 
-            transition:
-                transform .2s ease,
-                border-color .2s ease,
-                box-shadow .2s ease;
+            padding: 21px;
+
+            transition: .2s;
         }
 
         .alert-card:hover {
-            transform: translateY(-4px);
-            border-color: #2f72a7;
-            box-shadow: 0 16px 35px rgba(0,0,0,.28);
+            transform: translateY(-3px);
+            border-color: #3474a7;
+            box-shadow:
+                0 14px 35px rgba(0,0,0,.25);
         }
 
-        .alert-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #258fff;
-            opacity: .7;
+        .alert-card.critical {
+            border-top: 3px solid #ef5262;
         }
 
-        .alert-card.critical::before {
-            background: #ff4d5e;
-        }
-
-        .alert-card.warning::before {
-            background: #ffbf3f;
+        .alert-card.warning {
+            border-top: 3px solid #e7b842;
         }
 
         .alert-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 12px;
+            gap: 10px;
         }
 
         .alert-icon {
-            width: 52px;
-            height: 52px;
+            width: 49px;
+            height: 49px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-radius: 16px;
+            border-radius: 14px;
 
-            background: #102b45;
-            border: 1px solid #214b70;
+            background: #102b44;
+            border: 1px solid #245177;
 
-            font-size: 26px;
-        }
-
-        .alert-card.critical .alert-icon {
-            background: #32141a;
-            border-color: #672733;
-        }
-
-        .alert-card.warning .alert-icon {
-            background: #302713;
-            border-color: #63501e;
+            font-size: 24px;
         }
 
         .category {
-            color: #53b4ff;
+            color: #46b0ff;
             font-size: 10px;
             font-weight: 800;
-            letter-spacing: 1px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .alert-card h3 {
-            margin: 8px 0 9px;
-            font-size: 19px;
+            margin: 12px 0 8px;
+            font-size: 18px;
         }
 
         .alert-card > p {
             margin: 0;
-            color: #91a3b6;
+            color: #91a4b8;
             font-size: 13px;
-            line-height: 1.65;
+            line-height: 1.6;
         }
 
         .warning-box {
-            margin-top: 17px;
-            padding: 14px;
+            margin-top: 16px;
 
-            border-radius: 14px;
+            padding: 13px;
 
-            background: #08121e;
+            background: #07111d;
             border: 1px solid #1a3047;
+
+            border-radius: 13px;
         }
 
         .warning-box strong {
-            color: #e9f3ff;
             font-size: 12px;
         }
 
         .warning-box ul {
-            margin: 9px 0 0;
+            margin: 8px 0 0;
             padding-left: 18px;
         }
 
         .warning-box li {
-            color: #8498ac;
+            color: #8397ab;
             font-size: 12px;
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
         .safety-tip {
-            margin-top: 14px;
-            color: #9fb1c3;
+            margin-top: 13px;
+            color: #91a5b8;
             font-size: 12px;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
         .safety-tip strong {
-            color: #43dc9b;
+            color: #3cda98;
         }
 
         /* =========================
-           NO RESULTS
+           NO RESULT
         ========================= */
 
-        .no-results {
+        #noResults {
             display: none;
-            padding: 30px;
+
             text-align: center;
-            color: #8193a7;
-            background: #0b1725;
-            border: 1px solid #20384f;
-            border-radius: 18px;
-            margin-top: 18px;
+
+            padding: 35px 20px;
+
+            background: #0b1724;
+            border: 1px solid #203950;
+            border-radius: 17px;
+
+            color: #7f93a8;
         }
 
         /* =========================
@@ -496,17 +466,20 @@
 
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 1px solid #182b40;
 
-            color: #667b91;
+            margin-top: 40px;
+            padding-top: 24px;
+
+            border-top: 1px solid #1a2c40;
+
+            color: #667c92;
+
             font-size: 12px;
             line-height: 1.8;
         }
 
         footer strong {
-            color: #dcecff;
+            color: #e1efff;
             font-size: 15px;
         }
 
@@ -521,8 +494,7 @@
             }
 
             .hero {
-                padding: 28px 20px;
-                border-radius: 22px;
+                padding: 28px 19px;
             }
 
             .hero h1 {
@@ -533,8 +505,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .section-heading {
+            .results-header {
                 align-items: flex-start;
+                gap: 10px;
                 flex-direction: column;
             }
 
@@ -544,18 +517,19 @@
 
 </head>
 
+
 <body>
 
 
 <!-- =========================
-     3-DASH BUTTON
+     3 DASH
 ========================= -->
 
 <button
-    class="menu-button"
     id="menuButton"
-    aria-label="Open menu"
-    aria-expanded="false">
+    class="menu-button"
+    type="button"
+    aria-label="Open menu">
 
     <span></span>
     <span></span>
@@ -569,8 +543,8 @@
 ========================= -->
 
 <nav
-    class="side-menu"
-    id="sideMenu">
+    id="sideMenu"
+    class="side-menu">
 
     <div class="menu-brand">
 
@@ -645,8 +619,8 @@
 
 
 <div
-    class="menu-overlay"
-    id="menuOverlay">
+    id="menuOverlay"
+    class="menu-overlay">
 </div>
 
 
@@ -657,8 +631,6 @@
 
 <main class="page">
 
-
-    <!-- HERO -->
 
     <section class="hero">
 
@@ -671,24 +643,21 @@
         </h1>
 
         <p>
-            Stay ahead of common scams. Search the alerts
-            below to quickly find warning signs and learn
-            how to protect yourself.
+            Search our scam library to quickly find warning
+            signs, examples and safety advice.
         </p>
 
 
-        <!-- SEARCH -->
-
-        <div class="search-box">
+        <div class="search-area">
 
             <span class="search-icon">
                 🔎
             </span>
 
             <input
-                type="search"
                 id="searchInput"
-                placeholder="Search scams, e.g. OTP, fake job, phishing..."
+                type="search"
+                placeholder="Search scams — OTP, WhatsApp, investment, fake job..."
                 autocomplete="off">
 
         </div>
@@ -696,8 +665,6 @@
     </section>
 
 
-
-    <!-- NOTICE -->
 
     <section class="notice">
 
@@ -708,14 +675,13 @@
         <div>
 
             <h2>
-                Stay alert before you act
+                Stop. Check. Verify.
             </h2>
 
             <p>
-                Scammers often create urgency, promise
-                unrealistic rewards or pretend to be people
-                you trust. Stop, verify and think before
-                sending money or sharing sensitive information.
+                Scammers often use urgency, fear, fake rewards
+                and impersonation. Verify unexpected requests
+                before sending money or sharing information.
             </p>
 
         </div>
@@ -724,51 +690,854 @@
 
 
 
-    <!-- ALERTS -->
-
-    <div class="section-heading">
+    <div class="results-header">
 
         <h2>
             Common Scam Alerts
         </h2>
 
-        <span id="resultCount">
-            8 alerts
+        <span id="count">
+            50 alerts
         </span>
 
     </div>
 
 
     <section
-        class="alerts-grid"
-        id="alertsGrid">
+        id="alertsGrid"
+        class="alerts-grid">
+    </section>
 
 
-        <!-- 1 -->
+    <div id="noResults">
 
-        <article class="alert-card"
-            data-search="fake online stores online shopping shopping payment seller store">
+        🔎
+        <br><br>
+
+        No scam alert matches your search.
+
+        <br><br>
+
+        Try another word such as
+        <strong>OTP</strong>,
+        <strong>WhatsApp</strong>,
+        <strong>investment</strong>,
+        <strong>job</strong> or
+        <strong>phishing</strong>.
+
+    </div>
+
+
+
+    <footer>
+
+        <strong>
+            🛡️ TrustAI
+        </strong>
+
+        <br>
+
+        Online scam awareness and protection.
+
+        <br>
+
+        © 2026 TrustAI
+
+    </footer>
+
+
+</main>
+
+
+
+<script>
+
+    /* ==================================================
+       SCAM ALERT DATABASE
+    ================================================== */
+
+    const scamAlerts = [
+
+        {
+            icon: "🛍️",
+            category: "Online Shopping",
+            title: "Fake Online Stores",
+            text: "Fake stores may advertise expensive products at unusually low prices and ask you to pay before delivery.",
+            warnings: [
+                "Extremely low prices",
+                "Pressure to pay immediately",
+                "No reliable contact information",
+                "Unusual payment methods"
+            ],
+            tip: "Research the seller and verify the website before making a payment."
+        },
+
+        {
+            icon: "📦",
+            category: "Delivery",
+            title: "Fake Package Messages",
+            text: "A message may claim that your package is waiting for a fee, customs payment or address confirmation.",
+            warnings: [
+                "Unexpected delivery messages",
+                "Suspicious links",
+                "Requests for payment",
+                "Urgent deadlines"
+            ],
+            tip: "Check your package directly through the official delivery company's website or app."
+        },
+
+        {
+            icon: "💼",
+            category: "Jobs",
+            title: "Fake Job Offers",
+            text: "Scammers may pretend to be recruiters and offer attractive jobs while asking applicants for money.",
+            warnings: [
+                "Unrealistic salary promises",
+                "Registration fees",
+                "Payment before employment",
+                "Pressure to act quickly"
+            ],
+            tip: "Verify the vacancy on the company's official website."
+        },
+
+        {
+            icon: "🔐",
+            category: "Account Security",
+            title: "OTP & Verification Code Scams",
+            text: "Someone may pretend to be a bank, company or support agent and ask for your OTP or verification code.",
+            warnings: [
+                "Someone asks for your OTP",
+                "Claims your account is locked",
+                "Requests to forward a code",
+                "Creates fear or urgency"
+            ],
+            tip: "Never share your OTP, PIN or verification code with another person."
+        },
+
+        {
+            icon: "📈",
+            category: "Investment",
+            title: "Guaranteed Profit Scams",
+            text: "Fake investment opportunities may promise guaranteed profits, extremely high returns or zero risk.",
+            warnings: [
+                "Guaranteed returns",
+                "No-risk claims",
+                "Pressure to deposit more money",
+                "Problems withdrawing funds"
+            ],
+            tip: "Research the company independently before investing."
+        },
+
+        {
+            icon: "👤",
+            category: "Impersonation",
+            title: "Fake Friends & Family",
+            text: "A scammer may pretend to be someone you know and claim they urgently need money or assistance.",
+            warnings: [
+                "This is my new number",
+                "Emergency money requests",
+                "Requests for secrecy",
+                "Unusual payment requests"
+            ],
+            tip: "Contact the person using a phone number you already know."
+        },
+
+        {
+            icon: "🌐",
+            category: "Websites",
+            title: "Phishing Websites",
+            text: "Fake websites can imitate banks, social networks, shopping platforms and other trusted services.",
+            warnings: [
+                "Strange or misspelled domains",
+                "Unexpected login requests",
+                "Suspicious shortened links",
+                "Requests for passwords or codes"
+            ],
+            tip: "Type the official website address yourself instead of following an unexpected link."
+        },
+
+        {
+            icon: "📱",
+            category: "Social Media",
+            title: "Fake Social Media Profiles",
+            text: "Scammers create fake profiles to impersonate people, businesses, celebrities or friends.",
+            warnings: [
+                "New suspicious account",
+                "Few genuine interactions",
+                "Requests for money",
+                "Requests for private information"
+            ],
+            tip: "Verify the account through another trusted channel."
+        },
+
+        {
+            icon: "🎁",
+            category: "Prizes",
+            title: "Fake Giveaways & Prizes",
+            text: "Scammers may tell you that you have won a prize even though you never entered a competition.",
+            warnings: [
+                "Unexpected winner message",
+                "Prize release fee",
+                "Requests for bank details",
+                "Pressure to act quickly"
+            ],
+            tip: "Do not pay money to claim an unexpected prize."
+        },
+
+        {
+            icon: "💘",
+            category: "Romance",
+            title: "Romance & Dating Scams",
+            text: "A scammer may build an online relationship and eventually ask for money or financial help.",
+            warnings: [
+                "Relationship develops very quickly",
+                "Avoids meeting or video calls",
+                "Emergency money stories",
+                "Repeated financial requests"
+            ],
+            tip: "Never send money to someone you only know online without independently verifying them."
+        },
+
+        {
+            icon: "💰",
+            category: "Financial",
+            title: "Advance-Fee Scams",
+            text: "You are promised money, a contract, loan or benefit after paying an upfront fee.",
+            warnings: [
+                "Upfront processing fee",
+                "Guaranteed payout",
+                "Urgent payment request",
+                "No verifiable organization"
+            ],
+            tip: "Be suspicious when you must pay money to receive money."
+        },
+
+        {
+            icon: "🏦",
+            category: "Banking",
+            title: "Fake Bank Messages",
+            text: "Scammers may pretend to be your bank and claim there is a problem with your account.",
+            warnings: [
+                "Account suspension threat",
+                "Unexpected login link",
+                "OTP request",
+                "Urgent verification"
+            ],
+            tip: "Contact your bank through its official app, website or phone number."
+        },
+
+        {
+            icon: "💳",
+            category: "Payments",
+            title: "Fake Payment Requests",
+            text: "A scammer may create a fake payment request or pretend that a transfer must be completed urgently.",
+            warnings: [
+                "Unexpected payment request",
+                "Pressure to pay",
+                "Changed payment details",
+                "Unusual account information"
+            ],
+            tip: "Verify payment details independently before sending money."
+        },
+
+        {
+            icon: "₿",
+            category: "Crypto",
+            title: "Cryptocurrency Scams",
+            text: "Fake crypto opportunities may promise huge returns or ask you to send cryptocurrency to unlock profits.",
+            warnings: [
+                "Guaranteed crypto profits",
+                "Secret trading strategy",
+                "Pressure to deposit",
+                "Withdrawal problems"
+            ],
+            tip: "Research the platform and never assume cryptocurrency transfers can be reversed."
+        },
+
+        {
+            icon: "💬",
+            category: "WhatsApp",
+            title: "WhatsApp Scams",
+            text: "Scammers may use WhatsApp to impersonate friends, businesses or support agents.",
+            warnings: [
+                "Unknown number",
+                "New-number story",
+                "OTP requests",
+                "Urgent money request"
+            ],
+            tip: "Verify the person's identity using a number you already trust."
+        },
+
+        {
+            icon: "✈️",
+            category: "Travel",
+            title: "Travel & Visa Scams",
+            text: "Fake agents may promise visas, flights or travel opportunities in exchange for money.",
+            warnings: [
+                "Guaranteed visa",
+                "Large upfront payment",
+                "Fake documents",
+                "Unverifiable agent"
+            ],
+            tip: "Verify travel information through official government or airline channels."
+        },
+
+        {
+            icon: "🎓",
+            category: "Education",
+            title: "Scholarship Scams",
+            text: "Fake scholarship programs may request application, registration or processing fees.",
+            warnings: [
+                "Guaranteed scholarship",
+                "Unexpected selection",
+                "Application fee",
+                "Unverified organization"
+            ],
+            tip: "Confirm scholarships through the institution's official website."
+        },
+
+        {
+            icon: "🏠",
+            category: "Property",
+            title: "Fake Rental & House Scams",
+            text: "Scammers may advertise properties they do not own and request deposits before viewing or verifying the property.",
+            warnings: [
+                "Very cheap rent",
+                "Refuses physical viewing",
+                "Immediate deposit request",
+                "Fake documents"
+            ],
+            tip: "Verify the property, owner and payment details before paying."
+        },
+
+        {
+            icon: "🚗",
+            category: "Vehicles",
+            title: "Fake Vehicle Sales Scams",
+            text: "Fake vehicle listings may use attractive prices to convince buyers to send deposits.",
+            warnings: [
+                "Price far below market value",
+                "Seller avoids meeting",
+                "Deposit before inspection",
+                "Fake shipping story"
+            ],
+            tip: "Inspect the vehicle and verify ownership before paying."
+        },
+
+        {
+            icon: "🛒",
+            category: "Marketplace",
+            title: "Marketplace Scams",
+            text: "Scammers may use online marketplaces to advertise products that do not exist.",
+            warnings: [
+                "Seller wants payment outside platform",
+                "Fake payment confirmation",
+                "Unusually low price",
+                "Refuses safe transaction methods"
+            ],
+            tip: "Use trusted payment and marketplace protection when available."
+        },
+
+        {
+            icon: "💻",
+            category: "Technology",
+            title: "Tech Support Scams",
+            text: "Someone may claim that your device has a dangerous virus and demand payment for fake technical support.",
+            warnings: [
+                "Unexpected support call",
+                "Fake virus warning",
+                "Remote-access request",
+                "Urgent payment demand"
+            ],
+            tip: "Use official support channels instead."
+        },
+
+        {
+            icon: "👮",
+            category: "Impersonation",
+            title: "Fake Police & Government Officials",
+            text: "Scammers may pretend to be police officers or government officials and threaten victims with legal consequences.",
+            warnings: [
+                "Threats of arrest",
+                "Urgent payment demand",
+                "Requests for secrecy",
+                "Unverified identity"
+            ],
+            tip: "Verify the person's identity through an official government channel."
+        },
+
+        {
+            icon: "📞",
+            category: "Phone",
+            title: "Phone Call Scams",
+            text: "Scammers can call pretending to represent banks, companies, family members or authorities.",
+            warnings: [
+                "Unexpected call",
+                "Pressure to act immediately",
+                "Requests for codes",
+                "Requests for money"
+            ],
+            tip: "End the call and contact the organization or person using a trusted number."
+        },
+
+        {
+            icon: "📧",
+            category: "Email",
+            title: "Email Phishing Scams",
+            text: "Fake emails can imitate companies and attempt to steal passwords, payment information or account access.",
+            warnings: [
+                "Unexpected email",
+                "Suspicious sender",
+                "Urgent link",
+                "Password request"
+            ],
+            tip: "Do not click suspicious links. Open the official website yourself."
+        },
+
+        {
+            icon: "🔗",
+            category: "Links",
+            title: "Malicious & Shortened Links",
+            text: "Shortened or unfamiliar links can hide the real destination and lead to dangerous websites.",
+            warnings: [
+                "Unknown sender",
+                "Shortened URL",
+                "Urgent message",
+                "Unexpected login page"
+            ],
+            tip: "Verify the destination before opening or entering information."
+        },
+
+        {
+            icon: "🔑",
+            category: "Accounts",
+            title: "Account Recovery Scams",
+            text: "Scammers may claim they can recover a hacked or locked account if you pay them.",
+            warnings: [
+                "Unsolicited recovery offer",
+                "Requests for passwords",
+                "Requests for recovery codes",
+                "Upfront payment"
+            ],
+            tip: "Use only the platform's official account-recovery process."
+        },
+
+        {
+            icon: "🏠",
+            category: "Employment",
+            title: "Work-from-Home Scams",
+            text: "Fake remote jobs may promise easy money while requiring registration fees or deposits.",
+            warnings: [
+                "Easy money promises",
+                "Registration fee",
+                "Deposit requirement",
+                "No real interview"
+            ],
+            tip: "Research the employer before accepting the job."
+        },
+
+        {
+            icon: "🏆",
+            category: "Lottery",
+            title: "Lottery & Winner Scams",
+            text: "A scammer claims that you won a lottery or competition you never entered.",
+            warnings: [
+                "Unexpected winning message",
+                "Processing fee",
+                "Tax payment request",
+                "Urgent deadline"
+            ],
+            tip: "Do not pay to receive a prize you never entered to win."
+        },
+
+        {
+            icon: "💵",
+            category: "Loans",
+            title: "Loan Scams",
+            text: "Fake lenders may promise quick loans and demand fees before releasing the money.",
+            warnings: [
+                "Guaranteed approval",
+                "Upfront fee",
+                "Pressure to pay",
+                "No legitimate lender information"
+            ],
+            tip: "Verify the lender before paying any fee or sharing sensitive information."
+        },
+
+        {
+            icon: "🪙",
+            category: "Investment",
+            title: "Ponzi & Pyramid Schemes",
+            text: "These schemes may depend on recruiting new participants and promising unrealistic returns.",
+            warnings: [
+                "Guaranteed returns",
+                "Recruitment rewards",
+                "Pressure to invest",
+                "Little information about real business activity"
+            ],
+            tip: "Research how the company actually makes money."
+        },
+
+        {
+            icon: "📊",
+            category: "Investment",
+            title: "Fake Investment Platforms",
+            text: "Fake trading or investment websites may display fabricated profits and later block withdrawals.",
+            warnings: [
+                "Fake profit dashboard",
+                "Withdrawal problems",
+                "Pressure to deposit more",
+                "Unverified company"
+            ],
+            tip: "Verify the investment company independently before depositing money."
+        },
+
+        {
+            icon: "📲",
+            category: "Mobile Security",
+            title: "SIM-Swap Scams",
+            text: "A criminal may attempt to take control of your phone number and use it to access accounts.",
+            warnings: [
+                "Unexpected loss of mobile service",
+                "Unknown account changes",
+                "Unexpected verification messages",
+                "Suspicious SIM activity"
+            ],
+            tip: "Contact your mobile provider immediately if you suspect unauthorized SIM activity."
+        },
+
+        {
+            icon: "🪪",
+            category: "Identity",
+            title: "Identity Theft",
+            text: "Scammers may collect personal information and use it to impersonate you.",
+            warnings: [
+                "Unexpected account activity",
+                "Unknown applications",
+                "Requests for identity documents",
+                "Unfamiliar transactions"
+            ],
+            tip: "Protect personal documents and investigate unexpected account activity."
+        },
+
+        {
+            icon: "🧑‍💼",
+            category: "Customer Support",
+            title: "Fake Customer Support",
+            text: "Scammers may pretend to be support agents and request passwords, OTPs or remote access.",
+            warnings: [
+                "Unsolicited support message",
+                "OTP request",
+                "Remote-access request",
+                "Urgent problem claim"
+            ],
+            tip: "Contact customer support through the company's official website or app."
+        },
+
+        {
+            icon: "❤️",
+            category: "Charity",
+            title: "Fake Charity & Donation Scams",
+            text: "Scammers may use fake emergencies or causes to collect donations.",
+            warnings: [
+                "Emotional pressure",
+                "Unverified organization",
+                "Personal payment account",
+                "Urgent donation request"
+            ],
+            tip: "Verify the charity independently before donating."
+        },
+
+        {
+            icon: "👨‍👩‍👧",
+            category: "Family",
+            title: "Family Emergency Scams",
+            text: "A scammer may pretend to be a relative experiencing an emergency and urgently request money.",
+            warnings: [
+                "Emergency story",
+                "Unknown number",
+                "Requests secrecy",
+                "Immediate transfer request"
+            ],
+            tip: "Call your relative using a number you already have."
+        },
+
+        {
+            icon: "🚨",
+            category: "Blackmail",
+            title: "Sextortion & Blackmail Scams",
+            text: "A scammer threatens to publish private material unless the victim sends money.",
+            warnings: [
+                "Threats",
+                "Demand for payment",
+                "Requests for more private material",
+                "Pressure to keep it secret"
+            ],
+            tip: "Do not send more money or material. Preserve evidence and use appropriate reporting channels."
+        },
+
+        {
+            icon: "⭐",
+            category: "Celebrity",
+            title: "Fake Celebrity Scams",
+            text: "Scammers may impersonate celebrities and contact people asking for money or private information.",
+            warnings: [
+                "Unexpected celebrity message",
+                "Private payment request",
+                "Promise of special access",
+                "Requests for secrecy"
+            ],
+            tip: "Verify celebrity accounts through official verified channels."
+        },
+
+        {
+            icon: "🧾",
+            category: "Business",
+            title: "Fake Invoice & Payment Scams",
+            text: "A scammer may send a fake invoice or altered payment details pretending to represent a business.",
+            warnings: [
+                "Unexpected invoice",
+                "Changed bank details",
+                "Urgent payment request",
+                "Unknown sender"
+            ],
+            tip: "Confirm payment details through a trusted contact before paying."
+        },
+
+        {
+            icon: "🔥",
+            category: "Account Security",
+            title: "Account Suspension Scams",
+            text: "A message may claim your account will be closed unless you immediately verify it.",
+            warnings: [
+                "Threat of account closure",
+                "Urgent link",
+                "Login request",
+                "OTP request"
+            ],
+            tip: "Open the official app or website yourself to check your account."
+        },
+
+        {
+            icon: "🎮",
+            category: "Gaming",
+            title: "Gaming & Free-Item Scams",
+            text: "Fake offers may promise free game items, currency or accounts in exchange for login details.",
+            warnings: [
+                "Free item promise",
+                "Login link",
+                "Password request",
+                "Fake giveaway"
+            ],
+            tip: "Use only official game websites and applications."
+        },
+
+        {
+            icon: "🔓",
+            category: "Social Media",
+            title: "Social Media Account Takeover",
+            text: "Scammers may try to steal login information and take control of social media accounts.",
+            warnings: [
+                "Unexpected login alert",
+                "Verification-code request",
+                "Suspicious link",
+                "Password reset you did not request"
+            ],
+            tip: "Change your password and secure your account through the official platform."
+        },
+
+        {
+            icon: "🏧",
+            category: "Banking",
+            title: "ATM & Banking Scams",
+            text: "Criminals may use fake assistance, card traps or social engineering to steal banking information.",
+            warnings: [
+                "Unexpected assistance",
+                "Suspicious ATM equipment",
+                "Requests for PIN",
+                "Unfamiliar transactions"
+            ],
+            tip: "Never give your PIN to another person and report suspicious ATM activity."
+        },
+
+        {
+            icon: "💬",
+            category: "Support",
+            title: "Fake Customer-Service Chats",
+            text: "Scammers may approach victims through social media or messaging apps pretending to provide customer support.",
+            warnings: [
+                "Unsolicited support message",
+                "Requests for OTP",
+                "Requests for payment",
+                "Suspicious links"
+            ],
+            tip: "Start support conversations through the company's official website or app."
+        },
+
+        {
+            icon: "📋",
+            category: "Verification",
+            title: "Fake Registration & Verification Fees",
+            text: "A scammer may claim that you must pay a registration or verification fee before receiving a service.",
+            warnings: [
+                "Unexpected fee",
+                "Guaranteed approval",
+                "Urgent deadline",
+                "No official documentation"
+            ],
+            tip: "Confirm the fee independently through the organization's official channel."
+        },
+
+        {
+            icon: "🎭",
+            category: "Impersonation",
+            title: "Impersonation Scams",
+            text: "Scammers pretend to be trusted people, companies or organizations to gain money or information.",
+            warnings: [
+                "Fake identity",
+                "Urgent request",
+                "Requests for sensitive information",
+                "Pressure to act"
+            ],
+            tip: "Verify identity independently before taking action."
+        },
+
+        {
+            icon: "🎟️",
+            category: "Events",
+            title: "Fake Event & Ticket Scams",
+            text: "Fake ticket sellers may advertise popular events and disappear after receiving payment.",
+            warnings: [
+                "Very cheap tickets",
+                "Payment outside trusted platform",
+                "No verifiable seller",
+                "Pressure to pay"
+            ],
+            tip: "Buy tickets through official or trusted sellers."
+        },
+
+        {
+            icon: "📦",
+            category: "Employment",
+            title: "Reshipping & Parcel Job Scams",
+            text: "Fake employers may ask workers to receive and forward packages as part of a fraudulent operation.",
+            warnings: [
+                "Unusual work duties",
+                "Use of your address",
+                "Requests for personal documents",
+                "No verifiable employer"
+            ],
+            tip: "Research the employer carefully before accepting the job."
+        },
+
+        {
+            icon: "💾",
+            category: "Software",
+            title: "Fake Software & Download Scams",
+            text: "Fake software websites may distribute malicious programs or trick users into paying for unnecessary services.",
+            warnings: [
+                "Unexpected download",
+                "Fake security warning",
+                "Unknown software source",
+                "Payment demand"
+            ],
+            tip: "Download software from official stores or the developer's official website."
+        },
+
+        {
+            icon: "🤑",
+            category: "Money",
+            title: "Money-Flipping Scams",
+            text: "Scammers promise to multiply your money if you send them an initial amount.",
+            warnings: [
+                "Guaranteed multiplication",
+                "Screenshots of fake profits",
+                "Urgent deposit request",
+                "Requests for additional fees"
+            ],
+            tip: "Treat promises of guaranteed quick money as a major warning sign."
+        }
+
+    ];
+
+
+    /* ==================================================
+       CREATE ALERT CARDS
+    ================================================== */
+
+    const alertsGrid =
+        document.getElementById("alertsGrid");
+
+    const count =
+        document.getElementById("count");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    function createCard(alert, index) {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "alert-card";
+
+        if (
+            index === 3 ||
+            index === 6 ||
+            index === 36
+        ) {
+
+            card.classList.add("critical");
+
+        }
+
+        if (
+            index === 4 ||
+            index === 9 ||
+            index === 29
+        ) {
+
+            card.classList.add("warning");
+
+        }
+
+
+        const warnings =
+            alert.warnings
+                .map(function(item) {
+
+                    return "<li>" +
+                        item +
+                        "</li>";
+
+                })
+                .join("");
+
+
+        card.innerHTML = `
 
             <div class="alert-top">
 
                 <div class="alert-icon">
-                    🛍️
+                    ${alert.icon}
                 </div>
 
                 <span class="category">
-                    Online Shopping
+                    ${alert.category}
                 </span>
 
             </div>
 
             <h3>
-                Fake Online Stores
+                ${alert.title}
             </h3>
 
             <p>
-                Fake stores may advertise expensive products
-                at unusually low prices and ask you to pay
-                before delivery.
+                ${alert.text}
             </p>
 
             <div class="warning-box">
@@ -778,160 +1547,232 @@
                 </strong>
 
                 <ul>
-                    <li>Extremely low prices</li>
-                    <li>Pressure to pay immediately</li>
-                    <li>No reliable contact information</li>
-                    <li>Unusual payment methods</li>
+                    ${warnings}
                 </ul>
 
             </div>
 
             <div class="safety-tip">
-                <strong>Stay safe:</strong>
-                Research the seller and verify the website
-                before making a payment.
-            </div>
-
-        </article>
-
-
-
-        <!-- 2 -->
-
-        <article class="alert-card"
-            data-search="fake package delivery parcel courier shipping message fee">
-
-            <div class="alert-top">
-
-                <div class="alert-icon">
-                    📦
-                </div>
-
-                <span class="category">
-                    Delivery
-                </span>
-
-            </div>
-
-            <h3>
-                Fake Package Messages
-            </h3>
-
-            <p>
-                A message may claim that your package is
-                waiting for a fee, customs payment or
-                address confirmation.
-            </p>
-
-            <div class="warning-box">
 
                 <strong>
-                    Warning signs
+                    Stay safe:
                 </strong>
 
-                <ul>
-                    <li>Unexpected delivery messages</li>
-                    <li>Suspicious links</li>
-                    <li>Requests for payment</li>
-                    <li>Urgent deadlines</li>
-                </ul>
+                ${alert.tip}
 
             </div>
 
-            <div class="safety-tip">
-                <strong>Stay safe:</strong>
-                Check your package through the official
-                delivery company's website or app.
-            </div>
-
-        </article>
+        `;
 
 
+        card.dataset.search = (
 
-        <!-- 3 -->
+            alert.title +
+            " " +
+            alert.category +
+            " " +
+            alert.text +
+            " " +
+            alert.warnings.join(" ") +
+            " " +
+            alert.tip
 
-        <article class="alert-card"
-            data-search="fake job jobs employment recruiter salary registration fee work">
-
-            <div class="alert-top">
-
-                <div class="alert-icon">
-                    💼
-                </div>
-
-                <span class="category">
-                    Jobs & Employment
-                </span>
-
-            </div>
-
-            <h3>
-                Fake Job Offers
-            </h3>
-
-            <p>
-                Scammers may pretend to be recruiters and
-                offer attractive jobs while asking applicants
-                for money.
-            </p>
-
-            <div class="warning-box">
-
-                <strong>
-                    Warning signs
-                </strong>
-
-                <ul>
-                    <li>Unrealistic salary promises</li>
-                    <li>Registration fees</li>
-                    <li>Payment before employment</li>
-                    <li>Pressure to act quickly</li>
-                </ul>
-
-            </div>
-
-            <div class="safety-tip">
-                <strong>Stay safe:</strong>
-                Verify the vacancy on the company's
-                official website.
-            </div>
-
-        </article>
+        ).toLowerCase();
 
 
+        return card;
 
-        <!-- 4 -->
+    }
 
-        <article class="alert-card critical"
-            data-search="otp verification code account security bank password pin code scam">
 
-            <div class="alert-top">
+    function displayAlerts(list) {
 
-                <div class="alert-icon">
-                    🔐
-                </div>
+        alertsGrid.innerHTML = "";
 
-                <span class="category">
-                    Account Security
-                </span>
+        list.forEach(function(alert) {
 
-            </div>
+            const originalIndex =
+                scamAlerts.indexOf(alert);
 
-            <h3>
-                OTP & Verification Code Scams
-            </h3>
+            alertsGrid.appendChild(
+                createCard(
+                    alert,
+                    originalIndex
+                )
+            );
 
-            <p>
-                Someone may pretend to be a bank, company or
-                support agent and ask for your OTP or
-                verification code.
-            </p>
+        });
 
-            <div class="warning-box">
 
-                <strong>
-                    Warning signs
-                </strong>
+        count.textContent =
+            list.length +
+            (list.length === 1
+                ? " alert"
+                : " alerts");
 
-                <ul>
-                    <li>Someone asks fo
+
+        noResults.style.display =
+            list.length === 0
+                ? "block"
+                : "none";
+
+    }
+
+
+    /* Initial display */
+
+    displayAlerts(scamAlerts);
+
+
+    /* ==================================================
+       LIVE SEARCH
+    ================================================== */
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            const query =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (query === "") {
+
+                displayAlerts(
+                    scamAlerts
+                );
+
+                return;
+
+            }
+
+
+            const results =
+                scamAlerts.filter(
+                    function(alert) {
+
+                        const searchable =
+                            (
+                                alert.title +
+                                " " +
+                                alert.category +
+                                " " +
+                                alert.text +
+                                " " +
+                                alert.warnings.join(" ") +
+                                " " +
+                                alert.tip
+                            ).toLowerCase();
+
+
+                        return searchable.includes(
+                            query
+                        );
+
+                    }
+                );
+
+
+            displayAlerts(results);
+
+        }
+    );
+
+
+    /* ==================================================
+       3 DASH MENU
+    ================================================== */
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+    const menuOverlay =
+        document.getElementById("menuOverlay");
+
+
+    function openMenu() {
+
+        sideMenu.classList.add("open");
+
+        menuOverlay.classList.add("show");
+
+    }
+
+
+    function closeMenu() {
+
+        sideMenu.classList.remove("open");
+
+        menuOverlay.classList.remove("show");
+
+    }
+
+
+    menuButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            if (
+                sideMenu.classList.contains("open")
+            ) {
+
+                closeMenu();
+
+            } else {
+
+                openMenu();
+
+            }
+
+        }
+    );
+
+
+    menuOverlay.addEventListener(
+        "click",
+        closeMenu
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeMenu();
+
+            }
+
+        }
+    );
+
+
+    /* Close menu after selecting a link */
+
+    document
+        .querySelectorAll(".menu-link")
+        .forEach(function(link) {
+
+            link.addEventListener(
+                "click",
+                closeMenu
+            );
+
+        });
+
+</script>
+
+
+</body>
+
+</html>
