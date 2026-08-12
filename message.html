@@ -471,7 +471,15 @@ function checkMessage(){
     ){
         add(8,"The message appears to target an account verification code.");
     }
+/* =========================
+   BVN / NIN / BANK ID
+========================= */
 
+if (
+    /(send|give|share|tell|provide|forward|drop|submit).{0,50}(bvn|bank verification number|nin|national identification number)/i.test(text)
+) {
+    add(10, "The message requests sensitive banking or identity information.");
+}
 
     /* =========================
        PIN / CARD
