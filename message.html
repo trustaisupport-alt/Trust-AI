@@ -32,12 +32,16 @@
             position: fixed;
             top: 16px;
             left: 16px;
+
             width: 46px;
             height: 46px;
-            border: 1px solid #1d6fff;
+
+            border: 1px solid #2478ff;
             border-radius: 11px;
+
             background: #0b1d35;
             cursor: pointer;
+
             z-index: 1001;
 
             display: flex;
@@ -52,7 +56,8 @@
         .menu-button span {
             width: 22px;
             height: 3px;
-            background: #2f80ff;
+
+            background: #3b8cff;
             border-radius: 3px;
         }
 
@@ -67,6 +72,7 @@
 
         .side-menu {
             position: fixed;
+
             top: 0;
             left: -290px;
 
@@ -74,6 +80,7 @@
             height: 100vh;
 
             background: #0b1729;
+
             border-right: 1px solid #1c3659;
 
             box-shadow: 8px 0 30px rgba(0, 0, 0, 0.5);
@@ -93,38 +100,47 @@
 
         .menu-title {
             padding: 0 12px 18px;
+
             border-bottom: 1px solid #1b304d;
+
             margin-bottom: 12px;
         }
 
         .menu-title strong {
             font-size: 21px;
-            color: #2f80ff;
+            color: #3b8cff;
         }
 
         .menu-title span {
             display: block;
+
             margin-top: 5px;
+
             color: #91a4bd;
+
             font-size: 12px;
         }
 
         .menu-link {
             display: flex;
             align-items: center;
+
             gap: 12px;
 
             width: 100%;
 
             padding: 13px 12px;
+
             margin-bottom: 4px;
 
             border-radius: 10px;
 
             text-decoration: none;
+
             color: #dce8f8;
 
             font-size: 14px;
+
             font-weight: 600;
         }
 
@@ -135,13 +151,17 @@
 
         .menu-icon {
             width: 25px;
+
             text-align: center;
+
             font-size: 18px;
         }
 
         .menu-divider {
             height: 1px;
+
             background: #1b304d;
+
             margin: 14px 0;
         }
 
@@ -152,6 +172,7 @@
 
         .menu-overlay {
             position: fixed;
+
             inset: 0;
 
             background: rgba(0, 0, 0, 0.6);
@@ -172,7 +193,9 @@
 
         .page {
             max-width: 850px;
+
             margin: auto;
+
             padding: 85px 18px 40px;
         }
 
@@ -183,62 +206,82 @@
 
         .header {
             background: #0b1729;
+
             border: 1px solid #1c3659;
+
             border-radius: 20px;
 
             padding: 28px 24px;
+
             margin-bottom: 20px;
 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
         .header-label {
             color: #3b8cff;
+
             font-size: 13px;
+
             font-weight: bold;
+
             letter-spacing: 1px;
+
             margin-bottom: 8px;
         }
 
         .header h1 {
             margin: 0 0 10px;
+
             font-size: 30px;
+
             color: #ffffff;
         }
 
         .header p {
             margin: 0;
+
             color: #9db0c8;
+
             line-height: 1.6;
+
             font-size: 15px;
         }
 
 
         /* =========================
-           CHECKER BOX
+           CHECKER
         ========================= */
 
         .checker {
             background: #0b1729;
+
             border: 1px solid #1c3659;
+
             border-radius: 18px;
 
             padding: 24px;
 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
         .checker h2 {
             margin-top: 0;
+
             font-size: 20px;
+
             color: #ffffff;
         }
 
         .checker label {
             display: block;
+
             margin-bottom: 9px;
 
             font-weight: bold;
+
             font-size: 14px;
 
             color: #dce8f8;
@@ -251,17 +294,21 @@
 
         textarea {
             width: 100%;
+
             min-height: 220px;
 
             padding: 15px;
 
             border: 1px solid #29476d;
+
             border-radius: 12px;
 
             background: #07111f;
+
             color: #ffffff;
 
             font-family: Arial, Helvetica, sans-serif;
+
             font-size: 15px;
 
             resize: vertical;
@@ -275,7 +322,9 @@
 
         textarea:focus {
             border-color: #2f80ff;
-            box-shadow: 0 0 0 3px rgba(47, 128, 255, 0.15);
+
+            box-shadow:
+                0 0 0 3px rgba(47, 128, 255, 0.15);
         }
 
 
@@ -285,18 +334,23 @@
 
         .buttons {
             display: flex;
+
             gap: 10px;
+
             margin-top: 15px;
+
             flex-wrap: wrap;
         }
 
         button.action-button {
             border: none;
+
             border-radius: 10px;
 
             padding: 12px 18px;
 
             font-size: 14px;
+
             font-weight: bold;
 
             cursor: pointer;
@@ -304,6 +358,7 @@
 
         .check-button {
             background: #1769e8;
+
             color: white;
         }
 
@@ -313,7 +368,9 @@
 
         .clear-button {
             background: #14263e;
+
             color: #cfe0f5;
+
             border: 1px solid #29476d !important;
         }
 
@@ -346,27 +403,36 @@
             display: block;
         }
 
+
         .very-high {
             background: #35151a;
+
             border: 1px solid #b8323c;
+
             color: #ff9ba2;
         }
 
         .high {
             background: #352514;
+
             border: 1px solid #b87832;
+
             color: #ffc17d;
         }
 
         .caution {
             background: #352f12;
+
             border: 1px solid #a99732;
+
             color: #f5dc69;
         }
 
         .low {
             background: #123522;
+
             border: 1px solid #328a55;
+
             color: #80e0a0;
         }
 
@@ -416,13 +482,13 @@
 
 
 <!-- =========================
-     3-DASH BUTTON
+     MENU BUTTON
 ========================= -->
 
 <button
     class="menu-button"
     onclick="toggleMenu()"
-    aria-label="Open menu">
+    aria-label="Open navigation menu">
 
     <span></span>
     <span></span>
@@ -447,38 +513,56 @@
 
 
     <a href="home.html" class="menu-link">
+
         <span class="menu-icon">🏠</span>
+
         Home
+
     </a>
 
 
     <a href="message.html" class="menu-link">
+
         <span class="menu-icon">🔍</span>
+
         Message Checker
+
     </a>
 
 
     <a href="conversation.html" class="menu-link">
+
         <span class="menu-icon">💬</span>
+
         Conversation Checker
+
     </a>
 
 
     <a href="Website.html" class="menu-link">
+
         <span class="menu-icon">🌐</span>
+
         Website Checker
+
     </a>
 
 
     <a href="device_checker.html" class="menu-link">
+
         <span class="menu-icon">📱</span>
+
         Device Security
+
     </a>
 
 
     <a href="security.html" class="menu-link">
+
         <span class="menu-icon">🛡️</span>
+
         Security Center
+
     </a>
 
 
@@ -486,20 +570,29 @@
 
 
     <a href="alerts.html" class="menu-link">
+
         <span class="menu-icon">🚨</span>
+
         Scam Alerts
+
     </a>
 
 
     <a href="report.html" class="menu-link">
+
         <span class="menu-icon">📢</span>
+
         Report a Scam
+
     </a>
 
 
     <a href="feedback.html" class="menu-link">
+
         <span class="menu-icon">💬</span>
+
         Contact TrustAI
+
     </a>
 
 </nav>
@@ -517,7 +610,7 @@
 
 
 <!-- =========================
-     MAIN PAGE
+     PAGE
 ========================= -->
 
 <div class="page">
@@ -643,6 +736,8 @@ function checkMessage() {
         document.getElementById("result");
 
 
+    /* EMPTY MESSAGE */
+
     if (message === "") {
 
         result.className = "caution show";
@@ -659,11 +754,17 @@ function checkMessage() {
     let reasons = [];
 
 
+    /* =========================
+       HELPER
+    ========================= */
+
     function check(words, points, reason) {
 
         if (
             words.some(function(word) {
+
                 return message.includes(word);
+
             })
         ) {
 
@@ -676,20 +777,115 @@ function checkMessage() {
     }
 
 
+    /* =========================
+       1. OTP / PASSWORD / PIN
+       VERY IMPORTANT
+    ========================= */
+
+    check(
+        [
+            "otp",
+            "one time password",
+            "one-time password",
+
+            "send your otp",
+            "send me your otp",
+            "tell me your otp",
+            "tell me your bank otp",
+            "give me your otp",
+            "give me your bank otp",
+
+            "bank otp",
+            "bank verification code",
+
+            "send the code",
+            "send me the code",
+
+            "verification code",
+            "verification pin",
+            "security code",
+            "login code",
+
+            "send your password",
+            "send me your password",
+
+            "send your pin",
+            "send me your pin",
+
+            "give me your password",
+            "give me your pin"
+        ],
+        4,
+        "Request for sensitive security information such as an OTP, password, PIN, or verification code"
+    );
+
+
+    /* =========================
+       2. MONEY / PAYMENT
+    ========================= */
+
+    check(
+        [
+            "send money",
+            "send me money",
+            "send some money",
+            "send the money",
+
+            "make a payment",
+            "make payment",
+
+            "transfer money",
+            "transfer the money",
+
+            "send payment",
+            "pay me",
+
+            "pay a fee",
+            "processing fee",
+            "registration fee",
+
+            "bank details",
+            "account details",
+            "card details",
+
+            "credit card",
+            "debit card",
+
+            "account number",
+            "bank account"
+        ],
+        2,
+        "Request for money, payment, or financial information"
+    );
+
+
+    /* =========================
+       3. IMPERSONATION
+    ========================= */
+
     check(
         [
             "this is my new number",
             "i lost my phone",
             "i changed my number",
             "new whatsapp number",
+            "new phone number",
+
             "this is my new account",
             "this is really me",
-            "contact me privately"
+
+            "contact me privately",
+            "my old phone",
+            "my new phone"
         ],
         2,
         "Possible impersonation or identity-change claim"
     );
 
+
+    /* =========================
+       4. URGENCY / PRESSURE
+    ========================= */
 
     check(
         [
@@ -697,119 +893,140 @@ function checkMessage() {
             "urgently",
             "act now",
             "act immediately",
+            "immediately",
+
             "right now",
             "last chance",
+
             "don't tell anyone",
             "do not tell anyone",
             "keep this secret",
+
+            "within 10 minutes",
+            "within 30 minutes",
+            "within 1 hour",
+            "within 24 hours",
+
             "expires today",
-            "before midnight"
+            "before midnight",
+
+            "today only"
         ],
         1,
         "Pressure, urgency, or secrecy"
     );
 
 
-    check(
-        [
-            "send money",
-            "send me money",
-            "make a payment",
-            "transfer money",
-            "send payment",
-            "pay me",
-            "pay a fee",
-            "processing fee",
-            "bank details",
-            "account details",
-            "card details"
-        ],
-        2,
-        "Request for money, payment, or financial information"
-    );
-
+    /* =========================
+       5. GIFT CARDS
+    ========================= */
 
     check(
         [
             "gift card",
             "giftcard",
-            "gift card code"
+            "gift card code",
+            "send the gift card",
+            "buy me a gift card"
         ],
         3,
         "Gift-card payment request detected"
     );
 
 
-    check(
-        [
-            "send me your otp",
-            "tell me your otp",
-            "give me your otp",
-            "send your otp",
-            "send the code",
-            "send me the code",
-            "verification code",
-            "security code",
-            "login code",
-            "send your password",
-            "send me your password",
-            "send your pin",
-            "send me your pin"
-        ],
-        3,
-        "Request for sensitive security information"
-    );
-
+    /* =========================
+       6. EMERGENCY STORIES
+    ========================= */
 
     check(
         [
             "i'm in the hospital",
             "i am in the hospital",
+
             "medical bill",
             "medical bills",
             "hospital bill",
+
             "need money for treatment",
+
             "i'm stranded",
             "i am stranded",
-            "stuck at the airport"
+
+            "need money for food",
+
+            "stuck at the airport",
+
+            "military emergency",
+            "i'm deployed",
+            "i am deployed"
         ],
         2,
         "Emergency or financial hardship story"
     );
 
 
+    /* =========================
+       7. PRIZE / LOTTERY
+    ========================= */
+
     check(
         [
             "you just won",
             "you have won",
+            "you won",
+
             "you won a prize",
+
             "cash prize",
             "claim your prize",
+
             "lottery winner",
+            "lottery",
+
             "free money",
-            "you won"
+
+            "you are the winner"
         ],
         2,
-        "Unexpected prize or money opportunity"
+        "Unexpected prize, lottery, or money opportunity"
     );
 
+
+    /* =========================
+       8. INVESTMENT / EASY MONEY
+    ========================= */
 
     check(
         [
             "guaranteed profit",
             "guaranteed returns",
+            "guaranteed income",
+            "guaranteed money",
+
             "double your money",
+            "double your investment",
+
             "risk free investment",
+            "risk-free investment",
+
             "crypto giveaway",
+            "crypto investment",
+
             "instant profit",
             "easy money",
             "make money fast",
-            "guaranteed income"
+
+            "forex investment",
+            "investment opportunity"
         ],
         2,
         "Potentially unrealistic investment or money-making promise"
     );
 
+
+    /* =========================
+       9. SUSPICIOUS LINK REQUEST
+    ========================= */
 
     check(
         [
@@ -817,15 +1034,23 @@ function checkMessage() {
             "click the link",
             "tap the link",
             "open this link",
+
             "verify using this link",
             "click here to verify",
+
             "login here",
+            "log in here",
+
             "verify your account"
         ],
         2,
         "Request to interact with a potentially suspicious link"
     );
 
+
+    /* =========================
+       10. URL DETECTION
+    ========================= */
 
     const urlPattern =
         /(https?:\/\/|www\.)[^\s]+/gi;
@@ -841,6 +1066,10 @@ function checkMessage() {
     }
 
 
+    /* =========================
+       11. SHORTENED LINKS
+    ========================= */
+
     check(
         [
             "bit.ly",
@@ -854,158 +1083,50 @@ function checkMessage() {
     );
 
 
+    /* =========================
+       12. ACCOUNT SECURITY
+    ========================= */
+
     check(
         [
             "your account will be closed",
             "your account has been suspended",
             "account will be deleted",
+
             "unauthorized login",
             "suspicious login",
+
             "verify your identity",
+
             "your account is at risk",
+
             "your account will be locked",
-            "account has been compromised"
+
+            "account has been compromised",
+
+            "your account has been hacked"
         ],
         2,
         "Possible fake account-security warning"
     );
 
 
+    /* =========================
+       13. TOO GOOD TO BE TRUE
+    ========================= */
+
     check(
         [
             "you have been selected",
             "you are lucky",
+
             "exclusive offer",
+
             "free iphone",
             "free phone",
             "free gift",
+
             "claim now",
             "limited offer",
-            "you are the winner"
-        ],
-        1,
-        "Unusual or potentially misleading offer"
-    );
 
-
-    check(
-        [
-            "pay my assistant",
-            "pay my manager",
-            "pay my agent",
-            "pay the seller",
-            "send it to my assistant",
-            "send it to my manager"
-        ],
-        3,
-        "Request to send money to a third party"
-    );
-
-
-    reasons = [...new Set(reasons)];
-
-    score = Math.min(score, 10);
-
-
-    let reasonText;
-
-
-    if (reasons.length > 0) {
-
-        reasonText =
-            "Why we flagged it:\n• " +
-            reasons.join("\n• ");
-
-    } else {
-
-        reasonText =
-            "Why we flagged it:\n• No strong scam indicators were detected.";
-
-    }
-
-
-    if (score >= 7) {
-
-        result.className = "very-high show";
-
-        result.textContent =
-            "🔴 VERY HIGH RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Do not send money, passwords, PINs, OTPs, " +
-            "or verification codes. Verify the sender independently.";
-
-    }
-
-
-    else if (score >= 4) {
-
-        result.className = "high show";
-
-        result.textContent =
-            "🟠 HIGH RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Stop and verify the request before taking action.";
-
-    }
-
-
-    else if (score >= 2) {
-
-        result.className = "caution show";
-
-        result.textContent =
-            "🟡 CAUTION\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Be careful and verify the message before " +
-            "sending money or personal information.";
-
-    }
-
-
-    else {
-
-        result.className = "low show";
-
-        result.textContent =
-            "🟢 LOW RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "No strong scam indicators were detected. " +
-            "Still be careful with links, payments, " +
-            "and personal information.";
-
-    }
-
-}
-
-
-/* =========================
-   CLEAR
-========================= */
-
-function clearMessage() {
-
-    document.getElementById("message").value = "";
-
-    const result =
-        document.getElementById("result");
-
-    result.textContent = "";
-
-    result.className = "";
-
-}
-
-</script>
-
-
-</body>
-
-</html>
+            
