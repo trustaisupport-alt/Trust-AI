@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrustAI — Cyber Threat Intelligence & Scam Shield</title>
+    <title>TrustAI — Threat Intelligence Portal</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,228 +11,284 @@
 </head>
 <body>
 
-    <!-- NAV HEADER -->
+    <!-- TOP NAVIGATION -->
     <header class="app-header">
         <div class="header-nav">
             <a href="index.html" class="back-link">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                Back to Platform
+                Return to Dashboard
             </a>
             <div class="system-status">
-                <span class="status-dot"></span> Threat Intelligence Active
+                <span class="status-pulse"></span> Threat Monitoring: Active
             </div>
         </div>
 
-        <div class="hero-brand">
-            <div class="shield-logo">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <!-- HERO BRAND & HEADLINE -->
+        <div class="hero-section">
+            <div class="hero-brand">
+                <div class="shield-badge">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <span class="brand-subtitle">TRUSTAI SECURITY DASHBOARD</span>
+                    <h1>Global Scam Threat Portal</h1>
+                </div>
             </div>
-            <h1>TrustAI Threat Portal</h1>
+            <p class="hero-desc">
+                Real-time security advisories, social engineering patterns, and threat recognition frameworks powered by TrustAI intelligence.
+            </p>
+
+            <!-- METRIC COUNTERS -->
+            <div class="hero-metrics">
+                <div class="metric-card">
+                    <span class="metric-val">8 Threat Vectors</span>
+                    <span class="metric-label">Active Monitoring</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-val">24/7 Engine</span>
+                    <span class="metric-label">Pattern Scanning</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-val">Level 10</span>
+                    <span class="metric-label">Protection Index</span>
+                </div>
+            </div>
         </div>
-        <p class="subtitle">
-            Enterprise-grade scam recognition and real-time threat intelligence patterns.
-        </p>
     </header>
 
     <main class="content-wrapper">
 
-        <!-- CRITICAL WARNING BANNER -->
-        <section class="alert-banner warning">
-            <div class="banner-badge">ADVISORY</div>
-            <div class="banner-body">
-                <h3>High-Risk Vector Advisory</h3>
-                <p>
-                    Scammers rapidly shift tactics across WhatsApp, Telegram, SMS, and banking portals. Always verify origin identity before initiating transactions or providing authentication credentials.
-                </p>
+        <!-- FEATURED / HIGH PRIORITY ADVISORY HEADER -->
+        <section class="featured-advisory">
+            <div class="featured-header">
+                <span class="advisory-pill">HIGH ALERT</span>
+                <h2>📦 E-Commerce & Dropshipping Scams</h2>
+            </div>
+            <p class="featured-text">
+                Fake online storefronts and social media vendors advertising luxury items, electronics, or trending products at extreme discounts. Users are pressured to transfer funds directly via wire, mobile bank transfers, or gift cards with no product delivery.
+            </p>
+            <div class="featured-tags">
+                <span>⚠️ Untraceable Payments</span>
+                <span>⚠️ Social Media Ads</span>
+                <span>⚠️ Non-Existent Inventories</span>
             </div>
         </section>
 
-        <!-- SCAM CARDS GRID -->
+        <!-- THREAT CATEGORIES GRID -->
         <section class="scam-grid">
 
-            <!-- Delivery Scams -->
+            <!-- Delivery & Package Scams -->
             <article class="scam-card">
-                <div class="card-header">
-                    <div class="icon-wrapper">📦</div>
-                    <div>
-                        <span class="category-tag">Logistics</span>
-                        <h2>Customs & Delivery Traps</h2>
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">🚚</span>
+                        <div>
+                            <span class="threat-category">Logistics & Supply</span>
+                            <h2>Package Clearance Traps</h2>
+                        </div>
                     </div>
+                    <span class="risk-badge warning">MEDIUM RISK</span>
                 </div>
-                <p class="card-desc">Fraudulent notifications requiring immediate clearance fees for non-existent parcels.</p>
-                
-                <div class="card-section">
-                    <span class="section-title text-danger">Key Risk Indicators</span>
-                    <ul class="indicator-list">
-                        <li>Unsolicited SMS notifications with shortened URLs.</li>
-                        <li>High-pressure clearance payment deadlines.</li>
-                        <li>Non-standard payment gateways.</li>
-                    </ul>
-                </div>
+                <div class="card-body">
+                    <p class="card-desc">Fake delivery notifications asserting that a package is held in customs pending immediate clearance or delivery fees.</p>
+                    
+                    <div class="card-section">
+                        <span class="section-heading text-danger">Warning Indicators:</span>
+                        <ul class="indicator-list">
+                            <li>SMS alerts containing suspicious or shortened links.</li>
+                            <li>Demands for custom tax payments via third-party gateways.</li>
+                            <li>Urgent countdown deadlines before package disposal.</li>
+                        </ul>
+                    </div>
 
-                <div class="card-section action-box">
-                    <strong>Mitigation Protocol:</strong> Access official logistics portals directly via verified domain names—never click embedded SMS links.
+                    <div class="card-action-box">
+                        <strong>Action Protocol:</strong> Open the official logistics app or browser domain directly to verify tracking IDs manually.
+                    </div>
                 </div>
             </article>
 
-            <!-- Fake Jobs -->
+            <!-- Fake Job Offers -->
             <article class="scam-card">
-                <div class="card-header">
-                    <div class="icon-wrapper">💼</div>
-                    <div>
-                        <span class="category-tag">Employment</span>
-                        <h2>Advance-Fee Recruitment</h2>
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">💼</span>
+                        <div>
+                            <span class="threat-category">Recruitment & Career</span>
+                            <h2>Advance-Fee Employment</h2>
+                        </div>
                     </div>
+                    <span class="risk-badge warning">MEDIUM RISK</span>
                 </div>
-                <p class="card-desc">Fraudulent recruiters demanding upfront equipment, training, or application fees.</p>
-                
-                <div class="card-section">
-                    <span class="section-title text-danger">Key Risk Indicators</span>
-                    <ul class="indicator-list">
-                        <li>Disproportionate remuneration for low-skill tasks.</li>
-                        <li>Mandatory processing fees prior to contract signing.</li>
-                        <li>Exclusive communication over unverified messaging channels.</li>
-                    </ul>
-                </div>
+                <div class="card-body">
+                    <p class="card-desc">Fraudulent HR representatives promising high remote salaries while requiring upfront equipment, training, or activation deposits.</p>
+                    
+                    <div class="card-section">
+                        <span class="section-heading text-danger">Warning Indicators:</span>
+                        <ul class="indicator-list">
+                            <li>High income promised for basic or minimal tasks.</li>
+                            <li>Mandatory processing or registration fees prior to onboarding.</li>
+                            <li>Interviews conducted strictly over messaging channels.</li>
+                        </ul>
+                    </div>
 
-                <div class="card-section action-box">
-                    <strong>Mitigation Protocol:</strong> Cross-reference open requisitions directly on corporate career portals.
+                    <div class="card-action-box">
+                        <strong>Action Protocol:</strong> Verify open requisitions directly on verified enterprise career portals.
+                    </div>
                 </div>
             </article>
 
             <!-- OTP & Passwords -->
-            <article class="scam-card highlight-danger">
-                <div class="card-header">
-                    <div class="icon-wrapper danger">🔐</div>
-                    <div>
-                        <span class="category-tag danger">Critical Threat</span>
-                        <h2>Credential & OTP Harvesting</h2>
+            <article class="scam-card high-threat">
+                <div class="card-header-bar danger">
+                    <div class="card-title-group">
+                        <span class="threat-icon">🔐</span>
+                        <div>
+                            <span class="threat-category danger">Identity & Credentials</span>
+                            <h2>MFA & OTP Harvesting</h2>
+                        </div>
                     </div>
+                    <span class="risk-badge danger">CRITICAL THREAT</span>
                 </div>
-                <p class="card-desc">Social engineering techniques designed to bypass Multi-Factor Authentication (MFA).</p>
-                
-                <div class="card-section">
-                    <span class="section-title text-danger">Key Risk Indicators</span>
-                    <ul class="indicator-list">
-                        <li>Requests to forward temporary verification SMS codes.</li>
-                        <li>Impersonation of bank security units claiming "account lockouts".</li>
-                    </ul>
-                </div>
+                <div class="card-body">
+                    <p class="card-desc">Social engineering vectors targeting One-Time Passwords (OTPs) and account recovery codes to bypass multi-factor authentication.</p>
+                    
+                    <div class="card-section">
+                        <span class="section-heading text-danger">Warning Indicators:</span>
+                        <ul class="indicator-list">
+                            <li>Requests to forward SMS verification codes.</li>
+                            <li>Caller claiming to be bank security rectifying an "account lock".</li>
+                        </ul>
+                    </div>
 
-                <div class="card-section action-box danger">
-                    <strong>Mitigation Protocol:</strong> Never disclose OTPs or security PINs. Legitimate institutions will never request authentication codes.
+                    <div class="card-action-box danger">
+                        <strong>Action Protocol:</strong> Never disclose security PINs or OTPs. Financial institutions will never ask for access credentials.
+                    </div>
                 </div>
             </article>
 
             <!-- Investment Scams -->
             <article class="scam-card">
-                <div class="card-header">
-                    <div class="icon-wrapper">📈</div>
-                    <div>
-                        <span class="category-tag">Finance</span>
-                        <h2>High-Yield Investment Schemes</h2>
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">📈</span>
+                        <div>
+                            <span class="threat-category">Finance & Crypto</span>
+                            <h2>High-Yield Ponzi Schemes</h2>
+                        </div>
                     </div>
+                    <span class="risk-badge warning">HIGH RISK</span>
                 </div>
-                <p class="card-desc">Fraudulent crypto and forex platforms promising risk-free capital multiplication.</p>
-                
-                <div class="card-section">
-                    <span class="section-title text-danger">Key Risk Indicators</span>
-                    <ul class="indicator-list">
-                        <li>Guaranteed fixed profit margins on volatile assets.</li>
-                        <li>Restricted withdrawal mechanics contingent on additional deposits.</li>
-                    </ul>
-                </div>
+                <div class="card-body">
+                    <p class="card-desc">Unlicensed trading platforms promising zero-risk capital growth, automated arbitrage returns, or guaranteed daily yields.</p>
+                    
+                    <div class="card-section">
+                        <span class="section-heading text-danger">Warning Indicators:</span>
+                        <ul class="indicator-list">
+                            <li>Claims of zero risk paired with fixed return guarantees.</li>
+                            <li>Withdrawal restrictions contingent on depositing additional capital.</li>
+                        </ul>
+                    </div>
 
-                <div class="card-section action-box">
-                    <strong>Mitigation Protocol:</strong> Validate regulatory compliance with accredited national financial authorities before committing funds.
+                    <div class="card-action-box">
+                        <strong>Action Protocol:</strong> Verify regulatory licensing with official national financial conduct authorities.
+                    </div>
                 </div>
             </article>
 
             <!-- Impersonation -->
             <article class="scam-card">
-                <div class="card-header">
-                    <div class="icon-wrapper">👤</div>
-                    <div>
-                        <span class="category-tag">Identity</span>
-                        <h2>Executive & Social Impersonation</h2>
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">👤</span>
+                        <div>
+                            <span class="threat-category">Social Engineering</span>
+                            <h2>Emergency Impersonation</h2>
+                        </div>
                     </div>
+                    <span class="risk-badge warning">HIGH RISK</span>
                 </div>
-                <p class="card-desc">Bad actors impersonating family members, superiors, or official entities in crisis scenarios.</p>
-                
-                <div class="card-section">
-                    <span class="section-title text-danger">Key Risk Indicators</span>
-                    <ul class="indicator-list">
-                        <li>Claims of lost devices paired with unverified transfer requests.</li>
-                        <li>Coercion demanding total transaction secrecy.</li>
-                    </ul>
-                </div>
+                <div class="card-body">
+                    <p class="card-desc">Bad actors impersonating close relatives, colleagues, or authorities requesting immediate emergency funds under distress.</p>
+                    
+                    <div class="card-section">
+                        <span class="section-heading text-danger">Warning Indicators:</span>
+                        <ul class="indicator-list">
+                            <li>"This is my new number, please save it..." messages.</li>
+                            <li>Demands for secrecy or immediate wire transfers.</li>
+                        </ul>
+                    </div>
 
-                <div class="card-section action-box">
-                    <strong>Mitigation Protocol:</strong> Perform out-of-band verification by calling the party directly through an established contact vector.
+                    <div class="card-action-box">
+                        <strong>Action Protocol:</strong> Call the contact directly using their previously verified phone number.
+                    </div>
                 </div>
             </article>
 
             <!-- Phishing Links -->
             <article class="scam-card">
-                <div class="card-header">
-                    <div class="icon-wrapper">🌐</div>
-                    <div>
-                        <span class="category-tag">Infrastructure</span>
-                        <h2>Domain Spoofing & Phishing</h2>
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">🌐</span>
+                        <div>
+                            <span class="threat-category">Infrastructure</span>
+                            <h2>Domain Spoofing & Phishing</h2>
+                        </div>
                     </div>
+                    <span class="risk-badge warning">HIGH RISK</span>
                 </div>
-                <p class="card-desc">Spoofed web interfaces built to intercept credit card data and personal identifiers.</p>
-                
-                <div class="card-section">
-                    <span class="section-title text-danger">Key Risk Indicators</span>
-                    <ul class="indicator-list">
-                        <li>Typosquatting domains (e.g., `paypaI-security.com`).</li>
-                        <li>Obfuscated links utilizing URL shorteners.</li>
-                    </ul>
-                </div>
+                <div class="card-body">
+                    <p class="card-desc">Cloned portals and spoofed login interfaces crafted to harvest user credentials and payment card data.</p>
+                    
+                    <div class="card-section">
+                        <span class="section-heading text-danger">Warning Indicators:</span>
+                        <ul class="indicator-list">
+                            <li>Misspelled domain names (e.g., `paypal-security-login.com`).</li>
+                            <li>Shortened URLs concealing target site destinations.</li>
+                        </ul>
+                    </div>
 
-                <div class="card-section action-box">
-                    <strong>Mitigation Protocol:</strong> Inspect top-level domain extensions and manually type primary web addresses into browser address bars.
+                    <div class="card-action-box">
+                        <strong>Action Protocol:</strong> Inspect root domain extensions carefully and avoid clicking unverified links.
+                    </div>
                 </div>
             </article>
 
         </section>
 
-        <!-- TOOLS QUICK NAV CARD -->
+        <!-- CTA SECTION -->
         <section class="tools-cta">
-            <div class="cta-header">
-                <h2>Automated Threat Analysis Suite</h2>
-                <p>Select an engine to run real-time pattern matching against suspicious inputs:</p>
+            <div class="cta-content">
+                <h2>Deploy Real-Time Verification Tools</h2>
+                <p>Run automated scans on suspicious text, links, or chat logs using the TrustAI suite:</p>
             </div>
             <div class="tools-grid">
                 <a href="message.html" class="tool-btn">
-                    <span class="btn-icon">🔍</span>
-                    <span>Message Analyzer</span>
+                    <span>🔍</span> Check Message
                 </a>
                 <a href="conversation.html" class="tool-btn">
-                    <span class="btn-icon">💬</span>
-                    <span>Chat Scanner</span>
+                    <span>💬</span> Analyze Chat
                 </a>
                 <a href="website.html" class="tool-btn">
-                    <span class="btn-icon">🌐</span>
-                    <span>URL Auditor</span>
+                    <span>🌐</span> Audit Website
                 </a>
-                <a href="security.html" class="tool-btn highlight">
-                    <span class="btn-icon">🛡️</span>
-                    <span>Security Center</span>
+                <a href="security.html" class="tool-btn primary">
+                    <span>🛡️</span> Security Center
                 </a>
             </div>
         </section>
 
     </main>
 
+    <!-- FOOTER -->
     <footer class="app-footer">
-        <div class="footer-brand">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>TrustAI Platform</span>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>TrustAI Security Platform</span>
+            </div>
+            <p>Enterprise Scam Recognition & Threat Intelligence Engine.</p>
+            <p class="copyright">© 2026 TrustAI. All systems operational.</p>
         </div>
-        <p>Advanced Scam Prevention & Behavioral Threat Detection Engine.</p>
-        <p class="copyright">© 2026 TrustAI. All security protocols enforced.</p>
     </footer>
 
 </body>
