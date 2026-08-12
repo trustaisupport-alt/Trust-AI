@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -27,19 +27,146 @@
             color: #172033;
         }
 
+        /* =========================
+           MENU BUTTON
+        ========================= */
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 18px;
+            width: 44px;
+            height: 44px;
+            border: 1px solid #dce3ec;
+            border-radius: 10px;
+            background: #ffffff;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .menu-button span {
+            width: 21px;
+            height: 2px;
+            background: #172033;
+            border-radius: 2px;
+        }
+
+        .menu-button:hover {
+            border-color: #1459c7;
+        }
+
+        /* =========================
+           SIDE MENU
+        ========================= */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -290px;
+            width: 280px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #dce3ec;
+            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            padding: 75px 18px 25px;
+            overflow-y: auto;
+            transition: left 0.25s ease;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .menu-title {
+            padding: 0 12px 18px;
+            border-bottom: 1px solid #e5eaf1;
+            margin-bottom: 12px;
+        }
+
+        .menu-title strong {
+            font-size: 21px;
+        }
+
+        .menu-title span {
+            display: block;
+            margin-top: 4px;
+            color: #697586;
+            font-size: 12px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 13px 12px;
+            margin-bottom: 4px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #172033;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .menu-link:hover {
+            background: #f0f5fc;
+            color: #1459c7;
+        }
+
+        .menu-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: #e5eaf1;
+            margin: 14px 0;
+        }
+
+        /* =========================
+           OVERLAY
+        ========================= */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 18, 32, 0.35);
+            z-index: 999;
+            display: none;
+        }
+
+        .menu-overlay.show {
+            display: block;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
         .page {
             max-width: 900px;
             margin: auto;
             padding: 25px 18px 40px;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 35px;
+            padding-left: 58px;
         }
 
         .logo {
@@ -57,7 +184,9 @@
             border-radius: 20px;
         }
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
             background: #ffffff;
@@ -80,14 +209,18 @@
             color: #536071;
         }
 
-        /* SECTION */
+        /* =========================
+           SECTION
+        ========================= */
 
         .section-title {
             font-size: 21px;
             margin: 30px 0 15px;
         }
 
-        /* TOOLS */
+        /* =========================
+           TOOLS
+        ========================= */
 
         .tools {
             display: grid;
@@ -128,7 +261,9 @@
             color: #657184;
         }
 
-        /* SECURITY */
+        /* =========================
+           SECURITY
+        ========================= */
 
         .security-box {
             background: #172033;
@@ -160,7 +295,9 @@
             text-decoration: none;
         }
 
-        /* REPORT */
+        /* =========================
+           REPORT
+        ========================= */
 
         .report {
             background: #fff7e8;
@@ -174,13 +311,9 @@
             margin-top: 0;
         }
 
-        .report a {
-            font-weight: bold;
-            color: #b26700;
-            text-decoration: none;
-        }
-
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
@@ -191,7 +324,9 @@
             font-size: 13px;
         }
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 650px) {
 
@@ -199,12 +334,22 @@
                 padding: 18px 14px 35px;
             }
 
+            .menu-button {
+                top: 14px;
+                left: 14px;
+            }
+
             .header {
                 margin-bottom: 25px;
+                padding-left: 55px;
             }
 
             .logo {
                 font-size: 25px;
+            }
+
+            .status {
+                display: none;
             }
 
             .hero {
@@ -231,6 +376,132 @@
 
 
 <body>
+
+
+<!-- =========================
+     MENU BUTTON
+========================= -->
+
+<button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open navigation menu">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
+
+
+<!-- =========================
+     SIDE NAVIGATION
+========================= -->
+
+<nav id="sideMenu" class="side-menu">
+
+    <div class="menu-title">
+
+        <strong>🛡️ TrustAI</strong>
+
+        <span>Online Scam Protection</span>
+
+    </div>
+
+
+    <a href="home.html" class="menu-link">
+
+        <span class="menu-icon">🏠</span>
+
+        Home
+
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+
+        <span class="menu-icon">🔍</span>
+
+        Message Checker
+
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        Conversation Checker
+
+    </a>
+
+
+    <a href="Website.html" class="menu-link">
+
+        <span class="menu-icon">🌐</span>
+
+        Website Checker
+
+    </a>
+
+
+    <a href="device_checker.html" class="menu-link">
+
+        <span class="menu-icon">📱</span>
+
+        Device Security
+
+    </a>
+
+
+    <a href="security.html" class="menu-link">
+
+        <span class="menu-icon">🛡️</span>
+
+        Security Center
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html" class="menu-link">
+
+        <span class="menu-icon">🚨</span>
+
+        Scam Alerts
+
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+
+        <span class="menu-icon">📢</span>
+
+        Report a Scam
+
+    </a>
+
+
+    <a href="feedback.html" class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        Contact TrustAI
+
+    </a>
+
+</nav>
+
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
+
+
 
 <div class="page">
 
@@ -423,7 +694,7 @@
         <a class="tool" href="feedback.html">
 
             <div class="tool-icon">
-                📞
+                💬
             </div>
 
             <h3>
@@ -482,6 +753,41 @@
 
 </div>
 
+
+<script>
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+</script>
+
+
 </body>
 
-    </html>
+</html>
