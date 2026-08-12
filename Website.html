@@ -3,537 +3,481 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>Website Checker — TrustAI</title>
-
-    <meta name="description"
-        content="TrustAI Website Checker">
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            background: #050b14;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* =========================
-           3-DASH MENU
-        ========================= */
-
-        .menu-button {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 46px;
-            height: 46px;
-            border: none;
-            border-radius: 11px;
-            background: #1687ff;
-            cursor: pointer;
-            z-index: 1001;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-
-            box-shadow: 0 4px 14px rgba(22, 135, 255, 0.25);
-        }
-
-        .menu-button span {
-            width: 22px;
-            height: 3px;
-            background: white;
-            border-radius: 3px;
-        }
-
-        .menu-button:hover {
-            background: #0877eb;
-        }
-
-        /* =========================
-           SIDE MENU
-        ========================= */
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -290px;
-
-            width: 280px;
-            height: 100vh;
-
-            background: #0b1420;
-            border-right: 1px solid #1b2b3d;
-
-            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.45);
-
-            z-index: 1000;
-
-            padding: 80px 18px 25px;
-
-            overflow-y: auto;
-
-            transition: left 0.25s ease;
-        }
-
-        .side-menu.open {
-            left: 0;
-        }
-
-        .menu-title {
-            padding: 0 12px 18px;
-            border-bottom: 1px solid #1b2b3d;
-            margin-bottom: 12px;
-        }
-
-        .menu-title strong {
-            font-size: 21px;
-            color: #ffffff;
-        }
-
-        .menu-title span {
-            display: block;
-            margin-top: 5px;
-            color: #8998aa;
-            font-size: 12px;
-        }
-
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            width: 100%;
-
-            padding: 13px 12px;
-            margin-bottom: 4px;
-
-            border-radius: 10px;
-
-            text-decoration: none;
-            color: #ffffff;
-
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .menu-link:hover {
-            background: #101f31;
-            color: #1687ff;
-        }
-
-        .menu-icon {
-            width: 25px;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        .menu-divider {
-            height: 1px;
-            background: #1b2b3d;
-            margin: 14px 0;
-        }
-
-        /* =========================
-           OVERLAY
-        ========================= */
-
-        .menu-overlay {
-            position: fixed;
-            inset: 0;
-
-            background: rgba(0, 0, 0, 0.55);
-
-            z-index: 999;
-
-            display: none;
-        }
-
-        .menu-overlay.show {
-            display: block;
-        }
-
-        /* =========================
-           PAGE
-        ========================= */
-
-        .page {
-            width: 100%;
-            max-width: 900px;
-            margin: auto;
-            padding: 85px 18px 45px;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 35px;
-        }
-
-        .logo {
-            display: none;
-        }
-
-        .back {
-            color: #8c9bad;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .back:hover {
-            color: #1687ff;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            margin-bottom: 25px;
-        }
-
-        .label {
-            color: #1687ff;
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-        }
-
-        .hero h1 {
-            margin: 0 0 12px;
-            font-size: 34px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            margin: 0;
-            max-width: 700px;
-            color: #9ba8b8;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        /* =========================
-           CHECKER
-        ========================= */
-
-        .checker {
-            background: #0b1420;
-            border: 1px solid #1b2b3d;
-            border-radius: 18px;
-            padding: 24px;
-        }
-
-        .checker h2 {
-            margin: 0 0 8px;
-            font-size: 20px;
-        }
-
-        .checker-subtitle {
-            color: #8998aa;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        /* =========================
-           INPUT
-        ========================= */
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .input-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        input {
-            flex: 1;
-            min-width: 0;
-            background: #050b14;
-            border: 1px solid #26384d;
-            color: #ffffff;
-            border-radius: 10px;
-            padding: 14px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #1687ff;
-        }
-
-        input::placeholder {
-            color: #657386;
-        }
-
-        button {
-            border: none;
-            border-radius: 10px;
-            padding: 0 20px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .check-btn {
-            background: #1687ff;
-            color: white;
-        }
-
-        .check-btn:hover {
-            background: #0877eb;
-        }
-
-        /* =========================
-           RESULT
-        ========================= */
-
-        .result {
-            display: none;
-            margin-top: 20px;
-            border-radius: 14px;
-            padding: 18px;
-        }
-
-        .result.show {
-            display: block;
-        }
-
-        .result-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .status {
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .website-name {
-            margin-top: 9px;
-            font-size: 14px;
-            color: #c5cfda;
-            word-break: break-all;
-        }
-
-        .result-message {
-            margin-top: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .reason {
-            margin-top: 8px;
-            font-size: 13px;
-            color: #c5cfda;
-            line-height: 1.5;
-        }
-
-        .action {
-            margin-top: 12px;
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.5;
-        }
-
-        /* =========================
-           RESULT COLORS
-        ========================= */
-
-        .verified {
-            background: #071d15;
-            border: 1px solid #14583f;
-        }
-
-        .verified .status {
-            color: #31d98a;
-        }
-
-        .unverified {
-            background: #111a25;
-            border: 1px solid #2b3a4b;
-        }
-
-        .unverified .status {
-            color: #b9c4d0;
-        }
-
-        .caution {
-            background: #211a08;
-            border: 1px solid #66501a;
-        }
-
-        .caution .status {
-            color: #ffd34d;
-        }
-
-        .high {
-            background: #241209;
-            border: 1px solid #71401e;
-        }
-
-        .high .status {
-            color: #ff9b4a;
-        }
-
-        .critical {
-            background: #250b0b;
-            border: 1px solid #702222;
-        }
-
-        .critical .status {
-            color: #ff5f5f;
-        }
-
-        /* =========================
-           INFORMATION
-        ========================= */
-
-        .section-title {
-            margin: 35px 0 15px;
-            font-size: 19px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-
-        .info-card {
-            background: #0b1420;
-            border: 1px solid #1b2b3d;
-            border-radius: 15px;
-            padding: 18px;
-        }
-
-        .info-card h3 {
-            margin: 0 0 8px;
-            font-size: 16px;
-        }
-
-        .info-card p {
-            margin: 0;
-            color: #8998aa;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        /* =========================
-           NOTICE
-        ========================= */
-
-        .notice {
-            margin-top: 20px;
-            padding: 18px;
-            border-radius: 15px;
-            background: #0b1420;
-            border: 1px solid #1b2b3d;
-        }
-
-        .notice strong {
-            color: #1687ff;
-        }
-
-        .notice p {
-            color: #8998aa;
-            font-size: 13px;
-            line-height: 1.5;
-            margin: 8px 0 0;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            text-align: center;
-            color: #657386;
-            font-size: 12px;
-            margin-top: 35px;
-            padding-top: 20px;
-            border-top: 1px solid #182536;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 650px) {
-
-            .page {
-                padding: 78px 14px 35px;
-            }
-
-            .header {
-                margin-bottom: 28px;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .checker {
-                padding: 19px;
-            }
-
-            .input-row {
-                flex-direction: column;
-            }
-
-            .input-row button {
-                height: 48px;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Website Checker — TrustAI</title>
+
+<meta name="description"
+content="TrustAI Website Checker">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #050b14;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   3-DASH MENU
+========================= */
+
+.menu-button {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 11px;
+    background: #1687ff;
+    cursor: pointer;
+    z-index: 1001;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-button span {
+    width: 22px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+/* SIDE MENU */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -290px;
+    width: 280px;
+    height: 100vh;
+
+    background: #0b1420;
+    border-right: 1px solid #1b2b3d;
+
+    z-index: 1000;
+    padding: 80px 18px 25px;
+
+    overflow-y: auto;
+    transition: left 0.25s ease;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-title {
+    padding: 0 12px 18px;
+    border-bottom: 1px solid #1b2b3d;
+    margin-bottom: 12px;
+}
+
+.menu-title strong {
+    font-size: 21px;
+    color: #1687ff;
+}
+
+.menu-title span {
+    display: block;
+    margin-top: 5px;
+    color: #8998aa;
+    font-size: 12px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 13px 12px;
+    margin-bottom: 4px;
+
+    border-radius: 10px;
+    text-decoration: none;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.menu-link:hover {
+    background: #101f31;
+    color: #1687ff;
+}
+
+.menu-icon {
+    width: 25px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.menu-divider {
+    height: 1px;
+    background: #1b2b3d;
+    margin: 14px 0;
+}
+
+/* OVERLAY */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 999;
+    display: none;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+/* PAGE */
+
+.page {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 85px 18px 45px;
+}
+
+/* HEADER */
+
+.header {
+    margin-bottom: 35px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #1687ff;
+}
+
+/* HERO */
+
+.hero {
+    margin-bottom: 25px;
+}
+
+.label {
+    color: #1687ff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    margin: 0 0 12px;
+    font-size: 34px;
+    line-height: 1.2;
+}
+
+.hero p {
+    margin: 0;
+    max-width: 700px;
+    color: #9ba8b8;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* CHECKER */
+
+.checker {
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.checker h2 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.checker-subtitle {
+    color: #8998aa;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    background: #050b14;
+    border: 1px solid #26384d;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #1687ff;
+}
+
+input::placeholder {
+    color: #657386;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.check-btn {
+    background: #1687ff;
+    color: white;
+}
+
+.check-btn:hover {
+    background: #0877eb;
+}
+
+/* RESULT */
+
+.result {
+    display: none;
+    margin-top: 20px;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.result.show {
+    display: block;
+}
+
+.result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.status {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.website-name {
+    margin-top: 9px;
+    font-size: 14px;
+    color: #c5cfda;
+    word-break: break-all;
+}
+
+.result-message {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.reason {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #c5cfda;
+    line-height: 1.5;
+}
+
+.action {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+/* RESULT COLORS */
+
+.verified {
+    background: #071d15;
+    border: 1px solid #14583f;
+}
+
+.verified .status {
+    color: #31d98a;
+}
+
+.unverified {
+    background: #111a25;
+    border: 1px solid #2b3a4b;
+}
+
+.unverified .status {
+    color: #b9c4d0;
+}
+
+.caution {
+    background: #211a08;
+    border: 1px solid #66501a;
+}
+
+.caution .status {
+    color: #ffd34d;
+}
+
+.high {
+    background: #241209;
+    border: 1px solid #71401e;
+}
+
+.high .status {
+    color: #ff9b4a;
+}
+
+.critical {
+    background: #250b0b;
+    border: 1px solid #702222;
+}
+
+.critical .status {
+    color: #ff5f5f;
+}
+
+/* INFORMATION */
+
+.section-title {
+    margin: 35px 0 15px;
+    font-size: 19px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.info-card {
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+    border-radius: 15px;
+    padding: 18px;
+}
+
+.info-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.info-card p {
+    margin: 0;
+    color: #8998aa;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* NOTICE */
+
+.notice {
+    margin-top: 20px;
+    padding: 18px;
+    border-radius: 15px;
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+}
+
+.notice strong {
+    color: #1687ff;
+}
+
+.notice p {
+    color: #8998aa;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 8px 0 0;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #657386;
+    font-size: 12px;
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid #182536;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .page {
+        padding: 80px 14px 35px;
+    }
+
+    .header {
+        margin-bottom: 28px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .checker {
+        padding: 19px;
+    }
+
+    .input-row {
+        flex-direction: column;
+    }
+
+    button {
+        height: 48px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     3-DASH BUTTON
-========================= -->
+<!-- 3-DASH BUTTON -->
 
 <button
-    type="button"
     class="menu-button"
-    id="menuButton"
-    aria-label="Open menu"
-    aria-expanded="false">
+    onclick="toggleMenu()"
+    aria-label="Open menu">
 
     <span></span>
     <span></span>
@@ -542,9 +486,7 @@
 </button>
 
 
-<!-- =========================
-     SIDE MENU
-========================= -->
+<!-- SIDE MENU -->
 
 <nav id="sideMenu" class="side-menu">
 
@@ -556,57 +498,47 @@
 
     </div>
 
-
     <a href="home.html" class="menu-link">
         <span class="menu-icon">🏠</span>
         Home
     </a>
-
 
     <a href="message.html" class="menu-link">
         <span class="menu-icon">🔍</span>
         Message Checker
     </a>
 
-
     <a href="conversation.html" class="menu-link">
         <span class="menu-icon">💬</span>
         Conversation Checker
     </a>
-
 
     <a href="Website.html" class="menu-link">
         <span class="menu-icon">🌐</span>
         Website Checker
     </a>
 
-
     <a href="device_checker.html" class="menu-link">
         <span class="menu-icon">📱</span>
         Device Security
     </a>
-
 
     <a href="security.html" class="menu-link">
         <span class="menu-icon">🛡️</span>
         Security Center
     </a>
 
-
     <div class="menu-divider"></div>
-
 
     <a href="alerts.html" class="menu-link">
         <span class="menu-icon">🚨</span>
         Scam Alerts
     </a>
 
-
     <a href="report.html" class="menu-link">
         <span class="menu-icon">📢</span>
         Report a Scam
     </a>
-
 
     <a href="feedback.html" class="menu-link">
         <span class="menu-icon">💬</span>
@@ -616,226 +548,206 @@
 </nav>
 
 
-<!-- =========================
-     OVERLAY
-========================= -->
+<!-- OVERLAY -->
 
 <div
     id="menuOverlay"
-    class="menu-overlay">
+    class="menu-overlay"
+    onclick="closeMenu()">
 </div>
 
 
-<!-- =========================
-     MAIN PAGE
-========================= -->
-
 <div class="page">
 
+<header class="header">
 
-    <!-- HEADER -->
+    <div class="logo">
+        🛡️ Trust<span>AI</span>
+    </div>
 
-    <header class="header">
-
-        <a href="home.html" class="back">
-            ← Home
-        </a>
-
-    </header>
+</header>
 
 
-    <!-- HERO -->
+<section class="hero">
 
-    <section class="hero">
+    <div class="label">
+        WEBSITE SECURITY
+    </div>
 
-        <div class="label">
-            WEBSITE SECURITY
-        </div>
+    <h1>
+        Check before you trust.
+    </h1>
 
-        <h1>
-            Check before you trust.
-        </h1>
+    <p>
+        Analyze a website address for common
+        phishing, impersonation and suspicious-link
+        warning signs.
+    </p>
 
-        <p>
-            Analyze a website address for common
-            phishing, impersonation and suspicious-link
-            warning signs.
-        </p>
-
-    </section>
+</section>
 
 
-    <!-- CHECKER -->
+<section class="checker">
 
-    <section class="checker">
-
-        <h2>
-            Website Checker
-        </h2>
-
-        <div class="checker-subtitle">
-            Enter a website address below.
-        </div>
-
-        <form id="websiteForm">
-
-            <label for="website">
-                Website address
-            </label>
-
-            <div class="input-row">
-
-                <input
-                    type="text"
-                    id="website"
-                    placeholder="example.com"
-                    autocomplete="off">
-
-                <button
-                    type="submit"
-                    class="check-btn">
-                    Check
-                </button>
-
-            </div>
-
-        </form>
-
-
-        <!-- RESULT -->
-
-        <div id="result" class="result">
-
-            <div class="result-top">
-
-                <div id="status" class="status"></div>
-
-            </div>
-
-            <div id="websiteName"
-                class="website-name">
-            </div>
-
-            <div id="resultMessage"
-                class="result-message">
-            </div>
-
-            <div id="reason"
-                class="reason">
-            </div>
-
-            <div id="action"
-                class="action">
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- INFORMATION -->
-
-    <h2 class="section-title">
-        What TrustAI checks
+    <h2>
+        Website Checker
     </h2>
 
+    <div class="checker-subtitle">
+        Enter a website address below.
+    </div>
 
-    <section class="info-grid">
+    <form id="websiteForm">
 
-        <div class="info-card">
+        <label for="website">
+            Website address
+        </label>
 
-            <h3>
-                🔗 Domain structure
-            </h3>
+        <div class="input-row">
 
-            <p>
-                Looks for unusual domains, suspicious
-                characters, excessive subdomains and
-                other URL patterns.
-            </p>
+            <input
+                type="text"
+                id="website"
+                placeholder="example.com"
+                autocomplete="off"
+            >
 
-        </div>
-
-
-        <div class="info-card">
-
-            <h3>
-                🎭 Lookalike domains
-            </h3>
-
-            <p>
-                Looks for domains that may imitate
-                familiar websites.
-            </p>
+            <button
+                type="submit"
+                class="check-btn">
+                Check
+            </button>
 
         </div>
 
+    </form>
 
-        <div class="info-card">
 
-            <h3>
-                🔐 Security requests
-            </h3>
+    <div id="result" class="result">
 
-            <p>
-                Flags URL patterns associated with
-                account verification and suspicious
-                login requests.
-            </p>
+        <div class="result-top">
+
+            <div id="status" class="status"></div>
 
         </div>
 
-
-        <div class="info-card">
-
-            <h3>
-                ⚠️ Unknown websites
-            </h3>
-
-            <p>
-                No warning signs does not automatically
-                mean a website is safe.
-            </p>
-
+        <div id="websiteName"
+            class="website-name">
         </div>
 
-    </section>
+        <div id="resultMessage"
+            class="result-message">
+        </div>
+
+        <div id="reason"
+            class="reason">
+        </div>
+
+        <div id="action"
+            class="action">
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- NOTICE -->
+<h2 class="section-title">
+    What TrustAI checks
+</h2>
 
-    <section class="notice">
 
-        <strong>
-            🛡️ TrustAI Safety Rule
-        </strong>
+<section class="info-grid">
+
+    <div class="info-card">
+
+        <h3>
+            🔗 Domain structure
+        </h3>
 
         <p>
-            Never enter your password, PIN, OTP or
-            payment information just because a website
-            asks for it. Verify important websites
-            independently.
+            Looks for unusual domains, suspicious
+            characters, excessive subdomains and
+            other URL patterns.
         </p>
 
-    </section>
+    </div>
 
 
-    <!-- FOOTER -->
+    <div class="info-card">
 
-    <footer>
+        <h3>
+            🎭 Lookalike domains
+        </h3>
 
-        <strong>🛡️ TrustAI</strong>
+        <p>
+            Looks for domains that may imitate
+            familiar websites.
+        </p>
 
-        <br><br>
+    </div>
 
-        Online scam awareness and protection.
 
-        <br><br>
+    <div class="info-card">
 
-        © 2026 TrustAI
+        <h3>
+            🔐 Security requests
+        </h3>
 
-    </footer>
+        <p>
+            Flags URL patterns associated with
+            account verification and suspicious
+            login requests.
+        </p>
 
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            ⚠️ Unknown websites
+        </h3>
+
+        <p>
+            No warning signs does not automatically
+            mean a website is safe.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="notice">
+
+    <strong>
+        🛡️ TrustAI Safety Rule
+    </strong>
+
+    <p>
+        Never enter your password, PIN, OTP or
+        payment information just because a website
+        asks for it. Verify important websites
+        independently.
+    </p>
+
+</section>
+
+
+<footer>
+
+    <strong>🛡️ TrustAI</strong>
+
+    <br><br>
+
+    Online scam awareness and protection.
+
+    <br><br>
+
+    © 2026 TrustAI
+
+</footer>
 
 </div>
 
@@ -846,83 +758,34 @@
    3-DASH MENU
 ========================= */
 
-const menuButton =
-    document.getElementById("menuButton");
+function toggleMenu() {
 
-const sideMenu =
-    document.getElementById("sideMenu");
+    const menu =
+        document.getElementById("sideMenu");
 
-const menuOverlay =
-    document.getElementById("menuOverlay");
+    const overlay =
+        document.getElementById("menuOverlay");
 
+    menu.classList.toggle("open");
 
-function openMenu() {
-
-    sideMenu.classList.add("open");
-
-    menuOverlay.classList.add("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
+    overlay.classList.toggle("show");
 
 }
 
 
 function closeMenu() {
 
-    sideMenu.classList.remove("open");
+    const menu =
+        document.getElementById("sideMenu");
 
-    menuOverlay.classList.remove("show");
+    const overlay =
+        document.getElementById("menuOverlay");
 
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
+    menu.classList.remove("open");
 
-}
-
-
-function toggleMenu() {
-
-    if (sideMenu.classList.contains("open")) {
-
-        closeMenu();
-
-    } else {
-
-        openMenu();
-
-    }
+    overlay.classList.remove("show");
 
 }
-
-
-menuButton.addEventListener(
-    "click",
-    toggleMenu
-);
-
-
-menuOverlay.addEventListener(
-    "click",
-    closeMenu
-);
-
-
-/* Close menu after selecting a page */
-
-document
-    .querySelectorAll(".menu-link")
-    .forEach(function(link) {
-
-        link.addEventListener(
-            "click",
-            closeMenu
-        );
-
-    });
 
 
 /* =========================
@@ -930,11 +793,8 @@ document
 ========================= */
 
 document
-    .getElementById("websiteForm")
-    .addEventListener(
-        "submit",
-        checkWebsite
-    );
+.getElementById("websiteForm")
+.addEventListener("submit", checkWebsite);
 
 
 function checkWebsite(event) {
@@ -960,7 +820,6 @@ function checkWebsite(event) {
         );
 
         return;
-
     }
 
 
@@ -968,7 +827,8 @@ function checkWebsite(event) {
         website.replace(/\s+/g, "");
 
 
-    let testURL = website;
+    let testURL =
+        website;
 
 
     if (
@@ -987,7 +847,8 @@ function checkWebsite(event) {
 
     try {
 
-        url = new URL(testURL);
+        url =
+            new URL(testURL);
 
     } catch (error) {
 
@@ -1001,7 +862,6 @@ function checkWebsite(event) {
         );
 
         return;
-
     }
 
 
@@ -1017,8 +877,6 @@ function checkWebsite(event) {
 
     let reasons = [];
 
-
-    /* KNOWN OFFICIAL DOMAINS */
 
     const trustedDomains = [
 
@@ -1036,19 +894,15 @@ function checkWebsite(event) {
 
 
     const isTrusted =
-        trustedDomains.some(
-            function(domain) {
+        trustedDomains.some(function(domain) {
 
-                return (
-                    hostname === domain ||
-                    hostname.endsWith("." + domain)
-                );
+            return (
+                hostname === domain ||
+                hostname.endsWith("." + domain)
+            );
 
-            }
-        );
+        });
 
-
-    /* LOOKALIKE DOMAINS */
 
     const lookalikePatterns = [
 
@@ -1064,9 +918,7 @@ function checkWebsite(event) {
     ];
 
 
-    for (
-        const pattern of lookalikePatterns
-    ) {
+    for (const pattern of lookalikePatterns) {
 
         if (hostname.includes(pattern)) {
 
@@ -1077,13 +929,10 @@ function checkWebsite(event) {
             );
 
             break;
-
         }
 
     }
 
-
-    /* HTTP */
 
     if (url.protocol === "http:") {
 
@@ -1096,14 +945,257 @@ function checkWebsite(event) {
     }
 
 
-    /* IP ADDRESS */
-
     if (
-        /^\d{1,3}(\.\d{1,3}){3}$/
-            .test(hostname)
+        /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)
     ) {
 
         score += 3;
 
         reasons.push(
-            "W
+            "Website uses an IP address."
+        );
+
+    }
+
+
+    if (fullURL.includes("@")) {
+
+        score += 3;
+
+        reasons.push(
+            "URL contains an unusual @ symbol."
+        );
+
+    }
+
+
+    if (hostname.length > 45) {
+
+        score += 1;
+
+        reasons.push(
+            "Domain name is unusually long."
+        );
+
+    }
+
+
+    const hyphens =
+        (hostname.match(/-/g) || []).length;
+
+    if (hyphens >= 3) {
+
+        score += 2;
+
+        reasons.push(
+            "Domain contains several hyphens."
+        );
+
+    }
+
+
+    const parts =
+        hostname.split(".");
+
+    if (parts.length >= 5) {
+
+        score += 1;
+
+        reasons.push(
+            "Domain has an unusually complex structure."
+        );
+
+    }
+
+
+    const suspiciousWords = [
+
+        "verify-account",
+        "verify-login",
+        "confirm-account",
+        "account-suspended",
+        "reset-password",
+        "security-check",
+        "claim-prize",
+        "free-money",
+        "cash-reward",
+        "instant-profit",
+        "guaranteed-profit"
+
+    ];
+
+
+    for (const word of suspiciousWords) {
+
+        if (fullURL.includes(word)) {
+
+            score += 2;
+
+            reasons.push(
+                "Suspicious verification or money-related wording."
+            );
+
+            break;
+
+        }
+
+    }
+
+
+    const shorteners = [
+
+        "bit.ly",
+        "tinyurl.com",
+        "t.co",
+        "is.gd",
+        "cutt.ly"
+
+    ];
+
+
+    if (shorteners.includes(hostname)) {
+
+        score += 2;
+
+        reasons.push(
+            "Shortened URL detected."
+        );
+
+    }
+
+
+    if (
+        hostname.startsWith("xn--") ||
+        hostname.includes(".xn--")
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "Internationalized domain requires verification."
+        );
+
+    }
+
+
+    score =
+        Math.min(score, 10);
+
+
+    if (isTrusted && score === 0) {
+
+        showResult(
+            "verified",
+            "🟢 RECOGNIZED DOMAIN",
+            website,
+            "This matches a known official domain.",
+            "No major URL warning signs were detected.",
+            "Action: Still check the address before entering sensitive information."
+        );
+
+        return;
+    }
+
+
+    if (score >= 7) {
+
+        showResult(
+            "critical",
+            "🔴 VERY HIGH RISK",
+            website,
+            "Strong warning signs were detected.",
+            reasons[0],
+            "Action: Do not enter passwords, OTPs, PINs or payment details."
+        );
+
+        return;
+    }
+
+
+    if (score >= 4) {
+
+        showResult(
+            "high",
+            "🟠 HIGH RISK",
+            website,
+            "Suspicious characteristics were detected.",
+            reasons[0],
+            "Action: Avoid entering sensitive information until verified."
+        );
+
+        return;
+    }
+
+
+    if (score >= 2) {
+
+        showResult(
+            "caution",
+            "🟡 CAUTION",
+            website,
+            "Some warning signs were detected.",
+            reasons[0],
+            "Action: Verify the website before using it."
+        );
+
+        return;
+    }
+
+
+    showResult(
+        "unverified",
+        "⚪ UNVERIFIED",
+        website,
+        "No obvious warning signs were detected.",
+        "TrustAI cannot confirm that this website is legitimate.",
+        "Action: Verify important websites independently."
+    );
+
+}
+
+
+function showResult(
+    type,
+    statusText,
+    site,
+    messageText,
+    reasonText,
+    actionText
+) {
+
+    const result =
+        document.getElementById("result");
+
+    document.getElementById("status")
+        .textContent = statusText;
+
+    document.getElementById("websiteName")
+        .textContent = site;
+
+    document.getElementById("resultMessage")
+        .textContent = messageText;
+
+    document.getElementById("reason")
+        .textContent =
+        reasonText ? "Finding: " + reasonText : "";
+
+    document.getElementById("action")
+        .textContent = actionText;
+
+
+    result.className =
+        "result show " + type;
+
+
+    result.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+
+}
+
+</script>
+
+</body>
+
+    </html>
