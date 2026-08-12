@@ -1,293 +1,267 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Checker — TrustAI</title>
     <link rel="stylesheet" href="style.css">
-    <title>Website Checker - TrustAI</title>
-</head><body><h1>🌐 Website Checker</h1>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
-<p>
-    Enter a website address to check for possible warning signs.
-</p>
+    <!-- TOP NAVIGATION -->
+    <header class="app-header">
+        <div class="header-nav">
+            <a href="alerts.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Return to Threat Portal
+            </a>
+            <div class="system-status">
+                <span class="status-pulse"></span> Scanner Engine: Online
+            </div>
+        </div>
 
-<form onsubmit="checkWebsite(event)">
+        <!-- HERO BRAND & HEADLINE -->
+        <div class="hero-section">
+            <div class="hero-brand">
+                <div class="shield-badge">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <span class="brand-subtitle">TRUSTAI THREAT INTELLIGENCE</span>
+                    <h1>🌐 Website Security Audit</h1>
+                </div>
+            </div>
+            <p class="hero-desc">
+                Enter any website domain or link to run an automated pattern-based inspection for domain spoofing, suspicious TLDs, credential harvesting, and phishing vectors.
+            </p>
+        </div>
+    </header>
 
-    <input
-        type="text"
-        id="website"
-        placeholder="https://example.com"
-    >
+    <main class="content-wrapper">
 
-    <br><br>
+        <!-- SCANNER INPUT CARD -->
+        <section class="scanner-card">
+            <div class="card-header-bar">
+                <div class="card-title-group">
+                    <span class="threat-icon">🔍</span>
+                    <div>
+                        <span class="threat-category">Domain Analysis</span>
+                        <h2>Inspect Target URL</h2>
+                    </div>
+                </div>
+                <span class="risk-badge warning">AUTOMATED SCAN</span>
+            </div>
 
-    <button type="submit">
-        Check Website
-    </button>
+            <div class="card-body">
+                <form onsubmit="checkWebsite(event)" class="scanner-form">
+                    <div class="input-group">
+                        <label for="website" class="input-label">Target Website Address</label>
+                        <input
+                            type="text"
+                            id="website"
+                            class="cyber-input"
+                            placeholder="e.g., https://secure-login-verify.com or bit.ly/3x89"
+                        >
+                    </div>
 
-    <button
-        type="button"
-        onclick="clearWebsite()"
-    >
-        Clear
-    </button>
+                    <div class="button-row">
+                        <button type="submit" class="btn btn-primary">
+                            <span>🛡️</span> Run Security Check
+                        </button>
+                        <button type="button" onclick="clearWebsite()" class="btn btn-secondary">
+                            Clear Input
+                        </button>
+                    </div>
+                </form>
 
-    <div id="websiteResult"></div>
+                <!-- RESULT BOX -->
+                <div id="websiteResult" class="result-display"></div>
+            </div>
+        </section>
 
-</form>
+        <!-- SECURITY TIPS GRID -->
+        <section class="scam-grid" style="margin-top: 40px;">
+            <article class="scam-card">
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">🔒</span>
+                        <div>
+                            <span class="threat-category">Best Practices</span>
+                            <h2>Check the Lock & Protocol</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Legitimate financial institutions and shopping portals almost always use encrypted HTTPS connections.</p>
+                </div>
+            </article>
+
+            <article class="scam-card">
+                <div class="card-header-bar">
+                    <div class="card-title-group">
+                        <span class="threat-icon">🔗</span>
+                        <div>
+                            <span class="threat-category">Domain Inspection</span>
+                            <h2>Watch for Lookalike Domains</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">Scammers substitute letters with numbers (e.g., `paypa1.com` instead of `paypal.com`) to trick users.</p>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="app-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>TrustAI Security Platform</span>
+            </div>
+            <p>Enterprise Scam Recognition & Threat Intelligence Engine.</p>
+            <p class="copyright">© 2026 TrustAI. All systems operational.</p>
+        </div>
+    </footer>
 
 <script>
-
 function checkWebsite(event) {
-
     event.preventDefault();
 
-    let website =
-        document.getElementById("website").value.trim().toLowerCase();
-
+    let website = document.getElementById("website").value.trim().toLowerCase();
     let score = 0;
     let reasons = [];
-
 
     // =========================
     // EMPTY INPUT
     // =========================
-
     if (website === "") {
-
-        let result =
-            document.getElementById("websiteResult");
-
-        result.className = "risk caution";
-
-        result.textContent =
-            "⚠️ Please enter a website address.";
-
+        let result = document.getElementById("websiteResult");
+        result.className = "result-display risk caution";
+        result.textContent = "⚠️ Please enter a website address.";
         return;
     }
-
 
     // =========================
     // ADD HTTPS
     // =========================
-
     let testURL = website;
-
-    if (
-        !testURL.startsWith("http://") &&
-        !testURL.startsWith("https://")
-    ) {
-
+    if (!testURL.startsWith("http://") && !testURL.startsWith("https://")) {
         testURL = "https://" + testURL;
     }
-
 
     // =========================
     // CHECK URL FORMAT
     // =========================
-
     let url;
-
     try {
-
         url = new URL(testURL);
-
     } catch (error) {
-
-        let result =
-            document.getElementById("websiteResult");
-
-        result.className = "risk caution";
-
-        result.textContent =
-            "⚠️ Invalid website address.\n\n" +
-            "Please check the URL and try again.";
-
+        let result = document.getElementById("websiteResult");
+        result.className = "result-display risk caution";
+        result.textContent = "⚠️ Invalid website address.\n\nPlease check the URL and try again.";
         return;
     }
-
 
     // =========================
     // 1. HTTP / HTTPS
     // =========================
-
     if (url.protocol === "http:") {
-
         score += 1;
-
-        reasons.push(
-            "Website is not using HTTPS"
-        );
+        reasons.push("Website is not using HTTPS");
     }
-
 
     // =========================
     // 2. IP ADDRESS
     // =========================
-
-    if (
-        /^\d+\.\d+\.\d+\.\d+$/.test(url.hostname)
-    ) {
-
+    if (/^\d+\.\d+\.\d+\.\d+$/.test(url.hostname)) {
         score += 2;
-
-        reasons.push(
-            "Website uses an IP address instead of a normal domain"
-        );
+        reasons.push("Website uses an IP address instead of a normal domain");
     }
-
 
     // =========================
     // 3. VERY LONG URL
     // =========================
-
     if (website.length > 120) {
-
         score += 1;
-
-        reasons.push(
-            "Unusually long website address"
-        );
+        reasons.push("Unusually long website address");
     }
-
 
     // =========================
     // 4. @ SYMBOL
     // =========================
-
     if (website.includes("@")) {
-
         score += 2;
-
-        reasons.push(
-            "URL contains an unusual @ symbol"
-        );
+        reasons.push("URL contains an unusual @ symbol");
     }
-
 
     // =========================
     // 5. SUSPICIOUS MONEY WORDS
     // =========================
-
     let suspiciousWords = [
-
-        "free-money",
-        "freecash",
-        "claim-prize",
-        "free-prize",
-        "cash-reward",
-        "you-won",
-        "winner",
-        "giveaway",
-        "double-your-money",
-        "crypto-giveaway",
-        "instant-profit",
-        "guaranteed-profit",
-        "easy-money",
-        "get-rich"
-
+        "free-money", "freecash", "claim-prize", "free-prize", "cash-reward",
+        "you-won", "winner", "giveaway", "double-your-money", "crypto-giveaway",
+        "instant-profit", "guaranteed-profit", "easy-money", "get-rich"
     ];
 
-
     for (let word of suspiciousWords) {
-
         if (website.includes(word)) {
-
             score += 2;
-
-            reasons.push(
-                "Suspicious money, prize, or reward wording"
-            );
-
+            reasons.push("Suspicious money, prize, or reward wording");
             break;
         }
     }
-
 
     // =========================
     // 6. PASSWORD / LOGIN WORDS
     // =========================
-
     let sensitiveWords = [
-
-        "verify-account",
-        "verify-login",
-        "confirm-account",
-        "reset-password",
-        "security-check",
-        "login-verification",
-        "account-suspended"
-
+        "verify-account", "verify-login", "confirm-account", "reset-password",
+        "security-check", "login-verification", "account-suspended"
     ];
 
-
     for (let word of sensitiveWords) {
-
         if (website.includes(word)) {
-
             score += 2;
-
-            reasons.push(
-                "URL contains account or verification wording"
-            );
-
+            reasons.push("URL contains account or verification wording");
             break;
         }
     }
 
-
     // =========================
     // 7. TOO MANY SUBDOMAINS
     // =========================
-
-    let parts =
-        url.hostname.split(".");
-
+    let parts = url.hostname.split(".");
     if (parts.length >= 5) {
-
         score += 1;
-
-        reasons.push(
-            "Website has an unusually complex domain structure"
-        );
+        reasons.push("Website has an unusually complex domain structure");
     }
-
 
     // =========================
     // 8. MANY HYPHENS
     // =========================
-
-    let hyphenCount =
-        (url.hostname.match(/-/g) || []).length;
-
+    let hyphenCount = (url.hostname.match(/-/g) || []).length;
     if (hyphenCount >= 3) {
-
         score += 1;
-
-        reasons.push(
-            "Domain contains an unusual number of hyphens"
-        );
+        reasons.push("Domain contains an unusual number of hyphens");
     }
-
 
     // =========================
     // 9. SUSPICIOUS FILE EXTENSIONS
     // =========================
-
-    if (
-        url.pathname.endsWith(".exe") ||
-        url.pathname.endsWith(".scr") ||
-        url.pathname.endsWith(".zip")
-    ) {
-
+    if (url.pathname.endsWith(".exe") || url.pathname.endsWith(".scr") || url.pathname.endsWith(".zip")) {
         score += 2;
-
-        reasons.push(
-            "URL points to a potentially suspicious downloadable file"
-        );
+        reasons.push("URL points to a potentially suspicious downloadable file");
     }
-
 
     // =========================
     // 10. SHORTENED LINKS
     // =========================
-
     if (
         url.hostname.includes("bit.ly") ||
         url.hostname.includes("tinyurl.com") ||
@@ -295,147 +269,46 @@ function checkWebsite(event) {
         url.hostname.includes("is.gd") ||
         url.hostname.includes("shorturl")
     ) {
-
         score += 2;
-
-        reasons.push(
-            "Shortened URL detected"
-        );
+        reasons.push("Shortened URL detected");
     }
 
+    // =========================
+    // REMOVE DUPLICATES & CAP SCORE
+    // =========================
+    reasons = [...new Set(reasons)];
+    score = Math.min(score, 10);
 
     // =========================
-    // REMOVE DUPLICATES
+    // RESULT DISPLAY
     // =========================
-
-    reasons =
-        [...new Set(reasons)];
-
-
-    // =========================
-    // CAP SCORE AT 10
-    // =========================
-
-    score =
-        Math.min(score, 10);
-
-
-    // =========================
-    // RESULT
-    // =========================
-
-    let result =
-        document.getElementById("websiteResult");
-
-    let reasonText = "";
-
-
-    if (reasons.length > 0) {
-
-        reasonText =
-            "Why we flagged it:\n• " +
-            reasons.join("\n• ");
-
-    } else {
-
-        reasonText =
-            "Why we flagged it:\n• No obvious warning signs were detected.";
-    }
-
-
-    // =========================
-    // VERY HIGH RISK
-    // =========================
+    let result = document.getElementById("websiteResult");
+    let reasonText = reasons.length > 0
+        ? "Why we flagged it:\n• " + reasons.join("\n• ")
+        : "Why we flagged it:\n• No obvious warning signs were detected.";
 
     if (score >= 7) {
-
-        result.className =
-            "risk very-high";
-
-        result.textContent =
-            "🔴 VERY HIGH RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Do not enter passwords, payment details, PINs, or verification codes.";
-
+        result.className = "result-display risk very-high";
+        result.textContent = "🔴 VERY HIGH RISK\n\nRisk Score: " + score + "/10\n\n" + reasonText + "\n\nSafety Advice:\nDo not enter passwords, payment details, PINs, or verification codes.";
+    } else if (score >= 4) {
+        result.className = "result-display risk high";
+        result.textContent = "🟠 HIGH RISK\n\nRisk Score: " + score + "/10\n\n" + reasonText + "\n\nSafety Advice:\nDo not enter sensitive information until the website has been independently verified.";
+    } else if (score >= 2) {
+        result.className = "result-display risk caution";
+        result.textContent = "🟡 CAUTION\n\nRisk Score: " + score + "/10\n\n" + reasonText + "\n\nSafety Advice:\nVerify the website independently before using it.";
+    } else {
+        result.className = "result-display risk low";
+        result.textContent = "🟢 LOW RISK\n\nRisk Score: " + score + "/10\n\n" + reasonText + "\n\nSafety Advice:\nNo obvious warning signs were detected.\n\nNote: TrustAI uses pattern-based detection. A low-risk result does not guarantee that a website is safe or legitimate.";
     }
-
-
-    // =========================
-    // HIGH RISK
-    // =========================
-
-    else if (score >= 4) {
-
-        result.className =
-            "risk high";
-
-        result.textContent =
-            "🟠 HIGH RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Do not enter sensitive information until the website has been independently verified.";
-
-    }
-
-
-    // =========================
-    // CAUTION
-    // =========================
-
-    else if (score >= 2) {
-
-        result.className =
-            "risk caution";
-
-        result.textContent =
-            "🟡 CAUTION\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Verify the website independently before using it.";
-
-    }
-
-
-    // =========================
-    // LOW RISK
-    // =========================
-
-    else {
-
-        result.className =
-            "risk low";
-
-        result.textContent =
-            "🟢 LOW RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "No obvious warning signs were detected.\n\n" +
-            "Note: TrustAI uses pattern-based detection. " +
-            "A low-risk result does not guarantee that a website is safe or legitimate.";
-    }
-
 }
-
-
-// =========================
-// CLEAR BUTTON
-// =========================
 
 function clearWebsite() {
-
     document.getElementById("website").value = "";
-
-    let result =
-        document.getElementById("websiteResult");
-
+    let result = document.getElementById("websiteResult");
     result.textContent = "";
-
-    result.className = "";
+    result.className = "result-display";
 }
-
-</script></body></html>
+</script>
+</body>
+    </html>
+    
