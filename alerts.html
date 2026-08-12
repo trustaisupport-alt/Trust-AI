@@ -1,816 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Scam Alerts — TrustAI</title>
-
-<meta name="description"
-content="TrustAI Scam Alerts helps you recognize common scams and stay protected online.">
-
-<style>
-
-/* =========================
-   RESET
-========================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    background:
-        radial-gradient(circle at 15% 10%, #102b48 0, transparent 30%),
-        radial-gradient(circle at 90% 20%, #24143d 0, transparent 28%),
-        #050912;
-    color: #f7faff;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-button,
-a {
-    font-family: inherit;
-}
-
-
-/* =========================
-   MENU BUTTON
-========================= */
-
-.menu-button {
-    position: fixed;
-    top: 18px;
-    left: 18px;
-
-    width: 48px;
-    height: 48px;
-
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 14px;
-
-    background: rgba(14, 24, 39, .92);
-    backdrop-filter: blur(14px);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 5px;
-
-    cursor: pointer;
-
-    z-index: 1001;
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.35);
-}
-
-.menu-button span {
-    width: 22px;
-    height: 2px;
-
-    background: #ffffff;
-
-    border-radius: 5px;
-
-    transition: .2s;
-}
-
-.menu-button:hover {
-    border-color: #4da3ff;
-}
-
-
-/* =========================
-   SIDE MENU
-========================= */
-
-.side-menu {
-    position: fixed;
-
-    top: 0;
-    left: -310px;
-
-    width: 290px;
-    height: 100vh;
-
-    background:
-        linear-gradient(
-            180deg,
-            #0c1727,
-            #07101c
-        );
-
-    border-right: 1px solid #1d3047;
-
-    z-index: 1000;
-
-    padding: 88px 18px 25px;
-
-    overflow-y: auto;
-
-    transition: left .28s ease;
-
-    box-shadow:
-        15px 0 45px rgba(0,0,0,.35);
-}
-
-.side-menu.open {
-    left: 0;
-}
-
-.menu-title {
-    padding: 0 12px 20px;
-
-    border-bottom: 1px solid #1c2d42;
-
-    margin-bottom: 15px;
-}
-
-.menu-title strong {
-    font-size: 22px;
-}
-
-.menu-title strong span {
-    color: #4da3ff;
-}
-
-.menu-title small {
-    display: block;
-
-    margin-top: 6px;
-
-    color: #71839a;
-
-    font-size: 11px;
-}
-
-.menu-link {
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    width: 100%;
-
-    padding: 13px 12px;
-
-    margin-bottom: 4px;
-
-    border-radius: 12px;
-
-    color: #dbe7f5;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    transition: .2s;
-}
-
-.menu-link:hover {
-    background: #12243a;
-    color: #ffffff;
-}
-
-.menu-icon {
-    width: 25px;
-    text-align: center;
-    font-size: 18px;
-}
-
-.menu-divider {
-    height: 1px;
-
-    background: #1c2d42;
-
-    margin: 15px 0;
-}
-
-
-/* =========================
-   OVERLAY
-========================= */
-
-.menu-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(0,0,0,.65);
-
-    backdrop-filter: blur(3px);
-
-    z-index: 999;
-
-    display: none;
-}
-
-.menu-overlay.show {
-    display: block;
-}
-
-
-/* =========================
-   PAGE
-========================= */
-
-.page {
-    width: 100%;
-
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 92px 18px 50px;
-}
-
-
-/* =========================
-   TOP BRAND
-========================= */
-
-.brand {
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    margin-bottom: 42px;
-}
-
-.brand-shield {
-    width: 43px;
-    height: 43px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #1687ff,
-            #6b5cff
-        );
-
-    font-size: 22px;
-
-    box-shadow:
-        0 8px 30px rgba(43,127,255,.3);
-}
-
-.brand-name {
-    font-size: 21px;
-    font-weight: 800;
-}
-
-.brand-name span {
-    color: #4da3ff;
-}
-
-.brand-subtitle {
-    color: #71839a;
-    font-size: 11px;
-    margin-top: 2px;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 40px 30px;
-
-    border: 1px solid #1d3047;
-
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(18,39,65,.92),
-            rgba(10,18,31,.95)
-        );
-
-    margin-bottom: 22px;
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.25);
-}
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 230px;
-    height: 230px;
-
-    right: -70px;
-    top: -90px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(60,153,255,.25),
-            transparent 70%
-        );
-}
-
-.hero-label {
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    color: #58aaff;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    margin-bottom: 13px;
-}
-
-.hero h1 {
-    position: relative;
-
-    z-index: 2;
-
-    margin: 0 0 13px;
-
-    font-size: 42px;
-
-    line-height: 1.1;
-}
-
-.hero h1 span {
-    color: #58aaff;
-}
-
-.hero p {
-    position: relative;
-
-    z-index: 2;
-
-    max-width: 730px;
-
-    margin: 0;
-
-    color: #91a3b8;
-
-    font-size: 15px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================
-   LIVE ALERT BAR
-========================= */
-
-.alert-status {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 13px 16px;
-
-    margin-bottom: 32px;
-
-    border: 1px solid #24374d;
-
-    border-radius: 13px;
-
-    background: #0a1422;
-
-    color: #9aadc2;
-
-    font-size: 13px;
-}
-
-.live-dot {
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: #ff4f61;
-
-    box-shadow:
-        0 0 12px #ff4f61;
-}
-
-.alert-status strong {
-    color: #ffffff;
-}
-
-
-/* =========================
-   SECTION HEADER
-========================= */
-
-.section-heading {
-    display: flex;
-
-    align-items: end;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 18px;
-}
-
-.section-heading h2 {
-    margin: 0;
-
-    font-size: 23px;
-}
-
-.section-heading p {
-    margin: 0;
-
-    color: #687b91;
-
-    font-size: 12px;
-}
-
-
-/* =========================
-   ALERT GRID
-========================= */
-
-.alert-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 16px;
-}
-
-
-/* =========================
-   ALERT CARD
-========================= */
-
-.alert-card {
-    position: relative;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            #0c1725,
-            #08111d
-        );
-
-    border: 1px solid #1c3046;
-
-    border-radius: 19px;
-
-    padding: 21px;
-
-    transition:
-        transform .2s,
-        border-color .2s,
-        box-shadow .2s;
-}
-
-.alert-card:hover {
-    transform: translateY(-4px);
-
-    border-color: #31577e;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.3);
-}
-
-.alert-card.critical {
-    border-color: #522631;
-}
-
-.alert-card.critical:hover {
-    border-color: #a13c4d;
-}
-
-.alert-top {
-    display: flex;
-
-    align-items: flex-start;
-
-    justify-content: space-between;
-
-    gap: 15px;
-
-    margin-bottom: 15px;
-}
-
-.alert-icon {
-    width: 46px;
-    height: 46px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    background: #12243a;
-
-    font-size: 23px;
-}
-
-.critical .alert-icon {
-    background: #32151d;
-}
-
-.alert-level {
-    padding: 6px 9px;
-
-    border-radius: 20px;
-
-    background: #10263b;
-
-    color: #65b0ff;
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    letter-spacing: .7px;
-}
-
-.critical .alert-level {
-    background: #35151d;
-
-    color: #ff7181;
-}
-
-.category {
-    color: #6f89a5;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-.alert-card h3 {
-    margin: 7px 0 9px;
-
-    font-size: 18px;
-}
-
-.alert-card > p {
-    margin: 0 0 17px;
-
-    color: #8799ad;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================
-   WARNING BOX
-========================= */
-
-.warning-box {
-    padding: 14px;
-
-    border-radius: 13px;
-
-    background: #09111c;
-
-    border: 1px solid #1a2a3d;
-
-    margin-bottom: 12px;
-}
-
-.warning-box strong {
-    color: #dce8f5;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-    letter-spacing: .6px;
-}
-
-.warning-box ul {
-    margin: 9px 0 0;
-
-    padding-left: 18px;
-}
-
-.warning-box li {
-    color: #8294a8;
-
-    font-size: 12px;
-
-    margin-bottom: 6px;
-
-    line-height: 1.4;
-}
-
-.warning-box li:last-child {
-    margin-bottom: 0;
-}
-
-
-/* =========================
-   SAFETY TIP
-========================= */
-
-.safety-tip {
-    padding: 12px 13px;
-
-    border-radius: 11px;
-
-    background: rgba(26, 111, 181, .08);
-
-    color: #91a9c1;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-.safety-tip strong {
-    color: #54aaff;
-}
-
-
-/* =========================
-   FINAL NOTICE
-========================= */
-
-.final-notice {
-    margin-top: 35px;
-
-    padding: 25px;
-
-    border-radius: 18px;
-
-    border: 1px solid #273b52;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d1b2b,
-            #09131f
-        );
-}
-
-.final-notice h2 {
-    margin: 0 0 9px;
-
-    font-size: 19px;
-}
-
-.final-notice p {
-    margin: 5px 0;
-
-    color: #8da0b5;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    margin-top: 40px;
-
-    padding-top: 22px;
-
-    border-top: 1px solid #18283b;
-
-    text-align: center;
-
-    color: #596d83;
-
-    font-size: 11px;
-}
-
-.footer-brand {
-    color: #dbe8f6;
-
-    font-weight: 800;
-
-    font-size: 14px;
-
-    margin-bottom: 7px;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .page {
-        padding:
-            82px
-            14px
-            35px;
-    }
-
-    .hero {
-        padding: 30px 21px;
-
-        border-radius: 20px;
-    }
-
-    .hero h1 {
-        font-size: 31px;
-    }
-
-    .alert-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-heading {
-        display: block;
-    }
-
-    .section-heading p {
-        margin-top: 5px;
-    }
-
-    .brand {
-        margin-bottom: 30px;
-    }
-
-}
-
-
-/* =========================
-   SMALL PHONES
-========================= */
-
-@media (max-width: 400px) {
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .alert-card {
-        padding: 17px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Scam Alerts — TrustAI</title>
+
+    <meta name="description"
+        content="TrustAI Scam Alerts helps you recognize common scams and suspicious online activity.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, #17345c 0, transparent 35%),
+                radial-gradient(circle at bottom left, #082b32 0, transparent 30%),
+                #050914;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           3-DASH MENU
+        ========================= */
+
+        .menu-button {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid #29496b;
+            border-radius: 14px;
+            background: rgba(10, 24, 42, .92);
+            backdrop-filter: blur(12px);
+            z-index: 1001;
+            cursor: pointer;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,.3);
+        }
+
+        .menu-button span {
+            width: 22px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 5px;
+            transition: .2s;
+        }
+
+        .menu-button:hover {
+            background: #126fd1;
+        }
+
+        .side-menu {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 285px;
+            height: 100vh;
+            padding: 85px 18px 25px;
+
+            background: rgba(7, 18, 31, .98);
+            border-right: 1px solid #203852;
+
+            z-index: 1000;
+            transition: left .25s ease;
+            overflow-y: auto;
+
+            box-shadow: 12px 0 40px rgba(0,0,0,.4);
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .menu-brand {
+            padding: 0 12px 18px;
+            border-bottom: 1px solid #203852;
+            margin-bottom: 14px;
+        }
+
+        .menu-brand strong {
+            font-size: 21px;
+        }
+
+        .menu-brand strong span {
+            color: #35a7ff;
+        }
+
+        .menu-brand small {
+            display: block;
+            color: #71839a;
+            margin-top: 5px;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 12px;
+            margin: 4px 0;
+
+            color: #eaf3ff;
+            text-decoration: none;
+            border-radius: 12px;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .menu-link:hover {
+            background: #10263d;
+            color: #35a7ff;
+        }
+
+        .menu-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: #203852;
+            margin: 15px 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.58);
+            z-index: 999;
+            display: none;
+        }
+
+        .menu-overlay.show {
+            display: block;
+        }
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 88px 18px 45px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            padding: 38px 30px;
+            border-radius: 26px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(19, 50, 84, .95),
+                    rgba(7, 18, 31, .96)
+                );
+
+            border: 1px solid #27486b;
+
+            box-shadow: 0 20px 60px rgba(0,0,0,.28);
+
+            margin-bottom: 20px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -80px;
+            top: -90px;
+            border-radius: 50%;
+            background: rgba(37, 158, 255, .13);
+        }
+
+        .eyebrow {
+            color: #48b1ff;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.7px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: 38px;
+            line-height: 1.12;
+        }
+
+        .hero p {
+            margin: 0;
+            max-width: 760px;
+            color: #aebed0;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .search-box {
+            margin-top: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 56px;
+
+            padding: 0 20px 0 52px;
+
+            border-radius: 16px;
+            border: 1px solid #315473;
+
+            background: rgba(3, 11, 21, .82);
+
+            color: white;
+            outline: none;
+
+            font-size: 15px;
+
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,.03),
+                0 8px 25px rgba(0,0,0,.18);
+        }
+
+        .search-box input:focus {
+            border-color: #35a7ff;
+            box-shadow:
+                0 0 0 4px rgba(53,167,255,.10);
+        }
+
+        .search-box input::placeholder {
+            color: #71839a;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 17px;
+            font-size: 20px;
+        }
+
+        /* =========================
+           NOTICE
+        ========================= */
+
+        .notice {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+
+            padding: 19px;
+
+            border-radius: 18px;
+
+            background: #15140b;
+            border: 1px solid #51451a;
+
+            margin-bottom: 35px;
+        }
+
+        .notice-icon {
+            font-size: 24px;
+        }
+
+        .notice h2 {
+            margin: 0 0 6px;
+            font-size: 17px;
+        }
+
+        .notice p {
+            margin: 0;
+            color: #a9a58d;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: 23px;
+        }
+
+        .section-heading span {
+            color: #70849a;
+            font-size: 12px;
+        }
+
+        /* =========================
+           ALERT GRID
+        ========================= */
+
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .alert-card {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d1b2b,
+                    #09121e
+                );
+
+            border: 1px solid #1f3953;
+            border-radius: 21px;
+
+            padding: 23px;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .alert-card:hover {
+            transform: translateY(-4px);
+            border-color: #2f72a7;
+            box-shadow: 0 16px 35px rgba(0,0,0,.28);
+        }
+
+        .alert-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #258fff;
+            opacity: .7;
+        }
+
+        .alert-card.critical::before {
+            background: #ff4d5e;
+        }
+
+        .alert-card.warning::before {
+            background: #ffbf3f;
+        }
+
+        .alert-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .alert-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #102b45;
+            border: 1px solid #214b70;
+
+            font-size: 26px;
+        }
+
+        .alert-card.critical .alert-icon {
+            background: #32141a;
+            border-color: #672733;
+        }
+
+        .alert-card.warning .alert-icon {
+            background: #302713;
+            border-color: #63501e;
+        }
+
+        .category {
+            color: #53b4ff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .alert-card h3 {
+            margin: 8px 0 9px;
+            font-size: 19px;
+        }
+
+        .alert-card > p {
+            margin: 0;
+            color: #91a3b6;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .warning-box {
+            margin-top: 17px;
+            padding: 14px;
+
+            border-radius: 14px;
+
+            background: #08121e;
+            border: 1px solid #1a3047;
+        }
+
+        .warning-box strong {
+            color: #e9f3ff;
+            font-size: 12px;
+        }
+
+        .warning-box ul {
+            margin: 9px 0 0;
+            padding-left: 18px;
+        }
+
+        .warning-box li {
+            color: #8498ac;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .safety-tip {
+            margin-top: 14px;
+            color: #9fb1c3;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .safety-tip strong {
+            color: #43dc9b;
+        }
+
+        /* =========================
+           NO RESULTS
+        ========================= */
+
+        .no-results {
+            display: none;
+            padding: 30px;
+            text-align: center;
+            color: #8193a7;
+            background: #0b1725;
+            border: 1px solid #20384f;
+            border-radius: 18px;
+            margin-top: 18px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #182b40;
+
+            color: #667b91;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        footer strong {
+            color: #dcecff;
+            font-size: 15px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .page {
+                padding: 82px 14px 35px;
+            }
+
+            .hero {
+                padding: 28px 20px;
+                border-radius: 22px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .alerts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
 
 </head>
-
 
 <body>
 
@@ -821,8 +553,9 @@ footer p {
 
 <button
     class="menu-button"
-    onclick="toggleMenu()"
-    aria-label="Open menu">
+    id="menuButton"
+    aria-label="Open menu"
+    aria-expanded="false">
 
     <span></span>
     <span></span>
@@ -835,9 +568,11 @@ footer p {
      SIDE MENU
 ========================= -->
 
-<nav id="sideMenu" class="side-menu">
+<nav
+    class="side-menu"
+    id="sideMenu">
 
-    <div class="menu-title">
+    <div class="menu-brand">
 
         <strong>
             🛡️ Trust<span>AI</span>
@@ -850,9 +585,9 @@ footer p {
     </div>
 
 
-    <a href="home.html" class="menu-link">
+    <a href="index.html" class="menu-link">
         <span class="menu-icon">🏠</span>
-        Home
+        Dashboard
     </a>
 
 
@@ -909,79 +644,84 @@ footer p {
 </nav>
 
 
-<!-- OVERLAY -->
-
 <div
-    id="menuOverlay"
     class="menu-overlay"
-    onclick="closeMenu()">
+    id="menuOverlay">
 </div>
 
 
+
 <!-- =========================
-     MAIN PAGE
+     PAGE
 ========================= -->
 
 <main class="page">
-
-
-    <!-- BRAND -->
-
-    <div class="brand">
-
-        <div class="brand-shield">
-            🛡️
-        </div>
-
-        <div>
-
-            <div class="brand-name">
-                Trust<span>AI</span>
-            </div>
-
-            <div class="brand-subtitle">
-                ONLINE SCAM PROTECTION
-            </div>
-
-        </div>
-
-    </div>
 
 
     <!-- HERO -->
 
     <section class="hero">
 
-        <div class="hero-label">
-            🚨 THREAT AWARENESS
+        <div class="eyebrow">
+            🛡️ TRUSTAI SECURITY NETWORK
         </div>
 
         <h1>
-            Stay ahead of <span>scams.</span>
+            Scam Alerts
         </h1>
 
         <p>
-            Discover common scam tactics, recognize
-            warning signs and learn what to do before
-            you send money, share information or click
-            a suspicious link.
+            Stay ahead of common scams. Search the alerts
+            below to quickly find warning signs and learn
+            how to protect yourself.
         </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔎
+            </span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search scams, e.g. OTP, fake job, phishing..."
+                autocomplete="off">
+
+        </div>
 
     </section>
 
 
-    <!-- STATUS -->
 
-    <div class="alert-status">
+    <!-- NOTICE -->
 
-        <span class="live-dot"></span>
+    <section class="notice">
 
-        <strong>Stay alert.</strong>
+        <div class="notice-icon">
+            ⚠️
+        </div>
 
-        New scams can appear at any time.
-        Verify unexpected requests before acting.
+        <div>
 
-    </div>
+            <h2>
+                Stay alert before you act
+            </h2>
+
+            <p>
+                Scammers often create urgency, promise
+                unrealistic rewards or pretend to be people
+                you trust. Stop, verify and think before
+                sending money or sharing sensitive information.
+            </p>
+
+        </div>
+
+    </section>
+
 
 
     <!-- ALERTS -->
@@ -992,19 +732,22 @@ footer p {
             Common Scam Alerts
         </h2>
 
-        <p>
-            Know the warning signs
-        </p>
+        <span id="resultCount">
+            8 alerts
+        </span>
 
     </div>
 
 
-    <section class="alert-grid">
+    <section
+        class="alerts-grid"
+        id="alertsGrid">
 
 
-        <!-- ONLINE SHOPPING -->
+        <!-- 1 -->
 
-        <article class="alert-card">
+        <article class="alert-card"
+            data-search="fake online stores online shopping shopping payment seller store">
 
             <div class="alert-top">
 
@@ -1012,29 +755,27 @@ footer p {
                     🛍️
                 </div>
 
-                <span class="alert-level">
-                    HIGH RISK
+                <span class="category">
+                    Online Shopping
                 </span>
 
             </div>
-
-            <span class="category">
-                Online Shopping
-            </span>
 
             <h3>
                 Fake Online Stores
             </h3>
 
             <p>
-                Fake stores may advertise expensive
-                products at unusually low prices and
-                ask you to pay before delivery.
+                Fake stores may advertise expensive products
+                at unusually low prices and ask you to pay
+                before delivery.
             </p>
 
             <div class="warning-box">
 
-                <strong>Warning signs</strong>
+                <strong>
+                    Warning signs
+                </strong>
 
                 <ul>
                     <li>Extremely low prices</li>
@@ -1046,19 +787,19 @@ footer p {
             </div>
 
             <div class="safety-tip">
-
                 <strong>Stay safe:</strong>
-                Research the seller and verify the
-                website before making a payment.
-
+                Research the seller and verify the website
+                before making a payment.
             </div>
 
         </article>
 
 
-        <!-- DELIVERY -->
 
-        <article class="alert-card">
+        <!-- 2 -->
+
+        <article class="alert-card"
+            data-search="fake package delivery parcel courier shipping message fee">
 
             <div class="alert-top">
 
@@ -1066,29 +807,27 @@ footer p {
                     📦
                 </div>
 
-                <span class="alert-level">
-                    CAUTION
+                <span class="category">
+                    Delivery
                 </span>
 
             </div>
-
-            <span class="category">
-                Delivery
-            </span>
 
             <h3>
                 Fake Package Messages
             </h3>
 
             <p>
-                A message may claim that your package
-                is waiting for a fee, customs payment
-                or address confirmation.
+                A message may claim that your package is
+                waiting for a fee, customs payment or
+                address confirmation.
             </p>
 
             <div class="warning-box">
 
-                <strong>Warning signs</strong>
+                <strong>
+                    Warning signs
+                </strong>
 
                 <ul>
                     <li>Unexpected delivery messages</li>
@@ -1100,20 +839,19 @@ footer p {
             </div>
 
             <div class="safety-tip">
-
                 <strong>Stay safe:</strong>
-                Check your package directly through
-                the official delivery company's website
-                or app.
-
+                Check your package through the official
+                delivery company's website or app.
             </div>
 
         </article>
 
 
-        <!-- JOB -->
 
-        <article class="alert-card">
+        <!-- 3 -->
+
+        <article class="alert-card"
+            data-search="fake job jobs employment recruiter salary registration fee work">
 
             <div class="alert-top">
 
@@ -1121,29 +859,27 @@ footer p {
                     💼
                 </div>
 
-                <span class="alert-level">
-                    HIGH RISK
+                <span class="category">
+                    Jobs & Employment
                 </span>
 
             </div>
-
-            <span class="category">
-                Jobs & Employment
-            </span>
 
             <h3>
                 Fake Job Offers
             </h3>
 
             <p>
-                Scammers may pretend to be recruiters
-                and offer attractive jobs while asking
-                applicants for money.
+                Scammers may pretend to be recruiters and
+                offer attractive jobs while asking applicants
+                for money.
             </p>
 
             <div class="warning-box">
 
-                <strong>Warning signs</strong>
+                <strong>
+                    Warning signs
+                </strong>
 
                 <ul>
                     <li>Unrealistic salary promises</li>
@@ -1155,19 +891,19 @@ footer p {
             </div>
 
             <div class="safety-tip">
-
                 <strong>Stay safe:</strong>
                 Verify the vacancy on the company's
                 official website.
-
             </div>
 
         </article>
 
 
-        <!-- OTP -->
 
-        <article class="alert-card critical">
+        <!-- 4 -->
+
+        <article class="alert-card critical"
+            data-search="otp verification code account security bank password pin code scam">
 
             <div class="alert-top">
 
@@ -1175,112 +911,27 @@ footer p {
                     🔐
                 </div>
 
-                <span class="alert-level">
-                    CRITICAL
+                <span class="category">
+                    Account Security
                 </span>
 
             </div>
-
-            <span class="category">
-                Account Security
-            </span>
 
             <h3>
                 OTP & Verification Code Scams
             </h3>
 
             <p>
-                Someone may pretend to be a bank,
-                company or support agent and ask for
-                your OTP or verification code.
+                Someone may pretend to be a bank, company or
+                support agent and ask for your OTP or
+                verification code.
             </p>
 
             <div class="warning-box">
 
-                <strong>Warning signs</strong>
+                <strong>
+                    Warning signs
+                </strong>
 
                 <ul>
-                    <li>Someone asks for your OTP</li>
-                    <li>Claims your account is locked</li>
-                    <li>Requests to forward a code</li>
-                    <li>Creates fear or urgency</li>
-                </ul>
-
-            </div>
-
-            <div class="safety-tip">
-
-                <strong>Stay safe:</strong>
-                Never share your OTP, PIN or
-                verification code with another person.
-
-            </div>
-
-        </article>
-
-
-        <!-- INVESTMENT -->
-
-        <article class="alert-card">
-
-            <div class="alert-top">
-
-                <div class="alert-icon">
-                    📈
-                </div>
-
-                <span class="alert-level">
-                    HIGH RISK
-                </span>
-
-            </div>
-
-            <span class="category">
-                Investment
-            </span>
-
-            <h3>
-                Guaranteed Profit Scams
-            </h3>
-
-            <p>
-                Fake investment opportunities may
-                promise guaranteed profits, extremely
-                high returns or zero risk.
-            </p>
-
-            <div class="warning-box">
-
-                <strong>Warning signs</strong>
-
-                <ul>
-                    <li>Guaranteed returns</li>
-                    <li>“No risk” investment claims</li>
-                    <li>Pressure to deposit more money</li>
-                    <li>Problems withdrawing funds</li>
-                </ul>
-
-            </div>
-
-            <div class="safety-tip">
-
-                <strong>Stay safe:</strong>
-                Research the company independently
-                before investing.
-
-            </div>
-
-        </article>
-
-
-        <!-- IMPERSONATION -->
-
-        <article class="alert-card">
-
-            <div class="alert-top">
-
-                <div class="alert-icon">
-                    👤
-                </div>
-
-                <span class="
+                    <li>Someone asks fo
