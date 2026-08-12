@@ -11,7 +11,7 @@
     <title>Website Checker — TrustAI</title>
 
     <meta name="description"
-        content="TrustAI Website Checker helps identify suspicious website and phishing warning signs.">
+        content="TrustAI Website Checker">
 
     <style>
 
@@ -21,8 +21,8 @@
 
         body {
             margin: 0;
-            background: #f5f7fa;
-            color: #172033;
+            background: #050b14;
+            color: #ffffff;
             font-family: Arial, Helvetica, sans-serif;
         }
 
@@ -33,268 +33,312 @@
             padding: 22px 18px 45px;
         }
 
+
         /* HEADER */
 
-        .top {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 35px;
         }
 
-        .brand {
+        .logo {
             font-size: 25px;
             font-weight: 800;
         }
 
+        .logo span {
+            color: #1687ff;
+        }
+
         .back {
-            color: #536071;
+            color: #8c9bad;
             text-decoration: none;
             font-size: 14px;
         }
 
         .back:hover {
-            color: #1459c7;
+            color: #1687ff;
         }
+
 
         /* HERO */
 
         .hero {
-            background: white;
-            border: 1px solid #e1e6ed;
-            border-radius: 22px;
-            padding: 32px 25px;
-            margin-bottom: 22px;
+            margin-bottom: 25px;
         }
 
-        .eyebrow {
+        .label {
+            color: #1687ff;
             font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #1459c7;
+            font-weight: bold;
+            letter-spacing: 1.5px;
             margin-bottom: 10px;
         }
 
         .hero h1 {
             margin: 0 0 12px;
-            font-size: 31px;
+            font-size: 34px;
             line-height: 1.2;
         }
 
         .hero p {
             margin: 0;
-            color: #657184;
+            max-width: 700px;
+            color: #9ba8b8;
             line-height: 1.6;
             font-size: 15px;
         }
 
+
         /* CHECKER */
 
         .checker {
-            background: white;
-            border: 1px solid #e1e6ed;
-            border-radius: 20px;
+            background: #0b1420;
+            border: 1px solid #1b2b3d;
+            border-radius: 18px;
             padding: 24px;
         }
 
         .checker h2 {
             margin: 0 0 8px;
-            font-size: 21px;
+            font-size: 20px;
         }
 
-        .checker-description {
-            color: #657184;
+        .checker-subtitle {
+            color: #8998aa;
             font-size: 14px;
-            line-height: 1.5;
             margin-bottom: 20px;
         }
+
+
+        /* INPUT */
 
         label {
             display: block;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: bold;
             margin-bottom: 8px;
         }
 
+        .input-row {
+            display: flex;
+            gap: 10px;
+        }
+
         input {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ccd4df;
-            border-radius: 11px;
+            flex: 1;
+            min-width: 0;
+            background: #050b14;
+            border: 1px solid #26384d;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 14px;
             font-size: 15px;
             outline: none;
         }
 
         input:focus {
-            border-color: #1459c7;
+            border-color: #1687ff;
         }
 
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 14px;
+        input::placeholder {
+            color: #657386;
         }
 
         button {
             border: none;
             border-radius: 10px;
-            padding: 13px 18px;
+            padding: 0 20px;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: bold;
             cursor: pointer;
         }
 
-        .check-button {
-            background: #1459c7;
+        .check-btn {
+            background: #1687ff;
             color: white;
         }
 
-        .clear-button {
-            background: #eef1f5;
-            color: #172033;
+        .check-btn:hover {
+            background: #0877eb;
         }
+
 
         /* RESULT */
 
         .result {
             display: none;
-            margin-top: 22px;
-            border-radius: 16px;
-            padding: 20px;
+            margin-top: 20px;
+            border-radius: 14px;
+            padding: 18px;
         }
 
         .result.show {
             display: block;
         }
 
-        .result-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .result-url {
-            background: rgba(255,255,255,0.7);
-            padding: 11px;
-            border-radius: 9px;
-            word-break: break-all;
-            font-size: 13px;
-            margin: 12px 0;
-        }
-
-        .result p {
-            margin: 8px 0;
-            line-height: 1.55;
-            font-size: 14px;
-        }
-
-        .reasons {
-            margin-top: 15px;
-        }
-
-        .reasons strong {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .reasons ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .reasons li {
-            margin-bottom: 7px;
-            line-height: 1.4;
-            font-size: 14px;
-        }
-
-        /* RESULT TYPES */
-
-        .verified {
-            background: #eaf8ef;
-            border: 1px solid #b8e2c5;
-        }
-
-        .unverified {
-            background: #f1f4f7;
-            border: 1px solid #d5dce5;
-        }
-
-        .caution {
-            background: #fff8e8;
-            border: 1px solid #efd59b;
-        }
-
-        .high-risk {
-            background: #fff0e9;
-            border: 1px solid #efb99f;
-        }
-
-        .critical {
-            background: #ffe8e8;
-            border: 1px solid #e7a0a0;
-        }
-
-        /* INFO */
-
-        .info {
-            margin-top: 22px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .result-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             gap: 15px;
         }
 
+        .status {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .score {
+            font-size: 13px;
+            font-weight: bold;
+            padding: 7px 10px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .website-name {
+            margin-top: 10px;
+            font-size: 14px;
+            word-break: break-all;
+            color: #c5cfda;
+        }
+
+        .result-message {
+            margin-top: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .reason {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #c5cfda;
+        }
+
+        .action {
+            margin-top: 13px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+
+        /* RESULT COLORS */
+
+        .verified {
+            background: #071d15;
+            border: 1px solid #14583f;
+        }
+
+        .verified .status {
+            color: #31d98a;
+        }
+
+        .unverified {
+            background: #111a25;
+            border: 1px solid #2b3a4b;
+        }
+
+        .unverified .status {
+            color: #b9c4d0;
+        }
+
+        .caution {
+            background: #211a08;
+            border: 1px solid #66501a;
+        }
+
+        .caution .status {
+            color: #ffd34d;
+        }
+
+        .high {
+            background: #241209;
+            border: 1px solid #71401e;
+        }
+
+        .high .status {
+            color: #ff9b4a;
+        }
+
+        .critical {
+            background: #250b0b;
+            border: 1px solid #702222;
+        }
+
+        .critical .status {
+            color: #ff5f5f;
+        }
+
+
+        /* INFORMATION */
+
+        .section-title {
+            margin: 35px 0 15px;
+            font-size: 19px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
         .info-card {
-            background: white;
-            border: 1px solid #e1e6ed;
-            border-radius: 17px;
-            padding: 20px;
+            background: #0b1420;
+            border: 1px solid #1b2b3d;
+            border-radius: 15px;
+            padding: 18px;
         }
 
         .info-card h3 {
             margin: 0 0 8px;
-            font-size: 17px;
+            font-size: 16px;
         }
 
         .info-card p {
             margin: 0;
-            color: #657184;
+            color: #8998aa;
+            font-size: 13px;
             line-height: 1.5;
-            font-size: 14px;
         }
+
 
         /* NOTICE */
 
         .notice {
-            margin-top: 22px;
-            background: #172033;
-            color: white;
-            border-radius: 18px;
-            padding: 22px;
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 15px;
+            background: #0b1420;
+            border: 1px solid #1b2b3d;
         }
 
-        .notice h2 {
-            margin: 0 0 10px;
-            font-size: 19px;
+        .notice strong {
+            color: #1687ff;
         }
 
         .notice p {
-            margin: 0;
-            color: #d8deea;
-            line-height: 1.6;
-            font-size: 14px;
+            color: #8998aa;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 8px 0 0;
         }
+
 
         /* FOOTER */
 
         footer {
             text-align: center;
-            color: #737e8e;
-            font-size: 13px;
+            color: #657386;
+            font-size: 12px;
             margin-top: 35px;
             padding-top: 20px;
-            border-top: 1px solid #dce2eb;
+            border-top: 1px solid #182536;
         }
+
 
         /* MOBILE */
 
@@ -304,36 +348,32 @@
                 padding: 18px 14px 35px;
             }
 
-            .top {
-                margin-bottom: 25px;
-            }
-
-            .brand {
-                font-size: 23px;
-            }
-
-            .hero {
-                padding: 26px 20px;
+            .header {
+                margin-bottom: 28px;
             }
 
             .hero h1 {
-                font-size: 27px;
+                font-size: 28px;
             }
 
             .checker {
-                padding: 20px;
+                padding: 19px;
             }
 
-            .buttons {
+            .input-row {
                 flex-direction: column;
             }
 
             button {
-                width: 100%;
+                height: 48px;
             }
 
-            .info {
+            .info-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .result-top {
+                align-items: flex-start;
             }
 
         }
@@ -350,35 +390,35 @@
 
     <!-- HEADER -->
 
-    <div class="top">
+    <header class="header">
 
-        <div class="brand">
-            🛡️ TrustAI
+        <div class="logo">
+            🛡️ Trust<span>AI</span>
         </div>
 
         <a href="index.html" class="back">
             ← Dashboard
         </a>
 
-    </div>
+    </header>
 
 
     <!-- HERO -->
 
     <section class="hero">
 
-        <div class="eyebrow">
+        <div class="label">
             WEBSITE SECURITY
         </div>
 
         <h1>
-            Check a website before you trust it.
+            Check before you trust.
         </h1>
 
         <p>
-            Enter a website address and TrustAI will
-            inspect the URL for common phishing,
-            impersonation and suspicious-link warning signs.
+            Analyze a website address for common
+            phishing, impersonation and suspicious-link
+            warning signs.
         </p>
 
     </section>
@@ -392,11 +432,9 @@
             Website Checker
         </h2>
 
-        <p class="checker-description">
-            This check looks at the structure and wording
-            of the website address. It does not guarantee
-            that a website is legitimate.
-        </p>
+        <div class="checker-subtitle">
+            Enter a website address below.
+        </div>
 
 
         <form onsubmit="checkWebsite(event)">
@@ -405,27 +443,19 @@
                 Website address
             </label>
 
-            <input
-                type="text"
-                id="website"
-                placeholder="example.com or https://example.com"
-                autocomplete="off"
-            >
+            <div class="input-row">
 
-
-            <div class="buttons">
+                <input
+                    type="text"
+                    id="website"
+                    placeholder="example.com"
+                    autocomplete="off"
+                >
 
                 <button
                     type="submit"
-                    class="check-button">
-                    🔍 Check Website
-                </button>
-
-                <button
-                    type="button"
-                    class="clear-button"
-                    onclick="clearWebsite()">
-                    Clear
+                    class="check-btn">
+                    Check
                 </button>
 
             </div>
@@ -437,30 +467,39 @@
 
         <div id="result" class="result">
 
-            <div id="resultTitle"
-                class="result-title">
-            </div>
+            <div class="result-top">
 
-            <div id="resultUrl"
-                class="result-url">
-            </div>
+                <div
+                    id="status"
+                    class="status">
+                </div>
 
-            <p id="resultMessage">
-            </p>
-
-            <div class="reasons">
-
-                <strong>
-                    What TrustAI found:
-                </strong>
-
-                <ul id="reasonList">
-                </ul>
+                <div
+                    id="score"
+                    class="score">
+                </div>
 
             </div>
 
-            <p id="advice">
-            </p>
+            <div
+                id="websiteName"
+                class="website-name">
+            </div>
+
+            <div
+                id="resultMessage"
+                class="result-message">
+            </div>
+
+            <div
+                id="reason"
+                class="reason">
+            </div>
+
+            <div
+                id="action"
+                class="action">
+            </div>
 
         </div>
 
@@ -469,20 +508,24 @@
 
     <!-- INFORMATION -->
 
-    <section class="info">
+    <h2 class="section-title">
+        What TrustAI checks
+    </h2>
+
+
+    <section class="info-grid">
 
 
         <div class="info-card">
 
             <h3>
-                🔗 Lookalike domains
+                🔗 Domain structure
             </h3>
 
             <p>
-                TrustAI can flag domains that contain
-                suspicious character substitutions or
-                patterns commonly used to imitate another
-                website.
+                Looks for unusual domains, excessive
+                subdomains, suspicious characters and
+                other URL patterns.
             </p>
 
         </div>
@@ -491,13 +534,13 @@
         <div class="info-card">
 
             <h3>
-                🔐 Sensitive requests
+                🎭 Lookalike domains
             </h3>
 
             <p>
-                Be especially careful when a website asks
-                for passwords, OTPs, PINs, card information
-                or account recovery codes.
+                Detects certain character substitutions
+                designed to make fake domains resemble
+                familiar brands.
             </p>
 
         </div>
@@ -506,14 +549,13 @@
         <div class="info-card">
 
             <h3>
-                ⚠️ Unknown does not mean safe
+                🔐 Security requests
             </h3>
 
             <p>
-                A website can look completely normal and
-                still be unsafe. TrustAI will therefore
-                classify unfamiliar websites as unverified
-                instead of automatically calling them safe.
+                Flags URL patterns associated with
+                account verification, password resets
+                and suspicious payment requests.
             </p>
 
         </div>
@@ -522,14 +564,13 @@
         <div class="info-card">
 
             <h3>
-                🛡️ Verify important websites
+                ⚠️ Unknown websites
             </h3>
 
             <p>
-                For banking, payments and important
-                accounts, open the official website
-                directly instead of following an unexpected
-                link.
+                No warning signs does not automatically
+                mean safe. Unknown websites remain
+                unverified.
             </p>
 
         </div>
@@ -538,20 +579,19 @@
     </section>
 
 
-    <!-- SAFETY NOTICE -->
+    <!-- NOTICE -->
 
     <section class="notice">
 
-        <h2>
-            Stay protected
-        </h2>
+        <strong>
+            🛡️ TrustAI Safety Rule
+        </strong>
 
         <p>
-            Never enter your password, PIN, OTP,
-            verification code or payment information
-            simply because a website asks for it.
-            If you are unsure, verify the website through
-            an independent source first.
+            Never enter your password, PIN, OTP or
+            payment information just because a website
+            asks for it. Verify important websites
+            independently.
         </p>
 
     </section>
@@ -565,7 +605,7 @@
 
         <br><br>
 
-        Website security awareness and protection.
+        Online scam awareness and protection.
 
         <br><br>
 
@@ -579,6 +619,7 @@
 
 <script>
 
+
 function checkWebsite(event) {
 
     event.preventDefault();
@@ -590,24 +631,27 @@ function checkWebsite(event) {
     const result =
         document.getElementById("result");
 
-    const title =
-        document.getElementById("resultTitle");
+    const status =
+        document.getElementById("status");
 
-    const resultUrl =
-        document.getElementById("resultUrl");
+    const scoreElement =
+        document.getElementById("score");
 
-    const message =
+    const websiteName =
+        document.getElementById("websiteName");
+
+    const resultMessage =
         document.getElementById("resultMessage");
 
-    const reasonList =
-        document.getElementById("reasonList");
+    const reason =
+        document.getElementById("reason");
 
-    const advice =
-        document.getElementById("advice");
+    const action =
+        document.getElementById("action");
 
 
     let website =
-        input.value.trim();
+        input.value.trim().toLowerCase();
 
 
     /* EMPTY */
@@ -616,18 +660,18 @@ function checkWebsite(event) {
 
         showResult(
             "caution",
-            "⚠️ Enter a website",
+            "⚠️ ENTER A WEBSITE",
+            "—",
             "",
-            "Please enter a website address before checking it.",
-            [],
-            "Safety advice: Never enter sensitive information into a website you have not verified."
+            "Please enter a website address.",
+            "Action: Enter a valid domain and try again."
         );
 
         return;
     }
 
 
-    /* NORMALIZE */
+    /* ADD HTTPS */
 
     let testURL = website;
 
@@ -642,7 +686,7 @@ function checkWebsite(event) {
     }
 
 
-    /* URL VALIDATION */
+    /* VALIDATE */
 
     let url;
 
@@ -654,22 +698,15 @@ function checkWebsite(event) {
 
         showResult(
             "caution",
-            "⚠️ Invalid website address",
+            "⚠️ INVALID ADDRESS",
             website,
-            "TrustAI could not understand this website address.",
-            [
-                "The address format appears to be invalid."
-            ],
-            "Check the spelling and try again."
+            "",
+            "The website address could not be understood.",
+            "Action: Check the spelling and try again."
         );
 
         return;
     }
-
-
-    let score = 0;
-
-    let reasons = [];
 
 
     const hostname =
@@ -679,6 +716,74 @@ function checkWebsite(event) {
         testURL.toLowerCase();
 
 
+    let score = 0;
+
+    let reasons = [];
+
+
+    /* TRUSTED DOMAINS */
+
+    const trustedDomains = [
+
+        "paypal.com",
+        "google.com",
+        "microsoft.com",
+        "apple.com",
+        "amazon.com",
+        "facebook.com",
+        "instagram.com",
+        "linkedin.com",
+        "youtube.com"
+
+    ];
+
+
+    const isTrusted =
+        trustedDomains.some(domain =>
+
+            hostname === domain ||
+            hostname.endsWith("." + domain)
+
+        );
+
+
+    /* LOOKALIKE DOMAINS */
+
+    const lookalikePatterns = [
+
+        "paypa1",
+        "paypaI",
+        "micros0ft",
+        "microsoft-login",
+        "faceb00k",
+        "g00gle",
+        "amaz0n",
+        "netf1ix",
+        "app1e"
+
+    ];
+
+
+    for (const pattern of lookalikePatterns) {
+
+        if (
+            hostname.includes(
+                pattern.toLowerCase()
+            )
+        ) {
+
+            score += 6;
+
+            reasons.push(
+                "Possible brand lookalike domain."
+            );
+
+            break;
+        }
+
+    }
+
+
     /* HTTP */
 
     if (url.protocol === "http:") {
@@ -686,7 +791,7 @@ function checkWebsite(event) {
         score += 2;
 
         reasons.push(
-            "The website uses HTTP instead of HTTPS."
+            "No HTTPS encryption detected."
         );
 
     }
@@ -701,7 +806,7 @@ function checkWebsite(event) {
         score += 3;
 
         reasons.push(
-            "The website uses an IP address instead of a normal domain name."
+            "Uses an IP address instead of a normal domain."
         );
 
     }
@@ -714,42 +819,26 @@ function checkWebsite(event) {
         score += 3;
 
         reasons.push(
-            "The URL contains an @ symbol, which can be used to disguise the real destination."
+            "Contains an unusual @ symbol."
         );
 
     }
 
 
-    /* LONG URL */
+    /* LONG DOMAIN */
 
-    if (fullURL.length > 150) {
+    if (hostname.length > 45) {
 
         score += 1;
 
         reasons.push(
-            "The website address is unusually long."
+            "Unusually long domain name."
         );
 
     }
 
 
-    /* MANY SUBDOMAINS */
-
-    const parts =
-        hostname.split(".");
-
-    if (parts.length >= 5) {
-
-        score += 1;
-
-        reasons.push(
-            "The domain contains an unusually large number of subdomains."
-        );
-
-    }
-
-
-    /* MANY HYPHENS */
+    /* HYPHENS */
 
     const hyphens =
         (hostname.match(/-/g) || []).length;
@@ -759,13 +848,29 @@ function checkWebsite(event) {
         score += 2;
 
         reasons.push(
-            "The domain contains several hyphens."
+            "Contains several hyphens."
         );
 
     }
 
 
-    /* SUSPICIOUS KEYWORDS */
+    /* SUBDOMAINS */
+
+    const parts =
+        hostname.split(".");
+
+    if (parts.length >= 5) {
+
+        score += 1;
+
+        reasons.push(
+            "Contains an unusually complex domain structure."
+        );
+
+    }
+
+
+    /* SUSPICIOUS WORDS */
 
     const suspiciousWords = [
 
@@ -773,16 +878,13 @@ function checkWebsite(event) {
         "verify-login",
         "confirm-account",
         "account-suspended",
-        "security-check",
         "reset-password",
+        "security-check",
         "claim-prize",
         "free-money",
         "cash-reward",
         "instant-profit",
-        "guaranteed-profit",
-        "double-your-money",
-        "crypto-giveaway",
-        "login-verification"
+        "guaranteed-profit"
 
     ];
 
@@ -794,7 +896,7 @@ function checkWebsite(event) {
             score += 2;
 
             reasons.push(
-                "The address contains wording commonly associated with urgent account, prize or payment requests."
+                "Contains suspicious account, prize or payment wording."
             );
 
             break;
@@ -804,25 +906,7 @@ function checkWebsite(event) {
     }
 
 
-    /* DOWNLOADABLE FILE */
-
-    if (
-        url.pathname.endsWith(".exe") ||
-        url.pathname.endsWith(".scr") ||
-        url.pathname.endsWith(".bat") ||
-        url.pathname.endsWith(".zip")
-    ) {
-
-        score += 3;
-
-        reasons.push(
-            "The address points to a potentially risky downloadable file."
-        );
-
-    }
-
-
-    /* SHORTENED LINKS */
+    /* SHORTENED URL */
 
     const shorteners = [
 
@@ -830,43 +914,19 @@ function checkWebsite(event) {
         "tinyurl.com",
         "t.co",
         "is.gd",
-        "shorturl.at",
         "cutt.ly"
 
     ];
 
 
     if (
-        shorteners.some(
-            domain =>
-                hostname === domain ||
-                hostname.endsWith("." + domain)
-        )
+        shorteners.includes(hostname)
     ) {
 
         score += 2;
 
         reasons.push(
-            "A URL-shortening service was detected, which hides the final destination."
-        );
-
-    }
-
-
-    /* LOOKALIKE CHARACTER CHECK */
-
-    const suspiciousCharacterPattern =
-        /paypa1|micros0ft|faceb00k|g00gle|amaz0n|netf1ix|app1e/i;
-
-
-    if (
-        suspiciousCharacterPattern.test(hostname)
-    ) {
-
-        score += 5;
-
-        reasons.push(
-            "The domain resembles a known brand using suspicious character substitutions."
+            "Shortened URL detected."
         );
 
     }
@@ -882,152 +942,133 @@ function checkWebsite(event) {
         score += 3;
 
         reasons.push(
-            "The domain uses an internationalized/punycode domain representation that requires extra verification."
+            "Internationalized domain requires additional verification."
         );
 
     }
 
-
-    /* REMOVE DUPLICATES */
-
-    reasons =
-        [...new Set(reasons)];
-
-
-    /* LIMIT */
 
     score =
         Math.min(score, 10);
 
 
-    /*
-       IMPORTANT:
-       No warning signs does NOT mean verified.
-    */
+    /* TRUSTED DOMAIN */
+
+    if (
+        isTrusted &&
+        score === 0
+    ) {
+
+        showResult(
+            "verified",
+            "🟢 RECOGNIZED DOMAIN",
+            website,
+            "TrustAI recognizes this as a known official domain.",
+            "No suspicious URL patterns detected.",
+            "Action: Still check the address before entering sensitive information."
+        );
+
+        return;
+    }
 
 
-    if (score >= 8) {
+    /* CRITICAL */
+
+    if (score >= 7) {
 
         showResult(
             "critical",
             "🔴 VERY HIGH RISK",
             website,
-            "This website contains multiple strong warning signs.",
-            reasons,
-            "Safety advice: Do not enter passwords, OTPs, PINs, card details or send money through this website."
+            "Multiple strong warning signs were detected.",
+            reasons[0] || "Suspicious URL characteristics detected.",
+            "Action: Do not enter passwords, OTPs, PINs or payment details."
         );
 
+        return;
     }
 
-    else if (score >= 5) {
+
+    /* HIGH */
+
+    if (score >= 4) {
 
         showResult(
-            "high-risk",
+            "high",
             "🟠 HIGH RISK",
             website,
-            "TrustAI found several suspicious characteristics in this website address.",
-            reasons,
-            "Safety advice: Avoid entering sensitive information until the website has been independently verified."
+            "Suspicious characteristics were detected.",
+            reasons[0] || "Suspicious URL pattern detected.",
+            "Action: Avoid entering sensitive information until verified."
         );
 
+        return;
     }
 
-    else if (score >= 2) {
+
+    /* CAUTION */
+
+    if (score >= 2) {
 
         showResult(
             "caution",
             "🟡 CAUTION",
             website,
-            "TrustAI found some characteristics that deserve additional verification.",
-            reasons,
-            "Safety advice: Verify the website independently before logging in, paying or sharing personal information."
+            "Some characteristics require additional verification.",
+            reasons[0] || "A minor warning sign was detected.",
+            "Action: Verify the website before using it."
         );
 
+        return;
     }
 
-    else {
 
-        showResult(
-            "unverified",
-            "⚪ UNVERIFIED",
-            website,
-            "TrustAI did not find obvious warning signs in the URL, but it cannot confirm that this website is legitimate.",
-            [
-                "No major URL-pattern warning signs were detected.",
-                "The website has not been verified by a trusted reputation service."
-            ],
-            "Safety advice: A clean-looking URL is not proof that a website is safe. Verify important websites independently before entering sensitive information."
-        );
+    /* UNVERIFIED */
 
-    }
+    showResult(
+        "unverified",
+        "⚪ UNVERIFIED",
+        website,
+        "No obvious warning signs were detected.",
+        "TrustAI cannot confirm that this website is legitimate.",
+        "Action: Verify important websites independently before entering sensitive information."
+    );
 
 
     function showResult(
         type,
-        resultTitle,
-        websiteText,
-        resultMessage,
-        resultReasons,
-        resultAdvice
+        statusText,
+        site,
+        scoreText,
+        reasonText,
+        actionText
     ) {
 
         result.className =
             "result show " + type;
 
-        title.textContent =
-            resultTitle;
+        status.textContent =
+            statusText;
 
-        resultUrl.textContent =
-            websiteText;
+        scoreElement.textContent =
+            scoreText;
 
-        message.textContent =
-            resultMessage;
+        websiteName.textContent =
+            site;
 
-        reasonList.innerHTML = "";
+        resultMessage.textContent =
+            reasonText;
 
-        resultReasons.forEach(function(reason) {
+        reason.textContent =
+            "Finding: " + scoreText;
 
-            const li =
-                document.createElement("li");
-
-            li.textContent =
-                reason;
-
-            reasonList.appendChild(li);
-
-        });
-
-        advice.textContent =
-            resultAdvice;
+        action.textContent =
+            actionText;
 
     }
 
 }
 
-
-function clearWebsite() {
-
-    document.getElementById("website").value = "";
-
-    document.getElementById("result").className =
-        "result";
-
-    document.getElementById("resultTitle").textContent =
-        "";
-
-    document.getElementById("resultUrl").textContent =
-        "";
-
-    document.getElementById("resultMessage").textContent =
-        "";
-
-    document.getElementById("reasonList").innerHTML =
-        "";
-
-    document.getElementById("advice").textContent =
-        "";
-
-}
 
 </script>
 
