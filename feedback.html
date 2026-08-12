@@ -1,251 +1,1024 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>TrustAI - Feedback</title>
+<title>TrustAI - Feedback</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+:root {
+    --bg: #050811;
+    --surface: #0b1120;
+    --card: #111a2e;
+    --hover: #16223b;
+    --border: #1e2e4a;
+    --blue: #38bdf8;
+    --blue-dark: #0284c7;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --green: #10b981;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #172033;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .page {
-            max-width: 700px;
-            margin: auto;
-            padding: 25px 18px 40px;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
 
-        .header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(2,132,199,.14),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(56,189,248,.06),
+            transparent 30%
+        ),
+        var(--bg);
 
-        .back {
-            text-decoration: none;
-            color: #1459c7;
-            font-weight: bold;
-        }
+    color: var(--text);
+}
 
-        .card {
-            background: white;
-            border: 1px solid #e0e6ef;
-            border-radius: 20px;
-            padding: 25px;
-        }
+/* =========================
+   MENU BUTTON
+========================= */
 
-        h1 {
-            margin-top: 0;
-        }
+.menu-button {
+    position: fixed;
+    top: 18px;
+    left: 18px;
 
-        p {
-            color: #657184;
-            line-height: 1.6;
-        }
+    width: 48px;
+    height: 48px;
 
-        label {
-            display: block;
-            margin-top: 20px;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
+    border: 1px solid rgba(56,189,248,.35);
+    border-radius: 14px;
 
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #ccd4df;
-            border-radius: 10px;
-            font-size: 15px;
-            font-family: inherit;
-        }
+    background: rgba(11,17,32,.96);
 
-        textarea {
-            min-height: 140px;
-            resize: vertical;
-        }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-        button {
-            width: 100%;
-            margin-top: 22px;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            background: #1459c7;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    gap: 5px;
 
-        button:hover {
-            opacity: 0.9;
-        }
+    cursor: pointer;
+    z-index: 2001;
+}
 
-        #result {
-            margin-top: 18px;
-            padding: 15px;
-            border-radius: 10px;
-            display: none;
-        }
+.menu-button span {
+    width: 22px;
+    height: 3px;
 
-        .success {
-            display: block !important;
-            background: #e9f8ef;
-            color: #16803c;
-        }
+    background: white;
+    border-radius: 5px;
+}
 
-    </style>
+/* =========================
+   SIDE MENU
+========================= */
+
+.side-menu {
+    position: fixed;
+
+    top: 0;
+    left: -300px;
+
+    width: 285px;
+    height: 100vh;
+
+    padding: 85px 18px 25px;
+
+    background: #0b1120;
+
+    border-right: 1px solid var(--border);
+
+    z-index: 2000;
+
+    transition: left .3s ease;
+
+    box-shadow: 15px 0 40px rgba(0,0,0,.4);
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-brand {
+    padding: 0 12px 20px;
+
+    border-bottom: 1px solid var(--border);
+
+    margin-bottom: 15px;
+}
+
+.menu-brand strong {
+    display: block;
+
+    color: var(--blue);
+
+    font-size: 21px;
+}
+
+.menu-brand span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    margin-bottom: 5px;
+
+    border-radius: 10px;
+
+    color: #dbeafe;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: .2s;
+}
+
+.menu-link:hover {
+    background: var(--hover);
+    color: var(--blue);
+}
+
+.menu-divider {
+    height: 1px;
+
+    background: var(--border);
+
+    margin: 15px 0;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.65);
+
+    z-index: 1999;
+
+    display: none;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    width: min(850px, calc(100% - 28px));
+
+    margin: auto;
+
+    padding: 90px 0 50px;
+}
+
+/* =========================
+   TOP
+========================= */
+
+.top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.back {
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.back:hover {
+    color: var(--blue);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: rgba(16,185,129,.08);
+
+    border: 1px solid rgba(16,185,129,.3);
+
+    color: var(--green);
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow: 0 0 10px var(--green);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 30px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,26,46,.98),
+            rgba(5,8,17,.96)
+        );
+
+    box-shadow: 0 25px 55px rgba(0,0,0,.4);
+
+    margin-bottom: 22px;
+}
+
+.hero-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: rgba(56,189,248,.1);
+
+    border: 1px solid rgba(56,189,248,.3);
+
+    font-size: 29px;
+
+    margin-bottom: 18px;
+}
+
+.hero-label {
+    color: var(--blue);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    margin: 6px 0 10px;
+
+    font-size: 32px;
+}
+
+.hero p {
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    max-width: 700px;
+
+    margin: 0;
+}
+
+/* =========================
+   FEEDBACK CARD
+========================= */
+
+.card {
+    padding: 27px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    background: var(--bg);
+
+    color: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+input,
+select {
+    height: 50px;
+}
+
+textarea {
+    min-height: 170px;
+
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #64748b;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(56,189,248,.1),
+        0 0 18px rgba(56,189,248,.12);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+button {
+    padding: 13px 20px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.send {
+    flex: 1;
+
+    border: none;
+
+    background: var(--blue-dark);
+
+    color: white;
+}
+
+.send:hover {
+    background: #0369a1;
+
+    box-shadow:
+        0 0 22px rgba(2,132,199,.35);
+}
+
+.clear {
+    border: 1px solid var(--border);
+
+    background: transparent;
+
+    color: var(--muted);
+}
+
+.clear:hover {
+    background: var(--hover);
+
+    color: white;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+#result {
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+#result.show {
+    display: block;
+}
+
+.success {
+    color: #6ee7b7;
+
+    background: rgba(16,185,129,.08);
+
+    border: 1px solid rgba(16,185,129,.35);
+}
+
+.error {
+    color: #fca5a5;
+
+    background: rgba(239,68,68,.08);
+
+    border: 1px solid rgba(239,68,68,.35);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    padding-top: 30px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .page {
+        width: calc(100% - 24px);
+
+        padding-top: 82px;
+    }
+
+    .hero {
+        padding: 22px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+}
+
+</style>
 
 </head>
 
+
 <body>
+
+
+<!-- MENU BUTTON -->
+
+<button
+class="menu-button"
+type="button"
+onclick="toggleMenu()"
+aria-label="Open menu">
+
+<span></span>
+<span></span>
+<span></span>
+
+</button>
+
+
+<!-- SIDE MENU -->
+
+<nav
+id="sideMenu"
+class="side-menu">
+
+<div class="menu-brand">
+
+<strong>🛡️ TrustAI</strong>
+
+<span>Online Scam Protection</span>
+
+</div>
+
+
+<a href="home.html" class="menu-link">
+🏠 Home
+</a>
+
+
+<a href="message.html" class="menu-link">
+🔍 Message Checker
+</a>
+
+
+<a href="conversation.html" class="menu-link">
+💬 Conversation Checker
+</a>
+
+
+<a href="Website.html" class="menu-link">
+🌐 Website Checker
+</a>
+
+
+<a href="device_checker.html" class="menu-link">
+📱 Device Security
+</a>
+
+
+<a href="security.html" class="menu-link">
+🛡️ Security Center
+</a>
+
+
+<div class="menu-divider"></div>
+
+
+<a href="alerts.html" class="menu-link">
+🚨 Scam Alerts
+</a>
+
+
+<a href="report.html" class="menu-link">
+📢 Report a Scam
+</a>
+
+
+<a href="feedback.html" class="menu-link">
+💬 Feedback
+</a>
+
+</nav>
+
+
+<!-- OVERLAY -->
+
+<div
+id="menuOverlay"
+class="menu-overlay"
+onclick="closeMenu()">
+</div>
+
+
+<!-- PAGE -->
 
 <div class="page">
 
-    <div class="header">
 
-        <a class="back" href="home.html">
-            ← Back
-        </a>
+<!-- TOP -->
 
-    </div>
+<div class="top">
 
+<a
+class="back"
+href="home.html">
 
-    <div class="card">
+← Back to TrustAI
 
-        <h1>💬 TrustAI Feedback</h1>
-
-        <p>
-            Help us improve TrustAI. Tell us what you
-            like, what could be better, or what feature
-            you would like to see next.
-        </p>
+</a>
 
 
-        <form onsubmit="sendFeedback(event)">
+<div class="status">
 
-            <label for="name">
-                Name (optional)
-            </label>
+<span class="status-dot"></span>
 
-            <input
-                type="text"
-                id="name"
-                placeholder="Your name"
-            >
+TrustAI Online
+
+</div>
+
+</div>
 
 
-            <label for="rating">
-                How would you rate TrustAI?
-            </label>
+<!-- HERO -->
 
-            <select id="rating">
+<section class="hero">
 
-                <option value="">
-                    Select a rating
-                </option>
+<div class="hero-icon">
+💬
+</div>
 
-                <option>⭐ 1 - Very poor</option>
-                <option>⭐⭐ 2 - Poor</option>
-                <option>⭐⭐⭐ 3 - Good</option>
-                <option>⭐⭐⭐⭐ 4 - Very good</option>
-                <option>⭐⭐⭐⭐⭐ 5 - Excellent</option>
+<div class="hero-label">
+TRUSTAI COMMUNITY
+</div>
 
-            </select>
+<h1>
+Help Us Improve TrustAI
+</h1>
 
+<p>
+Your feedback helps us improve our scam protection
+tools and build a safer online experience for everyone.
+</p>
 
-            <label for="feedback">
-                Your feedback
-            </label>
-
-            <textarea
-                id="feedback"
-                placeholder="What should we improve?"
-                required
-            ></textarea>
+</section>
 
 
-            <button type="submit">
-                Send Feedback
-            </button>
+<!-- CARD -->
 
-        </form>
+<section class="card">
+
+<h2>
+💬 Send Your Feedback
+</h2>
+
+<p class="card-description">
+Tell us what you like, what needs improvement,
+or what feature you would like TrustAI to have next.
+</p>
 
 
-        <div id="result"></div>
+<form
+id="feedbackForm"
+onsubmit="sendFeedback(event)">
 
-    </div>
+
+<div class="form-group">
+
+<label for="name">
+Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Your name (optional)">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="rating">
+Your Rating
+</label>
+
+<select id="rating">
+
+<option value="">
+Select a rating
+</option>
+
+<option value="1">
+⭐ 1 — Very poor
+</option>
+
+<option value="2">
+⭐⭐ 2 — Poor
+</option>
+
+<option value="3">
+⭐⭐⭐ 3 — Good
+</option>
+
+<option value="4">
+⭐⭐⭐⭐ 4 — Very good
+</option>
+
+<option value="5">
+⭐⭐⭐⭐⭐ 5 — Excellent
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="feedback">
+Your Feedback
+</label>
+
+<textarea
+id="feedback"
+placeholder="What should we improve?"
+required></textarea>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+type="submit"
+class="send">
+
+📨 Send Feedback
+
+</button>
+
+
+<button
+type="button"
+class="clear"
+onclick="clearFeedback()">
+
+Clear
+
+</button>
+
+</div>
+
+
+<div id="result"></div>
+
+
+</form>
+
+</section>
+
+
+<footer>
+
+🛡️ TrustAI — Online Scam Protection
+
+<br>
+
+Your feedback helps make TrustAI better.
+
+</footer>
+
 
 </div>
 
 
 <script>
 
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("sideMenu")
+        .classList.remove("open");
+
+    document
+        .getElementById("menuOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
 function sendFeedback(event) {
 
     event.preventDefault();
 
-    let name =
-        document.getElementById("name").value.trim();
+    const name =
+        document
+        .getElementById("name")
+        .value
+        .trim();
 
-    let rating =
-        document.getElementById("rating").value;
+    const rating =
+        document
+        .getElementById("rating")
+        .value;
 
-    let feedback =
-        document.getElementById("feedback").value.trim();
+    const feedback =
+        document
+        .getElementById("feedback")
+        .value
+        .trim();
 
-    let result =
-        document.getElementById("result");
+    const result =
+        document
+        .getElementById("result");
 
 
     if (rating === "") {
 
+        result.className = "show error";
+
         result.textContent =
             "⚠️ Please select a rating.";
 
-        result.className = "success";
-
         return;
+
     }
 
 
-    console.log({
-        name: name,
-        rating: rating,
-        feedback: feedback
+    if (feedback === "") {
+
+        result.className = "show error";
+
+        result.textContent =
+            "⚠️ Please enter your feedback.";
+
+        return;
+
+    }
+
+
+    /* Save locally */
+
+    const feedbackList =
+        JSON.parse(
+            localStorage.getItem("trustAIFeedback")
+        ) || [];
+
+
+    feedbackList.push({
+
+        name:
+            name || "Anonymous",
+
+        rating:
+            rating,
+
+        feedback:
+            feedback,
+
+        date:
+            new Date().toLocaleString()
+
     });
 
 
+    localStorage.setItem(
+        "trustAIFeedback",
+        JSON.stringify(feedbackList)
+    );
+
+
+    result.className =
+        "show success";
+
     result.textContent =
-        "✅ Thank you for your feedback!";
+        "✅ Thank you for your feedback!\n\n" +
+        "Your feedback has been saved successfully.";
 
-    result.className = "success";
+
+    document
+        .getElementById("feedbackForm")
+        .reset();
+
+}
 
 
-    document.getElementById("feedback").value = "";
+/* =========================
+   CLEAR
+========================= */
+
+function clearFeedback() {
+
+    document
+        .getElementById("feedbackForm")
+        .reset();
+
+
+    const result =
+        document.getElementById("result");
+
+
+    result.textContent = "";
+
+    result.className = "";
 
 }
 
 </script>
 
+
 </body>
 
-  </html>
+    </html>
