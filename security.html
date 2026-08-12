@@ -1,4 +1,9 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
 
 <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
@@ -10,16 +15,332 @@
 <meta name="description"
     content="TrustAI Security Center provides practical guidance for protecting passwords, OTPs, payments, accounts, and personal information.">
 
-</head><body><!-- HEADER -->
+<style>
 
-<h1 class="logo">🛡️ TrustAI</h1>
+* {
+    box-sizing: border-box;
+}
 
-<p>
-    <a href="index.html">← Back to TrustAI Home</a>
-</p>
+body {
+    margin: 0;
+    background: #050b14;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 3-DASH BUTTON */
+
+.menu-button {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 11px;
+    background: #1687ff;
+    cursor: pointer;
+    z-index: 1001;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-button span {
+    width: 22px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+}
+
+/* SIDE MENU */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -290px;
+    width: 280px;
+    height: 100vh;
+
+    background: #0b1420;
+    border-right: 1px solid #1b2b3d;
+
+    z-index: 1000;
+
+    padding: 80px 18px 25px;
+
+    overflow-y: auto;
+
+    transition: left 0.25s ease;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-title {
+    padding: 0 12px 18px;
+    border-bottom: 1px solid #1b2b3d;
+    margin-bottom: 12px;
+}
+
+.menu-title strong {
+    font-size: 21px;
+    color: #1687ff;
+}
+
+.menu-title span {
+    display: block;
+    margin-top: 5px;
+    color: #8998aa;
+    font-size: 12px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 13px 12px;
+    margin-bottom: 4px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.menu-link:hover {
+    background: #101f31;
+    color: #1687ff;
+}
+
+.menu-icon {
+    width: 25px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.menu-divider {
+    height: 1px;
+    background: #1b2b3d;
+    margin: 14px 0;
+}
+
+/* OVERLAY */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    z-index: 999;
+
+    display: none;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+/* PAGE */
+
+.page {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 85px 18px 45px;
+}
+
+/* LOGO */
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    margin-bottom: 35px;
+}
+
+.logo span {
+    color: #1687ff;
+}
+
+/* HEADINGS */
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    margin-top: 35px;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+p,
+li {
+    color: #9ba8b8;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+ul {
+    padding-left: 22px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #657386;
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #182536;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+
+    .page {
+        padding: 80px 14px 35px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
 
 
-<h1>🛡️ Security Center</h1>
+<!-- 3-DASH BUTTON -->
+
+<button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open menu">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
+
+
+<!-- SIDE MENU -->
+
+<nav id="sideMenu" class="side-menu">
+
+    <div class="menu-title">
+
+        <strong>🛡️ TrustAI</strong>
+
+        <span>Online Scam Protection</span>
+
+    </div>
+
+
+    <a href="home.html" class="menu-link">
+        <span class="menu-icon">🏠</span>
+        Home
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+        <span class="menu-icon">🔍</span>
+        Message Checker
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Conversation Checker
+    </a>
+
+
+    <a href="website.html" class="menu-link">
+        <span class="menu-icon">🌐</span>
+        Website Checker
+    </a>
+
+
+    <a href="device_checker.html" class="menu-link">
+        <span class="menu-icon">📱</span>
+        Device Security
+    </a>
+
+
+    <a href="security.html" class="menu-link">
+        <span class="menu-icon">🛡️</span>
+        Security Center
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html" class="menu-link">
+        <span class="menu-icon">🚨</span>
+        Scam Alerts
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+        <span class="menu-icon">📢</span>
+        Report a Scam
+    </a>
+
+
+    <a href="feedback.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Contact TrustAI
+    </a>
+
+</nav>
+
+
+<!-- OVERLAY -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="page">
+
+
+<h1 class="logo">
+    🛡️ Trust<span>AI</span>
+</h1>
+
+
+<h1>
+    🛡️ Security Center
+</h1>
 
 <p>
     Learn simple ways to protect your accounts,
@@ -211,45 +532,6 @@
 </ul>
 
 
-<!-- TRUSTAI TOOLS -->
-
-<h2>🛠️ TrustAI Tools</h2>
-
-<p>
-    Need to investigate something suspicious?
-</p>
-
-<p>
-    <a href="message.html">
-        🔍 Check a Message →
-    </a>
-</p>
-
-<p>
-    <a href="conversation.html">
-        💬 Analyze a Conversation →
-    </a>
-</p>
-
-<p>
-    <a href="website.html">
-        🌐 Check a Website →
-    </a>
-</p>
-
-<p>
-    <a href="device_checker.html">
-        📱 Check Device Security →
-    </a>
-</p>
-
-<p>
-    <a href="alerts.html">
-        🚨 View Scam Alerts →
-    </a>
-</p>
-
-
 <!-- FOOTER -->
 
 <footer>
@@ -268,4 +550,44 @@
 
 </footer>
 
-</body></html>
+
+</div>
+
+
+<script>
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+</script>
+
+
+</body>
+
+    </html>
