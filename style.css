@@ -1,24 +1,31 @@
-/* ================================
-TRUSTAI — MODERN DARK CYBER CSS
-================================ */
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact TrustAI</title>
+
+<meta name="description"
+content="Contact TrustAI for questions, feedback, technical problems, or suspicious activity reports.">
+
+<style>
 
 :root {
     --bg-main: #050811;
     --bg-surface: #0b1120;
     --bg-card: #111a2e;
-    --bg-card-hover: #16223b;
-    --border-color: #1e2e4a;
-    --border-glow: #38bdf8;
-    --accent-blue: #0284c7;
-    --accent-blue-hover: #0369a1;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --danger: #ef4444;
-    --danger-bg: rgba(239, 68, 68, 0.12);
-    --warning: #f59e0b;
-    --warning-bg: rgba(245, 158, 11, 0.12);
+    --bg-hover: #16223b;
+    --border: #1e2e4a;
+    --blue: #38bdf8;
+    --blue-dark: #0284c7;
+    --text: #f8fafc;
+    --muted: #94a3b8;
     --success: #10b981;
+    --danger: #ef4444;
 }
 
 * {
@@ -31,396 +38,338 @@ html {
 
 body {
     margin: 0;
-    padding: 0;
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top right, rgba(2,132,199,.12), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(56,189,248,.07), transparent 30%),
+        var(--bg-main);
+    color: var(--text);
+    font-family: Arial, sans-serif;
 }
 
-.content-wrapper, .app-header {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* =========================
+   MENU BUTTON
+========================= */
+
+.menu-button {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid rgba(56,189,248,.35);
+    border-radius: 14px;
+
+    background: rgba(11,17,32,.95);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    cursor: pointer;
+    z-index: 2001;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.35);
 }
 
-/* ================================
-HEADER & NAVIGATION
-================================ */
-
-.app-header {
-    padding-top: 24px;
-    margin-bottom: 30px;
+.menu-button span {
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 5px;
 }
 
-.header-nav {
+/* =========================
+   SIDE MENU
+========================= */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+
+    width: 285px;
+    height: 100vh;
+
+    padding: 85px 18px 25px;
+
+    background: #0b1120;
+    border-right: 1px solid var(--border);
+
+    z-index: 2000;
+
+    transition: left .3s ease;
+
+    box-shadow: 15px 0 40px rgba(0,0,0,.35);
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-brand {
+    padding: 0 12px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 15px;
+}
+
+.menu-brand strong {
+    display: block;
+    font-size: 21px;
+    color: var(--blue);
+}
+
+.menu-brand span {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 12px;
+    margin-bottom: 5px;
+
+    color: #dbeafe;
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: .2s;
+}
+
+.menu-link:hover {
+    background: var(--bg-hover);
+    color: var(--blue);
+}
+
+.menu-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 15px 0;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.65);
+
+    z-index: 1999;
+
+    display: none;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.container {
+    width: min(900px, calc(100% - 30px));
+    margin: auto;
+    padding: 90px 0 50px;
+}
+
+/* =========================
+   TOP NAV
+========================= */
+
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+
+    margin-bottom: 20px;
 }
 
 .back-link {
-    color: var(--text-secondary);
+    color: var(--muted);
     text-decoration: none;
     font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
+    font-weight: bold;
 }
 
 .back-link:hover {
-    color: var(--border-glow);
+    color: var(--blue);
 }
 
-.system-status {
+.status {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(16, 185, 129, 0.08);
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    color: var(--success);
-    padding: 6px 14px;
+    gap: 8px;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(16,185,129,.3);
     border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
+
+    background: rgba(16,185,129,.08);
+
+    color: var(--success);
+
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.status-pulse {
+.status-dot {
     width: 8px;
     height: 8px;
-    background-color: var(--success);
+
     border-radius: 50%;
+    background: var(--success);
+
     box-shadow: 0 0 10px var(--success);
 }
 
-/* ================================
-HERO BANNER & LOGO
-================================ */
+/* =========================
+   HERO
+========================= */
 
-.hero-section {
-    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-main) 100%);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 32px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+.hero {
+    padding: 30px;
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,26,46,.98),
+            rgba(5,8,17,.96)
+        );
+
+    box-shadow: 0 25px 55px rgba(0,0,0,.4);
+
+    margin-bottom: 22px;
 }
 
-.hero-brand {
+.hero-icon {
+    width: 58px;
+    height: 58px;
+
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-}
+    justify-content: center;
 
-.shield-badge {
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    padding: 12px;
-    border-radius: 14px;
-    display: flex;
-}
+    border-radius: 16px;
 
-.brand-subtitle {
-    color: var(--border-glow);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    display: block;
-    margin-bottom: 4px;
-}
+    background: rgba(56,189,248,.1);
+    border: 1px solid rgba(56,189,248,.3);
 
-.hero-brand h1 {
     font-size: 28px;
-    font-weight: 800;
-    margin: 0;
-    letter-spacing: -0.5px;
+
+    margin-bottom: 18px;
 }
 
-.hero-desc {
-    color: var(--text-secondary);
-    font-size: 15px;
-    line-height: 1.6;
-    margin: 0 0 20px 0;
-    max-width: 750px;
-}
-
-.hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-}
-
-.metric-card {
-    background: rgba(17, 26, 46, 0.6);
-    border: 1px solid var(--border-color);
-    padding: 16px;
-    border-radius: 12px;
-}
-
-.metric-val {
-    display: block;
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text-primary);
-}
-
-.metric-label {
-    font-size: 12px;
-    color: var(--text-secondary);
-}
-
-/* ================================
-HEADINGS & PARAGRAPHS
-================================ */
-
-h1, h2, h3 {
-    color: var(--text-primary);
-}
-
-p {
-    color: var(--text-secondary);
-    font-size: 15px;
-}
-
-a {
-    color: var(--border-glow);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* ================================
-CARDS & GRID LAYOUTS
-================================ */
-
-.scam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
-}
-
-.scam-card, .scanner-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.25s ease-in-out;
-    display: flex;
-    flex-direction: column;
-}
-
-.scam-card:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--border-glow);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-}
-
-.scam-card.high-threat {
-    border-color: rgba(239, 68, 68, 0.4);
-}
-
-/* Card Headers */
-.card-header-bar {
-    background: #142038;
-    padding: 18px 20px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-header-bar.danger {
-    background: rgba(239, 68, 68, 0.15);
-    border-bottom-color: rgba(239, 68, 68, 0.3);
-}
-
-.card-title-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.threat-icon {
-    font-size: 22px;
-}
-
-.threat-category {
+.hero-label {
+    color: var(--blue);
     font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--border-glow);
-    letter-spacing: 0.5px;
-    display: block;
+    font-weight: bold;
+    letter-spacing: 1.5px;
 }
 
-.threat-category.danger {
-    color: var(--danger);
+.hero h1 {
+    margin: 6px 0 10px;
+    font-size: 32px;
 }
 
-.card-header-bar h2 {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 2px 0 0 0;
-}
-
-.risk-badge {
-    font-size: 10px;
-    font-weight: 800;
-    padding: 4px 8px;
-    border-radius: 6px;
-}
-
-.risk-badge.warning {
-    background: var(--warning-bg);
-    color: var(--warning);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-}
-
-.risk-badge.danger {
-    background: var(--danger-bg);
-    color: var(--danger);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.card-body {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
-}
-
-.card-desc {
-    color: var(--text-secondary);
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0 0 16px 0;
-}
-
-/* Featured Header Banner */
-.featured-advisory {
-    background: linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
-    border: 1px solid var(--accent-blue);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 36px;
-}
-
-.featured-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.advisory-pill {
-    background: var(--accent-blue);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 6px;
-    letter-spacing: 1px;
-}
-
-.featured-header h2 {
+.hero p {
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 700px;
     margin: 0;
-    font-size: 20px;
 }
 
-.featured-text {
-    color: var(--text-secondary);
+/* =========================
+   CONTACT CARD
+========================= */
+
+.contact-card {
+    background: var(--bg-card);
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    padding: 26px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+}
+
+.contact-card h2 {
+    margin-top: 0;
+    margin-bottom: 7px;
+}
+
+.contact-card > p {
+    color: var(--muted);
     font-size: 14px;
-    line-height: 1.6;
-    margin: 0 0 16px 0;
+    margin-bottom: 24px;
 }
 
-.featured-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 17px;
 }
 
-.featured-tags span {
-    background: rgba(2, 132, 199, 0.2);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    color: var(--border-glow);
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+
     font-size: 12px;
-    font-weight: 600;
-    padding: 5px 12px;
-    border-radius: 20px;
-}
+    font-weight: bold;
 
-/* Action Boxes Inside Cards */
-.card-action-box {
-    background: var(--bg-main);
-    border-left: 3px solid var(--border-glow);
-    border-radius: 0 8px 8px 0;
-    padding: 12px 14px;
-    font-size: 13px;
-    color: var(--text-primary);
-    line-height: 1.4;
-}
-
-.card-action-box.danger {
-    border-left-color: var(--danger);
-}
-
-.indicator-list {
-    margin: 8px 0 16px 0;
-    padding-left: 18px;
-}
-
-.indicator-list li {
-    font-size: 13.5px;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
-}
-
-/* ================================
-FORMS, INPUTS & BUTTONS
-================================ */
-
-.scanner-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.input-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: .5px;
 }
 
-.cyber-input, textarea, select {
-    background: var(--bg-main);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 14px 16px;
-    color: var(--text-primary);
-    font-size: 15px;
-    font-family: inherit;
-    outline: none;
+.input,
+textarea {
     width: 100%;
-    transition: all 0.2s ease;
+
+    background: var(--bg-main);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 14px 15px;
+
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+.input {
+    height: 50px;
 }
 
 textarea {
@@ -428,220 +377,585 @@ textarea {
     resize: vertical;
 }
 
-.cyber-input:focus, textarea:focus, select:focus {
-    border-color: var(--border-glow);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+.input:focus,
+textarea:focus {
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 0 3px rgba(56,189,248,.1),
+        0 0 18px rgba(56,189,248,.12);
 }
+
+.input::placeholder,
+textarea::placeholder {
+    color: #64748b;
+}
+
+/* =========================
+   BUTTONS
+========================= */
 
 .button-row {
     display: flex;
     gap: 12px;
-    flex-wrap: wrap;
+    margin-top: 22px;
 }
 
-button, .btn {
-    padding: 12px 22px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
+button {
     border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-    text-decoration: none;
+    border-radius: 11px;
+
+    padding: 13px 22px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
 }
 
-button:hover, .btn:hover {
-    opacity: 0.95;
+.send-button {
+    flex: 1;
+
+    background: var(--blue-dark);
+    color: white;
 }
 
-.btn-primary, button[type="submit"] {
-    background: var(--accent-blue);
-    color: #ffffff;
+.send-button:hover {
+    background: #0369a1;
+
+    box-shadow:
+        0 0 22px rgba(2,132,199,.35);
 }
 
-.btn-primary:hover, button[type="submit"]:hover {
-    background: var(--accent-blue-hover);
-    box-shadow: 0 0 20px rgba(2, 132, 199, 0.4);
-}
-
-.btn-secondary, button[type="button"] {
+.clear-button {
     background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
+
+    color: var(--muted);
+
+    border: 1px solid var(--border);
 }
 
-.btn-secondary:hover, button[type="button"]:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-primary);
+.clear-button:hover {
+    background: var(--bg-hover);
+    color: white;
 }
 
-/* ================================
-CHECKER RESULT DISPLAY
-================================ */
+/* =========================
+   RESULT
+========================= */
 
-.result-display, .risk {
-    white-space: pre-wrap;
+#contactResult {
+    display: none;
+
     margin-top: 20px;
-    padding: 20px;
+
+    padding: 16px;
+
     border-radius: 12px;
+
     font-size: 14px;
     line-height: 1.6;
-    background: var(--bg-main);
-    border: 1px solid var(--border-color);
 }
 
-.result-display:empty {
-    display: none;
+#contactResult.show {
+    display: block;
 }
 
-/* Low Risk */
-.risk.low {
-    border: 1px solid var(--success);
-    background: rgba(16, 185, 129, 0.1);
+.success {
     color: #6ee7b7;
+
+    background: rgba(16,185,129,.08);
+
+    border: 1px solid rgba(16,185,129,.35);
 }
 
-/* Caution */
-.risk.caution {
-    border: 1px solid rgba(245, 158, 11, 0.5);
-    background: rgba(245, 158, 11, 0.08);
-    color: #fef08a;
-}
-
-/* High Risk */
-.risk.high {
-    border: 1px solid var(--warning);
-    background: rgba(245, 158, 11, 0.12);
-    color: #fde047;
-}
-
-/* Very High Risk */
-.risk.very-high {
-    border: 1px solid var(--danger);
-    background: var(--danger-bg);
+.error {
     color: #fca5a5;
+
+    background: rgba(239,68,68,.08);
+
+    border: 1px solid rgba(239,68,68,.35);
 }
 
-/* ================================
-NAVIGATION CTA GRID
-================================ */
+/* =========================
+   EMAIL CARD
+========================= */
 
-.tools-cta {
-    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-main) 100%);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 32px;
-    margin-bottom: 50px;
+.email-card {
+    margin-top: 20px;
+
+    padding: 22px;
+
+    background: rgba(11,17,32,.8);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
 }
 
-.cta-content h2 {
-    margin: 0 0 8px 0;
-    font-size: 20px;
+.email-card h3 {
+    margin-top: 0;
 }
 
-.cta-content p {
-    color: var(--text-secondary);
-    font-size: 14px;
-    margin: 0 0 20px 0;
+.email-address {
+    color: var(--blue);
+    font-weight: bold;
 }
 
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
-}
+.email-button {
+    display: inline-block;
 
-.tool-btn {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    text-decoration: none;
-    padding: 12px 16px;
+    margin-top: 10px;
+
+    padding: 11px 16px;
+
     border-radius: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.2s ease;
-}
 
-.tool-btn:hover {
-    border-color: var(--border-glow);
-    background: var(--bg-card-hover);
-}
+    background: rgba(56,189,248,.08);
 
-.tool-btn.primary {
-    background: var(--accent-blue);
-    border-color: var(--accent-blue);
-}
+    border: 1px solid rgba(56,189,248,.25);
 
-.tool-btn.primary:hover {
-    background: var(--accent-blue-hover);
-}
+    color: var(--blue);
 
-/* ================================
-FOOTER
-================================ */
+    text-decoration: none;
 
-.app-footer, footer {
-    border-top: 1px solid var(--border-color);
-    padding: 32px 0;
-    color: var(--text-muted);
     font-size: 13px;
+    font-weight: bold;
+}
+
+.email-button:hover {
+    background: rgba(56,189,248,.15);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
     text-align: center;
-    margin-top: 40px;
-}
 
-.footer-brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-weight: 700;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
-}
+    color: #64748b;
 
-.copyright {
     font-size: 12px;
-    margin-top: 4px;
+
+    padding: 30px 0 0;
 }
 
-/* ================================
-MOBILE DESIGN
-================================ */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
-    .content-wrapper, .app-header {
-        padding: 0 14px;
+
+    .container {
+        width: min(100% - 24px, 900px);
+        padding-top: 82px;
     }
 
-    .hero-section, .tools-cta, .featured-advisory {
+    .hero {
+        padding: 22px;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .contact-card {
         padding: 20px;
-    }
-
-    .hero-brand h1 {
-        font-size: 22px;
-    }
-
-    .hero-metrics {
-        grid-template-columns: 1fr;
     }
 
     .button-row {
         flex-direction: column;
     }
 
-    button, .btn {
+    button {
         width: 100%;
     }
 
-    .scam-grid {
-        grid-template-columns: 1fr;
+    .topbar {
+        align-items: flex-start;
     }
-  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- MENU BUTTON -->
+
+<button
+class="menu-button"
+type="button"
+onclick="toggleMenu()"
+aria-label="Open menu">
+
+<span></span>
+<span></span>
+<span></span>
+
+</button>
+
+
+<!-- SIDE MENU -->
+
+<nav id="sideMenu" class="side-menu">
+
+<div class="menu-brand">
+
+<strong>🛡️ TrustAI</strong>
+
+<span>Online Scam Protection</span>
+
+</div>
+
+<a href="home.html" class="menu-link">
+🏠 Home
+</a>
+
+<a href="message.html" class="menu-link">
+🔍 Message Checker
+</a>
+
+<a href="conversation.html" class="menu-link">
+💬 Conversation Checker
+</a>
+
+<a href="Website.html" class="menu-link">
+🌐 Website Checker
+</a>
+
+<a href="device_checker.html" class="menu-link">
+📱 Device Security
+</a>
+
+<a href="security.html" class="menu-link">
+🛡️ Security Center
+</a>
+
+<div class="menu-divider"></div>
+
+<a href="alerts.html" class="menu-link">
+🚨 Scam Alerts
+</a>
+
+<a href="report.html" class="menu-link">
+📢 Report a Scam
+</a>
+
+<a href="feedback.html" class="menu-link">
+📞 Contact TrustAI
+</a>
+
+</nav>
+
+
+<div
+id="menuOverlay"
+class="menu-overlay"
+onclick="closeMenu()">
+</div>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+<div class="topbar">
+
+<a href="home.html" class="back-link">
+← Back to TrustAI
+</a>
+
+<div class="status">
+
+<span class="status-dot"></span>
+
+TrustAI Online
+
+</div>
+
+</div>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-icon">
+📞
+</div>
+
+<div class="hero-label">
+TRUSTAI SUPPORT
+</div>
+
+<h1>
+Contact TrustAI
+</h1>
+
+<p>
+Have a question, found a problem, or discovered
+suspicious activity? Send us a message and let
+the TrustAI team know.
+</p>
+
+</section>
+
+
+<!-- CONTACT FORM -->
+
+<section class="contact-card">
+
+<h2>
+Send us a message
+</h2>
+
+<p>
+Fill in the form below. Your message will be checked
+before it is submitted.
+</p>
+
+
+<form id="contactForm" onsubmit="sendMessage(event)">
+
+
+<div class="form-group">
+
+<label for="name">
+Your Name
+</label>
+
+<input
+class="input"
+type="text"
+id="name"
+placeholder="Enter your name"
+autocomplete="name">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="email">
+Email Address
+</label>
+
+<input
+class="input"
+type="email"
+id="email"
+placeholder="you@example.com"
+autocomplete="email">
+
+</div>
+
+
+<div class="form-group">
+
+<label for="message">
+Your Message
+</label>
+
+<textarea
+id="message"
+placeholder="Write your message here..."></textarea>
+
+</div>
+
+
+<div class="button-row">
+
+<button
+type="submit"
+class="send-button">
+
+📨 Send Message
+
+</button>
+
+
+<button
+type="button"
+class="clear-button"
+onclick="clearForm()">
+
+Clear
+
+</button>
+
+</div>
+
+
+<div id="contactResult"></div>
+
+</form>
+
+</section>
+
+
+<!-- EMAIL -->
+
+<section class="email-card">
+
+<h3>
+📧 Contact Email
+</h3>
+
+<p>
+You can also contact TrustAI directly by email:
+</p>
+
+<div class="email-address">
+trustai.support@gmail.com
+</div>
+
+<a
+class="email-button"
+href="mailto:trustai.support@gmail.com">
+
+📩 Open Email
+
+</a>
+
+</section>
+
+
+<footer>
+
+🛡️ TrustAI — Online Scam Protection
+
+<br>
+
+Helping people identify suspicious online activity.
+
+</footer>
+
+
+</main>
+
+
+<script>
+
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("sideMenu")
+        .classList.remove("open");
+
+    document
+        .getElementById("menuOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const message =
+        document.getElementById("message").value.trim();
+
+    const result =
+        document.getElementById("contactResult");
+
+
+    if (name === "" || email === "" || message === "") {
+
+        result.className = "show error";
+
+        result.textContent =
+            "⚠️ Please complete your name, email address, and message.";
+
+        return;
+    }
+
+
+    if (!email.includes("@") || !email.includes(".")) {
+
+        result.className = "show error";
+
+        result.textContent =
+            "⚠️ Please enter a valid email address.";
+
+        return;
+    }
+
+
+    result.className = "show success";
+
+    result.textContent =
+        "✅ Message received successfully.\n\n" +
+        "Thank you for contacting TrustAI. " +
+        "Your message has been prepared for submission.";
+
+
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearForm() {
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("email").value = "";
+
+    document.getElementById("message").value = "";
+
+    const result =
+        document.getElementById("contactResult");
+
+    result.textContent = "";
+
+    result.className = "";
+
+}
+
+</script>
+
+</body>
+
+</html>
