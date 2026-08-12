@@ -1,0 +1,201 @@
+<!DOCTYPE html><html><head>
+    <link rel="stylesheet" href="style.css">
+    <title>Report a Scam - TrustAI</title>
+</head><body><h1>🚨 Report a Scam</h1>
+
+<p>
+    Report a suspicious website, message, or online activity
+    to help protect others.
+</p>
+
+<form onsubmit="submitReport(event)">
+
+    <input
+        type="text"
+        id="name"
+        placeholder="Your name (optional)"
+    >
+
+    <br><br>
+
+    <textarea
+        id="description"
+        rows="8"
+        cols="40"
+        placeholder="Describe what happened..."
+    ></textarea>
+
+    <br><br>
+
+    <input
+        type="text"
+        id="website"
+        placeholder="Suspicious website or link (optional)"
+    >
+
+    <br><br>
+
+    <select id="scamType">
+
+        <option value="">Select scam type</option>
+
+        <option>Phishing</option>
+        <option>Impersonation</option>
+        <option>Investment scam</option>
+        <option>Romance scam</option>
+        <option>Payment scam</option>
+        <option>Prize or lottery scam</option>
+        <option>Job scam</option>
+        <option>Delivery scam</option>
+        <option>Account takeover</option>
+        <option>Fake customer support</option>
+        <option>Other</option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Submit Report
+    </button>
+
+    <button
+        type="button"
+        onclick="clearReport()"
+    >
+        Clear
+    </button>
+
+    <p id="reportResult"></p>
+
+</form>
+
+<script>
+
+function submitReport(event) {
+
+    event.preventDefault();
+
+    let name =
+        document.getElementById("name").value.trim();
+
+    let description =
+        document.getElementById("description").value.trim();
+
+    let website =
+        document.getElementById("website").value.trim();
+
+    let scamType =
+        document.getElementById("scamType").value;
+
+    let result =
+        document.getElementById("reportResult");
+
+
+    // =========================
+    // VALIDATION
+    // =========================
+
+    if (description === "") {
+
+        result.className = "risk caution";
+
+        result.textContent =
+            "⚠️ Please describe the suspicious activity.";
+
+        return;
+    }
+
+
+    if (scamType === "") {
+
+        result.className = "risk caution";
+
+        result.textContent =
+            "⚠️ Please select a scam type.";
+
+        return;
+    }
+
+
+    // =========================
+    // PREPARE REPORT
+    // =========================
+
+    let report = {
+
+        name: name || "Anonymous",
+
+        description: description,
+
+        website: website || "Not provided",
+
+        scamType: scamType,
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    // =========================
+    // SAVE REPORT LOCALLY
+    // =========================
+
+    let reports =
+        JSON.parse(localStorage.getItem("trustAIReports")) || [];
+
+    reports.push(report);
+
+    localStorage.setItem(
+        "trustAIReports",
+        JSON.stringify(reports)
+    );
+
+
+    // =========================
+    // SUCCESS MESSAGE
+    // =========================
+
+    result.className = "risk low";
+
+    result.textContent =
+        "✅ Report saved successfully.\n\n" +
+        "Thank you for helping make the internet safer.\n\n" +
+        "Note: This demo currently saves reports on this device. " +
+        "A secure online submission system can be connected later.";
+
+
+    // Clear the form
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("description").value = "";
+
+    document.getElementById("website").value = "";
+
+    document.getElementById("scamType").value = "";
+
+}
+
+
+// =========================
+// CLEAR REPORT
+// =========================
+
+function clearReport() {
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("description").value = "";
+
+    document.getElementById("website").value = "";
+
+    document.getElementById("scamType").value = "";
+
+    document.getElementById("reportResult").textContent = "";
+
+    document.getElementById("reportResult").className = "";
+
+}
+
+</script></body></html>

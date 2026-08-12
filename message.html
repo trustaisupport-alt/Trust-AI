@@ -1,0 +1,524 @@
+<!DOCTYPE html>  <html>  <head>  
+    <link rel="stylesheet" href="style.css">  
+    <title>Message Checker - TrustAI</title>  
+</head>  <body>  <h1>🔍 Message Checker</h1>  
+
+<p>  
+    Enter a suspicious message below. TrustAI will look for  
+    common scam and phishing warning signs.  
+</p>  
+
+<form>  
+
+    <textarea  
+        id="message"  
+        rows="10"  
+        placeholder="Paste the suspicious message here..."  
+    ></textarea>  
+
+    <br><br>  
+
+    <button type="button" onclick="checkMessage()">  
+        🔍 Check Message  
+    </button>  
+
+    <button type="button" onclick="clearMessage()">  
+        Clear  
+    </button>  
+
+    <div id="result"></div>  
+
+</form>
+
+<script>  
+  
+function checkMessage() {  
+  
+    let message = document  
+        .getElementById("message")  
+        .value  
+        .toLowerCase()  
+        .trim();  
+  
+    let score = 0;  
+    let reasons = [];  
+  
+    let result = document.getElementById("result");  
+  
+  
+    // =========================  
+    // EMPTY MESSAGE  
+    // =========================  
+  
+    if (message === "") {  
+  
+        result.className = "risk caution";  
+  
+        result.textContent =  
+            "⚠️ Please enter a message to check.";  
+  
+        return;  
+    }  
+  
+  
+    // =========================  
+    // 1. IMPERSONATION  
+    // =========================  
+  
+    if (  
+        message.includes("this is my new number") ||  
+        message.includes("i lost my phone") ||  
+        message.includes("this is my new account") ||  
+        message.includes("this is my private account") ||  
+        message.includes("this is really me") ||  
+        message.includes("contact me privately") ||  
+        message.includes("i changed my number") ||  
+        message.includes("my account changed") ||  
+        message.includes("new whatsapp number")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Possible impersonation or identity-change claim"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 2. URGENCY / PRESSURE  
+    // =========================  
+  
+    if (  
+        message.includes("urgent") ||  
+        message.includes("urgently") ||  
+        message.includes("act now") ||  
+        message.includes("act immediately") ||  
+        message.includes("immediately") ||  
+        message.includes("last chance") ||  
+        message.includes("right now") ||  
+        message.includes("don't tell anyone") ||  
+        message.includes("keep this secret") ||  
+        message.includes("do not tell anyone") ||  
+        message.includes("you have only") ||  
+        message.includes("within 10 minutes") ||  
+        message.includes("within 30 minutes") ||  
+        message.includes("within 1 hour") ||  
+        message.includes("expires today") ||  
+        message.includes("before midnight")  
+    ) {  
+  
+        score += 1;  
+  
+        reasons.push(  
+            "Pressure, urgency, or secrecy"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 3. MONEY / PAYMENT  
+    // =========================  
+  
+    if (  
+        message.includes("send money") ||  
+        message.includes("send me money") ||  
+        message.includes("make a payment") ||  
+        message.includes("transfer money") ||  
+        message.includes("send payment") ||  
+        message.includes("pay me") ||  
+        message.includes("pay a fee") ||  
+        message.includes("processing fee") ||  
+        message.includes("bank details") ||  
+        message.includes("account details") ||  
+        message.includes("card details") ||  
+        message.includes("credit card") ||  
+        message.includes("debit card")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Request for money, payment, or financial information"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 4. GIFT CARDS  
+    // =========================  
+  
+    if (  
+        message.includes("gift card") ||  
+        message.includes("giftcard") ||  
+        message.includes("gift card code") ||  
+        message.includes("send the gift card")  
+    ) {  
+  
+        score += 3;  
+  
+        reasons.push(  
+            "Gift-card payment request detected"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 5. OTP / PASSWORD / PIN  
+    // =========================  
+  
+    if (  
+        message.includes("send me your otp") ||  
+        message.includes("tell me your otp") ||  
+        message.includes("give me your otp") ||  
+        message.includes("send your otp") ||  
+        message.includes("send the code") ||  
+        message.includes("send me the code") ||  
+        message.includes("verification code") ||  
+        message.includes("verification pin") ||  
+        message.includes("security code") ||  
+        message.includes("login code") ||  
+        message.includes("send your password") ||  
+        message.includes("send me your password") ||  
+        message.includes("send your pin") ||  
+        message.includes("send me your pin")  
+    ) {  
+  
+        score += 3;  
+  
+        reasons.push(  
+            "Request for sensitive security information"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 6. EMERGENCY STORIES  
+    // =========================  
+  
+    if (  
+        message.includes("i'm in the hospital") ||  
+        message.includes("i am in the hospital") ||  
+        message.includes("medical bill") ||  
+        message.includes("medical bills") ||  
+        message.includes("hospital bill") ||  
+        message.includes("need money for treatment") ||  
+        message.includes("i'm stranded") ||  
+        message.includes("i am stranded") ||  
+        message.includes("need money for food") ||  
+        message.includes("military emergency") ||  
+        message.includes("i'm deployed") ||  
+        message.includes("i am deployed") ||  
+        message.includes("stuck at the airport")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Emergency or financial hardship story"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 7. PRIZE / LOTTERY  
+    // =========================  
+  
+    if (  
+        message.includes("you just won") ||  
+        message.includes("you have won") ||  
+        message.includes("you won a prize") ||  
+        message.includes("cash prize") ||  
+        message.includes("claim your prize") ||  
+        message.includes("lottery winner") ||  
+        message.includes("free money") ||  
+        message.includes("you won")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Unexpected prize or money opportunity"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 8. INVESTMENT SCAMS  
+    // =========================  
+  
+    if (  
+        message.includes("guaranteed profit") ||  
+        message.includes("guaranteed returns") ||  
+        message.includes("double your money") ||  
+        message.includes("risk free investment") ||  
+        message.includes("crypto giveaway") ||  
+        message.includes("instant profit") ||  
+        message.includes("easy money") ||  
+        message.includes("make money fast") ||  
+        message.includes("guaranteed income")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Potentially unrealistic investment or money-making promise"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 9. SUSPICIOUS LINK REQUEST  
+    // =========================  
+  
+    if (  
+        message.includes("click this link") ||  
+        message.includes("click the link") ||  
+        message.includes("tap the link") ||  
+        message.includes("open this link") ||  
+        message.includes("verify using this link") ||  
+        message.includes("click here to verify") ||  
+        message.includes("login here") ||  
+        message.includes("verify your account")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Request to interact with a potentially suspicious link"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 10. URL DETECTION  
+    // =========================  
+  
+    let urlPattern =  
+        /(https?:\/\/|www\.)[^\s]+/gi;  
+  
+    if (urlPattern.test(message)) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "A website link was detected in the message"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 11. SHORTENED LINKS  
+    // =========================  
+  
+    if (  
+        message.includes("bit.ly") ||  
+        message.includes("tinyurl.com") ||  
+        message.includes("t.co/") ||  
+        message.includes("shorturl") ||  
+        message.includes("is.gd")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Shortened or disguised link detected"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 12. ACCOUNT SECURITY THREATS  
+    // =========================  
+  
+    if (  
+        message.includes("your account will be closed") ||  
+        message.includes("your account has been suspended") ||  
+        message.includes("account will be deleted") ||  
+        message.includes("unauthorized login") ||  
+        message.includes("suspicious login") ||  
+        message.includes("verify your identity") ||  
+        message.includes("your account is at risk") ||  
+        message.includes("your account will be locked") ||  
+        message.includes("account has been compromised")  
+    ) {  
+  
+        score += 2;  
+  
+        reasons.push(  
+            "Possible fake account-security warning"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 13. TOO-GOOD-TO-BE-TRUE OFFERS  
+    // =========================  
+  
+    if (  
+        message.includes("you have been selected") ||  
+        message.includes("you are lucky") ||  
+        message.includes("exclusive offer") ||  
+        message.includes("free iphone") ||  
+        message.includes("free phone") ||  
+        message.includes("free gift") ||  
+        message.includes("claim now") ||  
+        message.includes("limited offer") ||  
+        message.includes("you are the winner")  
+    ) {  
+  
+        score += 1;  
+  
+        reasons.push(  
+            "Unusual or potentially misleading offer"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 14. THIRD-PARTY PAYMENT  
+    // =========================  
+  
+    if (  
+        message.includes("pay my assistant") ||  
+        message.includes("pay my manager") ||  
+        message.includes("pay my agent") ||  
+        message.includes("pay the seller") ||  
+        message.includes("send it to my assistant") ||  
+        message.includes("send it to my manager")  
+    ) {  
+  
+        score += 3;  
+  
+        reasons.push(  
+            "Request to send money to a third party"  
+        );  
+    }  
+  
+  
+    // =========================  
+    // 15. REMOVE DUPLICATES  
+    // =========================  
+  
+    reasons = [...new Set(reasons)];  
+  
+  
+    // =========================  
+    // CAP SCORE  
+    // =========================  
+  
+    score = Math.min(score, 10);  
+  
+  
+    // =========================  
+    // REASONS  
+    // =========================  
+  
+    let reasonText = "";  
+  
+    if (reasons.length > 0) {  
+  
+        reasonText =  
+            "Why we flagged it:\n• " +  
+            reasons.join("\n• ");  
+  
+    } else {  
+  
+        reasonText =  
+            "Why we flagged it:\n• No strong scam indicators were detected.";  
+    }  
+  
+  
+    // =========================  
+    // VERY HIGH RISK  
+    // =========================  
+  
+    if (score >= 7) {  
+  
+        result.className = "risk very-high";  
+  
+        result.textContent =  
+            "🔴 VERY HIGH RISK\n\n" +  
+            "Risk Score: " + score + "/10\n\n" +  
+            reasonText +  
+            "\n\nSafety Advice:\n" +  
+            "Do not send money, passwords, PINs, or verification codes. " +  
+            "Verify the sender independently.";  
+  
+    }  
+  
+  
+    // =========================  
+    // HIGH RISK  
+    // =========================  
+  
+    else if (score >= 4) {  
+  
+        result.className = "risk high";  
+  
+        result.textContent =  
+            "🟠 HIGH RISK\n\n" +  
+            "Risk Score: " + score + "/10\n\n" +  
+            reasonText +  
+            "\n\nSafety Advice:\n" +  
+            "Stop and verify the request before taking action.";  
+  
+    }  
+  
+  
+    // =========================  
+    // CAUTION  
+    // =========================  
+  
+    else if (score >= 2) {  
+  
+        result.className = "risk caution";  
+  
+        result.textContent =  
+            "🟡 CAUTION\n\n" +  
+            "Risk Score: " + score + "/10\n\n" +  
+            reasonText +  
+            "\n\nSafety Advice:\n" +  
+            "Be careful and verify the message before sending money " +  
+            "or personal information.";  
+  
+    }  
+  
+  
+    // =========================  
+    // LOW RISK  
+    // =========================  
+  
+    else {  
+  
+        result.className = "risk low";  
+  
+        result.textContent =  
+            "🟢 LOW RISK\n\n" +  
+            "Risk Score: " + score + "/10\n\n" +  
+            reasonText +  
+            "\n\nSafety Advice:\n" +  
+            "No strong scam indicators were detected. " +  
+            "Still be careful with links, payments, and personal information.";  
+    }  
+  
+}  
+  
+  
+// =========================  
+// CLEAR BUTTON  
+// =========================  
+  
+function clearMessage() {  
+  
+    document.getElementById("message").value = "";  
+  
+    let result =  
+        document.getElementById("result");  
+  
+    result.textContent = "";  
+  
+    result.className = "";  
+}  
+  
+</script>  </body>  </html>

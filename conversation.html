@@ -1,0 +1,886 @@
+<!DOCTYPE html><html><head><link rel="stylesheet" href="style.css">
+
+<title>Conversation Checker - TrustAI</title>
+
+</head><body><h1>💬 Conversation Checker</h1>
+<p>
+    <a href="index.html">← Back to TrustAI Home</a>
+</p>
+<p>
+    Paste a conversation below and TrustAI will look for
+    suspicious patterns that may develop over time.
+</p>
+
+<textarea
+    id="conversation"
+    rows="15"
+    placeholder="Paste the conversation here..."
+></textarea>
+
+<br><br>
+
+<button type="button" onclick="checkConversation()">
+    🔍 Analyze Conversation
+</button>
+
+<button type="button" onclick="clearConversation()">
+    Clear
+</button>
+
+<div id="result"></div>
+
+<script>
+
+function checkConversation() {
+
+    let conversation = document
+        .getElementById("conversation")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let score = 0;
+    let reasons = [];
+
+    let result = document.getElementById("result");
+
+
+    if (conversation === "") {
+
+        result.className = "risk caution";
+
+        result.textContent =
+            "⚠️ Please paste a conversation to analyze.";
+
+        return;
+    }
+
+
+    // =========================
+    // HELPER
+    // =========================
+
+    function hasAny(words) {
+
+        return words.some(function(word) {
+            return conversation.includes(word);
+        });
+
+    }
+
+
+    // =========================
+    // MONEY REQUEST
+    // =========================
+
+    let moneyRequest = hasAny([
+
+        "send me money",
+        "send money",
+        "send some money",
+        "send the money",
+        "help me with money",
+        "help me financially",
+        "i need money",
+        "can you send me",
+        "can you lend me",
+        "lend me money",
+        "borrow some money",
+        "transfer money",
+        "make a payment",
+        "pay for me",
+        "please send",
+        "send the money",
+        "deposit",
+        "deposit money",
+        "deposit ₦",
+        "deposit $",
+        "pay the money"
+
+    ]);
+
+
+    if (moneyRequest) {
+
+        score += 2;
+
+        reasons.push(
+            "Financial assistance or payment request detected"
+        );
+
+    }
+
+
+    // =========================
+    // IMPERSONATION
+    // =========================
+
+    let impersonation = hasAny([
+
+        "this is my new number",
+        "i lost my phone",
+        "i changed my number",
+        "new whatsapp number",
+        "this is my new account",
+        "this is really me",
+        "contact me privately",
+        "my old phone",
+        "my new phone"
+
+    ]);
+
+
+    if (impersonation) {
+
+        score += 2;
+
+        reasons.push(
+            "Possible impersonation or identity-change pattern"
+        );
+
+    }
+
+
+    // =========================
+    // OTP / PASSWORD / PIN
+    // =========================
+
+    if (hasAny([
+
+        "send me your otp",
+        "tell me your otp",
+        "give me your otp",
+        "send your otp",
+        "send me the code",
+        "send the code",
+        "verification code",
+        "verification pin",
+        "security code",
+        "login code",
+        "send your password",
+        "send me your password",
+        "send your pin",
+        "send me your pin"
+
+    ])) {
+
+        score += 3;
+
+        reasons.push(
+            "Request for sensitive security information"
+        );
+
+    }
+
+
+    // =========================
+    // GIFT CARDS
+    // =========================
+
+    if (hasAny([
+
+        "gift card",
+        "giftcard",
+        "gift card code",
+        "send the gift card",
+        "buy me a gift card"
+
+    ])) {
+
+        score += 3;
+
+        reasons.push(
+            "Gift-card payment request detected"
+        );
+
+    }
+
+
+    // =========================
+    // THIRD-PARTY PAYMENT
+    // =========================
+
+    if (hasAny([
+
+        "pay my assistant",
+        "pay my manager",
+        "pay my agent",
+        "pay the seller",
+        "send it to my assistant",
+        "send it to my manager",
+        "send it to my agent",
+        "pay this person for me"
+
+    ])) {
+
+        score += 3;
+
+        reasons.push(
+            "Request to send money to a third party"
+        );
+
+    }
+
+
+    // =========================
+    // INVESTMENT SCAM
+    // =========================
+
+    let investmentScam = hasAny([
+
+        "investment",
+        "investment platform",
+        "investment opportunity",
+        "invest your money",
+        "invest your money with us",
+        "trading platform",
+        "crypto investment",
+        "crypto giveaway",
+        "forex investment",
+        "guaranteed profit",
+        "guaranteed returns",
+        "guaranteed income",
+        "guaranteed money",
+        "make money fast",
+        "easy money",
+        "instant profit",
+        "double your money",
+        "double your investment",
+        "no risk",
+        "no risks",
+        "zero risk",
+        "risk free",
+        "risk-free"
+
+    ]);
+
+
+    if (investmentScam) {
+
+        score += 3;
+
+        reasons.push(
+            "Potential investment or unrealistic-profit pattern detected"
+        );
+
+    }
+
+
+    // =========================
+    // INVESTMENT + PAYMENT
+    // =========================
+
+    if (
+        investmentScam &&
+        moneyRequest
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Investment opportunity combined with a payment or deposit request"
+        );
+
+    }
+
+
+    // =========================
+    // INVESTMENT + URGENCY
+    // =========================
+
+    let urgency = hasAny([
+
+        "urgent",
+        "urgently",
+        "act now",
+        "act immediately",
+        "immediately",
+        "right now",
+        "last chance",
+        "within 24 hours",
+        "within 48 hours",
+        "within 1 hour",
+        "don't tell anyone",
+        "do not tell anyone",
+        "keep this secret",
+        "before midnight",
+        "today only",
+        "act today",
+        "registration closes today",
+        "expires today",
+        "expires at midnight"
+
+    ]);
+
+
+    if (urgency) {
+
+        score += 1;
+
+        reasons.push(
+            "Urgency, pressure, or secrecy detected"
+        );
+
+    }
+
+
+    if (
+        investmentScam &&
+        urgency
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Investment claim combined with urgency or pressure"
+        );
+
+    }
+
+
+    // =========================
+    // DELIVERY / PACKAGE
+    // =========================
+
+    let packageStory = hasAny([
+
+        "package",
+        "parcel",
+        "shipment",
+        "delivery",
+        "courier",
+        "shipping",
+        "delivery company",
+        "shipping company"
+
+    ]);
+
+
+    let deliveryPayment = hasAny([
+
+        "delivery fee",
+        "customs fee",
+        "customs charge",
+        "clearance fee",
+        "clearance charge",
+        "shipping fee",
+        "shipping charge",
+        "delivery charge",
+        "pay before delivery",
+        "pay the delivery fee",
+        "pay the customs",
+        "release the package",
+        "package will be released",
+        "package is on hold",
+        "parcel is on hold"
+
+    ]);
+
+
+    if (deliveryPayment) {
+
+        score += 2;
+
+        reasons.push(
+            "Delivery, shipping, customs, or clearance payment request detected"
+        );
+
+    }
+
+
+    if (
+        packageStory &&
+        moneyRequest
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Package or delivery story combined with a money request"
+        );
+
+    }
+
+
+    if (
+        packageStory &&
+        deliveryPayment
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Package story combined with a delivery or clearance fee"
+        );
+
+    }
+
+
+    // =========================
+    // REPAYMENT PROMISE
+    // =========================
+
+    let repaymentPromise = hasAny([
+
+        "i'll refund you",
+        "i will refund you",
+        "i'll pay you back",
+        "i will pay you back",
+        "i'll repay you",
+        "i will repay you",
+        "you'll get your money back",
+        "you will get your money back",
+        "i'll return the money",
+        "i will return the money",
+        "i'll send it back",
+        "i will send it back"
+
+    ]);
+
+
+    if (repaymentPromise) {
+
+        score += 1;
+
+        reasons.push(
+            "Promise of repayment detected"
+        );
+
+    }
+
+
+    if (
+        packageStory &&
+        repaymentPromise
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Package story combined with a promise of repayment"
+        );
+
+    }
+
+
+    // =========================
+    // BANK / ACCOUNT
+    // =========================
+
+    if (hasAny([
+
+        "bank account",
+        "card was declined",
+        "account is on hold",
+        "account has been suspended",
+        "account will be closed",
+        "verify your account",
+        "verify your identity",
+        "account has been locked",
+        "account will be locked"
+
+    ])) {
+
+        score += 2;
+
+        reasons.push(
+            "Possible account or banking problem used to pressure the recipient"
+        );
+
+    }
+
+
+    // =========================
+    // MEDICAL / EMERGENCY
+    // =========================
+
+    let emergencyStory = hasAny([
+
+        "hospital",
+        "medical bill",
+        "medical bills",
+        "need money for treatment",
+        "surgery",
+        "doctor",
+        "emergency",
+        "i'm stranded",
+        "i am stranded",
+        "stuck at the airport",
+        "need money for food"
+
+    ]);
+
+
+    if (emergencyStory) {
+
+        score += 1;
+
+        reasons.push(
+            "Medical, emergency, or hardship story detected"
+        );
+
+    }
+
+
+    if (
+        emergencyStory &&
+        moneyRequest
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Emergency or hardship story combined with a money request"
+        );
+
+    }
+
+
+    // =========================
+    // ROMANCE
+    // =========================
+
+    if (hasAny([
+
+        "i love you",
+        "my love",
+        "soulmate",
+        "i miss you",
+        "romantic relationship"
+
+    ])) {
+
+        score += 1;
+
+        reasons.push(
+            "Strong emotional or romantic language detected"
+        );
+
+    }
+
+
+    // =========================
+    // MONEY + URGENCY
+    // =========================
+
+    if (
+        moneyRequest &&
+        urgency
+    ) {
+
+        score += 1;
+
+        reasons.push(
+            "Money request combined with pressure or urgency"
+        );
+
+    }
+
+
+    // =========================
+    // SUSPICIOUS LINKS
+    // =========================
+
+    let urlPattern =
+        /(https?:\/\/|www\.)[^\s]+/gi;
+
+
+    if (urlPattern.test(conversation)) {
+
+        score += 2;
+
+        reasons.push(
+            "A website link was detected in the conversation"
+        );
+
+    }
+
+
+    // =========================
+    // SHORTENED LINKS
+    // =========================
+
+    if (hasAny([
+
+        "bit.ly",
+        "tinyurl.com",
+        "t.co/",
+        "shorturl",
+        "is.gd"
+
+    ])) {
+
+        score += 2;
+
+        reasons.push(
+            "Shortened or disguised link detected"
+        );
+
+    }
+
+
+    // =========================
+    // JOB SCAM
+    // =========================
+
+    let jobScam = hasAny([
+
+        "job offer",
+        "work from home",
+        "registration fee",
+        "pay for training",
+        "pay for equipment",
+        "job processing fee",
+        "employment fee",
+        "employee activation fee"
+
+    ]);
+
+
+    if (jobScam) {
+
+        score += 2;
+
+        reasons.push(
+            "Possible job scam pattern detected"
+        );
+
+    }
+
+
+    if (
+        jobScam &&
+        moneyRequest
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Job opportunity combined with a payment request"
+        );
+
+    }
+
+
+    // =========================
+    // PRIZE / LOTTERY
+    // =========================
+
+    if (hasAny([
+
+        "you won",
+        "you have won",
+        "lottery",
+        "cash prize",
+        "claim your prize",
+        "you are the winner",
+        "free money"
+
+    ])) {
+
+        score += 2;
+
+        reasons.push(
+            "Unexpected prize or lottery pattern detected"
+        );
+
+    }
+
+
+    // =========================
+    // SECRECY
+    // =========================
+
+    if (hasAny([
+
+        "don't tell anyone",
+        "do not tell anyone",
+        "keep this secret",
+        "keep it between us",
+        "contact me privately",
+        "don't let anyone know"
+
+    ])) {
+
+        score += 1;
+
+        reasons.push(
+            "Secrecy or private-contact request detected"
+        );
+
+    }
+
+
+    // =========================
+    // IMPERSONATION + MONEY
+    // =========================
+
+    if (
+        impersonation &&
+        moneyRequest
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Identity-change story combined with a money request"
+        );
+
+    }
+
+
+    // =========================
+    // IMPERSONATION + EMERGENCY
+    // =========================
+
+    if (
+        impersonation &&
+        emergencyStory
+    ) {
+
+        score += 1;
+
+        reasons.push(
+            "Identity-change story combined with an emergency claim"
+        );
+
+    }
+
+
+    // =========================
+    // REMOVE DUPLICATES
+    // =========================
+
+    reasons = [...new Set(reasons)];
+
+
+    // =========================
+    // CAP SCORE
+    // =========================
+
+    score = Math.min(score, 10);
+
+
+    // =========================
+    // REASONS
+    // =========================
+
+    let reasonText = "";
+
+
+    if (reasons.length > 0) {
+
+        reasonText =
+            "Why we flagged it:\n• " +
+            reasons.join("\n• ");
+
+    } else {
+
+        reasonText =
+            "Why we flagged it:\n• No strong scam patterns were detected.";
+
+    }
+
+
+    // =========================
+    // VERY HIGH RISK
+    // =========================
+
+    if (score >= 7) {
+
+        result.className = "risk very-high";
+
+        result.textContent =
+
+            "🔴 VERY HIGH RISK\n\n" +
+            "Risk Score: " + score + "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "Do not send money, passwords, PINs, OTPs, " +
+            "or verification codes. Verify the person's " +
+            "identity and claims independently.";
+
+    }
+
+
+    // =========================
+    // HIGH RISK
+    // =========================
+
+    else if (score >= 4) {
+
+        result.className = "risk high";
+
+        result.textContent =
+
+            "🟠 HIGH RISK\n\n" +
+            "Risk Score: " + score + "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "Stop and verify the conversation before " +
+            "sending money or sensitive information.";
+
+    }
+
+
+    // =========================
+    // CAUTION
+    // =========================
+
+    else if (score >= 2) {
+
+        result.className = "risk caution";
+
+        result.textContent =
+
+            "🟡 CAUTION\n\n" +
+            "Risk Score: " + score + "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "Be careful and verify important claims " +
+            "before taking action.";
+
+    }
+
+
+    // =========================
+    // LOW RISK
+    // =========================
+
+    else {
+
+        result.className = "risk low";
+
+        result.textContent =
+
+            "🟢 LOW RISK\n\n" +
+            "Risk Score: " + score + "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "No strong scam patterns were detected. " +
+            "A low-risk result does not prove that " +
+            "the conversation is safe.";
+
+    }
+
+}
+
+
+// =========================
+// CLEAR
+// =========================
+
+function clearConversation() {
+
+    document.getElementById("conversation").value = "";
+
+    let result =
+        document.getElementById("result");
+
+    result.textContent = "";
+
+    result.className = "";
+
+}
+
+</script></body></html>

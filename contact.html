@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Us - TrustAI</title>
+</head>
+
+<body>
+
+    <h1>📞 Contact TrustAI</h1>
+
+    <p>
+        Have a question, found a problem, or want to tell us
+        about suspicious activity? Contact us below.
+    </p>
+
+    <form onsubmit="sendMessage(event)">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Your name"
+        >
+
+        <br><br>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Your email address"
+        >
+
+        <br><br>
+
+        <textarea
+            id="message"
+            rows="8"
+            placeholder="Write your message here..."
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Send Message
+        </button>
+
+        <p id="contactResult"></p>
+
+    </form>
+
+
+    <h2>Contact Email</h2>
+
+    <p>
+        📧 trustai.support@gmail.com
+    </p>
+
+    <p>
+        <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=trustai.support@gmail.com"
+            target="_blank"
+        >
+            📩 Open Gmail to Contact TrustAI
+        </a>
+    </p>
+
+
+    <p>
+        <a href="index.html">
+            ← Back to TrustAI
+        </a>
+    </p>
+
+
+    <script>
+
+        function sendMessage(event) {
+
+            event.preventDefault();
+
+            let name =
+                document.getElementById("name").value.trim();
+
+            let email =
+                document.getElementById("email").value.trim();
+
+            let message =
+                document.getElementById("message").value.trim();
+
+            let result =
+                document.getElementById("contactResult");
+
+
+            if (name === "" || email === "" || message === "") {
+
+                result.textContent =
+                    "⚠️ Please complete all fields.";
+
+                return;
+            }
+
+
+            result.textContent =
+                "✅ Message received. Thank you for contacting TrustAI.";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

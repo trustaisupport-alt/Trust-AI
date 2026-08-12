@@ -1,0 +1,271 @@
+/* ================================
+TRUSTAI — MAIN WEBSITE STYLE
+================================ */
+
+* {
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+margin: 0;
+padding: 25px 18px 40px;
+font-family: Arial, Helvetica, sans-serif;
+background: #f4f7fb;
+color: #172033;
+line-height: 1.6;
+}
+
+/* ================================
+MAIN CONTAINER FEEL
+================================ */
+
+body > * {
+max-width: 850px;
+margin-left: auto;
+margin-right: auto;
+}
+
+/* ================================
+TRUSTAI LOGO
+================================ */
+
+.logo {
+margin-top: 10px;
+margin-bottom: 5px;
+font-size: 32px;
+font-weight: 800;
+letter-spacing: -0.5px;
+}
+
+/* ================================
+HEADINGS
+================================ */
+
+h1 {
+margin-top: 25px;
+margin-bottom: 12px;
+font-size: 28px;
+}
+
+h2 {
+margin-top: 30px;
+margin-bottom: 10px;
+font-size: 21px;
+}
+
+h3 {
+margin-top: 22px;
+margin-bottom: 8px;
+font-size: 17px;
+}
+
+/* ================================
+PARAGRAPHS
+================================ */
+
+p {
+font-size: 16px;
+margin-top: 8px;
+margin-bottom: 14px;
+}
+
+/* ================================
+LINKS
+================================ */
+
+a {
+color: #1459c7;
+font-weight: 700;
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+/* ================================
+BUTTONS
+================================ */
+
+button {
+border: none;
+border-radius: 10px;
+padding: 12px 18px;
+margin: 6px 5px 6px 0;
+background: #1459c7;
+color: white;
+font-size: 15px;
+font-weight: 700;
+cursor: pointer;
+}
+
+button:hover {
+opacity: 0.9;
+}
+
+/* ================================
+TEXTAREA
+================================ */
+
+textarea {
+width: 100%;
+min-height: 220px;
+padding: 14px;
+border: 1px solid #cbd5e1;
+border-radius: 12px;
+background: white;
+color: #172033;
+font-size: 15px;
+line-height: 1.5;
+resize: vertical;
+}
+
+textarea:focus {
+outline: 2px solid #1459c7;
+border-color: transparent;
+}
+
+/* ================================
+SELECT BOXES
+================================ */
+
+select {
+width: 100%;
+max-width: 500px;
+padding: 12px;
+margin-bottom: 5px;
+border: 1px solid #cbd5e1;
+border-radius: 10px;
+background: white;
+color: #172033;
+font-size: 15px;
+}
+
+select:focus {
+outline: 2px solid #1459c7;
+}
+
+/* ================================
+LISTS
+================================ */
+
+ul {
+padding-left: 24px;
+}
+
+li {
+margin-bottom: 8px;
+}
+
+/* ================================
+CHECKER RESULTS
+================================ */
+
+.risk {
+white-space: pre-line;
+margin-top: 25px;
+padding: 20px;
+border-radius: 14px;
+border: 1px solid #d7dee9;
+background: white;
+font-size: 15px;
+line-height: 1.7;
+}
+
+/* ================================
+LOW RISK
+================================ */
+
+.risk.low {
+border-left: 6px solid #16803c;
+}
+
+/* ================================
+CAUTION
+================================ */
+
+.risk.caution {
+border-left: 6px solid #d58a00;
+}
+
+/* ================================
+HIGH RISK
+================================ */
+
+.risk.high {
+border-left: 6px solid #d65a00;
+}
+
+/* ================================
+VERY HIGH RISK
+================================ */
+
+.risk.very-high {
+border-left: 6px solid #c62828;
+}
+
+/* ================================
+FOOTER
+================================ */
+
+footer {
+margin-top: 50px;
+padding-top: 20px;
+border-top: 1px solid #d7dee9;
+text-align: center;
+}
+
+footer p {
+margin: 5px 0;
+font-size: 14px;
+}
+
+/* ================================
+MOBILE DESIGN
+================================ */
+
+@media (max-width: 600px) {
+
+body {
+    padding: 18px 14px 35px;
+}
+
+.logo {
+    font-size: 27px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 19px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 8px;
+}
+
+textarea {
+    min-height: 190px;
+}
+
+select {
+    max-width: 100%;
+}
+
+}

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>TrustAI - Online Scam Protection</title>
+
+    <meta name="description"
+        content="TrustAI helps identify warning signs in suspicious messages, conversations and websites.">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: auto;
+            padding: 25px 18px 40px;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .status {
+            font-size: 13px;
+            font-weight: bold;
+            color: #16803c;
+            background: #e9f8ef;
+            padding: 7px 11px;
+            border-radius: 20px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 24px;
+            margin-bottom: 28px;
+            border: 1px solid #e0e6ef;
+        }
+
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: 31px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #536071;
+        }
+
+        /* SECTION */
+
+        .section-title {
+            font-size: 21px;
+            margin: 30px 0 15px;
+        }
+
+        /* TOOLS */
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .tool {
+            background: #ffffff;
+            border: 1px solid #e0e6ef;
+            border-radius: 16px;
+            padding: 20px;
+            text-decoration: none;
+            color: #172033;
+            display: block;
+            transition: 0.2s;
+        }
+
+        .tool:hover {
+            transform: translateY(-2px);
+            border-color: #1459c7;
+        }
+
+        .tool-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .tool h3 {
+            margin: 0 0 7px;
+            font-size: 17px;
+        }
+
+        .tool p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #657184;
+        }
+
+        /* SECURITY */
+
+        .security-box {
+            background: #172033;
+            color: white;
+            border-radius: 18px;
+            padding: 24px;
+            margin-top: 28px;
+        }
+
+        .security-box h2 {
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+        .security-box p {
+            color: #d8deea;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .security-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 11px 15px;
+            background: white;
+            color: #172033;
+            border-radius: 9px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* REPORT */
+
+        .report {
+            background: #fff7e8;
+            border: 1px solid #f0d49b;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 18px;
+        }
+
+        .report h2 {
+            margin-top: 0;
+        }
+
+        .report a {
+            font-weight: bold;
+            color: #b26700;
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #dce2eb;
+            color: #697586;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            .page {
+                padding: 18px 14px 35px;
+            }
+
+            .header {
+                margin-bottom: 25px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .hero {
+                padding: 25px 20px;
+            }
+
+            .hero h1 {
+                font-size: 27px;
+            }
+
+            .tools {
+                grid-template-columns: 1fr;
+            }
+
+            .tool {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            🛡️ TrustAI
+        </div>
+
+        <div class="status">
+            ● Protection Tools
+        </div>
+
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Stay one step ahead of scams.
+        </h1>
+
+        <p>
+            Check suspicious messages, conversations and
+            websites for common warning signs before you
+            take action.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN TOOLS -->
+
+    <h2 class="section-title">
+        🔎 Check Something
+    </h2>
+
+
+    <div class="tools">
+
+
+        <a class="tool" href="message.html">
+
+            <div class="tool-icon">
+                🔍
+            </div>
+
+            <h3>
+                Message Checker
+            </h3>
+
+            <p>
+                Check a suspicious message for scam,
+                phishing, impersonation and payment
+                warning signs.
+            </p>
+
+        </a>
+
+
+        <a class="tool" href="conversation.html">
+
+            <div class="tool-icon">
+                💬
+            </div>
+
+            <h3>
+                Conversation Checker
+            </h3>
+
+            <p>
+                Analyze a conversation for suspicious
+                patterns that may develop over time.
+            </p>
+
+        </a>
+
+
+        <a class="tool" href="website.html">
+
+            <div class="tool-icon">
+                🌐
+            </div>
+
+            <h3>
+                Website Checker
+            </h3>
+
+            <p>
+                Check a website address for common
+                suspicious website warning signs.
+            </p>
+
+        </a>
+
+
+        <a class="tool" href="device_checker.html">
+
+            <div class="tool-icon">
+                📱
+            </div>
+
+            <h3>
+                Device Security
+            </h3>
+
+            <p>
+                Review important device security
+                practices and improve weak areas.
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- SECURITY -->
+
+    <div class="security-box">
+
+        <h2>
+            🛡️ Security Center
+        </h2>
+
+        <p>
+            Learn how to protect your passwords, OTPs,
+            verification codes, payments, accounts and
+            personal information.
+        </p>
+
+        <a class="security-link" href="security.html">
+            Open Security Center →
+        </a>
+
+    </div>
+
+
+    <!-- ALERTS -->
+
+    <h2 class="section-title">
+        🚨 Stay Informed
+    </h2>
+
+
+    <div class="tools">
+
+
+        <a class="tool" href="alerts.html">
+
+            <div class="tool-icon">
+                🚨
+            </div>
+
+            <h3>
+                Scam Alerts
+            </h3>
+
+            <p>
+                Learn about common scam methods and
+                warning signs.
+            </p>
+
+        </a>
+
+
+        <a class="tool" href="report.html">
+
+            <div class="tool-icon">
+                📢
+            </div>
+
+            <h3>
+                Report a Scam
+            </h3>
+
+            <p>
+                Report suspicious activity and help
+                raise awareness.
+            </p>
+
+        </a>
+
+
+        <a class="tool" href="contact.html">
+
+            <div class="tool-icon">
+                📞
+            </div>
+
+            <h3>
+                Contact TrustAI
+            </h3>
+
+            <p>
+                Send feedback, questions or suggestions.
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- SAFETY NOTICE -->
+
+    <div class="report">
+
+        <h2>
+            ⚠️ Remember
+        </h2>
+
+        <p>
+            Never share your password, PIN, OTP or
+            verification code with someone who asks for
+            it unexpectedly.
+        </p>
+
+        <p>
+            Always verify suspicious requests before
+            sending money or personal information.
+        </p>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>🛡️ TrustAI</strong>
+
+        <br>
+
+        Online scam awareness and protection.
+
+        <br><br>
+
+        © 2026 TrustAI
+
+    </footer>
+
+
+</div>
+
+</body>
+
+</html>
