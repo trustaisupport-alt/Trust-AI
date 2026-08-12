@@ -3,28 +3,811 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <title>Scam Alerts - TrustAI</title>
+<title>Scam Alerts — TrustAI</title>
 
-    <meta name="description"
-        content="TrustAI Scam Alerts helps you recognize common scams, warning signs and suspicious online activity.">
+<meta name="description"
+content="TrustAI Scam Alerts helps you recognize common scams and stay protected online.">
 
-    <link rel="stylesheet" href="style.css">
+<style>
 
-    <link rel="preconnect"
-        href="https://fonts.googleapis.com">
+/* =========================
+   RESET
+========================= */
 
-    <link rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+* {
+    box-sizing: border-box;
+}
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at 15% 10%, #102b48 0, transparent 30%),
+        radial-gradient(circle at 90% 20%, #24143d 0, transparent 28%),
+        #050912;
+    color: #f7faff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+
+/* =========================
+   MENU BUTTON
+========================= */
+
+.menu-button {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+
+    background: rgba(14, 24, 39, .92);
+    backdrop-filter: blur(14px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    z-index: 1001;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.35);
+}
+
+.menu-button span {
+    width: 22px;
+    height: 2px;
+
+    background: #ffffff;
+
+    border-radius: 5px;
+
+    transition: .2s;
+}
+
+.menu-button:hover {
+    border-color: #4da3ff;
+}
+
+
+/* =========================
+   SIDE MENU
+========================= */
+
+.side-menu {
+    position: fixed;
+
+    top: 0;
+    left: -310px;
+
+    width: 290px;
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0c1727,
+            #07101c
+        );
+
+    border-right: 1px solid #1d3047;
+
+    z-index: 1000;
+
+    padding: 88px 18px 25px;
+
+    overflow-y: auto;
+
+    transition: left .28s ease;
+
+    box-shadow:
+        15px 0 45px rgba(0,0,0,.35);
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-title {
+    padding: 0 12px 20px;
+
+    border-bottom: 1px solid #1c2d42;
+
+    margin-bottom: 15px;
+}
+
+.menu-title strong {
+    font-size: 22px;
+}
+
+.menu-title strong span {
+    color: #4da3ff;
+}
+
+.menu-title small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #71839a;
+
+    font-size: 11px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    padding: 13px 12px;
+
+    margin-bottom: 4px;
+
+    border-radius: 12px;
+
+    color: #dbe7f5;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: .2s;
+}
+
+.menu-link:hover {
+    background: #12243a;
+    color: #ffffff;
+}
+
+.menu-icon {
+    width: 25px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.menu-divider {
+    height: 1px;
+
+    background: #1c2d42;
+
+    margin: 15px 0;
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.65);
+
+    backdrop-filter: blur(3px);
+
+    z-index: 999;
+
+    display: none;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 92px 18px 50px;
+}
+
+
+/* =========================
+   TOP BRAND
+========================= */
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 42px;
+}
+
+.brand-shield {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1687ff,
+            #6b5cff
+        );
+
+    font-size: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(43,127,255,.3);
+}
+
+.brand-name {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.brand-name span {
+    color: #4da3ff;
+}
+
+.brand-subtitle {
+    color: #71839a;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 40px 30px;
+
+    border: 1px solid #1d3047;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(18,39,65,.92),
+            rgba(10,18,31,.95)
+        );
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    right: -70px;
+    top: -90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(60,153,255,.25),
+            transparent 70%
+        );
+}
+
+.hero-label {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #58aaff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 13px;
+}
+
+.hero h1 {
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0 0 13px;
+
+    font-size: 42px;
+
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    color: #58aaff;
+}
+
+.hero p {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 730px;
+
+    margin: 0;
+
+    color: #91a3b8;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   LIVE ALERT BAR
+========================= */
+
+.alert-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 16px;
+
+    margin-bottom: 32px;
+
+    border: 1px solid #24374d;
+
+    border-radius: 13px;
+
+    background: #0a1422;
+
+    color: #9aadc2;
+
+    font-size: 13px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ff4f61;
+
+    box-shadow:
+        0 0 12px #ff4f61;
+}
+
+.alert-status strong {
+    color: #ffffff;
+}
+
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-heading {
+    display: flex;
+
+    align-items: end;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    font-size: 23px;
+}
+
+.section-heading p {
+    margin: 0;
+
+    color: #687b91;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   ALERT GRID
+========================= */
+
+.alert-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+}
+
+
+/* =========================
+   ALERT CARD
+========================= */
+
+.alert-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0c1725,
+            #08111d
+        );
+
+    border: 1px solid #1c3046;
+
+    border-radius: 19px;
+
+    padding: 21px;
+
+    transition:
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+}
+
+.alert-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #31577e;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.3);
+}
+
+.alert-card.critical {
+    border-color: #522631;
+}
+
+.alert-card.critical:hover {
+    border-color: #a13c4d;
+}
+
+.alert-top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+}
+
+.alert-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #12243a;
+
+    font-size: 23px;
+}
+
+.critical .alert-icon {
+    background: #32151d;
+}
+
+.alert-level {
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    background: #10263b;
+
+    color: #65b0ff;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: .7px;
+}
+
+.critical .alert-level {
+    background: #35151d;
+
+    color: #ff7181;
+}
+
+.category {
+    color: #6f89a5;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.alert-card h3 {
+    margin: 7px 0 9px;
+
+    font-size: 18px;
+}
+
+.alert-card > p {
+    margin: 0 0 17px;
+
+    color: #8799ad;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   WARNING BOX
+========================= */
+
+.warning-box {
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background: #09111c;
+
+    border: 1px solid #1a2a3d;
+
+    margin-bottom: 12px;
+}
+
+.warning-box strong {
+    color: #dce8f5;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .6px;
+}
+
+.warning-box ul {
+    margin: 9px 0 0;
+
+    padding-left: 18px;
+}
+
+.warning-box li {
+    color: #8294a8;
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+
+    line-height: 1.4;
+}
+
+.warning-box li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   SAFETY TIP
+========================= */
+
+.safety-tip {
+    padding: 12px 13px;
+
+    border-radius: 11px;
+
+    background: rgba(26, 111, 181, .08);
+
+    color: #91a9c1;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.safety-tip strong {
+    color: #54aaff;
+}
+
+
+/* =========================
+   FINAL NOTICE
+========================= */
+
+.final-notice {
+    margin-top: 35px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    border: 1px solid #273b52;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d1b2b,
+            #09131f
+        );
+}
+
+.final-notice h2 {
+    margin: 0 0 9px;
+
+    font-size: 19px;
+}
+
+.final-notice p {
+    margin: 5px 0;
+
+    color: #8da0b5;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 40px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #18283b;
+
+    text-align: center;
+
+    color: #596d83;
+
+    font-size: 11px;
+}
+
+.footer-brand {
+    color: #dbe8f6;
+
+    font-weight: 800;
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding:
+            82px
+            14px
+            35px;
+    }
+
+    .hero {
+        padding: 30px 21px;
+
+        border-radius: 20px;
+    }
+
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    .alert-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .section-heading p {
+        margin-top: 5px;
+    }
+
+    .brand {
+        margin-bottom: 30px;
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 400px) {
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .alert-card {
+        padding: 17px;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -32,1128 +815,472 @@
 <body>
 
 
-<div class="page">
+<!-- =========================
+     3-DASH BUTTON
+========================= -->
+
+<button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open menu">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
 
 
-    <!-- HEADER -->
+<!-- =========================
+     SIDE MENU
+========================= -->
 
-    <header class="simple-header">
+<nav id="sideMenu" class="side-menu">
 
-        <div class="brand">
+    <div class="menu-title">
 
-            <div class="brand-icon">
-                🛡️
+        <strong>
+            🛡️ Trust<span>AI</span>
+        </strong>
+
+        <small>
+            Online Scam Protection
+        </small>
+
+    </div>
+
+
+    <a href="home.html" class="menu-link">
+        <span class="menu-icon">🏠</span>
+        Home
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+        <span class="menu-icon">🔍</span>
+        Message Checker
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Conversation Checker
+    </a>
+
+
+    <a href="Website.html" class="menu-link">
+        <span class="menu-icon">🌐</span>
+        Website Checker
+    </a>
+
+
+    <a href="device_checker.html" class="menu-link">
+        <span class="menu-icon">📱</span>
+        Device Security
+    </a>
+
+
+    <a href="security.html" class="menu-link">
+        <span class="menu-icon">🛡️</span>
+        Security Center
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html" class="menu-link">
+        <span class="menu-icon">🚨</span>
+        Scam Alerts
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+        <span class="menu-icon">📢</span>
+        Report a Scam
+    </a>
+
+
+    <a href="feedback.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Contact TrustAI
+    </a>
+
+</nav>
+
+
+<!-- OVERLAY -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- =========================
+     MAIN PAGE
+========================= -->
+
+<main class="page">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        <div class="brand-shield">
+            🛡️
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                Trust<span>AI</span>
             </div>
 
-            <div>
-
-                <div class="brand-name">
-                    TrustAI
-                </div>
-
-                <div class="brand-subtitle">
-                    Online Scam Protection
-                </div>
-
+            <div class="brand-subtitle">
+                ONLINE SCAM PROTECTION
             </div>
 
         </div>
 
-
-        <a href="home.html"
-           class="home-link">
-
-            Home
-
-        </a>
-
-    </header>
+    </div>
 
 
+    <!-- HERO -->
 
-    <!-- PAGE INTRO -->
+    <section class="hero">
 
-    <section class="intro">
-
-        <span class="intro-label">
-            🛡️ TRUSTAI
-        </span>
+        <div class="hero-label">
+            🚨 THREAT AWARENESS
+        </div>
 
         <h1>
-            Scam Alerts
+            Stay ahead of <span>scams.</span>
         </h1>
 
         <p>
-            Learn about common scams, recognize warning
-            signs and know what to do before you send
-            money, share information or click a suspicious
-            link.
+            Discover common scam tactics, recognize
+            warning signs and learn what to do before
+            you send money, share information or click
+            a suspicious link.
         </p>
 
     </section>
 
 
+    <!-- STATUS -->
 
-    <!-- IMPORTANT NOTICE -->
+    <div class="alert-status">
 
-    <section class="notice">
+        <span class="live-dot"></span>
 
-        <div class="notice-icon">
-            ⚠️
-        </div>
+        <strong>Stay alert.</strong>
 
-        <div>
+        New scams can appear at any time.
+        Verify unexpected requests before acting.
 
-            <h2>
-                Stay alert
-            </h2>
-
-            <p>
-                Scammers often create urgency, promise
-                unrealistic rewards or pretend to be
-                someone you trust. Take a moment to verify
-                unexpected requests before taking action.
-            </p>
-
-        </div>
-
-    </section>
+    </div>
 
 
+    <!-- ALERTS -->
 
-    <!-- SCAM ALERTS -->
+    <div class="section-heading">
 
-    <h2 class="section-title">
-        Common Scam Alerts
-    </h2>
+        <h2>
+            Common Scam Alerts
+        </h2>
+
+        <p>
+            Know the warning signs
+        </p>
+
+    </div>
 
 
-    <div class="alerts-grid">
-
+    <section class="alert-grid">
 
 
         <!-- ONLINE SHOPPING -->
 
         <article class="alert-card">
 
-            <div class="alert-icon">
-                🛍️
-            </div>
+            <div class="alert-top">
 
-            <div class="alert-content">
+                <div class="alert-icon">
+                    🛍️
+                </div>
 
-                <span class="category">
-                    Online Shopping
+                <span class="alert-level">
+                    HIGH RISK
                 </span>
 
-                <h2>
-                    Fake Online Stores
-                </h2>
+            </div>
 
-                <p>
-                    Fake stores may advertise expensive
-                    products at unusually low prices and
-                    ask you to pay before delivery.
-                </p>
+            <span class="category">
+                Online Shopping
+            </span>
 
+            <h3>
+                Fake Online Stores
+            </h3>
 
-                <div class="warning-box">
+            <p>
+                Fake stores may advertise expensive
+                products at unusually low prices and
+                ask you to pay before delivery.
+            </p>
 
-                    <strong>
-                        Warning signs
-                    </strong>
+            <div class="warning-box">
 
-                    <ul>
+                <strong>Warning signs</strong>
 
-                        <li>
-                            Extremely low prices
-                        </li>
+                <ul>
+                    <li>Extremely low prices</li>
+                    <li>Pressure to pay immediately</li>
+                    <li>No reliable contact information</li>
+                    <li>Unusual payment methods</li>
+                </ul>
 
-                        <li>
-                            Pressure to pay immediately
-                        </li>
+            </div>
 
-                        <li>
-                            No reliable contact information
-                        </li>
+            <div class="safety-tip">
 
-                        <li>
-                            Requests for unusual payment methods
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Research the seller and verify the
-                    website before making a payment.
-
-                </div>
+                <strong>Stay safe:</strong>
+                Research the seller and verify the
+                website before making a payment.
 
             </div>
 
         </article>
-
 
 
         <!-- DELIVERY -->
 
         <article class="alert-card">
 
-            <div class="alert-icon">
-                📦
-            </div>
+            <div class="alert-top">
 
-            <div class="alert-content">
+                <div class="alert-icon">
+                    📦
+                </div>
 
-                <span class="category">
-                    Delivery
+                <span class="alert-level">
+                    CAUTION
                 </span>
 
-                <h2>
-                    Fake Package Messages
-                </h2>
+            </div>
 
-                <p>
-                    A message may claim that your package
-                    is waiting for a fee, customs payment
-                    or address confirmation.
-                </p>
+            <span class="category">
+                Delivery
+            </span>
 
+            <h3>
+                Fake Package Messages
+            </h3>
 
-                <div class="warning-box">
+            <p>
+                A message may claim that your package
+                is waiting for a fee, customs payment
+                or address confirmation.
+            </p>
 
-                    <strong>
-                        Warning signs
-                    </strong>
+            <div class="warning-box">
 
-                    <ul>
+                <strong>Warning signs</strong>
 
-                        <li>
-                            Unexpected delivery messages
-                        </li>
+                <ul>
+                    <li>Unexpected delivery messages</li>
+                    <li>Suspicious links</li>
+                    <li>Requests for payment</li>
+                    <li>Urgent deadlines</li>
+                </ul>
 
-                        <li>
-                            Suspicious links
-                        </li>
+            </div>
 
-                        <li>
-                            Requests for payment
-                        </li>
+            <div class="safety-tip">
 
-                        <li>
-                            Urgent deadlines
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Check your package directly through
-                    the official delivery company's website
-                    or app.
-
-                </div>
+                <strong>Stay safe:</strong>
+                Check your package directly through
+                the official delivery company's website
+                or app.
 
             </div>
 
         </article>
-
 
 
         <!-- JOB -->
 
         <article class="alert-card">
 
-            <div class="alert-icon">
-                💼
-            </div>
+            <div class="alert-top">
 
-            <div class="alert-content">
+                <div class="alert-icon">
+                    💼
+                </div>
 
-                <span class="category">
-                    Jobs & Employment
+                <span class="alert-level">
+                    HIGH RISK
                 </span>
 
-                <h2>
-                    Fake Job Offers
-                </h2>
+            </div>
 
-                <p>
-                    Scammers may pretend to be recruiters
-                    and offer attractive jobs while asking
-                    applicants for money.
-                </p>
+            <span class="category">
+                Jobs & Employment
+            </span>
 
+            <h3>
+                Fake Job Offers
+            </h3>
 
-                <div class="warning-box">
+            <p>
+                Scammers may pretend to be recruiters
+                and offer attractive jobs while asking
+                applicants for money.
+            </p>
 
-                    <strong>
-                        Warning signs
-                    </strong>
+            <div class="warning-box">
 
-                    <ul>
+                <strong>Warning signs</strong>
 
-                        <li>
-                            Unrealistic salary promises
-                        </li>
+                <ul>
+                    <li>Unrealistic salary promises</li>
+                    <li>Registration fees</li>
+                    <li>Payment before employment</li>
+                    <li>Pressure to act quickly</li>
+                </ul>
 
-                        <li>
-                            Registration fees
-                        </li>
+            </div>
 
-                        <li>
-                            Payment before employment
-                        </li>
+            <div class="safety-tip">
 
-                        <li>
-                            Pressure to act quickly
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Verify the vacancy on the company's
-                    official website.
-
-                </div>
+                <strong>Stay safe:</strong>
+                Verify the vacancy on the company's
+                official website.
 
             </div>
 
         </article>
-
 
 
         <!-- OTP -->
 
         <article class="alert-card critical">
 
-            <div class="alert-icon">
-                🔐
-            </div>
+            <div class="alert-top">
 
-            <div class="alert-content">
+                <div class="alert-icon">
+                    🔐
+                </div>
 
-                <span class="category">
-                    Account Security
+                <span class="alert-level">
+                    CRITICAL
                 </span>
 
-                <h2>
-                    OTP & Verification Code Scams
-                </h2>
+            </div>
 
-                <p>
-                    Someone may pretend to be a bank,
-                    company or support agent and ask for
-                    your OTP or verification code.
-                </p>
+            <span class="category">
+                Account Security
+            </span>
 
+            <h3>
+                OTP & Verification Code Scams
+            </h3>
 
-                <div class="warning-box">
+            <p>
+                Someone may pretend to be a bank,
+                company or support agent and ask for
+                your OTP or verification code.
+            </p>
 
-                    <strong>
-                        Warning signs
-                    </strong>
+            <div class="warning-box">
 
-                    <ul>
+                <strong>Warning signs</strong>
 
-                        <li>
-                            Someone asks for your OTP
-                        </li>
+                <ul>
+                    <li>Someone asks for your OTP</li>
+                    <li>Claims your account is locked</li>
+                    <li>Requests to forward a code</li>
+                    <li>Creates fear or urgency</li>
+                </ul>
 
-                        <li>
-                            Claims that your account is locked
-                        </li>
+            </div>
 
-                        <li>
-                            Requests to forward a code
-                        </li>
+            <div class="safety-tip">
 
-                        <li>
-                            Creates fear or urgency
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Never share your OTP, PIN or
-                    verification code with another person.
-
-                </div>
+                <strong>Stay safe:</strong>
+                Never share your OTP, PIN or
+                verification code with another person.
 
             </div>
 
         </article>
-
 
 
         <!-- INVESTMENT -->
 
         <article class="alert-card">
 
-            <div class="alert-icon">
-                📈
-            </div>
+            <div class="alert-top">
 
-            <div class="alert-content">
+                <div class="alert-icon">
+                    📈
+                </div>
 
-                <span class="category">
-                    Investment
+                <span class="alert-level">
+                    HIGH RISK
                 </span>
 
-                <h2>
-                    Guaranteed Profit Scams
-                </h2>
+            </div>
 
-                <p>
-                    Fake investment opportunities may
-                    promise guaranteed profits, extremely
-                    high returns or zero risk.
-                </p>
+            <span class="category">
+                Investment
+            </span>
 
+            <h3>
+                Guaranteed Profit Scams
+            </h3>
 
-                <div class="warning-box">
+            <p>
+                Fake investment opportunities may
+                promise guaranteed profits, extremely
+                high returns or zero risk.
+            </p>
 
-                    <strong>
-                        Warning signs
-                    </strong>
+            <div class="warning-box">
 
-                    <ul>
+                <strong>Warning signs</strong>
 
-                        <li>
-                            Guaranteed returns
-                        </li>
+                <ul>
+                    <li>Guaranteed returns</li>
+                    <li>“No risk” investment claims</li>
+                    <li>Pressure to deposit more money</li>
+                    <li>Problems withdrawing funds</li>
+                </ul>
 
-                        <li>
-                            “No risk” investment claims
-                        </li>
+            </div>
 
-                        <li>
-                            Pressure to deposit more money
-                        </li>
+            <div class="safety-tip">
 
-                        <li>
-                            Problems withdrawing funds
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Research the company independently
-                    before investing.
-
-                </div>
+                <strong>Stay safe:</strong>
+                Research the company independently
+                before investing.
 
             </div>
 
         </article>
-
 
 
         <!-- IMPERSONATION -->
 
         <article class="alert-card">
 
-            <div class="alert-icon">
-                👤
-            </div>
+            <div class="alert-top">
 
-            <div class="alert-content">
-
-                <span class="category">
-                    Impersonation
-                </span>
-
-                <h2>
-                    Fake Friends & Family
-                </h2>
-
-                <p>
-                    A scammer may pretend to be someone you
-                    know and claim they urgently need money
-                    or assistance.
-                </p>
-
-
-                <div class="warning-box">
-
-                    <strong>
-                        Warning signs
-                    </strong>
-
-                    <ul>
-
-                        <li>
-                            “This is my new number”
-                        </li>
-
-                        <li>
-                            Emergency money requests
-                        </li>
-
-                        <li>
-                            Requests for secrecy
-                        </li>
-
-                        <li>
-                            Unusual payment requests
-                        </li>
-
-                    </ul>
-
+                <div class="alert-icon">
+                    👤
                 </div>
 
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Contact the person using a phone number
-                    you already know.
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- PHISHING -->
-
-        <article class="alert-card critical">
-
-            <div class="alert-icon">
-                🌐
-            </div>
-
-            <div class="alert-content">
-
-                <span class="category">
-                    Websites & Links
-                </span>
-
-                <h2>
-                    Phishing Websites
-                </h2>
-
-                <p>
-                    Fake websites can imitate banks,
-                    social networks, shopping platforms
-                    and other trusted services.
-                </p>
-
-
-                <div class="warning-box">
-
-                    <strong>
-                        Warning signs
-                    </strong>
-
-                    <ul>
-
-                        <li>
-                            Strange or misspelled domains
-                        </li>
-
-                        <li>
-                            Unexpected login requests
-                        </li>
-
-                        <li>
-                            Suspicious shortened links
-                        </li>
-
-                        <li>
-                            Requests for passwords or codes
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Type the official website address
-                    yourself instead of following an
-                    unexpected link.
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-
-        <!-- SOCIAL MEDIA -->
-
-        <article class="alert-card">
-
-            <div class="alert-icon">
-                📱
-            </div>
-
-            <div class="alert-content">
-
-                <span class="category">
-                    Social Media
-                </span>
-
-                <h2>
-                    Fake Profiles & Giveaways
-                </h2>
-
-                <p>
-                    Fake accounts may impersonate celebrities,
-                    businesses or popular pages and use
-                    giveaways to attract victims.
-                </p>
-
-
-                <div class="warning-box">
-
-                    <strong>
-                        Warning signs
-                    </strong>
-
-                    <ul>
-
-                        <li>
-                            Requests for payment to claim a prize
-                        </li>
-
-                        <li>
-                            New or suspicious accounts
-                        </li>
-
-                        <li>
-                            Requests for personal information
-                        </li>
-
-                        <li>
-                            “You have won” messages you never entered
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="safety-tip">
-
-                    <strong>
-                        Stay safe:
-                    </strong>
-
-                    Verify the account and promotion through
-                    the organization's official channels.
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-
-
-    <!-- TRUSTAI TOOLS -->
-
-    <section class="tools-section">
-
-        <div class="tools-header">
-
-            <span class="intro-label">
-                🛡️ TRUSTAI TOOLS
-            </span>
-
-            <h2>
-                Check Something Suspicious?
-            </h2>
-
-            <p>
-                If you receive a suspicious message,
-                conversation or website, use TrustAI's
-                checking tools before taking action.
-            </p>
-
-        </div>
-
-
-        <div class="tools-grid">
-
-
-            <a href="message.html"
-               class="tool-button">
-
-                🔍
-
-                <span>
-                    Message Checker
-                </span>
-
-            </a>
-
-
-            <a href="conversation.html"
-               class="tool-button">
-
-                💬
-
-                <span>
-                    Conversation Checker
-                </span>
-
-            </a>
-
-
-            <a href="Website.html"
-               class="tool-button">
-
-                🌐
-
-                <span>
-                    Website Checker
-                </span>
-
-            </a>
-
-
-            <a href="security.html"
-               class="tool-button">
-
-                🛡️
-
-                <span>
-                    Security Center
-                </span>
-
-            </a>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- SAFETY NOTICE -->
-
-    <section class="final-notice">
-
-        <h2>
-            Remember
-        </h2>
-
-        <p>
-            Never share your password, PIN, OTP or
-            verification code with someone who asks
-            unexpectedly.
-        </p>
-
-        <p>
-            If something feels suspicious, stop and
-            verify it independently before taking action.
-        </p>
-
-    </section>
-
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <div class="footer-brand">
-
-            🛡️ TrustAI
-
-        </div>
-
-        <p>
-            Online scam awareness and protection.
-        </p>
-
-        <p>
-            © 2026 TrustAI
-        </p>
-
-    </footer>
-
-
-</div>
-
-
-
-<style>
-
-
-/* =========================
-   GENERAL
-========================= */
-
-* {
-    box-sizing: border-box;
-}
-
-
-body {
-
-    margin: 0;
-
-    background: #f4f7fb;
-
-    color: #172033;
-
-    font-family:
-        "Plus Jakarta Sans",
-        Arial,
-        Helvetica,
-        sans-serif;
-
-}
-
-
-.page {
-
-    max-width: 1050px;
-
-    margin: auto;
-
-    padding: 20px 18px 45px;
-
-}
-
-
-
-/* =========================
-   HEADER
-========================= */
-
-.simple-header {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 10px 0 30px;
-
-}
-
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-}
-
-
-.brand-icon {
-
-    width: 46px;
-
-    height: 46px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: white;
-
-    border: 1px solid #dfe5ee;
-
-    border-radius: 14px;
-
-    font-size: 25px;
-
-}
-
-
-.brand-name {
-
-    font-size: 21px;
-
-    font-weight: 800;
-
-}
-
-
-.brand-subtitle {
-
-    font-size: 11px;
-
-    color: #697586;
-
-}
-
-
-.home-link {
-
-    text-decoration: none;
-
-    color: #1459c7;
-
-    font-weight: 700;
-
-    font-size: 14px;
-
-    padding: 10px 14px;
-
-    background: white;
-
-    border: 1px solid #dfe5ee;
-
-    border-radius: 10px;
-
-}
-
-
-
-/* =========================
-   INTRO
-========================= */
-
-.intro {
-
-    background: white;
-
-    border: 1px solid #dfe5ee;
-
-    border-radius: 22px;
-
-    padding: 35px 28px;
-
-    margin-bottom: 20px;
-
-}
-
-
-.intro-label {
-
-    display: inline-block;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: .5px;
-
-    color: #1459c7;
-
-    margin-bottom: 10px;
-
-}
-
-
-.intro h1 {
-
-    margin: 0 0 12px;
-
-    font-size: 34px;
-
-}
-
-
-.intro p {
-
-    margin: 0;
-
-    max-width: 760px;
-
-    color: #596678;
-
-    line-height: 1.7;
-
-    font-size: 15px;
-
-}
-
-
-
-/* =========================
-   NOTICE
-========================= */
-
-.notice {
-
-    display: flex;
-
-    gap: 15px;
-
-    background: #fff8e8;
-
-    border: 1px solid #f0d79d;
-
-    border-radius: 17px;
-
-    padding: 20px;
-
-    margin-bottom: 35px;
-
-}
-
-
-.notice-icon {
-
-    font-size: 25px;
-
-}
-
-
-.notice h2 {
-
-    margin: 0 0 6px;
-
-    font-size: 18px;
-
-}
-
-
-.notice p {
-
-    margin: 0;
-
-    color: #665b43;
-
-    line-height: 1.6;
-
-    font-size: 14px;
-
-}
-
-
-
-/* =========================
-   SECTION TITLE
-========================= */
-
-.section-title {
-
-    font-size: 23px;
-
-    margin: 0 0 18px;
-
-}
-
-
-
-/* =========================
-   ALERT GRID
-========================= */
-
-.alerts-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 18px;
-
-}
-
-
-.alert-card {
-
-    background: white;
-
-    border: 1px solid #dfe5ee;
-
-    border-radius: 18px;
-
-    padding: 22px;
-
-    transition: .2s;
-
-}
-
-
-.alert-card:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 25px rgba(20, 40, 70, .07);
-
-}
-
-
-.alert-card.critical {
-
-    border-left: 4px solid #dc3545;
-
-}
-
-
-.alert-icon {
-
-    font-size: 30px;
-
-    margin-bottom: 12px;
-
-}
-
-
-.alert-content .category {
-
-    display: inline-block;
-
-    font-size: 11px;
-
-    fo
+                <span class="
