@@ -11,415 +11,90 @@
 
 <style>
 
-:root {
-    --bg: #050811;
-    --surface: #0b1120;
-    --card: #111a2e;
-    --hover: #16223b;
-    --border: #1e2e4a;
-    --blue: #38bdf8;
-    --blue-dark: #0284c7;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-    --green: #10b981;
-}
-
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    min-height: 100vh;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(2,132,199,.14),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at bottom left,
-            rgba(56,189,248,.06),
-            transparent 30%
-        ),
-        var(--bg);
-
-    color: var(--text);
+    background: #050811;
+    color: #f8fafc;
 }
-
-/* =========================
-   MENU BUTTON
-========================= */
-
-.menu-button {
-    position: fixed;
-    top: 18px;
-    left: 18px;
-
-    width: 48px;
-    height: 48px;
-
-    border: 1px solid rgba(56,189,248,.35);
-    border-radius: 14px;
-
-    background: rgba(11,17,32,.96);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 5px;
-
-    cursor: pointer;
-    z-index: 2001;
-}
-
-.menu-button span {
-    width: 22px;
-    height: 3px;
-
-    background: white;
-    border-radius: 5px;
-}
-
-/* =========================
-   SIDE MENU
-========================= */
-
-.side-menu {
-    position: fixed;
-
-    top: 0;
-    left: -300px;
-
-    width: 285px;
-    height: 100vh;
-
-    padding: 85px 18px 25px;
-
-    background: #0b1120;
-
-    border-right: 1px solid var(--border);
-
-    z-index: 2000;
-
-    transition: left .3s ease;
-
-    box-shadow: 15px 0 40px rgba(0,0,0,.4);
-}
-
-.side-menu.open {
-    left: 0;
-}
-
-.menu-brand {
-    padding: 0 12px 20px;
-
-    border-bottom: 1px solid var(--border);
-
-    margin-bottom: 15px;
-}
-
-.menu-brand strong {
-    display: block;
-
-    color: var(--blue);
-
-    font-size: 21px;
-}
-
-.menu-brand span {
-    display: block;
-
-    margin-top: 5px;
-
-    color: var(--muted);
-
-    font-size: 12px;
-}
-
-.menu-link {
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 13px 12px;
-
-    margin-bottom: 5px;
-
-    border-radius: 10px;
-
-    color: #dbeafe;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    transition: .2s;
-}
-
-.menu-link:hover {
-    background: var(--hover);
-    color: var(--blue);
-}
-
-.menu-divider {
-    height: 1px;
-
-    background: var(--border);
-
-    margin: 15px 0;
-}
-
-/* =========================
-   OVERLAY
-========================= */
-
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,.65);
-
-    z-index: 1999;
-
-    display: none;
-}
-
-.menu-overlay.show {
-    display: block;
-}
-
-/* =========================
-   PAGE
-========================= */
 
 .page {
-    width: min(850px, calc(100% - 28px));
-
-    margin: auto;
-
-    padding: 90px 0 50px;
-}
-
-/* =========================
-   TOP
-========================= */
-
-.top {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 20px;
-}
-
-.back {
-    color: var(--muted);
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.back:hover {
-    color: var(--blue);
-}
-
-.status {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    background: rgba(16,185,129,.08);
-
-    border: 1px solid rgba(16,185,129,.3);
-
-    color: var(--green);
-
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: var(--green);
-
-    box-shadow: 0 0 10px var(--green);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    padding: 30px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(17,26,46,.98),
-            rgba(5,8,17,.96)
-        );
-
-    box-shadow: 0 25px 55px rgba(0,0,0,.4);
-
-    margin-bottom: 22px;
-}
-
-.hero-icon {
-    width: 60px;
-    height: 60px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 16px;
-
-    background: rgba(56,189,248,.1);
-
-    border: 1px solid rgba(56,189,248,.3);
-
-    font-size: 29px;
-
-    margin-bottom: 18px;
-}
-
-.hero-label {
-    color: var(--blue);
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: 1.5px;
-}
-
-.hero h1 {
-    margin: 6px 0 10px;
-
-    font-size: 32px;
-}
-
-.hero p {
-    color: var(--muted);
-
-    line-height: 1.7;
-
     max-width: 700px;
-
-    margin: 0;
+    margin: auto;
+    padding: 35px 18px 50px;
 }
 
-/* =========================
-   FEEDBACK CARD
-========================= */
+/* HEADER */
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    font-size: 42px;
+    margin-bottom: 8px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+/* CARD */
 
 .card {
-    padding: 27px;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+    background: #111a2e;
+    border: 1px solid #1e2e4a;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
 }
 
 .card h2 {
     margin-top: 0;
-    margin-bottom: 8px;
+    font-size: 21px;
 }
 
 .card-description {
-    color: var(--muted);
-
-    font-size: 14px;
-
+    color: #94a3b8;
     line-height: 1.6;
-
-    margin-bottom: 25px;
 }
 
-/* =========================
-   FORM
-========================= */
-
-.form-group {
-    margin-bottom: 18px;
-}
+/* FORM */
 
 label {
     display: block;
-
-    margin-bottom: 7px;
-
-    color: #cbd5e1;
-
-    font-size: 12px;
-
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #e2e8f0;
+    font-size: 14px;
     font-weight: bold;
-
-    text-transform: uppercase;
-
-    letter-spacing: .5px;
 }
 
 input,
 select,
 textarea {
     width: 100%;
-
     padding: 14px 15px;
-
-    background: var(--bg);
-
-    color: white;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    font-family: inherit;
-
+    border: 1px solid #263957;
+    border-radius: 11px;
+    background: #050811;
+    color: #f8fafc;
     font-size: 15px;
-
+    font-family: inherit;
     outline: none;
-
-    transition: .2s;
-}
-
-input,
-select {
-    height: 50px;
-}
-
-textarea {
-    min-height: 170px;
-
-    resize: vertical;
 }
 
 input::placeholder,
@@ -430,154 +105,105 @@ textarea::placeholder {
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: var(--blue);
-
-    box-shadow:
-        0 0 0 3px rgba(56,189,248,.1),
-        0 0 18px rgba(56,189,248,.12);
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56,189,248,0.15);
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-.buttons {
-    display: flex;
-
-    gap: 12px;
-
-    margin-top: 22px;
+textarea {
+    min-height: 150px;
+    resize: vertical;
 }
+
+/* BUTTON */
 
 button {
-    padding: 13px 20px;
-
-    border-radius: 11px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.send {
-    flex: 1;
-
+    width: 100%;
+    margin-top: 22px;
+    padding: 15px;
     border: none;
-
-    background: var(--blue-dark);
-
+    border-radius: 11px;
+    background: #0284c7;
     color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.send:hover {
+button:hover {
     background: #0369a1;
-
-    box-shadow:
-        0 0 22px rgba(2,132,199,.35);
+    box-shadow: 0 0 20px rgba(2,132,199,0.35);
 }
 
-.clear {
-    border: 1px solid var(--border);
-
-    background: transparent;
-
-    color: var(--muted);
-}
-
-.clear:hover {
-    background: var(--hover);
-
-    color: white;
-}
-
-/* =========================
-   RESULT
-========================= */
+/* RESULT */
 
 #result {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 11px;
     display: none;
-
-    margin-top: 20px;
-
-    padding: 16px;
-
-    border-radius: 12px;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-#result.show {
-    display: block;
+    line-height: 1.5;
 }
 
 .success {
+    display: block !important;
+    background: rgba(16,185,129,0.12);
+    border: 1px solid #10b981;
     color: #6ee7b7;
-
-    background: rgba(16,185,129,.08);
-
-    border: 1px solid rgba(16,185,129,.35);
 }
 
-.error {
-    color: #fca5a5;
-
-    background: rgba(239,68,68,.08);
-
-    border: 1px solid rgba(239,68,68,.35);
+.warning {
+    display: block !important;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid #f59e0b;
+    color: #fde68a;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* HOME */
 
-footer {
+.home-link {
+    display: block;
+    width: 100%;
+    margin-top: 22px;
+    padding: 14px;
+    border: 1px solid #1e2e4a;
+    border-radius: 11px;
+    background: #111a2e;
+    color: #38bdf8;
     text-align: center;
-
-    color: #64748b;
-
-    font-size: 12px;
-
-    line-height: 1.8;
-
-    padding-top: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.home-link:hover {
+    background: #16223b;
+    border-color: #38bdf8;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* MOBILE */
 
 @media (max-width: 600px) {
 
     .page {
-        width: calc(100% - 24px);
-
-        padding-top: 82px;
-    }
-
-    .hero {
-        padding: 22px;
-    }
-
-    .hero h1 {
-        font-size: 27px;
+        padding: 25px 14px 40px;
     }
 
     .card {
         padding: 20px;
     }
 
-    .buttons {
-        flex-direction: column;
-    }
-
-    button {
-        width: 100%;
+    .header h1 {
+        font-size: 26px;
     }
 
 }
@@ -589,273 +215,121 @@ footer {
 
 <body>
 
-
-<!-- MENU BUTTON -->
-
-<button
-class="menu-button"
-type="button"
-onclick="toggleMenu()"
-aria-label="Open menu">
-
-<span></span>
-<span></span>
-<span></span>
-
-</button>
-
-
-<!-- SIDE MENU -->
-
-<nav
-id="sideMenu"
-class="side-menu">
-
-<div class="menu-brand">
-
-<strong>🛡️ TrustAI</strong>
-
-<span>Online Scam Protection</span>
-
-</div>
-
-
-<a href="home.html" class="menu-link">
-🏠 Home
-</a>
-
-
-<a href="message.html" class="menu-link">
-🔍 Message Checker
-</a>
-
-
-<a href="conversation.html" class="menu-link">
-💬 Conversation Checker
-</a>
-
-
-<a href="Website.html" class="menu-link">
-🌐 Website Checker
-</a>
-
-
-<a href="device_checker.html" class="menu-link">
-📱 Device Security
-</a>
-
-
-<a href="security.html" class="menu-link">
-🛡️ Security Center
-</a>
-
-
-<div class="menu-divider"></div>
-
-
-<a href="alerts.html" class="menu-link">
-🚨 Scam Alerts
-</a>
-
-
-<a href="report.html" class="menu-link">
-📢 Report a Scam
-</a>
-
-
-<a href="feedback.html" class="menu-link">
-💬 Feedback
-</a>
-
-</nav>
-
-
-<!-- OVERLAY -->
-
-<div
-id="menuOverlay"
-class="menu-overlay"
-onclick="closeMenu()">
-</div>
-
-
-<!-- PAGE -->
-
 <div class="page">
 
 
-<!-- TOP -->
+    <!-- HEADER -->
 
-<div class="top">
+    <div class="header">
 
-<a
-class="back"
-href="home.html">
+        <div class="logo">🛡️</div>
 
-← Back to TrustAI
+        <h1>TrustAI</h1>
 
-</a>
+        <p>
+            Help us make online safety better.
+            Your feedback helps improve TrustAI.
+        </p>
 
+    </div>
 
-<div class="status">
 
-<span class="status-dot"></span>
+    <!-- FEEDBACK CARD -->
 
-TrustAI Online
+    <div class="card">
 
-</div>
+        <h2>💬 Share Your Feedback</h2>
 
-</div>
+        <p class="card-description">
+            Tell us what you like, what we can improve,
+            or what features you would like to see next.
+        </p>
 
 
-<!-- HERO -->
+        <form onsubmit="sendFeedback(event)">
 
-<section class="hero">
 
-<div class="hero-icon">
-💬
-</div>
+            <label for="name">
+                Name <span style="color:#64748b;">(optional)</span>
+            </label>
 
-<div class="hero-label">
-TRUSTAI COMMUNITY
-</div>
+            <input
+                type="text"
+                id="name"
+                placeholder="Your name"
+            >
 
-<h1>
-Help Us Improve TrustAI
-</h1>
 
-<p>
-Your feedback helps us improve our scam protection
-tools and build a safer online experience for everyone.
-</p>
+            <label for="rating">
+                How would you rate TrustAI?
+            </label>
 
-</section>
+            <select id="rating">
 
+                <option value="">
+                    Select a rating
+                </option>
 
-<!-- CARD -->
+                <option value="1">
+                    ⭐ 1 - Very poor
+                </option>
 
-<section class="card">
+                <option value="2">
+                    ⭐⭐ 2 - Poor
+                </option>
 
-<h2>
-💬 Send Your Feedback
-</h2>
+                <option value="3">
+                    ⭐⭐⭐ 3 - Good
+                </option>
 
-<p class="card-description">
-Tell us what you like, what needs improvement,
-or what feature you would like TrustAI to have next.
-</p>
+                <option value="4">
+                    ⭐⭐⭐⭐ 4 - Very good
+                </option>
 
+                <option value="5">
+                    ⭐⭐⭐⭐⭐ 5 - Excellent
+                </option>
 
-<form
-id="feedbackForm"
-onsubmit="sendFeedback(event)">
+            </select>
 
 
-<div class="form-group">
+            <label for="feedback">
+                Your feedback
+            </label>
 
-<label for="name">
-Name
-</label>
+            <textarea
+                id="feedback"
+                placeholder="What should we improve?"
+                required
+            ></textarea>
 
-<input
-type="text"
-id="name"
-placeholder="Your name (optional)">
 
-</div>
+            <button type="submit">
+                🚀 Send Feedback
+            </button>
 
 
-<div class="form-group">
+        </form>
 
-<label for="rating">
-Your Rating
-</label>
 
-<select id="rating">
+        <div id="result"></div>
 
-<option value="">
-Select a rating
-</option>
+    </div>
 
-<option value="1">
-⭐ 1 — Very poor
-</option>
 
-<option value="2">
-⭐⭐ 2 — Poor
-</option>
+    <!-- HOME AT BOTTOM -->
 
-<option value="3">
-⭐⭐⭐ 3 — Good
-</option>
+    <a
+        href="home.html"
+        class="home-link"
+    >
+        🏠 Home
+    </a>
 
-<option value="4">
-⭐⭐⭐⭐ 4 — Very good
-</option>
 
-<option value="5">
-⭐⭐⭐⭐⭐ 5 — Excellent
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label for="feedback">
-Your Feedback
-</label>
-
-<textarea
-id="feedback"
-placeholder="What should we improve?"
-required></textarea>
-
-</div>
-
-
-<div class="buttons">
-
-<button
-type="submit"
-class="send">
-
-📨 Send Feedback
-
-</button>
-
-
-<button
-type="button"
-class="clear"
-onclick="clearFeedback()">
-
-Clear
-
-</button>
-
-</div>
-
-
-<div id="result"></div>
-
-
-</form>
-
-</section>
-
-
-<footer>
-
-🛡️ TrustAI — Online Scam Protection
-
-<br>
-
-Your feedback helps make TrustAI better.
-
-</footer>
+    <div class="footer">
+        🛡️ TrustAI • Online Scam Protection
+    </div>
 
 
 </div>
@@ -863,162 +337,99 @@ Your feedback helps make TrustAI better.
 
 <script>
 
-/* =========================
-   MENU
-========================= */
-
-function toggleMenu() {
-
-    const menu =
-        document.getElementById("sideMenu");
-
-    const overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.toggle("open");
-
-    overlay.classList.toggle("show");
-
-}
-
-
-function closeMenu() {
-
-    document
-        .getElementById("sideMenu")
-        .classList.remove("open");
-
-    document
-        .getElementById("menuOverlay")
-        .classList.remove("show");
-
-}
-
-
-/* =========================
-   FEEDBACK
-========================= */
-
 function sendFeedback(event) {
 
     event.preventDefault();
 
+
     const name =
-        document
-        .getElementById("name")
-        .value
-        .trim();
+        document.getElementById("name").value.trim();
 
     const rating =
-        document
-        .getElementById("rating")
-        .value;
+        document.getElementById("rating").value;
 
     const feedback =
-        document
-        .getElementById("feedback")
-        .value
-        .trim();
+        document.getElementById("feedback").value.trim();
 
     const result =
-        document
-        .getElementById("result");
+        document.getElementById("result");
 
+
+    /* VALIDATION */
 
     if (rating === "") {
 
-        result.className = "show error";
+        result.className = "warning";
 
         result.textContent =
-            "⚠️ Please select a rating.";
+            "⚠️ Please select a rating before sending your feedback.";
 
         return;
-
     }
 
 
     if (feedback === "") {
 
-        result.className = "show error";
+        result.className = "warning";
 
         result.textContent =
-            "⚠️ Please enter your feedback.";
+            "⚠️ Please write your feedback before sending.";
 
         return;
-
     }
 
 
-    /* Save locally */
+    /* SAVE FEEDBACK */
 
-    const feedbackList =
+    const feedbackData = {
+
+        name: name || "Anonymous",
+
+        rating: rating,
+
+        feedback: feedback,
+
+        date: new Date().toLocaleString()
+
+    };
+
+
+    const savedFeedback =
         JSON.parse(
             localStorage.getItem("trustAIFeedback")
         ) || [];
 
 
-    feedbackList.push({
-
-        name:
-            name || "Anonymous",
-
-        rating:
-            rating,
-
-        feedback:
-            feedback,
-
-        date:
-            new Date().toLocaleString()
-
-    });
+    savedFeedback.push(feedbackData);
 
 
     localStorage.setItem(
         "trustAIFeedback",
-        JSON.stringify(feedbackList)
+        JSON.stringify(savedFeedback)
     );
 
 
-    result.className =
-        "show success";
+    /* SUCCESS */
+
+    result.className = "success";
 
     result.textContent =
         "✅ Thank you for your feedback!\n\n" +
         "Your feedback has been saved successfully.";
 
 
-    document
-        .getElementById("feedbackForm")
-        .reset();
+    /* CLEAR FORM */
 
-}
+    document.getElementById("name").value = "";
 
+    document.getElementById("rating").value = "";
 
-/* =========================
-   CLEAR
-========================= */
-
-function clearFeedback() {
-
-    document
-        .getElementById("feedbackForm")
-        .reset();
-
-
-    const result =
-        document.getElementById("result");
-
-
-    result.textContent = "";
-
-    result.className = "";
+    document.getElementById("feedback").value = "";
 
 }
 
 </script>
 
-
 </body>
 
-    </html>
+</html>
