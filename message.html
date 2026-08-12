@@ -3,410 +3,348 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>Message Checker - TrustAI</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Message Checker - TrustAI</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: #eaf2ff;
+}
+
+/* MENU */
+
+.menu-button {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 11px;
+    background: #1464d2;
+    z-index: 1001;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #07111f;
-            color: #eaf2ff;
-        }
+.menu-button span {
+    width: 22px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+}
+
+/* SIDE MENU */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -290px;
 
-        /* =========================
-           MENU BUTTON
-        ========================= */
+    width: 280px;
+    height: 100vh;
 
-        .menu-button {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 46px;
-            height: 46px;
-            border: none;
-            border-radius: 11px;
-            background: #1464d2;
-            cursor: pointer;
-            z-index: 1001;
+    background: #0b1728;
+    border-right: 1px solid #1d3552;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-
-            box-shadow: 0 5px 18px rgba(20, 100, 210, 0.35);
-        }
+    z-index: 1000;
 
-        .menu-button span {
-            width: 22px;
-            height: 3px;
-            background: white;
-            border-radius: 3px;
-        }
+    padding: 80px 18px 25px;
 
-        .menu-button:hover {
-            background: #0d4fae;
-        }
+    transition: left 0.25s ease;
+}
 
+.side-menu.open {
+    left: 0;
+}
 
-        /* =========================
-           SIDE MENU
-        ========================= */
+.menu-title {
+    padding: 0 12px 18px;
+    border-bottom: 1px solid #1d3552;
+    margin-bottom: 12px;
+}
 
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -290px;
+.menu-title strong {
+    color: #4d9cff;
+    font-size: 21px;
+}
 
-            width: 280px;
-            height: 100vh;
+.menu-title span {
+    display: block;
+    margin-top: 5px;
+    color: #91a4bd;
+    font-size: 12px;
+}
 
-            background: #0b1728;
-            border-right: 1px solid #1d3552;
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
-            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.45);
+    padding: 13px 12px;
+    margin-bottom: 4px;
 
-            z-index: 1000;
+    border-radius: 10px;
 
-            padding: 80px 18px 25px;
+    text-decoration: none;
+    color: #dce9f8;
 
-            overflow-y: auto;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-            transition: left 0.25s ease;
-        }
+.menu-link:hover {
+    background: #122a47;
+    color: #4d9cff;
+}
 
-        .side-menu.open {
-            left: 0;
-        }
+.menu-icon {
+    width: 25px;
+    text-align: center;
+}
 
-        .menu-title {
-            padding: 0 12px 18px;
-            border-bottom: 1px solid #1d3552;
-            margin-bottom: 12px;
-        }
+.menu-divider {
+    height: 1px;
+    background: #1d3552;
+    margin: 14px 0;
+}
 
-        .menu-title strong {
-            font-size: 21px;
-            color: #4d9cff;
-        }
+/* OVERLAY */
 
-        .menu-title span {
-            display: block;
-            margin-top: 5px;
-            color: #91a4bd;
-            font-size: 12px;
-        }
+.menu-overlay {
+    position: fixed;
+    inset: 0;
 
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+    background: rgba(0,0,0,0.55);
 
-            width: 100%;
+    z-index: 999;
 
-            padding: 13px 12px;
-            margin-bottom: 4px;
+    display: none;
+}
 
-            border-radius: 10px;
+.menu-overlay.show {
+    display: block;
+}
 
-            text-decoration: none;
-            color: #dce9f8;
+/* PAGE */
 
-            font-size: 14px;
-            font-weight: 600;
-        }
+.page {
+    max-width: 850px;
+    margin: auto;
+    padding: 85px 18px 40px;
+}
 
-        .menu-link:hover {
-            background: #122a47;
-            color: #4d9cff;
-        }
+/* HEADER */
 
-        .menu-icon {
-            width: 25px;
-            text-align: center;
-            font-size: 18px;
-        }
+.header {
+    background: #0d1c30;
 
-        .menu-divider {
-            height: 1px;
-            background: #1d3552;
-            margin: 14px 0;
-        }
+    border: 1px solid #1c3b61;
+    border-radius: 20px;
 
+    padding: 28px 24px;
+    margin-bottom: 20px;
+}
 
-        /* =========================
-           OVERLAY
-        ========================= */
+.header-label {
+    color: #4d9cff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
 
-        .menu-overlay {
-            position: fixed;
-            inset: 0;
+    margin-bottom: 8px;
+}
 
-            background: rgba(0, 0, 0, 0.55);
+.header h1 {
+    margin: 0 0 10px;
+    font-size: 30px;
+}
 
-            z-index: 999;
+.header p {
+    margin: 0;
 
-            display: none;
-        }
+    color: #9db0c8;
 
-        .menu-overlay.show {
-            display: block;
-        }
+    line-height: 1.6;
+}
 
+/* CHECKER */
 
-        /* =========================
-           PAGE
-        ========================= */
+.checker {
+    background: #0d1c30;
 
-        .page {
-            max-width: 850px;
-            margin: auto;
-            padding: 85px 18px 40px;
-        }
+    border: 1px solid #1c3b61;
+    border-radius: 18px;
 
+    padding: 24px;
+}
 
-        /* =========================
-           HEADER
-        ========================= */
+.checker h2 {
+    margin-top: 0;
+}
 
-        .header {
-            background: #0d1c30;
-            border: 1px solid #1c3b61;
-            border-radius: 20px;
+/* TEXTAREA */
 
-            padding: 28px 24px;
-            margin-bottom: 20px;
+textarea {
+    width: 100%;
+    min-height: 220px;
 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
+    padding: 15px;
 
-        .header-label {
-            color: #4d9cff;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
+    background: #07111f;
+    color: white;
 
-        .header h1 {
-            margin: 0 0 10px;
-            font-size: 30px;
-        }
+    border: 1px solid #2a4d75;
+    border-radius: 12px;
 
-        .header p {
-            margin: 0;
-            color: #9db0c8;
-            line-height: 1.6;
-            font-size: 15px;
-        }
+    font-size: 15px;
 
+    resize: vertical;
+}
 
-        /* =========================
-           CHECKER
-        ========================= */
+textarea::placeholder {
+    color: #70849e;
+}
 
-        .checker {
-            background: #0d1c30;
-            border: 1px solid #1c3b61;
-            border-radius: 18px;
+textarea:focus {
+    outline: none;
 
-            padding: 24px;
+    border-color: #2680ff;
 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
+    box-shadow:
+        0 0 0 3px rgba(38,128,255,0.16);
+}
 
-        .checker h2 {
-            margin-top: 0;
-            font-size: 20px;
-        }
+/* BUTTONS */
 
-        .checker label {
-            display: block;
-            margin-bottom: 9px;
+.buttons {
+    display: flex;
+    gap: 10px;
 
-            font-weight: bold;
-            font-size: 14px;
-            color: #dce9f8;
-        }
+    margin-top: 15px;
+}
 
+.action-button {
+    border: none;
 
-        /* =========================
-           TEXTAREA
-        ========================= */
+    border-radius: 10px;
 
-        textarea {
-            width: 100%;
-            min-height: 220px;
+    padding: 12px 18px;
 
-            padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
 
-            background: #07111f;
-            color: #eaf2ff;
+    cursor: pointer;
+}
 
-            border: 1px solid #2a4d75;
-            border-radius: 12px;
+.check-button {
+    background: #1464d2;
+    color: white;
+}
 
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 15px;
+.clear-button {
+    background: #1a2d45;
+    color: white;
+}
 
-            resize: vertical;
+.check-button:hover {
+    background: #0d4fae;
+}
 
-            outline: none;
-        }
+.clear-button:hover {
+    background: #223b59;
+}
 
-        textarea::placeholder {
-            color: #70849e;
-        }
+/* RESULT */
 
-        textarea:focus {
-            border-color: #2680ff;
+#result {
+    display: none;
 
-            box-shadow:
-                0 0 0 3px rgba(38, 128, 255, 0.16);
-        }
+    margin-top: 22px;
 
+    padding: 20px;
 
-        /* =========================
-           BUTTONS
-        ========================= */
+    border-radius: 14px;
 
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
+    white-space: pre-line;
 
-        button.action-button {
-            border: none;
-            border-radius: 10px;
+    line-height: 1.6;
 
-            padding: 12px 18px;
+    font-size: 14px;
+}
 
-            font-size: 14px;
-            font-weight: bold;
+#result.show {
+    display: block;
+}
 
-            cursor: pointer;
-        }
+.very-high {
+    background: #3a1015;
+    border: 1px solid #d94b58;
+    color: #ffb5bb;
+}
 
-        .check-button {
-            background: #1464d2;
-            color: white;
-        }
+.high {
+    background: #3a2410;
+    border: 1px solid #d98b35;
+    color: #ffd09b;
+}
 
-        .check-button:hover {
-            background: #0d4fae;
-        }
+.caution {
+    background: #3a3210;
+    border: 1px solid #d0b83d;
+    color: #ffe98a;
+}
 
-        .clear-button {
-            background: #1a2d45;
-            color: #dce9f8;
-            border: 1px solid #2a4d75 !important;
-        }
+.low {
+    background: #103522;
+    border: 1px solid #3caa68;
+    color: #9bf0b8;
+}
 
-        .clear-button:hover {
-            background: #223b59;
-        }
+/* MOBILE */
 
+@media (max-width:650px) {
 
-        /* =========================
-           RESULT
-        ========================= */
+    .page {
+        padding: 78px 14px 35px;
+    }
 
-        #result {
-            display: none;
+    .header h1 {
+        font-size: 26px;
+    }
 
-            margin-top: 22px;
+    .checker {
+        padding: 19px;
+    }
 
-            padding: 20px;
+    .buttons {
+        flex-direction: column;
+    }
 
-            border-radius: 14px;
+    .action-button {
+        width: 100%;
+    }
 
-            white-space: pre-line;
+}
 
-            line-height: 1.6;
-
-            font-size: 14px;
-        }
-
-        #result.show {
-            display: block;
-        }
-
-
-        .very-high {
-            background: #3a1015;
-            border: 1px solid #d94b58;
-            color: #ffb5bb;
-        }
-
-        .high {
-            background: #3a2410;
-            border: 1px solid #d98b35;
-            color: #ffd09b;
-        }
-
-        .caution {
-            background: #3a3210;
-            border: 1px solid #d0b83d;
-            color: #ffe98a;
-        }
-
-        .low {
-            background: #103522;
-            border: 1px solid #3caa68;
-            color: #9bf0b8;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 650px) {
-
-            .page {
-                padding: 78px 14px 35px;
-            }
-
-            .header {
-                padding: 23px 19px;
-            }
-
-            .header h1 {
-                font-size: 26px;
-            }
-
-            .checker {
-                padding: 19px;
-            }
-
-            textarea {
-                min-height: 190px;
-            }
-
-            .buttons {
-                flex-direction: column;
-            }
-
-            button.action-button {
-                width: 100%;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -414,176 +352,197 @@
 <body>
 
 
-<!-- =========================
-     MENU BUTTON
-========================= -->
+<!-- MENU BUTTON -->
 
 <button
-    class="menu-button"
-    onclick="toggleMenu()"
-    aria-label="Open menu">
+class="menu-button"
+type="button"
+onclick="toggleMenu()">
 
-    <span></span>
-    <span></span>
-    <span></span>
+<span></span>
+<span></span>
+<span></span>
 
 </button>
 
 
-<!-- =========================
-     SIDE MENU
-========================= -->
+<!-- SIDE MENU -->
 
-<nav id="sideMenu" class="side-menu">
+<nav
+id="sideMenu"
+class="side-menu">
 
-    <div class="menu-title">
+<div class="menu-title">
 
-        <strong>🛡️ TrustAI</strong>
+<strong>🛡️ TrustAI</strong>
 
-        <span>Online Scam Protection</span>
+<span>Online Scam Protection</span>
 
-    </div>
-
-
-    <a href="home.html" class="menu-link">
-        <span class="menu-icon">🏠</span>
-        Home
-    </a>
+</div>
 
 
-    <a href="message.html" class="menu-link">
-        <span class="menu-icon">🔍</span>
-        Message Checker
-    </a>
+<a href="home.html" class="menu-link">
+
+<span class="menu-icon">🏠</span>
+
+Home
+
+</a>
 
 
-    <a href="conversation.html" class="menu-link">
-        <span class="menu-icon">💬</span>
-        Conversation Checker
-    </a>
+<a href="message.html" class="menu-link">
+
+<span class="menu-icon">🔍</span>
+
+Message Checker
+
+</a>
 
 
-    <a href="Website.html" class="menu-link">
-        <span class="menu-icon">🌐</span>
-        Website Checker
-    </a>
+<a href="conversation.html" class="menu-link">
+
+<span class="menu-icon">💬</span>
+
+Conversation Checker
+
+</a>
 
 
-    <a href="device_checker.html" class="menu-link">
-        <span class="menu-icon">📱</span>
-        Device Security
-    </a>
+<a href="Website.html" class="menu-link">
+
+<span class="menu-icon">🌐</span>
+
+Website Checker
+
+</a>
 
 
-    <a href="security.html" class="menu-link">
-        <span class="menu-icon">🛡️</span>
-        Security Center
-    </a>
+<a href="device_checker.html" class="menu-link">
+
+<span class="menu-icon">📱</span>
+
+Device Security
+
+</a>
 
 
-    <div class="menu-divider"></div>
+<a href="security.html" class="menu-link">
+
+<span class="menu-icon">🛡️</span>
+
+Security Center
+
+</a>
 
 
-    <a href="alerts.html" class="menu-link">
-        <span class="menu-icon">🚨</span>
-        Scam Alerts
-    </a>
+<div class="menu-divider"></div>
 
 
-    <a href="report.html" class="menu-link">
-        <span class="menu-icon">📢</span>
-        Report a Scam
-    </a>
+<a href="alerts.html" class="menu-link">
+
+<span class="menu-icon">🚨</span>
+
+Scam Alerts
+
+</a>
 
 
-    <a href="feedback.html" class="menu-link">
-        <span class="menu-icon">💬</span>
-        Contact TrustAI
-    </a>
+<a href="report.html" class="menu-link">
+
+<span class="menu-icon">📢</span>
+
+Report a Scam
+
+</a>
+
+
+<a href="feedback.html" class="menu-link">
+
+<span class="menu-icon">💬</span>
+
+Contact TrustAI
+
+</a>
 
 </nav>
 
 
-<!-- =========================
-     OVERLAY
-========================= -->
-
 <div
-    id="menuOverlay"
-    class="menu-overlay"
-    onclick="closeMenu()">
+id="menuOverlay"
+class="menu-overlay"
+onclick="closeMenu()">
 </div>
 
 
-<!-- =========================
-     MAIN PAGE
-========================= -->
+<!-- MAIN -->
 
 <div class="page">
 
 
-    <div class="header">
+<div class="header">
 
-        <div class="header-label">
-            MESSAGE SECURITY
-        </div>
+<div class="header-label">
+MESSAGE SECURITY
+</div>
 
-        <h1>
-            🔍 Message Checker
-        </h1>
+<h1>
+🔍 Message Checker
+</h1>
 
-        <p>
-            Check before you trust. Paste a suspicious
-            message below and TrustAI will look for
-            common scam and phishing warning signs.
-        </p>
+<p>
+Check before you trust. Paste a suspicious
+message below and TrustAI will look for
+common scam and phishing warning signs.
+</p>
 
-    </div>
-
-
-    <div class="checker">
-
-        <h2>
-            Check a Message
-        </h2>
-
-        <label for="message">
-            Paste the message you want to check.
-        </label>
-
-        <textarea
-            id="message"
-            placeholder="Paste suspicious message here..."
-        ></textarea>
+</div>
 
 
-        <div class="buttons">
+<div class="checker">
 
-            <button
-                type="button"
-                class="action-button check-button"
-                onclick="checkMessage()">
+<h2>
+Check a Message
+</h2>
 
-                🔍 Check Message
+<label for="message">
+Paste the message you want to check.
+</label>
 
-            </button>
+<br>
 
-
-            <button
-                type="button"
-                class="action-button clear-button"
-                onclick="clearMessage()">
-
-                Clear
-
-            </button>
-
-        </div>
+<textarea
+id="message"
+placeholder="Paste suspicious message here...">
+</textarea>
 
 
-        <div id="result"></div>
+<div class="buttons">
 
-    </div>
+<button
+type="button"
+class="action-button check-button"
+onclick="checkMessage()">
+
+🔍 Check Message
+
+</button>
+
+
+<button
+type="button"
+class="action-button clear-button"
+onclick="clearMessage()">
+
+Clear
+
+</button>
+
+</div>
+
+
+<div id="result"></div>
+
+</div>
 
 </div>
 
@@ -596,10 +555,10 @@
 
 function toggleMenu() {
 
-    const menu =
+    var menu =
         document.getElementById("sideMenu");
 
-    const overlay =
+    var overlay =
         document.getElementById("menuOverlay");
 
     menu.classList.toggle("open");
@@ -611,10 +570,10 @@ function toggleMenu() {
 
 function closeMenu() {
 
-    const menu =
+    var menu =
         document.getElementById("sideMenu");
 
-    const overlay =
+    var overlay =
         document.getElementById("menuOverlay");
 
     menu.classList.remove("open");
@@ -630,18 +589,19 @@ function closeMenu() {
 
 function checkMessage() {
 
-    const message =
+    var message =
         document
         .getElementById("message")
         .value
         .toLowerCase()
         .trim();
 
-    const result =
+
+    var result =
         document.getElementById("result");
 
 
-    /* EMPTY MESSAGE */
+    /* EMPTY */
 
     if (message === "") {
 
@@ -654,28 +614,227 @@ function checkMessage() {
     }
 
 
-    let score = 0;
+    var score = 0;
 
-    let reasons = [];
+    var reasons = [];
 
 
     /* =========================
-       HELPER
+       OTP
     ========================= */
 
-    function check(words, points, reason) {
+    if (
+        message.indexOf("otp") !== -1 &&
+        (
+            message.indexOf("send") !== -1 ||
+            message.indexOf("give") !== -1 ||
+            message.indexOf("tell") !== -1 ||
+            message.indexOf("share") !== -1 ||
+            message.indexOf("provide") !== -1
+        )
+    ) {
 
-        if (
-            words.some(function(word) {
-                return message.includes(word);
-            })
-        ) {
+        score += 5;
 
-            score += points;
+        reasons.push(
+            "Request for an OTP or one-time verification code"
+        );
 
-            reasons.push(reason);
+    }
 
-        }
+
+    /* =========================
+       PASSWORD
+    ========================= */
+
+    if (
+        message.indexOf("password") !== -1 &&
+        (
+            message.indexOf("send") !== -1 ||
+            message.indexOf("give") !== -1 ||
+            message.indexOf("tell") !== -1 ||
+            message.indexOf("share") !== -1
+        )
+    ) {
+
+        score += 5;
+
+        reasons.push(
+            "Request for a password or login credential"
+        );
+
+    }
+
+
+    /* =========================
+       PIN
+    ========================= */
+
+    if (
+        (
+            message.indexOf("pin") !== -1 ||
+            message.indexOf("atm pin") !== -1 ||
+            message.indexOf("bank pin") !== -1
+        )
+        &&
+        (
+            message.indexOf("send") !== -1 ||
+            message.indexOf("give") !== -1 ||
+            message.indexOf("tell") !== -1 ||
+            message.indexOf("share") !== -1
+        )
+    ) {
+
+        score += 5;
+
+        reasons.push(
+            "Request for a PIN or banking security information"
+        );
+
+    }
+
+
+    /* =========================
+       MONEY
+    ========================= */
+
+    if (
+        message.indexOf("send money") !== -1 ||
+        message.indexOf("send me money") !== -1 ||
+        message.indexOf("transfer money") !== -1 ||
+        message.indexOf("make a payment") !== -1 ||
+        message.indexOf("pay me") !== -1 ||
+        message.indexOf("pay a fee") !== -1 ||
+        message.indexOf("processing fee") !== -1
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Request for money or payment"
+        );
+
+    }
+
+
+    /* =========================
+       BANK DETAILS
+    ========================= */
+
+    if (
+        message.indexOf("bank details") !== -1 ||
+        message.indexOf("account details") !== -1 ||
+        message.indexOf("card details") !== -1
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "Request for financial information"
+        );
+
+    }
+
+
+    /* =========================
+       URGENCY
+    ========================= */
+
+    if (
+        message.indexOf("urgent") !== -1 ||
+        message.indexOf("act now") !== -1 ||
+        message.indexOf("act immediately") !== -1 ||
+        message.indexOf("right now") !== -1 ||
+        message.indexOf("don't tell anyone") !== -1 ||
+        message.indexOf("do not tell anyone") !== -1 ||
+        message.indexOf("keep this secret") !== -1
+    ) {
+
+        score += 1;
+
+        reasons.push(
+            "Pressure, urgency, or secrecy detected"
+        );
+
+    }
+
+
+    /* =========================
+       GIFT CARD
+    ========================= */
+
+    if (
+        message.indexOf("gift card") !== -1 ||
+        message.indexOf("giftcard") !== -1
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "Gift-card payment request detected"
+        );
+
+    }
+
+
+    /* =========================
+       INVESTMENT
+    ========================= */
+
+    if (
+        message.indexOf("guaranteed profit") !== -1 ||
+        message.indexOf("guaranteed returns") !== -1 ||
+        message.indexOf("double your money") !== -1 ||
+        message.indexOf("make money fast") !== -1 ||
+        message.indexOf("easy money") !== -1 ||
+        message.indexOf("instant profit") !== -1
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Potentially unrealistic money-making promise"
+        );
+
+    }
+
+
+    /* =========================
+       SUSPICIOUS LINKS
+    ========================= */
+
+    if (
+        message.indexOf("click this link") !== -1 ||
+        message.indexOf("click the link") !== -1 ||
+        message.indexOf("click here") !== -1 ||
+        message.indexOf("verify using this link") !== -1 ||
+        message.indexOf("login here") !== -1
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "Request to interact with a potentially suspicious link"
+        );
+
+    }
+
+
+    /* =========================
+       URL
+    ========================= */
+
+    if (
+        message.indexOf("http://") !== -1 ||
+        message.indexOf("https://") !== -1 ||
+        message.indexOf("www.") !== -1
+    ) {
+
+        score += 2;
+
+        reasons.push(
+            "A website link was detected"
+        );
 
     }
 
@@ -684,339 +843,149 @@ function checkMessage() {
        IMPERSONATION
     ========================= */
 
-    check(
-        [
-            "this is my new number",
-            "i lost my phone",
-            "i changed my number",
-            "new whatsapp number",
-            "this is my new account",
-            "this is really me",
-            "contact me privately",
-            "my old phone",
-            "my new phone"
-        ],
-        2,
-        "Possible impersonation or identity-change claim"
-    );
-
-
-    /* =========================
-       URGENCY / PRESSURE
-    ========================= */
-
-    check(
-        [
-            "urgent",
-            "urgently",
-            "act now",
-            "act immediately",
-            "immediately",
-            "right now",
-            "last chance",
-            "don't tell anyone",
-            "do not tell anyone",
-            "keep this secret",
-            "expires today",
-            "before midnight",
-            "within 1 hour",
-            "within 24 hours",
-            "within 48 hours"
-        ],
-        1,
-        "Pressure, urgency, or secrecy"
-    );
-
-
-    /* =========================
-       MONEY
-    ========================= */
-
-    check(
-        [
-            "send money",
-            "send me money",
-            "send some money",
-            "send the money",
-            "make a payment",
-            "transfer money",
-            "send payment",
-            "pay me",
-            "pay a fee",
-            "processing fee",
-            "bank details",
-            "account details",
-            "card details",
-            "credit card",
-            "debit card"
-        ],
-        2,
-        "Request for money, payment, or financial information"
-    );
-
-
-    /* =========================
-       OTP / PIN / PASSWORD
-       STRONGER DETECTION
-    ========================= */
-
-    const otpRequest =
-        (
-            message.includes("otp") ||
-            message.includes("one time password") ||
-            message.includes("one-time password")
-        )
-        &&
-        (
-            message.includes("send") ||
-            message.includes("give") ||
-            message.includes("tell") ||
-            message.includes("share") ||
-            message.includes("provide") ||
-            message.includes("forward")
-        );
-
-
-    if (otpRequest) {
-
-        score += 4;
-
-        reasons.push(
-            "Request for a bank OTP or one-time verification code"
-        );
-
-    }
-
-
-    /* OTP WITHOUT 'SEND' */
-
-    check(
-        [
-            "send your otp",
-            "send me your otp",
-            "send the otp",
-            "send my otp",
-            "give me your otp",
-            "give me the otp",
-            "tell me your otp",
-            "tell me the otp",
-            "share your otp",
-            "share the otp",
-            "bank otp",
-            "bank one time password",
-            "one time password",
-            "one-time password"
-        ],
-        3,
-        "Request for a sensitive OTP or verification code"
-    );
-
-
-    /* PASSWORD */
-
-    check(
-        [
-            "send your password",
-            "send me your password",
-            "give me your password",
-            "tell me your password",
-            "share your password"
-        ],
-        4,
-        "Request for a password or login credential"
-    );
-
-
-    /* PIN */
-
-    check(
-        [
-            "send your pin",
-            "send me your pin",
-            "give me your pin",
-            "tell me your pin",
-            "share your pin",
-            "bank pin",
-            "atm pin"
-        ],
-        4,
-        "Request for a PIN or banking security information"
-    );
-
-
-    /* VERIFICATION CODE */
-
-    check(
-        [
-            "verification code",
-            "verification pin",
-            "security code",
-            "login code",
-            "send the code",
-            "send me the code",
-            "give me the code",
-            "tell me the code"
-        ],
-        4,
-        "Request for sensitive security information"
-    );
-
-
-    /* =========================
-       GIFT CARDS
-    ========================= */
-
-    check(
-        [
-            "gift card",
-            "giftcard",
-            "gift card code",
-            "send the gift card",
-            "buy me a gift card"
-        ],
-        3,
-        "Gift-card payment request detected"
-    );
-
-
-    /* =========================
-       EMERGENCY
-    ========================= */
-
-    check(
-        [
-            "i'm in the hospital",
-            "i am in the hospital",
-            "medical bill",
-            "medical bills",
-            "hospital bill",
-            "need money for treatment",
-            "i'm stranded",
-            "i am stranded",
-            "stuck at the airport",
-            "need money for food"
-        ],
-        2,
-        "Emergency or financial hardship story"
-    );
-
-
-    /* =========================
-       PRIZE
-    ========================= */
-
-    check(
-        [
-            "you just won",
-            "you have won",
-            "you won a prize",
-            "cash prize",
-            "claim your prize",
-            "lottery winner",
-            "free money",
-            "you won"
-        ],
-        2,
-        "Unexpected prize or money opportunity"
-    );
-
-
-    /* =========================
-       INVESTMENT
-    ========================= */
-
-    check(
-        [
-            "guaranteed profit",
-            "guaranteed returns",
-            "double your money",
-            "risk free investment",
-            "risk-free investment",
-            "crypto giveaway",
-            "instant profit",
-            "easy money",
-            "make money fast",
-            "guaranteed income"
-        ],
-        2,
-        "Potentially unrealistic investment or money-making promise"
-    );
-
-
-    /* =========================
-       SUSPICIOUS LINK
-    ========================= */
-
-    check(
-        [
-            "click this link",
-            "click the link",
-            "tap the link",
-            "open this link",
-            "verify using this link",
-            "click here to verify",
-            "login here",
-            "verify your account"
-        ],
-        2,
-        "Request to interact with a potentially suspicious link"
-    );
-
-
-    /* =========================
-       URL DETECTION
-    ========================= */
-
-    const urlPattern =
-        /(https?:\/\/|www\.)[^\s]+/gi;
-
-    if (urlPattern.test(message)) {
+    if (
+        message.indexOf("this is my new number") !== -1 ||
+        message.indexOf("i lost my phone") !== -1 ||
+        message.indexOf("i changed my number") !== -1 ||
+        message.indexOf("new whatsapp number") !== -1
+    ) {
 
         score += 2;
 
         reasons.push(
-            "A website link was detected in the message"
+            "Possible impersonation or identity-change claim"
         );
 
     }
 
 
+    /* REMOVE DUPLICATES */
+
+    reasons =
+        [...new Set(reasons)];
+
+
+    /* MAX SCORE */
+
+    score =
+        Math.min(score, 10);
+
+
+    /* REASON */
+
+    var reasonText = "";
+
+    if (reasons.length > 0) {
+
+        reasonText =
+            "Why we flagged it:\n• " +
+            reasons.join("\n• ");
+
+    } else {
+
+        reasonText =
+            "Why we flagged it:\n• No strong scam indicators were detected.";
+
+    }
+
+
     /* =========================
-       SHORTENED LINKS
+       RESULT
     ========================= */
 
-    check(
-        [
-            "bit.ly",
-            "tinyurl.com",
-            "t.co/",
-            "shorturl",
-            "is.gd"
-        ],
-        2,
-        "Shortened or disguised link detected"
-    );
+    if (score >= 7) {
+
+        result.className =
+            "very-high show";
+
+        result.textContent =
+            "🔴 VERY HIGH RISK\n\n" +
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "Do not send money, passwords, PINs, OTPs, " +
+            "or verification codes. Verify the sender independently.";
+
+    }
+
+    else if (score >= 4) {
+
+        result.className =
+            "high show";
+
+        result.textContent =
+            "🟠 HIGH RISK\n\n" +
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "Stop and verify the request before taking action.";
+
+    }
+
+    else if (score >= 2) {
+
+        result.className =
+            "caution show";
+
+        result.textContent =
+            "🟡 CAUTION\n\n" +
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "Be careful and verify the message before taking action.";
+
+    }
+
+    else {
+
+        result.className =
+            "low show";
+
+        result.textContent =
+            "🟢 LOW RISK\n\n" +
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+            reasonText +
+            "\n\nSafety Advice:\n" +
+            "No strong scam indicators were detected. " +
+            "A low-risk result does not guarantee that a message is safe.";
+
+    }
+
+}
 
 
-    /* =========================
-       ACCOUNT THREATS
-    ========================= */
+/* =========================
+   CLEAR
+========================= */
 
-    check(
-        [
-            "your account will be closed",
-            "your account has been suspended",
-            "account will be deleted",
-            "unauthorized login",
-            "suspicious login",
-            "verify your identity",
-            "your account is at risk",
-            "your account will be locked",
-            "account has been compromised"
-        ],
-        2,
-        "Possible fake account-security warning"
-    );
+function clearMessage() {
+
+    var message =
+        document.getElementById("message");
+
+    var result =
+        document.getElementById("result");
 
 
-    /* ====================
+    message.value = "";
+
+    result.textContent = "";
+
+    result.className = "";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
