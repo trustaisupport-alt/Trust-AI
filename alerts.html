@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrustAI — Scam Alerts & Awareness</title>
+    <title>TrustAI — Cyber Threat Intelligence & Scam Shield</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- NAV HEADER -->
     <header class="app-header">
-        <a href="index.html" class="back-link">← Back to TrustAI Home</a>
-        <div class="brand-badge">🛡️ TrustAI Security Center</div>
-        <h1>🚨 Common Scam Alerts</h1>
+        <div class="header-nav">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Platform
+            </a>
+            <div class="system-status">
+                <span class="status-dot"></span> Threat Intelligence Active
+            </div>
+        </div>
+
+        <div class="hero-brand">
+            <div class="shield-logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h1>TrustAI Threat Portal</h1>
+        </div>
         <p class="subtitle">
-            Stay ahead of scammers. Learn how to identify high-risk tactics, fake offers, and social engineering patterns.
+            Enterprise-grade scam recognition and real-time threat intelligence patterns.
         </p>
     </header>
 
@@ -22,12 +38,11 @@
 
         <!-- CRITICAL WARNING BANNER -->
         <section class="alert-banner warning">
-            <div class="banner-icon">⚠️</div>
-            <div>
-                <h3>Important Notice</h3>
+            <div class="banner-badge">ADVISORY</div>
+            <div class="banner-body">
+                <h3>High-Risk Vector Advisory</h3>
                 <p>
-                    Scammers constantly change their stories across social media, WhatsApp, SMS, and email. 
-                    <strong>Always stop, verify details independently, and never rush into sending money or sharing security codes.</strong>
+                    Scammers rapidly shift tactics across WhatsApp, Telegram, SMS, and banking portals. Always verify origin identity before initiating transactions or providing authentication credentials.
                 </p>
             </div>
         </section>
@@ -38,128 +53,146 @@
             <!-- Delivery Scams -->
             <article class="scam-card">
                 <div class="card-header">
-                    <span class="card-icon">📦</span>
-                    <h2>Delivery & Package Scams</h2>
+                    <div class="icon-wrapper">📦</div>
+                    <div>
+                        <span class="category-tag">Logistics</span>
+                        <h2>Customs & Delivery Traps</h2>
+                    </div>
                 </div>
-                <p>Scammers claim a package is on hold until you pay custom or clearance fees.</p>
+                <p class="card-desc">Fraudulent notifications requiring immediate clearance fees for non-existent parcels.</p>
                 
                 <div class="card-section">
-                    <strong class="text-danger">Warning Signs:</strong>
-                    <ul>
-                        <li>Unexpected parcel delivery notifications.</li>
-                        <li>High-pressure demands to pay immediately.</li>
-                        <li>Unfamiliar custom clearance payment links.</li>
+                    <span class="section-title text-danger">Key Risk Indicators</span>
+                    <ul class="indicator-list">
+                        <li>Unsolicited SMS notifications with shortened URLs.</li>
+                        <li>High-pressure clearance payment deadlines.</li>
+                        <li>Non-standard payment gateways.</li>
                     </ul>
                 </div>
 
                 <div class="card-section action-box">
-                    <strong>What to do:</strong> Contact the official courier service directly through their main website—never via the link provided in the message.
+                    <strong>Mitigation Protocol:</strong> Access official logistics portals directly via verified domain names—never click embedded SMS links.
                 </div>
             </article>
 
             <!-- Fake Jobs -->
             <article class="scam-card">
                 <div class="card-header">
-                    <span class="card-icon">💼</span>
-                    <h2>Fake Job Offers</h2>
+                    <div class="icon-wrapper">💼</div>
+                    <div>
+                        <span class="category-tag">Employment</span>
+                        <h2>Advance-Fee Recruitment</h2>
+                    </div>
                 </div>
-                <p>Fake recruiters offer high-paying jobs but demand upfront registration or equipment fees.</p>
+                <p class="card-desc">Fraudulent recruiters demanding upfront equipment, training, or application fees.</p>
                 
                 <div class="card-section">
-                    <strong class="text-danger">Warning Signs:</strong>
-                    <ul>
-                        <li>Unrealistic pay for minimal or basic work.</li>
-                        <li>Upfront payment required before starting.</li>
-                        <li>Recruiter contacts you exclusively via informal chat apps.</li>
+                    <span class="section-title text-danger">Key Risk Indicators</span>
+                    <ul class="indicator-list">
+                        <li>Disproportionate remuneration for low-skill tasks.</li>
+                        <li>Mandatory processing fees prior to contract signing.</li>
+                        <li>Exclusive communication over unverified messaging channels.</li>
                     </ul>
                 </div>
 
                 <div class="card-section action-box">
-                    <strong>What to do:</strong> Research the company independently on verified corporate platforms or job boards.
+                    <strong>Mitigation Protocol:</strong> Cross-reference open requisitions directly on corporate career portals.
                 </div>
             </article>
 
             <!-- OTP & Passwords -->
             <article class="scam-card highlight-danger">
                 <div class="card-header">
-                    <span class="card-icon">🔐</span>
-                    <h2>OTP & PIN Theft</h2>
+                    <div class="icon-wrapper danger">🔐</div>
+                    <div>
+                        <span class="category-tag danger">Critical Threat</span>
+                        <h2>Credential & OTP Harvesting</h2>
+                    </div>
                 </div>
-                <p>Scammers attempt to trick you into revealing login codes or bank transaction PINs.</p>
+                <p class="card-desc">Social engineering techniques designed to bypass Multi-Factor Authentication (MFA).</p>
                 
                 <div class="card-section">
-                    <strong class="text-danger">Warning Signs:</strong>
-                    <ul>
-                        <li>A friend or stranger asks for a code sent to your phone.</li>
-                        <li>Claims that the code is needed to "help" or "verify" your identity.</li>
+                    <span class="section-title text-danger">Key Risk Indicators</span>
+                    <ul class="indicator-list">
+                        <li>Requests to forward temporary verification SMS codes.</li>
+                        <li>Impersonation of bank security units claiming "account lockouts".</li>
                     </ul>
                 </div>
 
-                <div class="card-section action-box">
-                    <strong>What to do:</strong> <u>NEVER</u> share your OTP, PIN, or password with anyone under any circumstances.
+                <div class="card-section action-box danger">
+                    <strong>Mitigation Protocol:</strong> Never disclose OTPs or security PINs. Legitimate institutions will never request authentication codes.
                 </div>
             </article>
 
             <!-- Investment Scams -->
             <article class="scam-card">
                 <div class="card-header">
-                    <span class="card-icon">💰</span>
-                    <h2>Crypto & Investment Scams</h2>
+                    <div class="icon-wrapper">📈</div>
+                    <div>
+                        <span class="category-tag">Finance</span>
+                        <h2>High-Yield Investment Schemes</h2>
+                    </div>
                 </div>
-                <p>Fraudulent platforms promising guaranteed profits and zero risk.</p>
+                <p class="card-desc">Fraudulent crypto and forex platforms promising risk-free capital multiplication.</p>
                 
                 <div class="card-section">
-                    <strong class="text-danger">Warning Signs:</strong>
-                    <ul>
-                        <li>"Guaranteed" returns or fast money claims.</li>
-                        <li>Pressure to deposit funds immediately into unfamiliar platforms.</li>
+                    <span class="section-title text-danger">Key Risk Indicators</span>
+                    <ul class="indicator-list">
+                        <li>Guaranteed fixed profit margins on volatile assets.</li>
+                        <li>Restricted withdrawal mechanics contingent on additional deposits.</li>
                     </ul>
                 </div>
 
                 <div class="card-section action-box">
-                    <strong>What to do:</strong> Remember: high return always equals high risk. Real investments never guarantee fixed profits.
+                    <strong>Mitigation Protocol:</strong> Validate regulatory compliance with accredited national financial authorities before committing funds.
                 </div>
             </article>
 
             <!-- Impersonation -->
             <article class="scam-card">
                 <div class="card-header">
-                    <span class="card-icon">👤</span>
-                    <h2>Impersonation Tactics</h2>
+                    <div class="icon-wrapper">👤</div>
+                    <div>
+                        <span class="category-tag">Identity</span>
+                        <h2>Executive & Social Impersonation</h2>
+                    </div>
                 </div>
-                <p>Someone pretends to be a friend, family member, or company rep in trouble.</p>
+                <p class="card-desc">Bad actors impersonating family members, superiors, or official entities in crisis scenarios.</p>
                 
                 <div class="card-section">
-                    <strong class="text-danger">Warning Signs:</strong>
-                    <ul>
-                        <li>"Hi, this is my new WhatsApp number..."</li>
-                        <li>Urgent financial emergencies combined with requests for secrecy.</li>
+                    <span class="section-title text-danger">Key Risk Indicators</span>
+                    <ul class="indicator-list">
+                        <li>Claims of lost devices paired with unverified transfer requests.</li>
+                        <li>Coercion demanding total transaction secrecy.</li>
                     </ul>
                 </div>
 
                 <div class="card-section action-box">
-                    <strong>What to do:</strong> Call the person directly on their known regular phone number to confirm.
+                    <strong>Mitigation Protocol:</strong> Perform out-of-band verification by calling the party directly through an established contact vector.
                 </div>
             </article>
 
             <!-- Phishing Links -->
             <article class="scam-card">
                 <div class="card-header">
-                    <span class="card-icon">🔗</span>
-                    <h2>Phishing & Malicious Links</h2>
+                    <div class="icon-wrapper">🌐</div>
+                    <div>
+                        <span class="category-tag">Infrastructure</span>
+                        <h2>Domain Spoofing & Phishing</h2>
+                    </div>
                 </div>
-                <p>Fake links designed to steal account passwords and credit card details.</p>
+                <p class="card-desc">Spoofed web interfaces built to intercept credit card data and personal identifiers.</p>
                 
                 <div class="card-section">
-                    <strong class="text-danger">Warning Signs:</strong>
-                    <ul>
-                        <li>Shortened URLs (bit.ly, tinyurl) masking real web addresses.</li>
-                        <li>Alerts claiming your account will be suspended within 24 hours.</li>
+                    <span class="section-title text-danger">Key Risk Indicators</span>
+                    <ul class="indicator-list">
+                        <li>Typosquatting domains (e.g., `paypaI-security.com`).</li>
+                        <li>Obfuscated links utilizing URL shorteners.</li>
                     </ul>
                 </div>
 
                 <div class="card-section action-box">
-                    <strong>What to do:</strong> Inspect domain names carefully. Type official bank or web addresses manually.
+                    <strong>Mitigation Protocol:</strong> Inspect top-level domain extensions and manually type primary web addresses into browser address bars.
                 </div>
             </article>
 
@@ -167,21 +200,39 @@
 
         <!-- TOOLS QUICK NAV CARD -->
         <section class="tools-cta">
-            <h2>🛠️ Analyze a Suspicious Request Now</h2>
-            <p>Use our interactive tools to verify content before taking action:</p>
+            <div class="cta-header">
+                <h2>Automated Threat Analysis Suite</h2>
+                <p>Select an engine to run real-time pattern matching against suspicious inputs:</p>
+            </div>
             <div class="tools-grid">
-                <a href="message.html" class="tool-btn">🔍 Check Message</a>
-                <a href="conversation.html" class="tool-btn">💬 Check Conversation</a>
-                <a href="website.html" class="tool-btn">🌐 Check Website</a>
-                <a href="security.html" class="tool-btn">🛡️ Security Center</a>
+                <a href="message.html" class="tool-btn">
+                    <span class="btn-icon">🔍</span>
+                    <span>Message Analyzer</span>
+                </a>
+                <a href="conversation.html" class="tool-btn">
+                    <span class="btn-icon">💬</span>
+                    <span>Chat Scanner</span>
+                </a>
+                <a href="website.html" class="tool-btn">
+                    <span class="btn-icon">🌐</span>
+                    <span>URL Auditor</span>
+                </a>
+                <a href="security.html" class="tool-btn highlight">
+                    <span class="btn-icon">🛡️</span>
+                    <span>Security Center</span>
+                </a>
             </div>
         </section>
 
     </main>
 
     <footer class="app-footer">
-        <p><strong>🛡️ TrustAI</strong> — Online Scam Protection & Safety Tools</p>
-        <p>© 2026 TrustAI. All rights reserved.</p>
+        <div class="footer-brand">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>TrustAI Platform</span>
+        </div>
+        <p>Advanced Scam Prevention & Behavioral Threat Detection Engine.</p>
+        <p class="copyright">© 2026 TrustAI. All security protocols enforced.</p>
     </footer>
 
 </body>
