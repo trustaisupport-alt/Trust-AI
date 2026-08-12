@@ -1,15 +1,310 @@
-<!DOCTYPE html><html><head><link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="en">
 
-<title>Conversation Checker - TrustAI</title>
+<head>
 
-</head><body><h1>💬 Conversation Checker</h1>
-<p>
-    <a href="index.html">← Back to TrustAI Home</a>
-</p>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Conversation Checker - TrustAI</title>
+
+    <style>
+
+        /* =========================
+           3-DASH MENU
+        ========================= */
+
+        .menu-button {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 46px;
+            height: 46px;
+            border: none;
+            border-radius: 11px;
+            background: #1459c7;
+            cursor: pointer;
+            z-index: 1001;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+
+            box-shadow: 0 4px 12px rgba(20, 89, 199, 0.25);
+        }
+
+        .menu-button span {
+            width: 22px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+        }
+
+        .menu-button:hover {
+            background: #0d47a1;
+        }
+
+
+        /* =========================
+           SIDE MENU
+        ========================= */
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -290px;
+
+            width: 280px;
+            height: 100vh;
+
+            background: #ffffff;
+            border-right: 1px solid #dce3ec;
+
+            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
+
+            z-index: 1000;
+
+            padding: 80px 18px 25px;
+
+            overflow-y: auto;
+
+            transition: left 0.25s ease;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+
+        .menu-title {
+            padding: 0 12px 18px;
+            border-bottom: 1px solid #e5eaf1;
+            margin-bottom: 12px;
+        }
+
+        .menu-title strong {
+            font-size: 21px;
+            color: #1459c7;
+        }
+
+        .menu-title span {
+            display: block;
+            margin-top: 5px;
+            color: #697586;
+            font-size: 12px;
+        }
+
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            width: 100%;
+
+            padding: 13px 12px;
+            margin-bottom: 4px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+            color: #172033;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .menu-link:hover {
+            background: #edf4ff;
+            color: #1459c7;
+        }
+
+        .menu-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: #e5eaf1;
+            margin: 14px 0;
+        }
+
+
+        /* =========================
+           MENU OVERLAY
+        ========================= */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(10, 18, 32, 0.35);
+
+            z-index: 999;
+
+            display: none;
+        }
+
+        .menu-overlay.show {
+            display: block;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     3-DASH BUTTON
+========================= -->
+
+<button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open menu">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
+
+
+<!-- =========================
+     SIDE MENU
+========================= -->
+
+<nav id="sideMenu" class="side-menu">
+
+    <div class="menu-title">
+
+        <strong>🛡️ TrustAI</strong>
+
+        <span>Online Scam Protection</span>
+
+    </div>
+
+
+    <a href="home.html" class="menu-link">
+
+        <span class="menu-icon">🏠</span>
+
+        Home
+
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+
+        <span class="menu-icon">🔍</span>
+
+        Message Checker
+
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        Conversation Checker
+
+    </a>
+
+
+    <a href="Website.html" class="menu-link">
+
+        <span class="menu-icon">🌐</span>
+
+        Website Checker
+
+    </a>
+
+
+    <a href="device_checker.html" class="menu-link">
+
+        <span class="menu-icon">📱</span>
+
+        Device Security
+
+    </a>
+
+
+    <a href="security.html" class="menu-link">
+
+        <span class="menu-icon">🛡️</span>
+
+        Security Center
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html" class="menu-link">
+
+        <span class="menu-icon">🚨</span>
+
+        Scam Alerts
+
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+
+        <span class="menu-icon">📢</span>
+
+        Report a Scam
+
+    </a>
+
+
+    <a href="feedback.html" class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        Contact TrustAI
+
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     OVERLAY
+========================= -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- =========================
+     CONVERSATION CHECKER
+========================= -->
+
+<h1>💬 Conversation Checker</h1>
+
+
 <p>
     Paste a conversation below and TrustAI will look for
     suspicious patterns that may develop over time.
 </p>
+
 
 <textarea
     id="conversation"
@@ -17,19 +312,71 @@
     placeholder="Paste the conversation here..."
 ></textarea>
 
+
 <br><br>
 
-<button type="button" onclick="checkConversation()">
+
+<button
+    type="button"
+    onclick="checkConversation()">
+
     🔍 Analyze Conversation
+
 </button>
 
-<button type="button" onclick="clearConversation()">
+
+<button
+    type="button"
+    onclick="clearConversation()">
+
     Clear
+
 </button>
+
 
 <div id="result"></div>
 
+
 <script>
+
+
+/* =========================
+   MENU
+========================= */
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+/* =========================
+   CONVERSATION CHECKER
+========================= */
 
 function checkConversation() {
 
@@ -42,7 +389,8 @@ function checkConversation() {
     let score = 0;
     let reasons = [];
 
-    let result = document.getElementById("result");
+    let result =
+        document.getElementById("result");
 
 
     if (conversation === "") {
@@ -56,22 +404,18 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // HELPER
-    // =========================
-
     function hasAny(words) {
 
         return words.some(function(word) {
+
             return conversation.includes(word);
+
         });
 
     }
 
 
-    // =========================
-    // MONEY REQUEST
-    // =========================
+    /* MONEY REQUEST */
 
     let moneyRequest = hasAny([
 
@@ -90,7 +434,6 @@ function checkConversation() {
         "make a payment",
         "pay for me",
         "please send",
-        "send the money",
         "deposit",
         "deposit money",
         "deposit ₦",
@@ -111,9 +454,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // IMPERSONATION
-    // =========================
+    /* IMPERSONATION */
 
     let impersonation = hasAny([
 
@@ -141,9 +482,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // OTP / PASSWORD / PIN
-    // =========================
+    /* OTP / PASSWORD / PIN */
 
     if (hasAny([
 
@@ -160,7 +499,10 @@ function checkConversation() {
         "send your password",
         "send me your password",
         "send your pin",
-        "send me your pin"
+        "send me your pin",
+        "bank otp",
+        "bank verification code",
+        "bank pin"
 
     ])) {
 
@@ -173,9 +515,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // GIFT CARDS
-    // =========================
+    /* GIFT CARDS */
 
     if (hasAny([
 
@@ -196,9 +536,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // THIRD-PARTY PAYMENT
-    // =========================
+    /* THIRD-PARTY PAYMENT */
 
     if (hasAny([
 
@@ -209,7 +547,8 @@ function checkConversation() {
         "send it to my assistant",
         "send it to my manager",
         "send it to my agent",
-        "pay this person for me"
+        "pay this person for me",
+        "send it to my friend"
 
     ])) {
 
@@ -222,9 +561,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // INVESTMENT SCAM
-    // =========================
+    /* INVESTMENT */
 
     let investmentScam = hasAny([
 
@@ -266,10 +603,6 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // INVESTMENT + PAYMENT
-    // =========================
-
     if (
         investmentScam &&
         moneyRequest
@@ -284,9 +617,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // INVESTMENT + URGENCY
-    // =========================
+    /* URGENCY */
 
     let urgency = hasAny([
 
@@ -338,9 +669,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // DELIVERY / PACKAGE
-    // =========================
+    /* DELIVERY */
 
     let packageStory = hasAny([
 
@@ -416,9 +745,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // REPAYMENT PROMISE
-    // =========================
+    /* REPAYMENT */
 
     let repaymentPromise = hasAny([
 
@@ -449,23 +776,7 @@ function checkConversation() {
     }
 
 
-    if (
-        packageStory &&
-        repaymentPromise
-    ) {
-
-        score += 2;
-
-        reasons.push(
-            "Package story combined with a promise of repayment"
-        );
-
-    }
-
-
-    // =========================
-    // BANK / ACCOUNT
-    // =========================
+    /* BANK / ACCOUNT */
 
     if (hasAny([
 
@@ -490,9 +801,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // MEDICAL / EMERGENCY
-    // =========================
+    /* MEDICAL / EMERGENCY */
 
     let emergencyStory = hasAny([
 
@@ -536,9 +845,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // ROMANCE
-    // =========================
+    /* ROMANCE */
 
     if (hasAny([
 
@@ -559,9 +866,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // MONEY + URGENCY
-    // =========================
+    /* MONEY + URGENCY */
 
     if (
         moneyRequest &&
@@ -577,9 +882,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // SUSPICIOUS LINKS
-    // =========================
+    /* LINKS */
 
     let urlPattern =
         /(https?:\/\/|www\.)[^\s]+/gi;
@@ -596,9 +899,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // SHORTENED LINKS
-    // =========================
+    /* SHORTENED LINKS */
 
     if (hasAny([
 
@@ -619,9 +920,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // JOB SCAM
-    // =========================
+    /* JOB SCAM */
 
     let jobScam = hasAny([
 
@@ -662,9 +961,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // PRIZE / LOTTERY
-    // =========================
+    /* PRIZE */
 
     if (hasAny([
 
@@ -687,9 +984,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // SECRECY
-    // =========================
+    /* SECRECY */
 
     if (hasAny([
 
@@ -711,9 +1006,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // IMPERSONATION + MONEY
-    // =========================
+    /* IMPERSONATION + MONEY */
 
     if (
         impersonation &&
@@ -729,9 +1022,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // IMPERSONATION + EMERGENCY
-    // =========================
+    /* IMPERSONATION + EMERGENCY */
 
     if (
         impersonation &&
@@ -747,23 +1038,19 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // REMOVE DUPLICATES
-    // =========================
+    /* REMOVE DUPLICATES */
 
-    reasons = [...new Set(reasons)];
-
-
-    // =========================
-    // CAP SCORE
-    // =========================
-
-    score = Math.min(score, 10);
+    reasons =
+        [...new Set(reasons)];
 
 
-    // =========================
-    // REASONS
-    // =========================
+    /* CAP SCORE */
+
+    score =
+        Math.min(score, 10);
+
+
+    /* REASONS */
 
     let reasonText = "";
 
@@ -782,9 +1069,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // VERY HIGH RISK
-    // =========================
+    /* VERY HIGH */
 
     if (score >= 7) {
 
@@ -803,9 +1088,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // HIGH RISK
-    // =========================
+    /* HIGH */
 
     else if (score >= 4) {
 
@@ -823,9 +1106,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // CAUTION
-    // =========================
+    /* CAUTION */
 
     else if (score >= 2) {
 
@@ -843,9 +1124,7 @@ function checkConversation() {
     }
 
 
-    // =========================
-    // LOW RISK
-    // =========================
+    /* LOW */
 
     else {
 
@@ -866,9 +1145,9 @@ function checkConversation() {
 }
 
 
-// =========================
-// CLEAR
-// =========================
+/* =========================
+   CLEAR
+========================= */
 
 function clearConversation() {
 
@@ -883,4 +1162,8 @@ function clearConversation() {
 
 }
 
-</script></body></html>
+</script>
+
+</body>
+
+</html>
