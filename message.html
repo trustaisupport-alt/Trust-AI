@@ -20,9 +20,8 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             background: #07111f;
-            color: #f2f6ff;
+            color: #eaf2ff;
         }
-
 
         /* =========================
            MENU BUTTON
@@ -32,16 +31,12 @@
             position: fixed;
             top: 16px;
             left: 16px;
-
             width: 46px;
             height: 46px;
-
-            border: 1px solid #2478ff;
+            border: none;
             border-radius: 11px;
-
-            background: #0b1d35;
+            background: #1464d2;
             cursor: pointer;
-
             z-index: 1001;
 
             display: flex;
@@ -50,19 +45,18 @@
             align-items: center;
             gap: 5px;
 
-            box-shadow: 0 4px 18px rgba(0, 102, 255, 0.25);
+            box-shadow: 0 5px 18px rgba(20, 100, 210, 0.35);
         }
 
         .menu-button span {
             width: 22px;
             height: 3px;
-
-            background: #3b8cff;
+            background: white;
             border-radius: 3px;
         }
 
         .menu-button:hover {
-            background: #102a4c;
+            background: #0d4fae;
         }
 
 
@@ -72,18 +66,16 @@
 
         .side-menu {
             position: fixed;
-
             top: 0;
             left: -290px;
 
             width: 280px;
             height: 100vh;
 
-            background: #0b1729;
+            background: #0b1728;
+            border-right: 1px solid #1d3552;
 
-            border-right: 1px solid #1c3659;
-
-            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.45);
 
             z-index: 1000;
 
@@ -100,68 +92,55 @@
 
         .menu-title {
             padding: 0 12px 18px;
-
-            border-bottom: 1px solid #1b304d;
-
+            border-bottom: 1px solid #1d3552;
             margin-bottom: 12px;
         }
 
         .menu-title strong {
             font-size: 21px;
-            color: #3b8cff;
+            color: #4d9cff;
         }
 
         .menu-title span {
             display: block;
-
             margin-top: 5px;
-
             color: #91a4bd;
-
             font-size: 12px;
         }
 
         .menu-link {
             display: flex;
             align-items: center;
-
             gap: 12px;
 
             width: 100%;
 
             padding: 13px 12px;
-
             margin-bottom: 4px;
 
             border-radius: 10px;
 
             text-decoration: none;
-
-            color: #dce8f8;
+            color: #dce9f8;
 
             font-size: 14px;
-
             font-weight: 600;
         }
 
         .menu-link:hover {
-            background: #102b4e;
-            color: #4c94ff;
+            background: #122a47;
+            color: #4d9cff;
         }
 
         .menu-icon {
             width: 25px;
-
             text-align: center;
-
             font-size: 18px;
         }
 
         .menu-divider {
             height: 1px;
-
-            background: #1b304d;
-
+            background: #1d3552;
             margin: 14px 0;
         }
 
@@ -172,10 +151,9 @@
 
         .menu-overlay {
             position: fixed;
-
             inset: 0;
 
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.55);
 
             z-index: 999;
 
@@ -193,9 +171,7 @@
 
         .page {
             max-width: 850px;
-
             margin: auto;
-
             padding: 85px 18px 40px;
         }
 
@@ -205,47 +181,33 @@
         ========================= */
 
         .header {
-            background: #0b1729;
-
-            border: 1px solid #1c3659;
-
+            background: #0d1c30;
+            border: 1px solid #1c3b61;
             border-radius: 20px;
 
             padding: 28px 24px;
-
             margin-bottom: 20px;
 
-            box-shadow:
-                0 8px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
         }
 
         .header-label {
-            color: #3b8cff;
-
+            color: #4d9cff;
             font-size: 13px;
-
             font-weight: bold;
-
             letter-spacing: 1px;
-
             margin-bottom: 8px;
         }
 
         .header h1 {
             margin: 0 0 10px;
-
             font-size: 30px;
-
-            color: #ffffff;
         }
 
         .header p {
             margin: 0;
-
             color: #9db0c8;
-
             line-height: 1.6;
-
             font-size: 15px;
         }
 
@@ -255,36 +217,27 @@
         ========================= */
 
         .checker {
-            background: #0b1729;
-
-            border: 1px solid #1c3659;
-
+            background: #0d1c30;
+            border: 1px solid #1c3b61;
             border-radius: 18px;
 
             padding: 24px;
 
-            box-shadow:
-                0 8px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
         }
 
         .checker h2 {
             margin-top: 0;
-
             font-size: 20px;
-
-            color: #ffffff;
         }
 
         .checker label {
             display: block;
-
             margin-bottom: 9px;
 
             font-weight: bold;
-
             font-size: 14px;
-
-            color: #dce8f8;
+            color: #dce9f8;
         }
 
 
@@ -294,21 +247,17 @@
 
         textarea {
             width: 100%;
-
             min-height: 220px;
 
             padding: 15px;
 
-            border: 1px solid #29476d;
+            background: #07111f;
+            color: #eaf2ff;
 
+            border: 1px solid #2a4d75;
             border-radius: 12px;
 
-            background: #07111f;
-
-            color: #ffffff;
-
             font-family: Arial, Helvetica, sans-serif;
-
             font-size: 15px;
 
             resize: vertical;
@@ -317,14 +266,14 @@
         }
 
         textarea::placeholder {
-            color: #657b96;
+            color: #70849e;
         }
 
         textarea:focus {
-            border-color: #2f80ff;
+            border-color: #2680ff;
 
             box-shadow:
-                0 0 0 3px rgba(47, 128, 255, 0.15);
+                0 0 0 3px rgba(38, 128, 255, 0.16);
         }
 
 
@@ -334,48 +283,40 @@
 
         .buttons {
             display: flex;
-
             gap: 10px;
-
             margin-top: 15px;
-
             flex-wrap: wrap;
         }
 
         button.action-button {
             border: none;
-
             border-radius: 10px;
 
             padding: 12px 18px;
 
             font-size: 14px;
-
             font-weight: bold;
 
             cursor: pointer;
         }
 
         .check-button {
-            background: #1769e8;
-
+            background: #1464d2;
             color: white;
         }
 
         .check-button:hover {
-            background: #0f56c7;
+            background: #0d4fae;
         }
 
         .clear-button {
-            background: #14263e;
-
-            color: #cfe0f5;
-
-            border: 1px solid #29476d !important;
+            background: #1a2d45;
+            color: #dce9f8;
+            border: 1px solid #2a4d75 !important;
         }
 
         .clear-button:hover {
-            background: #1b3555;
+            background: #223b59;
         }
 
 
@@ -405,35 +346,27 @@
 
 
         .very-high {
-            background: #35151a;
-
-            border: 1px solid #b8323c;
-
-            color: #ff9ba2;
+            background: #3a1015;
+            border: 1px solid #d94b58;
+            color: #ffb5bb;
         }
 
         .high {
-            background: #352514;
-
-            border: 1px solid #b87832;
-
-            color: #ffc17d;
+            background: #3a2410;
+            border: 1px solid #d98b35;
+            color: #ffd09b;
         }
 
         .caution {
-            background: #352f12;
-
-            border: 1px solid #a99732;
-
-            color: #f5dc69;
+            background: #3a3210;
+            border: 1px solid #d0b83d;
+            color: #ffe98a;
         }
 
         .low {
-            background: #123522;
-
-            border: 1px solid #328a55;
-
-            color: #80e0a0;
+            background: #103522;
+            border: 1px solid #3caa68;
+            color: #9bf0b8;
         }
 
 
@@ -488,7 +421,7 @@
 <button
     class="menu-button"
     onclick="toggleMenu()"
-    aria-label="Open navigation menu">
+    aria-label="Open menu">
 
     <span></span>
     <span></span>
@@ -513,56 +446,38 @@
 
 
     <a href="home.html" class="menu-link">
-
         <span class="menu-icon">🏠</span>
-
         Home
-
     </a>
 
 
     <a href="message.html" class="menu-link">
-
         <span class="menu-icon">🔍</span>
-
         Message Checker
-
     </a>
 
 
     <a href="conversation.html" class="menu-link">
-
         <span class="menu-icon">💬</span>
-
         Conversation Checker
-
     </a>
 
 
     <a href="Website.html" class="menu-link">
-
         <span class="menu-icon">🌐</span>
-
         Website Checker
-
     </a>
 
 
     <a href="device_checker.html" class="menu-link">
-
         <span class="menu-icon">📱</span>
-
         Device Security
-
     </a>
 
 
     <a href="security.html" class="menu-link">
-
         <span class="menu-icon">🛡️</span>
-
         Security Center
-
     </a>
 
 
@@ -570,29 +485,20 @@
 
 
     <a href="alerts.html" class="menu-link">
-
         <span class="menu-icon">🚨</span>
-
         Scam Alerts
-
     </a>
 
 
     <a href="report.html" class="menu-link">
-
         <span class="menu-icon">📢</span>
-
         Report a Scam
-
     </a>
 
 
     <a href="feedback.html" class="menu-link">
-
         <span class="menu-icon">💬</span>
-
         Contact TrustAI
-
     </a>
 
 </nav>
@@ -610,7 +516,7 @@
 
 
 <!-- =========================
-     PAGE
+     MAIN PAGE
 ========================= -->
 
 <div class="page">
@@ -683,7 +589,6 @@
 
 
 <script>
-
 
 /* =========================
    MENU
@@ -762,9 +667,7 @@ function checkMessage() {
 
         if (
             words.some(function(word) {
-
                 return message.includes(word);
-
             })
         ) {
 
@@ -778,89 +681,7 @@ function checkMessage() {
 
 
     /* =========================
-       1. OTP / PASSWORD / PIN
-       VERY IMPORTANT
-    ========================= */
-
-    check(
-        [
-            "otp",
-            "one time password",
-            "one-time password",
-
-            "send your otp",
-            "send me your otp",
-            "tell me your otp",
-            "tell me your bank otp",
-            "give me your otp",
-            "give me your bank otp",
-
-            "bank otp",
-            "bank verification code",
-
-            "send the code",
-            "send me the code",
-
-            "verification code",
-            "verification pin",
-            "security code",
-            "login code",
-
-            "send your password",
-            "send me your password",
-
-            "send your pin",
-            "send me your pin",
-
-            "give me your password",
-            "give me your pin"
-        ],
-        4,
-        "Request for sensitive security information such as an OTP, password, PIN, or verification code"
-    );
-
-
-    /* =========================
-       2. MONEY / PAYMENT
-    ========================= */
-
-    check(
-        [
-            "send money",
-            "send me money",
-            "send some money",
-            "send the money",
-
-            "make a payment",
-            "make payment",
-
-            "transfer money",
-            "transfer the money",
-
-            "send payment",
-            "pay me",
-
-            "pay a fee",
-            "processing fee",
-            "registration fee",
-
-            "bank details",
-            "account details",
-            "card details",
-
-            "credit card",
-            "debit card",
-
-            "account number",
-            "bank account"
-        ],
-        2,
-        "Request for money, payment, or financial information"
-    );
-
-
-    /* =========================
-       3. IMPERSONATION
+       IMPERSONATION
     ========================= */
 
     check(
@@ -869,11 +690,8 @@ function checkMessage() {
             "i lost my phone",
             "i changed my number",
             "new whatsapp number",
-            "new phone number",
-
             "this is my new account",
             "this is really me",
-
             "contact me privately",
             "my old phone",
             "my new phone"
@@ -884,7 +702,7 @@ function checkMessage() {
 
 
     /* =========================
-       4. URGENCY / PRESSURE
+       URGENCY / PRESSURE
     ========================= */
 
     check(
@@ -894,23 +712,16 @@ function checkMessage() {
             "act now",
             "act immediately",
             "immediately",
-
             "right now",
             "last chance",
-
             "don't tell anyone",
             "do not tell anyone",
             "keep this secret",
-
-            "within 10 minutes",
-            "within 30 minutes",
-            "within 1 hour",
-            "within 24 hours",
-
             "expires today",
             "before midnight",
-
-            "today only"
+            "within 1 hour",
+            "within 24 hours",
+            "within 48 hours"
         ],
         1,
         "Pressure, urgency, or secrecy"
@@ -918,7 +729,141 @@ function checkMessage() {
 
 
     /* =========================
-       5. GIFT CARDS
+       MONEY
+    ========================= */
+
+    check(
+        [
+            "send money",
+            "send me money",
+            "send some money",
+            "send the money",
+            "make a payment",
+            "transfer money",
+            "send payment",
+            "pay me",
+            "pay a fee",
+            "processing fee",
+            "bank details",
+            "account details",
+            "card details",
+            "credit card",
+            "debit card"
+        ],
+        2,
+        "Request for money, payment, or financial information"
+    );
+
+
+    /* =========================
+       OTP / PIN / PASSWORD
+       STRONGER DETECTION
+    ========================= */
+
+    const otpRequest =
+        (
+            message.includes("otp") ||
+            message.includes("one time password") ||
+            message.includes("one-time password")
+        )
+        &&
+        (
+            message.includes("send") ||
+            message.includes("give") ||
+            message.includes("tell") ||
+            message.includes("share") ||
+            message.includes("provide") ||
+            message.includes("forward")
+        );
+
+
+    if (otpRequest) {
+
+        score += 4;
+
+        reasons.push(
+            "Request for a bank OTP or one-time verification code"
+        );
+
+    }
+
+
+    /* OTP WITHOUT 'SEND' */
+
+    check(
+        [
+            "send your otp",
+            "send me your otp",
+            "send the otp",
+            "send my otp",
+            "give me your otp",
+            "give me the otp",
+            "tell me your otp",
+            "tell me the otp",
+            "share your otp",
+            "share the otp",
+            "bank otp",
+            "bank one time password",
+            "one time password",
+            "one-time password"
+        ],
+        3,
+        "Request for a sensitive OTP or verification code"
+    );
+
+
+    /* PASSWORD */
+
+    check(
+        [
+            "send your password",
+            "send me your password",
+            "give me your password",
+            "tell me your password",
+            "share your password"
+        ],
+        4,
+        "Request for a password or login credential"
+    );
+
+
+    /* PIN */
+
+    check(
+        [
+            "send your pin",
+            "send me your pin",
+            "give me your pin",
+            "tell me your pin",
+            "share your pin",
+            "bank pin",
+            "atm pin"
+        ],
+        4,
+        "Request for a PIN or banking security information"
+    );
+
+
+    /* VERIFICATION CODE */
+
+    check(
+        [
+            "verification code",
+            "verification pin",
+            "security code",
+            "login code",
+            "send the code",
+            "send me the code",
+            "give me the code",
+            "tell me the code"
+        ],
+        4,
+        "Request for sensitive security information"
+    );
+
+
+    /* =========================
+       GIFT CARDS
     ========================= */
 
     check(
@@ -935,30 +880,21 @@ function checkMessage() {
 
 
     /* =========================
-       6. EMERGENCY STORIES
+       EMERGENCY
     ========================= */
 
     check(
         [
             "i'm in the hospital",
             "i am in the hospital",
-
             "medical bill",
             "medical bills",
             "hospital bill",
-
             "need money for treatment",
-
             "i'm stranded",
             "i am stranded",
-
-            "need money for food",
-
             "stuck at the airport",
-
-            "military emergency",
-            "i'm deployed",
-            "i am deployed"
+            "need money for food"
         ],
         2,
         "Emergency or financial hardship story"
@@ -966,58 +902,41 @@ function checkMessage() {
 
 
     /* =========================
-       7. PRIZE / LOTTERY
+       PRIZE
     ========================= */
 
     check(
         [
             "you just won",
             "you have won",
-            "you won",
-
             "you won a prize",
-
             "cash prize",
             "claim your prize",
-
             "lottery winner",
-            "lottery",
-
             "free money",
-
-            "you are the winner"
+            "you won"
         ],
         2,
-        "Unexpected prize, lottery, or money opportunity"
+        "Unexpected prize or money opportunity"
     );
 
 
     /* =========================
-       8. INVESTMENT / EASY MONEY
+       INVESTMENT
     ========================= */
 
     check(
         [
             "guaranteed profit",
             "guaranteed returns",
-            "guaranteed income",
-            "guaranteed money",
-
             "double your money",
-            "double your investment",
-
             "risk free investment",
             "risk-free investment",
-
             "crypto giveaway",
-            "crypto investment",
-
             "instant profit",
             "easy money",
             "make money fast",
-
-            "forex investment",
-            "investment opportunity"
+            "guaranteed income"
         ],
         2,
         "Potentially unrealistic investment or money-making promise"
@@ -1025,7 +944,7 @@ function checkMessage() {
 
 
     /* =========================
-       9. SUSPICIOUS LINK REQUEST
+       SUSPICIOUS LINK
     ========================= */
 
     check(
@@ -1034,13 +953,9 @@ function checkMessage() {
             "click the link",
             "tap the link",
             "open this link",
-
             "verify using this link",
             "click here to verify",
-
             "login here",
-            "log in here",
-
             "verify your account"
         ],
         2,
@@ -1049,7 +964,7 @@ function checkMessage() {
 
 
     /* =========================
-       10. URL DETECTION
+       URL DETECTION
     ========================= */
 
     const urlPattern =
@@ -1067,7 +982,7 @@ function checkMessage() {
 
 
     /* =========================
-       11. SHORTENED LINKS
+       SHORTENED LINKS
     ========================= */
 
     check(
@@ -1084,7 +999,7 @@ function checkMessage() {
 
 
     /* =========================
-       12. ACCOUNT SECURITY
+       ACCOUNT THREATS
     ========================= */
 
     check(
@@ -1092,41 +1007,16 @@ function checkMessage() {
             "your account will be closed",
             "your account has been suspended",
             "account will be deleted",
-
             "unauthorized login",
             "suspicious login",
-
             "verify your identity",
-
             "your account is at risk",
-
             "your account will be locked",
-
-            "account has been compromised",
-
-            "your account has been hacked"
+            "account has been compromised"
         ],
         2,
         "Possible fake account-security warning"
     );
 
 
-    /* =========================
-       13. TOO GOOD TO BE TRUE
-    ========================= */
-
-    check(
-        [
-            "you have been selected",
-            "you are lucky",
-
-            "exclusive offer",
-
-            "free iphone",
-            "free phone",
-            "free gift",
-
-            "claim now",
-            "limited offer",
-
-            
+    /* ====================
