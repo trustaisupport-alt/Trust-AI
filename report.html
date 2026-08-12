@@ -1,150 +1,1130 @@
-<!DOCTYPE html><html><head>
-    <link rel="stylesheet" href="style.css">
-    <title>Report a Scam - TrustAI</title>
-</head><body><h1>🚨 Report a Scam</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<p>
-    Report a suspicious website, message, or online activity
-    to help protect others.
-</p>
+<head>
 
-<form onsubmit="submitReport(event)">
+<meta charset="UTF-8">
 
-    <input
-        type="text"
-        id="name"
-        placeholder="Your name (optional)"
-    >
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <br><br>
+<title>Report a Scam - TrustAI</title>
 
-    <textarea
-        id="description"
-        rows="8"
-        cols="40"
-        placeholder="Describe what happened..."
-    ></textarea>
+<meta name="description"
+content="Report suspicious scams, websites, messages and online activity to TrustAI.">
 
-    <br><br>
+<style>
 
-    <input
-        type="text"
-        id="website"
-        placeholder="Suspicious website or link (optional)"
-    >
+* {
+    box-sizing: border-box;
+}
 
-    <br><br>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050d18;
+    color: #eef6ff;
+}
 
-    <select id="scamType">
+/* =========================
+   MENU BUTTON
+========================= */
 
-        <option value="">Select scam type</option>
+.menu-button {
+    position: fixed;
+    top: 16px;
+    left: 16px;
 
-        <option>Phishing</option>
-        <option>Impersonation</option>
-        <option>Investment scam</option>
-        <option>Romance scam</option>
-        <option>Payment scam</option>
-        <option>Prize or lottery scam</option>
-        <option>Job scam</option>
-        <option>Delivery scam</option>
-        <option>Account takeover</option>
-        <option>Fake customer support</option>
-        <option>Other</option>
+    width: 48px;
+    height: 48px;
 
-    </select>
+    border: 1px solid #294b6b;
+    border-radius: 13px;
 
-    <br><br>
+    background: #102b45;
 
-    <button type="submit">
-        Submit Report
-    </button>
+    cursor: pointer;
 
-    <button
-        type="button"
-        onclick="clearReport()"
-    >
-        Clear
-    </button>
+    z-index: 3000;
 
-    <p id="reportResult"></p>
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-</form>
+    gap: 5px;
+}
+
+.menu-button span {
+    width: 23px;
+    height: 3px;
+
+    background: white;
+
+    border-radius: 5px;
+}
+
+/* =========================
+   SIDE MENU
+========================= */
+
+.side-menu {
+    position: fixed;
+
+    top: 0;
+    left: -300px;
+
+    width: 285px;
+    height: 100vh;
+
+    padding: 85px 18px 25px;
+
+    background: #091a2c;
+
+    border-right: 1px solid #294763;
+
+    z-index: 2500;
+
+    transition: left .3s ease;
+
+    overflow-y: auto;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-title {
+    padding: 0 12px 18px;
+
+    border-bottom: 1px solid #29425a;
+
+    margin-bottom: 12px;
+}
+
+.menu-title strong {
+    display: block;
+
+    color: #55a9ff;
+
+    font-size: 22px;
+}
+
+.menu-title span {
+    display: block;
+
+    color: #8298ae;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+.menu-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    margin-bottom: 4px;
+
+    border-radius: 11px;
+
+    color: #dce9f6;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.menu-link:hover {
+    background: #123552;
+
+    color: #62b1ff;
+}
+
+.menu-icon {
+    width: 25px;
+
+    text-align: center;
+}
+
+.menu-divider {
+    height: 1px;
+
+    background: #29425a;
+
+    margin: 14px 0;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.65);
+
+    z-index: 2000;
+
+    display: none;
+}
+
+.menu-overlay.show {
+    display: block;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    max-width: 950px;
+
+    margin: auto;
+
+    padding: 85px 16px 50px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10395e,
+            #071625
+        );
+
+    border: 1px solid #2c5b80;
+
+    border-radius: 28px;
+
+    padding: 38px 28px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.3);
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -70px;
+
+    background: rgba(55,160,255,.12);
+
+    border-radius: 50%;
+}
+
+.hero-label {
+    color: #63b4ff;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    margin: 10px 0 12px;
+
+    font-size: 34px;
+}
+
+.hero p {
+    margin: 0;
+
+    max-width: 700px;
+
+    color: #a9bdd0;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+/* =========================
+   TRUST NOTICE
+========================= */
+
+.notice {
+    display: flex;
+
+    gap: 15px;
+
+    align-items: flex-start;
+
+    background: #0b2034;
+
+    border: 1px solid #294b66;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+}
+
+.notice-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #173957;
+
+    border-radius: 13px;
+
+    font-size: 22px;
+}
+
+.notice h2 {
+    margin: 0 0 5px;
+
+    font-size: 17px;
+}
+
+.notice p {
+    margin: 0;
+
+    color: #91a8bd;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+    background: #0a1b2d;
+
+    border: 1px solid #294863;
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.2);
+}
+
+.form-card h2 {
+    margin: 0 0 7px;
+
+    font-size: 22px;
+}
+
+.form-intro {
+    color: #8fa6bb;
+
+    font-size: 13px;
+
+    margin-bottom: 24px;
+}
+
+/* =========================
+   FORM GRID
+========================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 17px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #dce9f5;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    border: 1px solid #31516d;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    background: #061321;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #60778d;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+
+    border-color: #3298f4;
+
+    box-shadow:
+        0 0 0 3px rgba(50,152,244,.12);
+}
+
+textarea {
+    min-height: 170px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+select {
+    cursor: pointer;
+}
+
+option {
+    background: #091a2c;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.button-row {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.submit-button,
+.clear-button {
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 15px 20px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.submit-button {
+    flex: 1;
+
+    background: #1683e8;
+
+    color: white;
+}
+
+.submit-button:hover {
+    background: #0d6ec8;
+}
+
+.clear-button {
+    width: 120px;
+
+    background: #172d43;
+
+    color: white;
+
+    border: 1px solid #34516b;
+}
+
+.clear-button:hover {
+    background: #223c54;
+}
+
+/* =========================
+   RESULT
+========================= */
+
+#reportResult {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+#reportResult.show {
+    display: block;
+}
+
+.success {
+    background: #0d3325;
+
+    border: 1px solid #27845d;
+
+    color: #a7f0cc;
+}
+
+.error {
+    background: #35141a;
+
+    border: 1px solid #8d3945;
+
+    color: #ffc4cb;
+}
+
+/* =========================
+   BOTTOM CARDS
+========================= */
+
+.bottom-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.bottom-card {
+    background: #0a1b2d;
+
+    border: 1px solid #294863;
+
+    border-radius: 18px;
+
+    padding: 20px;
+}
+
+.bottom-card-icon {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.bottom-card h3 {
+    margin: 0 0 7px;
+
+    font-size: 16px;
+}
+
+.bottom-card p {
+    margin: 0;
+
+    color: #879db2;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 30px 10px 0;
+
+    color: #71879c;
+
+    font-size: 12px;
+}
+
+footer strong {
+    color: #a5c9e8;
+
+    font-size: 15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding: 80px 13px 40px;
+    }
+
+    .hero {
+        padding: 30px 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .form-card {
+        padding: 18px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button-row {
+        flex-direction: column;
+    }
+
+    .clear-button {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     MENU BUTTON
+========================= -->
+
+<button
+    id="menuButton"
+    class="menu-button"
+    type="button">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
+
+
+<!-- =========================
+     SIDE MENU
+========================= -->
+
+<nav
+    id="sideMenu"
+    class="side-menu">
+
+    <div class="menu-title">
+
+        <strong>🛡️ TrustAI</strong>
+
+        <span>Online Scam Protection</span>
+
+    </div>
+
+
+    <a href="home.html" class="menu-link">
+        <span class="menu-icon">🏠</span>
+        Home
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+        <span class="menu-icon">🔍</span>
+        Message Checker
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Conversation Checker
+    </a>
+
+
+    <a href="Website.html" class="menu-link">
+        <span class="menu-icon">🌐</span>
+        Website Checker
+    </a>
+
+
+    <a href="device_checker.html" class="menu-link">
+        <span class="menu-icon">📱</span>
+        Device Security
+    </a>
+
+
+    <a href="security.html" class="menu-link">
+        <span class="menu-icon">🛡️</span>
+        Security Center
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html" class="menu-link">
+        <span class="menu-icon">🚨</span>
+        Scam Alerts
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+        <span class="menu-icon">📢</span>
+        Report a Scam
+    </a>
+
+
+    <a href="feedback.html" class="menu-link">
+        <span class="menu-icon">✉️</span>
+        Contact TrustAI
+    </a>
+
+</nav>
+
+
+<div
+    id="menuOverlay"
+    class="menu-overlay">
+</div>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+<section class="hero">
+
+    <div class="hero-label">
+        TRUSTAI COMMUNITY SAFETY
+    </div>
+
+    <h1>
+        🚨 Report a Scam
+    </h1>
+
+    <p>
+        Spotted something suspicious?
+        Tell TrustAI what happened so you can document
+        the incident and help raise awareness about scams.
+    </p>
+
+</section>
+
+
+<section class="notice">
+
+    <div class="notice-icon">
+        🔒
+    </div>
+
+    <div>
+
+        <h2>
+            Your report matters
+        </h2>
+
+        <p>
+            Never include passwords, OTPs, PINs, bank
+            login details or other sensitive information
+            in your report.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="form-card">
+
+    <h2>
+        📝 Tell us what happened
+    </h2>
+
+    <p class="form-intro">
+        Provide as much useful information as possible.
+        Fields marked optional can be left blank.
+    </p>
+
+
+    <form id="reportForm">
+
+
+        <div class="form-grid">
+
+
+            <div class="field">
+
+                <label for="name">
+                    Your name
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="Optional">
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="scamType">
+                    Scam type
+                </label>
+
+                <select id="scamType">
+
+                    <option value="">
+                        Select scam type
+                    </option>
+
+                    <option>Phishing</option>
+
+                    <option>Impersonation</option>
+
+                    <option>Investment scam</option>
+
+                    <option>Romance scam</option>
+
+                    <option>Payment scam</option>
+
+                    <option>Prize or lottery scam</option>
+
+                    <option>Job scam</option>
+
+                    <option>Delivery scam</option>
+
+                    <option>Account takeover</option>
+
+                    <option>Fake customer support</option>
+
+                    <option>Social media scam</option>
+
+                    <option>Marketplace scam</option>
+
+                    <option>Crypto scam</option>
+
+                    <option>Loan scam</option>
+
+                    <option>Charity scam</option>
+
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field full">
+
+                <label for="website">
+                    Suspicious website or link
+                </label>
+
+                <input
+                    id="website"
+                    type="text"
+                    placeholder="Optional — paste the suspicious website or link">
+
+            </div>
+
+
+            <div class="field full">
+
+                <label for="description">
+                    What happened?
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe the message, website, account, payment request or other suspicious activity..."></textarea>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="button-row">
+
+            <button
+                type="submit"
+                class="submit-button">
+
+                🚨 Submit Scam Report
+
+            </button>
+
+
+            <button
+                type="button"
+                id="clearButton"
+                class="clear-button">
+
+                Clear
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+    <div id="reportResult"></div>
+
+
+</section>
+
+
+<section class="bottom-grid">
+
+
+    <article class="bottom-card">
+
+        <div class="bottom-card-icon">
+            🔐
+        </div>
+
+        <h3>
+            Protect your privacy
+        </h3>
+
+        <p>
+            Never include passwords, OTPs, PINs or
+            private banking credentials.
+        </p>
+
+    </article>
+
+
+    <article class="bottom-card">
+
+        <div class="bottom-card-icon">
+            📸
+        </div>
+
+        <h3>
+            Keep evidence
+        </h3>
+
+        <p>
+            Keep screenshots, messages, receipts and
+            transaction records when appropriate.
+        </p>
+
+    </article>
+
+
+    <article class="bottom-card">
+
+        <div class="bottom-card-icon">
+            🛡️
+        </div>
+
+        <h3>
+            Stay protected
+        </h3>
+
+        <p>
+            If money or an account is involved, contact
+            the relevant official service quickly.
+        </p>
+
+    </article>
+
+
+</section>
+
+
+<footer>
+
+    <strong>
+        🛡️ TrustAI
+    </strong>
+
+    <p>
+        Online scam awareness and protection.
+    </p>
+
+    <p>
+        © 2026 TrustAI
+    </p>
+
+</footer>
+
+
+</main>
+
 
 <script>
 
-function submitReport(event) {
+/* =========================
+   MENU
+========================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+
+menuButton.addEventListener("click", function () {
+
+    sideMenu.classList.toggle("open");
+
+    menuOverlay.classList.toggle("show");
+
+});
+
+
+menuOverlay.addEventListener("click", function () {
+
+    sideMenu.classList.remove("open");
+
+    menuOverlay.classList.remove("show");
+
+});
+
+
+/* =========================
+   REPORT FORM
+========================= */
+
+const reportForm =
+    document.getElementById("reportForm");
+
+const reportResult =
+    document.getElementById("reportResult");
+
+
+reportForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    let name =
+
+    const name =
         document.getElementById("name").value.trim();
 
-    let description =
+    const description =
         document.getElementById("description").value.trim();
 
-    let website =
+    const website =
         document.getElementById("website").value.trim();
 
-    let scamType =
+    const scamType =
         document.getElementById("scamType").value;
 
-    let result =
-        document.getElementById("reportResult");
-
-
-    // =========================
-    // VALIDATION
-    // =========================
 
     if (description === "") {
 
-        result.className = "risk caution";
-
-        result.textContent =
-            "⚠️ Please describe the suspicious activity.";
+        showError(
+            "⚠️ Please describe what happened."
+        );
 
         return;
+
     }
 
 
     if (scamType === "") {
 
-        result.className = "risk caution";
-
-        result.textContent =
-            "⚠️ Please select a scam type.";
+        showError(
+            "⚠️ Please select a scam type."
+        );
 
         return;
+
     }
 
 
-    // =========================
-    // PREPARE REPORT
-    // =========================
+    const report = {
 
-    let report = {
+        name:
+            name || "Anonymous",
 
-        name: name || "Anonymous",
+        description:
+            description,
 
-        description: description,
+        website:
+            website || "Not provided",
 
-        website: website || "Not provided",
+        scamType:
+            scamType,
 
-        scamType: scamType,
-
-        date: new Date().toLocaleString()
+        date:
+            new Date().toLocaleString()
 
     };
 
 
-    // =========================
-    // SAVE REPORT LOCALLY
-    // =========================
-
     let reports =
-        JSON.parse(localStorage.getItem("trustAIReports")) || [];
+        JSON.parse(
+            localStorage.getItem("trustAIReports")
+        ) || [];
+
 
     reports.push(report);
+
 
     localStorage.setItem(
         "trustAIReports",
@@ -152,50 +1132,69 @@ function submitReport(event) {
     );
 
 
-    // =========================
-    // SUCCESS MESSAGE
-    // =========================
-
-    result.className = "risk low";
-
-    result.textContent =
-        "✅ Report saved successfully.\n\n" +
-        "Thank you for helping make the internet safer.\n\n" +
-        "Note: This demo currently saves reports on this device. " +
-        "A secure online submission system can be connected later.";
+    reportResult.className =
+        "show success";
 
 
-    // Clear the form
+    reportResult.innerHTML =
 
-    document.getElementById("name").value = "";
+        "<strong>✅ Report saved successfully</strong><br><br>" +
 
-    document.getElementById("description").value = "";
+        "Thank you for helping raise awareness about online scams." +
 
-    document.getElementById("website").value = "";
+        "<br><br>" +
 
-    document.getElementById("scamType").value = "";
+        "<small>" +
 
-}
+        "This version stores the report on this device only. " +
+
+        "A secure online reporting system can be connected " +
+
+        "when TrustAI has a backend." +
+
+        "</small>";
 
 
-// =========================
-// CLEAR REPORT
-// =========================
+    reportForm.reset();
 
-function clearReport() {
+});
 
-    document.getElementById("name").value = "";
 
-    document.getElementById("description").value = "";
+/* =========================
+   ERROR
+========================= */
 
-    document.getElementById("website").value = "";
+function showError(message) {
 
-    document.getElementById("scamType").value = "";
+    reportResult.className =
+        "show error";
 
-    document.getElementById("reportResult").textContent = "";
-
-    document.getElementById("reportResult").className = "";
+    reportResult.textContent =
+        message;
 
 }
 
-</script></body></html>
+
+/* =========================
+   CLEAR
+========================= */
+
+document
+.getElementById("clearButton")
+.addEventListener("click", function() {
+
+    reportForm.reset();
+
+    reportResult.innerHTML = "";
+
+    reportResult.className = "";
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
