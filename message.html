@@ -1,719 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Message Checker - TrustAI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrustAI - Super Strong Message Checker</title>
 
 <style>
+*{box-sizing:border-box}
 
-* {
-    box-sizing: border-box;
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050914;
+    color:#eef5ff;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #07111f;
-    color: #eaf2ff;
+.menu-button{
+    position:fixed;
+    top:16px;
+    left:16px;
+    width:46px;
+    height:46px;
+    border:0;
+    border-radius:12px;
+    background:#1677ff;
+    z-index:1001;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
 }
 
-/* MENU */
-
-.menu-button {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-    width: 46px;
-    height: 46px;
-    border: none;
-    border-radius: 11px;
-    background: #1464d2;
-    z-index: 1001;
-    cursor: pointer;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+.menu-button span{
+    width:22px;
+    height:3px;
+    background:white;
+    border-radius:3px;
 }
 
-.menu-button span {
-    width: 22px;
-    height: 3px;
-    background: white;
-    border-radius: 3px;
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-300px;
+    width:285px;
+    height:100vh;
+    background:#0a1220;
+    border-right:1px solid #20334d;
+    z-index:1000;
+    padding:80px 18px 25px;
+    transition:.25s ease;
+    overflow-y:auto;
 }
 
-/* SIDE MENU */
+.side-menu.open{left:0}
 
-.side-menu {
-    position: fixed;
-    top: 0;
-    left: -290px;
-
-    width: 280px;
-    height: 100vh;
-
-    background: #0b1728;
-    border-right: 1px solid #1d3552;
-
-    z-index: 1000;
-
-    padding: 80px 18px 25px;
-
-    transition: left 0.25s ease;
+.menu-title{
+    padding:0 12px 18px;
+    border-bottom:1px solid #20334d;
+    margin-bottom:12px;
 }
 
-.side-menu.open {
-    left: 0;
+.menu-title strong{
+    color:#4da0ff;
+    font-size:21px;
 }
 
-.menu-title {
-    padding: 0 12px 18px;
-    border-bottom: 1px solid #1d3552;
-    margin-bottom: 12px;
+.menu-title span{
+    display:block;
+    margin-top:5px;
+    color:#91a4bd;
+    font-size:12px;
 }
 
-.menu-title strong {
-    color: #4d9cff;
-    font-size: 21px;
+.menu-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 12px;
+    margin-bottom:4px;
+    border-radius:10px;
+    text-decoration:none;
+    color:#dce9f8;
+    font-size:14px;
+    font-weight:bold;
 }
 
-.menu-title span {
-    display: block;
-    margin-top: 5px;
-    color: #91a4bd;
-    font-size: 12px;
+.menu-link:hover{
+    background:#122641;
+    color:#55a6ff;
 }
 
-.menu-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 13px 12px;
-    margin-bottom: 4px;
-
-    border-radius: 10px;
-
-    text-decoration: none;
-    color: #dce9f8;
-
-    font-size: 14px;
-    font-weight: bold;
+.menu-icon{
+    width:25px;
+    text-align:center;
 }
 
-.menu-link:hover {
-    background: #122a47;
-    color: #4d9cff;
+.menu-divider{
+    height:1px;
+    background:#20334d;
+    margin:14px 0;
 }
 
-.menu-icon {
-    width: 25px;
-    text-align: center;
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:999;
+    display:none;
 }
 
-.menu-divider {
-    height: 1px;
-    background: #1d3552;
-    margin: 14px 0;
+.menu-overlay.show{display:block}
+
+.page{
+    max-width:900px;
+    margin:auto;
+    padding:85px 18px 45px;
 }
 
-/* OVERLAY */
-
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,0.55);
-
-    z-index: 999;
-
-    display: none;
+.header{
+    background:linear-gradient(145deg,#0d1d34,#091321);
+    border:1px solid #234263;
+    border-radius:22px;
+    padding:30px 25px;
+    margin-bottom:20px;
 }
 
-.menu-overlay.show {
-    display: block;
+.header-label{
+    color:#4da0ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    margin-bottom:9px;
 }
 
-/* PAGE */
-
-.page {
-    max-width: 850px;
-    margin: auto;
-    padding: 85px 18px 40px;
+.header h1{
+    margin:0 0 12px;
+    font-size:31px;
 }
 
-/* HEADER */
-
-.header {
-    background: #0d1c30;
-
-    border: 1px solid #1c3b61;
-    border-radius: 20px;
-
-    padding: 28px 24px;
-    margin-bottom: 20px;
+.header p{
+    margin:0;
+    color:#9eb0c6;
+    line-height:1.65;
 }
 
-.header-label {
-    color: #4d9cff;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-
-    margin-bottom: 8px;
+.checker{
+    background:#0b1626;
+    border:1px solid #203955;
+    border-radius:20px;
+    padding:24px;
 }
 
-.header h1 {
-    margin: 0 0 10px;
-    font-size: 30px;
+.checker h2{
+    margin:0 0 8px;
 }
 
-.header p {
-    margin: 0;
-
-    color: #9db0c8;
-
-    line-height: 1.6;
+.checker-subtitle{
+    color:#8fa2ba;
+    font-size:13px;
+    margin-bottom:18px;
 }
 
-/* CHECKER */
-
-.checker {
-    background: #0d1c30;
-
-    border: 1px solid #1c3b61;
-    border-radius: 18px;
-
-    padding: 24px;
+textarea{
+    width:100%;
+    min-height:230px;
+    padding:16px;
+    background:#050b15;
+    color:white;
+    border:1px solid #294764;
+    border-radius:13px;
+    font-size:15px;
+    line-height:1.5;
+    resize:vertical;
 }
 
-.checker h2 {
-    margin-top: 0;
+textarea:focus{
+    outline:none;
+    border-color:#1687ff;
+    box-shadow:0 0 0 3px rgba(22,135,255,.15);
 }
 
-/* TEXTAREA */
-
-textarea {
-    width: 100%;
-    min-height: 220px;
-
-    padding: 15px;
-
-    background: #07111f;
-    color: white;
-
-    border: 1px solid #2a4d75;
-    border-radius: 12px;
-
-    font-size: 15px;
-
-    resize: vertical;
+textarea::placeholder{
+    color:#687b94;
 }
 
-textarea::placeholder {
-    color: #70849e;
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
 }
 
-textarea:focus {
-    outline: none;
-
-    border-color: #2680ff;
-
-    box-shadow:
-        0 0 0 3px rgba(38,128,255,0.16);
+button.action-button{
+    border:0;
+    border-radius:11px;
+    padding:13px 19px;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-/* BUTTONS */
-
-.buttons {
-    display: flex;
-    gap: 10px;
-
-    margin-top: 15px;
+.check-button{
+    background:#1677ff;
+    color:white;
 }
 
-.action-button {
-    border: none;
+.check-button:hover{background:#0867e8}
 
-    border-radius: 10px;
-
-    padding: 12px 18px;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    cursor: pointer;
+.clear-button{
+    background:#1a2b40;
+    color:#dce8f5;
 }
 
-.check-button {
-    background: #1464d2;
-    color: white;
+.result{
+    display:none;
+    margin-top:20px;
+    padding:22px;
+    border-radius:16px;
+    line-height:1.6;
 }
 
-.clear-button {
-    background: #1a2d45;
-    color: white;
+.result.show{display:block}
+
+.critical{
+    background:#30090d;
+    border:1px solid #ff394b;
+    color:#ffd1d5;
 }
 
-.check-button:hover {
-    background: #0d4fae;
+.very-high{
+    background:#381016;
+    border:1px solid #e64b5c;
+    color:#ffc2c8;
 }
 
-.clear-button:hover {
-    background: #223b59;
+.high{
+    background:#38200d;
+    border:1px solid #e18a31;
+    color:#ffd19d;
 }
 
-/* RESULT */
-
-#result {
-    display: none;
-
-    margin-top: 22px;
-
-    padding: 20px;
-
-    border-radius: 14px;
-
-    white-space: pre-line;
-
-    line-height: 1.6;
-
-    font-size: 14px;
+.caution{
+    background:#302a08;
+    border:1px solid #d5bd39;
+    color:#ffec91;
 }
 
-#result.show {
-    display: block;
+.low{
+    background:#0d2418;
+    border:1px solid #3a9e65;
+    color:#a7f0c1;
 }
 
-.very-high {
-    background: #3a1015;
-    border: 1px solid #d94b58;
-    color: #ffb5bb;
+.result-title{
+    font-size:20px;
+    font-weight:900;
+    margin-bottom:8px;
 }
 
-.high {
-    background: #3a2410;
-    border: 1px solid #d98b35;
-    color: #ffd09b;
+.score{
+    font-weight:800;
+    margin-bottom:12px;
 }
 
-.caution {
-    background: #3a3210;
-    border: 1px solid #d0b83d;
-    color: #ffe98a;
+.result ul{
+    margin-top:8px;
+    padding-left:20px;
 }
 
-.low {
-    background: #103522;
-    border: 1px solid #3caa68;
-    color: #9bf0b8;
+.warning-note{
+    margin-top:15px;
+    padding-top:13px;
+    border-top:1px solid rgba(255,255,255,.15);
+    font-weight:bold;
 }
 
-/* MOBILE */
-
-@media (max-width:650px) {
-
-    .page {
-        padding: 78px 14px 35px;
-    }
-
-    .header h1 {
-        font-size: 26px;
-    }
-
-    .checker {
-        padding: 19px;
-    }
-
-    .buttons {
-        flex-direction: column;
-    }
-
-    .action-button {
-        width: 100%;
-    }
-
+@media(max-width:650px){
+    .page{padding:78px 14px 35px}
+    .header h1{font-size:26px}
+    .checker{padding:19px}
+    .buttons{flex-direction:column}
+    button.action-button{width:100%}
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- MENU BUTTON -->
-
-<button
-class="menu-button"
-type="button"
-onclick="toggleMenu()">
-
+<button class="menu-button" onclick="toggleMenu()" aria-label="Open menu">
 <span></span>
 <span></span>
 <span></span>
-
 </button>
 
-
-<!-- SIDE MENU -->
-
-<nav
-id="sideMenu"
-class="side-menu">
+<nav id="sideMenu" class="side-menu">
 
 <div class="menu-title">
-
 <strong>🛡️ TrustAI</strong>
-
 <span>Online Scam Protection</span>
-
 </div>
 
-
 <a href="home.html" class="menu-link">
-
-<span class="menu-icon">🏠</span>
-
-Home
-
+<span class="menu-icon">🏠</span> Home
 </a>
-
 
 <a href="message.html" class="menu-link">
-
-<span class="menu-icon">🔍</span>
-
-Message Checker
-
+<span class="menu-icon">🔍</span> Message Checker
 </a>
-
 
 <a href="conversation.html" class="menu-link">
-
-<span class="menu-icon">💬</span>
-
-Conversation Checker
-
+<span class="menu-icon">💬</span> Conversation Checker
 </a>
-
 
 <a href="Website.html" class="menu-link">
-
-<span class="menu-icon">🌐</span>
-
-Website Checker
-
+<span class="menu-icon">🌐</span> Website Checker
 </a>
-
 
 <a href="device_checker.html" class="menu-link">
-
-<span class="menu-icon">📱</span>
-
-Device Security
-
+<span class="menu-icon">📱</span> Device Security
 </a>
-
 
 <a href="security.html" class="menu-link">
-
-<span class="menu-icon">🛡️</span>
-
-Security Center
-
+<span class="menu-icon">🛡️</span> Security Center
 </a>
-
 
 <div class="menu-divider"></div>
 
-
 <a href="alerts.html" class="menu-link">
-
-<span class="menu-icon">🚨</span>
-
-Scam Alerts
-
+<span class="menu-icon">🚨</span> Scam Alerts
 </a>
-
 
 <a href="report.html" class="menu-link">
-
-<span class="menu-icon">📢</span>
-
-Report a Scam
-
+<span class="menu-icon">📢</span> Report a Scam
 </a>
 
-
 <a href="feedback.html" class="menu-link">
-
-<span class="menu-icon">💬</span>
-
-Contact TrustAI
-
+<span class="menu-icon">💬</span> Contact TrustAI
 </a>
 
 </nav>
 
-
-<div
-id="menuOverlay"
-class="menu-overlay"
-onclick="closeMenu()">
-</div>
-
-
-<!-- MAIN -->
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
 <div class="page">
 
+<section class="header">
+<div class="header-label">SUPER STRONG MESSAGE SECURITY</div>
 
-<div class="header">
-
-<div class="header-label">
-MESSAGE SECURITY
-</div>
-
-<h1>
-🔍 Message Checker
-</h1>
+<h1>💪 Message Checker</h1>
 
 <p>
-Check before you trust. Paste a suspicious
-message below and TrustAI will look for
-common scam and phishing warning signs.
+Paste a suspicious message and TrustAI will analyze
+multiple scam signals instead of relying on only one
+keyword.
 </p>
+</section>
 
+<section class="checker">
+
+<h2>Check a Message</h2>
+
+<div class="checker-subtitle">
+TrustAI checks credentials, payments, phishing, impersonation,
+urgency, fake rewards, account threats and more.
 </div>
-
-
-<div class="checker">
-
-<h2>
-Check a Message
-</h2>
-
-<label for="message">
-Paste the message you want to check.
-</label>
-
-<br>
 
 <textarea
 id="message"
-placeholder="Paste suspicious message here...">
-</textarea>
-
+placeholder="Paste the suspicious message here..."></textarea>
 
 <div class="buttons">
 
-<button
-type="button"
-class="action-button check-button"
-onclick="checkMessage()">
-
+<button class="action-button check-button" onclick="checkMessage()">
 🔍 Check Message
-
 </button>
 
-
-<button
-type="button"
-class="action-button clear-button"
-onclick="clearMessage()">
-
+<button class="action-button clear-button" onclick="clearMessage()">
 Clear
-
 </button>
 
 </div>
-
 
 <div id="result"></div>
 
-</div>
+</section>
 
 </div>
-
 
 <script>
 
-/* =========================
-   MENU
-========================= */
-
-function toggleMenu() {
-
-    var menu =
-        document.getElementById("sideMenu");
-
-    var overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.toggle("open");
-
-    overlay.classList.toggle("show");
-
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("open");
+    document.getElementById("menuOverlay").classList.toggle("show");
 }
 
-
-function closeMenu() {
-
-    var menu =
-        document.getElementById("sideMenu");
-
-    var overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.remove("open");
-
-    overlay.classList.remove("show");
-
+function closeMenu(){
+    document.getElementById("sideMenu").classList.remove("open");
+    document.getElementById("menuOverlay").classList.remove("show");
 }
 
 
 /* =========================
-   MESSAGE CHECKER
+   SUPER STRONG DETECTION
 ========================= */
 
-function checkMessage() {
+function checkMessage(){
 
-    var message =
-        document
-        .getElementById("message")
-        .value
-        .toLowerCase()
-        .trim();
+    const original =
+        document.getElementById("message").value.trim();
 
+    const text = original.toLowerCase();
 
-    var result =
+    const result =
         document.getElementById("result");
 
+    if(!text){
 
-    /* EMPTY */
-
-    if (message === "") {
-
-        result.className = "caution show";
-
-        result.textContent =
-            "⚠️ Please enter a message to check.";
+        showResult(
+            "caution",
+            "⚠️ NO MESSAGE ENTERED",
+            0,
+            ["Paste a message before checking it."],
+            "Enter a suspicious message and run the checker again."
+        );
 
         return;
     }
 
-
-    var score = 0;
-
-    var reasons = [];
+    let score = 0;
+    let reasons = [];
 
 
-    /* =========================
-       OTP
-    ========================= */
-
-    if (
-        message.indexOf("otp") !== -1 &&
-        (
-            message.indexOf("send") !== -1 ||
-            message.indexOf("give") !== -1 ||
-            message.indexOf("tell") !== -1 ||
-            message.indexOf("share") !== -1 ||
-            message.indexOf("provide") !== -1
-        )
-    ) {
-
-        score += 5;
-
-        reasons.push(
-            "Request for an OTP or one-time verification code"
-        );
-
+    function add(points, reason){
+        score += points;
+        reasons.push(reason);
     }
 
 
     /* =========================
-       PASSWORD
+       PASSWORD / LOGIN
     ========================= */
 
-    if (
-        message.indexOf("password") !== -1 &&
-        (
-            message.indexOf("send") !== -1 ||
-            message.indexOf("give") !== -1 ||
-            message.indexOf("tell") !== -1 ||
-            message.indexOf("share") !== -1
-        )
-    ) {
+    if(
+        /(send|give|share|tell|provide|forward|drop|submit).{0,40}(password|passcode|login|username and password|login details)/i.test(text)
+    ){
+        add(8,"The sender is requesting login credentials.");
+    }
 
-        score += 5;
-
-        reasons.push(
-            "Request for a password or login credential"
-        );
-
+    if(
+        /(facebook|instagram|whatsapp|gmail|google|tiktok|bank|account).{0,60}(login|password|sign in).{0,60}(send|give|share|tell)/i.test(text)
+    ){
+        add(8,"A specific account is being targeted for login information.");
     }
 
 
     /* =========================
-       PIN
+       OTP / VERIFICATION
     ========================= */
 
-    if (
-        (
-            message.indexOf("pin") !== -1 ||
-            message.indexOf("atm pin") !== -1 ||
-            message.indexOf("bank pin") !== -1
-        )
-        &&
-        (
-            message.indexOf("send") !== -1 ||
-            message.indexOf("give") !== -1 ||
-            message.indexOf("tell") !== -1 ||
-            message.indexOf("share") !== -1
-        )
-    ) {
+    if(
+        /(send|give|share|tell|forward|provide|read).{0,45}(otp|one[- ]time password|verification code|security code|confirmation code|code)/i.test(text)
+    ){
+        add(10,"The message requests an OTP or verification code.");
+    }
 
-        score += 5;
-
-        reasons.push(
-            "Request for a PIN or banking security information"
-        );
-
+    if(
+        /(facebook|instagram|whatsapp|gmail|google|bank|account).{0,60}(verification|security|otp|code)/i.test(text) &&
+        /(send|give|share|tell|forward|provide|read)/i.test(text)
+    ){
+        add(8,"The message appears to target an account verification code.");
     }
 
 
     /* =========================
-       MONEY
+       PIN / CARD
     ========================= */
 
-    if (
-        message.indexOf("send money") !== -1 ||
-        message.indexOf("send me money") !== -1 ||
-        message.indexOf("transfer money") !== -1 ||
-        message.indexOf("make a payment") !== -1 ||
-        message.indexOf("pay me") !== -1 ||
-        message.indexOf("pay a fee") !== -1 ||
-        message.indexOf("processing fee") !== -1
-    ) {
+    if(
+        /(send|give|share|tell|provide|forward).{0,40}(pin|atm pin|card pin|debit pin|bank pin)/i.test(text)
+    ){
+        add(10,"The message requests a banking PIN.");
+    }
 
-        score += 2;
-
-        reasons.push(
-            "Request for money or payment"
-        );
-
+    if(
+        /(send|give|share|provide|forward).{0,50}(card number|cvv|cvc|expiry date|card details|debit card|credit card)/i.test(text)
+    ){
+        add(9,"The message requests sensitive card information.");
     }
 
 
@@ -721,121 +494,84 @@ function checkMessage() {
        BANK DETAILS
     ========================= */
 
-    if (
-        message.indexOf("bank details") !== -1 ||
-        message.indexOf("account details") !== -1 ||
-        message.indexOf("card details") !== -1
-    ) {
-
-        score += 3;
-
-        reasons.push(
-            "Request for financial information"
-        );
-
+    if(
+        /(send|give|share|provide|forward).{0,50}(bank details|account number|account details|bank information|routing number)/i.test(text)
+    ){
+        add(7,"The message requests financial account information.");
     }
 
 
     /* =========================
-       URGENCY
+       MONEY REQUESTS
     ========================= */
 
-    if (
-        message.indexOf("urgent") !== -1 ||
-        message.indexOf("act now") !== -1 ||
-        message.indexOf("act immediately") !== -1 ||
-        message.indexOf("right now") !== -1 ||
-        message.indexOf("don't tell anyone") !== -1 ||
-        message.indexOf("do not tell anyone") !== -1 ||
-        message.indexOf("keep this secret") !== -1
-    ) {
+    if(
+        /(send me money|send money|transfer money|transfer funds|wire money|make a payment|pay me|send cash|lend me money|borrow money)/i.test(text)
+    ){
+        add(5,"The message contains a direct request for money.");
+    }
 
-        score += 1;
-
-        reasons.push(
-            "Pressure, urgency, or secrecy detected"
-        );
-
+    if(
+        /(fee|charge|tax|customs|clearance|processing fee|delivery fee|activation fee|registration fee).{0,50}(pay|send|transfer|money)/i.test(text)
+    ){
+        add(4,"The message requests payment of a fee.");
     }
 
 
     /* =========================
-       GIFT CARD
+       URGENCY / PRESSURE
     ========================= */
 
-    if (
-        message.indexOf("gift card") !== -1 ||
-        message.indexOf("giftcard") !== -1
-    ) {
+    if(
+        /(urgent|urgently|act now|act immediately|right now|immediately|within \d+ minutes|within \d+ hours|last chance|final warning|don't delay|do not delay)/i.test(text)
+    ){
+        add(3,"Urgency or pressure is being used.");
+    }
 
-        score += 3;
-
-        reasons.push(
-            "Gift-card payment request detected"
-        );
-
+    if(
+        /(don't tell anyone|do not tell anyone|keep this secret|keep it secret|don't tell your family|do not tell your family|secret)/i.test(text)
+    ){
+        add(4,"The sender is encouraging secrecy.");
     }
 
 
     /* =========================
-       INVESTMENT
+       THREATS / ACCOUNT LOCK
     ========================= */
 
-    if (
-        message.indexOf("guaranteed profit") !== -1 ||
-        message.indexOf("guaranteed returns") !== -1 ||
-        message.indexOf("double your money") !== -1 ||
-        message.indexOf("make money fast") !== -1 ||
-        message.indexOf("easy money") !== -1 ||
-        message.indexOf("instant profit") !== -1
-    ) {
-
-        score += 2;
-
-        reasons.push(
-            "Potentially unrealistic money-making promise"
-        );
-
+    if(
+        /(account will be closed|account will be suspended|account suspended|account locked|account disabled|you will lose your account|your account will be deleted|legal action|police|arrest|fine|penalty)/i.test(text)
+    ){
+        add(4,"The message uses threats or account consequences to create pressure.");
     }
 
 
     /* =========================
-       SUSPICIOUS LINKS
+       PHISHING LINKS
     ========================= */
 
-    if (
-        message.indexOf("click this link") !== -1 ||
-        message.indexOf("click the link") !== -1 ||
-        message.indexOf("click here") !== -1 ||
-        message.indexOf("verify using this link") !== -1 ||
-        message.indexOf("login here") !== -1
-    ) {
+    if(
+        /(click here|click this link|click the link|tap this link|open this link|login here|verify here|verify using this link|confirm here)/i.test(text)
+    ){
+        add(4,"The message asks you to interact with a link.");
+    }
 
-        score += 2;
-
-        reasons.push(
-            "Request to interact with a potentially suspicious link"
-        );
-
+    if(
+        /(https?:\/\/|www\.|bit\.ly|tinyurl\.com|t\.co|cutt\.ly|is\.gd)/i.test(text)
+    ){
+        add(3,"A website or shortened link was detected.");
     }
 
 
     /* =========================
-       URL
+       FAKE SUPPORT
     ========================= */
 
-    if (
-        message.indexOf("http://") !== -1 ||
-        message.indexOf("https://") !== -1 ||
-        message.indexOf("www.") !== -1
-    ) {
-
-        score += 2;
-
-        reasons.push(
-            "A website link was detected"
-        );
-
+    if(
+        /(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|admin|administrator)/i.test(text) &&
+        /(send|give|share|verify|confirm|provide|code|password|otp|pin)/i.test(text)
+    ){
+        add(7,"The message may be impersonating support or a security team.");
     }
 
 
@@ -843,122 +579,257 @@ function checkMessage() {
        IMPERSONATION
     ========================= */
 
-    if (
-        message.indexOf("this is my new number") !== -1 ||
-        message.indexOf("i lost my phone") !== -1 ||
-        message.indexOf("i changed my number") !== -1 ||
-        message.indexOf("new whatsapp number") !== -1
-    ) {
+    if(
+        /(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account)/i.test(text)
+    ){
+        add(5,"Possible friend, family or contact impersonation detected.");
+    }
 
-        score += 2;
 
-        reasons.push(
-            "Possible impersonation or identity-change claim"
-        );
+    if(
+        /(mom|mum|dad|brother|sister|friend|boss|manager|ceo|director)/i.test(text) &&
+        /(send|transfer|pay|borrow|lend).{0,60}(money|cash|funds)/i.test(text)
+    ){
+        add(5,"Possible impersonation combined with a money request.");
+    }
 
+
+    /* =========================
+       PRIZES / GIVEAWAYS
+    ========================= */
+
+    if(
+        /(you have won|you won|congratulations.*winner|claim your prize|claim prize|free gift|free money|giveaway winner|you are selected)/i.test(text)
+    ){
+        add(5,"The message contains a possible fake prize or giveaway claim.");
+    }
+
+    if(
+        /(pay|send|transfer).{0,40}(fee|tax|shipping|delivery|processing).{0,40}(prize|reward|gift|winner)/i.test(text)
+    ){
+        add(7,"The message requests payment to receive a supposed prize.");
+    }
+
+
+    /* =========================
+       INVESTMENT SCAMS
+    ========================= */
+
+    if(
+        /(guaranteed profit|guaranteed returns|zero risk|no risk|double your money|triple your money|instant profit|easy money|make money fast|100% profit|daily profit)/i.test(text)
+    ){
+        add(6,"The message contains an unrealistic investment or money-making promise.");
+    }
+
+    if(
+        /(invest|investment|crypto|forex|trading).{0,80}(guaranteed|profit|return|deposit).{0,80}(send|pay|transfer|deposit)/i.test(text)
+    ){
+        add(6,"The message combines an investment claim with a money request.");
+    }
+
+
+    /* =========================
+       JOB SCAMS
+    ========================= */
+
+    if(
+        /(job offer|job vacancy|employment opportunity|work from home|remote job|hiring)/i.test(text) &&
+        /(registration fee|application fee|processing fee|pay first|send money|deposit)/i.test(text)
+    ){
+        add(7,"Possible fake job offer requesting payment.");
+    }
+
+
+    /* =========================
+       DELIVERY SCAMS
+    ========================= */
+
+    if(
+        /(package|parcel|delivery).{0,80}(fee|payment|customs|address|link|click)/i.test(text)
+    ){
+        add(5,"Possible fake delivery or package scam detected.");
+    }
+
+
+    /* =========================
+       PERSONAL INFORMATION
+    ========================= */
+
+    if(
+        /(send|give|share|provide|forward).{0,50}(id number|national id|nin|passport|driver's license|drivers license|date of birth|full name|home address)/i.test(text)
+    ){
+        add(6,"The message requests sensitive personal information.");
+    }
+
+
+    /* =========================
+       GIFT CARDS
+    ========================= */
+
+    if(
+        /(gift card|giftcard|itunes card|google play card|steam card|apple gift card)/i.test(text)
+    ){
+        add(5,"Gift-card payment language was detected.");
+    }
+
+
+    /* =========================
+       ROMANCE / EMOTIONAL PRESSURE
+    ========================= */
+
+    if(
+        /(emergency|hospital|accident|stranded|stuck|help me urgently|i need you to|please don't let me down)/i.test(text) &&
+        /(money|cash|transfer|payment|send)/i.test(text)
+    ){
+        add(5,"Emotional pressure is combined with a money request.");
+    }
+
+
+    /* =========================
+       SUSPICIOUS COMBINATION BOOST
+    ========================= */
+
+    const hasCredential =
+        /(password|otp|verification code|security code|pin|cvv|card details|login details)/i.test(text);
+
+    const hasMoney =
+        /(money|cash|payment|transfer|fee|deposit|pay)/i.test(text);
+
+    const hasUrgency =
+        /(urgent|immediately|act now|right now|don't delay|final warning)/i.test(text);
+
+    const hasLink =
+        /(https?:\/\/|www\.|click here|click the link|verify here)/i.test(text);
+
+    if(hasCredential && hasUrgency){
+        add(4,"Sensitive credentials are being requested under pressure.");
+    }
+
+    if(hasCredential && hasLink){
+        add(5,"Credential request combined with a link is a strong phishing signal.");
+    }
+
+    if(hasMoney && hasUrgency){
+        add(4,"A money request is combined with urgency.");
+    }
+
+    if(hasMoney && hasLink){
+        add(3,"A payment request is combined with a link.");
     }
 
 
     /* REMOVE DUPLICATES */
 
-    reasons =
-        [...new Set(reasons)];
+    reasons = [...new Set(reasons)];
 
 
-    /* MAX SCORE */
+    /* CAP SCORE */
 
-    score =
-        Math.min(score, 10);
+    score = Math.min(score,20);
 
 
-    /* REASON */
+    /* NEVER AUTOMATICALLY CALL UNKNOWN MESSAGES SAFE */
 
-    var reasonText = "";
+    if(score === 0){
 
-    if (reasons.length > 0) {
+        showResult(
+            "caution",
+            "🟡 CAUTION — UNVERIFIED",
+            score,
+            [
+                "No strong scam pattern was detected by the current rules.",
+                "This does NOT mean the message is safe."
+            ],
+            "Verify the sender independently before sharing information, clicking links or sending money."
+        );
 
-        reasonText =
-            "Why we flagged it:\n• " +
-            reasons.join("\n• ");
-
-    } else {
-
-        reasonText =
-            "Why we flagged it:\n• No strong scam indicators were detected.";
-
+        return;
     }
 
 
-    /* =========================
-       RESULT
-    ========================= */
+    if(score >= 15){
 
-    if (score >= 7) {
+        showResult(
+            "critical",
+            "🚨 CRITICAL RISK",
+            score,
+            reasons,
+            "Do NOT send money, passwords, PINs, OTPs, verification codes or sensitive personal information. Stop and verify the sender independently."
+        );
 
-        result.className =
-            "very-high show";
+    }else if(score >= 10){
 
-        result.textContent =
-            "🔴 VERY HIGH RISK\n\n" +
-            "Risk Score: " +
-            score +
-            "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Do not send money, passwords, PINs, OTPs, " +
-            "or verification codes. Verify the sender independently.";
+        showResult(
+            "very-high",
+            "🔴 VERY HIGH RISK",
+            score,
+            reasons,
+            "Do not continue with the request. Verify the sender through an official channel."
+        );
 
-    }
+    }else if(score >= 6){
 
-    else if (score >= 4) {
+        showResult(
+            "high",
+            "🟠 HIGH RISK",
+            score,
+            reasons,
+            "Stop and verify the message before taking action."
+        );
 
-        result.className =
-            "high show";
+    }else{
 
-        result.textContent =
-            "🟠 HIGH RISK\n\n" +
-            "Risk Score: " +
-            score +
-            "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Stop and verify the request before taking action.";
-
-    }
-
-    else if (score >= 2) {
-
-        result.className =
-            "caution show";
-
-        result.textContent =
-            "🟡 CAUTION\n\n" +
-            "Risk Score: " +
-            score +
-            "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "Be careful and verify the message before taking action.";
+        showResult(
+            "caution",
+            "🟡 CAUTION",
+            score,
+            reasons,
+            "Be careful. No decision should be based on this result alone."
+        );
 
     }
+}
 
-    else {
 
-        result.className =
-            "low show";
+/* =========================
+   RESULT DISPLAY
+========================= */
 
-        result.textContent =
-            "🟢 LOW RISK\n\n" +
-            "Risk Score: " +
-            score +
-            "/10\n\n" +
-            reasonText +
-            "\n\nSafety Advice:\n" +
-            "No strong scam indicators were detected. " +
-            "A low-risk result does not guarantee that a message is safe.";
+function showResult(type,title,score,reasons,advice){
 
-    }
+    const result =
+        document.getElementById("result");
 
+    let html =
+        '<div class="result-title">'+title+'</div>';
+
+    html +=
+        '<div class="score">Risk Score: '+score+'/20</div>';
+
+    html += '<strong>Why TrustAI flagged it:</strong>';
+
+    html += "<ul>";
+
+    reasons.forEach(function(reason){
+        html += "<li>"+escapeHTML(reason)+"</li>";
+    });
+
+    html += "</ul>";
+
+    html +=
+        '<div class="warning-note">🛡️ Safety Advice: '+
+        escapeHTML(advice)+
+        '</div>';
+
+    result.innerHTML = html;
+
+    result.className =
+        "result show "+type;
+
+    result.scrollIntoView({
+        behavior:"smooth",
+        block:"nearest"
+    });
 }
 
 
@@ -966,26 +837,34 @@ function checkMessage() {
    CLEAR
 ========================= */
 
-function clearMessage() {
+function clearMessage(){
 
-    var message =
-        document.getElementById("message");
+    document.getElementById("message").value = "";
 
-    var result =
+    const result =
         document.getElementById("result");
 
-
-    message.value = "";
-
-    result.textContent = "";
+    result.innerHTML = "";
 
     result.className = "";
+}
 
+
+/* =========================
+   SAFE DISPLAY
+========================= */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
 }
 
 </script>
 
-
 </body>
-
 </html>
