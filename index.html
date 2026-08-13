@@ -29,8 +29,8 @@
        ================================ */
     body {
       background-color: var(--bg-color);
-      /* Subtle radial ambient glow in center screen */
-      background-image: radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+      /* Radial ambient glow in center screen */
+      background-image: radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.12) 0%, transparent 60%);
       color: var(--text-color);
       font-family: var(--font-family);
       min-height: 100vh;
@@ -85,7 +85,7 @@
     }
 
     /* ================================
-       Splash Card / Content
+       Splash Card & SVG Logo Styling
        ================================ */
     .brand-container {
       text-align: center;
@@ -95,13 +95,16 @@
       animation: fadeIn 0.8s ease-out forwards;
     }
 
-    /* Shield Graphic Pulse Animation */
-    .brand-logo {
-      width: 150px;
-      height: auto;
-      margin-bottom: 1.5rem;
-      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
-      user-select: none;
+    /* SVG Shield Logo Container & Pulse */
+    .logo-wrapper {
+      margin-bottom: 1.25rem;
+      display: inline-block;
+    }
+
+    .trust-ai-shield {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.5));
       animation: pulseGlow 3s ease-in-out infinite alternate;
     }
 
@@ -116,7 +119,7 @@
       font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.5;
-      min-height: 2.8em; /* Prevents layout shift during text changes */
+      min-height: 2.8em;
       transition: opacity 0.3s ease;
     }
 
@@ -134,12 +137,12 @@
 
     @keyframes pulseGlow {
       from {
-        filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.35));
+        filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.4));
         transform: scale(1);
       }
       to {
-        filter: drop-shadow(0 0 28px rgba(59, 130, 246, 0.65));
-        transform: scale(1.02);
+        filter: drop-shadow(0 0 32px rgba(59, 130, 246, 0.8));
+        transform: scale(1.03);
       }
     }
   </style>
@@ -162,9 +165,45 @@
   <!-- Real-time Loading Percentage -->
   <div class="status-badge" id="statusBadge">0%</div>
 
-  <!-- Main Center Content -->
+  <!-- Main Content -->
   <main class="brand-container">
-    <img src="logo.png" alt="Trust AI Shield Logo" class="brand-logo" />
+    
+    <!-- PURE SVG LOGO CODE (Replaces logo.png completely) -->
+    <div class="logo-wrapper">
+      <svg class="trust-ai-shield" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Outer Border Glow Gradient -->
+          <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38bdf8" />
+            <stop offset="100%" stop-color="#1d4ed8" />
+          </linearGradient>
+
+          <!-- Inner Shield Body Gradient -->
+          <linearGradient id="shield-body" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#1e40af" />
+            <stop offset="100%" stop-color="#0f172a" />
+          </linearGradient>
+        </defs>
+
+        <!-- Outer Glowing Cyan Shield Border -->
+        <path d="M50 5 L88 18 V48 C88 70 50 92 50 92 C50 92 12 70 12 48 V18 L50 5 Z" 
+              fill="url(#cyan-glow)" />
+
+        <!-- Inner Dark Blue Shield Body -->
+        <path d="M50 10 L83 21 V47 C83 66 50 86 50 86 C50 86 17 66 17 47 V21 L50 10 Z" 
+              fill="url(#shield-body)" />
+
+        <!-- Bold White "AI" Text -->
+        <text x="50" y="52" 
+              font-family="-apple-system, BlinkMacSystemFont, sans-serif" 
+              font-size="28" 
+              font-weight="900" 
+              fill="#ffffff" 
+              text-anchor="middle" 
+              dominant-baseline="central" 
+              letter-spacing="1">AI</text>
+      </svg>
+    </div>
     
     <h1 class="brand-title">Establishing Secure Connection</h1>
     <p class="brand-subtitle" id="statusText">Initializing Trust AI environment...</p>
