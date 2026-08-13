@@ -10,7 +10,7 @@
        CSS Variables & Reset
        ================================ */
     :root {
-      --bg-color: #0b0f19;
+      --bg-color: #080c14;
       --text-color: #f3f4f6;
       --text-muted: #9ca3af;
       --primary-color: #3b82f6;
@@ -25,10 +25,12 @@
     }
 
     /* ================================
-       Global Styles & Exit Transition
+       Global Styles & Canvas Background
        ================================ */
     body {
       background-color: var(--bg-color);
+      /* Subtle radial ambient glow in center screen */
+      background-image: radial-gradient(circle at 50% 45%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
       color: var(--text-color);
       font-family: var(--font-family);
       min-height: 100vh;
@@ -42,14 +44,14 @@
       transition: opacity 0.5s ease-in-out;
     }
 
-    /* Triggered via JS right before page redirection */
+    /* Smooth Page Exit */
     body.page-exit {
       opacity: 0;
       pointer-events: none;
     }
 
     /* ================================
-       Top Progress Bar Track
+       Top Progress Bar Track & Percentage
        ================================ */
     .progress-container {
       position: fixed;
@@ -65,30 +67,42 @@
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #2563eb, var(--primary-color));
-      box-shadow: 0 0 12px var(--primary-glow);
-      /* Smooth cubic-bezier timing curve */
-      transition: width 3s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 0 14px var(--primary-glow);
+      transition: width 3.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Minimalist percentage counter badge in top corner */
+    .status-badge {
+      position: fixed;
+      top: 12px;
+      right: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--primary-color);
+      opacity: 0.8;
+      font-family: monospace;
     }
 
     /* ================================
-       Splash Card / Screen Content
+       Splash Card / Content
        ================================ */
     .brand-container {
       text-align: center;
       padding: 2rem;
-      max-width: 420px;
+      max-width: 440px;
       width: 90%;
       animation: fadeIn 0.8s ease-out forwards;
     }
 
-    /* Custom Shield Graphic Styling */
+    /* Shield Graphic Pulse Animation */
     .brand-logo {
       width: 150px;
       height: auto;
-      margin-bottom: 1rem;
-      /* Adds dynamic ambient glow behind shield */
-      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
       user-select: none;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
     }
 
     .brand-title {
@@ -102,8 +116,11 @@
       font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.5;
+      min-height: 2.8em; /* Prevents layout shift during text changes */
+      transition: opacity 0.3s ease;
     }
 
+    /* Keyframe Animations */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -112,6 +129,17 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      from {
+        filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.35));
+        transform: scale(1);
+      }
+      to {
+        filter: drop-shadow(0 0 28px rgba(59, 130, 246, 0.65));
+        transform: scale(1.02);
       }
     }
   </style>
@@ -131,43 +159,66 @@
     ></div>
   </div>
 
+  <!-- Real-time Loading Percentage -->
+  <div class="status-badge" id="statusBadge">0%</div>
+
   <!-- Main Center Content -->
   <main class="brand-container">
-    <!-- Replace "logo.png" with the path/filename of your saved shield image -->
     <img src="logo.png" alt="Trust AI Shield Logo" class="brand-logo" />
     
     <h1 class="brand-title">Establishing Secure Connection</h1>
-    <p class="brand-subtitle">Verifying system integrity and loading Trust AI environment...</p>
+    <p class="brand-subtitle" id="statusText">Initializing Trust AI environment...</p>
   </main>
 
-  <!-- Optimized Async Script -->
+  <!-- Dynamic Async Execution -->
   <script>
-    // Promise utility helper
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     async function handlePageTransition() {
       const progressBar = document.getElementById("progressBar");
+      const statusBadge = document.getElementById("statusBadge");
+      const statusText = document.getElementById("statusText");
+
       if (!progressBar) return;
 
-      // Initial short pause before progress animation begins
-      await delay(400);
-
-      // Trigger progress growth
+      // Phase 1: Start Progress Growth
+      await delay(300);
       progressBar.style.width = "100%";
       progressBar.setAttribute("aria-valuenow", "100");
 
-      // Wait for progress bar to finish filling + hold view
-      await delay(3200);
+      // Animate percentage counter in sync with progress
+      let currentProgress = 0;
+      const counterInterval = setInterval(() => {
+        if (currentProgress < 100) {
+          currentProgress += 1;
+          statusBadge.textContent = `${currentProgress}%`;
+        } else {
+          clearInterval(counterInterval);
+        }
+      }, 30);
 
-      // Fade out screen
+      // Phase 2: Dynamic status text updates
+      await delay(1200);
+      statusText.style.opacity = "0";
+      await delay(300);
+      statusText.textContent = "Verifying security protocols & system integrity...";
+      statusText.style.opacity = "1";
+
+      await delay(1300);
+      statusText.style.opacity = "0";
+      await delay(300);
+      statusText.textContent = "Connection secure. Redirecting...";
+      statusText.style.opacity = "1";
+
+      // Phase 3: Hold & Fade Out
+      await delay(600);
       document.body.classList.add("page-exit");
 
-      // Redirect after fade completes
+      // Phase 4: Redirect
       await delay(500);
       window.location.href = "home.html";
     }
 
-    // Execute flow when DOM is ready
     document.addEventListener("DOMContentLoaded", handlePageTransition);
   </script>
 
