@@ -71,7 +71,7 @@
       transition: width 3.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Minimalist percentage counter badge in top corner */
+    /* Percentage counter badge */
     .status-badge {
       position: fixed;
       top: 12px;
@@ -95,15 +95,14 @@
       animation: fadeIn 0.8s ease-out forwards;
     }
 
-    /* SVG Shield Logo Container & Pulse */
     .logo-wrapper {
       margin-bottom: 1.25rem;
       display: inline-block;
     }
 
     .trust-ai-shield {
-      width: 140px;
-      height: 140px;
+      width: 130px;
+      height: 130px;
       filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.5));
       animation: pulseGlow 3s ease-in-out infinite alternate;
     }
@@ -168,40 +167,24 @@
   <!-- Main Content -->
   <main class="brand-container">
     
-    <!-- PURE SVG LOGO CODE (Replaces logo.png completely) -->
+    <!-- SVG SHIELD LOGO (No external image needed) -->
     <div class="logo-wrapper">
       <svg class="trust-ai-shield" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <!-- Outer Border Glow Gradient -->
           <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#38bdf8" />
             <stop offset="100%" stop-color="#1d4ed8" />
           </linearGradient>
 
-          <!-- Inner Shield Body Gradient -->
           <linearGradient id="shield-body" x1="50%" y1="0%" x2="50%" y2="100%">
             <stop offset="0%" stop-color="#1e40af" />
             <stop offset="100%" stop-color="#0f172a" />
           </linearGradient>
         </defs>
 
-        <!-- Outer Glowing Cyan Shield Border -->
-        <path d="M50 5 L88 18 V48 C88 70 50 92 50 92 C50 92 12 70 12 48 V18 L50 5 Z" 
-              fill="url(#cyan-glow)" />
-
-        <!-- Inner Dark Blue Shield Body -->
-        <path d="M50 10 L83 21 V47 C83 66 50 86 50 86 C50 86 17 66 17 47 V21 L50 10 Z" 
-              fill="url(#shield-body)" />
-
-        <!-- Bold White "AI" Text -->
-        <text x="50" y="52" 
-              font-family="-apple-system, BlinkMacSystemFont, sans-serif" 
-              font-size="28" 
-              font-weight="900" 
-              fill="#ffffff" 
-              text-anchor="middle" 
-              dominant-baseline="central" 
-              letter-spacing="1">AI</text>
+        <path d="M50 5 L88 18 V48 C88 70 50 92 50 92 C50 92 12 70 12 48 V18 L50 5 Z" fill="url(#cyan-glow)" />
+        <path d="M50 10 L83 21 V47 C83 66 50 86 50 86 C50 86 17 66 17 47 V21 L50 10 Z" fill="url(#shield-body)" />
+        <text x="50" y="52" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" dominant-baseline="central" letter-spacing="1">AI</text>
       </svg>
     </div>
     
@@ -209,7 +192,7 @@
     <p class="brand-subtitle" id="statusText">Initializing Trust AI environment...</p>
   </main>
 
-  <!-- Dynamic Async Execution -->
+  <!-- Script -->
   <script>
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -220,12 +203,10 @@
 
       if (!progressBar) return;
 
-      // Phase 1: Start Progress Growth
       await delay(300);
       progressBar.style.width = "100%";
       progressBar.setAttribute("aria-valuenow", "100");
 
-      // Animate percentage counter in sync with progress
       let currentProgress = 0;
       const counterInterval = setInterval(() => {
         if (currentProgress < 100) {
@@ -236,7 +217,6 @@
         }
       }, 30);
 
-      // Phase 2: Dynamic status text updates
       await delay(1200);
       statusText.style.opacity = "0";
       await delay(300);
@@ -249,11 +229,9 @@
       statusText.textContent = "Connection secure. Redirecting...";
       statusText.style.opacity = "1";
 
-      // Phase 3: Hold & Fade Out
       await delay(600);
       document.body.classList.add("page-exit");
 
-      // Phase 4: Redirect
       await delay(500);
       window.location.href = "home.html";
     }
