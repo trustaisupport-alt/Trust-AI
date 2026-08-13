@@ -1,1342 +1,931 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
+content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI — Scam Protection</title>
-
-<style>
-
-/* =====================================================
-   TRUSTAI HOME
-   PREMIUM NAVY / BLUE / CYAN DESIGN
-   ===================================================== */
+<title>TrustAI - Home</title>  <style>  
+  
+/* =====================================================  
+   TRUSTAI HOME — ULTRA-MODERN DARK SECURITY DESIGN
+   THIS STYLE IS ONLY FOR home.html  
+   ===================================================== */  
 
 :root {
-    --navy: #07111f;
-    --navy-2: #0b1728;
-    --blue: #2563eb;
-    --cyan: #22d3ee;
-    --blue-light: #60a5fa;
-
-    --white: #ffffff;
-    --text: #102033;
-    --muted: #64748b;
-
-    --border: #e2e8f0;
-
-    --card-shadow:
-        0 12px 35px rgba(15, 23, 42, 0.07);
-
-    --radius: 22px;
+    --primary: #6366f1;
+    --primary-glow: rgba(99, 102, 241, 0.15);
+    --bg-main: #090d16;
+    --bg-card: rgba(17, 24, 39, 0.75);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --radius-lg: 20px;
+    --radius-md: 14px;
 }
-
-
-/* =====================================================
-   RESET
-   ===================================================== */
-
-* {
-    box-sizing: border-box;
+  
+* {  
+    box-sizing: border-box;  
     -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    color: var(--text);
-
-    background:
-        radial-gradient(
-            circle at 0% 0%,
-            rgba(37, 99, 235, 0.10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 100% 10%,
-            rgba(34, 211, 238, 0.09),
-            transparent 28%
-        ),
-        #f7faff;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   PAGE
-   ===================================================== */
-
-.page {
-    width: min(1120px, calc(100% - 28px));
-    margin: auto;
+}  
+  
+html {  
+    scroll-behavior: smooth;  
+}  
+  
+body {  
+    margin: 0;  
+    font-family:  
+        Inter,  
+        system-ui,  
+        -apple-system,  
+        BlinkMacSystemFont,  
+        "Segoe UI",  
+        Arial,  
+        sans-serif;  
+  
+    background:  
+        radial-gradient(  
+            circle at 10% 0%,  
+            rgba(99, 102, 241, 0.12),  
+            transparent 40%  
+        ),  
+        radial-gradient(  
+            circle at 90% 20%,  
+            rgba(14, 165, 233, 0.08),  
+            transparent 40%  
+        ),  
+        var(--bg-main);  
+  
+    color: var(--text-main);  
+    line-height: 1.6;  
+    min-height: 100vh;
+}  
+  
+  
+/* =====================================================  
+   PAGE  
+   ===================================================== */  
+  
+.page {  
+    width: min(1050px, calc(100% - 32px));  
+    margin: auto;  
     padding-bottom: 40px;
-}
-
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-
-.header {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 18px 0;
-}
-
-
-/* =====================================================
-   BRAND
-   ===================================================== */
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-}
-
-.brand-shield {
-    width: 47px;
-    height: 47px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #06b6d4
-        );
-
-    color: white;
-
-    font-size: 24px;
-
-    box-shadow:
-        0 10px 28px
-        rgba(37, 99, 235, 0.28);
-}
-
-.brand-name {
-    font-size: 27px;
-    font-weight: 900;
-    letter-spacing: -1.2px;
-
-    color: #0b1728;
-}
-
-.brand-name span {
-    color: #2563eb;
-}
-
-
-/* =====================================================
-   MENU BUTTON
-   ===================================================== */
-
-.menu-button {
-    width: 50px;
-    height: 50px;
-
-    border: 1px solid #dbe3ee;
-    border-radius: 15px;
-
-    background: rgba(255,255,255,0.95);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 5px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 24px
-        rgba(15, 23, 42, 0.08);
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-}
+}  
+  
+  
+/* =====================================================  
+   HEADER  
+   ===================================================== */  
+  
+.header {  
+    display: flex;  
+    align-items: center;  
+    justify-content: space-between;  
+  
+    padding: 24px 0 16px;  
+}  
+  
+.brand {  
+    display: flex;  
+    align-items: center;  
+    gap: 12px;  
+}  
+  
+.brand-shield {  
+    width: 48px;  
+    height: 48px;  
+  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+  
+    border-radius: 14px;  
+  
+    background:  
+        linear-gradient(  
+            135deg,  
+            #6366f1,  
+            #3b82f6  
+        );  
+  
+    color: white;  
+  
+    font-size: 24px;  
+  
+    box-shadow:  
+        0 10px 25px -5px rgba(99, 102, 241, 0.4);  
+}  
+  
+.brand-name {  
+    font-size: 26px;  
+    font-weight: 900;  
+    letter-spacing: -0.5px;  
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}  
+  
+  
+/* =====================================================  
+   MENU BUTTON  
+   ===================================================== */  
+  
+.menu-button {  
+    width: 48px;  
+    height: 48px;  
+  
+    border: 1px solid var(--border-color);  
+    border-radius: 14px;  
+  
+    background: rgba(15, 23, 42, 0.8);  
+    backdrop-filter: blur(12px);
+  
+    display: flex;  
+    flex-direction: column;  
+    justify-content: center;  
+    align-items: center;  
+  
+    gap: 5px;  
+  
+    cursor: pointer;  
+  
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+    transition: all 0.2s ease;
+}  
 
 .menu-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 28px
-        rgba(15, 23, 42, 0.12);
-}
-
-.menu-button span {
-    display: block;
-
-    width: 23px;
-    height: 3px;
-
-    border-radius: 10px;
-
-    background: #0f2742;
-
-    transition:
-        transform .25s ease,
-        opacity .25s ease;
-}
-
-
-/* =====================================================
-   MENU OPEN STATE
-   ===================================================== */
-
-.menu-button.active span:nth-child(1) {
-    transform:
-        translateY(8px)
-        rotate(45deg);
-}
-
-.menu-button.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-button.active span:nth-child(3) {
-    transform:
-        translateY(-8px)
-        rotate(-45deg);
-}
-
-
-/* =====================================================
-   SIDE MENU
-   ===================================================== */
-
-.menu-panel {
-    position: fixed;
-
-    top: 0;
-    right: -340px;
-
-    width: min(320px, 88vw);
-    height: 100vh;
-
-    z-index: 1000;
-
-    padding: 25px 20px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #07111f,
-            #0b1728
-        );
-
-    box-shadow:
-        -20px 0 50px
-        rgba(0,0,0,0.22);
-
-    transition:
-        right .35s
-        cubic-bezier(.22,1,.36,1);
-
-    overflow-y: auto;
-}
-
-.menu-panel.open {
-    right: 0;
-}
-
-.menu-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-bottom: 20px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.09);
-}
-
-.menu-title {
-    color: white;
-
-    font-size: 20px;
-    font-weight: 800;
-}
-
-.close-menu {
-    width: 40px;
-    height: 40px;
-
-    border: 0;
-    border-radius: 12px;
-
-    background:
-        rgba(255,255,255,.08);
-
-    color: white;
-
-    font-size: 22px;
-
-    cursor: pointer;
-}
-
-.menu-links {
-    display: flex;
-    flex-direction: column;
-
-    gap: 8px;
-
-    margin-top: 20px;
-}
-
-.menu-link {
-    display: flex;
-    align-items: center;
-
-    gap: 13px;
-
-    padding: 13px 14px;
-
-    border-radius: 14px;
-
-    color: #dbeafe;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 700;
-
-    transition:
-        background .2s ease,
-        transform .2s ease;
-}
-
-.menu-link:hover {
-    background:
-        rgba(37,99,235,.20);
-
-    transform: translateX(3px);
-}
-
-.menu-icon {
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 11px;
-
-    background:
-        rgba(255,255,255,.08);
-
-    font-size: 18px;
-}
-
-.menu-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 999;
-
-    background:
-        rgba(2, 8, 23, .48);
-
-    backdrop-filter: blur(3px);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease;
-}
-
-.menu-overlay.open {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* =====================================================
-   HERO
-   ===================================================== */
-
-.hero {
-    position: relative;
-    overflow: hidden;
-
-    margin-top: 10px;
-
-    padding: 48px 38px;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #07111f,
-            #0b2340 55%,
-            #073047
-        );
-
-    color: white;
-
-    box-shadow:
-        0 25px 60px
-        rgba(7, 17, 31, .18);
-}
-
-.hero::before {
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 300px;
-
-    right: -90px;
-    top: -110px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(34,211,238,.20),
-            transparent 68%
-        );
-}
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    left: -70px;
-    bottom: -100px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(37,99,235,.20),
-            transparent 70%
-        );
-}
-
-.hero-content {
-    position: relative;
-
-    z-index: 2;
-
-    max-width: 730px;
-}
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 7px 13px;
-
-    margin-bottom: 18px;
-
-    border:
-        1px solid
-        rgba(96,165,250,.25);
-
-    border-radius: 999px;
-
-    background:
-        rgba(96,165,250,.10);
-
-    color: #bae6fd;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: .4px;
-}
-
-.hero h1 {
-    margin: 0 0 16px;
-
-    font-size:
-        clamp(34px, 6vw, 56px);
-
-    line-height: 1.05;
-
-    letter-spacing: -2.5px;
-
-    font-weight: 900;
-}
-
-.hero h1 span {
-    color: var(--cyan);
-}
-
-.hero p {
-    max-width: 690px;
-
-    margin: 0;
-
-    color: #b8c7d9;
-
-    font-size: 16px;
-}
-
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 26px;
-}
-
-.hero-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 13px 18px;
-
-    border-radius: 12px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #2563eb,
-            #0891b2
-        );
-
-    color: white;
-
-    text-decoration: none;
-
-    font-weight: 800;
-
-    box-shadow:
-        0 10px 25px
-        rgba(37,99,235,.28);
-
-    transition: .2s ease;
-}
-
-.hero-button:hover {
+    border-color: var(--primary);
     transform: translateY(-2px);
 }
-
-.hero-button.secondary {
-    background:
-        rgba(255,255,255,.08);
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    box-shadow: none;
-}
-
-
-/* =====================================================
-   SECTION TITLE
-   ===================================================== */
-
-.section-title {
-    display: flex;
-    align-items: center;
-
-    gap: 11px;
-
-    margin:
-        38px 0 17px;
-
-    color: #0b1728;
-
-    font-size: 23px;
-
-    font-weight: 900;
-
-    letter-spacing: -.5px;
-}
-
-.section-icon {
-    width: 39px;
-    height: 39px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    background:
-        #e0f2fe;
-
-    color: #0369a1;
-
-    font-size: 19px;
-}
-
-
-/* =====================================================
-   CARDS
-   ===================================================== */
-
-.cards {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-}
-
-.card {
-    position: relative;
-
-    overflow: hidden;
-
-    min-height: 215px;
-
-    padding: 25px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: var(--radius);
-
-    background:
-        rgba(255,255,255,.96);
-
-    box-shadow:
-        var(--card-shadow);
-
-    text-decoration: none;
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-
-    border-color:
-        #93c5fd;
-
-    box-shadow:
-        0 22px 45px
-        rgba(15,23,42,.11);
-}
-
-.card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 4px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563eb,
-            #22d3ee
-        );
-}
-
-.card-icon {
-    width: 52px;
-    height: 52px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 16px;
-
-    border-radius: 15px;
-
-    background:
-        #eff6ff;
-
-    font-size: 25px;
-
-    transition:
-        transform .25s ease;
-}
-
-.card:hover .card-icon {
-    transform:
-        scale(1.08)
-        rotate(-2deg);
-}
-
-.card h2 {
-    margin: 0 0 8px;
-
-    color: #102033;
-
-    font-size: 19px;
-
-    font-weight: 850;
-
-    letter-spacing: -.3px;
-}
-
-.card p {
-    margin: 0;
-
-    color: #64748b;
-
-    font-size: 14.5px;
-
+  
+.menu-button span {  
+    width: 20px;  
+    height: 2.5px;  
+  
+    border-radius: 3px;  
+  
+    background: var(--text-main);  
+}  
+  
+  
+/* =====================================================  
+   HERO  
+   ===================================================== */  
+  
+.hero {  
+    position: relative;  
+    overflow: hidden;  
+  
+    margin-top: 12px;  
+  
+    padding: 40px 32px;  
+  
+    border: 1px solid var(--border-color);  
+    border-radius: var(--radius-lg);  
+  
+    background: var(--bg-card);  
+    backdrop-filter: blur(16px);
+  
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4);  
+}  
+  
+.hero::after {  
+    content: "";  
+  
+    position: absolute;  
+  
+    width: 200px;  
+    height: 200px;  
+  
+    right: -60px;  
+    top: -60px;  
+  
+    border-radius: 50%;  
+  
+    background:  
+        radial-gradient(  
+            circle,  
+            rgba(99, 102, 241, 0.18),  
+            transparent 70%  
+        );  
+}  
+  
+.hero h1 {  
+    position: relative;  
+    z-index: 1;  
+  
+    max-width: 650px;  
+  
+    margin: 0 0 16px;  
+  
+    font-size: clamp(32px, 5.5vw, 46px);  
+  
+    line-height: 1.15;  
+  
+    letter-spacing: -1px;  
+  
+    color: var(--text-main);  
+    font-weight: 800;
+}  
+  
+.hero h1 span {  
+    background: linear-gradient(135deg, #818cf8, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}  
+  
+.hero p {  
+    position: relative;  
+    z-index: 1;  
+  
+    max-width: 720px;  
+  
+    margin: 0;  
+  
+    color: var(--text-muted);  
+  
+    font-size: 15.5px;  
     line-height: 1.65;
-}
-
-
-/* =====================================================
-   SECURITY CENTER
-   ===================================================== */
-
-.security-center {
-    position: relative;
-    overflow: hidden;
-
-    margin-top: 25px;
-
-    padding: 34px;
-
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0b1728,
-            #123c5a
-        );
-
-    color: white;
-
-    box-shadow:
-        0 20px 50px
-        rgba(7,17,31,.18);
-}
-
-.security-center::before {
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    right: -80px;
-    top: -100px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(34,211,238,.18),
-            transparent 70%
-        );
-}
-
-.security-center h2,
-.security-center p,
-.security-button {
-    position: relative;
-
-    z-index: 2;
-}
-
-.security-center h2 {
-    margin: 0 0 9px;
-
-    font-size: 26px;
-}
-
-.security-center p {
-    max-width: 680px;
-
-    margin: 0 0 22px;
-
-    color: #b8c7d9;
-
+}  
+  
+  
+/* =====================================================  
+   SECTION TITLE  
+   ===================================================== */  
+  
+.section-title {  
+    display: flex;  
+    align-items: center;  
+    gap: 12px;  
+  
+    margin: 40px 0 20px;  
+  
+    font-size: 22px;  
+    font-weight: 800;  
+  
+    color: var(--text-main);  
+    letter-spacing: -0.3px;
+}  
+  
+.section-icon {  
+    width: 38px;  
+    height: 38px;  
+  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+  
+    border-radius: 12px;  
+  
+    background: var(--primary-glow);  
+  
+    color: var(--primary);  
+  
+    font-size: 18px;  
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}  
+  
+  
+/* =====================================================  
+   CARDS  
+   ===================================================== */  
+  
+.cards {  
+    display: grid;  
+  
+    grid-template-columns:  
+        repeat(auto-fit, minmax(280px, 1fr));  
+  
+    gap: 20px;  
+}  
+  
+.card {  
+    position: relative;  
+  
+    overflow: hidden;  
+  
+    padding: 28px;  
+  
+    min-height: 200px;  
+  
+    border: 1px solid var(--border-color);  
+    border-radius: var(--radius-lg);  
+  
+    background: var(--bg-card);  
+    backdrop-filter: blur(16px);
+  
+    text-decoration: none;  
+  
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);  
+  
+    transition:  
+        transform 0.25s ease,  
+        box-shadow 0.25s ease,  
+        border-color 0.25s ease;  
+}  
+  
+.card:hover {  
+    transform: translateY(-5px);  
+  
+    border-color: rgba(99, 102, 241, 0.4);  
+  
+    box-shadow:  
+        0 20px 40px -10px rgba(0, 0, 0, 0.4);  
+}  
+  
+  
+/* =====================================================  
+   DIFFERENT ACCENT COLORS  
+   ===================================================== */  
+  
+.card::before {  
+    content: "";  
+  
+    position: absolute;  
+  
+    left: 0;  
+    top: 0;  
+  
+    width: 100%;  
+    height: 3px;  
+  
+    background: var(--primary);  
+}  
+  
+.message-card::before {  
+    background: #6366f1;  
+}  
+  
+.conversation-card::before {  
+    background: #3b82f6;  
+}  
+  
+.website-card::before {  
+    background: #06b6d4;  
+}  
+  
+.security-card::before {  
+    background: #10b981;  
+}  
+  
+.alert-card::before {  
+    background: #f97316;  
+}  
+  
+.report-card::before {  
+    background: #ef4444;  
+}  
+  
+.contact-card::before {  
+    background: #ec4899;  
+}  
+  
+  
+/* =====================================================  
+   CARD ICON  
+   ===================================================== */  
+  
+.card-icon {  
+    width: 48px;  
+    height: 48px;  
+  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+  
+    margin-bottom: 18px;  
+  
+    border-radius: var(--radius-md);  
+  
+    background: rgba(255, 255, 255, 0.04);  
+    border: 1px solid var(--border-color);
+  
+    font-size: 22px;  
+}  
+  
+  
+/* =====================================================  
+   CARD TEXT  
+   ===================================================== */  
+  
+.card h2 {  
+    margin: 0 0 8px;  
+  
+    color: var(--text-main);  
+  
+    font-size: 19px;  
+    font-weight: 750;  
+    letter-spacing: -0.2px;
+}  
+  
+.card p {  
+    margin: 0;  
+  
+    color: var(--text-muted);  
+  
+    font-size: 14.5px;  
+  
+    line-height: 1.6;  
+}  
+  
+  
+/* =====================================================  
+   SECURITY CENTER  
+   ===================================================== */  
+  
+.security-center {  
+    position: relative;  
+    overflow: hidden;  
+  
+    margin-top: 36px;  
+  
+    padding: 34px 30px;  
+  
+    border-radius: var(--radius-lg);  
+    border: 1px solid rgba(99, 102, 241, 0.2);
+  
+    background:  
+        linear-gradient(  
+            135deg,  
+            rgba(30, 27, 75, 0.8),  
+            rgba(49, 46, 129, 0.8)  
+        );  
+    backdrop-filter: blur(16px);
+  
+    color: white;  
+  
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);  
+}  
+  
+.security-center::after {  
+    content: "";  
+  
+    position: absolute;  
+  
+    width: 220px;  
+    height: 220px;  
+  
+    right: -60px;  
+    top: -70px;  
+  
+    border: 1px solid rgba(255,255,255,0.08);  
+  
+    border-radius: 50%;  
+}  
+  
+.security-center h2 {  
+    position: relative;  
+    z-index: 1;  
+  
+    margin: 0 0 10px;  
+  
+    font-size: 24px;  
+    font-weight: 800;
+}  
+  
+.security-center p {  
+    position: relative;  
+    z-index: 1;  
+  
+    max-width: 680px;  
+  
+    margin: 0 0 24px;  
+  
+    color: #c7d2fe;  
     font-size: 15px;
-}
-
-.security-button {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 13px 19px;
-
-    border-radius: 12px;
-
-    background: white;
-
-    color: #0b3a5a;
-
-    text-decoration: none;
-
-    font-weight: 850;
-
-    transition: .2s ease;
-}
-
-.security-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 10px 25px
-        rgba(0,0,0,.2);
-}
-
-
-/* =====================================================
-   REMEMBER
-   ===================================================== */
-
-.remember {
-    margin-top: 30px;
-
-    padding: 25px;
-
-    border:
-        1px solid
-        #bae6fd;
-
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f0f9ff,
-            #f8fdff
-        );
-}
-
-.remember h2 {
-    margin: 0 0 10px;
-
-    color: #075985;
-
-    font-size: 20px;
-}
-
-.remember p {
-    margin: 8px 0;
-
-    color: #52677a;
-
-    font-size: 14px;
-}
-
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
-footer {
-    margin-top: 45px;
-
-    padding:
-        25px 0
-        35px;
-
-    border-top:
-        1px solid
-        #dbe3ee;
-
-    text-align: center;
-
-    color: #7b8a9b;
-
-    font-size: 13px;
-}
-
-.footer-brand {
-    margin-bottom: 5px;
-
-    color: #17324d;
-
+}  
+  
+.security-button {  
+    position: relative;  
+    z-index: 2;  
+  
+    display: inline-flex;  
+  
+    padding: 13px 22px;  
+  
+    border-radius: var(--radius-md);  
+  
+    background: white;  
+  
+    color: #1e1b4b;  
+  
+    text-decoration: none;  
+  
+    font-weight: 800;  
+    font-size: 14.5px;
+  
+    transition: all 0.2s ease;  
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}  
+  
+.security-button:hover {  
+    transform: translateY(-2px);  
+  
+    box-shadow:  
+        0 14px 25px rgba(0, 0, 0, 0.3);  
+}  
+  
+  
+/* =====================================================  
+   REMEMBER BOX  
+   ===================================================== */  
+  
+.remember {  
+    margin-top: 36px;  
+  
+    padding: 28px;  
+  
+    border: 1px solid rgba(234, 179, 8, 0.2);  
+  
+    border-radius: var(--radius-lg);  
+  
+    background: rgba(161, 98, 7, 0.12);  
+    backdrop-filter: blur(12px);
+}  
+  
+.remember h2 {  
+    margin: 0 0 12px;  
+  
+    color: #fef08a;  
+  
+    font-size: 20px;  
+    font-weight: 800;
+}  
+  
+.remember p {  
+    margin: 10px 0;  
+  
+    color: #fef9c3;  
+    font-size: 14.5px;
+}  
+  
+  
+/* =====================================================  
+   FOOTER  
+   ===================================================== */  
+  
+footer {  
+    margin-top: 48px;  
+  
+    padding: 28px 0 35px;  
+  
+    border-top: 1px solid var(--border-color);  
+  
+    text-align: center;  
+  
+    color: var(--text-muted);  
+  
+    font-size: 13.5px;  
+}  
+  
+.footer-brand {  
+    margin-bottom: 6px;  
+  
+    color: var(--text-main);  
+  
+    font-weight: 800;  
     font-size: 15px;
+}  
+  
+  
+/* =====================================================  
+   MOBILE  
+   ===================================================== */  
+  
+@media (max-width: 700px) {  
+  
+    .page {  
+        width: calc(100% - 28px);  
+    }  
+  
+    .header {  
+        padding-top: 20px;  
+    }  
+  
+    .brand-name {  
+        font-size: 24px;  
+    }  
+  
+    .hero {  
+        padding: 28px 22px;  
+        border-radius: 18px;  
+    }  
+  
+    .hero h1 {  
+        font-size: 32px;  
+    }  
+  
+    .hero p {  
+        font-size: 14.5px;  
+    }  
+  
+    .cards {  
+        grid-template-columns: 1fr;  
+    }  
+  
+    .card {  
+        min-height: 180px;  
+        padding: 22px;  
+    }  
+  
+    .security-center {  
+        padding: 28px 22px;  
+    }  
+  
+    .security-button {  
+        width: 100%;  
+        justify-content: center;  
+    }  
+}  
+  
+</style>  </head>  <body>  <div class="page">  <!-- HEADER -->  
+
+<header class="header">  
+
+    <div class="brand">  
+
+        <div class="brand-shield">  
+            🛡️  
+        </div>  
+
+        <div class="brand-name">  
+            TrustAI  
+        </div>  
+
+    </div>  
+
+
+    <button class="menu-button"  
+    type="button"  
+    aria-label="Menu"  
+    onclick="alert('Menu')">  
+
+        <span></span>  
+        <span></span>  
+        <span></span>  
 
-    font-weight: 850;
-}
+    </button>  
 
+</header>  
 
-/* =====================================================
-   MOBILE
-   ===================================================== */
 
-@media (max-width: 800px) {
+<!-- HERO -->  
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
+<section class="hero">  
 
-    .hero {
-        padding: 38px 25px;
-    }
+    <h1>  
+        Stay one step ahead of  
+        <span>scams.</span>  
+    </h1>  
 
-    .hero h1 {
-        letter-spacing: -1.8px;
-    }
+    <p>  
+        Check suspicious messages, conversations and  
+        websites for common warning signs before you  
+        take action.  
+    </p>  
 
-}
+</section>  
 
-@media (max-width: 600px) {
 
-    .page {
-        width: calc(100% - 20px);
-    }
+<!-- CHECK SOMETHING -->  
 
-    .brand-name {
-        font-size: 24px;
-    }
+<h2 class="section-title">  
 
-    .brand-shield {
-        width: 43px;
-        height: 43px;
-    }
+    <span class="section-icon">  
+        🔎  
+    </span>  
 
-    .menu-button {
-        width: 46px;
-        height: 46px;
-    }
+    Check Something  
 
-    .hero {
-        padding: 31px 21px;
-        border-radius: 23px;
-    }
+</h2>  
 
-    .hero h1 {
-        font-size: 35px;
-    }
 
-    .hero p {
-        font-size: 14.5px;
-    }
+<div class="cards">  
 
-    .hero-actions {
-        flex-direction: column;
-    }
 
-    .hero-button {
-        width: 100%;
-    }
+    <a href="message.html"  
+    class="card message-card">  
 
-    .card {
-        min-height: 190px;
-        padding: 23px;
-    }
+        <div class="card-icon">  
+            🔍  
+        </div>  
 
-    .security-center {
-        padding: 27px 21px;
-    }
+        <h2>  
+            Message Checker  
+        </h2>  
 
-    .security-button {
-        width: 100%;
-        justify-content: center;
-    }
-}
+        <p>  
+            Check a suspicious message for scam,  
+            phishing, impersonation and payment  
+            warning signs.  
+        </p>  
 
-</style>
-</head>
+    </a>  
 
 
-<body>
+    <a href="conversation.html"  
+    class="card conversation-card">  
 
+        <div class="card-icon">  
+            💬  
+        </div>  
 
-<!-- =====================================================
-     MENU OVERLAY
-     ===================================================== -->
+        <h2>  
+            Conversation Checker  
+        </h2>  
 
-<div
-    class="menu-overlay"
-    id="menuOverlay"
-    onclick="closeMenu()">
-</div>
+        <p>  
+            Analyze a conversation for suspicious  
+            patterns that may develop over time.  
+        </p>  
 
+    </a>  
 
-<!-- =====================================================
-     SIDE MENU
-     ===================================================== -->
 
-<aside
-    class="menu-panel"
-    id="menuPanel">
+    <a href="website.html"  
+    class="card website-card">  
 
-    <div class="menu-header">
+        <div class="card-icon">  
+            🌐  
+        </div>  
 
-        <div class="menu-title">
-            TrustAI Menu
-        </div>
+        <h2>  
+            Website Checker  
+        </h2>  
 
-        <button
-            class="close-menu"
-            onclick="closeMenu()"
-            aria-label="Close menu">
+        <p>  
+            Check a website address for common  
+            suspicious website warning signs.  
+        </p>  
 
-            ×
+    </a>  
 
-        </button>
+</div>  
 
-    </div>
 
+<!-- SECURITY -->  
 
-    <nav class="menu-links">
+<h2 class="section-title">  
 
+    <span class="section-icon">  
+        🛡️  
+    </span>  
 
-        <a
-            href="message.html"
-            class="menu-link">
+    Security  
 
-            <span class="menu-icon">🔍</span>
+</h2>  
 
-            Message Checker
 
-        </a>
+<div class="cards">  
 
 
-        <a
-            href="conversation.html"
-            class="menu-link">
+    <a href="device.html"  
+    class="card security-card">  
 
-            <span class="menu-icon">💬</span>
+        <div class="card-icon">  
+            📱  
+        </div>  
 
-            Conversation Checker
+        <h2>  
+            Device Security  
+        </h2>  
 
-        </a>
+        <p>  
+            Review important device security practices  
+            and improve weak areas.  
+        </p>  
 
+    </a>  
 
-        <a
-            href="website.html"
-            class="menu-link">
+</div>  
 
-            <span class="menu-icon">🌐</span>
 
-            Website Checker
+<!-- SECURITY CENTER -->  
 
-        </a>
+<section class="security-center">  
 
+    <h2>  
+        🛡️ Security Center  
+    </h2>  
 
-        <a
-            href="device_checker.html"
-            class="menu-link">
+    <p>  
+        Learn how to protect your passwords, OTPs,  
+        verification codes, payments, accounts and  
+        personal information.  
+    </p>  
 
-            <span class="menu-icon">📱</span>
+    <a href="security.html"  
+    class="security-button">  
 
-            Device Security
+        Open Security Center →  
+          
+    </a>  
 
-        </a>
+</section>  
 
 
-        <a
-            href="security.html"
-            class="menu-link">
+<!-- STAY INFORMED -->  
 
-            <span class="menu-icon">🛡️</span>
+<h2 class="section-title">  
 
-            Security Center
+    <span class="section-icon">  
+        🚨  
+    </span>  
 
-        </a>
+    Stay Informed  
 
+</h2>  
 
-        <a
-            href="alerts.html"
-            class="menu-link">
 
-            <span class="menu-icon">🚨</span>
+<div class="cards">  
 
-            Scam Alerts
 
-        </a>
+    <a href="alerts.html"  
+    class="card alert-card">  
 
+        <div class="card-icon">  
+            🚨  
+        </div>  
 
-        <a
-            href="report.html"
-            class="menu-link">
+        <h2>  
+            Scam Alerts  
+        </h2>  
 
-            <span class="menu-icon">📢</span>
+        <p>  
+            Learn about common scam methods and  
+            warning signs.  
+        </p>  
 
-            Report a Scam
+    </a>  
 
-        </a>
 
+    <a href="report.html"  
+    class="card report-card">  
 
-        <a
-            href="contact.html"
-            class="menu-link">
+        <div class="card-icon">  
+            📢  
+        </div>  
 
-            <span class="menu-icon">💬</span>
+        <h2>  
+            Report a Scam  
+        </h2>  
 
-            Contact TrustAI
-
-        </a>
-
-
-    </nav>
-
-</aside>
-
-
-<!-- =====================================================
-     MAIN PAGE
-     ===================================================== -->
-
-<div class="page">
-
-
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
-
-<header class="header">
-
-
-    <div class="brand">
-
-        <div class="brand-shield">
-            🛡️
-        </div>
-
-        <div class="brand-name">
-            Trust<span>AI</span>
-        </div>
-
-    </div>
-
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false"
-        onclick="toggleMenu()">
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
-
-
-</header>
-
-
-<!-- =====================================================
-     HERO
-     ===================================================== -->
-
-<section class="hero">
-
-
-    <div class="hero-content">
-
-
-        <div class="hero-badge">
-            🛡️ Smart Scam Protection
-        </div>
-
-
-        <h1>
-            Stay one step ahead of
-            <span>scams.</span>
-        </h1>
-
-
-        <p>
-            Check suspicious messages, conversations,
-            websites and digital activity before you
-            take an action that could put your money,
-            account or personal information at risk.
-        </p>
-
-
-        <div class="hero-actions">
-
-
-            <a
-                href="message.html"
-                class="hero-button">
-
-                Check a Message →
-
-            </a>
-
-
-            <a
-                href="security.html"
-                class="hero-button secondary">
-
-                Explore Security
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-
-</section>
-
-
-<!-- =====================================================
-     CHECK SOMETHING
-     ===================================================== -->
-
-<h2 class="section-title">
-
-    <span class="section-icon">
-        🔎
-    </span>
-
-    Check Something
-
-</h2>
-
-
-<div class="cards">
-
-
-    <a
-        href="message.html"
-        class="card">
-
-        <div class="card-icon">
-            🔍
-        </div>
-
-        <h2>
-            Message Checker
-        </h2>
-
-        <p>
-            Check suspicious messages for phishing,
-            impersonation, payment pressure and other
-            common scam warning signs.
-        </p>
+        <p>  
+            Report suspicious activity and help  
+            raise awareness.  
+        </p>  
 
     </a>
 
+<a href="contact.html"  
+class="card contact-card">
 
-    <a
-        href="conversation.html"
-        class="card">
+<div class="card-icon">  
+    💬  
+</div>  
 
-        <div class="card-icon">
-            💬
-        </div>
+<h2>  
+    Contact TrustAI  
+</h2>  
 
-        <h2>
-            Conversation Checker
-        </h2>
+<p>  
+    Contact the TrustAI team with questions,  
+    problems or suspicious activity.  
+</p>
 
-        <p>
-            Analyze conversations for manipulation,
-            suspicious requests and scam patterns
-            that develop over time.
-        </p>
+</a>  <!-- REMEMBER -->  
 
-    </a>
+<section class="remember">  
 
+    <h2>  
+        ⚠️ Remember  
+    </h2>  
 
-    <a
-        href="website.html"
-        class="card">
+    <p>  
+        Never share your password, PIN, OTP or  
+        verification code with someone who asks  
+        for it unexpectedly.  
+    </p>  
 
-        <div class="card-icon">
-            🌐
-        </div>
+    <p>  
+        Always verify suspicious requests before  
+        sending money or personal information.  
+    </p>  
 
-        <h2>
-            Website Checker
-        </h2>
-
-        <p>
-            Check suspicious website addresses and
-            identify common warning signs before
-            entering sensitive information.
-        </p>
-
-    </a>
+</section>  
 
 
-</div>
+<!-- FOOTER -->  
 
+<footer>  
 
-<!-- =====================================================
-     SECURITY
-     ===================================================== -->
+    <div class="footer-brand">  
+        🛡️ TrustAI  
+    </div>  
 
-<h2 class="section-title">
+    Online scam awareness and protection.  
 
-    <span class="section-icon">
-        🛡️
-    </span>
+    <br><br>  
 
-    Security
+    © 2026 TrustAI  
 
-</h2>
+</footer>
 
-
-<div class="cards">
-
-
-    <a
-        href="device_checker.html"
-        class="card">
-
-        <div class="card-icon">
-            📱
-        </div>
-
-        <h2>
-      
+</div>  </body>  </html>
