@@ -18,20 +18,15 @@
 
 :root {
     --bg: #050b16;
-    --bg-soft: #0a1426;
-
     --blue: #38bdf8;
     --blue-dark: #2563eb;
     --purple: #7c3aed;
-
     --text: #f8fafc;
     --muted: #94a3b8;
 }
 
 
-/* =====================================================
-   RESET
-   ===================================================== */
+/* RESET */
 
 * {
     box-sizing: border-box;
@@ -93,9 +88,7 @@ body {
 }
 
 
-/* =====================================================
-   PAGE EXIT
-   ===================================================== */
+/* PAGE EXIT */
 
 body.page-exit {
     opacity: 0;
@@ -127,7 +120,11 @@ body.page-exit {
 
     pointer-events: none;
 
-    animation: ambientGlow 5s ease-in-out infinite alternate;
+    animation:
+        ambientGlow
+        5s
+        ease-in-out
+        infinite alternate;
 }
 
 @keyframes ambientGlow {
@@ -224,7 +221,7 @@ body.page-exit {
 
 
 /* =====================================================
-   MAIN
+   MAIN SPLASH
    ===================================================== */
 
 .splash {
@@ -276,11 +273,10 @@ body.page-exit {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 
-/* Outer glow */
+/* OUTER GLOW */
 
 .logo-wrapper::before {
 
@@ -304,11 +300,10 @@ body.page-exit {
         3s
         ease-in-out
         infinite alternate;
-
 }
 
 
-/* Rotating ring */
+/* ROTATING RING */
 
 .logo-wrapper::after {
 
@@ -332,7 +327,6 @@ body.page-exit {
         6s
         linear
         infinite;
-
 }
 
 @keyframes logoGlow {
@@ -461,7 +455,6 @@ body.page-exit {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 .status {
@@ -473,7 +466,6 @@ body.page-exit {
     transition:
         opacity 0.4s ease,
         transform 0.4s ease;
-
 }
 
 .status.hidden {
@@ -481,12 +473,11 @@ body.page-exit {
     opacity: 0;
 
     transform: translateY(5px);
-
 }
 
 
 /* =====================================================
-   SECURITY INDICATOR
+   SECURITY STATE
    ===================================================== */
 
 .security-state {
@@ -517,7 +508,6 @@ body.page-exit {
     font-weight: 800;
 
     letter-spacing: 0.5px;
-
 }
 
 .security-dot {
@@ -575,7 +565,6 @@ body.page-exit {
     font-size: 11px;
 
     letter-spacing: 0.5px;
-
 }
 
 
@@ -606,7 +595,6 @@ body.page-exit {
     .status {
         font-size: 13px;
     }
-
 }
 
 
@@ -645,7 +633,7 @@ body.page-exit {
 <div class="particle p5"></div>
 
 
-<!-- SPLASH -->
+<!-- MAIN SPLASH -->
 
 <main class="splash">
 
@@ -712,7 +700,7 @@ body.page-exit {
             </defs>
 
 
-            <!-- Outer Shield -->
+            <!-- OUTER SHIELD -->
 
             <path
                 d="
@@ -728,7 +716,7 @@ body.page-exit {
             />
 
 
-            <!-- Inner Shield -->
+            <!-- INNER SHIELD -->
 
             <path
                 d="
@@ -761,7 +749,7 @@ body.page-exit {
             </text>
 
 
-            <!-- Small Highlight -->
+            <!-- HIGHLIGHT -->
 
             <circle
                 cx="76"
@@ -841,7 +829,7 @@ async function startTrustAI() {
 
     /* STEP 1 */
 
-    await delay(1200);
+    await delay(1500);
 
     status.classList.add("hidden");
 
@@ -855,7 +843,7 @@ async function startTrustAI() {
 
     /* STEP 2 */
 
-    await delay(1300);
+    await delay(1600);
 
     status.classList.add("hidden");
 
@@ -869,7 +857,7 @@ async function startTrustAI() {
 
     /* STEP 3 */
 
-    await delay(1300);
+    await delay(1600);
 
     status.classList.add("hidden");
 
@@ -883,7 +871,7 @@ async function startTrustAI() {
 
     /* FINAL PAUSE */
 
-    await delay(1000);
+    await delay(1800);
 
 
     /* FADE OUT */
@@ -891,7 +879,7 @@ async function startTrustAI() {
     document.body.classList.add("page-exit");
 
 
-    await delay(800);
+    await delay(900);
 
 
     /* OPEN HOME */
