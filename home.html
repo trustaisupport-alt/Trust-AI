@@ -5,28 +5,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI - Home</title>
+<title>TrustAI - Scam Protection & Awareness</title>
 
 <style>
 
 /* =====================================================
-   TRUSTAI HOME — PREMIUM NAVY / BLUE SECURITY DESIGN
+   TRUSTAI HOME
+   PREMIUM NAVY / BLUE / CYAN SECURITY DESIGN
    ===================================================== */
 
 :root {
     --navy: #07111f;
-    --navy-2: #0b1b31;
+    --navy-2: #0b1729;
     --blue: #2563eb;
-    --cyan: #06b6d4;
-    --blue-soft: #eff6ff;
+    --blue-light: #38bdf8;
+    --cyan: #22d3ee;
 
     --text: #0f172a;
     --muted: #64748b;
-    --border: #e2e8f0;
     --white: #ffffff;
 
+    --page-bg: #f4f8fc;
+    --border: #dce6f0;
+
     --shadow:
-        0 12px 35px rgba(15, 23, 42, 0.07);
+        0 14px 40px rgba(15, 23, 42, 0.08);
+
+    --shadow-hover:
+        0 22px 50px rgba(37, 99, 235, 0.15);
+
+    --radius-lg: 24px;
+    --radius-md: 16px;
 }
 
 
@@ -36,6 +45,7 @@
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -54,22 +64,24 @@ body {
         Arial,
         sans-serif;
 
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(37, 99, 235, 0.10),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 100% 20%,
+            rgba(34, 211, 238, 0.08),
+            transparent 30%
+        ),
+        var(--page-bg);
+
     color: var(--text);
 
     line-height: 1.6;
 
-    background:
-        radial-gradient(
-            circle at 5% 0%,
-            rgba(37, 99, 235, 0.09),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 95% 20%,
-            rgba(6, 182, 212, 0.08),
-            transparent 30%
-        ),
-        #f8fafc;
+    min-height: 100vh;
 }
 
 
@@ -78,9 +90,11 @@ body {
    ===================================================== */
 
 .page {
-    width: min(1080px, calc(100% - 28px));
+    width: min(1100px, calc(100% - 28px));
+
     margin: auto;
-    padding-bottom: 40px;
+
+    padding-bottom: 50px;
 }
 
 
@@ -96,6 +110,8 @@ body {
     justify-content: space-between;
 
     padding: 18px 0;
+
+    z-index: 100;
 }
 
 
@@ -105,42 +121,51 @@ body {
 
 .brand {
     display: flex;
+
     align-items: center;
+
     gap: 11px;
 }
 
 .brand-shield {
-    width: 46px;
-    height: 46px;
+    width: 48px;
+    height: 48px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
     background:
         linear-gradient(
             135deg,
             #2563eb,
-            #06b6d4
+            #0ea5e9
         );
 
     color: white;
 
-    font-size: 24px;
+    font-size: 25px;
 
     box-shadow:
-        0 9px 25px rgba(37, 99, 235, 0.25);
+        0 10px 25px
+        rgba(37, 99, 235, 0.25);
 }
 
 .brand-name {
     font-size: 27px;
+
     font-weight: 900;
 
     letter-spacing: -1px;
 
     color: var(--navy);
+}
+
+.brand-name span {
+    color: var(--blue);
 }
 
 
@@ -152,15 +177,18 @@ body {
     width: 50px;
     height: 50px;
 
-    border: 1px solid var(--border);
-    border-radius: 14px;
+    border: 1px solid #d9e3ee;
+
+    border-radius: 15px;
 
     background: white;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 5px;
@@ -168,22 +196,26 @@ body {
     cursor: pointer;
 
     box-shadow:
-        0 6px 20px rgba(15, 23, 42, 0.07);
+        0 7px 20px
+        rgba(15, 23, 42, 0.07);
 
     transition:
-        transform .2s ease,
-        box-shadow .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .menu-button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 10px 25px rgba(15, 23, 42, 0.11);
+        0 12px 28px
+        rgba(37, 99, 235, 0.14);
 }
 
 .menu-button span {
-    width: 24px;
+    display: block;
+
+    width: 23px;
     height: 3px;
 
     border-radius: 20px;
@@ -193,143 +225,120 @@ body {
 
 
 /* =====================================================
-   SIDE MENU
+   MENU PANEL
    ===================================================== */
 
 .menu-panel {
-    position: fixed;
+    position: absolute;
 
-    top: 0;
-    left: -330px;
+    right: 0;
+    top: 78px;
 
-    width: 310px;
-    max-width: 88vw;
+    width: 290px;
 
-    height: 100vh;
+    padding: 10px;
 
-    z-index: 1000;
+    border:
+        1px solid
+        #dce6f0;
 
-    padding: 24px;
+    border-radius: 20px;
 
     background:
-        linear-gradient(
-            180deg,
-            #07111f,
-            #0b1b31
-        );
+        rgba(255, 255, 255, 0.98);
 
     box-shadow:
-        15px 0 45px rgba(2, 8, 23, 0.25);
+        0 25px 70px
+        rgba(15, 23, 42, 0.18);
+
+    backdrop-filter: blur(18px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-10px)
+        scale(0.97);
 
     transition:
-        left .35s cubic-bezier(.22,1,.36,1);
-
-    overflow-y: auto;
+        opacity 0.22s ease,
+        transform 0.22s ease,
+        visibility 0.22s ease;
 }
 
-.menu-panel.open {
-    left: 0;
-}
+.menu-panel.active {
+    opacity: 1;
 
-.menu-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    visibility: visible;
 
-    margin-bottom: 25px;
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 .menu-title {
-    color: white;
+    padding: 12px 13px 8px;
 
-    font-size: 21px;
-    font-weight: 850;
-}
+    color: #64748b;
 
-.close-menu {
-    width: 40px;
-    height: 40px;
+    font-size: 11px;
 
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 11px;
+    font-weight: 900;
 
-    background: rgba(255,255,255,.07);
+    letter-spacing: 1.2px;
 
-    color: white;
-
-    font-size: 22px;
-
-    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .menu-link {
     display: flex;
+
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 
     width: 100%;
 
-    padding: 14px 13px;
-
-    margin-bottom: 7px;
+    padding: 12px;
 
     border-radius: 13px;
 
-    color: #dbeafe;
+    color: #172033;
 
     text-decoration: none;
 
     font-size: 14px;
-    font-weight: 650;
+
+    font-weight: 700;
 
     transition:
-        background .2s ease,
-        transform .2s ease;
+        background 0.18s ease,
+        transform 0.18s ease;
 }
 
 .menu-link:hover {
-    background: rgba(59,130,246,.16);
-    transform: translateX(4px);
+    background: #eef6ff;
+
+    color: #1d4ed8;
+
+    transform: translateX(3px);
 }
 
 .menu-icon {
-    width: 34px;
-    height: 34px;
+    width: 35px;
+    height: 35px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     border-radius: 10px;
 
-    background: rgba(255,255,255,.08);
+    background: #edf5ff;
 
     font-size: 17px;
-}
-
-.menu-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 999;
-
-    background: rgba(2, 8, 23, .42);
-
-    backdrop-filter: blur(3px);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease;
-}
-
-.menu-overlay.open {
-    opacity: 1;
-    visibility: visible;
 }
 
 
@@ -342,24 +351,25 @@ body {
 
     overflow: hidden;
 
-    margin-top: 8px;
+    margin-top: 7px;
 
-    padding: 42px 36px;
+    padding: 44px 38px;
 
     border-radius: 28px;
-
-    color: white;
 
     background:
         linear-gradient(
             135deg,
             #07111f 0%,
-            #0b2442 55%,
-            #075985 100%
+            #0b1b33 52%,
+            #123d70 100%
         );
 
+    color: white;
+
     box-shadow:
-        0 22px 55px rgba(7, 17, 31, .18);
+        0 22px 55px
+        rgba(7, 17, 31, 0.20);
 }
 
 .hero::before {
@@ -367,18 +377,18 @@ body {
 
     position: absolute;
 
-    width: 300px;
-    height: 300px;
+    width: 330px;
+    height: 330px;
 
-    right: -90px;
-    top: -120px;
+    right: -110px;
+    top: -150px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(6,182,212,.25),
+            rgba(56, 189, 248, 0.24),
             transparent 68%
         );
 }
@@ -391,16 +401,19 @@ body {
     width: 220px;
     height: 220px;
 
-    right: 90px;
-    bottom: -180px;
+    left: -120px;
+    bottom: -150px;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.16);
 }
 
 .hero-content {
     position: relative;
+
     z-index: 2;
 }
 
@@ -409,25 +422,28 @@ body {
 
     align-items: center;
 
-    gap: 7px;
+    gap: 8px;
 
     padding: 7px 13px;
 
-    margin-bottom: 18px;
+    margin-bottom: 19px;
 
-    border: 1px solid rgba(125,211,252,.2);
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.25);
 
     border-radius: 999px;
 
-    background: rgba(56,189,248,.09);
+    background:
+        rgba(56, 189, 248, 0.09);
 
     color: #bae6fd;
 
     font-size: 12px;
 
-    font-weight: 750;
+    font-weight: 800;
 
-    letter-spacing: .3px;
+    letter-spacing: 0.5px;
 }
 
 .hero h1 {
@@ -436,285 +452,58 @@ body {
     margin: 0 0 15px;
 
     font-size:
-        clamp(34px, 6vw, 52px);
+        clamp(35px, 6vw, 56px);
 
     line-height: 1.08;
 
-    letter-spacing: -2px;
+    letter-spacing: -2.5px;
+
+    font-weight: 900;
 }
 
 .hero h1 span {
-    color: #67e8f9;
-}
-
-.hero p {
-    max-width: 720px;
-
-    margin: 0;
-
-    color: #cbd5e1;
-
-    font-size: 16px;
-}
-
-
-/* =====================================================
-   SECTION TITLES
-   ===================================================== */
-
-.section-title {
-    display: flex;
-    align-items: center;
-
-    gap: 11px;
-
-    margin: 38px 0 17px;
-
-    color: var(--navy);
-
-    font-size: 23px;
-    font-weight: 850;
-
-    letter-spacing: -.5px;
-}
-
-.section-icon {
-    width: 39px;
-    height: 39px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    background: var(--blue-soft);
-
-    color: var(--blue);
-
-    font-size: 19px;
-}
-
-
-/* =====================================================
-   CARDS
-   ===================================================== */
-
-.cards {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-}
-
-.card {
-    position: relative;
-
-    overflow: hidden;
-
-    min-height: 220px;
-
-    padding: 25px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 21px;
-
-    background: rgba(255,255,255,.94);
-
-    text-decoration: none;
-
-    box-shadow: var(--shadow);
-
-    transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        border-color .25s ease;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-
-    border-color: #93c5fd;
-
-    box-shadow:
-        0 20px 45px rgba(15,23,42,.11);
-}
-
-.card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
-    width: 100%;
-    height: 4px;
-
     background:
         linear-gradient(
             90deg,
-            var(--blue),
-            var(--cyan)
-        );
-}
-
-
-/* =====================================================
-   CARD ICONS
-   ===================================================== */
-
-.card-icon {
-    width: 52px;
-    height: 52px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 17px;
-
-    border-radius: 15px;
-
-    background: #eff6ff;
-
-    font-size: 24px;
-
-    transition:
-        transform .25s ease;
-}
-
-.card:hover .card-icon {
-    transform: scale(1.08);
-}
-
-.conversation-card .card-icon {
-    background: #ecfeff;
-}
-
-.website-card .card-icon {
-    background: #eff6ff;
-}
-
-.security-card .card-icon {
-    background: #ecfdf5;
-}
-
-.alert-card .card-icon {
-    background: #fff7ed;
-}
-
-.report-card .card-icon {
-    background: #fef2f2;
-}
-
-.contact-card .card-icon {
-    background: #f0f9ff;
-}
-
-
-/* =====================================================
-   CARD TEXT
-   ===================================================== */
-
-.card h2 {
-    margin: 0 0 8px;
-
-    color: var(--navy);
-
-    font-size: 19px;
-    font-weight: 800;
-
-    letter-spacing: -.3px;
-}
-
-.card p {
-    margin: 0;
-
-    color: var(--muted);
-
-    font-size: 14.5px;
-
-    line-height: 1.65;
-}
-
-
-/* =====================================================
-   SECURITY CENTER
-   ===================================================== */
-
-.security-center {
-    position: relative;
-
-    overflow: hidden;
-
-    margin-top: 18px;
-
-    padding: 34px;
-
-    border-radius: 24px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0b1b31,
-            #123b63
+            #38bdf8,
+            #67e8f9
         );
 
-    box-shadow:
-        0 20px 50px rgba(7,17,31,.17);
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
 }
 
-.security-center::after {
-    content: "";
-
-    position: absolute;
-
-    width: 260px;
-    height: 260px;
-
-    right: -100px;
-    top: -100px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(103,232,249,.15);
-}
-
-.security-center h2 {
-    position: relative;
-    z-index: 2;
-
-    margin: 0 0 8px;
-
-    font-size: 26px;
-}
-
-.security-center p {
-    position: relative;
-    z-index: 2;
-
+.hero p {
     max-width: 700px;
 
-    margin: 0 0 22px;
+    margin: 0;
 
-    color: #cbd5e1;
+    color: #c5d4e7;
 
-    font-size: 15px;
+    font-size: 16px;
+
+    line-height: 1.7;
 }
 
-.security-button {
-    position: relative;
-    z-index: 3;
+.hero-actions {
+    display: flex;
 
+    gap: 12px;
+
+    margin-top: 27px;
+
+    flex-wrap: wrap;
+}
+
+.hero-button {
     display: inline-flex;
 
     align-items: center;
+
+    justify-content: center;
 
     padding: 13px 20px;
 
@@ -731,17 +520,387 @@ body {
 
     text-decoration: none;
 
+    font-size: 14px;
+
     font-weight: 800;
 
     box-shadow:
-        0 9px 25px rgba(37,99,235,.25);
+        0 10px 25px
+        rgba(37, 99, 235, 0.28);
 
     transition:
-        transform .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.hero-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 30px
+        rgba(37, 99, 235, 0.35);
+}
+
+
+/* =====================================================
+   SECTION TITLES
+   ===================================================== */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin: 38px 0 17px;
+
+    color: var(--navy);
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+.section-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        #e8f3ff;
+
+    color:
+        #2563eb;
+
+    font-size: 19px;
+}
+
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 17px;
+}
+
+.card {
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 215px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 21px;
+
+    background: white;
+
+    text-decoration: none;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        #9fc8ee;
+
+    box-shadow:
+        var(--shadow-hover);
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #38bdf8
+        );
+}
+
+.conversation-card::before {
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #60a5fa
+        );
+}
+
+.website-card::before {
+    background:
+        linear-gradient(
+            90deg,
+            #0891b2,
+            #22d3ee
+        );
+}
+
+.security-card::before {
+    background:
+        linear-gradient(
+            90deg,
+            #0f766e,
+            #2dd4bf
+        );
+}
+
+.alert-card::before {
+    background:
+        linear-gradient(
+            90deg,
+            #ea580c,
+            #fb923c
+        );
+}
+
+.report-card::before {
+    background:
+        linear-gradient(
+            90deg,
+            #dc2626,
+            #f87171
+        );
+}
+
+.contact-card::before {
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #818cf8
+        );
+}
+
+
+/* =====================================================
+   CARD ICON
+   ===================================================== */
+
+.card-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 17px;
+
+    border-radius: 15px;
+
+    background:
+        #eaf3ff;
+
+    font-size: 25px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.card:hover .card-icon {
+    transform:
+        scale(1.08)
+        rotate(-2deg);
+}
+
+.conversation-card .card-icon {
+    background: #edf2ff;
+}
+
+.website-card .card-icon {
+    background: #e8fbfd;
+}
+
+.security-card .card-icon {
+    background: #e8f8f4;
+}
+
+.alert-card .card-icon {
+    background: #fff2e8;
+}
+
+.report-card .card-icon {
+    background: #fff0f1;
+}
+
+.contact-card .card-icon {
+    background: #eef1ff;
+}
+
+
+/* =====================================================
+   CARD TEXT
+   ===================================================== */
+
+.card h2 {
+    margin: 0 0 7px;
+
+    color:
+        #101b2e;
+
+    font-size: 19px;
+
+    font-weight: 850;
+
+    letter-spacing: -0.3px;
+}
+
+.card p {
+    margin: 0;
+
+    color:
+        #68768a;
+
+    font-size: 14.5px;
+
+    line-height: 1.65;
+}
+
+
+/* =====================================================
+   SECURITY CENTER
+   ===================================================== */
+
+.security-center {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-top: 34px;
+
+    padding: 34px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #07111f,
+            #102b4d
+        );
+
+    color: white;
+
+    box-shadow:
+        0 20px 50px
+        rgba(7, 17, 31, 0.20);
+}
+
+.security-center::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -110px;
+    top: -140px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(34, 211, 238, 0.20),
+            transparent 68%
+        );
+}
+
+.security-center-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.security-center h2 {
+    margin: 0 0 8px;
+
+    font-size: 27px;
+
+    font-weight: 900;
+}
+
+.security-center p {
+    max-width: 700px;
+
+    margin: 0 0 22px;
+
+    color: #b9cbe0;
+
+    font-size: 15px;
+}
+
+.security-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #0b1b33;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 850;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .security-button:hover {
     transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,0.18);
 }
 
 
@@ -750,34 +909,42 @@ body {
    ===================================================== */
 
 .remember {
-    margin-top: 30px;
+    position: relative;
 
-    padding: 25px;
+    margin-top: 32px;
 
-    border: 1px solid #bae6fd;
+    padding: 27px;
+
+    border:
+        1px solid
+        #cfe3f7;
 
     border-radius: 22px;
 
     background:
         linear-gradient(
             135deg,
-            #f0f9ff,
-            #f8fafc
+            #fafdff,
+            #edf7ff
         );
 }
 
 .remember h2 {
     margin: 0 0 12px;
 
-    color: #075985;
+    color:
+        #17436d;
 
     font-size: 21px;
+
+    font-weight: 900;
 }
 
 .remember p {
-    margin: 10px 0;
+    margin: 9px 0;
 
-    color: #475569;
+    color:
+        #60748a;
 
     font-size: 14.5px;
 }
@@ -788,15 +955,18 @@ body {
    ===================================================== */
 
 footer {
-    margin-top: 42px;
+    margin-top: 45px;
 
-    padding: 25px 0 35px;
+    padding: 27px 0 35px;
 
-    border-top: 1px solid var(--border);
+    border-top:
+        1px solid
+        #dce5ee;
 
     text-align: center;
 
-    color: #94a3b8;
+    color:
+        #7b8998;
 
     font-size: 13px;
 }
@@ -804,9 +974,12 @@ footer {
 .footer-brand {
     margin-bottom: 5px;
 
-    color: #334155;
+    color:
+        #31465e;
 
-    font-weight: 800;
+    font-size: 15px;
+
+    font-weight: 900;
 }
 
 
@@ -814,7 +987,69 @@ footer {
    MOBILE
    ===================================================== */
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 640px) {
+
+    .page {
+        width:
+            calc(100% - 20px);
+    }
+
+    .header {
+        padding:
+            14px 0;
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .brand-shield {
+        width: 44px;
+        height: 44px;
+    }
+
+    .menu-button {
+        width: 47px;
+        height: 47px;
+    }
+
+    .menu-panel {
+        width:
+            min(290px, calc(100vw - 30px));
+
+        right: 0;
+    }
+
+    .hero {
+        padding:
+            32px 22px;
+
+        border-radius: 23px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+
+        letter-spacing:
+            -1.7px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-button {
+        width: 100%;
+    }
 
     .cards {
         grid-template-columns: 1fr;
@@ -822,54 +1057,21 @@ footer {
 
     .card {
         min-height: 190px;
-    }
-}
 
+        padding: 23px;
 
-@media (max-width: 600px) {
-
-    .page {
-        width: calc(100% - 20px);
-    }
-
-    .header {
-        padding: 14px 0;
-    }
-
-    .brand-name {
-        font-size: 24px;
-    }
-
-    .brand-shield,
-    .menu-button {
-        width: 45px;
-        height: 45px;
-    }
-
-    .hero {
-        padding: 30px 22px;
-
-        border-radius: 22px;
-    }
-
-    .hero h1 {
-        font-size: 35px;
-
-        letter-spacing: -1.5px;
-    }
-
-    .hero p {
-        font-size: 15px;
+        border-radius: 19px;
     }
 
     .security-center {
-        padding: 27px 21px;
+        padding:
+            28px 22px;
+
+        border-radius: 21px;
     }
 
     .security-button {
         width: 100%;
-
-        justify-content: center;
     }
 }
 
@@ -884,7 +1086,12 @@ footer {
     *::before,
     *::after {
         scroll-behavior: auto !important;
-        transition: none !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        animation-duration:
+            0.01ms !important;
     }
 }
 
@@ -896,139 +1103,6 @@ footer {
 <body>
 
 
-<!-- =====================================================
-     MENU OVERLAY
-     ===================================================== -->
-
-<div
-    class="menu-overlay"
-    id="menuOverlay"
-    onclick="closeMenu()">
-</div>
-
-
-<!-- =====================================================
-     SIDE MENU
-     ===================================================== -->
-
-<nav
-    class="menu-panel"
-    id="menuPanel"
-    aria-label="TrustAI navigation">
-
-    <div class="menu-header">
-
-        <div class="menu-title">
-            TrustAI Menu
-        </div>
-
-        <button
-            class="close-menu"
-            type="button"
-            onclick="closeMenu()"
-            aria-label="Close menu">
-
-            ×
-
-        </button>
-
-    </div>
-
-
-    <a
-        href="message.html"
-        class="menu-link">
-
-        <span class="menu-icon">🔍</span>
-
-        Message Checker
-
-    </a>
-
-
-    <a
-        href="conversation.html"
-        class="menu-link">
-
-        <span class="menu-icon">💬</span>
-
-        Conversation Checker
-
-    </a>
-
-
-    <a
-        href="website.html"
-        class="menu-link">
-
-        <span class="menu-icon">🌐</span>
-
-        Website Checker
-
-    </a>
-
-
-    <a
-        href="device_checker.html"
-        class="menu-link">
-
-        <span class="menu-icon">📱</span>
-
-        Device Security
-
-    </a>
-
-
-    <a
-        href="security.html"
-        class="menu-link">
-
-        <span class="menu-icon">🛡️</span>
-
-        Security Center
-
-    </a>
-
-
-    <a
-        href="alerts.html"
-        class="menu-link">
-
-        <span class="menu-icon">🚨</span>
-
-        Scam Alerts
-
-    </a>
-
-
-    <a
-        href="report.html"
-        class="menu-link">
-
-        <span class="menu-icon">📢</span>
-
-        Report a Scam
-
-    </a>
-
-
-    <a
-        href="contact.html"
-        class="menu-link">
-
-        <span class="menu-icon">💬</span>
-
-        Contact TrustAI
-
-    </a>
-
-</nav>
-
-
-<!-- =====================================================
-     MAIN PAGE
-     ===================================================== -->
-
 <div class="page">
 
 
@@ -1039,13 +1113,16 @@ footer {
 <header class="header">
 
 
-    <!-- LEFT MENU -->
+    <!-- MENU BUTTON -->
 
     <button
         class="menu-button"
+        id="menuButton"
         type="button"
         aria-label="Open menu"
-        onclick="openMenu()">
+        aria-expanded="false"
+        onclick="toggleMenu()"
+    >
 
         <span></span>
         <span></span>
@@ -1063,20 +1140,137 @@ footer {
         </div>
 
         <div class="brand-name">
-            TrustAI
+            Trust<span>AI</span>
         </div>
 
     </div>
 
 
-    <!-- RIGHT SPACE -->
+    <!-- MENU -->
 
-    <div
-        style="
-        width:50px;
-        height:50px;
-        ">
-    </div>
+    <nav
+        class="menu-panel"
+        id="menuPanel"
+        aria-hidden="true"
+    >
+
+        <div class="menu-title">
+            TrustAI Protection
+        </div>
+
+
+        <a
+            href="message.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                🔍
+            </span>
+
+            Message Checker
+
+        </a>
+
+
+        <a
+            href="conversation.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                💬
+            </span>
+
+            Conversation Checker
+
+        </a>
+
+
+        <a
+            href="website.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                🌐
+            </span>
+
+            Website Checker
+
+        </a>
+
+
+        <a
+            href="device_checker.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                📱
+            </span>
+
+            Device Security
+
+        </a>
+
+
+        <a
+            href="security.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                🛡️
+            </span>
+
+            Security Center
+
+        </a>
+
+
+        <a
+            href="alerts.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                🚨
+            </span>
+
+            Scam Alerts
+
+        </a>
+
+
+        <a
+            href="report.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                📢
+            </span>
+
+            Report a Scam
+
+        </a>
+
+
+        <a
+            href="contact.html"
+            class="menu-link"
+        >
+
+            <span class="menu-icon">
+                💬
+            </span>
+
+            Contact TrustAI
+
+        </a>
+
+    </nav>
 
 </header>
 
@@ -1089,34 +1283,33 @@ footer {
 
     <div class="hero-content">
 
-
         <div class="hero-badge">
-
-            🛡️
-
-            Intelligent Scam Protection
-
+            🛡️ Smart Scam Protection
         </div>
 
-
         <h1>
-
             Stay one step ahead of
-
-            <span>
-                scams.
-            </span>
-
+            <span>scams.</span>
         </h1>
 
-
         <p>
-
-            Check suspicious messages, conversations
-            and websites for common warning signs
-            before you take action.
-
+            Check suspicious messages, conversations and
+            websites for common warning signs before you
+            take action. TrustAI helps you slow down,
+            understand the risk and make safer decisions.
         </p>
+
+
+        <div class="hero-actions">
+
+            <a
+                href="message.html"
+                class="hero-button"
+            >
+                Check a Message →
+            </a>
+
+        </div>
 
     </div>
 
@@ -1145,7 +1338,8 @@ footer {
 
     <a
         href="message.html"
-        class="card message-card">
+        class="card message-card"
+    >
 
         <div class="card-icon">
             🔍
@@ -1168,170 +1362,4 @@ footer {
 
     <a
         href="conversation.html"
-        class="card conversation-card">
-
-        <div class="card-icon">
-            💬
-        </div>
-
-        <h2>
-            Conversation Checker
-        </h2>
-
-        <p>
-            Analyze a conversation for suspicious
-            patterns that may develop over time.
-        </p>
-
-    </a>
-
-
-    <!-- WEBSITE -->
-
-    <a
-        href="website.html"
-        class="card website-card">
-
-        <div class="card-icon">
-            🌐
-        </div>
-
-        <h2>
-            Website Checker
-        </h2>
-
-        <p>
-            Check a website address for common
-            suspicious website warning signs.
-        </p>
-
-    </a>
-
-</div>
-
-
-<!-- =====================================================
-     SECURITY
-     ===================================================== -->
-
-<h2 class="section-title">
-
-    <span class="section-icon">
-        🛡️
-    </span>
-
-    Security
-
-</h2>
-
-
-<div class="cards">
-
-
-    <!-- DEVICE SECURITY -->
-
-    <a
-        href="device_checker.html"
-        class="card security-card">
-
-        <div class="card-icon">
-            📱
-        </div>
-
-        <h2>
-            Device Security
-        </h2>
-
-        <p>
-            Review important device security practices
-            and improve weak areas.
-        </p>
-
-    </a>
-
-
-    <!-- SECURITY CENTER -->
-
-    <section class="security-center">
-
-        <h2>
-            🛡️ Security Center
-        </h2>
-
-        <p>
-            Learn how to protect your passwords, OTPs,
-            verification codes, payments, accounts and
-            personal information.
-        </p>
-
-        <a
-            href="security.html"
-            class="security-button">
-
-            Open Security Center →
-
-        </a>
-
-    </section>
-
-</div>
-
-
-<!-- =====================================================
-     STAY INFORMED
-     ===================================================== -->
-
-<h2 class="section-title">
-
-    <span class="section-icon">
-        🚨
-    </span>
-
-    Stay Informed
-
-</h2>
-
-
-<div class="cards">
-
-
-    <!-- ALERTS -->
-
-    <a
-        href="alerts.html"
-        class="card alert-card">
-
-        <div class="card-icon">
-            🚨
-        </div>
-
-        <h2>
-            Scam Alerts
-        </h2>
-
-        <p>
-            Learn about common scam methods and
-            warning signs.
-        </p>
-
-    </a>
-
-
-    <!-- REPORT -->
-
-    <a
-        href="report.html"
-        class="card report-card">
-
-        <div class="card-icon">
-            📢
-        </div>
-
-        <h2>
-            Report a Scam
-        </h2>
-
-        <p>
-            Report suspicious activity and help
-            raise awareness.
-   
+        class="card conversation-car
