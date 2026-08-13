@@ -13,6 +13,7 @@ content="width=device-width, initial-scale=1.0">
     --primary-glow: rgba(99, 102, 241, 0.15);
     --bg-main: #090d16;
     --bg-card: rgba(17, 24, 39, 0.75);
+    --bg-side: #0f172a;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --border-color: rgba(255, 255, 255, 0.08);
@@ -163,6 +164,104 @@ body {
   
     background: var(--text-main);  
 }  
+
+/* =====================================================  
+   SIDE MENU DOCK  
+   ===================================================== */  
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100vh;
+    background: var(--bg-side);
+    border-right: 1px solid var(--border-color);
+    z-index: 1000;
+    padding: 30px 20px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+    box-shadow: 15px 0 30px rgba(0,0,0,0.3);
+}
+
+.side-menu.open {
+    transform: translateX(320px);
+}
+
+.side-menu .menu-button {
+    margin-bottom: 24px;
+}
+
+.menu-title {
+    padding: 0 8px 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 16px;
+}
+
+.menu-title strong {
+    background: linear-gradient(135deg, #818cf8, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.menu-title span {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    transform: translateX(4px);
+}
+
+.menu-icon {
+    width: 24px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.menu-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 18px 0;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.show {
+    display: block;
+    opacity: 1;
+}
   
   
 /* =====================================================  
@@ -635,7 +734,65 @@ footer {
     }  
 }  
   
-</style>  </head>  <body>  <div class="page">  <!-- HEADER -->  
+</style>  </head>  <body>  
+
+<!-- SIDE MENU DRAWER -->
+<nav id="sideMenu" class="side-menu">
+
+<button class="menu-button" onclick="closeMenu()" aria-label="Close menu">
+<span></span>
+<span></span>
+<span></span>
+</button>
+
+<div class="menu-title">
+<strong>🛡️ TrustAI</strong>
+<span>Online Scam Protection</span>
+</div>
+
+<a href="home.html" class="menu-link">
+<span class="menu-icon">🏠</span> Home
+</a>
+
+<a href="message.html" class="menu-link">
+<span class="menu-icon">🔍</span> Message Checker
+</a>
+
+<a href="conversation.html" class="menu-link">
+<span class="menu-icon">💬</span> Conversation Checker
+</a>
+
+<a href="Website.html" class="menu-link">
+<span class="menu-icon">🌐</span> Website Checker
+</a>
+
+<a href="device_checker.html" class="menu-link">
+<span class="menu-icon">📱</span> Device Security
+</a>
+
+<a href="security.html" class="menu-link">
+<span class="menu-icon">🛡️</span> Security Center
+</a>
+
+<div class="menu-divider"></div>
+
+<a href="alerts.html" class="menu-link">
+<span class="menu-icon">🚨</span> Scam Alerts
+</a>
+
+<a href="report.html" class="menu-link">
+<span class="menu-icon">📢</span> Report a Scam
+</a>
+
+<a href="contact.html" class="menu-link">
+<span class="menu-icon">💬</span> Contact TrustAI
+</a>
+
+</nav>
+
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+
+<div class="page">  <!-- HEADER -->  
 
 <header class="header">  
 
@@ -655,7 +812,7 @@ footer {
     <button class="menu-button"  
     type="button"  
     aria-label="Menu"  
-    onclick="alert('Menu')">  
+    onclick="toggleMenu()">  
 
         <span></span>  
         <span></span>  
@@ -928,4 +1085,13 @@ class="card contact-card">
 
 </footer>
 
-</div>  </body>  </html>
+</div>  
+
+<script>
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("open");
+    document.getElementById("menuOverlay").classList.toggle("show");
+}
+
+function closeMenu(){
+    document
