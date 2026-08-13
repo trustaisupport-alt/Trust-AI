@@ -741,16 +741,30 @@ footer {
 <!-- SIDE MENU DRAWER -->
 <nav id="sideMenu" class="side-menu">
 
-<button class="menu-button" onclick="closeMenu()" aria-label="Close menu">
-<span></span>
-<span></span>
-<span></span>
-</button>
+<header class="header">  
 
-<div class="menu-title">
-<strong>🛡️ TrustAI</strong>
-<span>Online Scam Protection</span>
-</div>
+    <!-- 3-Dash Menu Button on the Far Left -->
+    <button class="menu-button"  
+    type="button"  
+    aria-label="Menu"  
+    onclick="toggleMenu()">  
+        <span></span>  
+        <span></span>  
+        <span></span>  
+    </button>  
+
+    <!-- Brand Logo Shifted Away from Menu -->
+    <div class="brand">  
+        <div class="brand-shield">  
+            🛡️  
+        </div>  
+        <div class="brand-name">  
+            TrustAI  
+        </div>  
+    </div>  
+
+</header>
+  
 
 <a href="home.html" class="menu-link">
 <span class="menu-icon">🏠</span> Home
