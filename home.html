@@ -1304,4 +1304,70 @@ function openMenu() {
 
 function closeMenu() {
 
-    si
+<script>
+
+const menuButton = document.getElementById("menuButton");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function openMenu() {
+    sideMenu.classList.add("open");
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    menuButton.setAttribute(
+        "aria-label",
+        "Close menu"
+    );
+}
+
+function closeMenu() {
+    sideMenu.classList.remove("open");
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    menuButton.setAttribute(
+        "aria-label",
+        "Open menu"
+    );
+}
+
+function toggleMenu() {
+    if (sideMenu.classList.contains("open")) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
+}
+
+menuButton.addEventListener(
+    "click",
+    toggleMenu
+);
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+        if (event.key === "Escape") {
+            closeMenu();
+        }
+    }
+);
+
+</script>
+
+</body>
+</html>
