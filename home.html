@@ -1278,20 +1278,14 @@ footer {
 
 <script>
 
-const menuButton =
-    document.getElementById("menuButton");
-
-const sideMenu =
-    document.getElementById("sideMenu");
-
-const menuOverlay =
-    document.getElementById("menuOverlay");
+const menuButton = document.getElementById("menuButton");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
 
 
 function openMenu() {
 
     sideMenu.classList.add("open");
-
     menuOverlay.classList.add("show");
 
     menuButton.setAttribute(
@@ -1300,59 +1294,68 @@ function openMenu() {
     );
 
 }
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    const menuButton = document.getElementById("menuButton");
-    const sideMenu = document.getElementById("sideMenu");
-    const menuOverlay = document.getElementById("menuOverlay");
 
-    if (!menuButton || !sideMenu || !menuOverlay) {
-        alert("TrustAI menu error: menu elements were not found.");
-        return;
+function closeMenu() {
+
+    sideMenu.classList.remove("open");
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+/* THREE-DASH BUTTON */
+
+menuButton.addEventListener("click", function(event) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    openMenu();
+
+});
+
+
+/* DARK OVERLAY */
+
+menuOverlay.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    closeMenu();
+
+});
+
+
+/* CLOSE MENU WHEN A LINK IS SELECTED */
+
+const menuLinks = document.querySelectorAll(".menu-link");
+
+menuLinks.forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        closeMenu();
+
+    });
+
+});
+
+
+/* ESC KEY ALSO CLOSES MENU */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        closeMenu();
+
     }
-
-    menuButton.addEventListener("click", function () {
-
-        sideMenu.classList.toggle("open");
-        menuOverlay.classList.toggle("show");
-
-        const isOpen = sideMenu.classList.contains("open");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            isOpen ? "true" : "false"
-        );
-
-    });
-
-    menuOverlay.addEventListener("click", function () {
-
-        sideMenu.classList.remove("open");
-        menuOverlay.classList.remove("show");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    });
-
-    document.querySelectorAll(".menu-link").forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            sideMenu.classList.remove("open");
-            menuOverlay.classList.remove("show");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        });
-
-    });
 
 });
 
