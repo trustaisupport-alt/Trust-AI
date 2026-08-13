@@ -3,522 +3,680 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>TrustAI - Online Scam Protection</title>
-
-    <meta name="description"
-        content="TrustAI helps identify warning signs in suspicious messages, conversations and websites.">
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fb;
-            color: #172033;
-        }
-
-        /* =========================
-           MENU BUTTON
-        ========================= */
-
-        .menu-button {
-            position: fixed;
-            top: 20px;
-            left: 18px;
-            width: 44px;
-            height: 44px;
-            border: 1px solid #dce3ec;
-            border-radius: 10px;
-            background: #ffffff;
-            cursor: pointer;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .menu-button span {
-            width: 21px;
-            height: 2px;
-            background: #172033;
-            border-radius: 2px;
-        }
-
-        .menu-button:hover {
-            border-color: #1459c7;
-        }
-
-        /* =========================
-           SIDE MENU
-        ========================= */
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -290px;
-            width: 280px;
-            height: 100vh;
-            background: #ffffff;
-            border-right: 1px solid #dce3ec;
-            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
-            z-index: 1000;
-            padding: 75px 18px 25px;
-            overflow-y: auto;
-            transition: left 0.25s ease;
-        }
-
-        .side-menu.open {
-            left: 0;
-        }
-
-        .menu-title {
-            padding: 0 12px 18px;
-            border-bottom: 1px solid #e5eaf1;
-            margin-bottom: 12px;
-        }
-
-        .menu-title strong {
-            font-size: 21px;
-        }
-
-        .menu-title span {
-            display: block;
-            margin-top: 4px;
-            color: #697586;
-            font-size: 12px;
-        }
-
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-            padding: 13px 12px;
-            margin-bottom: 4px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #172033;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .menu-link:hover {
-            background: #f0f5fc;
-            color: #1459c7;
-        }
-
-        .menu-icon {
-            width: 25px;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        .menu-divider {
-            height: 1px;
-            background: #e5eaf1;
-            margin: 14px 0;
-        }
-
-        /* =========================
-           OVERLAY
-        ========================= */
-
-        .menu-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 18, 32, 0.35);
-            z-index: 999;
-            display: none;
-        }
-
-        .menu-overlay.show {
-            display: block;
-        }
-
-        /* =========================
-           PAGE
-        ========================= */
-
-        .page {
-            max-width: 900px;
-            margin: auto;
-            padding: 25px 18px 40px;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 35px;
-            padding-left: 58px;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            margin: 0;
-        }
-
-        .status {
-            font-size: 13px;
-            font-weight: bold;
-            color: #16803c;
-            background: #e9f8ef;
-            padding: 7px 11px;
-            border-radius: 20px;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 30px 24px;
-            margin-bottom: 28px;
-            border: 1px solid #e0e6ef;
-        }
-
-        .hero h1 {
-            margin: 0 0 12px;
-            font-size: 31px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            margin: 0;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #536071;
-        }
-
-        /* =========================
-           SECTION
-        ========================= */
-
-        .section-title {
-            font-size: 21px;
-            margin: 30px 0 15px;
-        }
-
-        /* =========================
-           TOOLS
-        ========================= */
-
-        .tools {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .tool {
-            background: #ffffff;
-            border: 1px solid #e0e6ef;
-            border-radius: 16px;
-            padding: 20px;
-            text-decoration: none;
-            color: #172033;
-            display: block;
-            transition: 0.2s;
-        }
-
-        .tool:hover {
-            transform: translateY(-2px);
-            border-color: #1459c7;
-        }
-
-        .tool-icon {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .tool h3 {
-            margin: 0 0 7px;
-            font-size: 17px;
-        }
-
-        .tool p {
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.5;
-            color: #657184;
-        }
-
-        /* =========================
-           SECURITY
-        ========================= */
-
-        .security-box {
-            background: #172033;
-            color: white;
-            border-radius: 18px;
-            padding: 24px;
-            margin-top: 28px;
-        }
-
-        .security-box h2 {
-            margin-top: 0;
-            font-size: 21px;
-        }
-
-        .security-box p {
-            color: #d8deea;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        .security-link {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 11px 15px;
-            background: white;
-            color: #172033;
-            border-radius: 9px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        /* =========================
-           REPORT
-        ========================= */
-
-        .report {
-            background: #fff7e8;
-            border: 1px solid #f0d49b;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 18px;
-        }
-
-        .report h2 {
-            margin-top: 0;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #dce2eb;
-            color: #697586;
-            font-size: 13px;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 650px) {
-
-            .page {
-                padding: 18px 14px 35px;
-            }
-
-            .menu-button {
-                top: 14px;
-                left: 14px;
-            }
-
-            .header {
-                margin-bottom: 25px;
-                padding-left: 55px;
-            }
-
-            .logo {
-                font-size: 25px;
-            }
-
-            .status {
-                display: none;
-            }
-
-            .hero {
-                padding: 25px 20px;
-            }
-
-            .hero h1 {
-                font-size: 27px;
-            }
-
-            .tools {
-                grid-template-columns: 1fr;
-            }
-
-            .tool {
-                padding: 18px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI - Home</title>
+
+<style>
+
+/* =====================================================
+   TRUSTAI HOME — PREMIUM PURPLE/BLUE SECURITY DESIGN
+   THIS STYLE IS ONLY FOR home.html
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(124, 58, 237, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14, 165, 233, 0.10),
+            transparent 30%
+        ),
+        #f6f7fc;
+
+    color: #182033;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   PAGE
+   ===================================================== */
+
+.page {
+    width: min(1050px, calc(100% - 24px));
+    margin: auto;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-shield {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb
+        );
+
+    color: white;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 8px 22px rgba(124, 58, 237, 0.22);
+}
+
+.brand-name {
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+
+/* =====================================================
+   MENU BUTTON
+   ===================================================== */
+
+.menu-button {
+    width: 52px;
+    height: 52px;
+
+    border: 1px solid #e2e5ef;
+    border-radius: 15px;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px rgba(31, 41, 55, 0.07);
+}
+
+.menu-button span {
+    width: 25px;
+    height: 3px;
+
+    border-radius: 5px;
+
+    background: #202b43;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+
+    margin-top: 8px;
+
+    padding: 34px 30px;
+
+    border: 1px solid #e4e5f0;
+    border-radius: 27px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #faf8ff
+        );
+
+    box-shadow:
+        0 15px 45px rgba(31, 41, 55, 0.07);
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(124, 58, 237, 0.13),
+            transparent 70%
+        );
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 1;
+
+    max-width: 650px;
+
+    margin: 0 0 15px;
+
+    font-size: clamp(32px, 6vw, 48px);
+
+    line-height: 1.1;
+
+    letter-spacing: -2px;
+
+    color: #17213a;
+}
+
+.hero h1 span {
+    color: #7040d9;
+}
+
+.hero p {
+    position: relative;
+    z-index: 1;
+
+    max-width: 720px;
+
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   SECTION TITLE
+   ===================================================== */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 34px 0 17px;
+
+    font-size: 23px;
+    font-weight: 900;
+
+    color: #17213a;
+}
+
+.section-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #eee9ff;
+
+    color: #7040d9;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 17px;
+}
+
+.card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 25px;
+
+    min-height: 205px;
+
+    border: 1px solid #e5e7ef;
+    border-radius: 22px;
+
+    background: white;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 28px rgba(31, 41, 55, 0.055);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color: #c9b8f7;
+
+    box-shadow:
+        0 18px 40px rgba(31, 41, 55, 0.10);
+}
+
+
+/* =====================================================
+   DIFFERENT ACCENT COLORS
+   ===================================================== */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: #7c3aed;
+}
+
+.message-card::before {
+    background: #7c3aed;
+}
+
+.conversation-card::before {
+    background: #2563eb;
+}
+
+.website-card::before {
+    background: #0891b2;
+}
+
+.security-card::before {
+    background: #0f766e;
+}
+
+.alert-card::before {
+    background: #ea580c;
+}
+
+.report-card::before {
+    background: #dc2626;
+}
+
+.contact-card::before {
+    background: #db2777;
+}
+
+
+/* =====================================================
+   CARD ICON
+   ===================================================== */
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 14px;
+
+    background: #f1edff;
+
+    font-size: 25px;
+}
+
+.conversation-card .card-icon {
+    background: #eaf2ff;
+}
+
+.website-card .card-icon {
+    background: #e5f9fc;
+}
+
+.security-card .card-icon {
+    background: #e8f8f4;
+}
+
+.alert-card .card-icon {
+    background: #fff1e8;
+}
+
+.report-card .card-icon {
+    background: #fff0f1;
+}
+
+.contact-card .card-icon {
+    background: #fdf0f7;
+}
+
+
+/* =====================================================
+   CARD TEXT
+   ===================================================== */
+
+.card h2 {
+    margin: 0 0 7px;
+
+    color: #17213a;
+
+    font-size: 20px;
+    font-weight: 850;
+}
+
+.card p {
+    margin: 0;
+
+    color: #6b7485;
+
+    font-size: 15px;
+
+    line-height: 1.65;
+}
+
+
+/* =====================================================
+   SECURITY CENTER
+   ===================================================== */
+
+.security-center {
+    position: relative;
+    overflow: hidden;
+
+    margin-top: 34px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #34206f,
+            #4f46a8
+        );
+
+    color: white;
+
+    box-shadow:
+        0 18px 45px rgba(79, 70, 168, 0.22);
+}
+
+.security-center::after {
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+
+    right: -70px;
+    top: -80px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 50%;
+}
+
+.security-center h2 {
+    position: relative;
+    z-index: 1;
+
+    margin: 0 0 8px;
+
+    font-size: 25px;
+}
+
+.security-center p {
+    position: relative;
+    z-index: 1;
+
+    max-width: 680px;
+
+    margin: 0 0 22px;
+
+    color: #e5e7ff;
+}
+
+.security-button {
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+
+    padding: 13px 19px;
+
+    border-radius: 11px;
+
+    background: white;
+
+    color: #34206f;
+
+    text-decoration: none;
+
+    font-weight: 800;
+
+    transition: 0.2s ease;
+}
+
+.security-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+/* =====================================================
+   REMEMBER BOX
+   ===================================================== */
+
+.remember {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border: 1px solid #eadcfb;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaff,
+            #f7f3ff
+        );
+}
+
+.remember h2 {
+    margin: 0 0 12px;
+
+    color: #3f267c;
+
+    font-size: 22px;
+}
+
+.remember p {
+    margin: 10px 0;
+
+    color: #626b7b;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    margin-top: 42px;
+
+    padding: 25px 0 35px;
+
+    border-top: 1px solid #e1e4ec;
+
+    text-align: center;
+
+    color: #7b8493;
+
+    font-size: 13px;
+}
+
+.footer-brand {
+    margin-bottom: 5px;
+
+    color: #4c5670;
+
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .page {
+        width: calc(100% - 24px);
+    }
+
+    .header {
+        padding-top: 16px;
+    }
+
+    .brand-name {
+        font-size: 25px;
+    }
+
+    .hero {
+        padding: 30px 22px;
+        border-radius: 23px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 190px;
+        padding: 23px;
+    }
+
+    .security-center {
+        padding: 25px 21px;
+    }
+
+    .security-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+</style>
 
 </head>
 
 
 <body>
 
-
-<!-- =========================
-     MENU BUTTON
-========================= -->
-
-<button
-    class="menu-button"
-    onclick="toggleMenu()"
-    aria-label="Open navigation menu">
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-</button>
-
-
-<!-- =========================
-     SIDE NAVIGATION
-========================= -->
-
-<nav id="sideMenu" class="side-menu">
-
-    <div class="menu-title">
-
-        <strong>🛡️ TrustAI</strong>
-
-        <span>Online Scam Protection</span>
-
-    </div>
-
-
-    <a href="home.html" class="menu-link">
-
-        <span class="menu-icon">🏠</span>
-
-        Home
-
-    </a>
-
-
-    <a href="message.html" class="menu-link">
-
-        <span class="menu-icon">🔍</span>
-
-        Message Checker
-
-    </a>
-
-
-    <a href="conversation.html" class="menu-link">
-
-        <span class="menu-icon">💬</span>
-
-        Conversation Checker
-
-    </a>
-
-
-    <a href="Website.html" class="menu-link">
-
-        <span class="menu-icon">🌐</span>
-
-        Website Checker
-
-    </a>
-
-
-    <a href="device_checker.html" class="menu-link">
-
-        <span class="menu-icon">📱</span>
-
-        Device Security
-
-    </a>
-
-
-    <a href="security.html" class="menu-link">
-
-        <span class="menu-icon">🛡️</span>
-
-        Security Center
-
-    </a>
-
-
-    <div class="menu-divider"></div>
-
-
-    <a href="alerts.html" class="menu-link">
-
-        <span class="menu-icon">🚨</span>
-
-        Scam Alerts
-
-    </a>
-
-
-    <a href="report.html" class="menu-link">
-
-        <span class="menu-icon">📢</span>
-
-        Report a Scam
-
-    </a>
-
-
-    <a href="feedback.html" class="menu-link">
-
-        <span class="menu-icon">💬</span>
-
-        Contact TrustAI
-
-    </a>
-
-</nav>
-
-
-<div
-    id="menuOverlay"
-    class="menu-overlay"
-    onclick="closeMenu()">
-</div>
-
-
-
 <div class="page">
 
 
     <!-- HEADER -->
 
-    <div class="header">
+    <header class="header">
 
-        <div class="logo">
-            🛡️ TrustAI
+        <div class="brand">
+
+            <div class="brand-shield">
+                🛡️
+            </div>
+
+            <div class="brand-name">
+                TrustAI
+            </div>
+
         </div>
 
-        <div class="status">
-            ● Protection Tools
-        </div>
 
-    </div>
+        <button class="menu-button"
+        type="button"
+        aria-label="Menu"
+        onclick="alert('Menu')">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
 
 
     <!-- HERO -->
@@ -526,7 +684,8 @@
     <section class="hero">
 
         <h1>
-            Stay one step ahead of scams.
+            Stay one step ahead of
+            <span>scams.</span>
         </h1>
 
         <p>
@@ -538,25 +697,32 @@
     </section>
 
 
-    <!-- MAIN TOOLS -->
+    <!-- CHECK SOMETHING -->
 
     <h2 class="section-title">
-        🔎 Check Something
+
+        <span class="section-icon">
+            🔎
+        </span>
+
+        Check Something
+
     </h2>
 
 
-    <div class="tools">
+    <div class="cards">
 
 
-        <a class="tool" href="message.html">
+        <a href="message.html"
+        class="card message-card">
 
-            <div class="tool-icon">
+            <div class="card-icon">
                 🔍
             </div>
 
-            <h3>
+            <h2>
                 Message Checker
-            </h3>
+            </h2>
 
             <p>
                 Check a suspicious message for scam,
@@ -567,15 +733,16 @@
         </a>
 
 
-        <a class="tool" href="conversation.html">
+        <a href="conversation.html"
+        class="card conversation-card">
 
-            <div class="tool-icon">
+            <div class="card-icon">
                 💬
             </div>
 
-            <h3>
+            <h2>
                 Conversation Checker
-            </h3>
+            </h2>
 
             <p>
                 Analyze a conversation for suspicious
@@ -585,15 +752,16 @@
         </a>
 
 
-        <a class="tool" href="Website.html">
+        <a href="website.html"
+        class="card website-card">
 
-            <div class="tool-icon">
+            <div class="card-icon">
                 🌐
             </div>
 
-            <h3>
+            <h2>
                 Website Checker
-            </h3>
+            </h2>
 
             <p>
                 Check a website address for common
@@ -602,31 +770,49 @@
 
         </a>
 
-
-        <a class="tool" href="device_checker.html">
-
-            <div class="tool-icon">
-                📱
-            </div>
-
-            <h3>
-                Device Security
-            </h3>
-
-            <p>
-                Review important device security
-                practices and improve weak areas.
-            </p>
-
-        </a>
-
-
     </div>
 
 
     <!-- SECURITY -->
 
-    <div class="security-box">
+    <h2 class="section-title">
+
+        <span class="section-icon">
+            🛡️
+        </span>
+
+        Security
+
+    </h2>
+
+
+    <div class="cards">
+
+
+        <a href="device.html"
+        class="card security-card">
+
+            <div class="card-icon">
+                📱
+            </div>
+
+            <h2>
+                Device Security
+            </h2>
+
+            <p>
+                Review important device security practices
+                and improve weak areas.
+            </p>
+
+        </a>
+
+    </div>
+
+
+    <!-- SECURITY CENTER -->
+
+    <section class="security-center">
 
         <h2>
             🛡️ Security Center
@@ -638,32 +824,42 @@
             personal information.
         </p>
 
-        <a class="security-link" href="security.html">
+        <a href="security.html"
+        class="security-button">
+
             Open Security Center →
+            
         </a>
 
-    </div>
+    </section>
 
 
-    <!-- ALERTS -->
+    <!-- STAY INFORMED -->
 
     <h2 class="section-title">
-        🚨 Stay Informed
+
+        <span class="section-icon">
+            🚨
+        </span>
+
+        Stay Informed
+
     </h2>
 
 
-    <div class="tools">
+    <div class="cards">
 
 
-        <a class="tool" href="alerts.html">
+        <a href="alerts.html"
+        class="card alert-card">
 
-            <div class="tool-icon">
+            <div class="card-icon">
                 🚨
             </div>
 
-            <h3>
+            <h2>
                 Scam Alerts
-            </h3>
+            </h2>
 
             <p>
                 Learn about common scam methods and
@@ -673,15 +869,16 @@
         </a>
 
 
-        <a class="tool" href="report.html">
+        <a href="report.html"
+        class="card report-card">
 
-            <div class="tool-icon">
+            <div class="card-icon">
                 📢
             </div>
 
-            <h3>
+            <h2>
                 Report a Scam
-            </h3>
+            </h2>
 
             <p>
                 Report suspicious activity and help
@@ -691,15 +888,16 @@
         </a>
 
 
-        <a class="tool" href="feedback.html">
+        <a href="contact.html"
+        class="card contact-card">
 
-            <div class="tool-icon">
+            <div class="card-icon">
                 💬
             </div>
 
-            <h3>
+            <h2>
                 Contact TrustAI
-            </h3>
+            </h2>
 
             <p>
                 Share your experience and tell us what
@@ -708,13 +906,12 @@
 
         </a>
 
-
     </div>
 
 
-    <!-- SAFETY NOTICE -->
+    <!-- REMEMBER -->
 
-    <div class="report">
+    <section class="remember">
 
         <h2>
             ⚠️ Remember
@@ -722,8 +919,8 @@
 
         <p>
             Never share your password, PIN, OTP or
-            verification code with someone who asks for
-            it unexpectedly.
+            verification code with someone who asks
+            for it unexpectedly.
         </p>
 
         <p>
@@ -731,16 +928,16 @@
             sending money or personal information.
         </p>
 
-    </div>
+    </section>
 
 
     <!-- FOOTER -->
 
     <footer>
 
-        <strong>🛡️ TrustAI</strong>
-
-        <br>
+        <div class="footer-brand">
+            🛡️ TrustAI
+        </div>
 
         Online scam awareness and protection.
 
@@ -752,41 +949,6 @@
 
 
 </div>
-
-
-<script>
-
-function toggleMenu() {
-
-    const menu =
-        document.getElementById("sideMenu");
-
-    const overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.toggle("open");
-
-    overlay.classList.toggle("show");
-
-}
-
-
-function closeMenu() {
-
-    const menu =
-        document.getElementById("sideMenu");
-
-    const overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.remove("open");
-
-    overlay.classList.remove("show");
-
-}
-
-</script>
-
 
 </body>
 
