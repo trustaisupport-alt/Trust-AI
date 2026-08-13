@@ -1300,58 +1300,58 @@ function openMenu() {
     );
 
 }
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-    <script>
+    const menuButton = document.getElementById("menuButton");
+    const sideMenu = document.getElementById("sideMenu");
+    const menuOverlay = document.getElementById("menuOverlay");
 
-const menuButton = document.getElementById("menuButton");
-const sideMenu = document.getElementById("sideMenu");
-const menuOverlay = document.getElementById("menuOverlay");
-
-function openMenu() {
-    sideMenu.classList.add("open");
-    menuOverlay.classList.add("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
-}
-
-function closeMenu() {
-    sideMenu.classList.remove("open");
-    menuOverlay.classList.remove("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-}
-
-/* THREE-DASH BUTTON */
-menuButton.addEventListener("click", function () {
-
-    if (sideMenu.classList.contains("open")) {
-        closeMenu();
-    } else {
-        openMenu();
+    if (!menuButton || !sideMenu || !menuOverlay) {
+        alert("TrustAI menu error: menu elements were not found.");
+        return;
     }
 
-});
+    menuButton.addEventListener("click", function () {
 
-/* CLOSE MENU WITH ESCAPE KEY */
-document.addEventListener("keydown", function(event) {
+        sideMenu.classList.toggle("open");
+        menuOverlay.classList.toggle("show");
 
-    if (event.key === "Escape") {
-        closeMenu();
-    }
+        const isOpen = sideMenu.classList.contains("open");
 
-});
+        menuButton.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
 
-/* CLOSE MENU WHEN A MENU LINK IS TAPPED */
-document.querySelectorAll(".menu-link").forEach(function(link) {
+    });
 
-    link.addEventListener("click", function() {
-        closeMenu();
+    menuOverlay.addEventListener("click", function () {
+
+        sideMenu.classList.remove("open");
+        menuOverlay.classList.remove("show");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    });
+
+    document.querySelectorAll(".menu-link").forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            sideMenu.classList.remove("open");
+            menuOverlay.classList.remove("show");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
     });
 
 });
