@@ -51,7 +51,7 @@
     }
 
     /* ================================
-       Top Progress Bar Track & Percentage
+       Top Progress Bar Track
        ================================ */
     .progress-container {
       position: fixed;
@@ -69,19 +69,6 @@
       background: linear-gradient(90deg, #2563eb, var(--primary-color));
       box-shadow: 0 0 14px var(--primary-glow);
       transition: width 3.2s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    /* Percentage counter badge */
-    .status-badge {
-      position: fixed;
-      top: 12px;
-      right: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--primary-color);
-      opacity: 0.8;
-      font-family: monospace;
     }
 
     /* ================================
@@ -161,13 +148,10 @@
     ></div>
   </div>
 
-  <!-- Real-time Loading Percentage -->
-  <div class="status-badge" id="statusBadge">0%</div>
-
   <!-- Main Content -->
   <main class="brand-container">
     
-    <!-- SVG SHIELD LOGO (No external image needed) -->
+    <!-- SVG SHIELD LOGO -->
     <div class="logo-wrapper">
       <svg class="trust-ai-shield" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -198,7 +182,6 @@
 
     async function handlePageTransition() {
       const progressBar = document.getElementById("progressBar");
-      const statusBadge = document.getElementById("statusBadge");
       const statusText = document.getElementById("statusText");
 
       if (!progressBar) return;
@@ -206,16 +189,6 @@
       await delay(300);
       progressBar.style.width = "100%";
       progressBar.setAttribute("aria-valuenow", "100");
-
-      let currentProgress = 0;
-      const counterInterval = setInterval(() => {
-        if (currentProgress < 100) {
-          currentProgress += 1;
-          statusBadge.textContent = `${currentProgress}%`;
-        } else {
-          clearInterval(counterInterval);
-        }
-      }, 30);
 
       await delay(1200);
       statusText.style.opacity = "0";
