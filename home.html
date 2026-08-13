@@ -72,13 +72,14 @@ body {
   
   
 /* =====================================================  
-   HEADER  
+   HEADER (MENU BUTTON ON LEFT)
    ===================================================== */  
   
 .header {  
     display: flex;  
     align-items: center;  
-    justify-content: space-between;  
+    justify-content: flex-start;  
+    gap: 16px;
   
     padding: 24px 0 16px;  
 }  
@@ -149,6 +150,7 @@ body {
   
     box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
     transition: all 0.2s ease;
+    flex-shrink: 0;
 }  
 
 .menu-button:hover {
@@ -792,9 +794,20 @@ footer {
 
 <div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-<div class="page">  <!-- HEADER -->  
+<div class="page">  <!-- HEADER (MENU BUTTON MOVED TO LEFT SIDE) -->  
 
 <header class="header">  
+
+    <button class="menu-button"  
+    type="button"  
+    aria-label="Menu"  
+    onclick="toggleMenu()">  
+
+        <span></span>  
+        <span></span>  
+        <span></span>  
+
+    </button>  
 
     <div class="brand">  
 
@@ -807,18 +820,6 @@ footer {
         </div>  
 
     </div>  
-
-
-    <button class="menu-button"  
-    type="button"  
-    aria-label="Menu"  
-    onclick="toggleMenu()">  
-
-        <span></span>  
-        <span></span>  
-        <span></span>  
-
-    </button>  
 
 </header>  
 
@@ -1090,8 +1091,4 @@ class="card contact-card">
 <script>
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("open");
-    document.getElementById("menuOverlay").classList.toggle("show");
-}
-
-function closeMenu(){
-    document
+    document.getElemen
