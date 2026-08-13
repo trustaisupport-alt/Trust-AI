@@ -1,1 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Contact TrustAI</title>
+
+    <meta name="description"
+        content="Contact TrustAI for questions, support, or suspicious activity reports.">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f4f7fb 0%,
+                    #eef3f9 100%
+                );
+
+            color: #172033;
+        }
+
+
+        .page {
+            width: min(760px, calc(100% - 28px));
+
+            margin: 0 auto;
+
+            padding: 24px 0 45px;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .top-bar {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+
+        .home-link {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: #1459c7;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+
+
+        .status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 7px 12px;
+
+            border-radius: 999px;
+
+            background: #eaf8f0;
+
+            border: 1px solid #c9ecd8;
+
+            color: #16803c;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #20a957;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            background: white;
+
+            border: 1px solid #e0e6ef;
+
+            border-radius: 22px;
+
+            padding: 30px 25px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(31, 41, 55, 0.07);
+        }
+
+
+        .hero-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 17px;
+
+            background: #eef4ff;
+
+            border: 1px solid #d8e5ff;
+
+            font-size: 28px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .hero h1 {
+            margin: 0 0 9px;
+
+            color: #172033;
+
+            font-size: clamp(28px, 6vw, 38px);
+
+            letter-spacing: -1px;
+        }
+
+
+        .hero p {
+            margin: 0;
+
+            max-width: 620px;
+
+            color: #657184;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           CONTACT OPTIONS
+        ========================= */
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .contact-card {
+            background: white;
+
+            border: 1px solid #e0e6ef;
+
+            border-radius: 17px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 7px 22px
+                rgba(31, 41, 55, 0.05);
+
+            transition: 0.2s ease;
+        }
+
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+
+            border-color: #c9d9f5;
+
+            box-shadow:
+                0 12px 28px
+                rgba(31, 41, 55, 0.08);
+        }
+
+
+        .contact-card-icon {
+            font-size: 24px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .contact-card h2 {
+            margin: 0 0 6px;
+
+            font-size: 17px;
+
+            color: #172033;
+        }
+
+
+        .contact-card p {
+            margin: 0;
+
+            color: #657184;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        .contact-card a {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            color: #1459c7;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            word-break: break-word;
+        }
+
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           MESSAGE CARD
+        ========================= */
+
+        .message-card {
+            background: white;
+
+            border: 1px solid #e0e6ef;
+
+            border-radius: 22px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(31, 41, 55, 0.07);
+        }
+
+
+        .message-card h2 {
+            margin: 0 0 7px;
+
+            font-size: 22px;
+
+            color: #172033;
+        }
+
+
+        .message-card > p {
+            margin: 0 0 20px;
+
+            color: #657184;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #27324a;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        input,
+        textarea {
+            width: 100%;
+
+            border: 1px solid #ccd4df;
+
+            border-radius: 11px;
+
+            padding: 13px 14px;
+
+            background: #fbfcfe;
+
+            color: #172033;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s ease;
+        }
+
+
+        input:focus,
+        textarea:focus {
+            border-color: #6d8fe0;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(20, 89, 199, 0.08);
+        }
+
+
+        textarea {
+            min-height: 150px;
+
+            resize: vertical;
+        }
+
+
+        .send-button {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 11px;
+
+            padding: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1459c7,
+                    #2869d5
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+
+        .send-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 9px 22px
+                rgba(20, 89, 199, 0.22);
+        }
+
+
+        /* =========================
+           RESULT
+        ========================= */
+
+        #contactResult {
+            display: none;
+
+            margin-top: 17px;
+
+            padding: 14px;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+        }
+
+
+        #contactResult.success {
+            display: block;
+
+            background: #eaf8f0;
+
+            border: 1px solid #c9ecd8;
+
+            color: #16803c;
+        }
+
+
+        #contactResult.error {
+            display: block;
+
+            background: #fff5f5;
+
+            border: 1px solid #f1cccc;
+
+            color: #c53b3b;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 22px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            color: #8994a5;
+
+            font-size: 12px;
+        }
+
+
+        .footer-brand {
+            color: #536078;
+
+            font-weight: 800;
+
+            margin-bottom: 4px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .page {
+                width: calc(100% - 22px);
+
+                padding-top: 16px;
+            }
+
+
+            .hero {
+                padding: 24px 19px;
+
+                border-radius: 19px;
+            }
+
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+
+            .message-card {
+                padding: 20px;
+
+                border-radius: 19px;
+            }
+
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .top-bar {
+                align-items: flex-start;
+            }
+
+
+            .status {
+                font-size: 11px;
+
+                padding: 6px 9px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+        <a
+            class="home-link"
+            href="home.html">
+
+            ← Home
+
+        </a>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            TrustAI Support
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-icon">
+            💬
+        </div>
+
+        <h1>
+            Contact TrustAI
+        </h1>
+
+        <p>
+            We're here to help. If you have a question,
+            found a problem, or noticed suspicious activity,
+            you can contact the TrustAI team below.
+        </p>
+
+    </section>
+
+
+
+    <!-- CONTACT OPTIONS -->
+
+    <section class="contact-grid">
+
+
+        <div class="contact-card">
+
+            <div class="contact-card-icon">
+                📧
+            </div>
+
+            <h2>
+                Email Support
+            </h2>
+
+            <p>
+                Send us a message directly through
+                our support email.
+            </p>
+
+            <a
+                href="mailto:trustai.support@gmail.com">
+
+                trustai.support@gmail.com
+
+            </a>
+
+        </div>
+
+
+
+        <div class="contact-card">
+
+            <div class="contact-card-icon">
+                🚨
+            </div>
+
+            <h2>
+                Suspicious Activity
+            </h2>
+
+            <p>
+                Found something suspicious?
+                Help protect other users by reporting it.
+            </p>
+
+            <a href="report.html">
+
+                Report a Scam →
+
+            </a>
+
+        </div>
+
+
+
+        <div class="contact-card">
+
+            <div class="contact-card-icon">
+                🛡️
+            </div>
+
+            <h2>
+                Stay Protected
+            </h2>
+
+            <p>
+                Never share your password, PIN,
+                OTP, or verification code with anyone.
+            </p>
+
+            <a href="security.html">
+
+                Security Center →
+
+            </a>
+
+        </div>
+
+
+
+        <div class="contact-card">
+
+            <div class="contact-card-icon">
+                💡
+            </div>
+
+            <h2>
+                Feedback
+            </h2>
+
+            <p>
+                Tell us what you like about TrustAI
+                and what you would like us to improve.
+            </p>
+
+            <a href="feedback.html">
+
+                Give Feedback →
+
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- MESSAGE FORM -->
+
+    <section class="message-card">
+
+        <h2>
+            Send Us a Message
+        </h2>
+
+        <p>
+            Have a question or need help?
+            Fill in the form and we'll let you know
+            that your message has been received.
+        </p>
+
+
+        <form
+            onsubmit="sendMessage(event)">
+
+
+            <div class="field">
+
+                <label for="name">
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email address"
+                >
+
+            </div>
+
+
+
+            <div class="field">
+
+                <label for="message">
+                    Your Message
+                </label>
+
+                <textarea
+                    id="message"
+                    placeholder="Write your message here..."
+                ></textarea>
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="send-button">
+
+                📩 Send Message
+
+            </button>
+
+
+        </form>
+
+
+        <div id="contactResult"></div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-brand">
+            🛡️ TrustAI
+        </div>
+
+        Stay alert. Stay protected.
+
+    </footer>
+
+
+</div>
+
+
+
+<script>
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("name")
+        .value
+        .trim();
+
+
+    const email =
+        document.getElementById("email")
+        .value
+        .trim();
+
+
+    const message =
+        document.getElementById("message")
+        .value
+        .trim();
+
+
+    const result =
+        document.getElementById("contactResult");
+
+
+    if (
+        name === "" ||
+        email === "" ||
+        message === ""
+    ) {
+
+        result.className = "error";
+
+        result.textContent =
+            "⚠️ Please complete your name, email address, and message.";
+
+        return;
+
+    }
+
+
+    result.className = "success";
+
+    result.textContent =
+        "✅ Message received. Thank you for contacting TrustAI.";
+
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("email").value = "";
+
+    document.getElementById("message").value = "";
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
