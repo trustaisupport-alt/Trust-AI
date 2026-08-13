@@ -8,8 +8,6 @@
 <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
-
 <title>TrustAI - Security Center</title>
 
 <meta name="description"
@@ -21,24 +19,34 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    background: #050b14;
+    background: #07111f;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 3-DASH BUTTON */
+/* =====================================================
+   3-DASH BUTTON
+   ===================================================== */
 
 .menu-button {
     position: fixed;
     top: 16px;
     left: 16px;
-    width: 46px;
-    height: 46px;
-    border: none;
-    border-radius: 11px;
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid #24415f;
+    border-radius: 12px;
+
     background: #1687ff;
+
     cursor: pointer;
     z-index: 1001;
 
@@ -46,102 +54,129 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     gap: 5px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
 .menu-button span {
-    width: 22px;
+    width: 23px;
     height: 3px;
+
     background: #ffffff;
+
     border-radius: 3px;
 }
 
-/* SIDE MENU */
+/* =====================================================
+   SIDE MENU
+   ===================================================== */
 
 .side-menu {
     position: fixed;
+
     top: 0;
-    left: -290px;
-    width: 280px;
+    left: -300px;
+
+    width: 290px;
     height: 100vh;
 
-    background: #0b1420;
-    border-right: 1px solid #1b2b3d;
+    background: #0b1624;
+
+    border-right: 1px solid #20344a;
 
     z-index: 1000;
 
-    padding: 80px 18px 25px;
+    padding: 82px 18px 25px;
 
     overflow-y: auto;
 
-    transition: left 0.25s ease;
+    transition: left 0.28s ease;
+
+    box-shadow: 10px 0 35px rgba(0,0,0,0.25);
 }
 
 .side-menu.open {
     left: 0;
 }
 
+/* MENU TITLE */
+
 .menu-title {
     padding: 0 12px 18px;
-    border-bottom: 1px solid #1b2b3d;
-    margin-bottom: 12px;
+
+    border-bottom: 1px solid #20344a;
+
+    margin-bottom: 14px;
 }
 
 .menu-title strong {
-    font-size: 21px;
-    color: #1687ff;
+    font-size: 22px;
+    color: #ffffff;
 }
 
 .menu-title span {
     display: block;
+
     margin-top: 5px;
-    color: #8998aa;
+
+    color: #8191a5;
+
     font-size: 12px;
 }
 
+/* MENU LINKS */
+
 .menu-link {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
     width: 100%;
 
     padding: 13px 12px;
-    margin-bottom: 4px;
+
+    margin-bottom: 5px;
 
     border-radius: 10px;
 
     text-decoration: none;
+
     color: #ffffff;
 
     font-size: 14px;
+
     font-weight: 600;
+
+    transition: 0.2s ease;
 }
 
 .menu-link:hover {
-    background: #101f31;
+    background: #12253a;
     color: #1687ff;
 }
 
 .menu-icon {
     width: 25px;
+
     text-align: center;
+
     font-size: 18px;
 }
 
-.menu-divider {
-    height: 1px;
-    background: #1b2b3d;
-    margin: 14px 0;
-}
-
-/* OVERLAY */
+/* =====================================================
+   OVERLAY
+   ===================================================== */
 
 .menu-overlay {
     position: fixed;
+
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.55);
+    background: rgba(0, 0, 0, 0.58);
 
     z-index: 999;
 
@@ -152,20 +187,29 @@ body {
     display: block;
 }
 
-/* PAGE */
+/* =====================================================
+   MAIN PAGE
+   ===================================================== */
 
 .page {
     width: 100%;
+
     max-width: 900px;
+
     margin: auto;
-    padding: 85px 18px 45px;
+
+    padding: 88px 18px 45px;
 }
 
-/* LOGO */
+/* =====================================================
+   LOGO
+   ===================================================== */
 
 .logo {
     font-size: 25px;
+
     font-weight: 800;
+
     margin-bottom: 35px;
 }
 
@@ -173,23 +217,34 @@ body {
     color: #1687ff;
 }
 
-/* HEADINGS */
+/* =====================================================
+   HEADINGS
+   ===================================================== */
 
 h1 {
     font-size: 34px;
+
     margin-bottom: 12px;
+
+    line-height: 1.2;
 }
 
 h2 {
     margin-top: 35px;
+
     margin-bottom: 12px;
+
     font-size: 20px;
+
+    color: #ffffff;
 }
 
 p,
 li {
-    color: #9ba8b8;
+    color: #a5b2c2;
+
     line-height: 1.6;
+
     font-size: 15px;
 }
 
@@ -201,18 +256,49 @@ li {
     margin-bottom: 8px;
 }
 
-/* FOOTER */
+/* =====================================================
+   SECURITY CONTENT CARDS
+   ===================================================== */
+
+.security-section {
+    padding: 22px;
+
+    margin-top: 22px;
+
+    border: 1px solid #1c3148;
+
+    border-radius: 16px;
+
+    background: #0b1725;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 footer {
     text-align: center;
+
     color: #657386;
+
     font-size: 12px;
+
     margin-top: 40px;
+
     padding-top: 20px;
+
     border-top: 1px solid #182536;
 }
 
-/* MOBILE */
+footer p {
+    font-size: 12px;
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media (max-width: 650px) {
 
@@ -224,6 +310,19 @@ footer {
         font-size: 28px;
     }
 
+    h2 {
+        font-size: 19px;
+    }
+
+    p,
+    li {
+        font-size: 14px;
+    }
+
+    .security-section {
+        padding: 18px;
+    }
+
 }
 
 </style>
@@ -233,7 +332,9 @@ footer {
 <body>
 
 
-<!-- 3-DASH BUTTON -->
+<!-- =====================================================
+     3-DASH BUTTON
+     ===================================================== -->
 
 <button
     class="menu-button"
@@ -247,7 +348,9 @@ footer {
 </button>
 
 
-<!-- SIDE MENU -->
+<!-- =====================================================
+     SIDE MENU
+     ===================================================== -->
 
 <nav id="sideMenu" class="side-menu">
 
@@ -258,44 +361,67 @@ footer {
         <span>Online Scam Protection</span>
 
     </div>
-<a href="./home.html" class="menu-link">
-    <span class="menu-icon">🏠</span> Home
-</a>
 
-<a href="./message.html" class="menu-link">
-    <span class="menu-icon">🔍</span> Message Checker
-</a>
 
-<a href="./conversation.html" class="menu-link">
-    <span class="menu-icon">💬</span> Conversation Checker
-</a>
+    <a href="./home.html" class="menu-link">
+        <span class="menu-icon">🏠</span>
+        Home
+    </a>
 
-<!-- FIXED HERE: Changed 'Website.html' to './website.html' -->
-<a href="./website.html" class="menu-link">
-    <span class="menu-icon">🌐</span> Website Checker
-</a>
 
-<a href="./device.html" class="menu-link">
-    <span class="menu-icon">📱</span> Device Security
-</a>
+    <a href="./message.html" class="menu-link">
+        <span class="menu-icon">🔍</span>
+        Message Checker
+    </a>
 
-<a href="./security.html" class="menu-link">
-    <span class="menu-icon">🛡️</span> Security Center
-</a>
 
-<a href="./alerts.html" class="menu-link">
-    <span class="menu-icon">🚨</span> Scam Alerts
-</a>
+    <a href="./conversation.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Conversation Checker
+    </a>
 
-<a href="./report.html" class="menu-link">
-    <span class="menu-icon">📢</span> Report a Scam
-</a>
 
-<a href="./contact.html" class="menu-link">
-    <span class="menu-icon">💬</span> Contact TrustAI
-</a>
-    
-<!-- OVERLAY -->
+    <a href="./website.html" class="menu-link">
+        <span class="menu-icon">🌐</span>
+        Website Checker
+    </a>
+
+
+    <a href="./device.html" class="menu-link">
+        <span class="menu-icon">📱</span>
+        Device Security
+    </a>
+
+
+    <a href="./security.html" class="menu-link">
+        <span class="menu-icon">🛡️</span>
+        Security Center
+    </a>
+
+
+    <a href="./alerts.html" class="menu-link">
+        <span class="menu-icon">🚨</span>
+        Scam Alerts
+    </a>
+
+
+    <a href="./report.html" class="menu-link">
+        <span class="menu-icon">📢</span>
+        Report a Scam
+    </a>
+
+
+    <a href="./contact.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Contact TrustAI
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     OVERLAY
+     ===================================================== -->
 
 <div
     id="menuOverlay"
@@ -304,231 +430,270 @@ footer {
 </div>
 
 
-<!-- MAIN CONTENT -->
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
 
 <div class="page">
 
 
-<h1 class="logo">
-    🛡️ Trust<span>AI</span>
-</h1>
+    <h1 class="logo">
+        🛡️ Trust<span>AI</span>
+    </h1>
 
 
-<h1>
-    🛡️ Security Center
-</h1>
+    <h1>
+        🛡️ Security Center
+    </h1>
 
-<p>
-    Learn simple ways to protect your accounts,
-    money, devices, and personal information online.
-</p>
-
-
-<!-- PASSWORD SECURITY -->
-
-<h2>🔑 Password Security</h2>
-
-<p>
-    Use strong and unique passwords for important
-    accounts. Avoid using the same password everywhere.
-</p>
-
-<ul>
-
-    <li>Use long and difficult-to-guess passwords.</li>
-
-    <li>Do not share your password with other people.</li>
-
-    <li>Avoid using your name, birthday, or simple numbers.</li>
-
-    <li>Use a password manager when appropriate.</li>
-
-    <li>Change a password if you believe it has been exposed.</li>
-
-</ul>
-
-
-<!-- OTP SECURITY -->
-
-<h2>🔐 OTP & Verification Code Security</h2>
-
-<p>
-    One-time passwords and verification codes are designed
-    to protect your account.
-</p>
-
-<ul>
-
-    <li>Never give your OTP to another person.</li>
-
-    <li>Never send a verification code through chat.</li>
-
-    <li>Do not read a security code to someone on a call.</li>
-
-    <li>If you receive an unexpected code, check your account.</li>
-
-</ul>
-
-
-<!-- SUSPICIOUS LINKS -->
-
-<h2>🔗 Suspicious Link Safety</h2>
-
-<p>
-    Be careful with links received through unexpected
-    messages, emails, social media, or other channels.
-</p>
-
-<ul>
-
-    <li>Check the website address carefully.</li>
-
-    <li>Be cautious of shortened or unfamiliar links.</li>
-
-    <li>Do not enter passwords into suspicious websites.</li>
-
-    <li>When possible, open the official website yourself.</li>
-
-</ul>
-
-
-<!-- PAYMENT SECURITY -->
-
-<h2>💳 Payment & Banking Safety</h2>
-
-<p>
-    Always verify payment requests before sending money.
-</p>
-
-<ul>
-
-    <li>Confirm who you are paying.</li>
-
-    <li>Be careful with urgent payment requests.</li>
-
-    <li>Do not send money because someone is pressuring you.</li>
-
-    <li>Verify unexpected requests through another channel.</li>
-
-    <li>Contact your bank using official contact information if something looks suspicious.</li>
-
-</ul>
-
-
-<!-- ACCOUNT RECOVERY -->
-
-<h2>🔄 Account Recovery</h2>
-
-<p>
-    If you lose access to an account, use the platform's
-    official recovery process.
-</p>
-
-<ul>
-
-    <li>Use the official website or application.</li>
-
-    <li>Do not pay strangers who promise to recover your account.</li>
-
-    <li>Never give someone your recovery codes.</li>
-
-    <li>Secure your email account because it may be used for recovery.</li>
-
-</ul>
-
-
-<!-- DEVICE SECURITY -->
-
-<h2>📱 Device Security</h2>
-
-<p>
-    Keep your phone or computer protected when using
-    banking, messaging, and social-media services.
-</p>
-
-<ul>
-
-    <li>Keep your operating system updated.</li>
-
-    <li>Install applications from trusted sources.</li>
-
-    <li>Use a screen lock.</li>
-
-    <li>Review unfamiliar applications and permissions.</li>
-
-    <li>Do not install software from suspicious links.</li>
-
-</ul>
-
-
-<!-- IF SCAMMED -->
-
-<h2>🚨 What If I Have Been Scammed?</h2>
-
-<p>
-    If you think you have been scammed, act quickly and
-    avoid sending additional money.
-</p>
-
-<ul>
-
-    <li>Stop communicating with the suspected scammer when appropriate.</li>
-
-    <li>Contact your bank or payment provider if money was involved.</li>
-
-    <li>Change compromised passwords.</li>
-
-    <li>Secure affected accounts.</li>
-
-    <li>Keep screenshots, messages, receipts, and transaction records.</li>
-
-    <li>Report the incident through appropriate official channels.</li>
-
-</ul>
-
-
-<!-- QUICK RULES -->
-
-<h2>⚠️ Quick Security Rules</h2>
-
-<ul>
-
-    <li>Never share your OTP.</li>
-
-    <li>Never share your PIN.</li>
-
-    <li>Never share your password.</li>
-
-    <li>Verify unexpected money requests.</li>
-
-    <li>Be careful with suspicious links.</li>
-
-    <li>Do not allow pressure to make your decisions for you.</li>
-
-</ul>
-
-
-<!-- FOOTER -->
-
-<footer>
 
     <p>
-        <strong>🛡️ TrustAI</strong>
+        Learn simple ways to protect your accounts,
+        money, devices, and personal information online.
     </p>
 
-    <p>
-        Online scam awareness and protection.
-    </p>
 
-    <p>
-        © 2026 TrustAI
-    </p>
+    <!-- PASSWORD SECURITY -->
 
-</footer>
+    <section class="security-section">
+
+        <h2>🔑 Password Security</h2>
+
+        <p>
+            Use strong and unique passwords for important
+            accounts. Avoid using the same password everywhere.
+        </p>
+
+        <ul>
+
+            <li>Use long and difficult-to-guess passwords.</li>
+
+            <li>Do not share your password with other people.</li>
+
+            <li>Avoid using your name, birthday, or simple numbers.</li>
+
+            <li>Use a password manager when appropriate.</li>
+
+            <li>Change a password if you believe it has been exposed.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- OTP SECURITY -->
+
+    <section class="security-section">
+
+        <h2>🔐 OTP & Verification Code Security</h2>
+
+        <p>
+            One-time passwords and verification codes are designed
+            to protect your account.
+        </p>
+
+        <ul>
+
+            <li>Never give your OTP to another person.</li>
+
+            <li>Never send a verification code through chat.</li>
+
+            <li>Do not read a security code to someone on a call.</li>
+
+            <li>If you receive an unexpected code, check your account.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- SUSPICIOUS LINKS -->
+
+    <section class="security-section">
+
+        <h2>🔗 Suspicious Link Safety</h2>
+
+        <p>
+            Be careful with links received through unexpected
+            messages, emails, social media, or other channels.
+        </p>
+
+        <ul>
+
+            <li>Check the website address carefully.</li>
+
+            <li>Be cautious of shortened or unfamiliar links.</li>
+
+            <li>Do not enter passwords into suspicious websites.</li>
+
+            <li>When possible, open the official website yourself.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- PAYMENT SECURITY -->
+
+    <section class="security-section">
+
+        <h2>💳 Payment & Banking Safety</h2>
+
+        <p>
+            Always verify payment requests before sending money.
+        </p>
+
+        <ul>
+
+            <li>Confirm who you are paying.</li>
+
+            <li>Be careful with urgent payment requests.</li>
+
+            <li>Do not send money because someone is pressuring you.</li>
+
+            <li>Verify unexpected requests through another channel.</li>
+
+            <li>Contact your bank using official contact information if something looks suspicious.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- ACCOUNT RECOVERY -->
+
+    <section class="security-section">
+
+        <h2>🔄 Account Recovery</h2>
+
+        <p>
+            If you lose access to an account, use the platform's
+            official recovery process.
+        </p>
+
+        <ul>
+
+            <li>Use the official website or application.</li>
+
+            <li>Do not pay strangers who promise to recover your account.</li>
+
+            <li>Never give someone your recovery codes.</li>
+
+            <li>Secure your email account because it may be used for recovery.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- DEVICE SECURITY -->
+
+    <section class="security-section">
+
+        <h2>📱 Device Security</h2>
+
+        <p>
+            Keep your phone or computer protected when using
+            banking, messaging, and social-media services.
+        </p>
+
+        <ul>
+
+            <li>Keep your operating system updated.</li>
+
+            <li>Install applications from trusted sources.</li>
+
+            <li>Use a screen lock.</li>
+
+            <li>Review unfamiliar applications and permissions.</li>
+
+            <li>Do not install software from suspicious links.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- IF SCAMMED -->
+
+    <section class="security-section">
+
+        <h2>🚨 What If I Have Been Scammed?</h2>
+
+        <p>
+            If you think you have been scammed, act quickly and
+            avoid sending additional money.
+        </p>
+
+        <ul>
+
+            <li>Stop communicating with the suspected scammer when appropriate.</li>
+
+            <li>Contact your bank or payment provider if money was involved.</li>
+
+            <li>Change compromised passwords.</li>
+
+            <li>Secure affected accounts.</li>
+
+            <li>Keep screenshots, messages, receipts, and transaction records.</li>
+
+            <li>Report the incident through appropriate official channels.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- QUICK RULES -->
+
+    <section class="security-section">
+
+        <h2>⚠️ Quick Security Rules</h2>
+
+        <ul>
+
+            <li>Never share your OTP.</li>
+
+            <li>Never share your PIN.</li>
+
+            <li>Never share your password.</li>
+
+            <li>Verify unexpected money requests.</li>
+
+            <li>Be careful with suspicious links.</li>
+
+            <li>Do not allow pressure to make your decisions for you.</li>
+
+        </ul>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            <strong>🛡️ TrustAI</strong>
+        </p>
+
+        <p>
+            Online scam awareness and protection.
+        </p>
+
+        <p>
+            © 2026 TrustAI
+        </p>
+
+    </footer>
 
 
 </div>
 
+
+<!-- =====================================================
+     MENU JAVASCRIPT
+     ===================================================== -->
 
 <script>
 
@@ -566,4 +731,4 @@ function closeMenu() {
 
 </body>
 
-    </html>
+</html>
