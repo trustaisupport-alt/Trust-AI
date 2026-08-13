@@ -1301,10 +1301,7 @@ function openMenu() {
 
 }
 
-
-function closeMenu() {
-
-<script>
+    <script>
 
 const menuButton = document.getElementById("menuButton");
 const sideMenu = document.getElementById("sideMenu");
@@ -1318,11 +1315,6 @@ function openMenu() {
         "aria-expanded",
         "true"
     );
-
-    menuButton.setAttribute(
-        "aria-label",
-        "Close menu"
-    );
 }
 
 function closeMenu() {
@@ -1333,39 +1325,36 @@ function closeMenu() {
         "aria-expanded",
         "false"
     );
-
-    menuButton.setAttribute(
-        "aria-label",
-        "Open menu"
-    );
 }
 
-function toggleMenu() {
+/* THREE-DASH BUTTON */
+menuButton.addEventListener("click", function () {
+
     if (sideMenu.classList.contains("open")) {
         closeMenu();
     } else {
         openMenu();
     }
-}
 
-menuButton.addEventListener(
-    "click",
-    toggleMenu
-);
+});
 
-menuOverlay.addEventListener(
-    "click",
-    closeMenu
-);
+/* CLOSE MENU WITH ESCAPE KEY */
+document.addEventListener("keydown", function(event) {
 
-document.addEventListener(
-    "keydown",
-    function(event) {
-        if (event.key === "Escape") {
-            closeMenu();
-        }
+    if (event.key === "Escape") {
+        closeMenu();
     }
-);
+
+});
+
+/* CLOSE MENU WHEN A MENU LINK IS TAPPED */
+document.querySelectorAll(".menu-link").forEach(function(link) {
+
+    link.addEventListener("click", function() {
+        closeMenu();
+    });
+
+});
 
 </script>
 
