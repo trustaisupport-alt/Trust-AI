@@ -12,11 +12,6 @@ content="width=device-width, initial-scale=1.0">
 
 <style>
 
-/* =====================================================
-   TRUSTAI HOME — ULTRA-MODERN DARK SECURITY DESIGN
-   THIS STYLE IS ONLY FOR home.html
-   ===================================================== */
-
 :root {
     --primary: #6366f1;
     --primary-glow: rgba(99, 102, 241, 0.15);
@@ -89,7 +84,6 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 16px;
-
     padding: 24px 0 16px;
 }
 
@@ -117,7 +111,6 @@ body {
         );
 
     color: white;
-
     font-size: 24px;
 
     box-shadow:
@@ -142,7 +135,7 @@ body {
 
 
 /* =====================================================
-   MENU BUTTON
+   THREE DASH MENU BUTTON
    ===================================================== */
 
 .menu-button {
@@ -152,8 +145,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 14px;
 
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.95);
 
     display: flex;
     flex-direction: column;
@@ -167,9 +159,14 @@ body {
     box-shadow:
         0 10px 25px -5px rgba(0,0,0,0.5);
 
-    transition: all 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
 
     flex-shrink: 0;
+
+    position: relative;
+    z-index: 1101;
 }
 
 .menu-button:hover {
@@ -178,24 +175,26 @@ body {
 }
 
 .menu-button span {
-    width: 20px;
-    height: 2.5px;
+    display: block;
+
+    width: 22px;
+    height: 3px;
 
     border-radius: 3px;
 
-    background: var(--text-main);
+    background: #ffffff;
 }
 
 
 /* =====================================================
-   SIDE MENU DOCK
+   SIDE MENU
    ===================================================== */
 
 .side-menu {
     position: fixed;
 
     top: 0;
-    left: -320px;
+    left: 0;
 
     width: 300px;
     height: 100vh;
@@ -204,29 +203,37 @@ body {
 
     border-right: 1px solid var(--border-color);
 
-    z-index: 1000;
+    z-index: 1100;
 
     padding: 30px 20px;
-
-    transition:
-        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
     overflow-y: auto;
 
     box-shadow:
         15px 0 30px rgba(0,0,0,0.3);
+
+    transform: translateX(-100%);
+
+    transition:
+        transform 0.3s ease;
 }
 
 .side-menu.open {
-    transform: translateX(320px);
+    transform: translateX(0);
 }
 
-.side-menu .menu-button {
-    margin-bottom: 24px;
-}
 
-.menu-title {
-    padding: 0 8px 20px;
+/* =====================================================
+   MENU HEADER
+   ===================================================== */
+
+.menu-header {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 20px;
 
     border-bottom:
         1px solid var(--border-color);
@@ -234,7 +241,10 @@ body {
     margin-bottom: 16px;
 }
 
-.menu-title strong {
+.menu-logo {
+    font-size: 22px;
+    font-weight: 800;
+
     background:
         linear-gradient(
             135deg,
@@ -244,23 +254,17 @@ body {
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    font-size: 22px;
-    font-weight: 800;
 }
 
-.menu-title span {
-    display: block;
-
-    margin-top: 4px;
-
+.menu-subtitle {
     color: var(--text-muted);
-
     font-size: 12px;
-    font-weight: 500;
-
-    letter-spacing: 0.5px;
 }
+
+
+/* =====================================================
+   MENU LINKS
+   ===================================================== */
 
 .menu-link {
     display: flex;
@@ -268,7 +272,9 @@ body {
 
     gap: 14px;
 
-    padding: 12px 14px;
+    width: 100%;
+
+    padding: 13px 14px;
 
     margin-bottom: 6px;
 
@@ -281,7 +287,10 @@ body {
     font-size: 14px;
     font-weight: 600;
 
-    transition: all 0.2s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .menu-link:hover {
@@ -290,8 +299,7 @@ body {
 
     color: var(--text-main);
 
-    transform:
-        translateX(4px);
+    transform: translateX(4px);
 }
 
 .menu-icon {
@@ -299,7 +307,7 @@ body {
 
     text-align: center;
 
-    font-size: 16px;
+    font-size: 17px;
 }
 
 .menu-divider {
@@ -311,6 +319,11 @@ body {
     margin: 18px 0;
 }
 
+
+/* =====================================================
+   OVERLAY
+   ===================================================== */
+
 .menu-overlay {
     position: fixed;
 
@@ -321,7 +334,7 @@ body {
 
     backdrop-filter: blur(4px);
 
-    z-index: 999;
+    z-index: 1050;
 
     display: none;
 
@@ -333,7 +346,6 @@ body {
 
 .menu-overlay.show {
     display: block;
-
     opacity: 1;
 }
 
@@ -344,24 +356,19 @@ body {
 
 .hero {
     position: relative;
-
     overflow: hidden;
 
     margin-top: 12px;
 
     padding: 40px 32px;
 
-    border:
-        1px solid var(--border-color);
+    border: 1px solid var(--border-color);
 
-    border-radius:
-        var(--radius-lg);
+    border-radius: var(--radius-lg);
 
-    background:
-        var(--bg-card);
+    background: var(--bg-card);
 
-    backdrop-filter:
-        blur(16px);
+    backdrop-filter: blur(16px);
 
     box-shadow:
         0 20px 40px -15px rgba(0,0,0,0.4);
@@ -390,7 +397,6 @@ body {
 
 .hero h1 {
     position: relative;
-
     z-index: 1;
 
     max-width: 650px;
@@ -404,8 +410,7 @@ body {
 
     letter-spacing: -1px;
 
-    color:
-        var(--text-main);
+    color: var(--text-main);
 
     font-weight: 800;
 }
@@ -424,15 +429,13 @@ body {
 
 .hero p {
     position: relative;
-
     z-index: 1;
 
     max-width: 720px;
 
     margin: 0;
 
-    color:
-        var(--text-muted);
+    color: var(--text-muted);
 
     font-size: 15.5px;
 
@@ -451,15 +454,13 @@ body {
 
     gap: 12px;
 
-    margin:
-        40px 0 20px;
+    margin: 40px 0 20px;
 
     font-size: 22px;
 
     font-weight: 800;
 
-    color:
-        var(--text-main);
+    color: var(--text-main);
 
     letter-spacing: -0.3px;
 }
@@ -478,8 +479,7 @@ body {
     background:
         var(--primary-glow);
 
-    color:
-        var(--primary);
+    color: var(--primary);
 
     font-size: 18px;
 
@@ -496,10 +496,7 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(280px, 1fr)
-        );
+        repeat(auto-fit, minmax(280px, 1fr));
 
     gap: 20px;
 }
@@ -516,14 +513,11 @@ body {
     border:
         1px solid var(--border-color);
 
-    border-radius:
-        var(--radius-lg);
+    border-radius: var(--radius-lg);
 
-    background:
-        var(--bg-card);
+    background: var(--bg-card);
 
-    backdrop-filter:
-        blur(16px);
+    backdrop-filter: blur(16px);
 
     text-decoration: none;
 
@@ -537,21 +531,14 @@ body {
 }
 
 .card:hover {
-    transform:
-        translateY(-5px);
+    transform: translateY(-5px);
 
     border-color:
         rgba(99, 102, 241, 0.4);
 
     box-shadow:
-        0 20px 40px -10px
-        rgba(0, 0, 0, 0.4);
+        0 20px 40px -10px rgba(0,0,0,0.4);
 }
-
-
-/* =====================================================
-   DIFFERENT ACCENT COLORS
-   ===================================================== */
 
 .card::before {
     content: "";
@@ -612,11 +599,10 @@ body {
 
     margin-bottom: 18px;
 
-    border-radius:
-        var(--radius-md);
+    border-radius: var(--radius-md);
 
     background:
-        rgba(255, 255, 255, 0.04);
+        rgba(255,255,255,0.04);
 
     border:
         1px solid var(--border-color);
@@ -630,11 +616,9 @@ body {
    ===================================================== */
 
 .card h2 {
-    margin:
-        0 0 8px;
+    margin: 0 0 8px;
 
-    color:
-        var(--text-main);
+    color: var(--text-main);
 
     font-size: 19px;
 
@@ -646,8 +630,7 @@ body {
 .card p {
     margin: 0;
 
-    color:
-        var(--text-muted);
+    color: var(--text-muted);
 
     font-size: 14.5px;
 
@@ -668,8 +651,7 @@ body {
 
     padding: 34px 30px;
 
-    border-radius:
-        var(--radius-lg);
+    border-radius: var(--radius-lg);
 
     border:
         1px solid rgba(99, 102, 241, 0.2);
@@ -681,40 +663,19 @@ body {
             rgba(49, 46, 129, 0.8)
         );
 
-    backdrop-filter:
-        blur(16px);
+    backdrop-filter: blur(16px);
 
     color: white;
 
     box-shadow:
-        0 20px 40px -15px
-        rgba(0, 0, 0, 0.5);
-}
-
-.security-center::after {
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    right: -60px;
-    top: -70px;
-
-    border:
-        1px solid rgba(255,255,255,0.08);
-
-    border-radius: 50%;
+        0 20px 40px -15px rgba(0,0,0,0.5);
 }
 
 .security-center h2 {
     position: relative;
-
     z-index: 1;
 
-    margin:
-        0 0 10px;
+    margin: 0 0 10px;
 
     font-size: 24px;
 
@@ -723,13 +684,11 @@ body {
 
 .security-center p {
     position: relative;
-
     z-index: 1;
 
     max-width: 680px;
 
-    margin:
-        0 0 24px;
+    margin: 0 0 24px;
 
     color: #c7d2fe;
 
@@ -738,15 +697,13 @@ body {
 
 .security-button {
     position: relative;
-
     z-index: 2;
 
     display: inline-flex;
 
     padding: 13px 22px;
 
-    border-radius:
-        var(--radius-md);
+    border-radius: var(--radius-md);
 
     background: white;
 
@@ -758,21 +715,17 @@ body {
 
     font-size: 14.5px;
 
-    transition:
-        all 0.2s ease;
+    transition: all 0.2s ease;
 
     box-shadow:
-        0 10px 20px
-        rgba(0, 0, 0, 0.2);
+        0 10px 20px rgba(0,0,0,0.2);
 }
 
 .security-button:hover {
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     box-shadow:
-        0 14px 25px
-        rgba(0, 0, 0, 0.3);
+        0 14px 25px rgba(0,0,0,0.3);
 }
 
 
@@ -786,21 +739,18 @@ body {
     padding: 28px;
 
     border:
-        1px solid rgba(234, 179, 8, 0.2);
+        1px solid rgba(234,179,8,0.2);
 
-    border-radius:
-        var(--radius-lg);
+    border-radius: var(--radius-lg);
 
     background:
-        rgba(161, 98, 7, 0.12);
+        rgba(161,98,7,0.12);
 
-    backdrop-filter:
-        blur(12px);
+    backdrop-filter: blur(12px);
 }
 
 .remember h2 {
-    margin:
-        0 0 12px;
+    margin: 0 0 12px;
 
     color: #fef08a;
 
@@ -810,8 +760,7 @@ body {
 }
 
 .remember p {
-    margin:
-        10px 0;
+    margin: 10px 0;
 
     color: #fef9c3;
 
@@ -826,16 +775,14 @@ body {
 footer {
     margin-top: 48px;
 
-    padding:
-        28px 0 35px;
+    padding: 28px 0 35px;
 
     border-top:
         1px solid var(--border-color);
 
     text-align: center;
 
-    color:
-        var(--text-muted);
+    color: var(--text-muted);
 
     font-size: 13.5px;
 }
@@ -843,8 +790,7 @@ footer {
 .footer-brand {
     margin-bottom: 6px;
 
-    color:
-        var(--text-main);
+    color: var(--text-main);
 
     font-weight: 800;
 
@@ -859,8 +805,7 @@ footer {
 @media (max-width: 700px) {
 
     .page {
-        width:
-            calc(100% - 28px);
+        width: calc(100% - 28px);
     }
 
     .header {
@@ -872,9 +817,7 @@ footer {
     }
 
     .hero {
-        padding:
-            28px 22px;
-
+        padding: 28px 22px;
         border-radius: 18px;
     }
 
@@ -896,13 +839,16 @@ footer {
     }
 
     .security-center {
-        padding:
-            28px 22px;
+        padding: 28px 22px;
     }
 
     .security-button {
         width: 100%;
         justify-content: center;
+    }
+
+    .side-menu {
+        width: 280px;
     }
 }
 
@@ -913,88 +859,80 @@ footer {
 <body>
 
 
-<!-- SIDE MENU DRAWER -->
+<!-- =====================================================
+     SIDE MENU
+     ===================================================== -->
 
 <nav id="sideMenu" class="side-menu">
 
-<header class="header">
+    <div class="menu-header">
 
-    <button
-        class="menu-button"
-        type="button"
-        aria-label="Menu"
-        onclick="toggleMenu()">
+        <div>
+            <div class="menu-logo">
+                🛡️ TrustAI
+            </div>
 
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
-
-    <div class="brand">
-
-        <div class="brand-shield">
-            🛡️
-        </div>
-
-        <div class="brand-name">
-            TrustAI
+            <div class="menu-subtitle">
+                Online Scam Protection
+            </div>
         </div>
 
     </div>
 
-</header>
+
+    <a href="home.html" class="menu-link">
+        <span class="menu-icon">🏠</span>
+        Home
+    </a>
+
+    <a href="message.html" class="menu-link">
+        <span class="menu-icon">🔍</span>
+        Message Checker
+    </a>
+
+    <a href="conversation.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Conversation Checker
+    </a>
+
+    <a href="website.html" class="menu-link">
+        <span class="menu-icon">🌐</span>
+        website Checker
+    </a>
+
+    <a href="device_checker.html" class="menu-link">
+        <span class="menu-icon">📱</span>
+        Device Security
+    </a>
+
+    <a href="security.html" class="menu-link">
+        <span class="menu-icon">🛡️</span>
+        Security Center
+    </a>
 
 
-<a href="home.html" class="menu-link">
-    <span class="menu-icon">🏠</span>
-    Home
-</a>
+    <div class="menu-divider"></div>
 
-<a href="message.html" class="menu-link">
-    <span class="menu-icon">🔍</span>
-    Message Checker
-</a>
 
-<a href="conversation.html" class="menu-link">
-    <span class="menu-icon">💬</span>
-    Conversation Checker
-</a>
+    <a href="alerts.html" class="menu-link">
+        <span class="menu-icon">🚨</span>
+        Scam Alerts
+    </a>
 
-<a href="website.html" class="menu-link">
-    <span class="menu-icon">🌐</span>
-    website Checker
-</a>
+    <a href="report.html" class="menu-link">
+        <span class="menu-icon">📢</span>
+        Report a Scam
+    </a>
 
-<a href="device_checker.html" class="menu-link">
-    <span class="menu-icon">📱</span>
-    Device Security
-</a>
-
-<a href="security.html" class="menu-link">
-    <span class="menu-icon">🛡️</span>
-    Security Center
-</a>
-
-<div class="menu-divider"></div>
-
-<a href="alerts.html" class="menu-link">
-    <span class="menu-icon">🚨</span>
-    Scam Alerts
-</a>
-
-<a href="report.html" class="menu-link">
-    <span class="menu-icon">📢</span>
-    Report a Scam
-</a>
-
-<a href="contact.html" class="menu-link">
-    <span class="menu-icon">💬</span>
-    Contact TrustAI
-</a>
+    <a href="contact.html" class="menu-link">
+        <span class="menu-icon">💬</span>
+        Contact TrustAI
+    </a>
 
 </nav>
 
+
+<!-- OVERLAY -->
 
 <div
     id="menuOverlay"
@@ -1003,6 +941,11 @@ footer {
 </div>
 
 
+
+<!-- =====================================================
+     MAIN PAGE
+     ===================================================== -->
+
 <div class="page">
 
 
@@ -1010,17 +953,21 @@ footer {
 
 <header class="header">
 
+    <!-- THE ONLY THREE-DASH BUTTON -->
+
     <button
+        id="menuButton"
         class="menu-button"
         type="button"
-        aria-label="Menu"
-        onclick="toggleMenu()">
+        aria-label="Open menu"
+        aria-expanded="false">
 
         <span></span>
         <span></span>
         <span></span>
 
     </button>
+
 
     <div class="brand">
 
@@ -1035,6 +982,7 @@ footer {
     </div>
 
 </header>
+
 
 
 <!-- HERO -->
@@ -1055,6 +1003,7 @@ footer {
 </section>
 
 
+
 <!-- CHECK SOMETHING -->
 
 <h2 class="section-title">
@@ -1071,8 +1020,9 @@ footer {
 <div class="cards">
 
 
-    <a href="message.html"
-       class="card message-card">
+    <a
+        href="message.html"
+        class="card message-card">
 
         <div class="card-icon">
             🔍
@@ -1091,8 +1041,9 @@ footer {
     </a>
 
 
-    <a href="conversation.html"
-       class="card conversation-card">
+    <a
+        href="conversation.html"
+        class="card conversation-card">
 
         <div class="card-icon">
             💬
@@ -1110,8 +1061,9 @@ footer {
     </a>
 
 
-    <a href="website.html"
-       class="card website-card">
+    <a
+        href="website.html"
+        class="card website-card">
 
         <div class="card-icon">
             🌐
@@ -1131,6 +1083,7 @@ footer {
 </div>
 
 
+
 <!-- SECURITY -->
 
 <h2 class="section-title">
@@ -1146,8 +1099,10 @@ footer {
 
 <div class="cards">
 
-    <a href="device.html"
-       class="card security-card">
+
+    <a
+        href="device.html"
+        class="card security-card">
 
         <div class="card-icon">
             📱
@@ -1167,6 +1122,7 @@ footer {
 </div>
 
 
+
 <!-- SECURITY CENTER -->
 
 <section class="security-center">
@@ -1181,14 +1137,16 @@ footer {
         personal information.
     </p>
 
-    <a href="security.html"
-       class="security-button">
+    <a
+        href="security.html"
+        class="security-button">
 
         Open Security Center →
 
     </a>
 
 </section>
+
 
 
 <!-- STAY INFORMED -->
@@ -1207,8 +1165,9 @@ footer {
 <div class="cards">
 
 
-    <a href="alerts.html"
-       class="card alert-card">
+    <a
+        href="alerts.html"
+        class="card alert-card">
 
         <div class="card-icon">
             🚨
@@ -1226,8 +1185,9 @@ footer {
     </a>
 
 
-    <a href="report.html"
-       class="card report-card">
+    <a
+        href="report.html"
+        class="card report-card">
 
         <div class="card-icon">
             📢
@@ -1245,8 +1205,9 @@ footer {
     </a>
 
 
-    <a href="contact.html"
-       class="card contact-card">
+    <a
+        href="contact.html"
+        class="card contact-card">
 
         <div class="card-icon">
             💬
@@ -1264,6 +1225,7 @@ footer {
     </a>
 
 </div>
+
 
 
 <!-- REMEMBER -->
@@ -1288,6 +1250,7 @@ footer {
 </section>
 
 
+
 <!-- FOOTER -->
 
 <footer>
@@ -1308,30 +1271,37 @@ footer {
 </div>
 
 
+
 <!-- =====================================================
      MENU JAVASCRIPT
-     THIS IS THE FIX FOR THE THREE-DASH BUTTON
      ===================================================== -->
 
 <script>
 
-function toggleMenu() {
+const menuButton =
+    document.getElementById("menuButton");
 
-    const menu =
-        document.getElementById("sideMenu");
+const sideMenu =
+    document.getElementById("sideMenu");
 
-    const overlay =
-        document.getElementById("menuOverlay");
+const menuOverlay =
+    document.getElementById("menuOverlay");
 
-    if (!menu || !overlay) {
-        return;
-    }
 
-    menu.classList.toggle("open");
+function openMenu() {
 
-    overlay.classList.toggle("show");
+    sideMenu.classList.add("open");
+
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
 
 }
 
 
 function closeMenu() {
+
+    si
