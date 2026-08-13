@@ -1,26 +1,173 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome | Loading Experience</title>
+  
+  <style>
+    /* ================================
+       CSS Variables & Reset
+       ================================ */
+    :root {
+      --bg-color: #0b0f19;
+      --text-color: #f3f4f6;
+      --text-muted: #9ca3af;
+      --primary-color: #3b82f6;
+      --primary-glow: rgba(59, 130, 246, 0.4);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-const progressBar = document.querySelector(".progress-bar");
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-setTimeout(function() {
+    /* ================================
+       Global Styles & Exit Transition
+       ================================ */
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
 
-    progressBar.style.width = "100%";
+    /* Triggered via JS right before page redirection */
+    body.page-exit {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-    setTimeout(function() {
+    /* ================================
+       Top Progress Bar Track
+       ================================ */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.05);
+      z-index: 1000;
+    }
 
-        document.body.style.transition =
-            "opacity 0.5s ease";
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, var(--primary-color));
+      box-shadow: 0 0 12px var(--primary-glow);
+      /* Smooth cubic-bezier timing curve */
+      transition: width 3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-        document.body.style.opacity = "0";
+    /* ================================
+       Splash Card / Screen Content
+       ================================ */
+    .brand-container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 400px;
+      width: 90%;
+      animation: fadeIn 0.8s ease-out forwards;
+    }
 
-        setTimeout(function() {
+    .logo {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      filter: drop-shadow(0 0 8px var(--primary-glow));
+    }
 
-            window.location.href = "home.html";
+    .brand-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
 
-        }, 500);
+    .brand-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
 
-    }, 350);
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
 
-}, 4000);
+  <!-- Top Progress Bar Container -->
+  <div class="progress-container">
+    <div 
+      class="progress-bar" 
+      id="progressBar" 
+      role="progressbar" 
+      aria-valuenow="0" 
+      aria-valuemin="0" 
+      aria-valuemax="100"
+      aria-label="Loading application"
+    ></div>
+  </div>
 
-</script>
+  <!-- Main Center Visual Content -->
+  <main class="brand-container">
+    <svg class="logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>
+    <h1 class="brand-title">Initializing App</h1>
+    <p class="brand-subtitle">Setting up environment, please wait a moment...</p>
+  </main>
+
+  <!-- Optimized Async Script -->
+  <script>
+    // Promise utility helper
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    async function handlePageTransition() {
+      const progressBar = document.getElementById("progressBar");
+      if (!progressBar) return;
+
+      // Initial short delay prior to animating progress
+      await delay(400);
+
+      // Trigger width growth via CSS transition
+      progressBar.style.width = "100%";
+      progressBar.setAttribute("aria-valuenow", "100");
+
+      // Wait for progress animation duration + display pause
+      await delay(3200);
+
+      // Fade out page body smoothly
+      document.body.classList.add("page-exit");
+
+      // Wait for fade animation to conclude, then redirect
+      await delay(500);
+      window.location.href = "home.html";
+    }
+
+    // Execute flow when DOM structure is ready
+    document.addEventListener("DOMContentLoaded", handlePageTransition);
+  </script>
+
+</body>
+</html>
