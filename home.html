@@ -1,12 +1,21 @@
-<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI - Home</title>  <style>  
-  
-/* =====================================================  
+<title>TrustAI - Home</title>
+
+<style>
+
+/* =====================================================
    TRUSTAI HOME — ULTRA-MODERN DARK SECURITY DESIGN
-   THIS STYLE IS ONLY FOR home.html  
-   ===================================================== */  
+   THIS STYLE IS ONLY FOR home.html
+   ===================================================== */
 
 :root {
     --primary: #6366f1;
@@ -20,170 +29,192 @@ content="width=device-width, initial-scale=1.0">
     --radius-lg: 20px;
     --radius-md: 14px;
 }
-  
-* {  
-    box-sizing: border-box;  
+
+* {
+    box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-}  
-  
-html {  
-    scroll-behavior: smooth;  
-}  
-  
-body {  
-    margin: 0;  
-    font-family:  
-        Inter,  
-        system-ui,  
-        -apple-system,  
-        BlinkMacSystemFont,  
-        "Segoe UI",  
-        Arial,  
-        sans-serif;  
-  
-    background:  
-        radial-gradient(  
-            circle at 10% 0%,  
-            rgba(99, 102, 241, 0.12),  
-            transparent 40%  
-        ),  
-        radial-gradient(  
-            circle at 90% 20%,  
-            rgba(14, 165, 233, 0.08),  
-            transparent 40%  
-        ),  
-        var(--bg-main);  
-  
-    color: var(--text-main);  
-    line-height: 1.6;  
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(99, 102, 241, 0.12),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14, 165, 233, 0.08),
+            transparent 40%
+        ),
+        var(--bg-main);
+
+    color: var(--text-main);
+    line-height: 1.6;
     min-height: 100vh;
-}  
-  
-  
-/* =====================================================  
-   PAGE  
-   ===================================================== */  
-  
-.page {  
-    width: min(1050px, calc(100% - 32px));  
-    margin: auto;  
+}
+
+
+/* =====================================================
+   PAGE
+   ===================================================== */
+
+.page {
+    width: min(1050px, calc(100% - 32px));
+    margin: auto;
     padding-bottom: 40px;
-}  
-  
-  
-/* =====================================================  
-   HEADER (MENU BUTTON ON LEFT)
-   ===================================================== */  
-  
-.header {  
-    display: flex;  
-    align-items: center;  
-    justify-content: flex-start;  
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 16px;
-  
-    padding: 24px 0 16px;  
-}  
-  
-.brand {  
-    display: flex;  
-    align-items: center;  
-    gap: 12px;  
-}  
-  
-.brand-shield {  
-    width: 48px;  
-    height: 48px;  
-  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-  
-    border-radius: 14px;  
-  
-    background:  
-        linear-gradient(  
-            135deg,  
-            #6366f1,  
-            #3b82f6  
-        );  
-  
-    color: white;  
-  
-    font-size: 24px;  
-  
-    box-shadow:  
-        0 10px 25px -5px rgba(99, 102, 241, 0.4);  
-}  
-  
-.brand-name {  
-    font-size: 26px;  
-    font-weight: 900;  
-    letter-spacing: -0.5px;  
-    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+
+    padding: 24px 0 16px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-shield {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #3b82f6
+        );
+
+    color: white;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+.brand-name {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #94a3b8
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}  
-  
-  
-/* =====================================================  
-   MENU BUTTON  
-   ===================================================== */  
-  
-.menu-button {  
-    width: 48px;  
-    height: 48px;  
-  
-    border: 1px solid var(--border-color);  
-    border-radius: 14px;  
-  
-    background: rgba(15, 23, 42, 0.8);  
+}
+
+
+/* =====================================================
+   MENU BUTTON
+   ===================================================== */
+
+.menu-button {
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+
+    background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(12px);
-  
-    display: flex;  
-    flex-direction: column;  
-    justify-content: center;  
-    align-items: center;  
-  
-    gap: 5px;  
-  
-    cursor: pointer;  
-  
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px -5px rgba(0,0,0,0.5);
+
     transition: all 0.2s ease;
+
     flex-shrink: 0;
-}  
+}
 
 .menu-button:hover {
     border-color: var(--primary);
     transform: translateY(-2px);
 }
-  
-.menu-button span {  
-    width: 20px;  
-    height: 2.5px;  
-  
-    border-radius: 3px;  
-  
-    background: var(--text-main);  
-}  
 
-/* =====================================================  
-   SIDE MENU DOCK  
-   ===================================================== */  
+.menu-button span {
+    width: 20px;
+    height: 2.5px;
+
+    border-radius: 3px;
+
+    background: var(--text-main);
+}
+
+
+/* =====================================================
+   SIDE MENU DOCK
+   ===================================================== */
 
 .side-menu {
     position: fixed;
+
     top: 0;
     left: -320px;
+
     width: 300px;
     height: 100vh;
+
     background: var(--bg-side);
+
     border-right: 1px solid var(--border-color);
+
     z-index: 1000;
+
     padding: 30px 20px;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    transition:
+        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
     overflow-y: auto;
-    box-shadow: 15px 0 30px rgba(0,0,0,0.3);
+
+    box-shadow:
+        15px 0 30px rgba(0,0,0,0.3);
 }
 
 .side-menu.open {
@@ -196,913 +227,1111 @@ body {
 
 .menu-title {
     padding: 0 8px 20px;
-    border-bottom: 1px solid var(--border-color);
+
+    border-bottom:
+        1px solid var(--border-color);
+
     margin-bottom: 16px;
 }
 
 .menu-title strong {
-    background: linear-gradient(135deg, #818cf8, #38bdf8);
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
     font-size: 22px;
     font-weight: 800;
 }
 
 .menu-title span {
     display: block;
+
     margin-top: 4px;
+
     color: var(--text-muted);
+
     font-size: 12px;
     font-weight: 500;
+
     letter-spacing: 0.5px;
 }
 
 .menu-link {
     display: flex;
     align-items: center;
+
     gap: 14px;
+
     padding: 12px 14px;
+
     margin-bottom: 6px;
+
     border-radius: var(--radius-md);
+
     text-decoration: none;
+
     color: var(--text-muted);
+
     font-size: 14px;
     font-weight: 600;
+
     transition: all 0.2s ease;
 }
 
 .menu-link:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background:
+        rgba(255, 255, 255, 0.05);
+
     color: var(--text-main);
-    transform: translateX(4px);
+
+    transform:
+        translateX(4px);
 }
 
 .menu-icon {
     width: 24px;
+
     text-align: center;
+
     font-size: 16px;
 }
 
 .menu-divider {
     height: 1px;
-    background: var(--border-color);
+
+    background:
+        var(--border-color);
+
     margin: 18px 0;
 }
 
 .menu-overlay {
     position: fixed;
+
     inset: 0;
-    background: rgba(0,0,0,0.7);
+
+    background:
+        rgba(0,0,0,0.7);
+
     backdrop-filter: blur(4px);
+
     z-index: 999;
+
     display: none;
+
     opacity: 0;
-    transition: opacity 0.3s ease;
+
+    transition:
+        opacity 0.3s ease;
 }
 
 .menu-overlay.show {
     display: block;
+
     opacity: 1;
 }
-  
-  
-/* =====================================================  
-   HERO  
-   ===================================================== */  
-  
-.hero {  
-    position: relative;  
-    overflow: hidden;  
-  
-    margin-top: 12px;  
-  
-    padding: 40px 32px;  
-  
-    border: 1px solid var(--border-color);  
-    border-radius: var(--radius-lg);  
-  
-    background: var(--bg-card);  
-    backdrop-filter: blur(16px);
-  
-    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4);  
-}  
-  
-.hero::after {  
-    content: "";  
-  
-    position: absolute;  
-  
-    width: 200px;  
-    height: 200px;  
-  
-    right: -60px;  
-    top: -60px;  
-  
-    border-radius: 50%;  
-  
-    background:  
-        radial-gradient(  
-            circle,  
-            rgba(99, 102, 241, 0.18),  
-            transparent 70%  
-        );  
-}  
-  
-.hero h1 {  
-    position: relative;  
-    z-index: 1;  
-  
-    max-width: 650px;  
-  
-    margin: 0 0 16px;  
-  
-    font-size: clamp(32px, 5.5vw, 46px);  
-  
-    line-height: 1.15;  
-  
-    letter-spacing: -1px;  
-  
-    color: var(--text-main);  
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-top: 12px;
+
+    padding: 40px 32px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-card);
+
+    backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        0 20px 40px -15px rgba(0,0,0,0.4);
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -60px;
+    top: -60px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.18),
+            transparent 70%
+        );
+}
+
+.hero h1 {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 650px;
+
+    margin: 0 0 16px;
+
+    font-size:
+        clamp(32px, 5.5vw, 46px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+
+    color:
+        var(--text-main);
+
     font-weight: 800;
-}  
-  
-.hero h1 span {  
-    background: linear-gradient(135deg, #818cf8, #38bdf8);
+}
+
+.hero h1 span {
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}  
-  
-.hero p {  
-    position: relative;  
-    z-index: 1;  
-  
-    max-width: 720px;  
-  
-    margin: 0;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 15.5px;  
+}
+
+.hero p {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 720px;
+
+    margin: 0;
+
+    color:
+        var(--text-muted);
+
+    font-size: 15.5px;
+
     line-height: 1.65;
-}  
-  
-  
-/* =====================================================  
-   SECTION TITLE  
-   ===================================================== */  
-  
-.section-title {  
-    display: flex;  
-    align-items: center;  
-    gap: 12px;  
-  
-    margin: 40px 0 20px;  
-  
-    font-size: 22px;  
-    font-weight: 800;  
-  
-    color: var(--text-main);  
+}
+
+
+/* =====================================================
+   SECTION TITLE
+   ===================================================== */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin:
+        40px 0 20px;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color:
+        var(--text-main);
+
     letter-spacing: -0.3px;
-}  
-  
-.section-icon {  
-    width: 38px;  
-    height: 38px;  
-  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-  
-    border-radius: 12px;  
-  
-    background: var(--primary-glow);  
-  
-    color: var(--primary);  
-  
-    font-size: 18px;  
-    border: 1px solid rgba(99, 102, 241, 0.2);
-}  
-  
-  
-/* =====================================================  
-   CARDS  
-   ===================================================== */  
-  
-.cards {  
-    display: grid;  
-  
-    grid-template-columns:  
-        repeat(auto-fit, minmax(280px, 1fr));  
-  
-    gap: 20px;  
-}  
-  
-.card {  
-    position: relative;  
-  
-    overflow: hidden;  
-  
-    padding: 28px;  
-  
-    min-height: 200px;  
-  
-    border: 1px solid var(--border-color);  
-    border-radius: var(--radius-lg);  
-  
-    background: var(--bg-card);  
-    backdrop-filter: blur(16px);
-  
-    text-decoration: none;  
-  
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);  
-  
-    transition:  
-        transform 0.25s ease,  
-        box-shadow 0.25s ease,  
-        border-color 0.25s ease;  
-}  
-  
-.card:hover {  
-    transform: translateY(-5px);  
-  
-    border-color: rgba(99, 102, 241, 0.4);  
-  
-    box-shadow:  
-        0 20px 40px -10px rgba(0, 0, 0, 0.4);  
-}  
-  
-  
-/* =====================================================  
-   DIFFERENT ACCENT COLORS  
-   ===================================================== */  
-  
-.card::before {  
-    content: "";  
-  
-    position: absolute;  
-  
-    left: 0;  
-    top: 0;  
-  
-    width: 100%;  
-    height: 3px;  
-  
-    background: var(--primary);  
-}  
-  
-.message-card::before {  
-    background: #6366f1;  
-}  
-  
-.conversation-card::before {  
-    background: #3b82f6;  
-}  
-  
-.website-card::before {  
-    background: #06b6d4;  
-}  
-  
-.security-card::before {  
-    background: #10b981;  
-}  
-  
-.alert-card::before {  
-    background: #f97316;  
-}  
-  
-.report-card::before {  
-    background: #ef4444;  
-}  
-  
-.contact-card::before {  
-    background: #ec4899;  
-}  
-  
-  
-/* =====================================================  
-   CARD ICON  
-   ===================================================== */  
-  
-.card-icon {  
-    width: 48px;  
-    height: 48px;  
-  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-  
-    margin-bottom: 18px;  
-  
-    border-radius: var(--radius-md);  
-  
-    background: rgba(255, 255, 255, 0.04);  
-    border: 1px solid var(--border-color);
-  
-    font-size: 22px;  
-}  
-  
-  
-/* =====================================================  
-   CARD TEXT  
-   ===================================================== */  
-  
-.card h2 {  
-    margin: 0 0 8px;  
-  
-    color: var(--text-main);  
-  
-    font-size: 19px;  
-    font-weight: 750;  
+}
+
+.section-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        var(--primary-glow);
+
+    color:
+        var(--primary);
+
+    font-size: 18px;
+
+    border:
+        1px solid rgba(99, 102, 241, 0.2);
+}
+
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 28px;
+
+    min-height: 200px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-card);
+
+    backdrop-filter:
+        blur(16px);
+
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(99, 102, 241, 0.4);
+
+    box-shadow:
+        0 20px 40px -10px
+        rgba(0, 0, 0, 0.4);
+}
+
+
+/* =====================================================
+   DIFFERENT ACCENT COLORS
+   ===================================================== */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        var(--primary);
+}
+
+.message-card::before {
+    background: #6366f1;
+}
+
+.conversation-card::before {
+    background: #3b82f6;
+}
+
+.website-card::before {
+    background: #06b6d4;
+}
+
+.security-card::before {
+    background: #10b981;
+}
+
+.alert-card::before {
+    background: #f97316;
+}
+
+.report-card::before {
+    background: #ef4444;
+}
+
+.contact-card::before {
+    background: #ec4899;
+}
+
+
+/* =====================================================
+   CARD ICON
+   ===================================================== */
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid var(--border-color);
+
+    font-size: 22px;
+}
+
+
+/* =====================================================
+   CARD TEXT
+   ===================================================== */
+
+.card h2 {
+    margin:
+        0 0 8px;
+
+    color:
+        var(--text-main);
+
+    font-size: 19px;
+
+    font-weight: 750;
+
     letter-spacing: -0.2px;
-}  
-  
-.card p {  
-    margin: 0;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 14.5px;  
-  
-    line-height: 1.6;  
-}  
-  
-  
-/* =====================================================  
-   SECURITY CENTER  
-   ===================================================== */  
-  
-.security-center {  
-    position: relative;  
-    overflow: hidden;  
-  
-    margin-top: 36px;  
-  
-    padding: 34px 30px;  
-  
-    border-radius: var(--radius-lg);  
-    border: 1px solid rgba(99, 102, 241, 0.2);
-  
-    background:  
-        linear-gradient(  
-            135deg,  
-            rgba(30, 27, 75, 0.8),  
-            rgba(49, 46, 129, 0.8)  
-        );  
-    backdrop-filter: blur(16px);
-  
-    color: white;  
-  
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);  
-}  
-  
-.security-center::after {  
-    content: "";  
-  
-    position: absolute;  
-  
-    width: 220px;  
-    height: 220px;  
-  
-    right: -60px;  
-    top: -70px;  
-  
-    border: 1px solid rgba(255,255,255,0.08);  
-  
-    border-radius: 50%;  
-}  
-  
-.security-center h2 {  
-    position: relative;  
-    z-index: 1;  
-  
-    margin: 0 0 10px;  
-  
-    font-size: 24px;  
-    font-weight: 800;
-}  
-  
-.security-center p {  
-    position: relative;  
-    z-index: 1;  
-  
-    max-width: 680px;  
-  
-    margin: 0 0 24px;  
-  
-    color: #c7d2fe;  
-    font-size: 15px;
-}  
-  
-.security-button {  
-    position: relative;  
-    z-index: 2;  
-  
-    display: inline-flex;  
-  
-    padding: 13px 22px;  
-  
-    border-radius: var(--radius-md);  
-  
-    background: white;  
-  
-    color: #1e1b4b;  
-  
-    text-decoration: none;  
-  
-    font-weight: 800;  
+}
+
+.card p {
+    margin: 0;
+
+    color:
+        var(--text-muted);
+
     font-size: 14.5px;
-  
-    transition: all 0.2s ease;  
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}  
-  
-.security-button:hover {  
-    transform: translateY(-2px);  
-  
-    box-shadow:  
-        0 14px 25px rgba(0, 0, 0, 0.3);  
-}  
-  
-  
-/* =====================================================  
-   REMEMBER BOX  
-   ===================================================== */  
-  
-.remember {  
-    margin-top: 36px;  
-  
-    padding: 28px;  
-  
-    border: 1px solid rgba(234, 179, 8, 0.2);  
-  
-    border-radius: var(--radius-lg);  
-  
-    background: rgba(161, 98, 7, 0.12);  
-    backdrop-filter: blur(12px);
-}  
-  
-.remember h2 {  
-    margin: 0 0 12px;  
-  
-    color: #fef08a;  
-  
-    font-size: 20px;  
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   SECURITY CENTER
+   ===================================================== */
+
+.security-center {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-top: 36px;
+
+    padding: 34px 30px;
+
+    border-radius:
+        var(--radius-lg);
+
+    border:
+        1px solid rgba(99, 102, 241, 0.2);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(30, 27, 75, 0.8),
+            rgba(49, 46, 129, 0.8)
+        );
+
+    backdrop-filter:
+        blur(16px);
+
+    color: white;
+
+    box-shadow:
+        0 20px 40px -15px
+        rgba(0, 0, 0, 0.5);
+}
+
+.security-center::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -60px;
+    top: -70px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 50%;
+}
+
+.security-center h2 {
+    position: relative;
+
+    z-index: 1;
+
+    margin:
+        0 0 10px;
+
+    font-size: 24px;
+
     font-weight: 800;
-}  
-  
-.remember p {  
-    margin: 10px 0;  
-  
-    color: #fef9c3;  
-    font-size: 14.5px;
-}  
-  
-  
-/* =====================================================  
-   FOOTER  
-   ===================================================== */  
-  
-footer {  
-    margin-top: 48px;  
-  
-    padding: 28px 0 35px;  
-  
-    border-top: 1px solid var(--border-color);  
-  
-    text-align: center;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 13.5px;  
-}  
-  
-.footer-brand {  
-    margin-bottom: 6px;  
-  
-    color: var(--text-main);  
-  
-    font-weight: 800;  
+}
+
+.security-center p {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 680px;
+
+    margin:
+        0 0 24px;
+
+    color: #c7d2fe;
+
     font-size: 15px;
-}  
-  
-  
-/* =====================================================  
-   MOBILE  
-   ===================================================== */  
-  
-@media (max-width: 700px) {  
-  
-    .page {  
-        width: calc(100% - 28px);  
-    }  
-  
-    .header {  
-        padding-top: 20px;  
-    }  
-  
-    .brand-name {  
-        font-size: 24px;  
-    }  
-  
-    .hero {  
-        padding: 28px 22px;  
-        border-radius: 18px;  
-    }  
-  
-    .hero h1 {  
-        font-size: 32px;  
-    }  
-  
-    .hero p {  
-        font-size: 14.5px;  
-    }  
-  
-    .cards {  
-        grid-template-columns: 1fr;  
-    }  
-  
-    .card {  
-        min-height: 180px;  
-        padding: 22px;  
-    }  
-  
-    .security-center {  
-        padding: 28px 22px;  
-    }  
-  
-    .security-button {  
-        width: 100%;  
-        justify-content: center;  
-    }  
-}  
-  
-</style>  </head>  <body>  
+}
+
+.security-button {
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-flex;
+
+    padding: 13px 22px;
+
+    border-radius:
+        var(--radius-md);
+
+    background: white;
+
+    color: #1e1b4b;
+
+    text-decoration: none;
+
+    font-weight: 800;
+
+    font-size: 14.5px;
+
+    transition:
+        all 0.2s ease;
+
+    box-shadow:
+        0 10px 20px
+        rgba(0, 0, 0, 0.2);
+}
+
+.security-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 25px
+        rgba(0, 0, 0, 0.3);
+}
+
+
+/* =====================================================
+   REMEMBER BOX
+   ===================================================== */
+
+.remember {
+    margin-top: 36px;
+
+    padding: 28px;
+
+    border:
+        1px solid rgba(234, 179, 8, 0.2);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        rgba(161, 98, 7, 0.12);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+.remember h2 {
+    margin:
+        0 0 12px;
+
+    color: #fef08a;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+.remember p {
+    margin:
+        10px 0;
+
+    color: #fef9c3;
+
+    font-size: 14.5px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    margin-top: 48px;
+
+    padding:
+        28px 0 35px;
+
+    border-top:
+        1px solid var(--border-color);
+
+    text-align: center;
+
+    color:
+        var(--text-muted);
+
+    font-size: 13.5px;
+}
+
+.footer-brand {
+    margin-bottom: 6px;
+
+    color:
+        var(--text-main);
+
+    font-weight: 800;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .page {
+        width:
+            calc(100% - 28px);
+    }
+
+    .header {
+        padding-top: 20px;
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .hero {
+        padding:
+            28px 22px;
+
+        border-radius: 18px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 14.5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 180px;
+        padding: 22px;
+    }
+
+    .security-center {
+        padding:
+            28px 22px;
+    }
+
+    .security-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
 
 <!-- SIDE MENU DRAWER -->
+
 <nav id="sideMenu" class="side-menu">
 
-<header class="header">  
+<header class="header">
 
-    <!-- 3-Dash Menu Button on the Far Left -->
-    <button class="menu-button"  
-    type="button"  
-    aria-label="Menu"  
-    onclick="toggleMenu()">  
-        <span></span>  
-        <span></span>  
-        <span></span>  
-    </button>  
+    <button
+        class="menu-button"
+        type="button"
+        aria-label="Menu"
+        onclick="toggleMenu()">
 
-    <!-- Brand Logo Shifted Away from Menu -->
-    <div class="brand">  
-        <div class="brand-shield">  
-            🛡️  
-        </div>  
-        <div class="brand-name">  
-            TrustAI  
-        </div>  
-    </div>  
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+    <div class="brand">
+
+        <div class="brand-shield">
+            🛡️
+        </div>
+
+        <div class="brand-name">
+            TrustAI
+        </div>
+
+    </div>
 
 </header>
-  
+
 
 <a href="home.html" class="menu-link">
-<span class="menu-icon">🏠</span> Home
+    <span class="menu-icon">🏠</span>
+    Home
 </a>
 
 <a href="message.html" class="menu-link">
-<span class="menu-icon">🔍</span> Message Checker
+    <span class="menu-icon">🔍</span>
+    Message Checker
 </a>
 
 <a href="conversation.html" class="menu-link">
-<span class="menu-icon">💬</span> Conversation Checker
+    <span class="menu-icon">💬</span>
+    Conversation Checker
 </a>
 
 <a href="website.html" class="menu-link">
-<span class="menu-icon">🌐</span> website Checker
+    <span class="menu-icon">🌐</span>
+    website Checker
 </a>
 
 <a href="device_checker.html" class="menu-link">
-<span class="menu-icon">📱</span> Device Security
+    <span class="menu-icon">📱</span>
+    Device Security
 </a>
 
 <a href="security.html" class="menu-link">
-<span class="menu-icon">🛡️</span> Security Center
+    <span class="menu-icon">🛡️</span>
+    Security Center
 </a>
 
 <div class="menu-divider"></div>
 
 <a href="alerts.html" class="menu-link">
-<span class="menu-icon">🚨</span> Scam Alerts
+    <span class="menu-icon">🚨</span>
+    Scam Alerts
 </a>
 
 <a href="report.html" class="menu-link">
-<span class="menu-icon">📢</span> Report a Scam
+    <span class="menu-icon">📢</span>
+    Report a Scam
 </a>
 
 <a href="contact.html" class="menu-link">
-<span class="menu-icon">💬</span> Contact TrustAI
+    <span class="menu-icon">💬</span>
+    Contact TrustAI
 </a>
 
 </nav>
 
-<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-<div class="page">  <!-- HEADER (MENU BUTTON MOVED TO LEFT SIDE) -->  
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()">
+</div>
 
-<header class="header">  
 
-    <button class="menu-button"  
-    type="button"  
-    aria-label="Menu"  
-    onclick="toggleMenu()">  
+<div class="page">
 
-        <span></span>  
-        <span></span>  
-        <span></span>  
 
-    </button>  
+<!-- HEADER -->
 
-    <div class="brand">  
+<header class="header">
 
-        <div class="brand-shield">  
-            🛡️  
-        </div>  
+    <button
+        class="menu-button"
+        type="button"
+        aria-label="Menu"
+        onclick="toggleMenu()">
 
-        <div class="brand-name">  
-            TrustAI  
-        </div>  
+        <span></span>
+        <span></span>
+        <span></span>
 
-    </div>  
+    </button>
 
-</header>  
+    <div class="brand">
 
+        <div class="brand-shield">
+            🛡️
+        </div>
 
-<!-- HERO -->  
+        <div class="brand-name">
+            TrustAI
+        </div>
 
-<section class="hero">  
+    </div>
 
-    <h1>  
-        Stay one step ahead of  
-        <span>scams.</span>  
-    </h1>  
+</header>
 
-    <p>  
-        Check suspicious messages, conversations and  
-        websites for common warning signs before you  
-        take action.  
-    </p>  
 
-</section>  
+<!-- HERO -->
 
+<section class="hero">
 
-<!-- CHECK SOMETHING -->  
+    <h1>
+        Stay one step ahead of
+        <span>scams.</span>
+    </h1>
 
-<h2 class="section-title">  
+    <p>
+        Check suspicious messages, conversations and
+        websites for common warning signs before you
+        take action.
+    </p>
 
-    <span class="section-icon">  
-        🔎  
-    </span>  
+</section>
 
-    Check Something  
 
-</h2>  
+<!-- CHECK SOMETHING -->
 
+<h2 class="section-title">
 
-<div class="cards">  
+    <span class="section-icon">
+        🔎
+    </span>
 
+    Check Something
 
-    <a href="message.html"  
-    class="card message-card">  
+</h2>
 
-        <div class="card-icon">  
-            🔍  
-        </div>  
 
-        <h2>  
-            Message Checker  
-        </h2>  
+<div class="cards">
 
-        <p>  
-            Check a suspicious message for scam,  
-            phishing, impersonation and payment  
-            warning signs.  
-        </p>  
 
-    </a>  
+    <a href="message.html"
+       class="card message-card">
 
+        <div class="card-icon">
+            🔍
+        </div>
 
-    <a href="conversation.html"  
-    class="card conversation-card">  
+        <h2>
+            Message Checker
+        </h2>
 
-        <div class="card-icon">  
-            💬  
-        </div>  
-
-        <h2>  
-            Conversation Checker  
-        </h2>  
-
-        <p>  
-            Analyze a conversation for suspicious  
-            patterns that may develop over time.  
-        </p>  
-
-    </a>  
-
-
-    <a href="website.html"  
-    class="card website-card">  
-
-        <div class="card-icon">  
-            🌐  
-        </div>  
-
-        <h2>  
-            Website Checker  
-        </h2>  
-
-        <p>  
-            Check a website address for common  
-            suspicious website warning signs.  
-        </p>  
-
-    </a>  
-
-</div>  
-
-
-<!-- SECURITY -->  
-
-<h2 class="section-title">  
-
-    <span class="section-icon">  
-        🛡️  
-    </span>  
-
-    Security  
-
-</h2>  
-
-
-<div class="cards">  
-
-
-    <a href="device.html"  
-    class="card security-card">  
-
-        <div class="card-icon">  
-            📱  
-        </div>  
-
-        <h2>  
-            Device Security  
-        </h2>  
-
-        <p>  
-            Review important device security practices  
-            and improve weak areas.  
-        </p>  
-
-    </a>  
-
-</div>  
-
-
-<!-- SECURITY CENTER -->  
-
-<section class="security-center">  
-
-    <h2>  
-        🛡️ Security Center  
-    </h2>  
-
-    <p>  
-        Learn how to protect your passwords, OTPs,  
-        verification codes, payments, accounts and  
-        personal information.  
-    </p>  
-
-    <a href="security.html"  
-    class="security-button">  
-
-        Open Security Center →  
-          
-    </a>  
-
-</section>  
-
-
-<!-- STAY INFORMED -->  
-
-<h2 class="section-title">  
-
-    <span class="section-icon">  
-        🚨  
-    </span>  
-
-    Stay Informed  
-
-</h2>  
-
-
-<div class="cards">  
-
-
-    <a href="alerts.html"  
-    class="card alert-card">  
-
-        <div class="card-icon">  
-            🚨  
-        </div>  
-
-        <h2>  
-            Scam Alerts  
-        </h2>  
-
-        <p>  
-            Learn about common scam methods and  
-            warning signs.  
-        </p>  
-
-    </a>  
-
-
-    <a href="report.html"  
-    class="card report-card">  
-
-        <div class="card-icon">  
-            📢  
-        </div>  
-
-        <h2>  
-            Report a Scam  
-        </h2>  
-
-        <p>  
-            Report suspicious activity and help  
-            raise awareness.  
-        </p>  
+        <p>
+            Check a suspicious message for scam,
+            phishing, impersonation and payment
+            warning signs.
+        </p>
 
     </a>
 
-<a href="contact.html"  
-class="card contact-card">
 
-<div class="card-icon">  
-    💬  
-</div>  
+    <a href="conversation.html"
+       class="card conversation-card">
 
-<h2>  
-    Contact TrustAI  
-</h2>  
+        <div class="card-icon">
+            💬
+        </div>
 
-<p>  
-    Contact the TrustAI team with questions,  
-    problems or suspicious activity.  
-</p>
+        <h2>
+            Conversation Checker
+        </h2>
 
-</a>  <!-- REMEMBER -->  
+        <p>
+            Analyze a conversation for suspicious
+            patterns that may develop over time.
+        </p>
 
-<section class="remember">  
-
-    <h2>  
-        ⚠️ Remember  
-    </h2>  
-
-    <p>  
-        Never share your password, PIN, OTP or  
-        verification code with someone who asks  
-        for it unexpectedly.  
-    </p>  
-
-    <p>  
-        Always verify suspicious requests before  
-        sending money or personal information.  
-    </p>  
-
-</section>  
+    </a>
 
 
-<!-- FOOTER -->  
+    <a href="website.html"
+       class="card website-card">
 
-<footer>  
+        <div class="card-icon">
+            🌐
+        </div>
 
-    <div class="footer-brand">  
-        🛡️ TrustAI  
-    </div>  
+        <h2>
+            Website Checker
+        </h2>
 
-    Online scam awareness and protection.  
+        <p>
+            Check a website address for common
+            suspicious website warning signs.
+        </p>
 
-    <br><br>  
+    </a>
 
-    © 2026 TrustAI  
+</div>
+
+
+<!-- SECURITY -->
+
+<h2 class="section-title">
+
+    <span class="section-icon">
+        🛡️
+    </span>
+
+    Security
+
+</h2>
+
+
+<div class="cards">
+
+    <a href="device.html"
+       class="card security-card">
+
+        <div class="card-icon">
+            📱
+        </div>
+
+        <h2>
+            Device Security
+        </h2>
+
+        <p>
+            Review important device security practices
+            and improve weak areas.
+        </p>
+
+    </a>
+
+</div>
+
+
+<!-- SECURITY CENTER -->
+
+<section class="security-center">
+
+    <h2>
+        🛡️ Security Center
+    </h2>
+
+    <p>
+        Learn how to protect your passwords, OTPs,
+        verification codes, payments, accounts and
+        personal information.
+    </p>
+
+    <a href="security.html"
+       class="security-button">
+
+        Open Security Center →
+
+    </a>
+
+</section>
+
+
+<!-- STAY INFORMED -->
+
+<h2 class="section-title">
+
+    <span class="section-icon">
+        🚨
+    </span>
+
+    Stay Informed
+
+</h2>
+
+
+<div class="cards">
+
+
+    <a href="alerts.html"
+       class="card alert-card">
+
+        <div class="card-icon">
+            🚨
+        </div>
+
+        <h2>
+            Scam Alerts
+        </h2>
+
+        <p>
+            Learn about common scam methods and
+            warning signs.
+        </p>
+
+    </a>
+
+
+    <a href="report.html"
+       class="card report-card">
+
+        <div class="card-icon">
+            📢
+        </div>
+
+        <h2>
+            Report a Scam
+        </h2>
+
+        <p>
+            Report suspicious activity and help
+            raise awareness.
+        </p>
+
+    </a>
+
+
+    <a href="contact.html"
+       class="card contact-card">
+
+        <div class="card-icon">
+            💬
+        </div>
+
+        <h2>
+            Contact TrustAI
+        </h2>
+
+        <p>
+            Contact the TrustAI team with questions,
+            problems or suspicious activity.
+        </p>
+
+    </a>
+
+</div>
+
+
+<!-- REMEMBER -->
+
+<section class="remember">
+
+    <h2>
+        ⚠️ Remember
+    </h2>
+
+    <p>
+        Never share your password, PIN, OTP or
+        verification code with someone who asks
+        for it unexpectedly.
+    </p>
+
+    <p>
+        Always verify suspicious requests before
+        sending money or personal information.
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-brand">
+        🛡️ TrustAI
+    </div>
+
+    Online scam awareness and protection.
+
+    <br><br>
+
+    © 2026 TrustAI
 
 </footer>
 
-</div>  
+
+</div>
+
+
+<!-- =====================================================
+     MENU JAVASCRIPT
+     THIS IS THE FIX FOR THE THREE-DASH BUTTON
+     ===================================================== -->
 
 <script>
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("open");
-    document.getElemen
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    if (!menu || !overlay) {
+        return;
+    }
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
