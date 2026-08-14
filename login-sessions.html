@@ -1,1 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login Sessions — TrustAI</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #050b14;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 18px 50px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.back-button {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 11px;
+    background: #1687ff;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #1687ff;
+}
+
+.title {
+    margin-bottom: 28px;
+}
+
+.title h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+.title p {
+    margin: 0;
+    color: #8998aa;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card {
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.session {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    border-bottom: 1px solid #1b2b3d;
+}
+
+.session:last-child {
+    border-bottom: none;
+}
+
+.device-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: #101c2b;
+    font-size: 22px;
+}
+
+.session-info {
+    flex: 1;
+}
+
+.session-info strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.session-info span {
+    display: block;
+    color: #8998aa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.current {
+    display: inline-block;
+    margin-top: 7px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(52, 211, 153, 0.08);
+    color: #6ee7b7;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.session-button {
+    border: 1px solid #26384d;
+    background: #101c2b;
+    color: white;
+    border-radius: 9px;
+    padding: 9px 13px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.session-button:hover {
+    border-color: #1687ff;
+    color: #1687ff;
+}
+
+.danger {
+    color: #ff5f5f;
+}
+
+.danger:hover {
+    color: #ff8585;
+    border-color: #702222;
+}
+
+.action-area {
+    margin-top: 25px;
+}
+
+.logout-all {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #702222;
+    border-radius: 9px;
+    background: rgba(255, 95, 95, 0.08);
+    color: #ff7070;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-all:hover {
+    background: rgba(255, 95, 95, 0.14);
+}
+
+.note {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 11px;
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+    color: #8998aa;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.footer {
+    text-align: center;
+    color: #657386;
+    font-size: 12px;
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid #182536;
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 20px 14px 40px;
+    }
+
+    .title h1 {
+        font-size: 26px;
+    }
+
+    .session {
+        align-items: flex-start;
+    }
+
+    .session-button {
+        padding: 8px 10px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<header class="header">
+
+    <button
+        class="back-button"
+        onclick="history.back()"
+        aria-label="Go back">
+
+        ←
+
+    </button>
+
+    <div class="logo">
+        🛡️ Trust<span>AI</span>
+    </div>
+
+</header>
+
+
+<section class="title">
+
+    <h1>
+        Login Sessions
+    </h1>
+
+    <p>
+        Review the devices currently connected to your TrustAI account.
+    </p>
+
+</section>
+
+
+<div class="card">
+
+
+    <!-- CURRENT DEVICE -->
+
+    <div class="session">
+
+        <div class="device-icon">
+            📱
+        </div>
+
+        <div class="session-info">
+
+            <strong>
+                Current device
+            </strong>
+
+            <span>
+                This device
+            </span>
+
+            <span>
+                Active session
+            </span>
+
+            <span class="current">
+                CURRENT SESSION
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- OTHER DEVICE -->
+
+    <div class="session">
+
+        <div class="device-icon">
+            💻
+        </div>
+
+        <div class="session-info">
+
+            <strong>
+                Other device
+            </strong>
+
+            <span>
+                TrustAI session
+            </span>
+
+            <span>
+                Device information will appear when real authentication is connected.
+            </span>
+
+        </div>
+
+        <button
+            class="session-button danger"
+            onclick="logoutSession()">
+
+            Log out
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<div class="action-area">
+
+    <button
+        class="logout-all"
+        onclick="logoutAll()">
+
+        Log out of all other devices
+
+    </button>
+
+</div>
+
+
+<div class="note">
+
+    🛡️ <strong>Security tip:</strong>
+
+    If you see a device or session that you do not recognize,
+    log it out and change your password when TrustAI's
+    authentication system is connected.
+
+</div>
+
+
+<footer class="footer">
+
+    <strong>
+        🛡️ TrustAI
+    </strong>
+
+    <br><br>
+
+    Account security and session management.
+
+    <br><br>
+
+    © 2026 TrustAI
+
+</footer>
+
+</div>
+
+
+<script>
+
+function logoutSession() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to log out this session?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    alert(
+        "This session will be disconnected when TrustAI authentication is connected."
+    );
+
+}
+
+
+function logoutAll() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to log out of all other devices?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    alert(
+        "All other sessions will be disconnected when TrustAI authentication is connected."
+    );
+
+}
+
+</script>
+
+</body>
+
+  </html>
