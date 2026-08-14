@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Settings & Privacy — TrustAI</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -41,6 +44,10 @@ body {
     color: white;
     font-size: 22px;
     cursor: pointer;
+}
+
+.back-button:hover {
+    background: #0877eb;
 }
 
 .logo {
@@ -205,410 +212,518 @@ body {
     .setting {
         padding: 15px;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="page">
 
-    <header class="header">
 
-        <button
-            class="back-button"
-            onclick="history.back()"
-            aria-label="Go back">
-            ←
-        </button>
+<header class="header">
 
-        <div class="logo">
-            🛡️ Trust<span>AI</span>
-        </div>
+    <button
+        class="back-button"
+        onclick="history.back()"
+        aria-label="Go back">
 
-    </header>
+        ←
+
+    </button>
 
 
-    <section class="title">
+    <div class="logo">
 
-        <h1>Settings & Privacy</h1>
+        🛡️ Trust<span>AI</span>
 
-        <p>
-            Manage your TrustAI preferences, privacy,
-            security and account settings.
-        </p>
+    </div>
 
-    </section>
+</header>
 
 
-    <!-- ACCOUNT -->
+<section class="title">
 
-    <section class="section">
+    <h1>
+        Settings & Privacy
+    </h1>
 
-        <h2 class="section-title">
-            Account
-        </h2>
+    <p>
+        Manage your TrustAI preferences, privacy,
+        security and account settings.
+    </p>
 
-        <div class="card">
-
-            <div class="setting">
-
-                <div class="setting-info">
-
-                    <strong>👤 Profile</strong>
-
-                    <span>
-                        Manage your TrustAI profile information.
-                    </span>
-
-                </div>
-
-                <button
-                    class="setting-button"
-                    onclick="showMessage('Profile settings will be available soon.')">
-                    Manage
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- NOTIFICATIONS -->
+<!-- ACCOUNT -->
 
-    <section class="section">
+<section class="section">
 
-        <h2 class="section-title">
-            Notifications
-        </h2>
+    <h2 class="section-title">
+        Account
+    </h2>
 
-        <div class="card">
+    <div class="card">
 
-            <div class="setting">
+        <div class="setting">
 
-                <div class="setting-info">
+            <div class="setting-info">
 
-                    <strong>🔔 Security alerts</strong>
+                <strong>👤 Profile</strong>
 
-                    <span>
-                        Receive important TrustAI security alerts.
-                    </span>
-
-                </div>
-
-                <label class="toggle">
-
-                    <input
-                        type="checkbox"
-                        id="securityAlerts"
-                        checked
-                        onchange="saveSetting('securityAlerts', this.checked)">
-
-                    <span class="slider"></span>
-
-                </label>
+                <span>
+                    Manage your TrustAI profile information.
+                </span>
 
             </div>
 
+            <button
+                class="setting-button"
+                onclick="showMessage('Profile settings will be available soon.')">
 
-            <div class="setting">
+                Manage
 
-                <div class="setting-info">
-
-                    <strong>🚨 Scam alerts</strong>
-
-                    <span>
-                        Receive notifications about important scam warnings.
-                    </span>
-
-                </div>
-
-                <label class="toggle">
-
-                    <input
-                        type="checkbox"
-                        id="scamAlerts"
-                        checked
-                        onchange="saveSetting('scamAlerts', this.checked)">
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
+            </button>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- PRIVACY -->
+<!-- NOTIFICATIONS -->
 
-    <section class="section">
+<section class="section">
 
-        <h2 class="section-title">
-            Privacy
-        </h2>
+    <h2 class="section-title">
+        Notifications
+    </h2>
 
-        <div class="card">
+    <div class="card">
 
-            <div class="setting">
 
-                <div class="setting-info">
+        <div class="setting">
 
-                    <strong>🔒 Privacy controls</strong>
+            <div class="setting-info">
 
-                    <span>
-                        Review how TrustAI handles your information.
-                    </span>
+                <strong>
+                    🔔 Security alerts
+                </strong>
 
-                </div>
-
-                <button
-                    class="setting-button"
-                    onclick="showMessage('Privacy controls will be available soon.')">
-                    View
-                </button>
+                <span>
+                    Receive important TrustAI security alerts.
+                </span>
 
             </div>
 
 
-            <div class="setting">
+            <label class="toggle">
 
-                <div class="setting-info">
+                <input
+                    type="checkbox"
+                    id="securityAlerts"
+                    checked
+                    onchange="saveSetting(
+                        'securityAlerts',
+                        this.checked
+                    )">
 
-                    <strong>🗑️ Clear activity history</strong>
+                <span class="slider"></span>
 
-                    <span>
-                        Remove locally stored TrustAI activity.
-                    </span>
-
-                </div>
-
-                <button
-                    class="setting-button danger"
-                    onclick="clearHistory()">
-                    Clear
-                </button>
-
-            </div>
+            </label>
 
         </div>
 
-    </section>
 
+        <div class="setting">
 
-    <!-- SECURITY -->
+            <div class="setting-info">
 
-    <section class="section">
+                <strong>
+                    🚨 Scam alerts
+                </strong>
 
-        <h2 class="section-title">
-            Security
-        </h2>
-
-        <div class="card">
-
-            <div class="setting">
-
-                <div class="setting-info">
-
-                    <strong>🛡️ Security settings</strong>
-
-                    <span>
-                        Manage your account security options.
-                    </span>
-
-                </div>
-
-                <button
-                    class="setting-button"
-                    onclick="showMessage('Security settings will be available soon.')">
-                    Manage
-                </button>
+                <span>
+                    Receive notifications about important scam warnings.
+                </span>
 
             </div>
 
 
-            <div class="setting">
+            <label class="toggle">
 
-                <div class="setting-info">
+                <input
+                    type="checkbox"
+                    id="scamAlerts"
+                    checked
+                    onchange="saveSetting(
+                        'scamAlerts',
+                        this.checked
+                    )">
 
-                    <strong>📱 Login sessions</strong>
+                <span class="slider"></span>
 
-                    <span>
-                        Review devices currently connected to your account.
-                    </span>
-
-                </div>
-
-                <button
-                    class="setting-button"
-                    onclick="showMessage('Login session management will be available soon.')">
-                    View
-                </button>
-
-            </div>
+            </label>
 
         </div>
 
-    </section>
+
+    </div>
+
+</section>
 
 
-    <!-- APP PREFERENCES -->
+<!-- PRIVACY -->
 
-    <section class="section">
+<section class="section">
 
-        <h2 class="section-title">
-            App Preferences
-        </h2>
+    <h2 class="section-title">
+        Privacy
+    </h2>
 
-        <div class="card">
 
-            <div class="setting">
+    <div class="card">
 
-                <div class="setting-info">
 
-                    <strong>🌙 Dark mode</strong>
+        <div class="setting">
 
-                    <span>
-                        Use TrustAI's dark appearance.
-                    </span>
+            <div class="setting-info">
 
-                </div>
+                <strong>
+                    🔒 Privacy controls
+                </strong>
 
-                <label class="toggle">
-
-                    <input
-                        type="checkbox"
-                        id="darkMode"
-                        checked
-                        onchange="saveSetting('darkMode', this.checked)">
-
-                    <span class="slider"></span>
-
-                </label>
+                <span>
+                    Review how TrustAI handles your information.
+                </span>
 
             </div>
+
+
+            <button
+                class="setting-button"
+                onclick="showMessage(
+                    'Privacy controls will be available soon.'
+                )">
+
+                View
+
+            </button>
 
         </div>
 
-    </section>
 
+        <div class="setting">
 
-    <!-- LEGAL -->
+            <div class="setting-info">
 
-    <section class="section">
+                <strong>
+                    🗑️ Clear activity history
+                </strong>
 
-        <h2 class="section-title">
-            Legal
-        </h2>
-
-        <div class="card">
-
-            <div class="setting">
-
-                <div class="setting-info">
-
-                    <strong>📄 Privacy Policy</strong>
-
-                    <span>
-                        Read how TrustAI handles information.
-                    </span>
-
-                </div>
-
-                <button
-                    class="setting-button"
-                    onclick="showMessage('Privacy Policy page will be added soon.')">
-                    View
-                </button>
+                <span>
+                    Remove locally stored TrustAI activity.
+                </span>
 
             </div>
 
 
-            <div class="setting">
+            <button
+                class="setting-button danger"
+                onclick="clearHistory()">
 
-                <div class="setting-info">
+                Clear
 
-                    <strong>📜 Terms of Service</strong>
-
-                    <span>
-                        Review the rules for using TrustAI.
-                    </span>
-
-                </div>
-
-                <button
-                    class="setting-button"
-                    onclick="showMessage('Terms of Service page will be added soon.')">
-                    View
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
-    </section>
+
+    </div>
+
+</section>
 
 
-    <!-- LOGOUT -->
+<!-- SECURITY -->
 
-    <section class="section">
+<section class="section">
 
-        <div class="card">
+    <h2 class="section-title">
+        Security
+    </h2>
 
-            <div class="setting">
 
-                <div class="setting-info">
+    <div class="card">
 
-                    <strong class="danger">
-                        🚪 Log out
-                    </strong>
 
-                    <span>
-                        Sign out of your TrustAI account.
-                    </span>
+        <div class="setting">
 
-                </div>
+            <div class="setting-info">
 
-                <button
-                    class="setting-button danger"
-                    onclick="logout()">
-                    Log out
-                </button>
+                <strong>
+                    🛡️ Security settings
+                </strong>
+
+                <span>
+                    Manage your account security options.
+                </span>
 
             </div>
 
+
+            <button
+                class="setting-button"
+                onclick="showMessage(
+                    'Security settings will be available soon.'
+                )">
+
+                Manage
+
+            </button>
+
         </div>
 
-    </section>
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <strong>
+                    📱 Login sessions
+                </strong>
+
+                <span>
+                    Review devices currently connected to your account.
+                </span>
+
+            </div>
 
 
-    <footer class="footer">
+            <button
+                class="setting-button"
+                onclick="showMessage(
+                    'Login session management will be available soon.'
+                )">
 
-        <strong>🛡️ TrustAI</strong>
+                View
 
-        <br><br>
+            </button>
 
-        Online scam awareness and protection.
+        </div>
 
-        <br><br>
 
-        © 2026 TrustAI
+    </div>
 
-    </footer>
+</section>
+
+
+<!-- APP PREFERENCES -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        App Preferences
+    </h2>
+
+
+    <div class="card">
+
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <strong>
+                    🌙 Dark mode
+                </strong>
+
+                <span>
+                    Use TrustAI's dark appearance.
+                </span>
+
+            </div>
+
+
+            <label class="toggle">
+
+                <input
+                    type="checkbox"
+                    id="darkMode"
+                    checked
+                    onchange="saveSetting(
+                        'darkMode',
+                        this.checked
+                    )">
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- LEGAL -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        Legal
+    </h2>
+
+
+    <div class="card">
+
+
+        <!-- PRIVACY POLICY -->
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <strong>
+                    📄 Privacy Policy
+                </strong>
+
+                <span>
+                    Read how TrustAI handles information.
+                </span>
+
+            </div>
+
+
+            <button
+                class="setting-button"
+                onclick="window.location.href='./privacy.html'">
+
+                View
+
+            </button>
+
+        </div>
+
+
+        <!-- TERMS -->
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <strong>
+                    📜 Terms of Service
+                </strong>
+
+                <span>
+                    Review the rules for using TrustAI.
+                </span>
+
+            </div>
+
+
+            <button
+                class="setting-button"
+                onclick="showMessage(
+                    'Terms of Service page will be added soon.'
+                )">
+
+                View
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- LOGOUT -->
+
+<section class="section">
+
+    <div class="card">
+
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <strong class="danger">
+                    🚪 Log out
+                </strong>
+
+                <span>
+                    Sign out of your TrustAI account.
+                </span>
+
+            </div>
+
+
+            <button
+                class="setting-button danger"
+                onclick="logout()">
+
+                Log out
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <strong>
+        🛡️ TrustAI
+    </strong>
+
+    <br><br>
+
+    Online scam awareness and protection.
+
+    <br><br>
+
+    © 2026 TrustAI
+
+</footer>
+
 
 </div>
 
 
 <script>
 
+
+/* =========================
+   MESSAGE
+========================= */
+
 function showMessage(message) {
+
     alert(message);
+
 }
 
+
+/* =========================
+   SAVE SETTINGS
+========================= */
 
 function saveSetting(name, value) {
 
@@ -620,21 +735,33 @@ function saveSetting(name, value) {
 }
 
 
+/* =========================
+   LOAD SETTINGS
+========================= */
+
 function loadSettings() {
 
     const securityAlerts =
-        localStorage.getItem("trustai_securityAlerts");
+        localStorage.getItem(
+            "trustai_securityAlerts"
+        );
 
     const scamAlerts =
-        localStorage.getItem("trustai_scamAlerts");
+        localStorage.getItem(
+            "trustai_scamAlerts"
+        );
 
     const darkMode =
-        localStorage.getItem("trustai_darkMode");
+        localStorage.getItem(
+            "trustai_darkMode"
+        );
 
 
     if (securityAlerts !== null) {
 
-        document.getElementById("securityAlerts").checked =
+        document.getElementById(
+            "securityAlerts"
+        ).checked =
             securityAlerts === "true";
 
     }
@@ -642,7 +769,9 @@ function loadSettings() {
 
     if (scamAlerts !== null) {
 
-        document.getElementById("scamAlerts").checked =
+        document.getElementById(
+            "scamAlerts"
+        ).checked =
             scamAlerts === "true";
 
     }
@@ -650,13 +779,19 @@ function loadSettings() {
 
     if (darkMode !== null) {
 
-        document.getElementById("darkMode").checked =
+        document.getElementById(
+            "darkMode"
+        ).checked =
             darkMode === "true";
 
     }
 
 }
 
+
+/* =========================
+   CLEAR HISTORY
+========================= */
 
 function clearHistory() {
 
@@ -665,16 +800,29 @@ function clearHistory() {
             "Are you sure you want to clear your TrustAI activity history?"
         );
 
+
     if (!confirmed) {
+
         return;
+
     }
 
-    localStorage.removeItem("trustai_activity");
 
-    alert("Your TrustAI activity history has been cleared.");
+    localStorage.removeItem(
+        "trustai_activity"
+    );
+
+
+    alert(
+        "Your TrustAI activity history has been cleared."
+    );
 
 }
 
+
+/* =========================
+   LOGOUT
+========================= */
 
 function logout() {
 
@@ -683,9 +831,13 @@ function logout() {
             "Are you sure you want to log out?"
         );
 
+
     if (!confirmed) {
+
         return;
+
     }
+
 
     alert(
         "You have been logged out."
@@ -694,9 +846,16 @@ function logout() {
 }
 
 
+/* =========================
+   START
+========================= */
+
 loadSettings();
+
 
 </script>
 
+
 </body>
-                  </html>
+
+</html>
