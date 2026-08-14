@@ -1,1 +1,332 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Login — TrustAI</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #050b14;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.login-page {
+    width: 100%;
+    max-width: 430px;
+}
+
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 28px;
+}
+
+.logo span {
+    color: #1687ff;
+}
+
+.login-card {
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.login-card h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+.subtitle {
+    margin: 10px 0 25px;
+    text-align: center;
+    color: #8998aa;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    background: #050b14;
+    border: 1px solid #26384d;
+    color: #ffffff;
+
+    border-radius: 10px;
+    padding: 14px;
+
+    font-size: 15px;
+    outline: none;
+
+    margin-bottom: 14px;
+}
+
+input:focus {
+    border-color: #1687ff;
+}
+
+input::placeholder {
+    color: #657386;
+}
+
+.primary-button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+
+    background: #1687ff;
+    color: #ffffff;
+
+    padding: 14px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    background: #0877eb;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 22px 0;
+
+    color: #657386;
+    font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #1b2b3d;
+}
+
+.secondary-button {
+    width: 100%;
+
+    background: #101c2b;
+    color: #ffffff;
+
+    border: 1px solid #26384d;
+    border-radius: 10px;
+
+    padding: 13px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.secondary-button:hover {
+    background: #142438;
+}
+
+.message {
+    display: none;
+
+    margin-top: 15px;
+    padding: 12px;
+
+    border-radius: 9px;
+
+    background: #071d15;
+    border: 1px solid #14583f;
+
+    color: #31d98a;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.signup {
+    text-align: center;
+
+    margin-top: 22px;
+
+    color: #8998aa;
+    font-size: 13px;
+}
+
+.signup a {
+    color: #1687ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+}
+
+.security-note {
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #657386;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+@media (max-width: 500px) {
+
+    .login-card {
+        padding: 22px;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <div class="logo">
+        🛡️ Trust<span>AI</span>
+    </div>
+
+    <div class="login-card">
+
+        <h1>
+            Log in to TrustAI
+        </h1>
+
+        <div class="subtitle">
+            Sign in to access your TrustAI account.
+        </div>
+
+        <form id="loginForm">
+
+            <label for="email">
+                Email address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+            >
+
+            <button
+                type="submit"
+                class="primary-button">
+                Continue with email
+            </button>
+
+        </form>
+
+        <div id="message" class="message">
+            Demo login successful. Connect your authentication system to enable real accounts.
+        </div>
+
+        <div class="divider">
+            OR
+        </div>
+
+        <button
+            type="button"
+            class="secondary-button"
+            onclick="usePasskey()">
+            🔑 Continue with passkey
+        </button>
+
+        <div class="signup">
+            New to TrustAI?
+            <a href="./signup.html">
+                Get started
+            </a>
+        </div>
+
+        <div class="security-note">
+            🛡️ Never share your password, PIN or OTP with anyone.
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        if (!email) {
+            return;
+        }
+
+        const message =
+            document.getElementById("message");
+
+        message.style.display = "block";
+
+    });
+
+
+function usePasskey() {
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent =
+        "Passkey login will be connected when authentication is added.";
+
+    message.style.display = "block";
+
+}
+
+</script>
+
+</body>
+
+      </html>
