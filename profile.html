@@ -458,7 +458,45 @@ function loadProfile() {
 
 }
 
+function changeProfilePicture(event) {
 
+    const file = event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please select an image file.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        const avatar =
+            document.querySelector(".avatar");
+
+        avatar.style.backgroundImage =
+            `url("${e.target.result}")`;
+
+        avatar.style.backgroundSize = "cover";
+        avatar.style.backgroundPosition = "center";
+        avatar.style.backgroundRepeat = "no-repeat";
+
+        avatar.textContent = "";
+
+        localStorage.setItem(
+            "trustai_profilePicture",
+            e.target.result
+        );
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
 loadProfile();
 
 </script>
