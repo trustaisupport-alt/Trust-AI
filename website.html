@@ -1330,6 +1330,553 @@ function showResult(
         .textContent =
         reasonText
             ? "Finding: " + reasonText
+        <script>
+
+/* =========================
+   VERIFIED WEBSITE DATABASE
+========================= */
+
+let trustedDomains = [];
+
+async function loadTrustedDomains() {
+
+    try {
+
+        const response =
+            await fetch("./verified-websites.json");
+
+        if (!response.ok) {
+            throw new Error("Could not load verified websites.");
+        }
+
+        const data =
+            await response.json();
+
+        if (
+            !data.websites ||
+            !Array.isArray(data.websites)
+        ) {
+            throw new Error("Invalid verified websites file.");
+        }
+
+        trustedDomains =
+            data.websites.map(function(domain) {
+
+                return domain
+                    .toLowerCase()
+                    .trim()
+                    .replace(/^https?:\/\//, "")
+                    .replace(/^www\./, "")
+                    .replace(/\/.*$/, "");
+
+            });
+
+        console.log(
+            "Verified websites loaded:",
+            trustedDomains.length
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Verified website list could not be loaded:",
+            error
+        );
+
+    }
+
+}
+
+loadTrustedDomains();
+
+
+/* =========================
+   3-DASH MENU
+========================= */
+
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    menu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+}
+
+
+/* =========================
+   WEBSITE CHECKER
+========================= */
+
+document
+    .getElementById("websiteForm")
+    .addEventListener("submit", checkWebsite);
+
+
+function checkWebsite(event) {
+
+    event.preventDefault();
+
+    const input =
+        document.getElementById("website");
+
+    let website =
+        input.value.trim();
+
+
+    if (website === "") {
+
+        showResult(
+            "caution",
+            "⚠️ ENTER A WEBSITE",
+            "",
+            "Please enter a website address.",
+            "",
+            "Action: Enter a domain and try again."
+        );
+
+        return;
+    }
+
+
+    website =
+        website.replace(/\s+/g, "");
+
+
+    let testURL =
+        website;
+
+
+    if (
+        !testURL.startsWith("http://") &&
+        !testURL.startsWith("https://")
+    ) {
+
+        testURL =
+            "https://" + testURL;
+
+    }
+
+
+    let url;
+
+
+    try {
+
+        url =
+            new URL(testURL);
+
+    } catch (error) {
+
+        showResult(
+            "caution",
+            "⚠️ INVALID ADDRESS",
+            website,
+            "The website address could not be understood.",
+            "Check the spelling and format of the address.",
+            "Action: Enter something like example.com."
+        );
+
+        return;
+    }
+
+
+    const hostname =
+        url.hostname.toLowerCase();
+
+
+    const fullURL =
+        testURL.toLowerCase();
+
+
+    let score = 0;
+
+    let reasons = [];
+
+
+    /* =========================
+       CHECK VERIFIED DATABASE
+    ========================= */
+
+    const isTrusted =
+        trustedDomains.some(function(domain) {
+
+            return (
+                hostname === domain ||
+                hostname.endsWith("." + domain)
+            );
+
+        });
+
+
+    /* =========================
+       LOOKALIKE DOMAINS
+    ========================= */
+
+    const lookalikePatterns = [
+
+        "paypa1",
+        "paypai",
+        "micros0ft",
+        "faceb00k",
+        "g00gle",
+        "amaz0n",
+        "netf1ix",
+        "app1e"
+
+    ];
+
+
+    for (const pattern of lookalikePatterns) {
+
+        if (hostname.includes(pattern)) {
+
+            score += 7;
+
+            reasons.push(
+                "Possible lookalike domain."
+            );
+
+            break;
+        }
+
+    }
+
+
+    /* =========================
+       HTTPS
+    ========================= */
+
+    if (url.protocol === "http:") {
+
+        score += 2;
+
+        reasons.push(
+            "Website does not use HTTPS."
+        );
+
+    }
+
+
+    /* =========================
+       IP ADDRESS
+    ========================= */
+
+    if (
+        /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "Website uses an IP address."
+        );
+
+    }
+
+
+    /* =========================
+       @ SYMBOL
+    ========================= */
+
+    if (fullURL.includes("@")) {
+
+        score += 3;
+
+        reasons.push(
+            "URL contains an unusual @ symbol."
+        );
+
+    }
+
+
+    /* =========================
+       LONG DOMAIN
+    ========================= */
+
+    if (hostname.length > 45) {
+
+        score += 1;
+
+        reasons.push(
+            "Domain name is unusually long."
+        );
+
+    }
+
+
+    /* =========================
+       MANY HYPHENS
+    ========================= */
+
+    const hyphens =
+        (hostname.match(/-/g) || []).length;
+
+    if (hyphens >= 3) {
+
+        score += 2;
+
+        reasons.push(
+            "Domain contains several hyphens."
+        );
+
+    }
+
+
+    /* =========================
+       COMPLEX DOMAIN
+    ========================= */
+
+    const parts =
+        hostname.split(".");
+
+    if (parts.length >= 5) {
+
+        score += 1;
+
+        reasons.push(
+            "Domain has an unusually complex structure."
+        );
+
+    }
+
+
+    /* =========================
+       SUSPICIOUS WORDS
+    ========================= */
+
+    const suspiciousWords = [
+
+        "verify-account",
+        "verify-login",
+        "confirm-account",
+        "account-suspended",
+        "reset-password",
+        "security-check",
+        "claim-prize",
+        "free-money",
+        "cash-reward",
+        "instant-profit",
+        "guaranteed-profit"
+
+    ];
+
+
+    for (const word of suspiciousWords) {
+
+        if (fullURL.includes(word)) {
+
+            score += 2;
+
+            reasons.push(
+                "Suspicious verification or money-related wording."
+            );
+
+            break;
+        }
+
+    }
+
+
+    /* =========================
+       URL SHORTENERS
+    ========================= */
+
+    const shorteners = [
+
+        "bit.ly",
+        "tinyurl.com",
+        "t.co",
+        "is.gd",
+        "cutt.ly"
+
+    ];
+
+
+    if (shorteners.includes(hostname)) {
+
+        score += 2;
+
+        reasons.push(
+            "Shortened URL detected."
+        );
+
+    }
+
+
+    /* =========================
+       INTERNATIONALIZED DOMAIN
+    ========================= */
+
+    if (
+        hostname.startsWith("xn--") ||
+        hostname.includes(".xn--")
+    ) {
+
+        score += 3;
+
+        reasons.push(
+            "Internationalized domain requires verification."
+        );
+
+    }
+
+
+    score =
+        Math.min(score, 10);
+
+
+    /* =========================
+       VERIFIED WEBSITE
+    ========================= */
+
+    if (isTrusted && score === 0) {
+
+        showResult(
+            "verified",
+            "🟢 VERIFIED WEBSITE",
+            website,
+            "This matches a website in the TrustAI verified website database.",
+            "No major URL warning signs were detected.",
+            "Action: Still check the address carefully before entering sensitive information."
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       VERY HIGH RISK
+    ========================= */
+
+    if (score >= 7) {
+
+        showResult(
+            "critical",
+            "🔴 VERY HIGH RISK",
+            website,
+            "Strong warning signs were detected.",
+            reasons[0] ||
+            "Multiple suspicious characteristics were detected.",
+            "Action: Do not enter passwords, OTPs, PINs or payment details."
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       HIGH RISK
+    ========================= */
+
+    if (score >= 4) {
+
+        showResult(
+            "high",
+            "🟠 HIGH RISK",
+            website,
+            "Suspicious characteristics were detected.",
+            reasons[0] ||
+            "Suspicious characteristics were detected.",
+            "Action: Avoid entering sensitive information until verified."
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       CAUTION
+    ========================= */
+
+    if (score >= 2) {
+
+        showResult(
+            "caution",
+            "🟡 CAUTION",
+            website,
+            "Some warning signs were detected.",
+            reasons[0] ||
+            "A warning sign was detected.",
+            "Action: Verify the website before using it."
+        );
+
+        return;
+    }
+
+
+    /* =========================
+       UNVERIFIED
+    ========================= */
+
+    showResult(
+        "unverified",
+        "⚪ UNVERIFIED",
+        website,
+        "No obvious warning signs were detected.",
+        "TrustAI cannot confirm that this website is legitimate.",
+        "Action: Verify important websites independently."
+    );
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(
+    type,
+    statusText,
+    site,
+    messageText,
+    reasonText,
+    actionText
+) {
+
+    const result =
+        document.getElementById("result");
+
+
+    document.getElementById("status")
+        .textContent =
+        statusText;
+
+
+    document.getElementById("websiteName")
+        .textContent =
+        site;
+
+
+    document.getElementById("resultMessage")
+        .textContent =
+        messageText;
+
+
+    document.getElementById("reason")
+        .textContent =
+        reasonText
+            ? "Finding: " + reasonText
             : "";
 
 
