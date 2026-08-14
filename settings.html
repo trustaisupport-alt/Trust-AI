@@ -736,53 +736,36 @@ function saveSetting(name, value) {
 function loadSettings() {
 
     const securityAlerts =
-        localStorage.getItem(
-            "trustai_securityAlerts"
-        );
+        localStorage.getItem("trustai_securityAlerts");
 
     const scamAlerts =
-        localStorage.getItem(
-            "trustai_scamAlerts"
-        );
+        localStorage.getItem("trustai_scamAlerts");
 
     const darkMode =
-        localStorage.getItem(
-            "trustai_darkMode"
-        );
+        localStorage.getItem("trustai_darkMode");
 
 
     if (securityAlerts !== null) {
-
-        document.getElementById(
-            "securityAlerts"
-        ).checked =
+        document.getElementById("securityAlerts").checked =
             securityAlerts === "true";
-
     }
 
 
     if (scamAlerts !== null) {
-
-        document.getElementById(
-            "scamAlerts"
-        ).checked =
+        document.getElementById("scamAlerts").checked =
             scamAlerts === "true";
-
     }
 
 
     if (darkMode !== null) {
+        const enabled = darkMode === "true";
 
-        document.getElementById(
-            "darkMode"
-        ).checked =
-            darkMode === "true";
+        document.getElementById("darkMode").checked = enabled;
 
+        applyDarkMode(enabled);
     }
 
 }
-
-
 /* =========================
    CLEAR HISTORY
 ========================= */
