@@ -261,9 +261,17 @@ input:disabled {
 
     <div class="profile-header">
 
-        <div class="avatar">
-            👤
-        </div>
+        <div class="avatar" onclick="document.getElementById('profilePictureInput').click()">
+    👤
+</div>
+
+<input
+    type="file"
+    id="profilePictureInput"
+    accept="image/*"
+    style="display: none;"
+    onchange="changeProfilePicture(event)"
+>
 
         <h2 id="profileName">
             TrustAI User
