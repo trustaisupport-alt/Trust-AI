@@ -508,36 +508,148 @@ Clear
 
 <script>
 /* =====================================================
-   TRUSTAI SAMPLE MESSAGE LIBRARY
+   TRUSTAI — LARGE SAMPLE MESSAGE LIBRARY
    ===================================================== */
 
 const sampleMessages = [
 
-    // BANK / FINANCIAL
+    /* =================================================
+       BANK SCAMS
+       ================================================= */
+
     {
         category: "Bank Scam",
         text: "Your bank account has been temporarily restricted. Click this link to verify your account immediately."
     },
     {
         category: "Bank Scam",
-        text: "Dear customer, send your account number and OTP to complete your account verification."
+        text: "Dear customer, your account requires verification. Please confirm your banking information."
     },
     {
         category: "Bank Scam",
         text: "Your ATM card will be blocked today unless you confirm your details."
     },
+    {
+        category: "Bank Scam",
+        text: "We detected unusual activity on your bank account. Verify your account immediately."
+    },
+    {
+        category: "Bank Scam",
+        text: "Your account security has expired. Click here to restore access."
+    },
+    {
+        category: "Bank Scam",
+        text: "Your bank account is pending verification. Please confirm your information."
+    },
+    {
+        category: "Bank Scam",
+        text: "Important security notice: your account may be suspended unless you verify your identity."
+    },
+    {
+        category: "Bank Scam",
+        text: "Your debit card has been flagged. Confirm your details to prevent suspension."
+    },
 
-    // OTP
+    /* =================================================
+       OTP / VERIFICATION
+       ================================================= */
+
     {
         category: "OTP Scam",
-        text: "Your verification code has been generated. Please send the OTP to our support agent to complete verification."
+        text: "Your verification code has been generated. Please send the OTP to our support agent."
     },
     {
         category: "OTP Scam",
-        text: "We detected unusual activity on your account. Tell us the security code you received."
+        text: "We detected unusual activity. Tell us the security code you received."
+    },
+    {
+        category: "OTP Scam",
+        text: "Please forward the verification code sent to your phone to complete your account verification."
+    },
+    {
+        category: "OTP Scam",
+        text: "Your account verification is incomplete. Send the confirmation code to continue."
+    },
+    {
+        category: "OTP Scam",
+        text: "A security code was sent to your phone. Please read the code back to us."
+    },
+    {
+        category: "OTP Scam",
+        text: "Send the OTP you just received so we can verify your account."
     },
 
-    // WHATSAPP / SOCIAL MEDIA
+    /* =================================================
+       PASSWORD / LOGIN
+       ================================================= */
+
+    {
+        category: "Credential Scam",
+        text: "Please send your username and password so we can restore your account."
+    },
+    {
+        category: "Credential Scam",
+        text: "Your login session has expired. Send your password to the administrator."
+    },
+    {
+        category: "Credential Scam",
+        text: "Please provide your login details to complete verification."
+    },
+    {
+        category: "Credential Scam",
+        text: "Your account needs immediate verification. Send your password to support."
+    },
+
+    /* =================================================
+       BVN / NIN / IDENTITY
+       ================================================= */
+
+    {
+        category: "Identity Scam",
+        text: "Please send your NIN, BVN, date of birth and account number to complete your verification."
+    },
+    {
+        category: "Identity Scam",
+        text: "Your identity verification is incomplete. Provide your NIN and BVN immediately."
+    },
+    {
+        category: "Identity Scam",
+        text: "Send your national ID number and date of birth to activate your account."
+    },
+    {
+        category: "Identity Scam",
+        text: "Please provide your identification details for mandatory account verification."
+    },
+    {
+        category: "Identity Scam",
+        text: "Send your passport information and personal details to complete registration."
+    },
+
+    /* =================================================
+       CARD / PIN
+       ================================================= */
+
+    {
+        category: "Card Scam",
+        text: "Please send your ATM PIN to confirm your card."
+    },
+    {
+        category: "Card Scam",
+        text: "Send your card number, CVV and expiry date to complete verification."
+    },
+    {
+        category: "Card Scam",
+        text: "Your debit card requires verification. Provide your card details immediately."
+    },
+    {
+        category: "Card Scam",
+        text: "Please provide your card information so we can prevent your account from being blocked."
+    },
+
+    /* =================================================
+       WHATSAPP / SOCIAL MEDIA
+       ================================================= */
+
     {
         category: "Social Media Scam",
         text: "This is my new WhatsApp number. I am stranded and need you to send me money urgently."
@@ -546,70 +658,270 @@ const sampleMessages = [
         category: "Social Media Scam",
         text: "Your Instagram account will be deleted unless you verify it immediately using this link."
     },
+    {
+        category: "Social Media Scam",
+        text: "Your Facebook account has been reported. Click this link to appeal the decision."
+    },
+    {
+        category: "Social Media Scam",
+        text: "Your WhatsApp account requires verification. Send us the code you received."
+    },
+    {
+        category: "Social Media Scam",
+        text: "I lost my phone and this is my new number. Please send money quickly."
+    },
+    {
+        category: "Social Media Scam",
+        text: "Your social media account has suspicious activity. Verify your login immediately."
+    },
 
-    // FAKE JOB
+    /* =================================================
+       FAKE JOBS
+       ================================================= */
+
     {
         category: "Job Scam",
-        text: "Congratulations! You have been selected for our work from home job. Pay a small registration fee to activate your position."
+        text: "Congratulations! You have been selected for our work from home job. Pay a small registration fee."
     },
     {
         category: "Job Scam",
         text: "We are hiring immediately. Send your personal information and application fee to secure your job."
     },
+    {
+        category: "Job Scam",
+        text: "You have been shortlisted for a remote position. Pay the processing fee to continue."
+    },
+    {
+        category: "Job Scam",
+        text: "Earn money from home. Registration is only required before you can start working."
+    },
+    {
+        category: "Job Scam",
+        text: "Your employment package is ready. Send a small activation payment before receiving your contract."
+    },
 
-    // DELIVERY
+    /* =================================================
+       DELIVERY / PACKAGE
+       ================================================= */
+
     {
         category: "Delivery Scam",
-        text: "Your package is waiting for delivery. Pay the delivery fee using this link to receive your parcel."
+        text: "Your package is waiting for delivery. Pay the delivery fee using this link."
     },
     {
         category: "Delivery Scam",
         text: "Your parcel cannot be delivered because customs payment is required. Click here to pay."
     },
+    {
+        category: "Delivery Scam",
+        text: "Your package is being held. Confirm your address and pay the required processing fee."
+    },
+    {
+        category: "Delivery Scam",
+        text: "Delivery attempt failed. Click the link to reschedule your package."
+    },
+    {
+        category: "Delivery Scam",
+        text: "Your parcel requires an urgent customs payment before delivery."
+    },
 
-    // PRIZE
+    /* =================================================
+       PRIZE / GIVEAWAY
+       ================================================= */
+
     {
         category: "Prize Scam",
         text: "Congratulations! You have won a cash prize. Pay the processing fee to claim your reward."
     },
     {
         category: "Prize Scam",
-        text: "You are one of our lucky winners. Send your details and pay the delivery fee to receive your free gift."
+        text: "You are one of our lucky winners. Send your details and pay the delivery fee."
+    },
+    {
+        category: "Prize Scam",
+        text: "Congratulations, you have been selected for a special cash reward."
+    },
+    {
+        category: "Prize Scam",
+        text: "You won our promotional giveaway. Pay the small processing fee to receive your prize."
+    },
+    {
+        category: "Prize Scam",
+        text: "Your reward is waiting. Confirm your details and pay the required delivery charge."
     },
 
-    // INVESTMENT
+    /* =================================================
+       INVESTMENT / CRYPTO
+       ================================================= */
+
     {
         category: "Investment Scam",
         text: "Invest today and double your money within 24 hours. Guaranteed profit with zero risk."
     },
     {
         category: "Investment Scam",
-        text: "Our crypto investment program guarantees 100% profit. Send your deposit now to activate your account."
+        text: "Our crypto investment program guarantees 100% profit. Send your deposit now."
+    },
+    {
+        category: "Investment Scam",
+        text: "Earn guaranteed daily returns by joining our investment platform."
+    },
+    {
+        category: "Investment Scam",
+        text: "Double your investment this week with our risk-free trading opportunity."
+    },
+    {
+        category: "Investment Scam",
+        text: "Send your investment deposit today and receive guaranteed returns."
     },
 
-    // IMPERSONATION
+    /* =================================================
+       IMPERSONATION
+       ================================================= */
+
     {
         category: "Impersonation Scam",
         text: "Hi, this is your boss. I am in a meeting and need you to urgently transfer money for me."
     },
     {
         category: "Impersonation Scam",
-        text: "Hello Mum, this is my new number. Please send me money urgently. I will explain later."
+        text: "Hello Mum, this is my new number. Please send me money urgently."
     },
-
-    // PERSONAL INFORMATION
     {
-        category: "Identity Scam",
-        text: "Please send your NIN, BVN, date of birth and account number to complete your verification."
+        category: "Impersonation Scam",
+        text: "Hi Dad, I lost my phone. Please send money to this new account."
+    },
+    {
+        category: "Impersonation Scam",
+        text: "This is the company director. I need you to make an urgent payment."
+    },
+    {
+        category: "Impersonation Scam",
+        text: "I am your friend. I am stuck somewhere and need emergency money."
     },
 
-    // PHISHING
+    /* =================================================
+       PHISHING
+       ================================================= */
+
     {
         category: "Phishing Scam",
         text: "Your account has been flagged. Click here to login and confirm your information immediately."
     },
+    {
+        category: "Phishing Scam",
+        text: "Security warning: verify your account by clicking the link below."
+    },
+    {
+        category: "Phishing Scam",
+        text: "Your account will be suspended unless you confirm your details today."
+    },
+    {
+        category: "Phishing Scam",
+        text: "Click here to restore access to your account."
+    },
+    {
+        category: "Phishing Scam",
+        text: "Please login using this link to verify your account."
+    },
 
-    // NORMAL / SAFE EXAMPLES
+    /* =================================================
+       LOAN SCAMS
+       ================================================= */
+
+    {
+        category: "Loan Scam",
+        text: "You have been approved for an instant loan. Pay the activation fee to receive your money."
+    },
+    {
+        category: "Loan Scam",
+        text: "Congratulations, your loan application was successful. Send the processing fee."
+    },
+    {
+        category: "Loan Scam",
+        text: "Get an instant loan today. A small registration payment is required first."
+    },
+    {
+        category: "Loan Scam",
+        text: "Your loan is ready for withdrawal. Pay the verification charge to activate it."
+    },
+
+    /* =================================================
+       GIFT CARD
+       ================================================= */
+
+    {
+        category: "Gift Card Scam",
+        text: "Please purchase a Google Play gift card and send me the code immediately."
+    },
+    {
+        category: "Gift Card Scam",
+        text: "Buy an Apple gift card and send the card number and code."
+    },
+    {
+        category: "Gift Card Scam",
+        text: "I need Steam gift cards urgently. Please send the codes after purchasing them."
+    },
+
+    /* =================================================
+       ROMANCE / EMOTIONAL PRESSURE
+       ================================================= */
+
+    {
+        category: "Romance Scam",
+        text: "I really need your help. I am stuck at the hospital and need you to send money urgently."
+    },
+    {
+        category: "Romance Scam",
+        text: "Please don't let me down. Send the money and I promise I will pay you back."
+    },
+    {
+        category: "Romance Scam",
+        text: "I have an emergency and need financial help immediately. Please keep this between us."
+    },
+
+    /* =================================================
+       GOVERNMENT / TAX
+       ================================================= */
+
+    {
+        category: "Government Scam",
+        text: "Your tax account has an outstanding balance. Pay immediately to avoid legal action."
+    },
+    {
+        category: "Government Scam",
+        text: "Your government benefit requires verification. Click here and provide your personal details."
+    },
+    {
+        category: "Government Scam",
+        text: "A penalty has been issued against your account. Pay the required amount immediately."
+    },
+
+    /* =================================================
+       FAKE SUPPORT
+       ================================================= */
+
+    {
+        category: "Fake Support Scam",
+        text: "Hello, this is customer support. Send your OTP so we can secure your account."
+    },
+    {
+        category: "Fake Support Scam",
+        text: "Our security team detected suspicious activity. Provide your password for verification."
+    },
+    {
+        category: "Fake Support Scam",
+        text: "This is technical support. Click the link and login to resolve the issue."
+    },
+    {
+        category: "Fake Support Scam",
+        text: "Your account needs support verification. Send the security code you received."
+    },
+
+    /* =================================================
+       NORMAL / SAFE MESSAGES
+       ================================================= */
+
     {
         category: "Normal Message",
         text: "Hey, are we still meeting at 4pm today?"
@@ -621,9 +933,214 @@ const sampleMessages = [
     {
         category: "Normal Message",
         text: "Your appointment is scheduled for Monday at 10am."
+    },
+    {
+        category: "Normal Message",
+        text: "Can you call me when you get home?"
+    },
+    {
+        category: "Normal Message",
+        text: "The meeting has been moved to Friday afternoon."
+    },
+    {
+        category: "Normal Message",
+        text: "Please remember to bring your notebook to class."
+    },
+    {
+        category: "Normal Message",
+        text: "Dinner is ready whenever you are."
+    },
+    {
+        category: "Normal Message",
+        text: "Thanks for sending the documents."
+    },
+    {
+        category: "Normal Message",
+        text: "I'll see you tomorrow morning."
+    },
+    {
+        category: "Normal Message",
+        text: "Please call me when you have a moment."
     }
 
 ];
+
+
+/* =====================================================
+   GENERATE MANY VARIATIONS
+   ===================================================== */
+
+const messageTemplates = [
+
+    {
+        category: "Bank Scam",
+        subjects: [
+            "Your bank account",
+            "Your account",
+            "Your banking profile",
+            "Your debit card"
+        ],
+        actions: [
+            "requires immediate verification",
+            "has been flagged",
+            "has unusual activity",
+            "may be suspended"
+        ],
+        endings: [
+            "Please verify your information immediately.",
+            "Click the link to continue.",
+            "Confirm your details today.",
+            "Complete verification before access is restricted."
+        ]
+    },
+
+    {
+        category: "OTP Scam",
+        subjects: [
+            "Your verification",
+            "Your security check",
+            "Your account confirmation",
+            "Your login verification"
+        ],
+        actions: [
+            "code has been generated",
+            "requires confirmation",
+            "is waiting for verification",
+            "has triggered a security check"
+        ],
+        endings: [
+            "Send the code you received.",
+            "Tell us the OTP immediately.",
+            "Forward the verification code.",
+            "Read the security code to our agent."
+        ]
+    },
+
+    {
+        category: "Prize Scam",
+        subjects: [
+            "Congratulations",
+            "Good news",
+            "You have been selected",
+            "You are a winner"
+        ],
+        actions: [
+            "you have won a cash prize",
+            "you have been selected for a reward",
+            "your gift is ready",
+            "your reward has been approved"
+        ],
+        endings: [
+            "Pay the processing fee to claim it.",
+            "Send the delivery fee to receive it.",
+            "Confirm your details immediately.",
+            "Complete the payment before the deadline."
+        ]
+    },
+
+    {
+        category: "Job Scam",
+        subjects: [
+            "Congratulations",
+            "Good news",
+            "Your application",
+            "Your employment application"
+        ],
+        actions: [
+            "has been shortlisted",
+            "has been approved",
+            "has been selected",
+            "has passed the first stage"
+        ],
+        endings: [
+            "Pay the registration fee to continue.",
+            "Send the application fee today.",
+            "Pay the activation charge before starting.",
+            "Complete the processing payment."
+        ]
+    },
+
+    {
+        category: "Delivery Scam",
+        subjects: [
+            "Your package",
+            "Your parcel",
+            "Your delivery",
+            "Your shipment"
+        ],
+        actions: [
+            "is waiting for delivery",
+            "requires customs clearance",
+            "could not be delivered",
+            "is being held"
+        ],
+        endings: [
+            "Pay the delivery fee using the link.",
+            "Click here to reschedule delivery.",
+            "Confirm your address immediately.",
+            "Pay the customs charge to continue."
+        ]
+    },
+
+    {
+        category: "Investment Scam",
+        subjects: [
+            "Our investment program",
+            "Our trading platform",
+            "Our crypto opportunity",
+            "Our investment opportunity"
+        ],
+        actions: [
+            "offers guaranteed returns",
+            "can double your money quickly",
+            "provides daily profits",
+            "has a limited-time opportunity"
+        ],
+        endings: [
+            "Send your deposit today.",
+            "Invest now to secure your position.",
+            "Transfer your funds to activate your account.",
+            "Deposit immediately to start earning."
+        ]
+    },
+
+    {
+        category: "Loan Scam",
+        subjects: [
+            "Your loan",
+            "Your loan application",
+            "Your instant loan",
+            "Your credit request"
+        ],
+        actions: [
+            "has been approved",
+            "is ready for release",
+            "has passed verification",
+            "is ready for withdrawal"
+        ],
+        endings: [
+            "Pay the activation fee first.",
+            "Send the processing charge.",
+            "Pay the verification fee to receive the funds.",
+            "Complete the registration payment."
+        ]
+    }
+];
+
+
+/* =====================================================
+   CREATE VARIATIONS
+   ===================================================== */
+
+messageTemplates.forEach(template => {
+
+    template.subjects.forEach(subject => {
+
+        template.actions.forEach(action => {
+
+            template.endings.forEach(ending => {
+
+  
 
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("open");
