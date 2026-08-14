@@ -1,1 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Create Account — TrustAI</title>
+
+<meta name="description"
+      content="Create your TrustAI account">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #f6f7f9;
+    color: #111820;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+}
+
+.signup-page {
+    width: 100%;
+    max-width: 440px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    text-align: center;
+    margin-bottom: 28px;
+
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: #1687ff;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.signup-card {
+    background: #ffffff;
+
+    border: 1px solid #dfe3e8;
+
+    border-radius: 14px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.signup-card h1 {
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 26px;
+    line-height: 1.25;
+}
+
+.subtitle {
+    margin: 9px 0 25px;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #bfc7d1;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #111820;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+input:focus {
+    border-color: #1687ff;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 135, 255, 0.12);
+}
+
+input::placeholder {
+    color: #9aa3ad;
+}
+
+/* =========================
+   PASSWORD STRENGTH
+========================= */
+
+.password-strength {
+    margin-top: 7px;
+
+    height: 5px;
+
+    background: #e5e7eb;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    width: 0%;
+
+    height: 100%;
+
+    background: #ef4444;
+
+    transition:
+        width 0.2s ease,
+        background 0.2s ease;
+}
+
+.password-text {
+    margin-top: 5px;
+
+    color: #7b8490;
+
+    font-size: 11px;
+}
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin: 19px 0;
+
+    color: #66707c;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+.terms input {
+    width: 16px;
+    height: 16px;
+
+    margin-top: 1px;
+
+    flex-shrink: 0;
+}
+
+.terms a {
+    color: #1687ff;
+
+    font-weight: 600;
+}
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+.create-button {
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1687ff;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.05s ease;
+}
+
+.create-button:hover {
+    background: #0877eb;
+}
+
+.create-button:active {
+    transform: translateY(1px);
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    display: none;
+
+    margin-bottom: 17px;
+
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.error {
+    background: #fff1f2;
+
+    border: 1px solid #fecdd3;
+
+    color: #be123c;
+}
+
+.message.success {
+    background: #ecfdf5;
+
+    border: 1px solid #a7f3d0;
+
+    color: #047857;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-link {
+    text-align: center;
+
+    margin-top: 25px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid #e5e8ec;
+
+    color: #66707c;
+
+    font-size: 13px;
+}
+
+.login-link a {
+    color: #1687ff;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   LEGAL
+========================= */
+
+.legal {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #8a939e;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+.legal a {
+    color: #687482;
+
+    text-decoration: underline;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
+
+    body {
+        padding: 15px;
+
+        align-items: flex-start;
+    }
+
+    .signup-page {
+        margin-top: 25px;
+    }
+
+    .signup-card {
+        padding: 24px 20px;
+    }
+
+    .logo {
+        margin-bottom: 22px;
+    }
+
+    .signup-card h1 {
+        font-size: 24px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="signup-page">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        🛡️ Trust<span>AI</span>
+
+    </div>
+
+
+    <!-- SIGNUP CARD -->
+
+    <section class="signup-card">
+
+
+        <h1>
+            Create your TrustAI account
+        </h1>
+
+
+        <p class="subtitle">
+            Protect your account and access TrustAI security tools.
+        </p>
+
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+            id="signupForm"
+            onsubmit="createAccount(event)">
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your full name"
+                    autocomplete="name"
+                    required>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a strong password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    oninput="checkPassword()"
+                    required>
+
+
+                <div class="password-strength">
+
+                    <div
+                        id="strengthBar"
+                        class="password-strength-bar">
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="passwordText"
+                    class="password-text">
+
+                    Use at least 8 characters.
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Enter your password again"
+                    autocomplete="new-password"
+                    required>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <label class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    required>
+
+                <span>
+
+                    I agree to the
+                    <a href="./terms.html">
+                        Terms of Service
+                    </a>
+                    and
+                    <a href="./privacy.html">
+                        Privacy Policy
+                    </a>.
+
+                </span>
+
+            </label>
+
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+                class="create-button">
+
+                Create Account
+
+            </button>
+
+
+        </form>
+
+
+        <!-- LOGIN -->
+
+        <div class="login-link">
+
+            Already have a TrustAI account?
+
+            <br><br>
+
+            <a href="./login.html">
+                Sign in
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- LEGAL -->
+
+    <div class="legal">
+
+        TrustAI • Online Scam Awareness & Protection
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+/* =========================
+   PASSWORD STRENGTH
+========================= */
+
+function checkPassword() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const bar =
+        document.getElementById("strengthBar");
+
+    const text =
+        document.getElementById("passwordText");
+
+
+    let score = 0;
+
+
+    if (password.length >= 8) {
+        score++;
+    }
+
+    if (/[A-Z]/.test(password)) {
+        score++;
+    }
+
+    if (/[a-z]/.test(password)) {
+        score++;
+    }
+
+    if (/[0-9]/.test(password)) {
+        score++;
+    }
+
+    if (/[^A-Za-z0-9]/.test(password)) {
+        score++;
+    }
+
+
+    if (password.length === 0) {
+
+        bar.style.width = "0%";
+
+        text.textContent =
+            "Use at least 8 characters.";
+
+        return;
+
+    }
+
+
+    if (score <= 2) {
+
+        bar.style.width = "35%";
+
+        bar.style.background = "#ef4444";
+
+        text.textContent =
+            "Weak password.";
+
+    }
+
+    else if (score <= 3) {
+
+        bar.style.width = "65%";
+
+        bar.style.background = "#f59e0b";
+
+        text.textContent =
+            "Moderate password.";
+
+    }
+
+    else {
+
+        bar.style.width = "100%";
+
+        bar.style.background = "#10b981";
+
+        text.textContent =
+            "Strong password.";
+
+    }
+
+}
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+function createAccount(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+    if (name.length < 2) {
+
+        showMessage(
+            "Please enter your full name.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (password.length < 8) {
+
+        showMessage(
+            "Your password must contain at least 8 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (password !== confirmPassword) {
+
+        showMessage(
+            "The passwords do not match.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       TEMPORARY PROTOTYPE ONLY
+
+       This does NOT create a secure real account.
+       We will replace this with real authentication
+       when we connect the database.
+    */
+
+    const account = {
+
+        name: name,
+
+        email: email,
+
+        plan: "free",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    localStorage.setItem(
+        "trustai_account",
+        JSON.stringify(account)
+    );
+
+
+    showMessage(
+        "Account created successfully. Redirecting...",
+        "success"
+    );
+
+
+    setTimeout(
+        function() {
+
+            window.location.href =
+                "./home.html";
+
+        },
+        1200
+    );
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById("message");
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message show " + type;
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
