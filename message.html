@@ -507,6 +507,123 @@ Clear
 </div>
 
 <script>
+/* =====================================================
+   TRUSTAI SAMPLE MESSAGE LIBRARY
+   ===================================================== */
+
+const sampleMessages = [
+
+    // BANK / FINANCIAL
+    {
+        category: "Bank Scam",
+        text: "Your bank account has been temporarily restricted. Click this link to verify your account immediately."
+    },
+    {
+        category: "Bank Scam",
+        text: "Dear customer, send your account number and OTP to complete your account verification."
+    },
+    {
+        category: "Bank Scam",
+        text: "Your ATM card will be blocked today unless you confirm your details."
+    },
+
+    // OTP
+    {
+        category: "OTP Scam",
+        text: "Your verification code has been generated. Please send the OTP to our support agent to complete verification."
+    },
+    {
+        category: "OTP Scam",
+        text: "We detected unusual activity on your account. Tell us the security code you received."
+    },
+
+    // WHATSAPP / SOCIAL MEDIA
+    {
+        category: "Social Media Scam",
+        text: "This is my new WhatsApp number. I am stranded and need you to send me money urgently."
+    },
+    {
+        category: "Social Media Scam",
+        text: "Your Instagram account will be deleted unless you verify it immediately using this link."
+    },
+
+    // FAKE JOB
+    {
+        category: "Job Scam",
+        text: "Congratulations! You have been selected for our work from home job. Pay a small registration fee to activate your position."
+    },
+    {
+        category: "Job Scam",
+        text: "We are hiring immediately. Send your personal information and application fee to secure your job."
+    },
+
+    // DELIVERY
+    {
+        category: "Delivery Scam",
+        text: "Your package is waiting for delivery. Pay the delivery fee using this link to receive your parcel."
+    },
+    {
+        category: "Delivery Scam",
+        text: "Your parcel cannot be delivered because customs payment is required. Click here to pay."
+    },
+
+    // PRIZE
+    {
+        category: "Prize Scam",
+        text: "Congratulations! You have won a cash prize. Pay the processing fee to claim your reward."
+    },
+    {
+        category: "Prize Scam",
+        text: "You are one of our lucky winners. Send your details and pay the delivery fee to receive your free gift."
+    },
+
+    // INVESTMENT
+    {
+        category: "Investment Scam",
+        text: "Invest today and double your money within 24 hours. Guaranteed profit with zero risk."
+    },
+    {
+        category: "Investment Scam",
+        text: "Our crypto investment program guarantees 100% profit. Send your deposit now to activate your account."
+    },
+
+    // IMPERSONATION
+    {
+        category: "Impersonation Scam",
+        text: "Hi, this is your boss. I am in a meeting and need you to urgently transfer money for me."
+    },
+    {
+        category: "Impersonation Scam",
+        text: "Hello Mum, this is my new number. Please send me money urgently. I will explain later."
+    },
+
+    // PERSONAL INFORMATION
+    {
+        category: "Identity Scam",
+        text: "Please send your NIN, BVN, date of birth and account number to complete your verification."
+    },
+
+    // PHISHING
+    {
+        category: "Phishing Scam",
+        text: "Your account has been flagged. Click here to login and confirm your information immediately."
+    },
+
+    // NORMAL / SAFE EXAMPLES
+    {
+        category: "Normal Message",
+        text: "Hey, are we still meeting at 4pm today?"
+    },
+    {
+        category: "Normal Message",
+        text: "Good morning. Please remember to bring the documents tomorrow."
+    },
+    {
+        category: "Normal Message",
+        text: "Your appointment is scheduled for Monday at 10am."
+    }
+
+];
 
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("open");
