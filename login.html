@@ -648,12 +648,53 @@ input::placeholder {
 
 </main>
 
-
 <script>
 
-/* =========================
-   MESSAGE
-========================= */
+function goToHome() {
+    window.location.href = "./home.html";
+}
+
+
+/* SOCIAL LOGIN OPTIONS */
+
+function socialLogin(provider) {
+    goToHome();
+}
+
+
+/* EMAIL LOGIN */
+
+function continueWithEmail(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    if (!email) {
+        showMessage("Please enter your email address.");
+        return;
+    }
+
+    goToHome();
+}
+
+
+/* PHONE LOGIN */
+
+function phoneLogin() {
+    goToHome();
+}
+
+
+/* PASSKEY LOGIN */
+
+function passkeyLogin() {
+    goToHome();
+}
+
+
+/* MESSAGE */
 
 function showMessage(text) {
 
@@ -666,104 +707,7 @@ function showMessage(text) {
 
 }
 
-
-/* =========================
-   SOCIAL LOGIN
-========================= */
-
-function socialLogin(provider) {
-
-    showMessage(
-        "Continue with " +
-        provider +
-        " authentication will be connected when TrustAI's authentication provider is configured."
-    );
-
-}
-
-
-/* =========================
-   EMAIL LOGIN
-========================= */
-
-function continueWithEmail(event) {
-
-    event.preventDefault();
-
-    const email =
-        document
-            .getElementById("email")
-            .value
-            .trim();
-
-
-    if (!email) {
-
-        showMessage(
-            "Please enter your email address."
-        );
-
-        return;
-
-    }
-
-
-    /*
-       This is the frontend stage.
-
-       When a real authentication backend
-       is connected, this is where TrustAI
-       will send the email to the authentication
-       service.
-    */
-
-
-    showMessage(
-        "Email authentication is ready to be connected to the TrustAI account system."
-    );
-
-}
-
-
-/* =========================
-   PHONE LOGIN
-========================= */
-
-function phoneLogin() {
-
-    showMessage(
-        "Phone sign-in will be available when TrustAI authentication is connected."
-    );
-
-}
-
-
-/* =========================
-   PASSKEY LOGIN
-========================= */
-
-function passkeyLogin() {
-
-    if (
-        window.PublicKeyCredential
-    ) {
-
-        showMessage(
-            "Passkey authentication is supported by this browser and can be connected to the TrustAI authentication system."
-        );
-
-    } else {
-
-        showMessage(
-            "Passkeys are not supported by this browser."
-        );
-
-    }
-
-}
-
 </script>
-
 
 </body>
 
