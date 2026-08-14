@@ -219,12 +219,9 @@ body {
 
 </head>
 
-
 <body>
 
-
 <div class="page">
-
 
 <header class="header">
 
@@ -237,7 +234,6 @@ body {
 
     </button>
 
-
     <div class="logo">
 
         🛡️ Trust<span>AI</span>
@@ -245,7 +241,6 @@ body {
     </div>
 
 </header>
-
 
 <section class="title">
 
@@ -259,7 +254,6 @@ body {
     </p>
 
 </section>
-
 
 <!-- ACCOUNT -->
 
@@ -297,7 +291,6 @@ body {
 
 </section>
 
-
 <!-- NOTIFICATIONS -->
 
 <section class="section">
@@ -307,7 +300,6 @@ body {
     </h2>
 
     <div class="card">
-
 
         <div class="setting">
 
@@ -322,7 +314,6 @@ body {
                 </span>
 
             </div>
-
 
             <label class="toggle">
 
@@ -341,7 +332,6 @@ body {
 
         </div>
 
-
         <div class="setting">
 
             <div class="setting-info">
@@ -355,7 +345,6 @@ body {
                 </span>
 
             </div>
-
 
             <label class="toggle">
 
@@ -374,11 +363,9 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <!-- PRIVACY -->
 
@@ -388,9 +375,7 @@ body {
         Privacy
     </h2>
 
-
     <div class="card">
-
 
         <div class="setting">
 
@@ -406,15 +391,15 @@ body {
 
             </div>
 
+            <button
+                class="setting-button"
+                onclick="window.location.href='./privacy-controls.html'">
 
-        <button
-    class="setting-button"
-    onclick="window.location.href='./privacy-controls.html'">
-    View
-        </button>
+                View
+
+            </button>
 
         </div>
-
 
         <div class="setting">
 
@@ -430,7 +415,6 @@ body {
 
             </div>
 
-
             <button
                 class="setting-button danger"
                 onclick="clearHistory()">
@@ -441,11 +425,9 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <!-- SECURITY -->
 
@@ -455,9 +437,7 @@ body {
         Security
     </h2>
 
-
     <div class="card">
-
 
         <div class="setting">
 
@@ -473,7 +453,6 @@ body {
 
             </div>
 
-
             <button
                 class="setting-button"
                 onclick="showMessage(
@@ -485,7 +464,6 @@ body {
             </button>
 
         </div>
-
 
         <div class="setting">
 
@@ -501,7 +479,6 @@ body {
 
             </div>
 
-
             <button
                 class="setting-button"
                 onclick="showMessage(
@@ -514,11 +491,9 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <!-- APP PREFERENCES -->
 
@@ -528,9 +503,7 @@ body {
         App Preferences
     </h2>
 
-
     <div class="card">
-
 
         <div class="setting">
 
@@ -546,17 +519,13 @@ body {
 
             </div>
 
-
             <label class="toggle">
 
                 <input
                     type="checkbox"
                     id="darkMode"
                     checked
-                    onchange="saveSetting(
-                        'darkMode',
-                        this.checked
-                    )">
+                    onchange="toggleDarkMode(this.checked)">
 
                 <span class="slider"></span>
 
@@ -564,11 +533,9 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <!-- LEGAL -->
 
@@ -578,11 +545,7 @@ body {
         Legal
     </h2>
 
-
     <div class="card">
-
-
-        <!-- PRIVACY POLICY -->
 
         <div class="setting">
 
@@ -598,7 +561,6 @@ body {
 
             </div>
 
-
             <button
                 class="setting-button"
                 onclick="window.location.href='./privacy.html'">
@@ -608,9 +570,6 @@ body {
             </button>
 
         </div>
-
-
-        <!-- TERMS -->
 
         <div class="setting">
 
@@ -626,29 +585,25 @@ body {
 
             </div>
 
-
             <button
-    class="setting-button"
-    onclick="window.location.href='./terms.html'">
+                class="setting-button"
+                onclick="window.location.href='./terms.html'">
 
-    View
+                View
 
             </button>
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <!-- LOGOUT -->
 
 <section class="section">
 
     <div class="card">
-
 
         <div class="setting">
 
@@ -664,7 +619,6 @@ body {
 
             </div>
 
-
             <button
                 class="setting-button danger"
                 onclick="logout()">
@@ -675,11 +629,9 @@ body {
 
         </div>
 
-
     </div>
 
 </section>
-
 
 <footer class="footer">
 
@@ -697,12 +649,9 @@ body {
 
 </footer>
 
-
 </div>
 
-
 <script>
-
 
 /* =========================
    MESSAGE
@@ -716,7 +665,7 @@ function showMessage(message) {
 
 
 /* =========================
-   SAVE SETTINGS
+   SAVE NORMAL SETTINGS
 ========================= */
 
 function saveSetting(name, value) {
@@ -730,42 +679,103 @@ function saveSetting(name, value) {
 
 
 /* =========================
+   DARK MODE
+   ONLY CHANGE NEEDED
+========================= */
+
+function toggleDarkMode(enabled) {
+
+    localStorage.setItem(
+        "trustai_darkMode",
+        enabled
+    );
+
+    applyDarkMode(enabled);
+
+}
+
+
+/* =========================
+   APPLY DARK MODE IMMEDIATELY
+========================= */
+
+function applyDarkMode(enabled) {
+
+    if (enabled) {
+
+        document.body.style.background = "#050b14";
+        document.body.style.color = "#ffffff";
+
+    } else {
+
+        document.body.style.background = "#f6f7f9";
+        document.body.style.color = "#111820";
+
+    }
+
+}
+
+
+/* =========================
    LOAD SETTINGS
 ========================= */
 
 function loadSettings() {
 
     const securityAlerts =
-        localStorage.getItem("trustai_securityAlerts");
+        localStorage.getItem(
+            "trustai_securityAlerts"
+        );
 
     const scamAlerts =
-        localStorage.getItem("trustai_scamAlerts");
+        localStorage.getItem(
+            "trustai_scamAlerts"
+        );
 
     const darkMode =
-        localStorage.getItem("trustai_darkMode");
+        localStorage.getItem(
+            "trustai_darkMode"
+        );
 
 
     if (securityAlerts !== null) {
-        document.getElementById("securityAlerts").checked =
+
+        document.getElementById(
+            "securityAlerts"
+        ).checked =
             securityAlerts === "true";
+
     }
 
 
     if (scamAlerts !== null) {
-        document.getElementById("scamAlerts").checked =
+
+        document.getElementById(
+            "scamAlerts"
+        ).checked =
             scamAlerts === "true";
+
     }
 
 
-    if (darkMode !== null) {
-        const enabled = darkMode === "true";
+    /* DARK MODE */
 
-        document.getElementById("darkMode").checked = enabled;
+    const enabled =
+        darkMode === null
+            ? true
+            : darkMode === "true";
 
-        applyDarkMode(enabled);
-    }
+
+    document.getElementById(
+        "darkMode"
+    ).checked = enabled;
+
+
+    applyDarkMode(enabled);
 
 }
+
+
 /* =========================
    CLEAR HISTORY
 ========================= */
@@ -797,6 +807,10 @@ function clearHistory() {
 }
 
 
+/* =========================
+   LOGOUT
+========================= */
+
 function logout() {
 
     const confirmed =
@@ -804,34 +818,27 @@ function logout() {
             "Are you sure you want to log out?"
         );
 
+
     if (!confirmed) {
+
         return;
+
     }
 
-    window.location.href = "./login.html";
-            }
+
+    window.location.href =
+        "./login.html";
+
+}
 
 
 /* =========================
    START
 ========================= */
-  function applyDarkMode(enabled) {
-
-    if (enabled) {
-        document.body.style.background = "#050b14";
-        document.body.style.color = "#ffffff";
-    } else {
-        document.body.style.background = "#f6f7f9";
-        document.body.style.color = "#111820";
-    }
-
-  }  
 
 loadSettings();
 
-
 </script>
-
 
 </body>
 
