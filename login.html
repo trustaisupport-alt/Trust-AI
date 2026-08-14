@@ -650,61 +650,217 @@ input::placeholder {
 
 <script>
 
+/* =========================
+   GO TO HOME
+========================= */
+
 function goToHome() {
-    window.location.href = "./home.html";
+
+    window.location.href =
+        "./home.html";
 }
 
 
-/* SOCIAL LOGIN OPTIONS */
+/* =========================
+   SOCIAL LOGIN
+========================= */
 
 function socialLogin(provider) {
+
+    const account =
+        localStorage.getItem("trustai_account");
+
+
+    if (!account) {
+
+        showMessage(
+            "No TrustAI account found. Please create an account first."
+        );
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "trustai_loggedIn",
+        "true"
+    );
+
+
     goToHome();
 }
 
 
-/* EMAIL LOGIN */
+/* =========================
+   EMAIL LOGIN
+========================= */
 
 function continueWithEmail(event) {
 
     event.preventDefault();
 
+
     const email =
-        document.getElementById("email").value.trim();
+        document.getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
+
 
     if (!email) {
-        showMessage("Please enter your email address.");
+
+        showMessage(
+            "Please enter your email address."
+        );
+
         return;
     }
 
+
+    const savedAccount =
+        localStorage.getItem(
+            "trustai_account"
+        );
+
+
+    if (!savedAccount) {
+
+        showMessage(
+            "No TrustAI account found. Please create an account first."
+        );
+
+        return;
+    }
+
+
+    let account;
+
+
+    try {
+
+        account =
+            JSON.parse(savedAccount);
+
+    } catch (error) {
+
+        showMessage(
+            "Your saved account information is invalid. Please create a new account."
+        );
+
+        return;
+    }
+
+
+    if (
+        !account.email ||
+        account.email.toLowerCase() !== email
+    ) {
+
+        showMessage(
+            "No TrustAI account was found with this email address."
+        );
+
+        return;
+    }
+
+
+    /* LOGIN SUCCESS */
+
+    localStorage.setItem(
+        "trustai_loggedIn",
+        "true"
+    );
+
+
+    if (account.name) {
+
+        localStorage.setItem(
+            "trustai_userName",
+            account.name
+        );
+
+    }
+
+
     goToHome();
 }
 
 
-/* PHONE LOGIN */
+/* =========================
+   PHONE LOGIN
+========================= */
 
 function phoneLogin() {
-    goToHome();
+
+    const account =
+        localStorage.getItem(
+            "trustai_account"
+        );
+
+
+    if (!account) {
+
+        showMessage(
+            "No TrustAI account found. Please create an account first."
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "Phone sign-in will be available when TrustAI authentication is connected."
+    );
 }
 
 
-/* PASSKEY LOGIN */
+/* =========================
+   PASSKEY LOGIN
+========================= */
 
 function passkeyLogin() {
-    goToHome();
+
+    const account =
+        localStorage.getItem(
+            "trustai_account"
+        );
+
+
+    if (!account) {
+
+        showMessage(
+            "No TrustAI account found. Please create an account first."
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "Passkey sign-in will be available when TrustAI authentication is connected."
+    );
 }
 
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 function showMessage(text) {
 
     const message =
-        document.getElementById("message");
+        document.getElementById(
+            "message"
+        );
 
-    message.textContent = text;
 
-    message.classList.add("show");
+    message.textContent =
+        text;
 
+
+    message.classList.add(
+        "show"
+    );
 }
 
 </script>
