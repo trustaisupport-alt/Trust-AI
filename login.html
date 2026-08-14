@@ -289,7 +289,6 @@ input::placeholder {
 
 </div>
 
-
 <script>
 
 document
@@ -301,32 +300,32 @@ document
         const email =
             document.getElementById("email").value.trim();
 
-        if (!email) {
+        if (email === "") {
             return;
         }
 
-        const message =
-            document.getElementById("message");
+        /*
+         * This is still a front-end demo.
+         * It does NOT store or collect passwords.
+         */
 
-        message.style.display = "block";
+        localStorage.setItem(
+            "trustAIUserEmail",
+            email
+        );
+
+        window.location.href =
+            "./home.html";
 
     });
 
 
 function usePasskey() {
 
-    const message =
-        document.getElementById("message");
-
-    message.textContent =
-        "Passkey login will be connected when authentication is added.";
-
-    message.style.display = "block";
+    alert(
+        "Passkey login will be connected when a real authentication system is added."
+    );
 
 }
 
 </script>
-
-</body>
-
-      </html>
