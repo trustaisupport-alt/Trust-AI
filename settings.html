@@ -815,6 +815,17 @@ function logout() {
 /* =========================
    START
 ========================= */
+  function applyDarkMode(enabled) {
+
+    if (enabled) {
+        document.body.style.background = "#050b14";
+        document.body.style.color = "#ffffff";
+    } else {
+        document.body.style.background = "#f6f7f9";
+        document.body.style.color = "#111820";
+    }
+
+  }  
 
 loadSettings();
 
