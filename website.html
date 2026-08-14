@@ -871,20 +871,7 @@ function checkWebsite(event) {
     let reasons = [];
 
 
-    const trustedDomains = [
-
-        "paypal.com",
-        "google.com",
-        "microsoft.com",
-        "apple.com",
-        "amazon.com",
-        "facebook.com",
-        "instagram.com",
-        "linkedin.com",
-        "youtube.com"
-
-    ];
-
+    
 
     const isTrusted =
         trustedDomains.some(function(domain) {
@@ -895,6 +882,29 @@ function checkWebsite(event) {
             );
 
         });
+let trustedDomains = [];
+
+async function loadTrustedDomains() {
+    try {
+        const response = await fetch("./verified-websites.json");
+
+        if (!response.ok) {
+            throw new Error("Could not load verified websites.");
+        }
+
+        const data = await response.json();
+
+        trustedDomains = data.websites.map(function(domain) {
+            return domain.toLowerCase().trim();
+        });
+
+    } catch (error) {
+        console.error("Verified website list could not be loaded:", error);
+    }
+}
+
+loadTrustedDomains();
+    
 
 
     const lookalikePatterns = [
