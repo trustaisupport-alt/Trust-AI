@@ -720,10 +720,132 @@ function createAccount(event) {
             "error"
         );
 
-        return;
+<script>
 
+/* =========================
+   PASSWORD STRENGTH
+========================= */
+
+function checkPassword() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const bar =
+        document.getElementById("strengthBar");
+
+    const text =
+        document.getElementById("passwordText");
+
+    let score = 0;
+
+    if (password.length >= 8) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[a-z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^A-Za-z0-9]/.test(password)) score++;
+
+    if (password.length === 0) {
+
+        bar.style.width = "0%";
+
+        text.textContent =
+            "Use at least 8 characters.";
+
+        return;
     }
 
+    if (score <= 2) {
+
+        bar.style.width = "35%";
+        bar.style.background = "#ef4444";
+
+        text.textContent =
+            "Weak password.";
+
+    } else if (score <= 3) {
+
+        bar.style.width = "65%";
+        bar.style.background = "#f59e0b";
+
+        text.textContent =
+            "Moderate password.";
+
+    } else {
+
+        bar.style.width = "100%";
+        bar.style.background = "#10b981";
+
+        text.textContent =
+            "Strong password.";
+    }
+}
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+function createAccount(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim().toLowerCase();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    const terms =
+        document.getElementById("terms").checked;
+
+
+    /* NAME */
+
+    if (name.length < 2) {
+
+        showMessage(
+            "Please enter your full name.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* EMAIL */
+
+    if (!email) {
+
+        showMessage(
+            "Please enter your email address.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* PASSWORD */
+
+    if (password.length < 8) {
+
+        showMessage(
+            "Your password must contain at least 8 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* CONFIRM PASSWORD */
 
     if (password !== confirmPassword) {
 
@@ -733,16 +855,53 @@ function createAccount(event) {
         );
 
         return;
+    }
 
+
+    /* TERMS */
+
+    if (!terms) {
+
+        showMessage(
+            "Please agree to the Terms of Service and Privacy Policy.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* CHECK EXISTING ACCOUNT */
+
+    const existingAccount =
+        localStorage.getItem("trustai_account");
+
+
+    if (existingAccount) {
+
+        const account =
+            JSON.parse(existingAccount);
+
+        if (
+            account.email &&
+            account.email.toLowerCase() === email
+        ) {
+
+            showMessage(
+                "An account with this email already exists. Please sign in.",
+                "error"
+            );
+
+            return;
+        }
     }
 
 
     /*
-       TEMPORARY PROTOTYPE ONLY
+       PROTOTYPE ACCOUNT
 
-       This does NOT create a secure real account.
-       We will replace this with real authentication
-       when we connect the database.
+       The password is intentionally NOT stored
+       in localStorage.
     */
 
     const account = {
@@ -755,7 +914,6 @@ function createAccount(event) {
 
         createdAt:
             new Date().toISOString()
-
     };
 
 
@@ -765,22 +923,34 @@ function createAccount(event) {
     );
 
 
+    /* MARK USER AS LOGGED IN */
+
+    localStorage.setItem(
+        "trustai_loggedIn",
+        "true"
+    );
+
+
+    /* SAVE DISPLAY NAME */
+
+    localStorage.setItem(
+        "trustai_userName",
+        name
+    );
+
+
     showMessage(
         "Account created successfully. Redirecting...",
         "success"
     );
 
 
-    setTimeout(
-        function() {
+    setTimeout(function() {
 
-            window.location.href =
-                "./home.html";
+        window.location.href =
+            "./home.html";
 
-        },
-        1200
-    );
-
+    }, 1200);
 }
 
 
@@ -788,26 +958,19 @@ function createAccount(event) {
    MESSAGE
 ========================= */
 
-function showMessage(
-    text,
-    type
-) {
+function showMessage(text, type) {
 
     const message =
         document.getElementById("message");
 
-
     message.textContent =
         text;
 
-
     message.className =
         "message show " + type;
-
 }
 
 </script>
-
 
 </body>
 
