@@ -1275,7 +1275,6 @@ footer {
 <!-- =====================================================
      MENU JAVASCRIPT
      ===================================================== -->
-
 <script>
 
 const menuButton = document.getElementById("menuButton");
@@ -1309,57 +1308,10 @@ function closeMenu() {
 }
 
 
-/* THREE-DASH BUTTON */
+menuButton.addEventListener(
+    "click",
+    openMenu
+);
 
-menuButton.addEventListener("click", function(event) {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    openMenu();
-
-});
-
-
-/* DARK OVERLAY */
-
-menuOverlay.addEventListener("click", function(event) {
-
-    event.preventDefault();
-
-    closeMenu();
-
-});
-
-
-/* CLOSE MENU WHEN A LINK IS SELECTED */
-
-const menuLinks = document.querySelectorAll(".menu-link");
-
-menuLinks.forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
-        closeMenu();
-
-    });
-
-});
-
-
-/* ESC KEY ALSO CLOSES MENU */
-
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-
-        closeMenu();
-
-    }
-
-});
 
 </script>
-
-</body>
-</html>
