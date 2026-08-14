@@ -5,7 +5,8 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI - Home</title>
 
@@ -35,6 +36,7 @@ html {
 
 body {
     margin: 0;
+
     font-family:
         Inter,
         system-ui,
@@ -166,11 +168,20 @@ body {
 
     position: relative;
     z-index: 1101;
+
+    padding: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .menu-button:hover {
     border-color: var(--primary);
     transform: translateY(-2px);
+}
+
+.menu-button:active {
+    transform: scale(0.96);
 }
 
 .menu-button span {
@@ -201,6 +212,7 @@ body {
 
     width: 300px;
     height: 100vh;
+    height: 100dvh;
 
     background: var(--bg-side);
 
@@ -215,14 +227,22 @@ body {
     box-shadow:
         15px 0 30px rgba(0,0,0,0.3);
 
-    transform: translateX(-100%);
+    transform: translateX(-105%);
 
     transition:
         transform 0.3s ease;
+
+    visibility: hidden;
+
+    pointer-events: none;
 }
 
 .side-menu.open {
     transform: translateX(0);
+
+    visibility: visible;
+
+    pointer-events: auto;
 }
 
 
@@ -336,20 +356,27 @@ body {
         rgba(0,0,0,0.7);
 
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 
     z-index: 1050;
 
-    display: none;
-
     opacity: 0;
 
+    visibility: hidden;
+
+    pointer-events: none;
+
     transition:
-        opacity 0.3s ease;
+        opacity 0.3s ease,
+        visibility 0.3s ease;
 }
 
 .menu-overlay.show {
-    display: block;
     opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
 }
 
 
@@ -372,6 +399,7 @@ body {
     background: var(--bg-card);
 
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
     box-shadow:
         0 20px 40px -15px rgba(0,0,0,0.4);
@@ -521,6 +549,7 @@ body {
     background: var(--bg-card);
 
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
     text-decoration: none;
 
@@ -667,6 +696,7 @@ body {
         );
 
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
     color: white;
 
@@ -750,6 +780,7 @@ body {
         rgba(161,98,7,0.12);
 
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .remember h2 {
@@ -871,6 +902,7 @@ footer {
     <div class="menu-header">
 
         <div>
+
             <div class="menu-logo">
                 🛡️ TrustAI
             </div>
@@ -878,6 +910,7 @@ footer {
             <div class="menu-subtitle">
                 Online Scam Protection
             </div>
+
         </div>
 
     </div>
@@ -1211,7 +1244,6 @@ footer {
 
     </a>
 
-
     <a
         href="contact.html"
         class="card contact-card">
@@ -1246,4 +1278,143 @@ footer {
 
     <p>
         Never share your password, PIN, OTP or
-       
+        verification code with someone who asks
+        for it unexpectedly.
+    </p>
+
+    <p>
+        Always verify suspicious requests before
+        sending money or personal information.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <div class="footer-brand">
+        🛡️ TrustAI
+    </div>
+
+    Online scam awareness and protection.
+
+    <br><br>
+
+    © 2026 TrustAI
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     MENU JAVASCRIPT
+     ===================================================== -->
+
+<script>
+
+const menuButton = document.getElementById("menuButton");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+
+function openMenu() {
+
+    sideMenu.classList.add("open");
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
+
+
+function closeMenu() {
+
+    sideMenu.classList.remove("open");
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+/* THREE-DASH BUTTON */
+
+menuButton.addEventListener(
+    "click",
+    function () {
+
+        if (
+            sideMenu.classList.contains("open")
+        ) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
+    }
+);
+
+
+/* CLOSE WHEN OVERLAY IS TAPPED */
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+/* CLOSE MENU AFTER SELECTING A LINK */
+
+const menuLinks =
+    document.querySelectorAll(".menu-link");
+
+menuLinks.forEach(function(link) {
+
+    link.addEventListener(
+        "click",
+        closeMenu
+    );
+
+});
+
+
+/* CLOSE MENU WITH ESC KEY */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
+    
+
+
+        
