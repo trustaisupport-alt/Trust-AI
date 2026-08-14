@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI - Home</title>
 
@@ -183,6 +182,10 @@ body {
     border-radius: 3px;
 
     background: #ffffff;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 }
 
 
@@ -897,10 +900,10 @@ footer {
 
     <a href="website.html" class="menu-link">
         <span class="menu-icon">🌐</span>
-        website Checker
+        Website Checker
     </a>
 
-    <a href="device_checker.html" class="menu-link">
+    <a href="device.html" class="menu-link">
         <span class="menu-icon">📱</span>
         Device Security
     </a>
@@ -932,14 +935,14 @@ footer {
 </nav>
 
 
-<!-- OVERLAY -->
+<!-- =====================================================
+     OVERLAY
+     ===================================================== -->
 
 <div
     id="menuOverlay"
-    class="menu-overlay"
-    onclick="closeMenu()">
+    class="menu-overlay">
 </div>
-
 
 
 <!-- =====================================================
@@ -949,11 +952,11 @@ footer {
 <div class="page">
 
 
-<!-- HEADER -->
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
 <header class="header">
-
-    <!-- THE ONLY THREE-DASH BUTTON -->
 
     <button
         id="menuButton"
@@ -984,8 +987,9 @@ footer {
 </header>
 
 
-
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+     ===================================================== -->
 
 <section class="hero">
 
@@ -1003,8 +1007,9 @@ footer {
 </section>
 
 
-
-<!-- CHECK SOMETHING -->
+<!-- =====================================================
+     CHECK SOMETHING
+     ===================================================== -->
 
 <h2 class="section-title">
 
@@ -1083,8 +1088,9 @@ footer {
 </div>
 
 
-
-<!-- SECURITY -->
+<!-- =====================================================
+     SECURITY
+     ===================================================== -->
 
 <h2 class="section-title">
 
@@ -1098,7 +1104,6 @@ footer {
 
 
 <div class="cards">
-
 
     <a
         href="device.html"
@@ -1122,8 +1127,9 @@ footer {
 </div>
 
 
-
-<!-- SECURITY CENTER -->
+<!-- =====================================================
+     SECURITY CENTER
+     ===================================================== -->
 
 <section class="security-center">
 
@@ -1148,8 +1154,9 @@ footer {
 </section>
 
 
-
-<!-- STAY INFORMED -->
+<!-- =====================================================
+     STAY INFORMED
+     ===================================================== -->
 
 <h2 class="section-title">
 
@@ -1227,8 +1234,9 @@ footer {
 </div>
 
 
-
-<!-- REMEMBER -->
+<!-- =====================================================
+     REMEMBER
+     ===================================================== -->
 
 <section class="remember">
 
@@ -1238,80 +1246,4 @@ footer {
 
     <p>
         Never share your password, PIN, OTP or
-        verification code with someone who asks
-        for it unexpectedly.
-    </p>
-
-    <p>
-        Always verify suspicious requests before
-        sending money or personal information.
-    </p>
-
-</section>
-
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <div class="footer-brand">
-        🛡️ TrustAI
-    </div>
-
-    Online scam awareness and protection.
-
-    <br><br>
-
-    © 2026 TrustAI
-
-</footer>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     MENU JAVASCRIPT
-     ===================================================== -->
-<script>
-
-const menuButton = document.getElementById("menuButton");
-const sideMenu = document.getElementById("sideMenu");
-const menuOverlay = document.getElementById("menuOverlay");
-
-
-function openMenu() {
-
-    sideMenu.classList.add("open");
-    menuOverlay.classList.add("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
-
-}
-
-
-function closeMenu() {
-
-    sideMenu.classList.remove("open");
-    menuOverlay.classList.remove("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-}
-
-
-menuButton.addEventListener(
-    "click",
-    openMenu
-);
-
-
-</script>
+       
