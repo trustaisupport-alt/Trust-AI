@@ -814,10 +814,6 @@ function clearHistory() {
 }
 
 
-/* =========================
-   LOGOUT
-========================= */
-
 function logout() {
 
     const confirmed =
@@ -825,19 +821,12 @@ function logout() {
             "Are you sure you want to log out?"
         );
 
-
     if (!confirmed) {
-
         return;
-
     }
 
-
-    alert(
-        "You have been logged out."
-    );
-
-}
+    window.location.href = "./login.html";
+            }
 
 
 /* =========================
