@@ -10,6 +10,9 @@ content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI - Home</title>
 
+<!-- SUPABASE JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 :root {
@@ -1226,11 +1229,10 @@ footer {
         <div class="card-icon">
             🌐
         </div>
-
-        <h2>
+ <h2>
             Website Checker
         </h2>
-  <p>
+        <p>
             Check a website address for common
             suspicious website warning signs.
         </p>
@@ -1263,7 +1265,7 @@ footer {
 
         <div class="card-icon">
             📱
- </div>
+        </div>
 
         <h2>
             Device Security
@@ -1358,6 +1360,43 @@ footer {
      ===================================================== -->
 
 <script>
+
+/* =====================================================
+   SUPABASE CONFIGURATION & OAUTH SESSION HANDLER
+===================================================== */
+
+const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
+
+let supabaseClient = null;
+
+try {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} catch (error) {
+    console.error("Supabase initialization failed:", error);
+}
+
+async function handleOAuthCallback() {
+    if (!supabaseClient) return;
+
+    // Check if session exists or if tokens are in the URL hash from Google login
+    const { data: { session }, error } = await supabaseClient.auth.getSession();
+    
+    if (session) {
+        localStorage.setItem("trustai_loggedIn", "true");
+        if (session.user && session.user.user_metadata && session.user.user_metadata.full_name) {
+            localStorage.setItem("trustai_userName", session.user.user_metadata.full_name);
+        }
+    } else {
+        // If not logged in via Supabase, check if manual email login flag is absent
+        // If both are missing, redirect to login page
+        if (localStorage.getItem("trustai_loggedIn") !== "true") {
+            window.location.href = "./login.html";
+        }
+    }
+}
+
+handleOAuthCallback();
 
 
 /* =====================================================
@@ -1541,13 +1580,12 @@ loadHomeProfilePicture();
 function handleLogout() {
     localStorage.removeItem("trustai_loggedIn");
     localStorage.removeItem("trustai_userName");
-    window.location.href = "./index.html";
+    window.location.href = "./login.html";
 }
-
 
 </script>
 
 </body>
 
-    </html>
+</html>
         
