@@ -236,22 +236,24 @@ body {
 .password-wrapper {
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .toggle-password-btn {
     position: absolute;
     right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
+    background: transparent;
     border: none;
     cursor: pointer;
-    font-size: 16px;
-    color: #6b7280;
-    padding: 0;
+    font-size: 18px;
+    line-height: 1;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 input {
@@ -648,7 +650,7 @@ input::placeholder {
                         class="toggle-password-btn"
                         onclick="togglePasswordVisibility()"
                         aria-label="Toggle password visibility">
-                        👁️
+                        🙈
                     </button>
                 </div>
 
@@ -761,10 +763,10 @@ function togglePasswordVisibility() {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        toggleBtn.textContent = "🙈";
+        toggleBtn.textContent = "👁️";
     } else {
         passwordInput.type = "password";
-        toggleBtn.textContent = "👁️";
+        toggleBtn.textContent = "🙈";
     }
 }
 
@@ -939,5 +941,4 @@ function showMessage(text) {
 
 </body>
 
-    </html>
-    
+</html>
