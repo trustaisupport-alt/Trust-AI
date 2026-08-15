@@ -1,163 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<title>TrustAI - Conversation Checker</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
 
-    <title>Conversation Checker - TrustAI</title>
+:root {
+    --primary:#6366f1;
+    --primary-dark:#4f46e5;
+    --primary-glow:rgba(99,102,241,.15);
 
-    <style>
+    --bg-main:#090d16;
+    --bg-card:rgba(17,24,39,.75);
+    --bg-side:#0f172a;
 
-        /* =========================
-           3-DASH MENU
-        ========================= */
+    --text-main:#f8fafc;
+    --text-muted:#94a3b8;
 
-        .menu-button {
-            position: fixed;
-            top: 16px;
-            left: 16px;
-            width: 46px;
-            height: 46px;
-            border: none;
-            border-radius: 11px;
-            background: #1459c7;
-            cursor: pointer;
-            z-index: 1001;
+    --border-color:rgba(255,255,255,.08);
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
+    --radius-lg:20px;
+    --radius-md:12px;
+}
 
-            box-shadow: 0 4px 12px rgba(20, 89, 199, 0.25);
-        }
+* {
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
 
-        .menu-button span {
-            width: 22px;
-            height: 3px;
-            background: white;
-            border-radius: 3px;
-        }
+body {
+    margin:0;
 
-        .menu-button:hover {
-            background: #0d47a1;
-        }
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
 
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(99,102,241,.12),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(14,165,233,.08),
+            transparent 40%
+        ),
+        var(--bg-main);
 
-        /* =========================
-           SIDE MENU
-        ========================= */
+    color:var(--text-main);
 
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -290px;
+    line-height:1.6;
 
-            width: 280px;
-            height: 100vh;
-
-            background: #ffffff;
-            border-right: 1px solid #dce3ec;
-
-            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
-
-            z-index: 1000;
-
-            padding: 80px 18px 25px;
-
-            overflow-y: auto;
-
-            transition: left 0.25s ease;
-        }
-
-        .side-menu.open {
-            left: 0;
-        }
+    min-height:100vh;
+}
 
 
-        .menu-title {
-            padding: 0 12px 18px;
-            border-bottom: 1px solid #e5eaf1;
-            margin-bottom: 12px;
-        }
+/* =====================================================
+   MENU BUTTON
+===================================================== */
 
-        .menu-title strong {
-            font-size: 21px;
-            color: #1459c7;
-        }
+.menu-button {
 
-        .menu-title span {
-            display: block;
-            margin-top: 5px;
-            color: #697586;
-            font-size: 12px;
-        }
+    position:fixed;
+
+    top:20px;
+    left:20px;
+
+    width:48px;
+    height:48px;
+
+    border:1px solid var(--border-color);
+
+    border-radius:14px;
+
+    background:rgba(15,23,42,.8);
+
+    backdrop-filter:blur(12px);
+
+    z-index:1001;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:5px;
+
+    box-shadow:
+        0 10px 25px -5px rgba(0,0,0,.5);
+
+    transition:.2s;
+}
+
+.menu-button:hover {
+
+    border-color:var(--primary);
+
+    transform:translateY(-2px);
+}
+
+.menu-button span {
+
+    width:20px;
+    height:2.5px;
+
+    background:var(--text-main);
+
+    border-radius:3px;
+}
 
 
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+/* =====================================================
+   SIDE MENU
+===================================================== */
 
-            width: 100%;
+.side-menu {
 
-            padding: 13px 12px;
-            margin-bottom: 4px;
+    position:fixed;
 
-            border-radius: 10px;
+    top:0;
+    left:-320px;
 
-            text-decoration: none;
-            color: #172033;
+    width:300px;
+    height:100vh;
 
-            font-size: 14px;
-            font-weight: 600;
-        }
+    background:var(--bg-side);
 
-        .menu-link:hover {
-            background: #edf4ff;
-            color: #1459c7;
-        }
+    border-right:
+        1px solid var(--border-color);
 
-        .menu-icon {
-            width: 25px;
-            text-align: center;
-            font-size: 18px;
-        }
+    z-index:1000;
 
-        .menu-divider {
-            height: 1px;
-            background: #e5eaf1;
-            margin: 14px 0;
-        }
+    padding:90px 20px 30px;
+
+    transition:
+        transform .3s cubic-bezier(.16,1,.3,1);
+
+    overflow-y:auto;
+
+    box-shadow:
+        15px 0 30px rgba(0,0,0,.3);
+}
+
+.side-menu.open {
+
+    transform:translateX(320px);
+}
+
+.menu-title {
+
+    padding:
+        0 8px 20px;
+
+    border-bottom:
+        1px solid var(--border-color);
+
+    margin-bottom:16px;
+}
+
+.menu-title strong {
+
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    font-size:22px;
+
+    font-weight:800;
+}
+
+.menu-title span {
+
+    display:block;
+
+    margin-top:4px;
+
+    color:var(--text-muted);
+
+    font-size:12px;
+}
+
+.menu-link {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:12px 14px;
+
+    margin-bottom:6px;
+
+    border-radius:var(--radius-md);
+
+    text-decoration:none;
+
+    color:var(--text-muted);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.menu-link:hover {
+
+    background:
+        rgba(255,255,255,.05);
+
+    color:var(--text-main);
+
+    transform:translateX(4px);
+}
+
+.menu-icon {
+
+    width:24px;
+
+    text-align:center;
+}
+
+.menu-divider {
+
+    height:1px;
+
+    background:
+        var(--border-color);
+
+    margin:18px 0;
+}
 
 
-        /* =========================
-           MENU OVERLAY
-        ========================= */
+/* =====================================================
+   MENU OVERLAY
+===================================================== */
 
-        .menu-overlay {
-            position: fixed;
-            inset: 0;
+.menu-overlay {
 
-            background: rgba(10, 18, 32, 0.35);
+    position:fixed;
 
-            z-index: 999;
+    inset:0;
 
-            display: none;
-        }
+    background:
+        rgba(0,0,0,.7);
 
-        .menu-overlay.show {
-            display: block;
-        }
+    backdrop-filter:blur(4px);
 
-    </style>
+    z-index:999;
+
+    display:none;
+}
+
+.menu-overlay.show {
+
+    display:block;
+}
+
+
+/* =====================================================
+   MAIN PAGE
+===================================================== */
+
+.page {
+
+    max-width:880px;
+
+    margin:auto;
+
+    padding:
+        90px 20px 50px;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.header,
+.checker {
+
+    background:
+        var(--bg-card);
+
+    backdrop-filter:blur(16px);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    box-shadow:
+        0 20px 40px -15px rgba(0,0,0,.4);
+}
+
+.header {
+
+    padding:
+        36px 30px;
+
+    margin-bottom:24px;
+}
+
+.header-label {
+
+    display:inline-block;
+
+    color:var(--primary);
+
+    background:
+        var(--primary-glow);
+
+    padding:
+        4px 12px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
+    margin-bottom:14px;
+}
+
+.header h1 {
+
+    margin:
+        0 0 12px;
+
+    font-size:32px;
+}
+
+.header p {
+
+    margin:0;
+
+    color:var(--text-muted);
+}
+
+
+/* =====================================================
+   CHECKER
+===================================================== */
+
+.checker {
+
+    padding:32px;
+}
+
+.checker h2 {
+
+    margin:
+        0 0 8px;
+
+    font-size:22px;
+}
+
+.checker-subtitle {
+
+    color:var(--text-muted);
+
+    font-size:14px;
+
+    margin-bottom:20px;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+textarea {
+
+    width:100%;
+
+    min-height:300px;
+
+    padding:18px;
+
+    background:
+        rgba(10,15,26,.7);
+
+    color:var(--text-main);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-md);
+
+    font-family:inherit;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    resize:vertical;
+
+    transition:.2s;
+}
+
+textarea:focus {
+
+    outline:none;
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 4px
+        var(--primary-glow);
+}
+
+textarea::placeholder {
+
+    color:#64748b;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.buttons {
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:18px;
+
+    flex-wrap:wrap;
+}
+
+button.action-button {
+
+    border:0;
+
+    border-radius:
+        var(--radius-md);
+
+    padding:
+        14px 20px;
+
+    font-family:inherit;
+
+    font-size:14.5px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.check-button {
+
+    flex:2;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4f46e5
+        );
+
+    color:white;
+}
+
+.clear-button {
+
+    flex:1;
+
+    background:
+        rgba(255,255,255,.05);
+
+    color:var(--text-muted);
+
+    border:
+        1px solid var(--border-color)!important;
+}
+
+button.action-button:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+button.action-button:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.result {
+
+    display:none;
+
+    margin-top:24px;
+
+    padding:26px;
+
+    border-radius:
+        var(--radius-md);
+
+    white-space:pre-line;
+
+    line-height:1.7;
+
+    font-size:15px;
+}
+
+.result.show {
+
+    display:block;
+}
+
+
+/* =====================================================
+   RISK COLORS
+===================================================== */
+
+.very-high {
+
+    background:
+        rgba(153,27,27,.25);
+
+    border:
+        1px solid #ef4444;
+
+    color:#fecaca;
+}
+
+.high {
+
+    background:
+        rgba(194,65,12,.20);
+
+    border:
+        1px solid #f97316;
+
+    color:#ffedd5;
+}
+
+.caution {
+
+    background:
+        rgba(161,98,7,.20);
+
+    border:
+        1px solid #eab308;
+
+    color:#fef08a;
+}
+
+.low {
+
+    background:
+        rgba(21,128,61,.20);
+
+    border:
+        1px solid #22c55e;
+
+    color:#bbf7d0;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:650px) {
+
+    .page {
+
+        padding:
+            80px 16px 35px;
+    }
+
+    .header {
+
+        padding:
+            26px 20px;
+    }
+
+    .header h1 {
+
+        font-size:26px;
+    }
+
+    .checker {
+
+        padding:
+            22px 18px;
+    }
+
+    .buttons {
+
+        flex-direction:column;
+    }
+
+    button.action-button {
+
+        width:100%;
+    }
+
+    textarea {
+
+        min-height:250px;
+    }
+}
+
+</style>
 
 </head>
 
@@ -165,9 +650,9 @@
 <body>
 
 
-<!-- =========================
-     3-DASH BUTTON
-========================= -->
+<!-- =====================================================
+     MENU BUTTON
+===================================================== -->
 
 <button
     class="menu-button"
@@ -181,68 +666,132 @@
 </button>
 
 
-<!-- =========================
+<!-- =====================================================
      SIDE MENU
-========================= -->
+===================================================== -->
 
-<nav id="sideMenu" class="side-menu">
+<nav
+    id="sideMenu"
+    class="side-menu">
 
     <div class="menu-title">
 
         <strong>🛡️ TrustAI</strong>
 
-        <span>Online Scam Protection</span>
+        <span>
+            Online Scam Protection
+        </span>
 
     </div>
 
-<!-- SIDE MENU DRAWER LINKS -->
-<a href="./home.html" class="menu-link">
-    <span class="menu-icon">🏠</span> Home
-</a>
 
-<a href="./message.html" class="menu-link">
-    <span class="menu-icon">🔍</span> Message Checker
-</a>
+    <a
+        href="./home.html"
+        class="menu-link">
 
-<a href="./conversation.html" class="menu-link">
-    <span class="menu-icon">💬</span> Conversation Checker
-</a>
+        <span class="menu-icon">🏠</span>
 
-<!-- FIXED: lowercase 'website.html' with relative path -->
-<a href="./website.html" class="menu-link">
-    <span class="menu-icon">🌐</span> Website Checker
-</a>
+        Home
 
-<a href="./device.html" class="menu-link">
-    <span class="menu-icon">📱</span> Device Security
-</a>
+    </a>
 
-<a href="./security.html" class="menu-link">
-    <span class="menu-icon">🛡️</span> Security Center
-</a>
 
-<div class="menu-divider"></div>
+    <a
+        href="./message.html"
+        class="menu-link">
 
-<a href="./alerts.html" class="menu-link">
-    <span class="menu-icon">🚨</span> Scam Alerts
-</a>
+        <span class="menu-icon">🔍</span>
 
-<a href="./report.html" class="menu-link">
-    <span class="menu-icon">📢</span> Report a Scam
-</a>
+        Message Checker
 
-<a href="./contact.html" class="menu-link">
-    <span class="menu-icon">💬</span> Contact TrustAI
-</a>
-    
-    
+    </a>
+
+
+    <a
+        href="./conversation.html"
+        class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        Conversation Checker
+
+    </a>
+
+
+    <a
+        href="./website.html"
+        class="menu-link">
+
+        <span class="menu-icon">🌐</span>
+
+        Website Checker
+
+    </a>
+
+
+    <a
+        href="./device.html"
+        class="menu-link">
+
+        <span class="menu-icon">📱</span>
+
+        Device Security
+
+    </a>
+
+
+    <a
+        href="./security.html"
+        class="menu-link">
+
+        <span class="menu-icon">🛡️</span>
+
+        Security Center
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a
+        href="./alerts.html"
+        class="menu-link">
+
+        <span class="menu-icon">🚨</span>
+
+        Scam Alerts
+
+    </a>
+
+
+    <a
+        href="./report.html"
+        class="menu-link">
+
+        <span class="menu-icon">📢</span>
+
+        Report a Scam
+
+    </a>
+
+
+    <a
+        href="./contact.html"
+        class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        Contact TrustAI
+
+    </a>
 
 </nav>
 
 
-<!-- =========================
+<!-- =====================================================
      OVERLAY
-========================= -->
+===================================================== -->
 
 <div
     id="menuOverlay"
@@ -251,117 +800,190 @@
 </div>
 
 
-<!-- =========================
-     CONVERSATION CHECKER
-========================= -->
+<!-- =====================================================
+     PAGE
+===================================================== -->
 
-<div style="padding-top: 70px;">
-    <h1>💬 Conversation Checker</h1>
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <section class="header">
+
+        <div class="header-label">
+
+            CONVERSATION SECURITY
+
+        </div>
+
+
+        <h1>
+
+            💬 Conversation Checker
+
+        </h1>
+
+
+        <p>
+
+            Paste an entire conversation and TrustAI
+            will analyze multiple scam patterns that
+            may develop across the conversation.
+
+        </p>
+
+    </section>
+
+
+    <!-- CHECKER -->
+
+    <section class="checker">
+
+        <h2>
+
+            Analyze a Conversation
+
+        </h2>
+
+
+        <div class="checker-subtitle">
+
+            TrustAI checks money requests,
+            impersonation, OTPs, passwords,
+            urgency, investment claims,
+            delivery stories, suspicious links
+            and emotional pressure.
+
+        </div>
+
+
+        <textarea
+            id="conversation"
+            placeholder="Paste the conversation here...
+
+Example:
+
+Person A: Hello, this is my new number.
+Person B: Who is this?
+Person A: I lost my phone. I urgently need money.
+Person B: Why?
+Person A: Please send it now. I will pay you back tomorrow.">
+        </textarea>
+
+
+        <div class="buttons">
+
+
+            <button
+                class="action-button check-button"
+                onclick="checkConversation()">
+
+                🔍 Analyze Conversation
+
+            </button>
+
+
+            <button
+                class="action-button clear-button"
+                onclick="clearConversation()">
+
+                Clear
+
+            </button>
+
+
+        </div>
+
+
+        <div
+            id="result"
+            class="result">
+        </div>
+
+
+    </section>
+
+
 </div>
-
-
-<p>
-    Paste a conversation below and TrustAI will look for
-    suspicious patterns that may develop over time.
-</p>
-
-
-<textarea
-    id="conversation"
-    rows="15"
-    placeholder="Paste the conversation here..."
-></textarea>
-
-
-<br><br>
-
-
-<button
-    type="button"
-    onclick="checkConversation()">
-
-    🔍 Analyze Conversation
-
-</button>
-
-
-<button
-    type="button"
-    onclick="clearConversation()">
-
-    Clear
-
-</button>
-
-
-<div id="result"></div>
 
 
 <script>
 
 
-/* =========================
+/* =====================================================
    MENU
-========================= */
+===================================================== */
 
 function toggleMenu() {
 
-    const menu =
-        document.getElementById("sideMenu");
+    document
+        .getElementById("sideMenu")
+        .classList
+        .toggle("open");
 
-    const overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.toggle("open");
-
-    overlay.classList.toggle("show");
+    document
+        .getElementById("menuOverlay")
+        .classList
+        .toggle("show");
 
 }
 
 
 function closeMenu() {
 
-    const menu =
-        document.getElementById("sideMenu");
+    document
+        .getElementById("sideMenu")
+        .classList
+        .remove("open");
 
-    const overlay =
-        document.getElementById("menuOverlay");
-
-    menu.classList.remove("open");
-
-    overlay.classList.remove("show");
+    document
+        .getElementById("menuOverlay")
+        .classList
+        .remove("show");
 
 }
 
 
-/* =========================
+/* =====================================================
    CONVERSATION CHECKER
-========================= */
+===================================================== */
 
 function checkConversation() {
 
-    let conversation = document
-        .getElementById("conversation")
-        .value
-        .toLowerCase()
-        .trim();
 
-    let score = 0;
-    let reasons = [];
-
-    let result =
-        document.getElementById("result");
+    const original =
+        document
+            .getElementById("conversation")
+            .value
+            .trim();
 
 
-    if (conversation === "") {
+    const conversation =
+        original.toLowerCase();
 
-        result.className = "risk caution";
+
+    const result =
+        document
+            .getElementById("result");
+
+
+    if (!conversation) {
+
+        result.className =
+            "result show caution";
 
         result.textContent =
-            "⚠️ Please paste a conversation to analyze.";
+            "⚠️ NO CONVERSATION ENTERED\n\n" +
+            "Paste a conversation before running the checker.";
 
         return;
     }
+
+
+    let score = 0;
+
+    let reasons = [];
 
 
     function hasAny(words) {
@@ -375,32 +997,35 @@ function checkConversation() {
     }
 
 
-    /* MONEY REQUEST */
+    /* =================================================
+       MONEY REQUEST
+    ================================================= */
 
-    let moneyRequest = hasAny([
+    const moneyRequest =
+        hasAny([
 
-        "send me money",
-        "send money",
-        "send some money",
-        "send the money",
-        "help me with money",
-        "help me financially",
-        "i need money",
-        "can you send me",
-        "can you lend me",
-        "lend me money",
-        "borrow some money",
-        "transfer money",
-        "make a payment",
-        "pay for me",
-        "please send",
-        "deposit",
-        "deposit money",
-        "deposit ₦",
-        "deposit $",
-        "pay the money"
+            "send me money",
+            "send money",
+            "send some money",
+            "send the money",
+            "help me with money",
+            "help me financially",
+            "i need money",
+            "can you send me",
+            "can you lend me",
+            "lend me money",
+            "borrow some money",
+            "transfer money",
+            "transfer funds",
+            "make a payment",
+            "pay for me",
+            "please send",
+            "deposit money",
+            "pay the money",
+            "send cash",
+            "need cash"
 
-    ]);
+        ]);
 
 
     if (moneyRequest) {
@@ -408,27 +1033,29 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Financial assistance or payment request detected"
+            "Financial assistance or payment request detected."
         );
 
     }
 
 
-    /* IMPERSONATION */
+    /* =================================================
+       IMPERSONATION
+    ================================================= */
 
-    let impersonation = hasAny([
+    const impersonation =
+        hasAny([
 
-        "this is my new number",
-        "i lost my phone",
-        "i changed my number",
-        "new whatsapp number",
-        "this is my new account",
-        "this is really me",
-        "contact me privately",
-        "my old phone",
-        "my new phone"
+            "this is my new number",
+            "i lost my phone",
+            "i changed my number",
+            "new whatsapp number",
+            "this is my new account",
+            "this is really me",
+            "my old phone",
+            "my new phone"
 
-    ]);
+        ]);
 
 
     if (impersonation) {
@@ -436,46 +1063,57 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Possible impersonation or identity-change pattern"
+            "Possible impersonation or identity-change pattern detected."
         );
 
     }
 
 
-    /* OTP / PASSWORD / PIN */
+    /* =================================================
+       OTP / PASSWORD / PIN
+    ================================================= */
 
-    if (hasAny([
+    const sensitiveInfo =
+        hasAny([
 
-        "send me your otp",
-        "tell me your otp",
-        "give me your otp",
-        "send your otp",
-        "send me the code",
-        "send the code",
-        "verification code",
-        "verification pin",
-        "security code",
-        "login code",
-        "send your password",
-        "send me your password",
-        "send your pin",
-        "send me your pin",
-        "bank otp",
-        "bank verification code",
-        "bank pin"
+            "send me your otp",
+            "tell me your otp",
+            "give me your otp",
+            "send your otp",
+            "send me the code",
+            "send the code",
+            "verification code",
+            "verification pin",
+            "security code",
+            "login code",
+            "send your password",
+            "send me your password",
+            "send your pin",
+            "send me your pin",
+            "bank otp",
+            "bank verification code",
+            "bank pin",
+            "cvv",
+            "card number",
+            "atm pin"
 
-    ])) {
+        ]);
+
+
+    if (sensitiveInfo) {
 
         score += 3;
 
         reasons.push(
-            "Request for sensitive security information"
+            "Request for sensitive security or payment information detected."
         );
 
     }
 
 
-    /* GIFT CARDS */
+    /* =================================================
+       GIFT CARDS
+    ================================================= */
 
     if (hasAny([
 
@@ -490,13 +1128,15 @@ function checkConversation() {
         score += 3;
 
         reasons.push(
-            "Gift-card payment request detected"
+            "Gift-card payment request detected."
         );
 
     }
 
 
-    /* THIRD-PARTY PAYMENT */
+    /* =================================================
+       THIRD-PARTY PAYMENT
+    ================================================= */
 
     if (hasAny([
 
@@ -515,41 +1155,40 @@ function checkConversation() {
         score += 3;
 
         reasons.push(
-            "Request to send money to a third party"
+            "Request to send money to a third party detected."
         );
 
     }
 
 
-    /* INVESTMENT */
+    /* =================================================
+       INVESTMENT
+    ================================================= */
 
-    let investmentScam = hasAny([
+    const investmentScam =
+        hasAny([
 
-        "investment",
-        "investment platform",
-        "investment opportunity",
-        "invest your money",
-        "invest your money with us",
-        "trading platform",
-        "crypto investment",
-        "crypto giveaway",
-        "forex investment",
-        "guaranteed profit",
-        "guaranteed returns",
-        "guaranteed income",
-        "guaranteed money",
-        "make money fast",
-        "easy money",
-        "instant profit",
-        "double your money",
-        "double your investment",
-        "no risk",
-        "no risks",
-        "zero risk",
-        "risk free",
-        "risk-free"
+            "investment",
+            "investment platform",
+            "investment opportunity",
+            "trading platform",
+            "crypto investment",
+            "forex investment",
+            "guaranteed profit",
+            "guaranteed returns",
+            "guaranteed income",
+            "guaranteed money",
+            "make money fast",
+            "easy money",
+            "instant profit",
+            "double your money",
+            "double your investment",
+            "no risk",
+            "zero risk",
+            "risk free",
+            "risk-free"
 
-    ]);
+        ]);
 
 
     if (investmentScam) {
@@ -557,7 +1196,7 @@ function checkConversation() {
         score += 3;
 
         reasons.push(
-            "Potential investment or unrealistic-profit pattern detected"
+            "Potential investment or unrealistic-profit pattern detected."
         );
 
     }
@@ -571,37 +1210,39 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Investment opportunity combined with a payment or deposit request"
+            "Investment claim combined with a payment or deposit request."
         );
 
     }
 
 
-    /* URGENCY */
+    /* =================================================
+       URGENCY
+    ================================================= */
 
-    let urgency = hasAny([
+    const urgency =
+        hasAny([
 
-        "urgent",
-        "urgently",
-        "act now",
-        "act immediately",
-        "immediately",
-        "right now",
-        "last chance",
-        "within 24 hours",
-        "within 48 hours",
-        "within 1 hour",
-        "don't tell anyone",
-        "do not tell anyone",
-        "keep this secret",
-        "before midnight",
-        "today only",
-        "act today",
-        "registration closes today",
-        "expires today",
-        "expires at midnight"
+            "urgent",
+            "urgently",
+            "act now",
+            "act immediately",
+            "immediately",
+            "right now",
+            "last chance",
+            "within 24 hours",
+            "within 48 hours",
+            "within 1 hour",
+            "don't tell anyone",
+            "do not tell anyone",
+            "keep this secret",
+            "before midnight",
+            "today only",
+            "act today",
+            "expires today",
+            "expires at midnight"
 
-    ]);
+        ]);
 
 
     if (urgency) {
@@ -609,61 +1250,48 @@ function checkConversation() {
         score += 1;
 
         reasons.push(
-            "Urgency, pressure, or secrecy detected"
+            "Urgency, pressure, or secrecy detected."
         );
 
     }
 
 
-    if (
-        investmentScam &&
-        urgency
-    ) {
+    /* =================================================
+       DELIVERY
+    ================================================= */
 
-        score += 2;
+    const packageStory =
+        hasAny([
 
-        reasons.push(
-            "Investment claim combined with urgency or pressure"
-        );
+            "package",
+            "parcel",
+            "shipment",
+            "delivery",
+            "courier",
+            "shipping"
 
-    }
-
-
-    /* DELIVERY */
-
-    let packageStory = hasAny([
-
-        "package",
-        "parcel",
-        "shipment",
-        "delivery",
-        "courier",
-        "shipping",
-        "delivery company",
-        "shipping company"
-
-    ]);
+        ]);
 
 
-    let deliveryPayment = hasAny([
+    const deliveryPayment =
+        hasAny([
 
-        "delivery fee",
-        "customs fee",
-        "customs charge",
-        "clearance fee",
-        "clearance charge",
-        "shipping fee",
-        "shipping charge",
-        "delivery charge",
-        "pay before delivery",
-        "pay the delivery fee",
-        "pay the customs",
-        "release the package",
-        "package will be released",
-        "package is on hold",
-        "parcel is on hold"
+            "delivery fee",
+            "customs fee",
+            "customs charge",
+            "clearance fee",
+            "clearance charge",
+            "shipping fee",
+            "delivery charge",
+            "pay before delivery",
+            "pay the delivery fee",
+            "pay the customs",
+            "release the package",
+            "package will be released",
+            "package is on hold",
+            "parcel is on hold"
 
-    ]);
+        ]);
 
 
     if (deliveryPayment) {
@@ -671,7 +1299,7 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Delivery, shipping, customs, or clearance payment request detected"
+            "Delivery, customs, or clearance payment request detected."
         );
 
     }
@@ -685,29 +1313,17 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Package or delivery story combined with a money request"
+            "Package or delivery story combined with a money request."
         );
 
     }
 
 
-    if (
-        packageStory &&
-        deliveryPayment
-    ) {
+    /* =================================================
+       REPAYMENT PROMISE
+    ================================================= */
 
-        score += 2;
-
-        reasons.push(
-            "Package story combined with a delivery or clearance fee"
-        );
-
-    }
-
-
-    /* REPAYMENT */
-
-    let repaymentPromise = hasAny([
+    if (hasAny([
 
         "i'll refund you",
         "i will refund you",
@@ -716,32 +1332,29 @@ function checkConversation() {
         "i'll repay you",
         "i will repay you",
         "you'll get your money back",
-        "you will get your money back",
         "i'll return the money",
         "i will return the money",
         "i'll send it back",
         "i will send it back"
 
-    ]);
-
-
-    if (repaymentPromise) {
+    ])) {
 
         score += 1;
 
         reasons.push(
-            "Promise of repayment detected"
+            "Promise of repayment detected."
         );
 
     }
 
 
-    /* BANK / ACCOUNT */
+    /* =================================================
+       BANK / ACCOUNT
+    ================================================= */
 
     if (hasAny([
 
         "bank account",
-        "card was declined",
         "account is on hold",
         "account has been suspended",
         "account will be closed",
@@ -755,29 +1368,32 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Possible account or banking problem used to pressure the recipient"
+            "Possible account or banking problem used to pressure the recipient."
         );
 
     }
 
 
-    /* MEDICAL / EMERGENCY */
+    /* =================================================
+       EMERGENCY
+    ================================================= */
 
-    let emergencyStory = hasAny([
+    const emergencyStory =
+        hasAny([
 
-        "hospital",
-        "medical bill",
-        "medical bills",
-        "need money for treatment",
-        "surgery",
-        "doctor",
-        "emergency",
-        "i'm stranded",
-        "i am stranded",
-        "stuck at the airport",
-        "need money for food"
+            "hospital",
+            "medical bill",
+            "medical bills",
+            "need money for treatment",
+            "surgery",
+            "doctor",
+            "emergency",
+            "i'm stranded",
+            "i am stranded",
+            "stuck at the airport",
+            "need money for food"
 
-    ]);
+        ]);
 
 
     if (emergencyStory) {
@@ -785,7 +1401,7 @@ function checkConversation() {
         score += 1;
 
         reasons.push(
-            "Medical, emergency, or hardship story detected"
+            "Medical, emergency, or hardship story detected."
         );
 
     }
@@ -799,34 +1415,37 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Emergency or hardship story combined with a money request"
+            "Emergency or hardship story combined with a money request."
         );
 
     }
 
 
-    /* ROMANCE */
+    /* =================================================
+       ROMANCE
+    ================================================= */
 
     if (hasAny([
 
         "i love you",
         "my love",
         "soulmate",
-        "i miss you",
-        "romantic relationship"
+        "i miss you"
 
     ])) {
 
         score += 1;
 
         reasons.push(
-            "Strong emotional or romantic language detected"
+            "Strong emotional or romantic language detected."
         );
 
     }
 
 
-    /* MONEY + URGENCY */
+    /* =================================================
+       MONEY + URGENCY
+    ================================================= */
 
     if (
         moneyRequest &&
@@ -836,16 +1455,18 @@ function checkConversation() {
         score += 1;
 
         reasons.push(
-            "Money request combined with pressure or urgency"
+            "Money request combined with pressure or urgency."
         );
 
     }
 
 
-    /* LINKS */
+    /* =================================================
+       LINKS
+    ================================================= */
 
-    let urlPattern =
-        /(https?:\/\/|www\.)[^\s]+/gi;
+    const urlPattern =
+        /(https?:\/\/|www\.)[^\s]+/i;
 
 
     if (urlPattern.test(conversation)) {
@@ -853,13 +1474,15 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "A website link was detected in the conversation"
+            "A website link was detected in the conversation."
         );
 
     }
 
 
-    /* SHORTENED LINKS */
+    /* =================================================
+       SHORTENED LINKS
+    ================================================= */
 
     if (hasAny([
 
@@ -874,26 +1497,29 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Shortened or disguised link detected"
+            "Shortened or disguised link detected."
         );
 
     }
 
 
-    /* JOB SCAM */
+    /* =================================================
+       JOB SCAM
+    ================================================= */
 
-    let jobScam = hasAny([
+    const jobScam =
+        hasAny([
 
-        "job offer",
-        "work from home",
-        "registration fee",
-        "pay for training",
-        "pay for equipment",
-        "job processing fee",
-        "employment fee",
-        "employee activation fee"
+            "job offer",
+            "work from home",
+            "registration fee",
+            "pay for training",
+            "pay for equipment",
+            "job processing fee",
+            "employment fee",
+            "employee activation fee"
 
-    ]);
+        ]);
 
 
     if (jobScam) {
@@ -901,7 +1527,7 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Possible job scam pattern detected"
+            "Possible job scam pattern detected."
         );
 
     }
@@ -915,13 +1541,15 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Job opportunity combined with a payment request"
+            "Job opportunity combined with a payment request."
         );
 
     }
 
 
-    /* PRIZE */
+    /* =================================================
+       PRIZE
+    ================================================= */
 
     if (hasAny([
 
@@ -938,13 +1566,15 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Unexpected prize or lottery pattern detected"
+            "Unexpected prize or lottery pattern detected."
         );
 
     }
 
 
-    /* SECRECY */
+    /* =================================================
+       SECRECY
+    ================================================= */
 
     if (hasAny([
 
@@ -960,13 +1590,15 @@ function checkConversation() {
         score += 1;
 
         reasons.push(
-            "Secrecy or private-contact request detected"
+            "Secrecy or private-contact request detected."
         );
 
     }
 
 
-    /* IMPERSONATION + MONEY */
+    /* =================================================
+       IMPERSONATION + MONEY
+    ================================================= */
 
     if (
         impersonation &&
@@ -976,13 +1608,15 @@ function checkConversation() {
         score += 2;
 
         reasons.push(
-            "Identity-change story combined with a money request"
+            "Identity-change story combined with a money request."
         );
 
     }
 
 
-    /* IMPERSONATION + EMERGENCY */
+    /* =================================================
+       IMPERSONATION + EMERGENCY
+    ================================================= */
 
     if (
         impersonation &&
@@ -992,138 +1626,168 @@ function checkConversation() {
         score += 1;
 
         reasons.push(
-            "Identity-change story combined with an emergency claim"
+            "Identity-change story combined with an emergency claim."
         );
 
     }
 
 
-    /* REMOVE DUPLICATES */
+    /* =================================================
+       REMOVE DUPLICATES
+    ================================================= */
 
     reasons =
         [...new Set(reasons)];
 
 
-    /* CAP SCORE */
+    /* =================================================
+       SCORE LIMIT
+    ================================================= */
 
     score =
-        Math.min(score, 10);
+        Math.min(score,10);
 
 
-    /* REASONS */
+    /* =================================================
+       RESULT
+    ================================================= */
 
-    let reasonText = "";
+    let reasonText;
 
 
-    if (reasons.length > 0) {
+    if (reasons.length) {
 
         reasonText =
-            "Why we flagged it:\n• " +
-            reasons.join("\n• ");
+            "Why TrustAI flagged it:\n\n• " +
+            reasons.join("\n\n• ");
 
     } else {
 
         reasonText =
-            "Why we flagged it:\n• No strong scam patterns were detected.";
+            "Why TrustAI flagged it:\n\n" +
+            "• No strong scam patterns were detected.";
 
     }
 
-
-    /* VERY HIGH */
 
     if (score >= 7) {
 
-        result.className = "risk very-high";
+        result.className =
+            "result show very-high";
 
         result.textContent =
 
-            "🔴 VERY HIGH RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
+            "🔴 VERY HIGH SCAM RISK\n\n" +
+
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+
             reasonText +
-            "\n\nSafety Advice:\n" +
-            "Do not send money, passwords, PINs, OTPs, " +
-            "or verification codes. Verify the person's " +
-            "identity and claims independently.";
+
+            "\n\nSafety Advice:\n\n" +
+
+            "Do not send money, passwords, " +
+            "PINs, OTPs, or verification codes. " +
+
+            "Verify the person's identity and " +
+            "claims independently.";
 
     }
-
-
-    /* HIGH */
 
     else if (score >= 4) {
 
-        result.className = "risk high";
+        result.className =
+            "result show high";
 
         result.textContent =
 
-            "🟠 HIGH RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
+            "🟠 HIGH SCAM RISK\n\n" +
+
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+
             reasonText +
-            "\n\nSafety Advice:\n" +
-            "Stop and verify the conversation before " +
-            "sending money or sensitive information.";
+
+            "\n\nSafety Advice:\n\n" +
+
+            "Stop and verify the conversation " +
+            "before sending money or sensitive information.";
 
     }
 
-
-    /* CAUTION */
-
     else if (score >= 2) {
 
-        result.className = "risk caution";
+        result.className =
+            "result show caution";
 
         result.textContent =
 
             "🟡 CAUTION\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
+
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+
             reasonText +
-            "\n\nSafety Advice:\n" +
-            "Be careful and verify important claims " +
-            "before taking action.";
+
+            "\n\nSafety Advice:\n\n" +
+
+            "Be careful and verify important " +
+            "claims before taking action.";
 
     }
 
-
-    /* LOW */
-
     else {
 
-        result.className = "risk low";
+        result.className =
+            "result show low";
 
         result.textContent =
 
-            "🟢 LOW RISK\n\n" +
-            "Risk Score: " + score + "/10\n\n" +
+            "🟢 LOW RISK SIGNALS\n\n" +
+
+            "Risk Score: " +
+            score +
+            "/10\n\n" +
+
             reasonText +
-            "\n\nSafety Advice:\n" +
+
+            "\n\nSafety Advice:\n\n" +
+
             "No strong scam patterns were detected. " +
-            "A low-risk result does not prove that " +
-            "the conversation is safe.";
+
+            "A low-risk result does not prove " +
+            "that the conversation is safe.";
 
     }
 
 }
 
 
-/* =========================
+/* =====================================================
    CLEAR
-========================= */
+===================================================== */
 
 function clearConversation() {
 
-    document.getElementById("conversation").value = "";
+    document
+        .getElementById("conversation")
+        .value = "";
 
-    let result =
+    const result =
         document.getElementById("result");
 
-    result.textContent = "";
+    result.className =
+        "result";
 
-    result.className = "";
+    result.textContent = "";
 
 }
 
 </script>
 
 </body>
-
 </html>
+          
