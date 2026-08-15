@@ -1217,6 +1217,84 @@ function checkConversation() {
 
 
     /* =================================================
+       JOB OFFER SCAM
+    ================================================= */
+
+    if (hasAny([
+
+        "work from home",
+        "job offer",
+        "easy job",
+        "data entry job",
+        "training fee",
+        "registration fee",
+        "buy equipment",
+        "pay for training"
+
+    ])) {
+
+        score += 3;
+
+        reasons.push(
+            "Suspicious job offer or employment payment pattern detected."
+        );
+
+    }
+
+
+    /* =================================================
+       CRYPTO SEED PHRASE
+    ================================================= */
+
+    if (hasAny([
+
+        "seed phrase",
+        "recovery phrase",
+        "12 word phrase",
+        "24 word phrase",
+        "wallet key",
+        "private key",
+        "validate wallet",
+        "sync wallet"
+
+    ])) {
+
+        score += 3;
+
+        reasons.push(
+            "Request for cryptocurrency wallet seed phrase or private key detected."
+        );
+
+    }
+
+
+    /* =================================================
+       GOVERNMENT / TAX SCAM
+    ================================================= */
+
+    if (hasAny([
+
+        "tax authority",
+        "irs",
+        "firs",
+        "police arrest",
+        "legal action",
+        "court case",
+        "government grant",
+        "relief fund",
+        "claim your grant"
+
+    ])) {
+
+        score += 2;
+reasons.push(
+            "Government, tax, or legal threat pattern detected."
+        );
+
+    }
+
+
+    /* =================================================
        URGENCY
     ================================================= */
 
@@ -1284,133 +1362,37 @@ function checkConversation() {
             "shipping fee",
             "delivery charge",
             "pay before delivery",
-            "pay the delivery fee",
-            "pay the customs",
-            "release the package",
-            "package will be released",
-            "package is on hold",
-            "parcel is on hold"
+            "pay the delivery fee"
 
         ]);
 
+    if (packageStory && deliveryPayment) {
 
-    if (deliveryPayment) {
-
-        score += 2;
-
-        reasons.push(
-            "Delivery, customs, or clearance payment request detected."
-        );
-
-    }
-
-
-    if (
-        packageStory &&
-        moneyRequest
-    ) {
-
-        score += 2;
+        score += 3;
 
         reasons.push(
-            "Package or delivery story combined with a money request."
+            "Package delivery story combined with a fee or payment demand."
         );
 
     }
 
 
     /* =================================================
-       REPAYMENT PROMISE
+       EMERGENCY / HARDSHIP STORY
     ================================================= */
 
     if (hasAny([
 
-        "i'll refund you",
-        "i will refund you",
-        "i'll pay you back",
-        "i will pay you back",
-        "i'll repay you",
-        "i will repay you",
-        "you'll get your money back",
-        "i'll return the money",
-        "i will return the money",
-        "i'll send it back",
-        "i will send it back"
+        "hospital bill",
+        "medical emergency",
+        "accident",
+        "stolen bag",
+        "stranded",
+        "stuck abroad",
+        "police station",
+        "arrested"
 
     ])) {
-
-        score += 1;
-
-        reasons.push(
-            "Promise of repayment detected."
-        );
-
-    }
-
-
-    /* =================================================
-       BANK / ACCOUNT
-    ================================================= */
-
-    if (hasAny([
-
-        "bank account",
-        "account is on hold",
-        "account has been suspended",
-        "account will be closed",
-        "verify your account",
-        "verify your identity",
-        "account has been locked",
-        "account will be locked"
-
-    ])) {
-
-        score += 2;
-
-        reasons.push(
-            "Possible account or banking problem used to pressure the recipient."
-        );
-
-    }
-
-
-    /* =================================================
-       EMERGENCY
-    ================================================= */
-
-    const emergencyStory =
-        hasAny([
-
-            "hospital",
-            "medical bill",
-            "medical bills",
-            "need money for treatment",
-            "surgery",
-            "doctor",
-            "emergency",
-            "i'm stranded",
-            "i am stranded",
-            "stuck at the airport",
-            "need money for food"
-
-        ]);
-
-
-    if (emergencyStory) {
-
-        score += 1;
-
-        reasons.push(
-            "Medical, emergency, or hardship story detected."
-        );
-
-    }
-
-
-    if (
-        emergencyStory &&
-        moneyRequest
-    ) {
 
         score += 2;
 
@@ -1503,141 +1485,7 @@ function checkConversation() {
     }
 
 
-    /* =================================================
-       JOB SCAM
-    ================================================= */
-
-    const jobScam =
-        hasAny([
-
-            "job offer",
-            "work from home",
-            "registration fee",
-            "pay for training",
-            "pay for equipment",
-            "job processing fee",
-            "employment fee",
-            "employee activation fee"
-
-        ]);
-
-
-    if (jobScam) {
-
-        score += 2;
-
-        reasons.push(
-            "Possible job scam pattern detected."
-        );
-
-    }
-
-
-    if (
-        jobScam &&
-        moneyRequest
-    ) {
-
-        score += 2;
-
-        reasons.push(
-            "Job opportunity combined with a payment request."
-        );
-
-    }
-
-
-    /* =================================================
-       PRIZE
-    ================================================= */
-
-    if (hasAny([
-
-        "you won",
-        "you have won",
-        "lottery",
-        "cash prize",
-        "claim your prize",
-        "you are the winner",
-        "free money"
-
-    ])) {
-
-        score += 2;
-
-        reasons.push(
-            "Unexpected prize or lottery pattern detected."
-        );
-
-    }
-
-
-    /* =================================================
-       SECRECY
-    ================================================= */
-
-    if (hasAny([
-
-        "don't tell anyone",
-        "do not tell anyone",
-        "keep this secret",
-        "keep it between us",
-        "contact me privately",
-        "don't let anyone know"
-
-    ])) {
-
-        score += 1;
-
-        reasons.push(
-            "Secrecy or private-contact request detected."
-        );
-
-    }
-
-
-    /* =================================================
-       IMPERSONATION + MONEY
-    ================================================= */
-
-    if (
-        impersonation &&
-        moneyRequest
-    ) {
-
-        score += 2;
-
-        reasons.push(
-            "Identity-change story combined with a money request."
-        );
-
-    }
-
-
-    /* =================================================
-       IMPERSONATION + EMERGENCY
-    ================================================= */
-
-    if (
-        impersonation &&
-        emergencyStory
-    ) {
-
-        score += 1;
-
-        reasons.push(
-            "Identity-change story combined with an emergency claim."
-        );
-
-    }
-
-
-    /* =================================================
-       REMOVE DUPLICATES
-    ================================================= */
-
-    reasons =
-        [...new Set(reasons)];
+    [...new Set(reasons)];
 
 
     /* =================================================
@@ -1691,7 +1539,9 @@ function checkConversation() {
             "PINs, OTPs, or verification codes. " +
 
             "Verify the person's identity and " +
-            "claims independently.";
+            "claims independently.\n\n" +
+
+            "💡 Extra Tip: Block this contact immediately and do not click any links they sent.";
 
     }
 
@@ -1790,4 +1640,3 @@ function clearConversation() {
 
 </body>
 </html>
-          
