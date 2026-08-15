@@ -1144,12 +1144,6 @@ async function handleAuth(event) {
             );
 
 
-            /*
-             * If Supabase requires email
-             * confirmation, the user will
-             * receive a confirmation email.
-             */
-
             if (
                 data &&
                 data.user &&
@@ -1296,9 +1290,22 @@ async function handleAuth(event) {
 
             },
             500
-                showMessage(
-            "Something went wrong. Please try again."
         );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Something went wrong. Please try again.",
+            "error"
+        );
+
+        submitBtn.disabled = false;
+
+        submitBtn.textContent =
+            "Continue";
 
     }
 
@@ -1306,89 +1313,41 @@ async function handleAuth(event) {
 
 
 /* =====================================================
-   HANDLE GOOGLE RETURN
+   SOCIAL LOGIN (GOOGLE)
 ===================================================== */
 
-async function checkGoogleSession() {
+async function socialLogin() {
+    hideMessage();
 
     if (!supabaseClient) {
+        showMessage(
+            "TrustAI could not connect to the authentication server.",
+            "error"
+        );
         return;
     }
 
     try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.auth.getSession();
+        const { error } = await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: TRUSTAI_HOME
+            }
+        });
 
         if (error) {
-
-            console.error(
-                "Session error:",
-                error
+            showMessage(
+                "Google sign-in error: " + error.message,
+                "error"
             );
-
-            return;
         }
-
-        if (
-            data &&
-            data.session
-        ) {
-
-            localStorage.setItem(
-                "trustai_loggedIn",
-                "true"
-            );
-
-            const user =
-                data.session.user;
-
-            if (
-                user &&
-                user.user_metadata &&
-                user.user_metadata.full_name
-            ) {
-
-                localStorage.setItem(
-                    "trustai_userName",
-                    user.user_metadata.full_name
-                );
-
-            }
-
-            /*
-             * Google login successful.
-             * Send the user to the TrustAI home page.
-             */
-
-            if (
-                !window.location.pathname.endsWith(
-                    "/home.html"
-                )
-            ) {
-
-                window.location.href =
-                    "./home.html";
-
-            }
-
-        }
-
     } catch (error) {
-
-        console.error(
-            "Google session error:",
-            error
-        );
-
+        console.error(error);
         showMessage(
-            "Unable to complete sign-in. Please try again."
+            "Something went wrong while connecting to Google.",
+            "error"
         );
-
     }
-
 }
 
 
@@ -1447,6 +1406,10 @@ if (supabaseClient) {
    START TRUSTAI AUTH
 ===================================================== */
 
+function checkGoogleSession() {
+    // Optional helper or session check initializer
+}
+
 checkGoogleSession();
 
 </script>
@@ -1454,5 +1417,4 @@ checkGoogleSession();
 </body>
 
 </html>
-        
-        
+    
