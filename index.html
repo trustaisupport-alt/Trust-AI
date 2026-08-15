@@ -13,7 +13,7 @@
 <style>
 
 /* =====================================================
-   TRUSTAI — PREMIUM SECURITY APPLICATION
+   TRUSTAI — PREMIUM SECURITY SPLASH SCREEN
    ===================================================== */
 
 :root {
@@ -46,7 +46,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    overflow-x: hidden;
+    overflow: hidden;
 
     font-family:
         Inter,
@@ -88,8 +88,17 @@ body {
 }
 
 
+/* PAGE EXIT */
+
+body.page-exit {
+    opacity: 0;
+    transform: scale(1.025);
+    pointer-events: none;
+}
+
+
 /* =====================================================
-   BACKGROUND GLOW & PARTICLES
+   BACKGROUND GLOW
    ===================================================== */
 
 .background-glow {
@@ -132,6 +141,11 @@ body {
 
 }
 
+
+/* =====================================================
+   PARTICLES
+   ===================================================== */
+
 .particle {
     position: fixed;
 
@@ -154,26 +168,60 @@ body {
         infinite;
 }
 
-.p1 { left: 12%; top: 24%; --duration: 5s; }
-.p2 { left: 82%; top: 20%; --duration: 6s; }
-.p3 { left: 20%; top: 75%; --duration: 7s; }
-.p4 { left: 76%; top: 72%; --duration: 5.5s; }
-.p5 { left: 50%; top: 13%; --duration: 6.5s; }
+.p1 {
+    left: 12%;
+    top: 24%;
+    --duration: 5s;
+}
+
+.p2 {
+    left: 82%;
+    top: 20%;
+    --duration: 6s;
+}
+
+.p3 {
+    left: 20%;
+    top: 75%;
+    --duration: 7s;
+}
+
+.p4 {
+    left: 76%;
+    top: 72%;
+    --duration: 5.5s;
+}
+
+.p5 {
+    left: 50%;
+    top: 13%;
+    --duration: 6.5s;
+}
 
 @keyframes floatParticle {
-    0%, 100% {
-        transform: translateY(0) scale(1);
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+
         opacity: 0.25;
     }
+
     50% {
-        transform: translateY(-25px) scale(1.4);
+        transform:
+            translateY(-25px)
+            scale(1.4);
+
         opacity: 0.9;
     }
+
 }
 
 
 /* =====================================================
-   MAIN CONTAINER & SPLASH
+   MAIN SPLASH
    ===================================================== */
 
 .splash {
@@ -181,9 +229,9 @@ body {
 
     z-index: 5;
 
-    width: min(480px, calc(100% - 36px));
+    width: min(500px, calc(100% - 36px));
 
-    padding: 30px 20px;
+    padding: 38px 25px;
 
     text-align: center;
 
@@ -210,69 +258,164 @@ body {
 
 
 /* =====================================================
-   SHIELD & BRAND
+   SHIELD
    ===================================================== */
 
 .logo-wrapper {
+
     position: relative;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 15px;
+
+    width: 155px;
+    height: 155px;
+
+    margin: 0 auto 25px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+
+/* OUTER GLOW */
+
 .logo-wrapper::before {
+
     content: "";
+
     position: absolute;
+
     inset: 10px;
+
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 65%);
-    animation: logoGlow 3s ease-in-out infinite alternate;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(56, 189, 248, 0.18),
+            transparent 65%
+        );
+
+    animation:
+        logoGlow
+        3s
+        ease-in-out
+        infinite alternate;
 }
 
+
+/* ROTATING RING */
+
 .logo-wrapper::after {
+
     content: "";
+
     position: absolute;
+
     inset: 2px;
+
     border-radius: 50%;
-    border: 1px solid rgba(56, 189, 248, 0.18);
-    border-top-color: rgba(56, 189, 248, 0.75);
-    animation: rotateRing 6s linear infinite;
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.18);
+
+    border-top-color:
+        rgba(56, 189, 248, 0.75);
+
+    animation:
+        rotateRing
+        6s
+        linear
+        infinite;
 }
 
 @keyframes logoGlow {
-    from { transform: scale(0.9); opacity: 0.55; }
-    to { transform: scale(1.1); opacity: 1; }
+
+    from {
+        transform: scale(0.9);
+        opacity: 0.55;
+    }
+
+    to {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
 }
 
 @keyframes rotateRing {
-    to { transform: rotate(360deg); }
+
+    to {
+        transform: rotate(360deg);
+    }
+
 }
 
+
+/* =====================================================
+   SVG SHIELD
+   ===================================================== */
+
 .trust-shield {
+
     position: relative;
+
     z-index: 2;
-    width: 85px;
-    height: 85px;
-    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.45));
-    animation: shieldPulse 3s ease-in-out infinite alternate;
+
+    width: 112px;
+    height: 112px;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(56, 189, 248, 0.45)
+        );
+
+    animation:
+        shieldPulse
+        3s
+        ease-in-out
+        infinite alternate;
 }
 
 @keyframes shieldPulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.035); }
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.035);
+    }
+
 }
 
+
+/* =====================================================
+   BRAND
+   ===================================================== */
+
 .brand-name {
+
     margin: 0;
-    font-size: clamp(32px, 7vw, 42px);
+
+    font-size: clamp(34px, 8vw, 48px);
+
     font-weight: 900;
-    letter-spacing: -1.5px;
-    background: linear-gradient(135deg, #ffffff, #93c5fd, #38bdf8);
+
+    letter-spacing: -2px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #93c5fd,
+            #38bdf8
+        );
+
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -280,170 +423,195 @@ body {
     color: #38bdf8;
 }
 
+
+/* =====================================================
+   TAGLINE
+   ===================================================== */
+
 .tagline {
-    margin-top: 4px;
+
+    margin-top: 7px;
+
     color: var(--muted);
-    font-size: 13px;
+
+    font-size: 14px;
+
     letter-spacing: 1.5px;
+
     text-transform: uppercase;
 }
 
 
 /* =====================================================
-   INITIALIZATION STATUS
+   STATUS
    ===================================================== */
 
 .status-area {
-    min-height: 45px;
-    margin-top: 20px;
+
+    min-height: 55px;
+
+    margin-top: 28px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .status {
+
     color: #cbd5e1;
+
     font-size: 14px;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
 }
 
 .status.hidden {
+
     opacity: 0;
+
     transform: translateY(5px);
-}
-
-.security-state {
-    margin-top: 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border: 1px solid rgba(52, 211, 153, 0.20);
-    border-radius: 999px;
-    background: rgba(52, 211, 153, 0.06);
-    color: #6ee7b7;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-}
-
-.security-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #34d399;
-    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.08), 0 0 12px rgba(52, 211, 153, 0.8);
-    animation: statusPulse 1.8s infinite;
-}
-
-@keyframes statusPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
 }
 
 
 /* =====================================================
-   AUTHENTICATION FORM CARD
+   SECURITY STATE
    ===================================================== */
 
-.auth-card {
-    margin-top: 25px;
-    padding: 24px 20px;
-    border-radius: 16px;
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    animation: splashIn 0.6s cubic-bezier(.22,1,.36,1) forwards;
-}
+.security-state {
 
-.form-toggle {
-    display: flex;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 8px;
-}
+    margin-top: 18px;
 
-.tab-btn {
-    flex: 1;
-    padding: 10px;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+    display: inline-flex;
 
-.tab-btn.active {
-    color: var(--blue);
-    border-bottom: 2px solid var(--blue);
-}
+    align-items: center;
 
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+    gap: 8px;
 
-.input-field {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(3, 7, 18, 0.6);
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
+    padding: 7px 13px;
 
-.input-field:focus {
-    border-color: var(--blue);
-}
+    border:
+        1px solid
+        rgba(52, 211, 153, 0.20);
 
-.submit-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 6px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-    color: #fff;
+    border-radius: 999px;
+
+    background:
+        rgba(52, 211, 153, 0.06);
+
+    color: #6ee7b7;
+
+    font-size: 11px;
+
     font-weight: 800;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
-    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    letter-spacing: 0.5px;
 }
 
-.submit-btn:active {
-    transform: scale(0.98);
+.security-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #34d399;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(52, 211, 153, 0.08),
+        0 0 12px
+        rgba(52, 211, 153, 0.8);
+
+    animation:
+        statusPulse
+        1.8s
+        infinite;
 }
 
-.user-session-card {
-    margin-top: 25px;
-    padding: 24px 20px;
-    border-radius: 16px;
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(52, 211, 153, 0.3);
-    text-align: center;
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
 }
 
-/* FOOTER */
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 .footer-text {
+
     position: fixed;
+
     bottom: 20px;
+
     left: 0;
     right: 0;
+
     text-align: center;
+
     color: #475569;
+
     font-size: 11px;
+
     letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 500px) {
+
+    .logo-wrapper {
+        width: 140px;
+        height: 140px;
+    }
+
+    .trust-shield {
+        width: 100px;
+        height: 100px;
+    }
+
+    .brand-name {
+        font-size: 36px;
+    }
+
+    .tagline {
+        font-size: 12px;
+    }
+
+    .status {
+        font-size: 13px;
+    }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
 }
 
 </style>
@@ -453,7 +621,9 @@ body {
 
 <body>
 
+
 <!-- BACKGROUND -->
+
 <div class="background-glow"></div>
 
 <div class="particle p1"></div>
@@ -462,203 +632,273 @@ body {
 <div class="particle p4"></div>
 <div class="particle p5"></div>
 
-<!-- MAIN CONTAINER -->
+
+<!-- MAIN SPLASH -->
+
 <main class="splash">
 
+
     <!-- SHIELD -->
+
     <div class="logo-wrapper">
-        <svg class="trust-shield" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <svg
+            class="trust-shield"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
             <defs>
-                <linearGradient id="shieldOuter" x1="10" y1="10" x2="90" y2="90">
-                    <stop offset="0%" stop-color="#38bdf8"/>
-                    <stop offset="55%" stop-color="#2563eb"/>
-                    <stop offset="100%" stop-color="#7c3aed"/>
+
+                <linearGradient
+                    id="shieldOuter"
+                    x1="10"
+                    y1="10"
+                    x2="90"
+                    y2="90"
+                >
+
+                    <stop
+                        offset="0%"
+                        stop-color="#38bdf8"
+                    />
+
+                    <stop
+                        offset="55%"
+                        stop-color="#2563eb"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#7c3aed"
+                    />
+
                 </linearGradient>
-                <linearGradient id="shieldInner" x1="50" y1="10" x2="50" y2="90">
-                    <stop offset="0%" stop-color="#172554"/>
-                    <stop offset="100%" stop-color="#07111f"/>
+
+
+                <linearGradient
+                    id="shieldInner"
+                    x1="50"
+                    y1="10"
+                    x2="50"
+                    y2="90"
+                >
+
+                    <stop
+                        offset="0%"
+                        stop-color="#172554"
+                    />
+
+                    <stop
+                        offset="100%"
+                        stop-color="#07111f"
+                    />
+
                 </linearGradient>
+
             </defs>
-            <path d="M50 5 L89 18 V46 C89 69 72 83 50 94 C28 83 11 69 11 46 V18 L50 5Z" fill="url(#shieldOuter)"/>
-            <path d="M50 11 L83 22 V45 C83 64 69 77 50 87 C31 77 17 64 17 45 V22 L50 11Z" fill="url(#shieldInner)"/>
-            <text x="50" y="51" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="1" fill="white">AI</text>
-            <circle cx="76" cy="25" r="3" fill="#7dd3fc" opacity="0.9"/>
+
+
+            <!-- OUTER SHIELD -->
+
+            <path
+                d="
+                M50 5
+                L89 18
+                V46
+                C89 69 72 83 50 94
+                C28 83 11 69 11 46
+                V18
+                L50 5Z
+                "
+                fill="url(#shieldOuter)"
+            />
+
+
+            <!-- INNER SHIELD -->
+
+            <path
+                d="
+                M50 11
+                L83 22
+                V45
+                C83 64 69 77 50 87
+                C31 77 17 64 17 45
+                V22
+                L50 11Z
+                "
+                fill="url(#shieldInner)"
+            />
+
+
+            <!-- AI -->
+
+            <text
+                x="50"
+                y="51"
+                text-anchor="middle"
+                dominant-baseline="central"
+                font-family="Arial, sans-serif"
+                font-size="25"
+                font-weight="900"
+                letter-spacing="1"
+                fill="white"
+            >
+                AI
+            </text>
+
+
+            <!-- HIGHLIGHT -->
+
+            <circle
+                cx="76"
+                cy="25"
+                r="3"
+                fill="#7dd3fc"
+                opacity="0.9"
+            />
+
         </svg>
+
     </div>
+
 
     <!-- BRAND -->
-    <h1 class="brand-name">Trust<span>AI</span></h1>
-    <div class="tagline">Online Scam Protection</div>
 
-    <!-- INITIAL SPLASH STATUS -->
-    <div id="init-section">
-        <div class="status-area">
-            <div class="status" id="statusText">Initializing secure environment...</div>
-        </div>
+    <h1 class="brand-name">
+        Trust<span>AI</span>
+    </h1>
 
-        <div class="security-state">
-            <span class="security-dot"></span>
-            Security systems active
-        </div>
+
+    <div class="tagline">
+        Online Scam Protection
     </div>
 
-    <!-- AUTHENTICATION CONTAINER -->
-    <div id="auth-container" class="auth-card" style="display: none;">
-        <div class="form-toggle">
-            <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Log In</button>
-            <button class="tab-btn" id="tab-signup" onclick="switchTab('signup')">Create Account</button>
+
+    <!-- STATUS -->
+
+    <div class="status-area">
+
+        <div
+            class="status"
+            id="statusText"
+        >
+            Initializing secure environment...
         </div>
 
-        <!-- LOGIN FORM -->
-        <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
-            <input type="email" id="login-email" class="input-field" placeholder="Email Address" required />
-            <input type="password" id="login-password" class="input-field" placeholder="Password" required />
-            <button type="submit" class="submit-btn">Access Security Portal</button>
-        </form>
-
-        <!-- SIGN UP FORM -->
-        <form id="signup-form" class="auth-form" style="display: none;" onsubmit="handleSignUp(event)">
-            <input type="email" id="signup-email" class="input-field" placeholder="Email Address" required />
-            <input type="password" id="signup-password" class="input-field" placeholder="Create Password" required />
-            <button type="submit" class="submit-btn">Register Account</button>
-        </form>
     </div>
 
-    <!-- USER LOGGED IN STATE -->
-    <div id="user-status" class="user-session-card" style="display: none;">
-        <p style="margin: 0 0 12px 0; color: #6ee7b7; font-weight: 700;">
-            ✓ Logged in as: <span id="user-email-display" style="color: #fff;"></span>
-        </p>
-        <button onclick="handleLogout()" class="submit-btn" style="background: rgba(239, 68, 68, 0.8);">Log Out</button>
+
+    <!-- SECURITY STATE -->
+
+    <div class="security-state">
+
+        <span class="security-dot"></span>
+
+        Security systems initializing
+
     </div>
+
 
 </main>
 
+
 <!-- FOOTER -->
+
 <div class="footer-text">
     TrustAI • Security Awareness & Protection
 </div>
 
-<!-- SUPABASE JS LIBRARY -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-/* =====================================================
-   SUPABASE CONFIGURATION
-   ===================================================== */
-const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
-const SUPABASE_ANON_KEY = "Sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
-
-// Renamed variable to prevent shadowing global window.supabase
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /* =====================================================
-   INITIALIZATION SEQUENCE
+   TRUSTAI SPLASH SEQUENCE
    ===================================================== */
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const delay = (ms) =>
+    new Promise(resolve => setTimeout(resolve, ms));
+
 
 async function startTrustAI() {
-    const status = document.getElementById("statusText");
 
-    await delay(1200);
+    const status =
+        document.getElementById("statusText");
+
+
+    /* STEP 1 */
+
+    await delay(1500);
+
     status.classList.add("hidden");
-    await delay(300);
-    status.textContent = "Checking security environment...";
+
+    await delay(400);
+
+    status.textContent =
+        "Checking security environment...";
+
     status.classList.remove("hidden");
 
-    await delay(1200);
+
+    /* STEP 2 */
+
+    await delay(1600);
+
     status.classList.add("hidden");
-    await delay(300);
-    status.textContent = "Verifying protection protocols...";
+
+    await delay(400);
+
+    status.textContent =
+        "Verifying protection protocols...";
+
     status.classList.remove("hidden");
 
-    await delay(1200);
+
+    /* STEP 3 */
+
+    await delay(1600);
+
     status.classList.add("hidden");
-    await delay(300);
-    status.textContent = "Secure connection established.";
+
+    await delay(400);
+
+    status.textContent =
+        "Secure connection established.";
+
     status.classList.remove("hidden");
 
-    await delay(1000);
-    
-    document.getElementById("init-section").style.display = "none";
-    checkUserSession();
+
+    /* FINAL PAUSE */
+
+    await delay(1800);
+
+
+    /* FADE OUT */
+
+    document.body.classList.add("page-exit");
+
+
+    await delay(900);
+
+
+/* OPEN LOGIN */
+
+window.location.href = "login.html";
+
 }
 
-/* =====================================================
-   AUTHENTICATION LOGIC
-   ===================================================== */
-function switchTab(type) {
-    const loginForm = document.getElementById("login-form");
-    const signupForm = document.getElementById("signup-form");
-    const tabLogin = document.getElementById("tab-login");
-    const tabSignup = document.getElementById("tab-signup");
 
-    if (type === 'login') {
-        loginForm.style.display = "flex";
-        signupForm.style.display = "none";
-        tabLogin.classList.add("active");
-        tabSignup.classList.remove("active");
-    } else {
-        loginForm.style.display = "none";
-        signupForm.style.display = "flex";
-        tabSignup.classList.add("active");
-        tabLogin.classList.remove("active");
-    }
-}
+/* START */
 
-async function handleSignUp(event) {
-    event.preventDefault();
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
+document.addEventListener(
+    "DOMContentLoaded",
+    startTrustAI
+);
 
-    const { data, error } = await supabaseClient.auth.signUp({ email, password });
-
-    if (error) {
-        alert("Registration failed: " + error.message);
-    } else {
-        alert("Account created successfully! Check your email for confirmation.");
-        checkUserSession();
-    }
-}
-
-async function handleLogin(event) {
-    event.preventDefault();
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-
-    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-
-    if (error) {
-        alert("Login failed: " + error.message);
-    } else {
-        alert("Welcome back to TrustAI!");
-        checkUserSession();
-    }
-}
-
-async function handleLogout() {
-    await supabaseClient.auth.signOut();
-    location.reload();
-}
-
-async function checkUserSession() {
-    const { data: { session } } = await supabaseClient.auth.getSession();
-    const authContainer = document.getElementById("auth-container");
-    const userStatus = document.getElementById("user-status");
-
-    if (session) {
-        authContainer.style.display = "none";
-        userStatus.style.display = "block";
-        document.getElementById("user-email-display").textContent = session.user.email;
-    } else {
-        authContainer.style.display = "flex";
-        userStatus.style.display = "none";
-    }
-}
-
-document.addEventListener("DOMContentLoaded", startTrustAI);
 </script>
 
+
 </body>
-      </html>
-      
+
+</html>
