@@ -86,8 +86,8 @@ body {
 }
 
 .avatar {
-    width: 76px;
-    height: 76px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto 14px;
     display: flex;
     align-items: center;
@@ -98,7 +98,30 @@ body {
         #1687ff,
         #2563eb
     );
-    font-size: 30px;
+    border: 3px solid #1687ff;
+    font-size: 38px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.avatar:hover {
+    opacity: 0.85;
+}
+
+.change-picture {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #1687ff;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.change-picture:hover {
+    text-decoration: underline;
 }
 
 .profile-header h2 {
@@ -148,11 +171,6 @@ input:focus {
 
 input::placeholder {
     color: #657386;
-}
-
-input:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
 }
 
 .button-area {
@@ -261,17 +279,35 @@ input:disabled {
 
     <div class="profile-header">
 
-        <div class="avatar" onclick="document.getElementById('profilePictureInput').click()">
-    👤
-</div>
+        <!-- PROFILE PICTURE -->
 
-<input
-    type="file"
-    id="profilePictureInput"
-    accept="image/*"
-    style="display: none;"
-    onchange="changeProfilePicture(event)"
->
+        <div
+            class="avatar"
+            id="profileAvatar"
+            onclick="document.getElementById('profilePictureInput').click()">
+
+            👤
+
+        </div>
+
+
+        <label
+            class="change-picture"
+            for="profilePictureInput">
+
+            Change profile picture
+
+        </label>
+
+
+        <input
+            type="file"
+            id="profilePictureInput"
+            accept="image/*"
+            style="display: none;"
+            onchange="changeProfilePicture(event)"
+        >
+
 
         <h2 id="profileName">
             TrustAI User
@@ -350,6 +386,10 @@ input:disabled {
 
 <script>
 
+/* =====================================================
+   SHOW MESSAGE
+   ===================================================== */
+
 function showMessage(message) {
 
     const box =
@@ -361,6 +401,10 @@ function showMessage(message) {
 
 }
 
+
+/* =====================================================
+   SAVE PROFILE
+   ===================================================== */
 
 function saveProfile() {
 
@@ -422,6 +466,77 @@ function saveProfile() {
 }
 
 
+/* =====================================================
+   CHANGE PROFILE PICTURE
+   ===================================================== */
+
+function changeProfilePicture(event) {
+
+    const file =
+        event.target.files[0];
+
+
+    if (!file) {
+        return;
+    }
+
+
+    if (!file.type.startsWith("image/")) {
+
+        alert(
+            "Please select an image file."
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function(e) {
+
+        const picture =
+            e.target.result;
+
+
+        const avatar =
+            document.getElementById(
+                "profileAvatar"
+            );
+
+
+        avatar.style.backgroundImage =
+            `url("${picture}")`;
+
+
+        avatar.textContent = "";
+
+
+        localStorage.setItem(
+            "trustai_profilePicture",
+            picture
+        );
+
+
+        showMessage(
+            "Profile picture updated successfully."
+        );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   LOAD PROFILE
+   ===================================================== */
+
 function loadProfile() {
 
     const name =
@@ -434,6 +549,13 @@ function loadProfile() {
             "trustai_profileEmail"
         );
 
+    const savedPicture =
+        localStorage.getItem(
+            "trustai_profilePicture"
+        );
+
+
+    /* LOAD NAME */
 
     if (name) {
 
@@ -441,12 +563,15 @@ function loadProfile() {
             "name"
         ).value = name;
 
+
         document.getElementById(
             "profileName"
         ).textContent = name;
 
     }
 
+
+    /* LOAD EMAIL */
 
     if (email) {
 
@@ -456,51 +581,48 @@ function loadProfile() {
 
     }
 
-}
 
-function changeProfilePicture(event) {
+    /* LOAD PROFILE PICTURE */
 
-    const file = event.target.files[0];
-
-    if (!file) {
-        return;
-    }
-
-    if (!file.type.startsWith("image/")) {
-        alert("Please select an image file.");
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
+    if (savedPicture) {
 
         const avatar =
-            document.querySelector(".avatar");
+            document.getElementById(
+                "profileAvatar"
+            );
+
 
         avatar.style.backgroundImage =
-            `url("${e.target.result}")`;
+            `url("${savedPicture}")`;
 
-        avatar.style.backgroundSize = "cover";
-        avatar.style.backgroundPosition = "center";
-        avatar.style.backgroundRepeat = "no-repeat";
+
+        avatar.style.backgroundSize =
+            "cover";
+
+
+        avatar.style.backgroundPosition =
+            "center";
+
+
+        avatar.style.backgroundRepeat =
+            "no-repeat";
+
 
         avatar.textContent = "";
 
-        localStorage.setItem(
-            "trustai_profilePicture",
-            e.target.result
-        );
-
-    };
-
-    reader.readAsDataURL(file);
+    }
 
 }
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
 loadProfile();
 
 </script>
 
 </body>
 
-  </html>
+</html>
