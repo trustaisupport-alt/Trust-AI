@@ -540,8 +540,6 @@ input::placeholder {
 
         <!-- GOOGLE -->
 
-                <!-- GOOGLE -->
-
         <button
             type="button"
             id="googleBtn"
@@ -560,7 +558,7 @@ input::placeholder {
             Continue with Google
 
         </button>
-        
+
 
         <!-- DIVIDER -->
 
@@ -598,11 +596,11 @@ input::placeholder {
             </div>
 
 
-            <!-- EMAIL -->
+            <!-- EMAIL / PHONE CONTAINER -->
 
-            <div class="form-group">
+            <div class="form-group" id="identifierGroup">
 
-                <label for="email">
+                <label for="email" id="inputLabel">
                     Email address
                 </label>
 
@@ -618,7 +616,7 @@ input::placeholder {
 
             <!-- PASSWORD -->
 
-            <div class="form-group">
+            <div class="form-group" id="passwordGroupContainer">
 
                 <label for="password">
                     Password
@@ -665,13 +663,14 @@ input::placeholder {
         </form>
 
 
-        <!-- OTHER LOGIN METHODS (PHONE ONLY) -->
+        <!-- OTHER LOGIN METHODS -->
 
         <div class="other-options">
 
             <button
                 type="button"
-                onclick="phoneLogin()">
+                id="phoneToggleBtn"
+                onclick="togglePhoneAuth()">
 
                 Continue with phone
 
@@ -775,10 +774,12 @@ try {
 
 
 /* =====================================================
-   AUTH MODE
+   AUTH MODES
 ===================================================== */
 
 let isSignUp = false;
+let isPhoneMode = false;
+let pendingPhone = "";
 
 
 /* =====================================================
@@ -866,6 +867,10 @@ function toggleAuthMode(event) {
         event.preventDefault();
     }
 
+    if (isPhoneMode) {
+        togglePhoneAuth();
+    }
+
     isSignUp = !isSignUp;
 
     const nameGroup =
@@ -913,13 +918,70 @@ function toggleAuthMode(event) {
 
 
 /* =====================================================
-   EMAIL / PASSWORD AUTHENTICATION
+   TOGGLE PHONE AUTHENTICATION MODE
+===================================================== */
+
+function togglePhoneAuth() {
+    isPhoneMode = !isPhoneMode;
+    pendingPhone = "";
+    hideMessage();
+
+    const pageTitle = document.getElementById("pageTitle");
+    const pageSubtitle = document.getElementById("pageSubtitle");
+    const inputLabel = document.getElementById("inputLabel");
+    const emailInput = document.getElementById("email");
+    const passwordGroupContainer = document.getElementById("passwordGroupContainer");
+    const nameGroup = document.getElementById("nameGroup");
+    const submitBtn = document.getElementById("submitBtn");
+    const phoneToggleBtn = document.getElementById("phoneToggleBtn");
+    const createAccountSection = document.querySelector(".create-account");
+    const googleBtn = document.getElementById("googleBtn");
+    const divider = document.querySelector(".divider");
+
+    if (isPhoneMode) {
+        pageTitle.textContent = "Sign in with Phone";
+        pageSubtitle.textContent = "Receive an SMS verification code";
+        inputLabel.textContent = "Phone number (with country code)";
+        emailInput.type = "tel";
+        emailInput.placeholder = "+1234567890";
+        emailInput.value = "";
+        emailInput.removeAttribute("autocomplete");
+
+        passwordGroupContainer.style.display = "none";
+        nameGroup.style.display = "none";
+        createAccountSection.style.display = "none";
+        googleBtn.style.display = "none";
+        divider.style.display = "none";
+
+        submitBtn.textContent = "Send Verification Code";
+        phoneToggleBtn.textContent = "Continue with Email & Password";
+    } else {
+        pageTitle.textContent = "Sign in to TrustAI";
+        pageSubtitle.textContent = "Continue to your TrustAI account";
+        inputLabel.textContent = "Email address";
+        emailInput.type = "email";
+        emailInput.placeholder = "you@example.com";
+        emailInput.value = "";
+        emailInput.setAttribute("autocomplete", "email");
+
+        passwordGroupContainer.style.display = "block";
+        createAccountSection.style.display = "block";
+        googleBtn.style.display = "flex";
+        divider.style.display = "flex";
+
+        submitBtn.textContent = "Continue";
+        phoneToggleBtn.textContent = "Continue with phone";
+    }
+}
+
+
+/* =====================================================
+   AUTHENTICATION SUBMISSION HANDLER
 ===================================================== */
 
 async function handleAuth(event) {
 
     event.preventDefault();
-
     hideMessage();
 
     if (!supabaseClient) {
@@ -930,146 +992,69 @@ async function handleAuth(event) {
         return;
     }
 
-    const email =
-        document.getElementById("email")
-        .value
-        .trim()
-        .toLowerCase();
+    const submitBtn = document.getElementById("submitBtn");
 
-    const password =
-        document.getElementById("password")
-        .value;
+    /* =================================================
+       PHONE OTP FLOW
+    ================================================= */
+    if (isPhoneMode) {
+        const inputField = document.getElementById("email");
+        const val = inputField.value.trim();
 
-    const name =
-        document.getElementById("fullName")
-        .value
-        .trim();
-
-    const submitBtn =
-        document.getElementById("submitBtn");
-
-    if (!email || !password) {
-        showMessage(
-            "Please enter your email and password.",
-            "error"
-        );
-        return;
-    }
-
-    if (password.length < 6) {
-        showMessage(
-            "Your password must contain at least 6 characters.",
-            "error"
-        );
-        return;
-    }
-
-    submitBtn.disabled = true;
-
-    if (isSignUp) {
-
-        if (!name) {
-            showMessage(
-                "Please enter your full name.",
-                "error"
-            );
-            submitBtn.disabled = false;
-            return;
-        }
-
-        submitBtn.textContent = "Creating account...";
-
-        try {
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth.signUp({
-                    email: email,
-                    password: password,
-                    options: {
-                        data: {
-                            full_name: name
-                        },
-                        emailRedirectTo: TRUSTAI_HOME
-                    }
-                });
-
-            if (error) {
-                showMessage(
-                    "Registration error: " + error.message,
-                    "error"
-                );
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Create Account";
+        if (!pendingPhone) {
+            if (!val) {
+                showMessage("Please enter your phone number.", "error");
                 return;
             }
 
-            localStorage.setItem("trustai_userName", name);
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending Code...";
 
-            if (data && data.user && !data.session) {
-                showMessage(
-                    "Account created! Please check your email to verify your TrustAI account.",
-                    "success"
-                );
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Create Account";
-                return;
-            }
-
-            showMessage(
-                "Account created successfully!",
-                "success"
-            );
-
-            setTimeout(
-                function() {
-                    window.location.href = TRUSTAI_HOME;
-                },
-                1000
-            );
-
-        } catch (error) {
-            console.error(error);
-            showMessage(
-                "Something went wrong while creating your account.",
-                "error"
-            );
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Create Account";
-        }
-
-        return;
-
-    }
-
-    submitBtn.textContent = "Signing in...";
-
-    try {
-        const {
-            data,
-            error
-        } =
-            await supabaseClient.auth
-            .signInWithPassword({
-                email: email,
-                password: password
+            const { error } = await supabaseClient.auth.signInWithOtp({
+                phone: val
             });
 
-        if (error) {
-            showMessage(
-                "Sign-in error: " + error.message,
-                "error"
-            );
+            if (error) {
+                showMessage("Phone auth error: " + error.message, "error");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Send Verification Code";
+                return;
+            }
+
+            pendingPhone = val;
+            showMessage("Verification code sent! Enter the 6-digit code below.", "success");
+            inputLabel.textContent = "Enter 6-Digit Code";
+            inputField.type = "text";
+            inputField.placeholder = "123456";
+            inputField.value = "";
             submitBtn.disabled = false;
-            submitBtn.textContent = "Continue";
+            submitBtn.textContent = "Verify & Sign In";
             return;
-        }
+        } else {
+            if (!val) {
+                showMessage("Please enter the verification code.", "error");
+                return;
+            }
 
-        if (data && data.user) {
-            localStorage.setItem("trustai_loggedIn", "true");
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Verifying...";
 
-            const user = data.user;
+            const { data, error } = await supabaseClient.auth.verifyOtp({
+                phone: pendingPhone,
+                token: val,
+                type: 'sms'
+            });
+
+            if (error) {
+                showMessage("Verification error: " + error.message, "error");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Verify & Sign In";
+                return;
+            }
+
+            if (data && data.session) {
+                localStorage.setItem("trustai_loggedIn", "true");
+                const user = data.user;
 
             if (
                 user.user_metadata &&
@@ -1145,17 +1130,9 @@ async function socialLogin() {
     }
 }
 
-
-/* =====================================================
-   PHONE LOGIN PLACEHOLDER
-===================================================== */
-
-function phoneLogin() {
-    showMessage("Phone number authentication will be available soon.", "info");
-}
-
 </script>
 
 </body>
 
 </html>
+              
