@@ -8,1136 +8,1143 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI - Home</title>
+<title>Sign in — TrustAI</title>
+
+<meta name="description"
+content="Sign in to your TrustAI account">
 
 <!-- SUPABASE JS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-:root {
-    --primary: #6366f1;
-    --primary-glow: rgba(99, 102, 241, 0.15);
-    --bg-main: #090d16;
-    --bg-card: rgba(17, 24, 39, 0.75);
-    --bg-side: #0f172a;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --radius-lg: 20px;
-    --radius-md: 14px;
-}
-
 * {
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
+    min-height: 100vh;
+
+    background: #f6f7f9;
+    color: #111820;
 
     font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
         Arial,
+        Helvetica,
         sans-serif;
 
-    background:
-        radial-gradient(
-            circle at 10% 0%,
-            rgba(99, 102, 241, 0.12),
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(14, 165, 233, 0.08),
-            transparent 40%
-        ),
-        var(--bg-main);
-
-    color: var(--text-main);
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-
-/* =====================================================
-   PAGE
-   ===================================================== */
-
-.page {
-    width: min(1050px, calc(100% - 32px));
-    margin: auto;
-    padding-bottom: 40px;
-}
-
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-
-.header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 24px 0 16px;
+    justify-content: center;
+
+    padding: 24px;
 }
 
-
-/* =====================================================
-   PROFILE BUTTON
-   ===================================================== */
-
-.profile-button {
-    width: 48px;
-    height: 48px;
-
-    padding: 0;
-
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    overflow: hidden;
-
-    flex-shrink: 0;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.profile-button:hover {
-    transform: scale(1.05);
-    border-color: var(--primary);
-}
-
-.default-avatar {
+.login-page {
     width: 100%;
-    height: 100%;
-
-    background: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: flex-end;
-
-    overflow: hidden;
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    max-width: 440px;
 }
 
-.avatar-head {
-    width: 15px;
-    height: 15px;
+/* LOGO */
 
-    background: #000000;
+.logo {
+    text-align: center;
+    margin-bottom: 28px;
 
-    border-radius: 50%;
-
-    margin-bottom: 3px;
-}
-
-.avatar-body {
-    width: 30px;
-    height: 18px;
-
-    background: #000000;
-
-    border-radius: 16px 16px 0 0;
-}
-
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.brand-shield {
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #3b82f6
-        );
-
-    color: white;
-    font-size: 24px;
-
-    box-shadow:
-        0 10px 25px -5px rgba(99, 102, 241, 0.4);
-}
-
-.brand-name {
-    font-size: 26px;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #94a3b8
-        );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-
-/* =====================================================
-   THREE DASH MENU BUTTON
-   ===================================================== */
-
-.menu-button {
-    width: 48px;
-    height: 48px;
-
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-
-    background: rgba(15, 23, 42, 0.95);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    gap: 5px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 25px -5px rgba(0,0,0,0.5);
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-
-    flex-shrink: 0;
-
-    position: relative;
-    z-index: 1101;
-
-    padding: 0;
-
-    appearance: none;
-    -webkit-appearance: none;
-}
-
-.menu-button:hover {
-    border-color: var(--primary);
-    transform: translateY(-2px);
-}
-
-.menu-button:active {
-    transform: scale(0.96);
-}
-
-.menu-button span {
-    display: block;
-
-    width: 22px;
-    height: 3px;
-
-    border-radius: 3px;
-
-    background: #ffffff;
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-}
-
-
-/* =====================================================
-   SIDE MENU
-   ===================================================== */
-
-.side-menu {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 300px;
-    height: 100vh;
-    height: 100dvh;
-
-    background: var(--bg-side);
-
-    border-right: 1px solid var(--border-color);
-
-    z-index: 1100;
-
-    padding: 30px 20px;
-
-    overflow-y: auto;
-
-    box-shadow:
-        15px 0 30px rgba(0,0,0,0.3);
-
-    transform: translateX(-105%);
-
-    transition:
-        transform 0.3s ease;
-
-    visibility: hidden;
-
-    pointer-events: none;
-}
-
-.side-menu.open {
-    transform: translateX(0);
-
-    visibility: visible;
-
-    pointer-events: auto;
-}
-
-
-/* =====================================================
-   MENU HEADER
-   ===================================================== */
-
-.menu-header {
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    padding-bottom: 20px;
-
-    border-bottom:
-        1px solid var(--border-color);
-
-    margin-bottom: 16px;
-}
-
-.menu-logo {
-    font-size: 22px;
+    font-size: 27px;
     font-weight: 800;
-
-    background:
-        linear-gradient(
-            135deg,
-            #818cf8,
-            #38bdf8
-        );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
 }
 
-.menu-subtitle {
-    color: var(--text-muted);
-    font-size: 12px;
+.logo span {
+    color: #1687ff;
 }
 
+/* CARD */
 
-/* =====================================================
-   MENU LINKS
-   ===================================================== */
+.login-card {
+    background: #ffffff;
 
-.menu-link {
-    display: flex;
-    align-items: center;
+    border: 1px solid #dfe3e8;
 
-    gap: 14px;
+    border-radius: 14px;
 
-    width: 100%;
+    padding: 32px;
 
-    padding: 13px 14px;
-
-    margin-bottom: 6px;
-
-    border-radius: var(--radius-md);
-
-    text-decoration: none;
-
-    color: var(--text-muted);
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.07);
 }
 
-.menu-link:hover {
-    background:
-        rgba(255, 255, 255, 0.05);
+/* TITLE */
 
-    color: var(--text-main);
-
-    transform: translateX(4px);
-}
-
-.menu-icon {
-    width: 24px;
+.login-card h1 {
+    margin: 0;
 
     text-align: center;
 
-    font-size: 17px;
-}
-
-.menu-divider {
-    height: 1px;
-
-    background:
-        var(--border-color);
-
-    margin: 18px 0;
-}
-
-
-/* =====================================================
-   OVERLAY
-   ===================================================== */
-
-.menu-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    background:
-        rgba(0,0,0,0.7);
-
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-
-    z-index: 1050;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
-}
-
-.menu-overlay.show {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-}
-
-
-/* =====================================================
-   HERO
-   ===================================================== */
-
-.hero {
-    position: relative;
-    overflow: hidden;
-
-    margin-top: 12px;
-
-    padding: 40px 32px;
-
-    border: 1px solid var(--border-color);
-
-    border-radius: var(--radius-lg);
-
-    background: var(--bg-card);
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    box-shadow:
-        0 20px 40px -15px rgba(0,0,0,0.4);
-}
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 200px;
-    height: 200px;
-
-    right: -60px;
-    top: -60px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(99, 102, 241, 0.18),
-            transparent 70%
-        );
-}
-
-.hero h1 {
-    position: relative;
-    z-index: 1;
-
-    max-width: 650px;
-
-    margin: 0 0 16px;
-
-    font-size:
-        clamp(32px, 5.5vw, 46px);
-
-    line-height: 1.15;
-
-    letter-spacing: -1px;
-
-    color: var(--text-main);
-
-    font-weight: 800;
-}
-
-.hero h1 span {
-    background:
-        linear-gradient(
-            135deg,
-            #818cf8,
-            #38bdf8
-        );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-    position: relative;
-    z-index: 1;
-
-    max-width: 720px;
-
-    margin: 0;
-
-    color: var(--text-muted);
-
-    font-size: 15.5px;
-
-    line-height: 1.65;
-}
-
-
-/* =====================================================
-   SECTION TITLE
-   ===================================================== */
-
-.section-title {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin: 40px 0 20px;
-
-    font-size: 22px;
-
-    font-weight: 800;
-
-    color: var(--text-main);
+    font-size: 26px;
+    line-height: 1.25;
 
     letter-spacing: -0.3px;
 }
 
-.section-icon {
-    width: 38px;
-    height: 38px;
+.subtitle {
+    margin: 9px 0 25px;
 
-    display: flex;
+    text-align: center;
 
-    align-items: center;
-    justify-content: center;
+    color: #6b7280;
 
-    border-radius: 12px;
+    font-size: 14px;
 
-    background:
-        var(--primary-glow);
-
-    color: var(--primary);
-
-    font-size: 18px;
-
-    border:
-        1px solid rgba(99, 102, 241, 0.2);
+    line-height: 1.5;
 }
 
+/* GOOGLE BUTTON */
 
-/* =====================================================
-   CARDS
-   ===================================================== */
-
-.cards {
-    display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
-    gap: 20px;
-}
-
-.card {
-    position: relative;
-
-    overflow: hidden;
-
-    padding: 28px;
-
-    min-height: 200px;
-
-    border:
-        1px solid var(--border-color);
-
-    border-radius: var(--radius-lg);
-
-    background: var(--bg-card);
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    text-decoration: none;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.2);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-
-    border-color:
-        rgba(99, 102, 241, 0.4);
-
-    box-shadow:
-        0 20px 40px -10px rgba(0,0,0,0.4);
-}
-
-.card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-
+.social-button {
     width: 100%;
-    height: 3px;
 
-    background:
-        var(--primary);
-}
-
-.message-card::before {
-    background: #6366f1;
-}
-
-.conversation-card::before {
-    background: #3b82f6;
-}
-
-.website-card::before {
-    background: #06b6d4;
-}
-
-.security-card::before {
-    background: #10b981;
-}
-
-.alert-card::before {
-    background: #f97316;
-}
-
-.report-card::before {
-    background: #ef4444;
-}
-
-.contact-card::before {
-    background: #ec4899;
-}
-
-
-/* =====================================================
-   CARD ICON
-   ===================================================== */
-
-.card-icon {
-    width: 48px;
     height: 48px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    margin-bottom: 18px;
+    position: relative;
 
-    border-radius: var(--radius-md);
+    border: 1px solid #cfd5dc;
 
-    background:
-        rgba(255,255,255,0.04);
+    border-radius: 8px;
 
-    border:
-        1px solid var(--border-color);
+    background: #ffffff;
 
-    font-size: 22px;
+    color: #111820;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    margin-bottom: 10px;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
+.social-button:hover {
+    background: #f8fafc;
 
-/* =====================================================
-   CARD TEXT
-   ===================================================== */
+    border-color: #aeb7c2;
 
-.card h2 {
-    margin: 0 0 8px;
-
-    color: var(--text-main);
-
-    font-size: 19px;
-
-    font-weight: 750;
-
-    letter-spacing: -0.2px;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.card p {
-    margin: 0;
+.social-icon {
+    position: absolute;
 
-    color: var(--text-muted);
+    left: 15px;
 
-    font-size: 14.5px;
+    width: 21px;
+    height: 21px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+/* DIVIDER */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 23px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e1e5ea;
+}
+
+.divider span {
+    color: #8a939e;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+/* PASSWORD */
+
+.password-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.toggle-password-btn {
+    position: absolute;
+
+    right: 12px;
+
+    background: transparent;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    padding: 4px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* INPUT */
+
+input {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid #bfc7d1;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #111820;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.password-wrapper input {
+    padding-right: 45px;
+}
+
+input:focus {
+    border-color: #1687ff;
+
+    box-shadow:
+        0 0 0 3px rgba(22, 135, 255, 0.12);
+}
+
+input::placeholder {
+    color: #9aa3ad;
+}
+
+/* CONTINUE */
+
+.continue-button {
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1687ff;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        transform 0.05s ease;
+}
+
+.continue-button:hover {
+    background: #0877eb;
+}
+
+.continue-button:active {
+    transform: translateY(1px);
+}
+
+.continue-button:disabled,
+.social-button:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+}
+
+/* OTHER OPTIONS */
+
+.other-options {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-top: 19px;
+
+    flex-wrap: wrap;
+}
+
+.other-options button {
+    border: none;
+
+    background: none;
+
+    padding: 0;
+
+    color: #1687ff;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.other-options button:hover {
+    text-decoration: underline;
+}
+
+/* CREATE ACCOUNT */
+
+.create-account {
+    text-align: center;
+
+    margin-top: 26px;
+
+    padding-top: 24px;
+
+    border-top: 1px solid #e5e8ec;
+
+    color: #66707c;
+
+    font-size: 13px;
+}
+
+.create-account a {
+    color: #1687ff;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.create-account a:hover {
+    text-decoration: underline;
+}
+
+/* LEGAL */
+
+.legal {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #8a939e;
+
+    font-size: 11px;
 
     line-height: 1.6;
 }
 
+.legal a {
+    color: #687482;
 
-/* =====================================================
-   SECURITY CENTER
-   ===================================================== */
-
-.security-center {
-    position: relative;
-
-    overflow: hidden;
-
-    margin-top: 36px;
-
-    padding: 34px 30px;
-
-    border-radius: var(--radius-lg);
-
-    border:
-        1px solid rgba(99, 102, 241, 0.2);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(30, 27, 75, 0.8),
-            rgba(49, 46, 129, 0.8)
-        );
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    color: white;
-
-    box-shadow:
-        0 20px 40px -15px rgba(0,0,0,0.5);
+    text-decoration: underline;
 }
 
-.security-center h2 {
-    position: relative;
-    z-index: 1;
+/* MESSAGE */
 
-    margin: 0 0 10px;
+.message {
+    display: none;
 
-    font-size: 24px;
+    margin-bottom: 17px;
 
-    font-weight: 800;
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    background: #eef6ff;
+
+    border: 1px solid #c8e1ff;
+
+    color: #145ea8;
+
+    font-size: 13px;
+
+    line-height: 1.4;
 }
 
-.security-center p {
-    position: relative;
-    z-index: 1;
-
-    max-width: 680px;
-
-    margin: 0 0 24px;
-
-    color: #c7d2fe;
-
-    font-size: 15px;
+.message.show {
+    display: block;
 }
 
-.security-button {
-    position: relative;
-    z-index: 2;
+/* ERROR */
 
-    display: inline-flex;
+.message.error {
+    background: #fff1f1;
 
-    padding: 13px 22px;
+    border-color: #ffcaca;
 
-    border-radius: var(--radius-md);
-
-    background: white;
-
-    color: #1e1b4b;
-
-    text-decoration: none;
-
-    font-weight: 800;
-
-    font-size: 14.5px;
-
-    transition: all 0.2s ease;
-
-    box-shadow:
-        0 10px 20px rgba(0,0,0,0.2);
+    color: #b42318;
 }
 
-.security-button:hover {
-    transform: translateY(-2px);
+/* SUCCESS */
 
-    box-shadow:
-        0 14px 25px rgba(0,0,0,0.3);
+.message.success {
+    background: #effaf3;
+
+    border-color: #b7ebc6;
+
+    color: #18733b;
 }
 
+/* MOBILE */
 
-/* =====================================================
-   REMEMBER BOX
-   ===================================================== */
+@media (max-width: 520px) {
 
-.remember {
-    margin-top: 36px;
+    body {
+        padding: 15px;
 
-    padding: 28px;
+        align-items: flex-start;
+    }
 
-    border:
-        1px solid rgba(234,179,8,0.2);
+    .login-page {
+        margin-top: 25px;
+    }
 
-    border-radius: var(--radius-lg);
+    .login-card {
+        padding: 24px 20px;
+    }
 
-    background:
-        rgba(161,98,7,0.12);
+    .logo {
+        margin-bottom: 22px;
+    }
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    .login-card h1 {
+        font-size: 24px;
+    }
+
 }
 
-.remember h2 {
-    margin: 0 0 12px;
+</style>
 
-    color: #fef08a;
-
-    font-size: 20px;
-
-    font-weight: 800;
-}
-
-.remember p {
-    margin: 10px 0;
-
-    color: #fef9c3;
-
-    font-size: 14.5px;
-}
+</head>
 
 
-/* =====================================================
-   FOOTER
-   ===================================================== */
+<body>
 
-<footer>
 
-    <div class="logout-btn-container">
-        <button type="button" class="logout-btn" onclick="handleLogout()">Log Out</button>
+<main class="login-page">
+
+
+    <!-- TRUSTAI LOGO -->
+
+    <div class="logo">
+
+        🛡️ Trust<span>AI</span>
+
     </div>
 
-    <div class="footer-brand" style="margin-top: 20px;">
-        🛡️ TrustAI
+
+    <!-- LOGIN CARD -->
+
+    <section class="login-card">
+
+
+        <h1 id="pageTitle">
+            Sign in to TrustAI
+        </h1>
+
+
+        <p
+            class="subtitle"
+            id="pageSubtitle">
+
+            Continue to your TrustAI account
+
+        </p>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+        <!-- GOOGLE -->
+
+        <button
+            type="button"
+            id="googleBtn"
+            class="social-button"
+            onclick="socialLogin()">
+
+            <span class="social-icon">
+                G
+            </span>
+
+            Continue with Google
+
+        </button>
+
+
+        <!-- DIVIDER -->
+
+        <div class="divider">
+
+            <span>OR</span>
+
+        </div>
+
+
+        <!-- EMAIL FORM -->
+
+        <form
+            id="loginForm"
+            onsubmit="handleAuth(event)">
+
+
+            <!-- FULL NAME -->
+
+            <div
+                class="form-group"
+                id="nameGroup"
+                style="display:none;">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="John Doe"
+                    autocomplete="name">
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                        autocomplete="current-password"
+                        minlength="6"
+                        required>
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="toggle-password-btn"
+                        onclick="togglePasswordVisibility()"
+                        aria-label="Show password">
+
+                        🙈
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                id="submitBtn"
+                class="continue-button">
+
+                Continue
+
+            </button>
+
+
+        </form>
+
+
+        <!-- OTHER LOGIN METHODS (PHONE ONLY) -->
+
+        <div class="other-options">
+
+            <button
+                type="button"
+                onclick="phoneLogin()">
+
+                Continue with phone
+
+            </button>
+
+        </div>
+
+
+        <!-- CREATE ACCOUNT -->
+
+        <div class="create-account">
+
+            <span id="toggleText">
+
+                Don't have a TrustAI account?
+
+            </span>
+
+            <br><br>
+
+            <a
+                id="toggleLink"
+                href="#"
+                onclick="toggleAuthMode(event)">
+
+                Create account
+
+            </a>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- LEGAL -->
+
+    <div class="legal">
+
+        By continuing, you agree to the
+
+        <a href="./terms.html">
+            Terms of Service
+        </a>
+
+        and
+
+        <a href="./privacy.html">
+            Privacy Policy
+        </a>.
+
     </div>
 
-    <div>
-        Stay safe. Stay informed. Stay one step ahead.
-    </div>
 
-</footer>
+</main>
 
-
-</div>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-     ===================================================== -->
 
 <script>
 
 /* =====================================================
-   SUPABASE CONFIGURATION & OAUTH SESSION HANDLER
+   SUPABASE CONFIGURATION
 ===================================================== */
 
-const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
+const SUPABASE_URL =
+    "https://xbsurdlaixeynaxarqma.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
+
+
+/* =====================================================
+   TRUSTAI URLS
+===================================================== */
+
+const TRUSTAI_HOME =
+    "https://trustaisupport-alt.github.io/Trust-AI/home.html";
+
+
+/* =====================================================
+   CREATE SUPABASE CLIENT
+===================================================== */
 
 let supabaseClient = null;
 
 try {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+        );
+
 } catch (error) {
-    console.error("Supabase initialization failed:", error);
+
+    console.error(
+        "Supabase initialization failed:",
+        error
+    );
+
 }
 
-async function handleOAuthCallback() {
-    if (!supabaseClient) return;
 
-    // Manually check if there are tokens in the URL hash from Supabase OAuth
-    const hash = window.location.hash;
-    if (hash && hash.includes("access_token")) {
-        await supabaseClient.auth.getSession();
+/* =====================================================
+   AUTH MODE
+===================================================== */
+
+let isSignUp = false;
+
+
+/* =====================================================
+   SHOW MESSAGE
+===================================================== */
+
+function showMessage(
+    text,
+    type = "info"
+) {
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.classList.remove(
+        "error",
+        "success"
+    );
+
+    if (type === "error") {
+        message.classList.add("error");
     }
 
-    const { data: { session }, error } = await supabaseClient.auth.getSession();
-    
-    if (session) {
-        localStorage.setItem("trustai_loggedIn", "true");
-        if (session.user && session.user.user_metadata && session.user.user_metadata.full_name) {
-            localStorage.setItem("trustai_userName", session.user.user_metadata.full_name);
-        }
-        
-        // Clean up the URL hash so it looks clean in the browser bar
-        if (window.location.hash) {
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
+    if (type === "success") {
+        message.classList.add("success");
+    }
+
+    message.classList.add("show");
+
+}
+
+
+/* =====================================================
+   HIDE MESSAGE
+===================================================== */
+
+function hideMessage() {
+
+    const message =
+        document.getElementById("message");
+
+    message.classList.remove(
+        "show",
+        "error",
+        "success"
+    );
+
+}
+
+
+/* =====================================================
+   PASSWORD VISIBILITY
+===================================================== */
+
+function togglePasswordVisibility() {
+
+    const password =
+        document.getElementById("password");
+
+    const button =
+        document.getElementById("togglePassword");
+
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "👁️";
+        button.setAttribute("aria-label", "Hide password");
     } else {
-        if (localStorage.getItem("trustai_loggedIn") !== "true") {
-            window.location.href = "./index.html";
-        }
+        password.type = "password";
+        button.textContent = "🙈";
+        button.setAttribute("aria-label", "Show password");
     }
-}
-
-handleOAuthCallback();
-
-
-/* =====================================================
-   MENU ELEMENTS
-   ===================================================== */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const sideMenu =
-    document.getElementById("sideMenu");
-
-const menuOverlay =
-    document.getElementById("menuOverlay");
-
-
-/* =====================================================
-   OPEN MENU
-   ===================================================== */
-
-function openMenu() {
-
-    sideMenu.classList.add("open");
-
-    menuOverlay.classList.add("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
 
 }
 
 
 /* =====================================================
-   CLOSE MENU
-   ===================================================== */
+   SWITCH LOGIN / SIGNUP
+===================================================== */
 
-function closeMenu() {
+function toggleAuthMode(event) {
 
-    sideMenu.classList.remove("open");
+    if (event) {
+        event.preventDefault();
+    }
 
-    menuOverlay.classList.remove("show");
+    isSignUp = !isSignUp;
 
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
+    const nameGroup =
+        document.getElementById("nameGroup");
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const toggleText =
+        document.getElementById("toggleText");
+
+    const toggleLink =
+        document.getElementById("toggleLink");
+
+    const pageTitle =
+        document.getElementById("pageTitle");
+
+    const pageSubtitle =
+        document.getElementById("pageSubtitle");
+
+    const password =
+        document.getElementById("password");
+
+    hideMessage();
+
+    if (isSignUp) {
+        nameGroup.style.display = "block";
+        submitBtn.textContent = "Create Account";
+        toggleText.textContent = "Already have a TrustAI account?";
+        toggleLink.textContent = "Sign in";
+        pageTitle.textContent = "Create TrustAI Account";
+        pageSubtitle.textContent = "Start protecting your links and messages";
+        password.setAttribute("autocomplete", "new-password");
+    } else {
+        nameGroup.style.display = "none";
+        submitBtn.textContent = "Continue";
+        toggleText.textContent = "Don't have a TrustAI account?";
+        toggleLink.textContent = "Create account";
+        pageTitle.textContent = "Sign in to TrustAI";
+        pageSubtitle.textContent = "Continue to your TrustAI account";
+        password.setAttribute("autocomplete", "current-password");
+    }
 
 }
 
 
 /* =====================================================
-   TOGGLE MENU
-   ===================================================== */
+   EMAIL / PASSWORD AUTHENTICATION
+===================================================== */
 
-menuButton.addEventListener(
-    "click",
-    function() {
+async function handleAuth(event) {
 
-        if (
-            sideMenu.classList.contains("open")
-        ) {
+    event.preventDefault();
 
-            closeMenu();
+    hideMessage();
 
-        } else {
+    if (!supabaseClient) {
+        showMessage(
+            "TrustAI could not connect to the authentication server.",
+            "error"
+        );
+        return;
+    }
 
-            openMenu();
+    const email =
+        document.getElementById("email")
+        .value
+        .trim()
+        .toLowerCase();
 
+    const password =
+        document.getElementById("password")
+        .value;
+
+    const name =
+        document.getElementById("fullName")
+        .value
+        .trim();
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    if (!email || !password) {
+        showMessage(
+            "Please enter your email and password.",
+            "error"
+        );
+        return;
+    }
+
+    if (password.length < 6) {
+        showMessage(
+            "Your password must contain at least 6 characters.",
+            "error"
+        );
+        return;
+    }
+
+    submitBtn.disabled = true;
+
+    if (isSignUp) {
+
+        if (!name) {
+            showMessage(
+                "Please enter your full name.",
+                "error"
+            );
+            submitBtn.disabled = false;
+            return;
         }
 
-    }
-);
+        submitBtn.textContent = "Creating account...";
 
+        try {
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: name
+                        },
+                        emailRedirectTo: TRUSTAI_HOME
+                    }
+                });
 
-/* =====================================================
-   CLOSE WHEN OVERLAY IS TAPPED
-   ===================================================== */
+            if (error) {
+                showMessage(
+                    "Registration error: " + error.message,
+                    "error"
+                );
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Create Account";
+                return;
+            }
 
-menuOverlay.addEventListener(
-    "click",
-    closeMenu
-);
+            localStorage.setItem("trustai_userName", name);
 
+            if (data && data.user && !data.session) {
+                showMessage(
+                    "Account created! Please check your email to verify your TrustAI account.",
+                    "success"
+                );
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Create Account";
+                return;
+            }
 
-/* =====================================================
-   CLOSE MENU AFTER SELECTING A LINK
-   ===================================================== */
+            showMessage(
+                "Account created successfully!",
+                "success"
+            );
 
-const menuLinks =
-    document.querySelectorAll(".menu-link");
+            setTimeout(
+                function() {
+                    window.location.href = TRUSTAI_HOME;
+                },
+                1000
+            );
 
-menuLinks.forEach(function(link) {
-
-    link.addEventListener(
-        "click",
-        closeMenu
-    );
-
-});
-
-
-/* =====================================================
-   CLOSE MENU WITH ESC KEY
-   ===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Escape") {
-
-            closeMenu();
-
+        } catch (error) {
+            console.error(error);
+            showMessage(
+                "Something went wrong while creating your account.",
+                "error"
+            );
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Create Account";
         }
 
+        return;
+
     }
-);
 
+    submitBtn.textContent = "Signing in...";
 
-/* =====================================================
-   LOAD PROFILE PICTURE FROM PROFILE PAGE
-   ===================================================== */
+    try {
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth
+            .signInWithPassword({
+                email: email,
+                password: password
+            });
 
-function loadHomeProfilePicture() {
+        if (error) {
+            showMessage(
+                "Sign-in error: " + error.message,
+                "error"
+            );
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Continue";
+            return;
+        }
 
-    const avatar =
-        document.getElementById(
-            "homeProfileAvatar"
+        if (data && data.user) {
+            localStorage.setItem("trustai_loggedIn", "true");
+
+            const user = data.user;
+
+            if (
+                user.user_metadata &&
+                user.user_metadata.full_name
+            ) {
+                localStorage.setItem(
+                    "trustai_userName",
+                    user.user_metadata.full_name
+                );
+            }
+        }
+
+        showMessage(
+            "Signed in successfully. Opening TrustAI...",
+            "success"
         );
 
-    const savedPicture =
-        localStorage.getItem(
-            "trustai_profilePicture"
+        setTimeout(
+            function() {
+                window.location.href = TRUSTAI_HOME;
+            },
+            500
         );
 
-
-    if (savedPicture) {
-
-        avatar.style.backgroundImage =
-            `url("${savedPicture}")`;
-
-        avatar.style.backgroundSize =
-            "cover";
-
-        avatar.style.backgroundPosition =
-            "center";
-
-        avatar.style.backgroundRepeat =
-            "no-repeat";
-
-        avatar.innerHTML = "";
-
-    } else {
-
-        avatar.style.backgroundImage =
-            "none";
-
-        avatar.innerHTML = `
-            <div class="avatar-head"></div>
-            <div class="avatar-body"></div>
-        `;
-
+    } catch (error) {
+        console.error(error);
+        showMessage(
+            "Something went wrong. Please try again.",
+            "error"
+        );
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Continue";
     }
 
 }
 
 
 /* =====================================================
-   START PROFILE PICTURE
-   ===================================================== */
+   SOCIAL LOGIN (GOOGLE)
+===================================================== */
 
-loadHomeProfilePicture();
+async function socialLogin() {
+    hideMessage();
+
+    if (!supabaseClient) {
+        showMessage(
+            "TrustAI could not connect to the authentication server.",
+            "error"
+        );
+        return;
+    }
+
+    try {
+        const { error } = await supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: TRUSTAI_HOME
+            }
+        });
+
+        if (error) {
+            showMessage(
+                "Google sign-in error: " + error.message,
+                "error"
+            );
+        }
+    } catch (error) {
+        console.error(error);
+        showMessage(
+            "Something went wrong while connecting to Google.",
+            "error"
+        );
+    }
+}
 
 
 /* =====================================================
-   LOGOUT FUNCTION
-   ===================================================== */
+   PHONE LOGIN PLACEHOLDER
+===================================================== */
 
-async function handleLogout() {
-    if (supabaseClient) {
-        await supabaseClient.auth.signOut();
-    }
-    localStorage.removeItem("trustai_loggedIn");
-    localStorage.removeItem("trustai_userName");
-    window.location.href = "./index.html";
+function phoneLogin() {
+    showMessage("Phone number authentication will be available soon.", "info");
 }
 
 </script>
@@ -1145,4 +1152,3 @@ async function handleLogout() {
 </body>
 
 </html>
-    
