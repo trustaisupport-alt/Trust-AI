@@ -903,6 +903,28 @@ footer {
     font-size: 15px;
 }
 
+.logout-btn-container {
+    margin-top: 24px;
+}
+
+.logout-btn {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+    padding: 10px 24px;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: translateY(-2px);
+}
+
 
 /* =====================================================
    MOBILE
@@ -1208,8 +1230,7 @@ footer {
         <h2>
             Website Checker
         </h2>
-
-        <p>
+  <p>
             Check a website address for common
             suspicious website warning signs.
         </p>
@@ -1314,7 +1335,11 @@ footer {
 
 <footer>
 
-    <div class="footer-brand">
+    <div class="logout-btn-container">
+        <button type="button" class="logout-btn" onclick="handleLogout()">Log Out</button>
+    </div>
+
+    <div class="footer-brand" style="margin-top: 20px;">
         🛡️ TrustAI
     </div>
 
@@ -1509,8 +1534,20 @@ function loadHomeProfilePicture() {
 loadHomeProfilePicture();
 
 
+/* =====================================================
+   LOGOUT FUNCTION
+   ===================================================== */
+
+function handleLogout() {
+    localStorage.removeItem("trustai_loggedIn");
+    localStorage.removeItem("trustai_userName");
+    window.location.href = "./index.html";
+}
+
+
 </script>
 
 </body>
 
-</html>
+    </html>
+        
