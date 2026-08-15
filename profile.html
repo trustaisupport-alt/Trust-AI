@@ -85,57 +85,295 @@ body {
     border-bottom: 1px solid #1b2b3d;
 }
 
+
+/* =====================================================
+   PROFILE PICTURE
+   ===================================================== */
+
 .avatar {
     width: 100px;
     height: 100px;
+
     margin: 0 auto 14px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 50%;
-    background: linear-gradient(
-        135deg,
-        #1687ff,
-        #2563eb
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #1687ff,
+            #2563eb
+        );
+
     border: 3px solid #1687ff;
+
     font-size: 38px;
+
     cursor: pointer;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
     overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .avatar:hover {
     opacity: 0.85;
+    transform: scale(1.03);
 }
 
-.change-picture {
-    display: inline-block;
-    margin-bottom: 8px;
-    color: #1687ff;
+
+/* =====================================================
+   PROFILE PICTURE MENU
+   ===================================================== */
+
+.picture-menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2000;
+
+    padding: 20px;
+}
+
+.picture-menu-overlay.show {
+    display: flex;
+}
+
+.picture-menu {
+    width: 100%;
+    max-width: 360px;
+
+    background: #0b1420;
+
+    border: 1px solid #26384d;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5);
+
+    animation:
+        pictureMenuIn 0.2s ease;
+}
+
+@keyframes pictureMenuIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+.picture-menu h3 {
+    margin: 0 0 6px;
+
+    text-align: center;
+
+    font-size: 19px;
+}
+
+.picture-menu-subtitle {
+    margin: 0 0 18px;
+
+    text-align: center;
+
+    color: #8998aa;
+
     font-size: 13px;
+}
+
+.picture-option {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px;
+
+    margin-top: 8px;
+
+    border: 1px solid #1b2b3d;
+
+    border-radius: 11px;
+
+    background: #101c2b;
+
+    color: white;
+
+    font-size: 14px;
+
     font-weight: bold;
+
     cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
-.change-picture:hover {
-    text-decoration: underline;
+.picture-option:hover {
+    background: #16263a;
+    border-color: #1687ff;
 }
 
-.remove-picture {
-    display: inline-block;
-    margin-bottom: 15px;
+.picture-option-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(22, 135, 255, 0.12);
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+.picture-option-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.picture-option-text small {
+    color: #8998aa;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.remove-option {
     color: #f87171;
-    font-size: 13px;
-    font-weight: bold;
+}
+
+.remove-option .picture-option-icon {
+    background: rgba(248, 113, 113, 0.1);
+}
+
+.cancel-option {
+    justify-content: center;
+
+    margin-top: 14px;
+
+    background: transparent;
+
+    color: #8998aa;
+
+    text-align: center;
+}
+
+.cancel-option:hover {
+    color: white;
+    border-color: #26384d;
+}
+
+
+/* =====================================================
+   HIDDEN INPUTS
+   ===================================================== */
+
+.hidden-input {
+    display: none;
+}
+
+
+/* =====================================================
+   PHOTO VIEWER
+   ===================================================== */
+
+.photo-viewer {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.88);
+
+    z-index: 3000;
+}
+
+.photo-viewer.show {
+    display: flex;
+}
+
+.photo-viewer img {
+    max-width: 90vw;
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    border-radius: 16px;
+
+    border: 2px solid #26384d;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.close-viewer {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #1687ff;
+
+    color: white;
+
+    font-size: 22px;
+
     cursor: pointer;
 }
 
-.remove-picture:hover {
-    text-decoration: underline;
-}
+
+/* =====================================================
+   PROFILE TEXT
+   ===================================================== */
 
 .profile-header h2 {
     margin: 0 0 6px;
@@ -159,25 +397,36 @@ body {
 
 label {
     display: block;
+
     margin-bottom: 7px;
+
     font-size: 13px;
     font-weight: bold;
 }
 
 input {
     width: 100%;
+
     height: 46px;
+
     padding: 0 13px;
+
     border: 1px solid #26384d;
+
     border-radius: 9px;
+
     background: #101c2b;
+
     color: #ffffff;
+
     font-size: 14px;
+
     outline: none;
 }
 
 input:focus {
     border-color: #1687ff;
+
     box-shadow:
         0 0 0 3px rgba(22, 135, 255, 0.12);
 }
@@ -192,13 +441,21 @@ input::placeholder {
 
 .save-button {
     width: 100%;
+
     height: 48px;
+
     border: none;
+
     border-radius: 9px;
+
     background: #1687ff;
+
     color: white;
+
     font-size: 14px;
+
     font-weight: bold;
+
     cursor: pointer;
 }
 
@@ -208,12 +465,19 @@ input::placeholder {
 
 .message {
     display: none;
+
     margin-bottom: 18px;
+
     padding: 12px 14px;
+
     border-radius: 9px;
+
     background: rgba(52, 211, 153, 0.08);
+
     border: 1px solid rgba(52, 211, 153, 0.2);
+
     color: #6ee7b7;
+
     font-size: 13px;
 }
 
@@ -223,12 +487,22 @@ input::placeholder {
 
 .footer {
     text-align: center;
+
     color: #657386;
+
     font-size: 12px;
+
     margin-top: 35px;
+
     padding-top: 20px;
+
     border-top: 1px solid #182536;
 }
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media (max-width: 600px) {
 
@@ -240,6 +514,10 @@ input::placeholder {
         font-size: 26px;
     }
 
+    .picture-menu {
+        max-width: 340px;
+    }
+
 }
 
 </style>
@@ -248,7 +526,13 @@ input::placeholder {
 
 <body>
 
+
 <div class="page">
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
 <header class="header">
 
@@ -267,6 +551,10 @@ input::placeholder {
 
 </header>
 
+
+<!-- =====================================================
+     TITLE
+     ===================================================== -->
 
 <section class="title">
 
@@ -287,60 +575,44 @@ input::placeholder {
 </div>
 
 
+<!-- =====================================================
+     PROFILE CARD
+     ===================================================== -->
+
 <div class="card">
 
 
     <div class="profile-header">
+
 
         <!-- PROFILE PICTURE -->
 
         <div
             class="avatar"
             id="profileAvatar"
-            onclick="document.getElementById('profilePictureInput').click()">
+            onclick="openPictureMenu()"
+            aria-label="Profile picture"
+            role="button">
 
             👤
 
         </div>
 
 
-        <label
-            class="change-picture"
-            for="profilePictureInput">
-
-            Change profile picture
-
-        </label>
-
-
-        <div
-            class="remove-picture"
-            onclick="removeProfilePicture()">
-
-            Remove profile picture
-
-        </div>
-
-
-        <input
-            type="file"
-            id="profilePictureInput"
-            accept="image/*"
-            style="display: none;"
-            onchange="changeProfilePicture(event)"
-        >
-
-
         <h2 id="profileName">
             TrustAI User
         </h2>
 
-        <p>
-            Your TrustAI account
+        <p id="profileUsername">
+            @username
         </p>
 
     </div>
 
+
+    <!-- =================================================
+         DISPLAY NAME
+         ================================================= -->
 
     <div class="form-group">
 
@@ -357,20 +629,28 @@ input::placeholder {
     </div>
 
 
+    <!-- =================================================
+         USERNAME
+         ================================================= -->
+
     <div class="form-group">
 
-        <label for="email">
-            Email address
+        <label for="username">
+            Username
         </label>
 
         <input
-            type="email"
-            id="email"
-            placeholder="you@example.com"
-            autocomplete="email">
+            type="text"
+            id="username"
+            placeholder="Enter your username"
+            autocomplete="username">
 
     </div>
 
+
+    <!-- =================================================
+         SAVE
+         ================================================= -->
 
     <div class="button-area">
 
@@ -386,6 +666,10 @@ input::placeholder {
 
 </div>
 
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
 <footer class="footer">
 
@@ -403,10 +687,206 @@ input::placeholder {
 
 </footer>
 
+
+</div>
+
+
+<!-- =====================================================
+     PROFILE PICTURE MENU
+     ===================================================== -->
+
+<div
+    id="pictureMenuOverlay"
+    class="picture-menu-overlay"
+    onclick="closePictureMenu(event)">
+
+
+    <div
+        class="picture-menu"
+        onclick="event.stopPropagation()">
+
+
+        <h3>
+            Profile Picture
+        </h3>
+
+
+        <p class="picture-menu-subtitle">
+            Choose what you want to do
+        </p>
+
+
+        <!-- TAKE PHOTO -->
+
+        <button
+            class="picture-option"
+            type="button"
+            onclick="takePhoto()">
+
+            <span class="picture-option-icon">
+                📷
+            </span>
+
+            <span class="picture-option-text">
+
+                Take Photo
+
+                <small>
+                    Use your camera
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <!-- UPLOAD PHOTO -->
+
+        <button
+            class="picture-option"
+            type="button"
+            onclick="uploadPhoto()">
+
+            <span class="picture-option-icon">
+                🖼️
+            </span>
+
+            <span class="picture-option-text">
+
+                Upload Photo
+
+                <small>
+                    Choose from your device
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <!-- VIEW PHOTO -->
+
+        <button
+            class="picture-option"
+            type="button"
+            onclick="viewProfilePicture()">
+
+            <span class="picture-option-icon">
+                👁️
+            </span>
+
+            <span class="picture-option-text">
+
+                View Photo
+
+                <small>
+                    View your current picture
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <!-- REMOVE PHOTO -->
+
+        <button
+            class="picture-option remove-option"
+            type="button"
+            onclick="removeProfilePicture()">
+
+            <span class="picture-option-icon">
+                🗑️
+            </span>
+
+            <span class="picture-option-text">
+
+                Remove Photo
+
+                <small>
+                    Use the default avatar
+                </small>
+
+            </span>
+
+        </button>
+
+
+        <!-- CANCEL -->
+
+        <button
+            class="picture-option cancel-option"
+            type="button"
+            onclick="closePictureMenu()">
+
+            Cancel
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CAMERA INPUT
+     ===================================================== -->
+
+<input
+    type="file"
+    id="cameraInput"
+    class="hidden-input"
+    accept="image/*"
+    capture="user"
+    onchange="handlePictureSelected(event)"
+>
+
+
+<!-- =====================================================
+     UPLOAD INPUT
+     ===================================================== -->
+
+<input
+    type="file"
+    id="uploadInput"
+    class="hidden-input"
+    accept="image/*"
+    onchange="handlePictureSelected(event)"
+>
+
+
+<!-- =====================================================
+     PHOTO VIEWER
+     ===================================================== -->
+
+<div
+    id="photoViewer"
+    class="photo-viewer"
+    onclick="closePhotoViewer(event)">
+
+
+    <button
+        class="close-viewer"
+        type="button"
+        onclick="closePhotoViewer()">
+
+        ×
+
+    </button>
+
+
+    <img
+        id="viewedProfilePicture"
+        src=""
+        alt="Profile picture">
+
+
 </div>
 
 
 <script>
+
 
 /* =====================================================
    SHOW MESSAGE
@@ -425,74 +905,73 @@ function showMessage(message) {
 
 
 /* =====================================================
-   SAVE PROFILE
+   OPEN PICTURE MENU
    ===================================================== */
 
-function saveProfile() {
+function openPictureMenu() {
 
-    const name =
-        document
-            .getElementById("name")
-            .value
-            .trim();
-
-    const email =
-        document
-            .getElementById("email")
-            .value
-            .trim();
-
-
-    if (!name) {
-
-        showMessage(
-            "Please enter your display name."
-        );
-
-        return;
-
-    }
-
-
-    if (!email) {
-
-        showMessage(
-            "Please enter your email address."
-        );
-
-        return;
-
-    }
-
-
-    localStorage.setItem(
-        "trustai_profileName",
-        name
-    );
-
-    localStorage.setItem(
-        "trustai_profileEmail",
-        email
-    );
-
-
-    document.getElementById(
-        "profileName"
-    ).textContent = name;
-
-
-    showMessage(
-        "Your profile has been saved on this device."
-    );
+    document
+        .getElementById("pictureMenuOverlay")
+        .classList.add("show");
 
 }
 
 
 /* =====================================================
-   CHANGE PROFILE PICTURE
+   CLOSE PICTURE MENU
    ===================================================== */
 
-function changeProfilePicture(event) {
+function closePictureMenu(event) {
+
+    if (
+        event &&
+        event.target !== event.currentTarget
+    ) {
+        return;
+    }
+
+    document
+        .getElementById("pictureMenuOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   TAKE PHOTO
+   ===================================================== */
+
+function takePhoto() {
+
+    closePictureMenu();
+
+    document
+        .getElementById("cameraInput")
+        .click();
+
+}
+
+
+/* =====================================================
+   UPLOAD PHOTO
+   ===================================================== */
+
+function uploadPhoto() {
+
+    closePictureMenu();
+
+    document
+        .getElementById("uploadInput")
+        .click();
+
+}
+
+
+/* =====================================================
+   HANDLE PHOTO
+   ===================================================== */
+
+function handlePictureSelected(event) {
 
     const file =
         event.target.files[0];
@@ -552,6 +1031,69 @@ function changeProfilePicture(event) {
 
     reader.readAsDataURL(file);
 
+
+    event.target.value = "";
+
+}
+
+
+/* =====================================================
+   VIEW PROFILE PICTURE
+   ===================================================== */
+
+function viewProfilePicture() {
+
+    const savedPicture =
+        localStorage.getItem(
+            "trustai_profilePicture"
+        );
+
+
+    closePictureMenu();
+
+
+    if (!savedPicture) {
+
+        showMessage(
+            "You don't have a profile picture yet."
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("viewedProfilePicture")
+        .src = savedPicture;
+
+
+    document
+        .getElementById("photoViewer")
+        .classList.add("show");
+
+}
+
+
+/* =====================================================
+   CLOSE PHOTO VIEWER
+   ===================================================== */
+
+function closePhotoViewer(event) {
+
+    if (
+        event &&
+        event.target.id !== "photoViewer" &&
+        event.target.className !== "close-viewer"
+    ) {
+        return;
+    }
+
+
+    document
+        .getElementById("photoViewer")
+        .classList.remove("show");
+
 }
 
 
@@ -561,31 +1103,101 @@ function changeProfilePicture(event) {
 
 function removeProfilePicture() {
 
+    localStorage.removeItem(
+        "trustai_profilePicture"
+    );
+
+
     const avatar =
         document.getElementById(
             "profileAvatar"
         );
 
 
-    localStorage.removeItem(
-        "trustai_profilePicture"
-    );
-
-
     avatar.style.backgroundImage =
         "none";
 
 
-    avatar.textContent = "👤";
+    avatar.textContent =
+        "👤";
 
 
-    document.getElementById(
-        "profilePictureInput"
-    ).value = "";
+    closePictureMenu();
 
 
     showMessage(
         "Profile picture removed."
+    );
+
+}
+
+
+/* =====================================================
+   SAVE PROFILE
+   ===================================================== */
+
+function saveProfile() {
+
+    const name =
+        document
+            .getElementById("name")
+            .value
+            .trim();
+
+
+    const username =
+        document
+            .getElementById("username")
+            .value
+            .trim();
+
+
+    if (!name) {
+
+        showMessage(
+            "Please enter your display name."
+        );
+
+        return;
+
+    }
+
+
+    if (!username) {
+
+        showMessage(
+            "Please enter your username."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "trustai_profileName",
+        name
+    );
+
+
+    localStorage.setItem(
+        "trustai_username",
+        username
+    );
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent = name;
+
+
+    document.getElementById(
+        "profileUsername"
+    ).textContent = "@" + username;
+
+
+    showMessage(
+        "Your profile has been saved on this device."
     );
 
 }
@@ -602,10 +1214,12 @@ function loadProfile() {
             "trustai_profileName"
         );
 
-    const email =
+
+    const username =
         localStorage.getItem(
-            "trustai_profileEmail"
+            "trustai_username"
         );
+
 
     const savedPicture =
         localStorage.getItem(
@@ -629,13 +1243,19 @@ function loadProfile() {
     }
 
 
-    /* LOAD EMAIL */
+    /* LOAD USERNAME */
 
-    if (email) {
+    if (username) {
 
         document.getElementById(
-            "email"
-        ).value = email;
+            "username"
+        ).value = username;
+
+
+        document.getElementById(
+            "profileUsername"
+        ).textContent =
+            "@" + username;
 
     }
 
@@ -656,7 +1276,6 @@ function loadProfile() {
 
         avatar.style.backgroundSize =
             "cover";
-
 
         avatar.style.backgroundPosition =
             "center";
