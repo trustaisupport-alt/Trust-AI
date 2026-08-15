@@ -1,1099 +1,459 @@
-<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
-content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust AI - Global Website Fraud Checker</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --border: #334155;
+        }
 
-<title>Website Checker — TrustAI</title>  <meta name="description"  
-content="TrustAI Website Checker">
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
 
-<style>  
-  
-* {  
-    box-sizing: border-box;  
-}  
-  
-body {  
-    margin: 0;  
-    background: #050b14;  
-    color: #ffffff;  
-    font-family: Arial, Helvetica, sans-serif;  
-}  
-  
-/* =========================  
-   3-DASH MENU  
-========================= */  
-  
-.menu-button {  
-    position: fixed;  
-    top: 16px;  
-    left: 16px;  
-    width: 46px;  
-    height: 46px;  
-    border: none;  
-    border-radius: 11px;  
-    background: #1687ff;  
-    cursor: pointer;  
-    z-index: 1001;  
-  
-    display: flex;  
-    flex-direction: column;  
-    justify-content: center;  
-    align-items: center;  
-    gap: 5px;  
-}  
-  
-.menu-button span {  
-    width: 22px;  
-    height: 3px;  
-    background: #ffffff;  
-    border-radius: 3px;  
-}  
-  
-/* SIDE MENU */  
-  
-.side-menu {  
-    position: fixed;  
-    top: 0;  
-    left: -290px;  
-    width: 280px;  
-    height: 100vh;  
-  
-    background: #0b1420;  
-    border-right: 1px solid #1b2b3d;  
-  
-    z-index: 1000;  
-    padding: 80px 18px 25px;  
-  
-    overflow-y: auto;  
-    transition: left 0.25s ease;  
-}  
-  
-.side-menu.open {  
-    left: 0;  
-}  
-  
-.menu-title {  
-    padding: 0 12px 18px;  
-    border-bottom: 1px solid #1b2b3d;  
-    margin-bottom: 12px;  
-}  
-  
-.menu-title strong {  
-    font-size: 21px;  
-    color: #1687ff;  
-}  
-  
-.menu-title span {  
-    display: block;  
-    margin-top: 5px;  
-    color: #8998aa;  
-    font-size: 12px;  
-}  
-  
-.menu-link {  
-    display: flex;  
-    align-items: center;  
-    gap: 12px;  
-  
-    width: 100%;  
-    padding: 13px 12px;  
-    margin-bottom: 4px;  
-  
-    border-radius: 10px;  
-    text-decoration: none;  
-  
-    color: #ffffff;  
-    font-size: 14px;  
-    font-weight: 600;  
-}  
-  
-.menu-link:hover {  
-    background: #101f31;  
-    color: #1687ff;  
-}  
-  
-.menu-icon {  
-    width: 25px;  
-    text-align: center;  
-    font-size: 18px;  
-}  
-  
-.menu-divider {  
-    height: 1px;  
-    background: #1b2b3d;  
-    margin: 14px 0;  
-}  
-  
-/* OVERLAY */  
-  
-.menu-overlay {  
-    position: fixed;  
-    inset: 0;  
-    background: rgba(0, 0, 0, 0.55);  
-    z-index: 999;  
-    display: none;  
-}  
-  
-.menu-overlay.show {  
-    display: block;  
-}  
-  
-/* PAGE */  
-  
-.page {  
-    width: 100%;  
-    max-width: 900px;  
-    margin: auto;  
-    padding: 85px 18px 45px;  
-}  
-  
-/* HEADER */  
-  
-.header {  
-    margin-bottom: 35px;  
-}  
-  
-.logo {  
-    font-size: 25px;  
-    font-weight: 800;  
-}  
-  
-.logo span {  
-    color: #1687ff;  
-}  
-  
-/* HERO */  
-  
-.hero {  
-    margin-bottom: 25px;  
-}  
-  
-.label {  
-    color: #1687ff;  
-    font-size: 12px;  
-    font-weight: bold;  
-    letter-spacing: 1.5px;  
-    margin-bottom: 10px;  
-}  
-  
-.hero h1 {  
-    margin: 0 0 12px;  
-    font-size: 34px;  
-    line-height: 1.2;  
-}  
-  
-.hero p {  
-    margin: 0;  
-    max-width: 700px;  
-    color: #9ba8b8;  
-    line-height: 1.6;  
-    font-size: 15px;  
-}  
-  
-/* CHECKER */  
-  
-.checker {  
-    background: #0b1420;  
-    border: 1px solid #1b2b3d;  
-    border-radius: 18px;  
-    padding: 24px;  
-}  
-  
-.checker h2 {  
-    margin: 0 0 8px;  
-    font-size: 20px;  
-}  
-  
-.checker-subtitle {  
-    color: #8998aa;  
-    font-size: 14px;  
-    margin-bottom: 20px;  
-}  
-  
-/* INPUT */  
-  
-label {  
-    display: block;  
-    font-size: 13px;  
-    font-weight: bold;  
-    margin-bottom: 8px;  
-}  
-  
-.input-row {  
-    display: flex;  
-    gap: 10px;  
-}  
-  
-input {  
-    flex: 1;  
-    min-width: 0;  
-    background: #050b14;  
-    border: 1px solid #26384d;  
-    color: #ffffff;  
-    border-radius: 10px;  
-    padding: 14px;  
-    font-size: 15px;  
-    outline: none;  
-}  
-  
-input:focus {  
-    border-color: #1687ff;  
-}  
-  
-input::placeholder {  
-    color: #657386;  
-}  
-  
-button {  
-    border: none;  
-    border-radius: 10px;  
-    padding: 0 20px;  
-    font-size: 14px;  
-    font-weight: bold;  
-    cursor: pointer;  
-}  
-  
-.check-btn {  
-    background: #1687ff;  
-    color: white;  
-}  
-  
-.check-btn:hover {  
-    background: #0877eb;  
-}  
-  
-/* RESULT */  
-  
-.result {  
-    display: none;  
-    margin-top: 20px;  
-    border-radius: 14px;  
-    padding: 18px;  
-}  
-  
-.result.show {  
-    display: block;  
-}  
-  
-.result-top {  
-    display: flex;  
-    justify-content: space-between;  
-    align-items: center;  
-    gap: 15px;  
-}  
-  
-.status {  
-    font-size: 18px;  
-    font-weight: 800;  
-}  
-  
-.website-name {  
-    margin-top: 9px;  
-    font-size: 14px;  
-    color: #c5cfda;  
-    word-break: break-all;  
-}  
-  
-.result-message {  
-    margin-top: 12px;  
-    font-size: 14px;  
-    line-height: 1.5;  
-}  
-  
-.reason {  
-    margin-top: 8px;  
-    font-size: 13px;  
-    color: #c5cfda;  
-    line-height: 1.5;  
-}  
-  
-.action {  
-    margin-top: 12px;  
-    font-size: 13px;  
-    font-weight: bold;  
-    line-height: 1.5;  
-}  
-  
-/* RESULT COLORS */  
-  
-.verified {  
-    background: #071d15;  
-    border: 1px solid #14583f;  
-}  
-  
-.verified .status {  
-    color: #31d98a;  
-}  
-  
-.unverified {  
-    background: #111a25;  
-    border: 1px solid #2b3a4b;  
-}  
-  
-.unverified .status {  
-    color: #b9c4d0;  
-}  
-  
-.caution {  
-    background: #211a08;  
-    border: 1px solid #66501a;  
-}  
-  
-.caution .status {  
-    color: #ffd34d;  
-}  
-  
-.high {  
-    background: #241209;  
-    border: 1px solid #71401e;  
-}  
-  
-.high .status {  
-    color: #ff9b4a;  
-}  
-  
-.critical {  
-    background: #250b0b;  
-    border: 1px solid #702222;  
-}  
-  
-.critical .status {  
-    color: #ff5f5f;  
-}  
-  
-/* INFORMATION */  
-  
-.section-title {  
-    margin: 35px 0 15px;  
-    font-size: 19px;  
-}  
-  
-.info-grid {  
-    display: grid;  
-    grid-template-columns: repeat(2, 1fr);  
-    gap: 14px;  
-}  
-  
-.info-card {  
-    background: #0b1420;  
-    border: 1px solid #1b2b3d;  
-    border-radius: 15px;  
-    padding: 18px;  
-}  
-  
-.info-card h3 {  
-    margin: 0 0 8px;  
-    font-size: 16px;  
-}  
-  
-.info-card p {  
-    margin: 0;  
-    color: #8998aa;  
-    font-size: 13px;  
-    line-height: 1.5;  
-}  
-  
-/* NOTICE */  
-  
-.notice {  
-    margin-top: 20px;  
-    padding: 18px;  
-    border-radius: 15px;  
-    background: #0b1420;  
-    border: 1px solid #1b2b3d;  
-}  
-  
-.notice strong {  
-    color: #1687ff;  
-}  
-  
-.notice p {  
-    color: #8998aa;  
-    font-size: 13px;  
-    line-height: 1.5;  
-    margin: 8px 0 0;  
-}  
-  
-/* FOOTER */  
-  
-footer {  
-    text-align: center;  
-    color: #657386;  
-    font-size: 12px;  
-    margin-top: 35px;  
-    padding-top: 20px;  
-    border-top: 1px solid #182536;  
-}  
-  
-/* MOBILE */  
-  
-@media (max-width: 650px) {  
-  
-    .page {  
-        padding: 80px 14px 35px;  
-    }  
-  
-    .header {  
-        margin-bottom: 28px;  
-    }  
-  
-    .hero h1 {  
-        font-size: 28px;  
-    }  
-  
-    .checker {  
-        padding: 19px;  
-    }  
-  
-    .input-row {  
-        flex-direction: column;  
-    }  
-  
-    button {  
-        height: 48px;  
-    }  
-  
-    .info-grid {  
-        grid-template-columns: 1fr;  
-    }  
-  
-}  
-  
-</style>  </head>  <body>  <!-- 3-DASH BUTTON -->  <button  
-class="menu-button"  
-onclick="toggleMenu()"  
-aria-label="Open menu">
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
 
-<span></span>  
-<span></span>  
-<span></span>
+        h1 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--accent);
+            text-align: center;
+        }
 
-</button>  <!-- SIDE MENU -->  <nav id="sideMenu" class="side-menu">  <div class="menu-title">  
+        p.subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
 
-    <strong>🛡️ TrustAI</strong>  
+        .form-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-    <span>Online Scam Protection</span>  
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 16px;
+            background-color: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
 
-</div>
+        input[type="text"]:focus {
+            border-color: var(--accent);
+        }
 
-<!-- SIDE MENU DRAWER LINKS -->  <a href="./home.html" class="menu-link">  
-    <span class="menu-icon">🏠</span> Home  
-</a>  <a href="./message.html" class="menu-link">  
-    <span class="menu-icon">🔍</span> Message Checker  
-</a>  <a href="./conversation.html" class="menu-link">  
-    <span class="menu-icon">💬</span> Conversation Checker  
-</a>  <!-- FIXED: lowercase 'website.html' with relative path -->  <a href="./website.html" class="menu-link">  
-    <span class="menu-icon">🌐</span> Website Checker  
-</a>  <a href="./device.html" class="menu-link">  
-    <span class="menu-icon">📱</span> Device Security  
-</a>  <a href="./security.html" class="menu-link">  
-    <span class="menu-icon">🛡️</span> Security Center  
-</a>  <div class="menu-divider"></div>  <a href="./alerts.html" class="menu-link">  
-    <span class="menu-icon">🚨</span> Scam Alerts  
-</a>  <a href="./report.html" class="menu-link">  
-    <span class="menu-icon">📢</span> Report a Scam  
-</a>  <a href="./contact.html" class="menu-link">  
-    <span class="menu-icon">💬</span> Contact TrustAI  
-</a>  </nav>  <!-- OVERLAY -->  <div  
-    id="menuOverlay"  
-    class="menu-overlay"  
-    onclick="closeMenu()">  
-</div>  <div class="page">  <header class="header">  <div class="logo">  
-    🛡️ Trust<span>AI</span>  
-</div>
+        button {
+            padding: 12px 20px;
+            background-color: var(--accent);
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
 
-</header>  <section class="hero">  <div class="label">  
-    WEBSITE SECURITY  
-</div>  
+        button:hover {
+            opacity: 0.9;
+        }
 
-<h1>  
-    Check before you trust.  
-</h1>  
+        .result {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: #0f172a;
+            border: 1px solid var(--border);
+            display: none;
+        }
 
-<p>  
-    Analyze a website address for common  
-    phishing, impersonation and suspicious-link  
-    warning signs.  
-</p>
+        .result.show {
+            display: block;
+        }
 
-</section>  <section class="checker">  <h2>  
-    Website Checker  
-</h2>  
+        .result.verified { border-left: 5px solid #22c55e; }
+        .result.critical { border-left: 5px solid #ef4444; }
+        .result.high { border-left: 5px solid #f97316; }
+        .result.caution { border-left: 5px solid #eab308; }
+        .result.unverified { border-left: 5px solid #94a3b8; }
 
-<div class="checker-subtitle">  
-    Enter a website address below.  
-</div>  
+        .status {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
 
-<form id="websiteForm">  
+        .website-name {
+            font-family: monospace;
+            color: var(--accent);
+            margin-bottom: 12px;
+            word-break: break-all;
+        }
 
-    <label for="website">  
-        Website address  
-    </label>  
+        .message {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
 
-    <div class="input-row">  
+        .reason {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
 
-        <input  
-            type="text"  
-            id="website"  
-            placeholder="example.com"  
-            autocomplete="off"  
-        >  
+        .action {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
 
-        <button  
-            type="submit"  
-            class="check-btn">  
-            Check  
-        </button>  
+    <div class="container">
+        <h1>Trust AI</h1>
+        <p class="subtitle">Global Website & Phishing Fraud Defense System</p>
 
-    </div>  
+        <form id="websiteForm">
+            <div class="form-group">
+                <input type="text" id="website" placeholder="Enter website URL (e.g., example.com)" autocomplete="off">
+                <button type="submit">Check</button>
+            </div>
+        </form>
 
-</form>  
+        <div id="result" class="result">
+            <div id="status" class="status"></div>
+            <div id="websiteName" class="website-name"></div>
+            <div id="resultMessage" class="message"></div>
+            <div id="reason" class="reason"></div>
+            <div id="action" class="action"></div>
+        </div>
+    </div>
 
+    <script>
+        /* =========================  
+           WEBSITE CHECKER (GLOBAL FRAUD & SCAM DEFENSE)  
+        ========================= */  
 
-<div id="result" class="result">  
+        document.getElementById("websiteForm").addEventListener("submit", checkWebsite);  
 
-    <div class="result-top">  
+        function checkWebsite(event) {  
+            event.preventDefault();  
 
-        <div id="status" class="status"></div>  
+            const input = document.getElementById("website");  
+            let website = input.value.trim();  
 
-    </div>  
+            if (website === "") {  
+                showResult(  
+                    "caution",  
+                    "⚠️ ENTER A WEBSITE",  
+                    "",  
+                    "Please enter a website address.",  
+                    "",  
+                    "Action: Enter a domain and try again."  
+                );  
+                return;  
+            }  
 
-    <div id="websiteName"  
-        class="website-name">  
-    </div>  
+            website = website.replace(/\s+/g, "");  
+            let testURL = website;  
 
-    <div id="resultMessage"  
-        class="result-message">  
-    </div>  
+            if (!testURL.startsWith("http://") && !testURL.startsWith("https://")) {  
+                testURL = "https://" + testURL;  
+            }  
 
-    <div id="reason"  
-        class="reason">  
-    </div>  
+            let url;  
+            try {  
+                url = new URL(testURL);  
+            } catch (error) {  
+                showResult(  
+                    "caution",  
+                    "⚠️ INVALID ADDRESS",  
+                    website,  
+                    "The website address could not be understood.",  
+                    "Check the spelling and format of the address.",  
+                    "Action: Enter something like example.com."  
+                );  
+                return;  
+            }  
 
-    <div id="action"  
-        class="action">  
-    </div>  
+            const hostname = url.hostname.toLowerCase();  
+            const fullURL = testURL.toLowerCase();  
 
-</div>
+            let score = 0;  
+            let reasons = [];  
 
-</section>  <h2 class="section-title">  
-    What TrustAI checks  
-</h2>  <section class="info-grid">  <div class="info-card">  
+            // ==========================================
+            // 1. GLOBAL TRUSTED DOMAINS
+            // ==========================================
+            const trustedDomains = [  
+                "google.com", "microsoft.com", "apple.com", "amazon.com", "github.com",  
+                "stackoverflow.com", "reddit.com", "wikipedia.org", "yahoo.com", "outlook.com",  
+                "dropbox.com", "cloudflare.com", "wordpress.com", "adobe.com", "zoom.us",  
+                "canva.com", "notion.so", "figma.com", "heroku.com", "vercel.app", "netlify.app",
+                "gitlab.com", "bitbucket.org", "npmjs.com", "pypi.org", "godaddy.com", "namecheap.com",
+                "digitalocean.com", "aws.amazon.com", "azure.microsoft.com",
+                "facebook.com", "instagram.com", "linkedin.com", "youtube.com", "whatsapp.com",  
+                "twitter.com", "x.com", "spotify.com", "telegram.org", "tiktok.com",  
+                "snapchat.com", "discord.com", "pinterest.com", "twitch.tv", "telegram.me",
+                "signal.org", "viber.com", "skype.com", "slack.com", "t.me",
+                "paypal.com", "wise.com", "revolut.com", "stripe.com", "chase.com",  
+                "bankofamerica.com", "wellsfargo.com", "citibank.com", "hsbc.com",  
+                "barclays.co.uk", "binance.com", "coinbase.com", "kraken.com", "bybit.com", 
+                "okx.com", "blockchain.com", "trustwallet.com", "metamask.io", "paxos.com",
+                "mastercard.com", "visa.com", "americanexpress.com", "paypal.me", "skrill.com",
+                "neteller.com", "payoneer.com", "westernunion.com", "moneygram.com", "zellepay.com",
+                "santander.com", "bnpparibas.com", "ubs.com", "tdbank.com",
+                "ebay.com", "aliexpress.com", "alibaba.com", "shopify.com", "etsy.com", 
+                "walmart.com", "target.com", "bestbuy.com", "wayfair.com", "ikea.com",
+                "zara.com", "hm.com", "nike.com", "adidas.com", "asos.com", "shein.com",
+                "dhl.com", "fedex.com", "ups.com", "usps.com", "royalmail.com", "dpd.com",
+                "netflix.com", "hulu.com", "disneyplus.com", "primevideo.com", "hbomax.com",
+                "bbc.com", "cnn.com", "reuters.com", "apnews.com", "nytimes.com", "theguardian.com",
+                "edx.org", "coursera.org", "udemy.com", "harvard.edu", "mit.edu",
+                "gov.uk", "usa.gov", "europa.eu", "un.org", "who.int"
+            ];  
 
-    <h3>  
-        🔗 Domain structure  
-    </h3>  
+            const isTrusted = trustedDomains.some(function(domain) {  
+                return hostname === domain || hostname.endsWith("." + domain);  
+            });  
 
-    <p>  
-        Looks for unusual domains, suspicious  
-        characters, excessive subdomains and  
-        other URL patterns.  
-    </p>  
+            // ==========================================
+            // 2. WORLDWIDE BRAND IMPERSONATION & TYPOSQUATTING PATTERNS
+            // ==========================================
+            const lookalikePatterns = [  
+                "g00gle", "goog1e", "gogle", "gogole", "googe", "goog-le", "google-", 
+                "micros0ft", "microsooft", "micosoft", "microsft", "microsoft-", 
+                "app1e", "appl3", "aple", "app-le", "apple-", "icloud-", "outlook-login",
+                "amaz0n", "amozon", "amazn", "am-azon", "amazon-", "dropb0x", "dropox",
+                "github-", "cloudflare-", "adobe-secure", "godaddy-verify",
+                "faceb00k", "facebok", "facbk", "face-book", "facebook-", "instargram", 
+                "instgram", "instagrm", "insta-gram", "instagram-", "linkediin", 
+                "linked-in", "linkdin", "linkedin-", "twiiter", "twiter", "twiter-", 
+                "x-login", "whats-app", "whatspp", "whatsup", "whatsapp-", "telegram-", 
+                "telegrAm", "tik-tok", "tikt0k", "snap-chat", "snapchat-", "discord-",
+                "paypa1", "paypai", "pay-pal", "paypl", "paypal-", "binance-", "binnance", 
+                "binance.co-", "coinbas", "coin-base", "coinbase-", "kraken-", "bybit-", 
+                "okx-", "wise-", "revolut-", "stripe-", "chss-", "chase-secure", 
+                "bofa-", "bankofamerica-", "metamask-", "trustwallet-", "paxos-",
+                "mastercard-", "visa-secure", "americanexpress-", "skrill-", "payoneer-",
+                "ebay-secure", "aliexpress-deal", "alibaba-vip", "walmart-reward", 
+                "dhl-delivery", "fedex-tracking", "ups-parcel", "usps-redelivery", 
+                "royalmail-track", "customs-fee", "package-pending"
+            ];  
 
-</div>  
+            for (const pattern of lookalikePatterns) {  
+                if (hostname.includes(pattern)) {  
+                    score += 8;  
+                    reasons.push("Strong match for a known brand lookalike/impersonation pattern.");  
+                    break;  
+                }  
+            }  
 
+            // ==========================================
+            // 3. SUSPICIOUS TOP-LEVEL DOMAINS (TLDs)
+            // ==========================================
+            const riskyTLDs = [
+                ".zip", ".mov", ".click", ".top", ".gq", ".cf", ".ml", ".tk", ".cc", 
+                ".work", ".loan", ".party", ".gdn", ".trade", ".date", ".faith", ".racing", 
+                ".win", ".review", ".stream", ".download", ".accountant", ".cricket", 
+                ".space", ".site", ".online", ".tech", ".fun", ".icu", ".cam", ".bid"
+            ];
 
-<div class="info-card">  
+            if (riskyTLDs.some(tld => hostname.endsWith(tld))) {  
+                score += 3;  
+                reasons.push("Domain uses an extension frequently associated with spam or phishing.");  
+            }  
 
-    <h3>  
-        🎭 Lookalike domains  
-    </h3>  
+            // ==========================================
+            // 4. PROTOCOL & TECHNICAL RED FLAGS
+            // ==========================================
+            if (url.protocol === "http:") {  
+                score += 2;  
+                reasons.push("Website does not use a secure HTTPS connection.");  
+            }  
 
-    <p>  
-        Looks for domains that may imitate  
-        familiar websites.  
-    </p>  
+            if (/^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)) {  
+                score += 4;  
+                reasons.push("Website uses raw IP numbers instead of a proper domain name.");  
+            }  
 
-</div>  
+            if (fullURL.includes("@")) {  
+                score += 3;  
+                reasons.push("URL contains an unusual '@' symbol used to mask true destinations.");  
+            }  
 
+            if (hostname.length > 45) {  
+                score += 2;  
+                reasons.push("Domain name is unusually long, hiding real subdomains.");  
+            }  
 
-<div class="info-card">  
+            const hyphens = (hostname.match(/-/g) || []).length;  
+            if (hyphens >= 2) {  
+                score += 2;  
+                reasons.push("Domain contains multiple hyphens, a common trick for fake sites.");  
+            }  
 
-    <h3>  
-        🔐 Security requests  
-    </h3>  
+            const parts = hostname.split(".");  
+            if (parts.length >= 4) {  
+                score += 2;  
+                reasons.push("Domain has excessive subdomains, indicating subdomain takeover or phishing.");  
+            }  
 
-    <p>  
-        Flags URL patterns associated with  
-        account verification and suspicious  
-        login requests.  
-    </p>  
+            // ==========================================
+            // 5. GLOBAL PHISHING, SCAM & FRAUD KEYWORDS
+            // ==========================================
+            const suspiciousWords = [  
+                "verify", "verification", "verifiy", "confirm", "confirmation", "update", 
+                "suspended", "suspend", "locked", "unlock", "restricted", "restriction", 
+                "security-check", "security-alert", "validate", "validation", "identity", 
+                "kyc", "reactivate", "restore", "recover", "login", "signin", "auth", 
+                "password", "reset", "credential", "pin-reset", "otp", "token", "2fa",
+                "account-alert", "billing-issue", "payment-failed", "card-expired",
+                "claim", "prize", "winner", "won", "reward", "bonus", "free-money", 
+                "cash", "cashback", "airdrop", "giveaway", "grant", "relief-fund", 
+                "subsidy", "loan", "instant-loan", "quick-loan", "stimulus", 
+                "compensation", "wealth", "rich", "profit", "invest", "investment", 
+                "crypto-mining", "doubler", "double-money", "trading-bot", "forex-signal",
+                "nft-drop", "mint-nft", "web3-airdrop", "eth-giveaway", "btc-giveaway",
+                "visa-lottery", "job-offer", "remote-job", "work-from-home", "scholarship", 
+                "recruitment", "employment", "travel-deal", "cheap-ticket", "urgent-notice",
+                "green-card", "work-visa", "express-entry", "free-shipping", "flash-sale"
+            ];  
 
-</div>  
+            for (const word of suspiciousWords) {  
+                if (fullURL.includes(word)) {  
+                    score += 3;  
+                    reasons.push("URL path contains high-risk scam/phishing phrasing (" + word + ").");  
+                    break;  
+                }  
+            }  
 
+            // ==========================================
+            // 6. URL SHORTENERS
+            // ==========================================
+            const shorteners = [  
+                "bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "buff.ly", 
+                "adf.ly", "ow.ly", "bl.ink", "shorte.st", "rb.gy", "rebrand.ly", "lnkd.in"
+            ];  
 
-<div class="info-card">  
+            if (shorteners.includes(hostname)) {  
+                score += 3;  
+                reasons.push("Uses a URL shortener which masks the destination website.");  
+            }  
 
-    <h3>  
-        ⚠️ Unknown websites  
-    </h3>  
+            // ==========================================
+            // 7. PUNYCODE ATTACKS
+            // ==========================================
+            if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {  
+                score += 4;  
+                reasons.push("Uses internationalized/Punycode characters often used in spoofing.");  
+            }  
 
-    <p>  
-        No warning signs does not automatically  
-        mean a website is safe.  
-    </p>  
+            score = Math.min(score, 10);  
 
-</div>
+            if (isTrusted && score === 0) {  
+                showResult(  
+                    "verified",  
+                    "🟢 RECOGNIZED DOMAIN",  
+                    website,  
+                    "This matches a known official global domain.",  
+                    "No major URL warning signs were detected.",  
+                    "Action: Still check the address before entering sensitive information."  
+                );  
+                return;  
+            }  
 
-</section>  <section class="notice">  <strong>  
-    🛡️ TrustAI Safety Rule  
-</strong>  
+            if (score >= 7) {  
+                showResult(  
+                    "critical",  
+                    "🔴 VERY HIGH RISK",  
+                    website,  
+                    "Strong scam or phishing indicators were detected.",  
+                    reasons[0],  
+                    "Action: Do not enter passwords, OTPs, PINs or payment details."  
+                );  
+                return;  
+            }  
 
-<p>  
-    Never enter your password, PIN, OTP or  
-    payment information just because a website  
-    asks for it. Verify important websites  
-    independently.  
-</p>
+            if (score >= 4) {  
+                showResult(  
+                    "high",  
+                    "🟠 HIGH RISK",  
+                    website,  
+                    "Suspicious impersonation or structure characteristics were detected.",  
+                    reasons[0],  
+                    "Action: Avoid entering sensitive information until verified."  
+                );  
+                return;  
+            }  
 
-</section>  <footer>  <strong>🛡️ TrustAI</strong>  
+            if (score >= 2) {  
+                showResult(  
+                    "caution",  
+                    "🟡 CAUTION",  
+                    website,  
+                    "Some minor warning signs or irregularities were detected.",  
+                    reasons[0],  
+                    "Action: Verify the website independently before using it."  
+                );  
+                return;  
+            }  
 
-<br><br>  
-
-Online scam awareness and protection.  
-
-<br><br>  
-
-© 2026 TrustAI
-
-</footer>  </div>  <script>  
-  
-/* =========================  
-   3-DASH MENU  
-========================= */  
-  
-function toggleMenu() {  
-  
-    const menu =  
-        document.getElementById("sideMenu");  
-  
-    const overlay =  
-        document.getElementById("menuOverlay");  
-  
-    menu.classList.toggle("open");  
-  
-    overlay.classList.toggle("show");  
-  
-}  
-  
-  
-function closeMenu() {  
-  
-    const menu =  
-        document.getElementById("sideMenu");  
-  
-    const overlay =  
-        document.getElementById("menuOverlay");  
-  
-    menu.classList.remove("open");  
-  
-    overlay.classList.remove("show");  
-  
-}  
-  
-  
-/* =========================  
-   WEBSITE CHECKER  
-========================= */  
-  
-document  
-.getElementById("websiteForm")  
-.addEventListener("submit", checkWebsite);  
-  
-  
-function checkWebsite(event) {  
-  
-    event.preventDefault();  
-  
-    const input =  
-        document.getElementById("website");  
-  
-    let website =  
-        input.value.trim();  
-  
-  
-    if (website === "") {  
-  
-        showResult(  
-            "caution",  
-            "⚠️ ENTER A WEBSITE",  
-            "",  
-            "Please enter a website address.",  
-            "",  
-            "Action: Enter a domain and try again."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    website =  
-        website.replace(/\s+/g, "");  
-  
-  
-    let testURL =  
-        website;  
-  
-  
-    if (  
-        !testURL.startsWith("http://") &&  
-        !testURL.startsWith("https://")  
-    ) {  
-  
-        testURL =  
-            "https://" + testURL;  
-  
-    }  
-  
-  
-    let url;  
-  
-  
-    try {  
-  
-        url =  
-            new URL(testURL);  
-  
-    } catch (error) {  
-  
-        showResult(  
-            "caution",  
-            "⚠️ INVALID ADDRESS",  
-            website,  
-            "The website address could not be understood.",  
-            "Check the spelling and format of the address.",  
-            "Action: Enter something like example.com."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    const hostname =  
-        url.hostname.toLowerCase();  
-  
-  
-    const fullURL =  
-        testURL.toLowerCase();  
-  
-  
-    let score = 0;  
-  
-    let reasons = [];  
-  
-  
-    const trustedDomains = [  
-  
-        "paypal.com",  
-        "google.com",  
-        "microsoft.com",  
-        "apple.com",  
-        "amazon.com",  
-        "facebook.com",  
-        "instagram.com",  
-        "linkedin.com",  
-        "youtube.com"  
-  
-    ];  
-  
-  
-    const isTrusted =  
-        trustedDomains.some(function(domain) {  
-  
-            return (  
-                hostname === domain ||  
-                hostname.endsWith("." + domain)  
+            showResult(  
+                "unverified",  
+                "⚪ UNVERIFIED",  
+                website,  
+                "No obvious scam patterns were found in the URL.",  
+                "TrustAI cannot confirm that this website is legitimate.",  
+                "Action: Verify important websites independently."  
             );  
-  
-        });  
-  
-  
-    const lookalikePatterns = [  
-  
-        "paypa1",  
-        "paypai",  
-        "micros0ft",  
-        "faceb00k",  
-        "g00gle",  
-        "amaz0n",  
-        "netf1ix",  
-        "app1e"  
-  
-    ];  
-  
-  
-    for (const pattern of lookalikePatterns) {  
-  
-        if (hostname.includes(pattern)) {  
-  
-            score += 7;  
-  
-            reasons.push(  
-                "Possible lookalike domain."  
-            );  
-  
-            break;  
         }  
-  
-    }  
-  
-  
-    if (url.protocol === "http:") {  
-  
-        score += 2;  
-  
-        reasons.push(  
-            "Website does not use HTTPS."  
-        );  
-  
-    }  
-  
-  
-    if (  
-        /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)  
-    ) {  
-  
-        score += 3;  
-  
-        reasons.push(  
-            "Website uses an IP address."  
-        );  
-  
-    }  
-  
-  
-    if (fullURL.includes("@")) {  
-  
-        score += 3;  
-  
-        reasons.push(  
-            "URL contains an unusual @ symbol."  
-        );  
-  
-    }  
-  
-  
-    if (hostname.length > 45) {  
-  
-        score += 1;  
-  
-        reasons.push(  
-            "Domain name is unusually long."  
-        );  
-  
-    }  
-  
-  
-    const hyphens =  
-        (hostname.match(/-/g) || []).length;  
-  
-    if (hyphens >= 3) {  
-  
-        score += 2;  
-  
-        reasons.push(  
-            "Domain contains several hyphens."  
-        );  
-  
-    }  
-  
-  
-    const parts =  
-        hostname.split(".");  
-  
-    if (parts.length >= 5) {  
-  
-        score += 1;  
-  
-        reasons.push(  
-            "Domain has an unusually complex structure."  
-        );  
-  
-    }  
-  
-  
-    const suspiciousWords = [  
-  
-        "verify-account",  
-        "verify-login",  
-        "confirm-account",  
-        "account-suspended",  
-        "reset-password",  
-        "security-check",  
-        "claim-prize",  
-        "free-money",  
-        "cash-reward",  
-        "instant-profit",  
-        "guaranteed-profit"  
-  
-    ];  
-  
-  
-    for (const word of suspiciousWords) {  
-  
-        if (fullURL.includes(word)) {  
-  
-            score += 2;  
-  
-            reasons.push(  
-                "Suspicious verification or money-related wording."  
-            );  
-  
-            break;  
-  
-        }  
-  
-    }  
-  
-  
-    const shorteners = [  
-  
-        "bit.ly",  
-        "tinyurl.com",  
-        "t.co",  
-        "is.gd",  
-        "cutt.ly"  
-  
-    ];  
-  
-  
-    if (shorteners.includes(hostname)) {  
-  
-        score += 2;  
-  
-        reasons.push(  
-            "Shortened URL detected."  
-        );  
-  
-    }  
-  
-  
-    if (  
-        hostname.startsWith("xn--") ||  
-        hostname.includes(".xn--")  
-    ) {  
-  
-        score += 3;  
-  
-        reasons.push(  
-            "Internationalized domain requires verification."  
-        );  
-  
-    }  
-  
-  
-    score =  
-        Math.min(score, 10);  
-  
-  
-    if (isTrusted && score === 0) {  
-  
-        showResult(  
-            "verified",  
-            "🟢 RECOGNIZED DOMAIN",  
-            website,  
-            "This matches a known official domain.",  
-            "No major URL warning signs were detected.",  
-            "Action: Still check the address before entering sensitive information."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    if (score >= 7) {  
-  
-        showResult(  
-            "critical",  
-            "🔴 VERY HIGH RISK",  
-            website,  
-            "Strong warning signs were detected.",  
-            reasons[0],  
-            "Action: Do not enter passwords, OTPs, PINs or payment details."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    if (score >= 4) {  
-  
-        showResult(  
-            "high",  
-            "🟠 HIGH RISK",  
-            website,  
-            "Suspicious characteristics were detected.",  
-            reasons[0],  
-            "Action: Avoid entering sensitive information until verified."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    if (score >= 2) {  
-  
-        showResult(  
-            "caution",  
-            "🟡 CAUTION",  
-            website,  
-            "Some warning signs were detected.",  
-            reasons[0],  
-            "Action: Verify the website before using it."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    showResult(  
-        "unverified",  
-        "⚪ UNVERIFIED",  
-        website,  
-        "No obvious warning signs were detected.",  
-        "TrustAI cannot confirm that this website is legitimate.",  
-        "Action: Verify important websites independently."  
-    );  
-  
-}  
-  
-  
-function showResult(  
-    type,  
-    statusText,  
-    site,  
-    messageText,  
-    reasonText,  
-    actionText  
-) {  
-  
-    const result =  
-        document.getElementById("result");  
-  
-    document.getElementById("status")  
-        .textContent = statusText;  
-  
-    document.getElementById("websiteName")  
-        .textContent = site;  
-  
-    document.getElementById("resultMessage")  
-        .textContent = messageText;  
-  
-    document.getElementById("reason")  
-        .textContent =  
-        reasonText ? "Finding: " + reasonText : "";  
-  
-    document.getElementById("action")  
-        .textContent = actionText;  
-  
-  
-    result.className =  
-        "result show " + type;  
-  
-  
-    result.scrollIntoView({  
-        behavior: "smooth",  
-        block: "nearest"  
-    });  
-  
-}  
-  
-</script>  </body>  </html>
+
+        function showResult(type, statusText, site, messageText, reasonText, actionText) {  
+            const result = document.getElementById("result");  
+
+            document.getElementById("status").textContent = statusText;  
+            document.getElementById("websiteName").textContent = site;  
+            document.getElementById("resultMessage").textContent = messageText;  
+            document.getElementById("reason").textContent = reasonText ? "Finding: " + reasonText : "";  
+            document.getElementById("action").textContent = actionText;  
+
+            result.className = "result show " + type;  
+            result.scrollIntoView({ behavior: "smooth", block: "nearest" });  
+        }
+    </script>
+</body>
+</html>
