@@ -1049,9 +1049,10 @@ footer {
     aria-label="Open profile">
 
     <img
-        id="profileImage"
-        src="default-avatar.png"
-        alt="Profile">
+    id="profileImage"
+    src="default-avatar.png"
+    alt="Profile"
+    onerror="this.style.display='none'; this.parentElement.classList.add('default-profile');">
 
     </button>
 </header>
