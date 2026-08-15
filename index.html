@@ -549,7 +549,8 @@ body {
 const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
 const SUPABASE_ANON_KEY = "Sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Renamed variable to prevent shadowing global window.supabase
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /* =====================================================
    INITIALIZATION SEQUENCE
@@ -610,7 +611,7 @@ async function handleSignUp(event) {
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
 
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabaseClient.auth.signUp({ email, password });
 
     if (error) {
         alert("Registration failed: " + error.message);
@@ -625,7 +626,7 @@ async function handleLogin(event) {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
     if (error) {
         alert("Login failed: " + error.message);
@@ -636,12 +637,12 @@ async function handleLogin(event) {
 }
 
 async function handleLogout() {
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
     location.reload();
 }
 
 async function checkUserSession() {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     const authContainer = document.getElementById("auth-container");
     const userStatus = document.getElementById("user-status");
 
@@ -659,4 +660,5 @@ document.addEventListener("DOMContentLoaded", startTrustAI);
 </script>
 
 </body>
-</html>
+      </html>
+      
