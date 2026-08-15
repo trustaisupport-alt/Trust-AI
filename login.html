@@ -994,99 +994,146 @@ async function handleAuth(event) {
 
     const submitBtn = document.getElementById("submitBtn");
 
-    /* =================================================
-       PHONE OTP FLOW
-    ================================================= */
-    if (isPhoneMode) {
-        const inputField = document.getElementById("email");
-        const val = inputField.value.trim();
+    try {
+        /* =================================================
+           PHONE OTP FLOW
+        ================================================= */
+        if (isPhoneMode) {
+            const inputField = document.getElementById("email");
+            const val = inputField.value.trim();
 
-        if (!pendingPhone) {
-            if (!val) {
-                showMessage("Please enter your phone number.", "error");
-                return;
-            }
+            if (!pendingPhone) {
+                if (!val) {
+                    showMessage("Please enter your phone number.", "error");
+                    return;
+                }
 
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Sending Code...";
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Sending Code...";
 
-            const { error } = await supabaseClient.auth.signInWithOtp({
-                phone: val
-            });
+                const { error } = await supabaseClient.auth.signInWithOtp({
+                    phone: val
+                });
 
-            if (error) {
-                showMessage("Phone auth error: " + error.message, "error");
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Send Verification Code";
-                return;
-            }
+                if (error) {
+                    showMessage("Phone auth error: " + error.message, "error");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Send Verification Code";
+                    return;
+                }
 
-            pendingPhone = val;
-            showMessage("Verification code sent! Enter the 6-digit code below.", "success");
-            inputLabel.textContent = "Enter 6-Digit Code";
-            inputField.type = "text";
-            inputField.placeholder = "123456";
-            inputField.value = "";
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Verify & Sign In";
-            return;
-        } else {
-            if (!val) {
-                showMessage("Please enter the verification code.", "error");
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Verifying...";
-
-            const { data, error } = await supabaseClient.auth.verifyOtp({
-                phone: pendingPhone,
-                token: val,
-                type: 'sms'
-            });
-
-            if (error) {
-                showMessage("Verification error: " + error.message, "error");
+                pendingPhone = val;
+                showMessage("Verification code sent! Enter the 6-digit code below.", "success");
+                inputLabel.textContent = "Enter 6-Digit Code";
+                inputField.type = "text";
+                inputField.placeholder = "123456";
+                inputField.value = "";
                 submitBtn.disabled = false;
                 submitBtn.textContent = "Verify & Sign In";
                 return;
+            } else {
+                if (!val) {
+                    showMessage("Please enter the verification code.", "error");
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Verifying...";
+
+                const { data, error } = await supabaseClient.auth.verifyOtp({
+                    phone: pendingPhone,
+                    token: val,
+                    type: 'sms'
+                });
+
+                if (error) {
+                    showMessage("Verification error: " + error.message, "error");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Verify & Sign In";
+                    return;
+                }
+
+                if (data && data.session) {
+                    localStorage.setItem("trustai_loggedIn", "true");
+                    const user = data.user;
+
+                    if (user && user.user_metadata && user.user_metadata.full_name) {
+                        localStorage.setItem(
+                            "trustai_userName",
+                            user.user_metadata.full_name
+                        );
+                    }
+                }
+
+                showMessage(
+                    "Signed in successfully. Opening TrustAI...",
+                    "success"
+                );
+
+                setTimeout(
+                    function() {
+                        window.location.href = TRUSTAI_HOME;
+                    },
+                    500
+                );
+                return;
+            }
+        }
+
+        /* =================================================
+           EMAIL & PASSWORD FLOW (SIGN IN / SIGN UP)
+        ================================================= */
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = isSignUp ? "Creating Account..." : "Signing In...";
+
+        if (isSignUp) {
+            const fullName = document.getElementById("fullName").value.trim();
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: { full_name: fullName }
+                }
+            });
+
+            if (error) {
+                throw error;
+            }
+
+            showMessage("Account created successfully! Please check your email or sign in.", "success");
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Create Account";
+        } else {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                throw error;
             }
 
             if (data && data.session) {
                 localStorage.setItem("trustai_loggedIn", "true");
-                const user = data.user;
-
-            if (
-                user.user_metadata &&
-                user.user_metadata.full_name
-            ) {
-                localStorage.setItem(
-                    "trustai_userName",
-                    user.user_metadata.full_name
-                );
             }
-        }
 
-        showMessage(
-            "Signed in successfully. Opening TrustAI...",
-            "success"
-        );
-
-        setTimeout(
-            function() {
+            showMessage("Signed in successfully. Opening TrustAI...", "success");
+            setTimeout(function() {
                 window.location.href = TRUSTAI_HOME;
-            },
-            500
-        );
+            }, 500);
+        }
 
     } catch (error) {
         console.error(error);
         showMessage(
-            "Something went wrong. Please try again.",
+            error.message || "Something went wrong. Please try again.",
             "error"
         );
         submitBtn.disabled = false;
-        submitBtn.textContent = "Continue";
+        submitBtn.textContent = isPhoneMode ? (pendingPhone ? "Verify & Sign In" : "Send Verification Code") : (isSignUp ? "Create Account" : "Continue");
     }
 
 }
@@ -1135,4 +1182,4 @@ async function socialLogin() {
 </body>
 
 </html>
-              
+                    
