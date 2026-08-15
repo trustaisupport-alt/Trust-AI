@@ -687,18 +687,20 @@ function createAccount(event) {
 
     event.preventDefault();
 
-
     const name =
         document.getElementById("name").value.trim();
 
     const email =
-        document.getElementById("email").value.trim();
+        document.getElementById("email").value.trim().toLowerCase();
 
     const password =
         document.getElementById("password").value;
 
     const confirmPassword =
         document.getElementById("confirmPassword").value;
+
+    const terms =
+        document.getElementById("terms").checked;
 
 
     if (name.length < 2) {
@@ -709,10 +711,92 @@ function createAccount(event) {
         );
 
         return;
-
     }
 
 
+    if (!email) {
+
+        showMessage(
+            "Please enter your email address.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (password.length < 8) {
+
+        showMessage(
+            "Your password must contain at least 8 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (password !== confirmPassword) {
+
+        showMessage(
+            "The passwords do not match.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if (!terms) {
+
+        showMessage(
+            "Please agree to the Terms of Service and Privacy Policy.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /* SAVE ACCOUNT */
+
+    const account = {
+
+        name: name,
+
+        email: email,
+
+        plan: "free",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    localStorage.setItem(
+        "trustai_account",
+        JSON.stringify(account)
+    );
+
+
+    localStorage.setItem(
+        "trustai_loggedIn",
+        "true"
+    );
+
+
+    localStorage.setItem(
+        "trustai_userName",
+        name
+    );
+
+
+    /* GO DIRECTLY TO MAIN PAGE */
+
+    window.location.href = "home.html";
+
+}
     if (password.length < 8) {
 
         showMessage(
