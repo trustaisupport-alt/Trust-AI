@@ -639,7 +639,6 @@ function checkPassword() {
             "Use at least 8 characters.";
 
         return;
-
     }
 
 
@@ -687,6 +686,7 @@ function createAccount(event) {
 
     event.preventDefault();
 
+
     const name =
         document.getElementById("name").value.trim();
 
@@ -746,203 +746,6 @@ function createAccount(event) {
         return;
     }
 
-
-    if (!terms) {
-
-        showMessage(
-            "Please agree to the Terms of Service and Privacy Policy.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    /* SAVE ACCOUNT */
-
-    const account = {
-
-        name: name,
-
-        email: email,
-
-        plan: "free",
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-
-    localStorage.setItem(
-        "trustai_account",
-        JSON.stringify(account)
-    );
-
-
-    localStorage.setItem(
-        "trustai_loggedIn",
-        "true"
-    );
-
-
-    localStorage.setItem(
-        "trustai_userName",
-        name
-    );
-
-
-    /* GO DIRECTLY TO MAIN PAGE */
-
-    window.location.href = "home.html";
-
-}
-    if (password.length < 8) {
-
-        showMessage(
-            "Your password must contain at least 8 characters.",
-            "error"
-        );
-
-<script>
-
-/* =========================
-   PASSWORD STRENGTH
-========================= */
-
-function checkPassword() {
-
-    const password =
-        document.getElementById("password").value;
-
-    const bar =
-        document.getElementById("strengthBar");
-
-    const text =
-        document.getElementById("passwordText");
-
-    let score = 0;
-
-    if (password.length >= 8) score++;
-    if (/[A-Z]/.test(password)) score++;
-    if (/[a-z]/.test(password)) score++;
-    if (/[0-9]/.test(password)) score++;
-    if (/[^A-Za-z0-9]/.test(password)) score++;
-
-    if (password.length === 0) {
-
-        bar.style.width = "0%";
-
-        text.textContent =
-            "Use at least 8 characters.";
-
-        return;
-    }
-
-    if (score <= 2) {
-
-        bar.style.width = "35%";
-        bar.style.background = "#ef4444";
-
-        text.textContent =
-            "Weak password.";
-
-    } else if (score <= 3) {
-
-        bar.style.width = "65%";
-        bar.style.background = "#f59e0b";
-
-        text.textContent =
-            "Moderate password.";
-
-    } else {
-
-        bar.style.width = "100%";
-        bar.style.background = "#10b981";
-
-        text.textContent =
-            "Strong password.";
-    }
-}
-
-
-/* =========================
-   CREATE ACCOUNT
-========================= */
-
-function createAccount(event) {
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const email =
-        document.getElementById("email").value.trim().toLowerCase();
-
-    const password =
-        document.getElementById("password").value;
-
-    const confirmPassword =
-        document.getElementById("confirmPassword").value;
-
-    const terms =
-        document.getElementById("terms").checked;
-
-
-    /* NAME */
-
-    if (name.length < 2) {
-
-        showMessage(
-            "Please enter your full name.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    /* EMAIL */
-
-    if (!email) {
-
-        showMessage(
-            "Please enter your email address.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    /* PASSWORD */
-
-    if (password.length < 8) {
-
-        showMessage(
-            "Your password must contain at least 8 characters.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    /* CONFIRM PASSWORD */
-
-    if (password !== confirmPassword) {
-
-        showMessage(
-            "The passwords do not match.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    /* TERMS */
 
     if (!terms) {
 
@@ -963,30 +766,37 @@ function createAccount(event) {
 
     if (existingAccount) {
 
-        const account =
-            JSON.parse(existingAccount);
+        try {
 
-        if (
-            account.email &&
-            account.email.toLowerCase() === email
-        ) {
+            const oldAccount =
+                JSON.parse(existingAccount);
 
-            showMessage(
-                "An account with this email already exists. Please sign in.",
-                "error"
+
+            if (
+                oldAccount.email &&
+                oldAccount.email.toLowerCase() === email
+            ) {
+
+                showMessage(
+                    "An account with this email already exists. Please sign in.",
+                    "error"
+                );
+
+                return;
+            }
+
+        } catch (error) {
+
+            localStorage.removeItem(
+                "trustai_account"
             );
 
-            return;
         }
+
     }
 
 
-    /*
-       PROTOTYPE ACCOUNT
-
-       The password is intentionally NOT stored
-       in localStorage.
-    */
+    /* CREATE ACCOUNT */
 
     const account = {
 
@@ -998,6 +808,7 @@ function createAccount(event) {
 
         createdAt:
             new Date().toISOString()
+
     };
 
 
@@ -1007,15 +818,13 @@ function createAccount(event) {
     );
 
 
-    /* MARK USER AS LOGGED IN */
+    /* LOG USER IN */
 
     localStorage.setItem(
         "trustai_loggedIn",
         "true"
     );
 
-
-    /* SAVE DISPLAY NAME */
 
     localStorage.setItem(
         "trustai_userName",
@@ -1024,17 +833,23 @@ function createAccount(event) {
 
 
     showMessage(
-        "Account created successfully. Redirecting...",
+        "Account created successfully. Opening TrustAI...",
         "success"
     );
 
 
-    setTimeout(function() {
+    /* OPEN MAIN PAGE */
 
-        window.location.href =
-            "./home.html";
+    setTimeout(
+        function() {
 
-    }, 1200);
+            window.location.href =
+                "./home.html";
+
+        },
+        800
+    );
+
 }
 
 
@@ -1042,20 +857,27 @@ function createAccount(event) {
    MESSAGE
 ========================= */
 
-function showMessage(text, type) {
+function showMessage(
+    text,
+    type
+) {
 
     const message =
         document.getElementById("message");
 
+
     message.textContent =
         text;
 
+
     message.className =
         "message show " + type;
+
 }
 
 </script>
 
+
 </body>
 
-  </html>
+</html>
