@@ -113,7 +113,7 @@ body {
 
 .change-picture {
     display: inline-block;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     color: #1687ff;
     font-size: 13px;
     font-weight: bold;
@@ -121,6 +121,19 @@ body {
 }
 
 .change-picture:hover {
+    text-decoration: underline;
+}
+
+.remove-picture {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #f87171;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.remove-picture:hover {
     text-decoration: underline;
 }
 
@@ -298,6 +311,15 @@ input::placeholder {
             Change profile picture
 
         </label>
+
+
+        <div
+            class="remove-picture"
+            onclick="removeProfilePicture()">
+
+            Remove profile picture
+
+        </div>
 
 
         <input
@@ -529,6 +551,42 @@ function changeProfilePicture(event) {
 
 
     reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   REMOVE PROFILE PICTURE
+   ===================================================== */
+
+function removeProfilePicture() {
+
+    const avatar =
+        document.getElementById(
+            "profileAvatar"
+        );
+
+
+    localStorage.removeItem(
+        "trustai_profilePicture"
+    );
+
+
+    avatar.style.backgroundImage =
+        "none";
+
+
+    avatar.textContent = "👤";
+
+
+    document.getElementById(
+        "profilePictureInput"
+    ).value = "";
+
+
+    showMessage(
+        "Profile picture removed."
+    );
 
 }
 
