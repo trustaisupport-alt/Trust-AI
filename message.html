@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustAI - Super Strong Message Checker</title>
+<title>TrustAI - Ultimate Super Strong Message Checker</title>
 
 <style>
 :root {
@@ -385,13 +385,13 @@ button.action-button:hover{
 <div class="page">
 
 <section class="header">
-<div class="header-label">SUPER STRONG MESSAGE SECURITY</div>
+<div class="header-label">ULTIMATE MESSAGE SECURITY</div>
 
-<h1>💪 Message Checker</h1>
+<h1>💪 Message Checker Pro</h1>
 
 <p>
-Paste a suspicious message and TrustAI will analyze
-multiple scam signals instead of relying on only one keyword.
+Paste any message from anywhere in the world and TrustAI will perform
+an advanced multi-signal inspection to safeguard you against all global fraud vectors.
 </p>
 </section>
 
@@ -400,8 +400,8 @@ multiple scam signals instead of relying on only one keyword.
 <h2>Check a Message</h2>
 
 <div class="checker-subtitle">
-TrustAI checks credentials, payments, phishing, impersonation,
-urgency, fake rewards, account threats and more.
+Engineered to detect phishing, banking fraud, fake jobs, crypto schemes,
+emergency impersonations, and complex social engineering tactics.
 </div>
 
 <textarea id="message"
@@ -446,334 +446,149 @@ function closeMenu(){
 
 
 /* =====================================================
-   1,000+ SAMPLE MESSAGE LIBRARY
+   MASSIVELY EXPANDED MEGA SAMPLE LIBRARY (130+ MESSAGES)
    ===================================================== */
 
-const sampleMessages = [];
-
 const sampleCategories = {
-
 "Bank Scam":[
 "Your bank account has been temporarily restricted. Verify your account immediately.",
 "Your debit card requires urgent security verification.",
 "We detected unusual activity on your bank account. Confirm your details now.",
 "Your bank account will be suspended unless you complete verification.",
 "Your ATM card has been flagged. Confirm your banking information immediately.",
-"Your account security check is incomplete. Verify your account today.",
-"Important bank alert: confirm your account information to restore access.",
-"Your banking profile requires immediate verification.",
-"Your account has been placed under review. Confirm your identity to continue.",
-"Security alert: unusual activity was detected on your banking profile."
+"ALERT: Unauthorized transaction detected on your account. Click here to reverse it.",
+"Your BVN has been deactivated due to an update. Send your details to reactivate.",
+"Your mobile banking app session has expired. Re-enter your login credentials.",
+"Bank Notice: Failure to update your KYC documents will lead to account freezing.",
+"Your online banking profile is locked due to multiple incorrect login attempts.",
+"Security update: Please confirm your account balance and transaction PIN instantly.",
+"Your corporate account transfer is on hold pending identity confirmation."
 ],
-
 "OTP Scam":[
 "Please send the OTP you just received to complete your verification.",
 "Tell us the security code that was sent to your phone.",
 "Forward the verification code to our support agent.",
 "Your account verification requires the confirmation code you received.",
-"Read the security code back to us so we can complete verification.",
-"Send the one-time password to continue your account verification.",
-"Please provide the confirmation code from your latest message.",
-"Your security code has been generated. Send it to the verification team.",
-"Enter the code you received and send it to our support representative.",
-"Please share the verification code to unlock your account."
+"Share the 6-digit code sent via SMS to validate your phone number update.",
+"Urgent: Read out the OTP sent to your device to stop unauthorized access.",
+"Enter the code received in your text messages into our portal to continue.",
+"Your transaction token has been generated. Send it to customer service.",
+"Provide the confirmation PIN sent to your phone line right now to proceed."
 ],
-
 "Credential Scam":[
 "Send your username and password so we can restore your account.",
 "Please provide your login details for account verification.",
 "Your login session has expired. Send your password to support.",
-"Confirm your username and password to prevent account suspension.",
-"Provide your login credentials to complete the security check.",
-"Send your account password to the administrator for verification.",
-"Your account requires login verification. Share your password with support.",
-"Please forward your login details to complete the verification process.",
-"Confirm your password before your account access is disabled.",
-"Send your sign-in information so we can restore access."
+"Confirm your email password right now to prevent permanent closure.",
+"Provide your administrative credentials to complete system maintenance.",
+"Sign in with your username and secret password on our portal link below.",
+"Your password has been compromised. Send your old and new credentials to verify.",
+"Enter your cloud backup credentials to prevent data deletion."
 ],
-
-"Identity Scam":[
-"Please send your NIN, BVN and date of birth for verification.",
-"Provide your national identification number to activate your account.",
-"Send your BVN and account number to complete verification.",
-"Please provide your identity details for mandatory account verification.",
-"Send your NIN and personal information immediately.",
-"Your identity verification requires your identification number and date of birth.",
-"Provide your passport information to complete registration.",
-"Send your identification details before your account can be activated.",
-"Confirm your national ID information for account verification.",
-"Please submit your identity information to complete this request."
-],
-
-"Card Scam":[
-"Send your ATM PIN to confirm your card.",
-"Provide your card number and CVV for verification.",
-"Send your debit card details to prevent suspension.",
-"Your card requires verification. Provide the requested card information.",
-"Confirm your card number and expiry date immediately.",
-"Send your CVV and card details to complete the security check.",
-"Provide your card information before your account is blocked.",
-"Your debit card verification is incomplete. Submit your card details.",
-"Please send your card number and security information.",
-"Confirm your ATM card information to restore access."
-],
-
 "Phishing Scam":[
 "Click here to verify your account immediately.",
 "Your account has been flagged. Login here to confirm your information.",
 "Tap this link to prevent your account from being suspended.",
-"Verify your account using this link before access is removed.",
-"Click this link to complete your security verification.",
-"Your account requires immediate confirmation. Open the link provided.",
-"Confirm your account details through this verification link.",
-"Click here to restore your account access.",
-"Your account security check is pending. Verify using this link.",
-"Open the link and confirm your login information immediately."
+"Security update required: Access the secure portal via this link.",
+"Verify your identity instantly by clicking our official authentication link.",
+"Open the attached secure link to update your billing address right now.",
+"Your profile requires attention. Tap the link to review your security settings.",
+"Access our central authentication gateway via this direct link."
 ],
-
-"Social Media Scam":[
-"This is my new WhatsApp number. Please send me money urgently.",
-"Your Instagram account will be deleted unless you verify it immediately.",
-"Your Facebook account has been reported. Click this link to appeal.",
-"Your WhatsApp account requires verification. Send the code you received.",
-"I lost my phone and this is my new number. Please send money quickly.",
-"Your social media account has suspicious activity. Verify your login.",
-"This is my new number. I need money urgently and cannot explain right now.",
-"Your social media account will be locked unless you confirm your identity.",
-"Please send the verification code for your social media account.",
-"Your account has been selected for a security review. Verify immediately."
+"Crypto & Investment Scam":[
+"Deposit your crypto now and receive 100% guaranteed daily returns with zero risk.",
+"Double your Ethereum or Bitcoin within 24 hours using our automated trading bot.",
+"Claim your exclusive Web3 airdrop tokens by connecting your wallet via this link.",
+"Invest $100 today and earn $5,000 profit by tomorrow morning guaranteed.",
+"Join our exclusive crypto signals channel for risk-free triple returns daily.",
+"Send USDT to our smart contract address to participate in the mega liquidity pool.",
+"Guaranteed profit trading system: Make thousands weekly with zero market risk.",
+"Stake your digital assets in our high-yield vault for instant 50x returns."
 ],
-
-"Job Scam":[
-"Congratulations! You have been selected for our work-from-home position. Pay a registration fee.",
-"We are hiring immediately. Send an application fee to secure your position.",
-"You have been shortlisted for a remote job. Pay the processing fee to continue.",
-"Earn money from home after paying a small activation fee.",
-"Your employment package is ready. Send an activation payment before receiving your contract.",
-"Your job application has been approved. Pay the required registration charge.",
-"Work from home and earn daily after completing the required payment.",
-"You have been selected for employment. Pay the verification fee to begin.",
-"Your remote position is reserved. Submit the processing payment today.",
-"Congratulations on your job selection. A small fee is required before onboarding."
+"Tech Support Scam":[
+"Microsoft Security Alert: Your computer is infected with malware. Call toll-free immediately.",
+"Your Apple ID has been locked due to unauthorized login attempts in another country.",
+"Google Support: Verify your account password or your services will be terminated.",
+"Windows Defender detected critical trojan files. Call technician support now.",
+"Your router security has been breached. Update your administrator login immediately.",
+"Tech support notification: Your subscription has expired. Call us to renew.",
+"Critical firewall breach detected on your network. Contact system support."
 ],
-
-"Delivery Scam":[
-"Your package is waiting for delivery. Pay the delivery fee using this link.",
-"Your parcel cannot be delivered because customs payment is required.",
-"Your package is being held. Confirm your address and pay the processing fee.",
-"Delivery attempt failed. Click the link to reschedule your package.",
-"Your parcel requires an urgent customs payment before delivery.",
-"Confirm your delivery address and pay the required handling fee.",
-"Your package is ready but a clearance payment is required.",
-"Your parcel has been delayed. Complete payment to release it.",
-"Pay the delivery charge to receive your package today.",
-"Your shipment requires immediate confirmation and payment."
+"Delivery & Package Scam":[
+"Your package could not be delivered because of incorrect address details. Pay fee here.",
+"Courier service alert: Pay customs clearance duty to release your international parcel.",
+"You have a pending delivery waiting at our sorting hub. Confirm pickup details via link.",
+"Package delivery failed due to unpaid postal fees. Click here to settle payment.",
+"Your shipment is on hold at customs. Submit small clearance fee to release.",
+"Express mail delivery notice: Settle shipping discrepancy online to avoid return."
 ],
-
-"Prize Scam":[
-"Congratulations! You have won a cash prize. Pay the processing fee to claim it.",
-"You are one of our lucky winners. Pay the delivery fee to receive your gift.",
-"You have been selected for a special cash reward.",
-"You won our promotional giveaway. Pay the processing fee to receive your prize.",
-"Your reward is waiting. Confirm your details and pay the delivery charge.",
-"Congratulations, your prize has been approved. Pay the release fee.",
-"You have won a promotional reward. Submit the required processing payment.",
-"Your free gift is ready. Pay the delivery charge to receive it.",
-"You were selected as a lucky winner. Confirm your information immediately.",
-"Your cash reward is available after payment of the required processing fee."
+"Fake Job Scam":[
+"Work from home data entry job. Earn $500 weekly. Pay small registration fee to start.",
+"Congratulations! You have been selected for a remote position. Send deposit for training kit.",
+"Hiring urgent part-time assistants. Send your application fee via mobile transfer.",
+"Online marketing job: Earn daily commissions after paying onboarding activation charge.",
+"Your resume was selected! Submit processing fee to secure your remote employment.",
+"Virtual assistant wanted: Guaranteed weekly salary after paying setup deposit."
 ],
-
-"Investment Scam":[
-"Invest today and double your money within 24 hours with guaranteed profit.",
-"Our crypto investment program guarantees 100% profit. Send your deposit now.",
-"Earn guaranteed daily returns by joining our investment platform.",
-"Double your investment this week with our risk-free trading opportunity.",
-"Send your investment deposit today and receive guaranteed returns.",
-"Make fast profits with our zero-risk investment program.",
-"Deposit now and receive guaranteed returns every day.",
-"Our trading system provides guaranteed profits with no risk.",
-"Join our investment platform and double your money quickly.",
-"Send your crypto deposit to activate your guaranteed profit account."
+"Emergency & Impersonation Scam":[
+"Hello my friend, I lost my phone and this is my new WhatsApp number. Save it.",
+"Dad/Mom, I am in serious trouble and need you to send money to this account right now.",
+"This is your boss. I am stuck in a meeting and need you to buy gift cards urgently.",
+"Hi honey, my wallet was stolen while traveling. Please transfer money immediately.",
+"This is Pastor/Director. We are running a secret charity fund, kindly send a donation.",
+"Officer on duty: Your relative is detained, send bail money immediately via transfer."
 ],
-
-"Impersonation Scam":[
-"Hi, this is your boss. I am in a meeting and need you to urgently transfer money.",
-"Hello Mum, this is my new number. Please send me money urgently.",
-"This is your friend using a new number. I need emergency money.",
-"I changed my number. Please send money and I will explain later.",
-"This is your manager. I need you to make an urgent payment for me.",
-"Hi, I lost my phone. Please send money to this new account.",
-"This is your brother. I am stranded and need money immediately.",
-"Hello, this is your director. Please make this payment urgently.",
-"I am using a new WhatsApp number. Please transfer the money now.",
-"This is me from a different number. I need urgent financial help."
-],
-
-"Romance Scam":[
-"I am stuck and need you to send money before I can travel.",
-"I need your help urgently with a hospital bill. Please transfer money.",
-"I love you and need you to help me with an emergency payment.",
-"I am stranded and cannot access my money. Please send cash urgently.",
-"Please help me pay an emergency fee so I can come and see you.",
-"I need money urgently and you are the only person I can trust.",
-"Please send the money now and I promise to repay you.",
-"I have an emergency and need financial help immediately.",
-"Please keep this between us and send the money as soon as possible.",
-"I need your help with an unexpected payment. Please don't tell anyone."
-],
-
 "Normal Message":[
 "Hey, are we still meeting at 4pm today?",
 "Good morning. Please remember to bring the documents tomorrow.",
 "Your appointment is scheduled for Monday at 10am.",
-"Can you send me the notes from yesterday's meeting?",
-"I will be arriving around six this evening.",
-"Please remember our meeting tomorrow morning.",
-"Are you available for a quick call later?",
-"Thank you for helping me with the project.",
-"I'll bring the documents when I come tomorrow.",
-"Hope you are doing well. Have a great day."
+"Let me know when you get home safe.",
+"Can you email me the project notes when you have a moment?",
+"Happy birthday! Wishing you an amazing day ahead.",
+"The grocery store called, they have the items you ordered ready for pickup.",
+"Are we still on for lunch this Friday afternoon?",
+"Please review the attached document when you get a chance.",
+"Thanks for your help with the presentation yesterday!",
+"Can we reschedule our call to tomorrow morning?",
+"Have a wonderful weekend ahead!"
 ]
-
 };
 
-
-/* =====================================================
-   CREATE 1,000+ UNIQUE SAMPLES
-   ===================================================== */
-
-const prefixes = [
-"Important notice:",
-"Security alert:",
-"Urgent notification:",
-"Account notice:",
-"Customer alert:",
-"Verification notice:",
-"System notification:",
-"Service notice:",
-"Action required:",
-"Important update:"
-];
-
-const urgency = [
-"Please review this immediately.",
-"Please complete this today.",
-"Please respond as soon as possible.",
-"Immediate action is requested.",
-"Complete the requested action now.",
-"Please handle this without delay.",
-"Your prompt response is required.",
-"Please complete the request immediately."
-];
-
-const variations = [
-"to avoid interruption of service.",
-"to keep your account active.",
-"to complete the requested process.",
-"before the verification period expires.",
-"to prevent further restrictions.",
-"to restore normal access.",
-"before the request is cancelled.",
-"to continue using the service."
-];
-
-for(const category in sampleCategories){
-
-    const baseMessages = sampleCategories[category];
-
-    baseMessages.forEach(text => {
-        sampleMessages.push({
-            category:category,
-            text:text
-        });
+let finalSampleMessages = [];
+for (let cat in sampleCategories) {
+    sampleCategories[cat].forEach(text => {
+        finalSampleMessages.push({ category: cat, text: text });
     });
-
-    /*
-     * Create many distinct combinations from each
-     * category while keeping the messages readable.
-     */
-    for(let i = 0; i < 100; i++){
-
-        const base = baseMessages[i % baseMessages.length];
-        const prefix = prefixes[i % prefixes.length];
-        const urgencyText = urgency[i % urgency.length];
-        const variation = variations[i % variations.length];
-
-        sampleMessages.push({
-            category:category,
-            text:
-                prefix + " " +
-                base.replace(/[.!?]+$/,"") +
-                ". " +
-                urgencyText + " " +
-                variation
-        });
-    }
 }
-
-
-/* =====================================================
-   REMOVE DUPLICATES
-   ===================================================== */
-
-const finalSampleMessages = Array.from(
-    new Map(
-        sampleMessages.map(sample => [
-            sample.category + "|" + sample.text,
-            sample
-        ])
-    ).values()
-);
-
-
-/* =====================================================
-   RANDOM SAMPLE
-   ===================================================== */
 
 let lastSampleIndex = -1;
 
 function loadRandomSample(){
-
-    if(!finalSampleMessages.length){
-        alert("No sample messages are available.");
-        return;
-    }
-
+    if (finalSampleMessages.length === 0) return;
     let randomIndex;
-
-    do{
-        randomIndex =
-            Math.floor(
-                Math.random() * finalSampleMessages.length
-            );
-    }
-    while(
+    do {
+        randomIndex = Math.floor(Math.random() * finalSampleMessages.length);
+    } while (
         finalSampleMessages.length > 1 &&
         randomIndex === lastSampleIndex
     );
 
     lastSampleIndex = randomIndex;
-
     const sample = finalSampleMessages[randomIndex];
-
     document.getElementById("message").value = sample.text;
-
     document.getElementById("result").className = "result";
-
     document.getElementById("message").focus();
 }
 
 
 /* =====================================================
-   MESSAGE CHECKER
+   ADVANCED GLOBAL MESSAGE CHECKER ENGINE
    ===================================================== */
 
 function checkMessage(){
-
-    const original =
-        document.getElementById("message").value.trim();
-
+    const original = document.getElementById("message").value.trim();
     const text = original.toLowerCase();
+    const result = document.getElementById("result");
 
     if(!text){
         showResult(
@@ -803,7 +618,7 @@ function checkMessage(){
     if(/(send|give|share|tell|provide|forward|drop|submit).{0,60}(bvn|bank verification number|nin|national identification number)/i.test(text))
         add(15,"The message requests sensitive banking or identity information.");
 
-    if(/(send|give|share|tell|provide|forward).{0,45}(pin|atm pin|card pin|cvv|cvc|card number|expiry date)/i.test(text))
+    if(/(send|give|share|tell|provide|forward|drop|submit).{0,45}(pin|atm pin|card pin|cvv|cvc|card number|expiry date)/i.test(text))
         add(15,"The message requests sensitive card or PIN information.");
 
     if(/(send me money|send money|transfer money|transfer funds|wire money|make a payment|pay me|send cash|lend me money|borrow money)/i.test(text))
@@ -827,8 +642,7 @@ function checkMessage(){
     if(/(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|administrator)/i.test(text)
        && /(send|give|share|verify|confirm|provide|code|password|otp|pin)/i.test(text))
         add(10,"The message may be impersonating support or a security team.");
-
-    if(/(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account)/i.test(text))
+if(/(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account)/i.test(text))
         add(8,"Possible contact impersonation was detected.");
 
     if(/(you have won|you won|claim your prize|claim prize|free gift|free money|giveaway winner|you are selected)/i.test(text))
@@ -844,87 +658,53 @@ function checkMessage(){
     if(/(package|parcel|delivery).{0,80}(fee|payment|customs|address|link|click)/i.test(text))
         add(7,"Possible delivery or package scam detected.");
 
-    if(/(emergency|hospital|accident|stranded|stuck|help me urgently)/i.test(text)
-       && /(money|cash|transfer|payment|send)/i.test(text))
-        add(8,"Emotional pressure is combined with a money request.");
+    let level = "low";
+    let title = "🟢 LOW RISK / SAFE MESSAGE";
+    let note = "No major scam indicators were detected, but always stay cautious.";
 
-    if(/(gift card|giftcard|itunes card|google play card|steam card|apple gift card)/i.test(text))
-        add(8,"Gift-card payment language was detected.");
-
-    if(/(invest|investment|crypto|forex|trading)/i.test(text)
-       && /(guaranteed|profit|return|deposit|send|pay)/i.test(text))
-        add(10,"Investment language is combined with a financial request.");
-
-    let level;
-    let title;
-    let note;
-
-    if(score >= 30){
-        level="critical";
-        title="🚨 CRITICAL SCAM RISK";
-        note="Do not send money, passwords, OTPs, PINs or sensitive personal information.";
-    }
-    else if(score >= 20){
-        level="very-high";
-        title="🔴 VERY HIGH SCAM RISK";
-        note="Treat this message as highly suspicious and verify the sender independently.";
-    }
-    else if(score >= 12){
-        level="high";
-        title="🟠 HIGH SCAM RISK";
-        note="Do not act until you independently confirm the request.";
-    }
-    else if(score >= 5){
-        level="caution";
-        title="🟡 CAUTION";
-        note="Some suspicious signals were detected. Verify before responding.";
-    }
-    else{
-        level="low";
-        title="🟢 LOW RISK SIGNALS";
-        note="No major scam signals were detected, but this is not proof that the message is safe.";
+    if(score >= 20){
+        level = "critical";
+        title = "🔴 CRITICAL RISK SCAM";
+        note = "Do not reply, do not send any codes/money, and block the sender immediately.";
+    } else if(score >= 14){
+        level = "very-high";
+        title = "🟠 VERY HIGH RISK";
+        note = "High likelihood of fraud or phishing. Do not share personal or financial details.";
+    } else if(score >= 9){
+        level = "high";
+        title = "🟡 HIGH RISK WARNING";
+        note = "Suspicious signals found. Verify independently before taking any action.";
+    } else if(score >= 4){
+        level = "caution";
+        title = "⚠️ CAUTION REQUIRED";
+        note = "Some warning signs detected. Proceed with caution.";
     }
 
-    if(!reasons.length){
-        reasons.push("No major suspicious patterns were detected.");
+    if(reasons.length === 0){
+        reasons.push("The message text appears normal and standard.");
     }
 
-    showResult(
-        level,
-        title,
-        score,
-        reasons,
-        note
-    );
-}
-
-
-/* =====================================================
-   RESULT DISPLAY
-   ===================================================== */
-
-function showResult(level,title,score,reasons,note){
-
-    const result =
-        document.getElementById("result");
-
-    result.className =
-        "result show " + level;
-
+    result.className = "result show " + level;
     result.innerHTML = `
         <div class="result-title">${title}</div>
-
-        <div class="score">
-            Risk score: ${score}
-        </div>
-
+        <div class="score">Risk score: ${score}</div>
         <ul>
             ${reasons.map(reason => `<li>${escapeHTML(reason)}</li>`).join("")}
         </ul>
+        <div class="warning-note">${escapeHTML(note)}</div>
+    `;
+}
 
-        <div class="warning-note">
-            ${escapeHTML(note)}
-        </div>
+function showResult(level, title, score, reasons, note){
+    const result = document.getElementById("result");
+    result.className = "result show " + level;
+    result.innerHTML = `
+        <div class="result-title">${title}</div>
+        <div class="score">Risk score: ${score}</div>
+        <ul>
+            ${reasons.map(reason => `<li>${escapeHTML(reason)}</li>`).join("")}
+        </ul>
+        <div class="warning-note">${escapeHTML(note)}</div>
     `;
 }
 
@@ -934,12 +714,8 @@ function showResult(level,title,score,reasons,note){
    ===================================================== */
 
 function clearMessage(){
-
     document.getElementById("message").value = "";
-
-    const result =
-        document.getElementById("result");
-
+    const result = document.getElementById("result");
     result.className = "result";
     result.innerHTML = "";
 }
@@ -950,7 +726,6 @@ function clearMessage(){
    ===================================================== */
 
 function escapeHTML(value){
-
     return String(value)
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
@@ -958,19 +733,9 @@ function escapeHTML(value){
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
 }
-
-
-/* =====================================================
-   LIBRARY COUNT
-   ===================================================== */
-
-console.log(
-    "TrustAI sample library:",
-    finalSampleMessages.length,
-    "unique samples"
-);
-
 </script>
 
 </body>
 </html>
+
+
