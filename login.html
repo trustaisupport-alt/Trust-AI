@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,6 +12,9 @@ content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
 content="Sign in to your TrustAI account">
+
+<!-- SUPABASE JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
@@ -365,6 +367,8 @@ input::placeholder {
     font-weight: 700;
 
     text-decoration: none;
+
+    cursor: pointer;
 }
 
 .create-account a:hover {
@@ -478,12 +482,12 @@ input::placeholder {
     <section class="login-card">
 
 
-        <h1>
+        <h1 id="pageTitle">
             Sign in to TrustAI
         </h1>
 
 
-        <p class="subtitle">
+        <p class="subtitle" id="pageSubtitle">
             Continue to your TrustAI account
         </p>
 
@@ -517,12 +521,11 @@ input::placeholder {
             class="social-button"
             onclick="socialLogin('Apple')">
 
-        <span class="social-icon">
-    <svg width="16" height="18" viewBox="0 0 170 170" fill="currentColor">
-        <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.33.13-9.13-1.9-14.4-6.1-3.18-2.62-7.05-7.23-11.63-13.82-6.52-9.35-11.64-19.78-15.35-31.3-3.71-11.51-5.57-22.38-5.57-32.6 0-14.28 3.69-26.15 11.07-35.6 7.38-9.46 16.7-14.28 27.96-14.47 4.58 0 9.8 1.18 15.67 3.55 5.86 2.37 9.87 3.55 12.02 3.55 1.74 0 5.86-1.24 12.37-3.73 6.51-2.48 11.63-3.66 15.36-3.55 11.75.52 21.03 4.86 27.84 13.02-10.42 6.33-15.53 15.09-15.33 26.27.23 8.78 3.57 16.14 10.02 22.09 6.45 5.95 14.15 9.35 23.1 10.2-2.3 6.84-5.35 13.62-9.15 20.35zM119.22 31.85c0-6.72 2.45-13.32 7.35-19.8 4.9-6.48 11.1-10.51 18.6-12.05.52 1.04.78 2.08.78 3.12 0 6.82-2.5 13.51-7.5 20.07-5 6.56-11.16 10.51-18.48 11.85-.26-.81-.45-1.87-.75-3.19z"/>
-    </svg>
-        </span>
-            
+            <span class="social-icon">
+                <svg width="16" height="18" viewBox="0 0 170 170" fill="currentColor">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.33.13-9.13-1.9-14.4-6.1-3.18-2.62-7.05-7.23-11.63-13.82-6.52-9.35-11.64-19.78-15.35-31.3-3.71-11.51-5.57-22.38-5.57-32.6 0-14.28 3.69-26.15 11.07-35.6 7.38-9.46 16.7-14.28 27.96-14.47 4.58 0 9.8 1.18 15.67 3.55 5.86 2.37 9.87 3.55 12.02 3.55 1.74 0 5.86-1.24 12.37-3.73 6.51-2.48 11.63-3.66 15.36-3.55 11.75.52 21.03 4.86 27.84 13.02-10.42 6.33-15.53 15.09-15.33 26.27.23 8.78 3.57 16.14 10.02 22.09 6.45 5.95 14.15 9.35 23.1 10.2-2.3 6.84-5.35 13.62-9.15 20.35zM119.22 31.85c0-6.72 2.45-13.32 7.35-19.8 4.9-6.48 11.1-10.51 18.6-12.05.52 1.04.78 2.08.78 3.12 0 6.82-2.5 13.51-7.5 20.07-5 6.56-11.16 10.51-18.48 11.85-.26-.81-.45-1.87-.75-3.19z"/>
+                </svg>
+            </span>
 
             Continue with Apple
 
@@ -554,12 +557,33 @@ input::placeholder {
         </div>
 
 
-        <!-- EMAIL -->
+        <!-- FORM -->
 
         <form
             id="loginForm"
-            onsubmit="continueWithEmail(event)">
+            onsubmit="handleAuth(event)">
 
+
+            <!-- FULL NAME (Sign Up only) -->
+
+            <div
+                class="form-group"
+                id="nameGroup"
+                style="display: none;">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="John Doe">
+
+            </div>
+
+
+            <!-- EMAIL ADDRESS -->
 
             <div class="form-group">
 
@@ -577,8 +601,26 @@ input::placeholder {
             </div>
 
 
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="••••••••"
+                    required>
+
+            </div>
+
+
             <button
                 type="submit"
+                id="submitBtn"
                 class="continue-button">
 
                 Continue
@@ -613,15 +655,19 @@ input::placeholder {
         </div>
 
 
-        <!-- CREATE ACCOUNT -->
+        <!-- TOGGLE MODE -->
 
         <div class="create-account">
 
-            Don't have a TrustAI account?
+            <span id="toggleText">
+                Don't have a TrustAI account?
+            </span>
 
             <br><br>
 
-            <a href="./signup.html">
+            <a
+                id="toggleLink"
+                onclick="toggleAuthMode(event)">
                 Create account
             </a>
 
@@ -655,216 +701,183 @@ input::placeholder {
 <script>
 
 /* =========================
-   GO TO HOME
+   SUPABASE INITIALIZATION
 ========================= */
 
-function goToHome() {
+const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
+const SUPABASE_ANON_KEY = "YOUR_ACTUAL_ANON_KEY"; // Replace with key starting with eyJ...
 
-    window.location.href =
-        "./home.html";
+let supabaseClient = null;
+
+if (typeof supabase !== 'undefined' && SUPABASE_ANON_KEY !== "YOUR_ACTUAL_ANON_KEY") {
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
 
 /* =========================
-   SOCIAL LOGIN
+   MODE TOGGLE
 ========================= */
 
-function socialLogin(provider) {
+let isSignUp = false;
 
-    const account =
-        localStorage.getItem("trustai_account");
+function toggleAuthMode(event) {
+    if (event) event.preventDefault();
+    isSignUp = !isSignUp;
 
+    const nameGroup = document.getElementById("nameGroup");
+    const submitBtn = document.getElementById("submitBtn");
+    const toggleText = document.getElementById("toggleText");
+    const toggleLink = document.getElementById("toggleLink");
+    const pageTitle = document.getElementById("pageTitle");
+    const pageSubtitle = document.getElementById("pageSubtitle");
 
-    if (!account) {
-
-        showMessage(
-            "No TrustAI account found. Please create an account first."
-        );
-
-        return;
+    if (isSignUp) {
+        nameGroup.style.display = "block";
+        submitBtn.textContent = "Create Account";
+        toggleText.textContent = "Already have a TrustAI account?";
+        toggleLink.textContent = "Sign in";
+        pageTitle.textContent = "Create TrustAI Account";
+        pageSubtitle.textContent = "Start protecting your links and messages";
+    } else {
+        nameGroup.style.display = "none";
+        submitBtn.textContent = "Continue";
+        toggleText.textContent = "Don't have a TrustAI account?";
+        toggleLink.textContent = "Create account";
+        pageTitle.textContent = "Sign in to TrustAI";
+        pageSubtitle.textContent = "Continue to your TrustAI account";
     }
-
-
-    localStorage.setItem(
-        "trustai_loggedIn",
-        "true"
-    );
-
-
-    goToHome();
 }
 
 
 /* =========================
-   EMAIL LOGIN
+   FORM SUBMISSION
 ========================= */
 
-function continueWithEmail(event) {
-
+async function handleAuth(event) {
     event.preventDefault();
 
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const password = document.getElementById("password").value;
+    const name = document.getElementById("fullName").value.trim();
 
-    const email =
-        document.getElementById("email")
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    if (!email) {
-
-        showMessage(
-            "Please enter your email address."
-        );
-
+    if (!email || !password) {
+        showMessage("Please enter both email and password.");
         return;
     }
 
+    if (isSignUp) {
+        if (!name) {
+            showMessage("Please enter your full name.");
+            return;
+        }
 
-    const savedAccount =
-        localStorage.getItem(
-            "trustai_account"
-        );
+        // 1. Local storage fallback
+        localStorage.setItem("trustai_account", JSON.stringify({ name, email }));
 
+        // 2. Supabase registration
+        if (supabaseClient) {
+            const { data, error } = await supabaseClient.auth.signUp({
+                email: email,
+                password: password,
+                options: { data: { full_name: name } }
+            });
 
-    if (!savedAccount) {
+            if (error) {
+                showMessage("Registration error: " + error.message);
+                return;
+            }
+        }
 
-        showMessage(
-            "No TrustAI account found. Please create an account first."
-        );
+        showMessage("Account created! Redirecting to login...");
+        setTimeout(() => { toggleAuthMode(); }, 1500);
 
-        return;
+    } else {
+        // 1. Supabase login check
+        if (supabaseClient) {
+            const { data, error } = await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                showMessage("Sign-in error: " + error.message);
+                return;
+            }
+
+            localStorage.setItem("trustai_loggedIn", "true");
+            window.location.href = "./home.html";
+            return;
+        }
+
+        // 2. Local storage fallback
+        const savedAccount = localStorage.getItem("trustai_account");
+
+        if (!savedAccount) {
+            showMessage("No TrustAI account found. Please click 'Create account' first.");
+            return;
+        }
+
+        let account;
+        try {
+            account = JSON.parse(savedAccount);
+        } catch (err) {
+            showMessage("Invalid local account data. Please create a new account.");
+            return;
+        }
+
+        if (account.email !== email) {
+            showMessage("No TrustAI account was found with this email address.");
+            return;
+        }
+
+        localStorage.setItem("trustai_loggedIn", "true");
+        if (account.name) localStorage.setItem("trustai_userName", account.name);
+
+        window.location.href = "./home.html";
     }
-
-
-    let account;
-
-
-    try {
-
-        account =
-            JSON.parse(savedAccount);
-
-    } catch (error) {
-
-        showMessage(
-            "Your saved account information is invalid. Please create a new account."
-        );
-
-        return;
-    }
-
-
-    if (
-        !account.email ||
-        account.email.toLowerCase() !== email
-    ) {
-
-        showMessage(
-            "No TrustAI account was found with this email address."
-        );
-
-        return;
-    }
-
-
-    /* LOGIN SUCCESS */
-
-    localStorage.setItem(
-        "trustai_loggedIn",
-        "true"
-    );
-
-
-    if (account.name) {
-
-        localStorage.setItem(
-            "trustai_userName",
-            account.name
-        );
-
-    }
-
-
-    goToHome();
 }
 
 
 /* =========================
-   PHONE LOGIN
+   SOCIAL & OTHER AUTH
 ========================= */
+
+async function socialLogin(providerName) {
+    if (supabaseClient) {
+        const { data, error } = await supabaseClient.auth.signInWithOAuth({
+            provider: providerName.toLowerCase(),
+            options: { redirectTo: window.location.origin + "/home.html" }
+        });
+
+        if (error) showMessage("OAuth error: " + error.message);
+    } else {
+        const account = localStorage.getItem("trustai_account");
+        if (!account) {
+            showMessage("No account found. Please create an account first.");
+            return;
+        }
+        localStorage.setItem("trustai_loggedIn", "true");
+        window.location.href = "./home.html";
+    }
+}
 
 function phoneLogin() {
-
-    const account =
-        localStorage.getItem(
-            "trustai_account"
-        );
-
-
-    if (!account) {
-
-        showMessage(
-            "No TrustAI account found. Please create an account first."
-        );
-
-        return;
-    }
-
-
-    showMessage(
-        "Phone sign-in will be available when TrustAI authentication is connected."
-    );
+    showMessage("Phone sign-in will be active when phone auth is configured in Supabase.");
 }
-
-
-/* =========================
-   PASSKEY LOGIN
-========================= */
 
 function passkeyLogin() {
-
-    const account =
-        localStorage.getItem(
-            "trustai_account"
-        );
-
-
-    if (!account) {
-
-        showMessage(
-            "No TrustAI account found. Please create an account first."
-        );
-
-        return;
-    }
-
-
-    showMessage(
-        "Passkey sign-in will be available when TrustAI authentication is connected."
-    );
+    showMessage("Passkey sign-in will be active when webauthn is configured.");
 }
 
 
 /* =========================
-   MESSAGE
+   MESSAGE DISPLAY
 ========================= */
 
 function showMessage(text) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.classList.add(
-        "show"
-    );
+    const message = document.getElementById("message");
+    message.textContent = text;
+    message.classList.add("show");
 }
 
 </script>
