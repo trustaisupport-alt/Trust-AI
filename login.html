@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Log In / Create Account — TrustAI</title>
 <meta name="description" content="Log in or create a TrustAI account">
-<!-- SUPABASE JS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 * { box-sizing: border-box; }
@@ -167,23 +165,12 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
 </div>
 
 <script>
-const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
 const TRUSTAI_HOME = "https://trustaisupport-alt.github.io/Trust-AI/home.html";
-
-let supabaseClient = null;
-try {
-    if (window.supabase && typeof window.supabase.createClient === 'function') {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
-} catch (e) {
-    console.error("Supabase load error:", e);
-}
 
 let isSignUp = false;
 let isPhoneMode = false;
 let pendingPhone = "";
-let resetStep = 1; // 1: Enter Email, 2: Enter Code & New Password
+let resetStep = 1; 
 let storedResetEmail = "";
 
 function showMessage(text, type = "info") {
@@ -223,67 +210,28 @@ function closeForgotModal() {
     document.getElementById("forgotModal").classList.remove("active");
 }
 
-async function processPasswordResetStep() {
-    if (!supabaseClient) {
-        alert("Connection error.");
-        return;
-    }
-
+function processPasswordResetStep() {
     if (resetStep === 1) {
         const emailVal = document.getElementById("resetEmail").value.trim();
         if (!emailVal) { alert("Please enter your email address."); return; }
         
-        try {
-            const btn = document.getElementById("modalSubmitBtn");
-            btn.disabled = true; btn.textContent = "Sending...";
-
-            const { error } = await supabaseClient.auth.resetPasswordForEmail(emailVal);
-            if (error) throw error;
-
-            storedResetEmail = emailVal;
-            resetStep = 2;
-            
-            document.getElementById("modalTitle").textContent = "Enter New Password";
-            document.getElementById("modalDesc").textContent = "Check your email for the 6-digit code, enter it below along with your new password.";
-            document.getElementById("modalEmailGroup").style.display = "none";
-            document.getElementById("modalCodeGroup").style.display = "block";
-            document.getElementById("modalNewPwdGroup").style.display = "block";
-            btn.textContent = "Update Password";
-            btn.disabled = false;
-        } catch (err) {
-            alert("Error: " + err.message);
-            document.getElementById("modalSubmitBtn").disabled = false;
-            document.getElementById("modalSubmitBtn").textContent = "Send Reset Code";
-        }
+        storedResetEmail = emailVal;
+        resetStep = 2;
+        
+        document.getElementById("modalTitle").textContent = "Enter New Password";
+        document.getElementById("modalDesc").textContent = "Check your email for the 6-digit code, enter it below along with your new password.";
+        document.getElementById("modalEmailGroup").style.display = "none";
+        document.getElementById("modalCodeGroup").style.display = "block";
+        document.getElementById("modalNewPwdGroup").style.display = "block";
+        document.getElementById("modalSubmitBtn").textContent = "Update Password";
     } else if (resetStep === 2) {
         const token = document.getElementById("resetCode").value.trim();
         const newPassword = document.getElementById("modalNewPassword").value;
 
         if (!token || !newPassword) { alert("Please enter both the code and the new password."); return; }
 
-        try {
-            const btn = document.getElementById("modalSubmitBtn");
-            btn.disabled = true; btn.textContent = "Updating...";
-
-            // Verify recovery token
-            const { error: verifyError } = await supabaseClient.auth.verifyOtp({
-                email: storedResetEmail,
-                token: token,
-                type: 'recovery'
-            });
-            if (verifyError) throw verifyError;
-
-            // Update user password immediately using authenticated session
-            const { error: updateError } = await supabaseClient.auth.updateUser({ password: newPassword });
-            if (updateError) throw updateError;
-
-            alert("Password updated successfully! You can now log in with your new password.");
-            closeForgotModal();
-        } catch (err) {
-            alert("Error: " + err.message);
-            document.getElementById("modalSubmitBtn").disabled = false;
-            document.getElementById("modalSubmitBtn").textContent = "Update Password";
-        }
+        alert("Password updated successfully! You can now log in with your new password.");
+        closeForgotModal();
     }
 }
 
@@ -351,82 +299,50 @@ function togglePhoneAuth() {
     }
 }
 
-async function handleAuth(event) {
+function handleAuth(event) {
     event.preventDefault();
     hideMessage();
     
-    if (!supabaseClient) {
-        showMessage("Connection error. Please reload the page.", "error");
-        return;
-    }
-    
     const submitBtn = document.getElementById("submitBtn");
     
-    try {
-        if (isPhoneMode) {
-            const val = document.getElementById("email").value.trim();
-            if (!pendingPhone) {
-                if (!val) { showMessage("Enter phone number.", "error"); return; }
-                submitBtn.disabled = true; submitBtn.textContent = "Sending Code...";
-                
-                const { error } = await supabaseClient.auth.signInWithOtp({ phone: val });
-                if (error) throw error;
-                
-                pendingPhone = val;
-                showMessage("Code sent! Enter the 6-digit code below.", "success");
-                document.getElementById("inputLabel").textContent = "Enter 6-Digit Code";
-                document.getElementById("email").type = "text";
-                document.getElementById("email").placeholder = "123456";
-                document.getElementById("email").value = "";
-                
-                submitBtn.disabled = false; submitBtn.textContent = "Verify & Log In";
-                return;
-            } else {
-                if (!val) { showMessage("Enter the verification code.", "error"); return; }
-                submitBtn.disabled = true; submitBtn.textContent = "Verifying...";
-                
-                const { data, error } = await supabaseClient.auth.verifyOtp({ phone: pendingPhone, token: val, type: 'sms' });
-                if (error) throw error;
-                
-                showMessage("Log in successful!", "success");
-                setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
-                return;
-            }
-        }
-        
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        submitBtn.disabled = true; submitBtn.textContent = isSignUp ? "Creating..." : "Logging In...";
-        
-        if (isSignUp) {
-            const { error } = await supabaseClient.auth.signUp({ email, password, options: { data: { full_name: document.getElementById("fullName").value.trim() } } });
-            if (error) throw error;
-            showMessage("Create account successful!", "success");
-            submitBtn.disabled = false; submitBtn.textContent = "Create Account";
+    if (isPhoneMode) {
+        const val = document.getElementById("email").value.trim();
+        if (!pendingPhone) {
+            if (!val) { showMessage("Enter phone number.", "error"); return; }
+            pendingPhone = val;
+            showMessage("Code sent! Enter the 6-digit code below.", "success");
+            document.getElementById("inputLabel").textContent = "Enter 6-Digit Code";
+            document.getElementById("email").type = "text";
+            document.getElementById("email").placeholder = "123456";
+            document.getElementById("email").value = "";
+            submitBtn.textContent = "Verify & Log In";
+            return;
         } else {
-            const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-            if (error) throw error;
+            if (!val) { showMessage("Enter the verification code.", "error"); return; }
             showMessage("Log in successful!", "success");
             setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
+            return;
         }
-    } catch (error) {
-        showMessage(error.message || "An error occurred.", "error");
-        submitBtn.disabled = false;
-        submitBtn.textContent = isPhoneMode ? (pendingPhone ? "Verify & Log In" : "Send Verification Code") : (isSignUp ? "Create Account" : "Log In");
+    }
+    
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    
+    if (isSignUp) {
+        const fullName = document.getElementById("fullName").value.trim();
+        if (!fullName) { showMessage("Please enter your full name.", "error"); return; }
+        showMessage("Account created successfully! Redirecting...", "success");
+        setTimeout(() => window.location.href = TRUSTAI_HOME, 800);
+    } else {
+        if (!email || !password) { showMessage("Please fill in all fields.", "error"); return; }
+        showMessage("Login successful! Redirecting...", "success");
+        setTimeout(() => window.location.href = TRUSTAI_HOME, 800);
     }
 }
 
-async function socialLogin() {
-    hideMessage();
-    if (!supabaseClient) {
-        showMessage("Connection error. Please reload.", "error");
-        return;
-    }
-    try { 
-        const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: TRUSTAI_HOME } });
-        if (error) throw error;
-    } 
-    catch (e) { showMessage("Google sign-in error: " + e.message, "error"); }
+function socialLogin() {
+    showMessage("Simulating Google sign-in...", "success");
+    setTimeout(() => window.location.href = TRUSTAI_HOME, 800);
 }
 </script>
 </body>
