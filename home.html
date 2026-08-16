@@ -675,6 +675,11 @@ footer {
 </section>
 
 <script>
+// Load history on startup
+window.addEventListener('DOMContentLoaded', () => {
+    renderScanHistory();
+});
+
 function runScan() {
     const input = document.getElementById('scannerInput').value.trim();
     const resultBox = document.getElementById('scanResult');
@@ -690,19 +695,81 @@ function runScan() {
     const lowerInput = input.toLowerCase();
     const isPhishing = lowerInput.includes('win') || lowerInput.includes('prize') || lowerInput.includes('free') || lowerInput.includes('click') || lowerInput.includes('http') || lowerInput.includes('verify') || lowerInput.includes('account');
     
+    const status = isPhishing ? 'High Risk' : 'Low Risk';
+    const colorClass = isPhishing ? '#ef4444' : '#10b981';
+    const bgClass = isPhishing ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)';
+    const borderClass = isPhishing ? 'rgba(239, 68, 68, 0.3)' : 'rgba(16, 185, 129, 0.3)';
+    
     if (isPhishing) {
-        resultBox.style.background = 'rgba(239, 68, 68, 0.15)';
-        resultBox.style.border = '1px solid rgba(239, 68, 68, 0.3)';
-        resultBox.style.color = '#ef4444';
+        resultBox.style.background = bgClass;
+        resultBox.style.border = `1px solid ${borderClass}`;
+        resultBox.style.color = colorClass;
         resultBox.innerHTML = '<strong>⚠️ High Risk Detected:</strong> This text/link contains common social engineering or phishing keywords. Do not click links or share personal information!';
     } else {
-        resultBox.style.background = 'rgba(16, 185, 129, 0.15)';
-        resultBox.style.border = '1px solid rgba(16, 185, 129, 0.3)';
-        resultBox.style.color = '#10b981';
+        resultBox.style.background = bgClass;
+        resultBox.style.border = `1px solid ${borderClass}`;
+        resultBox.style.color = colorClass;
         resultBox.innerHTML = '<strong>✅ Low Risk:</strong> No immediate threat signatures found in this text. Stay cautious if asked for sensitive data.';
     }
+
+    // Save to LocalStorage History
+    saveScanHistory(input, status);
 }
-</script>
+
+function saveScanHistory(text, status) {
+    let history = JSON.parse(localStorage.getItem('trustAiScanHistory')) || [];
+    // Add new scan to the top
+    history.unshift({
+        text: text.length > 40 ? text.substring(0, 40) + '...' : text,
+        status: status,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+    
+    // Keep only the last 5 scans
+    if (history.length > 5) history.pop();
+    
+    localStorage.setItem('trustAiScanHistory', JSON.stringify(history));
+    renderScanHistory();
+}
+
+function renderScanHistory() {
+    let historyContainer = document.getElementById('scanHistoryContainer');
+    if (!historyContainer) {
+        // Create history container dynamically if it doesn't exist yet
+        const scannerSection = document.getElementById('scannerInput').closest('section');
+        historyContainer = document.createElement('div');
+        historyContainer.id = 'scanHistoryContainer';
+        historyContainer.style.marginTop = '20px';
+        scannerSection.appendChild(historyContainer);
+    }
+    
+    let history = JSON.parse(localStorage.getItem('trustAiScanHistory')) || [];
+    
+    if (history.length === 0) {
+        historyContainer.innerHTML = '';
+        return;
+    }
+    
+    let html = '<h4 style="margin: 0 0 10px; font-size: 15px; color: var(--text-muted);">Recent Scan History</h4>';
+    html += '<div style="display: flex; flex-direction: column; gap: 8px;">';
+    
+    history.forEach(item => {
+        const badgeColor = item.status === 'High Risk' ? '#ef4444' : '#10b981';
+        html += `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 13px;">
+                <span style="color: var(--text-main); font-family: monospace;">${item.text}</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 11px; color: var(--text-muted);">${item.time}</span>
+                    <span style="padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; background: ${badgeColor}22; color: ${badgeColor}; border: 1px solid ${badgeColor}44;">${item.status}</span>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    historyContainer.innerHTML = html;
+}
+    </script>
     
     <!-- CONNECTED ACCOUNTS & PROTECTION HUB -->
     <h2 class="section-title">
