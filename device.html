@@ -6,12 +6,39 @@
     <title>Device Security Center - TrustAI</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            background-color: #050b14;
+            color: #e2e8f0;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Simple top navigation bar to go back home and access other pages */
+        .site-nav {
+            max-width: 700px;
+            margin: 20px auto 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-nav a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .site-nav a:hover {
+            text-decoration: underline;
+        }
+
         .security-center-container {
             max-width: 700px;
-            margin: 30px auto;
+            margin: 20px auto 30px auto;
             padding: 0 15px;
-            font-family: system-ui, -apple-system, sans-serif;
-            color: #e2e8f0;
         }
 
         .center-header {
@@ -90,7 +117,6 @@
             background: #0369a1;
         }
 
-        /* Interactive Detail Drawer */
         #detailDrawer {
             display: none;
             margin-top: 24px;
@@ -112,6 +138,12 @@
 </head>
 <body>
 
+    <!-- Navigation Header to go back home and access other pages -->
+    <nav class="site-nav">
+        <a href="index.html">← Back to Home</a>
+        <a href="scanner.html">Message & Link Checker →</a>
+    </nav>
+
     <div class="security-center-container">
         <div class="center-header">
             <h1>🛡️ TrustAI Device Security Center</h1>
@@ -120,7 +152,6 @@
 
         <div class="security-grid">
 
-            <!-- 1. Password Security -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">🔐</span>
@@ -132,7 +163,6 @@
                 <button class="card-action-btn" onclick="openSecurityTool('passwords')">Review</button>
             </div>
 
-            <!-- 2. OTP Security -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">🔑</span>
@@ -144,7 +174,6 @@
                 <button class="card-action-btn" onclick="openSecurityTool('otp')">Check Rules</button>
             </div>
 
-            <!-- 3. Suspicious Apps -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">🦠</span>
@@ -156,7 +185,6 @@
                 <button class="card-action-btn" onclick="openSecurityTool('apps')">Audit Apps</button>
             </div>
 
-            <!-- 4. Suspicious Links -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">🔗</span>
@@ -168,7 +196,6 @@
                 <button class="card-action-btn" onclick="openSecurityTool('links')">Verify Link</button>
             </div>
 
-            <!-- 5. Unknown Devices -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">📱</span>
@@ -180,7 +207,6 @@
                 <button class="card-action-btn" onclick="openSecurityTool('devices')">View Sessions</button>
             </div>
 
-            <!-- 6. Security Alerts -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">🚨</span>
@@ -192,7 +218,6 @@
                 <button class="card-action-btn" onclick="openSecurityTool('alerts')">Check Status</button>
             </div>
 
-            <!-- 7. Account Recovery -->
             <div class="security-card">
                 <div class="card-content">
                     <span class="card-icon">🛡️</span>
@@ -206,7 +231,6 @@
 
         </div>
 
-        <!-- Dynamic Action Drawer -->
         <div id="detailDrawer">
             <h3 id="drawerTitle"></h3>
             <div id="drawerBody"></div>
