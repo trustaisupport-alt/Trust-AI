@@ -121,17 +121,6 @@ body {
     line-height: 1.4;
 }
 
-.setting-button {
-    border: 1px solid #26384d;
-    background: #101c2b;
-    color: white;
-    border-radius: 9px;
-    padding: 9px 13px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-}
-
 .toggle {
     position: relative;
     width: 46px;
@@ -169,10 +158,6 @@ body {
 
 .toggle input:checked + .slider:before {
     transform: translateX(21px);
-}
-
-.danger {
-    color: #ff5f5f;
 }
 
 .footer {
@@ -243,7 +228,6 @@ body {
 
     <div class="card">
 
-
         <div class="setting">
 
             <div class="setting-info">
@@ -275,7 +259,6 @@ body {
 
         </div>
 
-
         <div class="setting">
 
             <div class="setting-info">
@@ -306,75 +289,6 @@ body {
             </label>
 
         </div>
-
-
-    </div>
-
-</section>
-
-
-<section class="section">
-
-    <h2 class="section-title">
-        Login Protection
-    </h2>
-
-    <div class="card">
-
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🔑 Passkey
-                </strong>
-
-                <span>
-                    Use a passkey for faster and safer sign-in.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="showMessage(
-                    'Passkey setup will be connected to TrustAI authentication.'
-                )">
-
-                Manage
-
-            </button>
-
-        </div>
-
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    📱 Login sessions
-                </strong>
-
-                <span>
-                    Review devices currently connected to your account.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="showMessage(
-                    'Login session management will be connected to your TrustAI account system.'
-                )">
-
-                View
-
-            </button>
-
-        </div>
-
 
     </div>
 
@@ -432,11 +346,6 @@ body {
 
 <script>
 
-function showMessage(message) {
-    alert(message);
-}
-
-
 function saveSetting(name, value) {
 
     localStorage.setItem(
@@ -459,7 +368,6 @@ function loadSettings() {
             "trustai_securityAlerts"
         );
 
-
     if (secureAccount !== null) {
 
         document.getElementById(
@@ -468,7 +376,6 @@ function loadSettings() {
             secureAccount === "true";
 
     }
-
 
     if (securityAlerts !== null) {
 
