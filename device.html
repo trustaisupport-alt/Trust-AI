@@ -14,31 +14,121 @@
             padding: 0;
         }
 
-        /* Simple top navigation bar to go back home and access other pages */
-        .site-nav {
-            max-width: 700px;
-            margin: 20px auto 0 auto;
-            padding: 0 15px;
+        /* Hamburger Menu Button */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #0f1d2f;
+            border: 1px solid #233e5f;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            z-index: 1001;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
-        .site-nav a {
+        .menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #f8fafc;
+            transition: 0.3s;
+        }
+
+        /* Sidebar Navigation Drawer */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background: #081220;
+            border-right: 1px solid #1e3a5f;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding-top: 80px;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-brand {
+            padding: 0 20px 20px 20px;
+            border-bottom: 1px solid #1e3a5f;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-brand h2 {
             color: #38bdf8;
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-brand p {
+            color: #94a3b8;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .sidebar-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-links li a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #cbd5e1;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
+            transition: background 0.2s, color 0.2s;
         }
 
-        .site-nav a:hover {
-            text-decoration: underline;
+        .sidebar-links li a:hover {
+            background: #112238;
+            color: #38bdf8;
         }
 
+        .sidebar-divider {
+            border: none;
+            border-top: 1px solid #1e3a5f;
+            margin: 15px 20px;
+        }
+
+        /* Overlay when sidebar is open */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Main Page Content */
         .security-center-container {
             max-width: 700px;
-            margin: 20px auto 30px auto;
-            padding: 0 15px;
+            margin: 40px auto;
+            padding: 20px 15px;
         }
 
         .center-header {
@@ -138,12 +228,37 @@
 </head>
 <body>
 
-    <!-- Navigation Header to go back home and access other pages -->
-    <nav class="site-nav">
-        <a href="index.html">← Back to Home</a>
-        <a href="scanner.html">Message & Link Checker →</a>
+    <!-- Hamburger Menu Button -->
+    <div class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Overlay Background -->
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <!-- Slide-out Sidebar Navigation -->
+    <nav class="sidebar" id="appSidebar">
+        <div class="sidebar-brand">
+            <h2>🛡️ TrustAI</h2>
+            <p>Online Scam Protection</p>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="scanner.html">🔍 Message Checker</a></li>
+            <li><a href="conversation.html">💬 Conversation Checker</a></li>
+            <li><a href="website.html">🌐 Website Checker</a></li>
+            <li><a href="device.html" style="color: #38bdf8; background: #112238;">📱 Device Security</a></li>
+            <li><a href="security-center.html">🛡️ Security Center</a></li>
+            <hr class="sidebar-divider">
+            <li><a href="alerts.html">🚨 Scam Alerts</a></li>
+            <li><a href="report.html">📢 Report a Scam</a></li>
+            <li><a href="contact.html">💬 Contact TrustAI</a></li>
+        </ul>
     </nav>
 
+    <!-- Main Content Area -->
     <div class="security-center-container">
         <div class="center-header">
             <h1>🛡️ TrustAI Device Security Center</h1>
@@ -238,6 +353,13 @@
     </div>
 
     <script>
+    function toggleMenu() {
+        const sidebar = document.getElementById('appSidebar');
+        const overlay = document.getElementById('menuOverlay');
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+    }
+
     function openSecurityTool(type) {
         const drawer = document.getElementById('detailDrawer');
         const title = document.getElementById('drawerTitle');
