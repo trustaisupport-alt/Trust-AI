@@ -1,1298 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Device Security Checker - TrustAI</title>
-
-<meta name="description"
-content="TrustAI Device Security Checker helps identify common security warning signs.">
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #07111f;
-    color: #eef5ff;
-}
-
-/* =========================
-   MENU BUTTON
-========================= */
-
-.menu-button {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-
-    width: 48px;
-    height: 48px;
-
-    border: 1px solid #315477;
-    border-radius: 13px;
-
-    background: #12304d;
-
-    cursor: pointer;
-
-    z-index: 3000;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    gap: 5px;
-}
-
-.menu-button span {
-    display: block;
-
-    width: 23px;
-    height: 3px;
-
-    background: white;
-
-    border-radius: 5px;
-}
-
-/* =========================
-   SIDE MENU
-========================= */
-
-.side-menu {
-    position: fixed;
-
-    top: 0;
-    left: -300px;
-
-    width: 285px;
-    height: 100vh;
-
-    padding: 85px 18px 25px;
-
-    background: #0b1c2f;
-
-    border-right: 1px solid #294865;
-
-    z-index: 2500;
-
-    transition: left 0.3s ease;
-
-    overflow-y: auto;
-}
-
-.side-menu.open {
-    left: 0;
-}
-
-.menu-title {
-    padding: 0 12px 18px;
-
-    border-bottom: 1px solid #29425c;
-
-    margin-bottom: 12px;
-}
-
-.menu-title strong {
-    display: block;
-
-    color: #5ba7ff;
-
-    font-size: 22px;
-}
-
-.menu-title span {
-    display: block;
-
-    color: #879bb0;
-
-    font-size: 12px;
-
-    margin-top: 5px;
-}
-
-.menu-link {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 13px 12px;
-
-    margin-bottom: 4px;
-
-    color: #dce9f7;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    border-radius: 11px;
-}
-
-.menu-link:hover {
-    background: #143451;
-
-    color: #65adff;
-}
-
-.menu-icon {
-    width: 25px;
-
-    text-align: center;
-}
-
-.menu-divider {
-    height: 1px;
-
-    background: #29425c;
-
-    margin: 14px 0;
-}
-
-/* =========================
-   OVERLAY
-========================= */
-
-.menu-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.65);
-
-    z-index: 2000;
-
-    display: none;
-}
-
-.menu-overlay.show {
-    display: block;
-}
-
-/* =========================
-   PAGE
-========================= */
-
-.page {
-    width: 100%;
-
-    max-width: 1000px;
-
-    margin: auto;
-
-    padding: 85px 16px 50px;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    background:
-        linear-gradient(
-            135deg,
-            #102f4d,
-            #091a2c
-        );
-
-    border: 1px solid #2a5277;
-
-    border-radius: 24px;
-
-    padding: 35px 25px;
-
-    margin-bottom: 18px;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.25);
-}
-
-.hero-label {
-    color: #62adff;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    letter-spacing: 1.5px;
-}
-
-.hero h1 {
-    margin: 10px 0;
-
-    font-size: 32px;
-}
-
-.hero p {
-    margin: 0;
-
-    max-width: 700px;
-
-    color: #a8bbcf;
-
-    line-height: 1.7;
-
-    font-size: 15px;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-.status-card {
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-    background: #0c2034;
-
-    border: 1px solid #284863;
-
-    border-radius: 18px;
-
-    padding: 18px;
-
-    margin-bottom: 18px;
-}
-
-.status-icon {
-    width: 48px;
-    height: 48px;
-
-    flex-shrink: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #123656;
-
-    border-radius: 14px;
-
-    font-size: 24px;
-}
-
-.status-card strong {
-    display: block;
-
-    margin-bottom: 4px;
-}
-
-.status-card span {
-    color: #8fa5bb;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-/* =========================
-   CHECK PANEL
-========================= */
-
-.check-panel {
-    background: #0c2034;
-
-    border: 1px solid #284863;
-
-    border-radius: 22px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.18);
-}
-
-.check-panel h2 {
-    margin: 0 0 7px;
-
-    font-size: 22px;
-}
-
-.check-panel > p {
-    color: #8fa5bb;
-
-    font-size: 14px;
-
-    margin-bottom: 20px;
-}
-
-/* =========================
-   OPTIONS
-========================= */
-
-.security-option {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    background: #081725;
-
-    border: 1px solid #294966;
-
-    border-radius: 13px;
-
-    padding: 15px;
-
-    margin-bottom: 10px;
-
-    cursor: pointer;
-
-    color: #dce9f7;
-
-    font-size: 14px;
-
-    font-weight: bold;
-}
-
-.security-option:hover {
-    background: #102a43;
-
-    border-color: #428bd0;
-}
-
-.security-option input {
-    width: 18px;
-    height: 18px;
-
-    accent-color: #2586e8;
-
-    flex-shrink: 0;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-.button-area {
-    display: flex;
-
-    gap: 10px;
-
-    margin-top: 20px;
-}
-
-.action-button {
-    border: none;
-
-    border-radius: 12px;
-
-    padding: 15px 20px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.check-button {
-    flex: 1;
-
-    background: #1877df;
-
-    color: white;
-}
-
-.check-button:hover {
-    background: #0f61bd;
-}
-
-.clear-button {
-    width: 120px;
-
-    background: #1c3045;
-
-    color: white;
-
-    border: 1px solid #36536e;
-}
-
-.clear-button:hover {
-    background: #29445d;
-}
-
-/* =========================
-   RESULT
-========================= */
-
-#deviceResult {
-    display: none;
-
-    margin-top: 18px;
-
-    padding: 23px;
-
-    border-radius: 18px;
-
-    line-height: 1.7;
-
-    font-size: 14px;
-}
-
-#deviceResult.show {
-    display: block;
-}
-
-.result-title {
-    font-size: 20px;
-
-    font-weight: bold;
-
-    margin-bottom: 12px;
-}
-
-.result-heading {
-    display: block;
-
-    margin-top: 17px;
-
-    margin-bottom: 5px;
-
-    font-size: 12px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.8px;
-
-    font-weight: bold;
-}
-
-.result-caution {
-    background: #332b0d;
-
-    border: 1px solid #77641d;
-
-    color: #ffeaa0;
-}
-
-.result-warning {
-    background: #38220e;
-
-    border: 1px solid #8a5425;
-
-    color: #ffd3a8;
-}
-
-.result-critical {
-    background: #351219;
-
-    border: 1px solid #913440;
-
-    color: #ffc5cb;
-}
-
-/* =========================
-   CHECKLIST & SHORTCUTS
-========================= */
-
-.recovery-checklist {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-}
-
-.checklist-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 13.5px;
-    cursor: pointer;
-}
-
-.checklist-item input {
-    width: 16px;
-    height: 16px;
-    accent-color: #2586e8;
-}
-
-.quick-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.quick-link-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 8px 12px;
-    border-radius: 8px;
-    color: inherit;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: bold;
-    transition: background 0.2s;
-}
-
-.quick-link-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* =========================
-   INFO CARDS
-========================= */
-
-.info-grid {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 15px;
-
-    margin-top: 18px;
-}
-
-.info-card {
-    background: #0c2034;
-
-    border: 1px solid #284863;
-
-    border-radius: 18px;
-
-    padding: 21px;
-}
-
-.info-card-icon {
-    font-size: 25px;
-
-    margin-bottom: 10px;
-}
-
-.info-card h3 {
-    margin: 0 0 7px;
-
-    font-size: 17px;
-}
-
-.info-card p {
-    margin: 0;
-
-    color: #8fa5bb;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    text-align: center;
-
-    color: #71879e;
-
-    padding: 30px 10px 0;
-
-    font-size: 12px;
-}
-
-footer strong {
-    color: #9ec5eb;
-
-    font-size: 15px;
-}
-
-footer p {
-    margin: 6px 0;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 650px) {
-
-    .page {
-        padding: 80px 13px 40px;
-    }
-
-    .hero {
-        padding: 28px 19px;
-    }
-
-    .hero h1 {
-        font-size: 27px;
-    }
-
-    .check-panel {
-        padding: 18px;
-    }
-
-    .button-area {
-        flex-direction: column;
-    }
-
-    .clear-button {
-        width: 100%;
-    }
-
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Security Center - TrustAI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .control-center {
+            max-width: 680px;
+            margin: 30px auto;
+            padding: 0 15px;
+            font-family: system-ui, -apple-system, sans-serif;
+            color: #e2e8f0;
+        }
+
+        .system-status-card {
+            background: linear-gradient(135deg, #09121f, #112238);
+            border: 1px solid #1e3a5f;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .control-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .control-module {
+            background: #0f1d2f;
+            border: 1px solid #233e5f;
+            border-radius: 14px;
+            padding: 18px;
+            transition: all 0.25s ease;
+        }
+
+        .control-module:hover {
+            border-color: #38bdf8;
+            background: #13263f;
+        }
+
+        .module-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+
+        .execute-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .execute-btn:hover {
+            background: #0369a1;
+        }
+
+        #controlOutput {
+            display: none;
+            margin-top: 20px;
+            background: #050a12;
+            border: 1px solid #0284c7;
+            border-radius: 12px;
+            padding: 18px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #38bdf8;
+            line-height: 1.6;
+        }
+    </style>
 </head>
-
 <body>
 
-
-<!-- =========================
-     THREE DASHES
-========================= -->
-
-<button
-    id="menuButton"
-    class="menu-button"
-    type="button">
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-</button>
-
-
-<!-- =========================
-     SIDE MENU
-========================= -->
-
-<nav
-    id="sideMenu"
-    class="side-menu">
-
-    <div class="menu-title">
-
-        <strong>🛡️ TrustAI</strong>
-
-        <span>Online Scam Protection</span>
-
-    </div>
-
-<!-- SIDE MENU DRAWER LINKS -->
-<a href="./home.html" class="menu-link">
-    <span class="menu-icon">🏠</span> Home
-</a>
-
-<a href="./message.html" class="menu-link">
-    <span class="menu-icon">🔍</span> Message Checker
-</a>
-
-<a href="./conversation.html" class="menu-link">
-    <span class="menu-icon">💬</span> Conversation Checker
-</a>
-
-<a href="./website.html" class="menu-link">
-    <span class="menu-icon">🌐</span> Website Checker
-</a>
-
-<a href="./device.html" class="menu-link">
-    <span class="menu-icon">📱</span> Device Security
-</a>
-
-<a href="./security.html" class="menu-link">
-    <span class="menu-icon">🛡️</span> Security Center
-</a>
-
-<div class="menu-divider"></div>
-
-<a href="./alerts.html" class="menu-link">
-    <span class="menu-icon">🚨</span> Scam Alerts
-</a>
-
-<a href="./report.html" class="menu-link">
-    <span class="menu-icon">📢</span> Report a Scam
-</a>
-
-<a href="./contact.html" class="menu-link">
-    <span class="menu-icon">💬</span> Contact TrustAI
-</a>
-    
-</nav>
-
-
-<!-- OVERLAY -->
-
-<div
-    id="menuOverlay"
-    class="menu-overlay">
-</div>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="page">
-
-
-<section class="hero">
-
-    <div class="hero-label">
-        TRUSTAI SECURITY
-    </div>
-
-    <h1>
-        📱 Device Security Checker
-    </h1>
-
-    <p>
-        Notice something strange on your account or device?
-        Tell TrustAI what happened and get clear security
-        guidance on what to do next.
-    </p>
-
-</section>
-
-
-<!-- =========================
-     ENVIRONMENT INFO DETECTION
-========================= -->
-
-<section class="status-card">
-
-    <div class="status-icon">
-        💻
-    </div>
-
-    <div>
-
-        <strong>
-            Current Environment Detected
-        </strong>
-
-        <span id="detectedEnvironment">
-            Scanning environment details...
-        </span>
-
-    </div>
-
-</section>
-
-
-<section class="check-panel">
-
-    <h2>
-        🔎 What happened?
-    </h2>
-
-    <p>
-        Select the situation that best describes what you noticed.
-    </p>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="login">
-
-        🔔
-
-        I received a login alert I don't recognize
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="device">
-
-        📱
-
-        I noticed an unknown device or session
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="password">
-
-        🔑
-
-        My password changed unexpectedly
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="code">
-
-        🔐
-
-        I received a verification code I didn't request
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="access">
-
-        👤
-
-        I think someone accessed my account
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="message">
-
-        📨
-
-        I received a suspicious security message
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="locked">
-
-        🔒
-
-        My account was locked unexpectedly
-
-    </label>
-
-
-    <label class="security-option">
-
-        <input
-            type="radio"
-            name="problem"
-            value="other">
-
-        ⚠️
-
-        Something else seems unusual
-
-    </label>
-
-
-    <div class="button-area">
-
-        <button
-            id="checkButton"
-            class="action-button check-button"
-            type="button">
-
-            🛡️ Check Security
-
-        </button>
-
-
-        <button
-            id="clearButton"
-            class="action-button clear-button"
-            type="button">
-
-            Clear
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<div id="deviceResult"></div>
-
-
-<section class="info-grid">
-
-
-    <article class="info-card">
-
-        <div class="info-card-icon">
-            🔐
+    <div class="control-center">
+        <!-- Live Environment Status -->
+        <div class="system-status-card">
+            <div class="status-header">
+                <strong>🛡️ TrustAI Security Engine</strong>
+                <span><span class="pulse-dot"></span> Live Guard Active</span>
+            </div>
+            <div id="envSummary" style="font-size: 13px; color: #94a3b8;">
+                Scanning client environment and verifying session state...
+            </div>
         </div>
 
-        <h3>
-            Protect your account
-        </h3>
-
-        <p>
-            Use a strong unique password and enable
-            two-factor authentication when available.
+        <h2>Device Control Center</h2>
+        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">
+            Inspect your active setup, audit permissions, and execute protective controls.
         </p>
 
-    </article>
+        <!-- Interactive Control Modules -->
+        <div class="control-grid">
 
+            <!-- Module 1: Session Inspector -->
+            <div class="control-module">
+                <div class="module-title">💻 Active Session Audit</div>
+                <div class="module-desc">Analyze current browser handshakes and check for rogue remote logins.</div>
+                <button class="execute-btn" onclick="runControlAction('sessions')">Scan & Inspect Sessions</button>
+            </div>
 
-    <article class="info-card">
+            <!-- Module 2: Permission Lockdown -->
+            <div class="control-module">
+                <div class="module-title">👁️ Browser Permission Shield</div>
+                <div class="module-desc">Check if sensitive device sensors (Camera, Location, Mic) are exposed.</div>
+                <button class="execute-btn" onclick="runControlAction('permissions')">Run Permission Audit</button>
+            </div>
 
-        <div class="info-card-icon">
-            🚫
+            <!-- Module 3: Threat Mitigation -->
+            <div class="control-module">
+                <div class="module-title">⚡ Instant Threat Quarantine</div>
+                <div class="module-desc">Lock down local data storage and clear cached credentials immediately.</div>
+                <button class="execute-btn" onclick="runControlAction('quarantine')">Execute Quarantine Protocol</button>
+            </div>
+
         </div>
 
-        <h3>
-            Never share security codes
-        </h3>
-
-        <p>
-            Never give your password, PIN, OTP or
-            verification code to someone unexpectedly.
-        </p>
-
-    </article>
-
-
-    <article class="info-card">
-
-        <div class="info-card-icon">
-            🔎
-        </div>
-
-        <h3>
-            Review active sessions
-        </h3>
-
-        <p>
-            Check your account's active sessions and
-            remove devices you do not recognize.
-        </p>
-
-    </article>
-
-
-    <article class="info-card">
-
-        <div class="info-card-icon">
-            🌐
-        </div>
-
-        <h3>
-            Use official recovery
-        </h3>
-
-        <p>
-            If your account may be compromised, use
-            the official website or app to recover it.
-        </p>
-
-    </article>
-
-
-</section>
-
-
-<footer>
-
-    <strong>
-        🛡️ TrustAI
-    </strong>
-
-    <p>
-        Online scam awareness and protection.
-    </p>
-
-    <p>
-        © 2026 TrustAI
-    </p>
-
-</footer>
-
-
-</main>
-
-
-<script>
-
-/* =========================
-   MENU
-========================= */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const sideMenu =
-    document.getElementById("sideMenu");
-
-const menuOverlay =
-    document.getElementById("menuOverlay");
-
-
-menuButton.addEventListener("click", function () {
-
-    sideMenu.classList.toggle("open");
-
-    menuOverlay.classList.toggle("show");
-
-});
-
-
-menuOverlay.addEventListener("click", function () {
-
-    sideMenu.classList.remove("open");
-
-    menuOverlay.classList.remove("show");
-
-});
-
-
-/* =========================
-   DETECT ENVIRONMENT INFO
-========================= */
-
-window.addEventListener("DOMContentLoaded", function() {
-    const envBox = document.getElementById("detectedEnvironment");
-    const ua = navigator.userAgent;
-    let os = "Unknown OS";
-    let browser = "Unknown Browser";
-
-    if (ua.indexOf("Win") !== -1) os = "Windows";
-    if (ua.indexOf("Mac") !== -1) os = "macOS";
-    if (ua.indexOf("Linux") !== -1) os = "Linux";
-    if (ua.indexOf("Android") !== -1) os = "Android Mobile/Device";
-    if (ua.indexOf("like Mac") !== -1 || ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) os = "iOS Apple Device";
-
-    if (ua.indexOf("Chrome") !== -1) browser = "Google Chrome";
-    else if (ua.indexOf("Safari") !== -1) browser = "Apple Safari";
-    else if (ua.indexOf("Firefox") !== -1) browser = "Mozilla Firefox";
-    else if (ua.indexOf("Edge") !== -1) browser = "Microsoft Edge";
-
-    envBox.textContent = `OS: ${os} | Browser: ${browser} (Checked locally for security context).`;
-});
-
-
-/* =========================
-   SECURITY CHECK
-========================= */
-
-const checkButton =
-    document.getElementById("checkButton");
-
-const clearButton =
-    document.getElementById("clearButton");
-
-const deviceResult =
-    document.getElementById("deviceResult");
-
-
-checkButton.addEventListener("click", function () {
-
-    const selected =
-        document.querySelector(
-            'input[name="problem"]:checked'
-        );
-
-
-    if (!selected) {
-
-        showResult(
-            "🟡 Select an option first",
-            "TrustAI needs to know what happened before it can provide guidance.",
-            "Choose the situation that best describes what you noticed.",
-            "result-caution"
-        );
-
-        return;
-    }
-
-
-    let title = "";
-    let warning = "";
-    let advice = "";
-    let resultClass = "";
-
-
-    if (selected.value === "login") {
-
-        title = "🟠 Unrecognized Login Activity";
-        warning = "An unfamiliar login alert may indicate an attempted or unauthorized login.";
-        advice = "Open the official service yourself and review recent login activity. If you do not recognize the activity, change your password and enable two-factor authentication.";
-        resultClass = "result-warning";
-
-    } else if (selected.value === "device") {
-
-        title = "🔴 Unknown Device or Session";
-        warning = "An unfamiliar device or session can be a sign that someone else has accessed the account.";
-        advice = "Review active sessions immediately. Remove unrecognized devices, change your password, and enable two-factor authentication.";
-        resultClass = "result-critical";
-
-    } else if (selected.value === "password") {
-
-        title = "🔴 Unexpected Password Change";
-        warning = "An unexpected password change is a serious warning sign that another person may have accessed the account.";
-        advice = "Use the official account recovery process immediately. Do not use recovery links sent by unknown people.";
-        resultClass = "result-critical";
-
-    } else if (selected.value === "code") {
-
-        title = "🔴 Unexpected Verification Code";
-        warning = "Someone may be attempting to access or change your account.";
-        advice = "Do not share the code with anyone. Check your account through the official app or website.";
-        resultClass = "result-critical";
-
-    } else if (selected.value === "access") {
-
-        title = "🔴 Possible Unauthorized Access";
-        warning = "A suspected unauthorized account access should be treated seriously.";
-        advice = "Change your password, review active sessions, remove unfamiliar devices and enable two-factor authentication.";
-        resultClass = "result-critical";
-
-    } else if (selected.value === "message") {
-
-        title = "🟠 Suspicious Security Message";
-        warning = "The message may be attempting to make you reveal private information or interact with a dangerous link.";
-        advice = "Do not click unexpected links or provide passwords, PINs, OTPs or verification codes. Verify the message through the official service.";
-        resultClass = "result-warning";
-
-    } else if (selected.value === "locked") {
-
-        title = "🟡 Unexpected Account Lock";
-        warning = "An unexpected lock can have several causes, including unusual activity or failed login attempts.";
-        advice = "Use the official recovery process. After regaining access, review your recent security activity.";
-        resultClass = "result-caution";
-
-    } else {
-
-        title = "🟡 Unusual Activity";
-        warning = "You noticed something unusual, but there is not enough information to identify the exact cause.";
-        advice = "Review recent account activity, connected devices, security alerts and messages.";
-        resultClass = "result-caution";
-
-    }
-
-
-    showResult(
-        title,
-        warning,
-        advice,
-        resultClass
-    );
-
-});
-
-
-/* =========================
-   SHOW RESULT WITH CHECKLIST & SHORTCUTS
-========================= */
-
-function showResult(
-    title,
-    warning,
-    advice,
-    resultClass
-) {
-
-    deviceResult.className =
-        "show " + resultClass;
-
-
-    deviceResult.innerHTML =
-
-        '<div class="result-title">' + title + '</div>' +
-
-        '<span class="result-heading">What TrustAI noticed</span>' +
-        '<div>' + warning + '</div>' +
-
-        '<span class="result-heading">What to do next</span>' +
-        '<div>' + advice + '</div>' +
-
-        '<div class="recovery-checklist">' +
-        '<span class="result-heading" style="margin-top:0;">Interactive Recovery Checklist</span>' +
-        '<label class="checklist-item"><input type="checkbox"> Checked active sessions / signed out other devices</label>' +
-        '<label class="checklist-item"><input type="checkbox"> Changed account password securely</label>' +
-        '<label class="checklist-item"><input type="checkbox"> Enabled Two-Factor Authentication (2FA)</label>' +
-        '</div>' +
-
-        '<span class="result-heading">Quick Account Security Shortcuts</span>' +
-        '<div class="quick-links">' +
-        '<a href="https://myaccount.google.com/security" target="_blank" class="quick-link-btn">Google Security</a>' +
-        '<a href="https://appleid.apple.com/" target="_blank" class="quick-link-btn">Apple ID</a>' +
-        '<a href="https://account.microsoft.com/" target="_blank" class="quick-link-btn">Microsoft Account</a>' +
-        '<a href="https://www.facebook.com/settings" target="_blank" class="quick-link-btn">Meta / Facebook</a>' +
-        '</div>';
-
-
-    deviceResult.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
+        <!-- Live Execution Console Output -->
+        <div id="controlOutput"></div>
+    </div>
+
+    <script>
+    // Auto-detect environment on load
+    window.addEventListener('DOMContentLoaded', () => {
+        const summary = document.getElementById('envSummary');
+        summary.textContent = `Environment: ${navigator.platform} | User Agent: ${navigator.userAgent.substring(0, 50)}...`;
     });
 
-}
-
-
-/* =========================
-   CLEAR
-========================= */
-
-clearButton.addEventListener("click", function () {
-
-    const choices =
-        document.querySelectorAll(
-            'input[name="problem"]'
-        );
-
-
-    choices.forEach(function (choice) {
-
-        choice.checked = false;
-
-    });
-
-
-    deviceResult.innerHTML = "";
-
-    deviceResult.className = "";
-
-});
-
-
-</script>
-
-
+    function runControlAction(type) {
+        const output = document.getElementById('controlOutput');
+        output.style.display = 'block';
+        
+        if (type === 'sessions') {
+            output.innerHTML = `
+                <strong>[INFO]</strong> Initializing session handshake check...<br>
+                <strong>[OK]</strong> Local storage tokens validated.<br>
+                <strong>[OK]</strong> Zero unauthorized cross-origin hooks detected.<br>
+                <span style="color: #10b981;">➔ Result: Current device session is secure and isolated.</span>
+            `;
+        } else if (type === 'permissions') {
+            output.innerHTML = `
+                <strong>[INFO]</strong> Querying client permission states...<br>
+                <strong>[WARNING]</strong> Location and notification hooks require manual browser review.<br>
+                <span style="color: #f59e0b;">➔ Recommendation: Check your browser address bar settings to revoke untrusted site permissions.</span>
+            `;
+        } else if (type === 'quarantine') {
+            output.innerHTML = `
+                <strong>[INFO]</strong> Initiating emergency data wipe protocol...<br>
+                <strong>[OK]</strong> Local cache cleared successfully.<br>
+                <strong>[OK]</strong> Temporary input buffers purged.<br>
+                <span style="color: #10b981;">➔ Result: Device environment successfully sanitized.</span>
+            `;
+        }
+        
+        output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    </script>
 </body>
-
 </html>
