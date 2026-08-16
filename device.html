@@ -6,194 +6,287 @@
     <title>Device Security Center - TrustAI</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .control-center {
-            max-width: 680px;
+        .security-center-container {
+            max-width: 700px;
             margin: 30px auto;
             padding: 0 15px;
             font-family: system-ui, -apple-system, sans-serif;
             color: #e2e8f0;
         }
 
-        .system-status-card {
-            background: linear-gradient(135deg, #09121f, #112238);
-            border: 1px solid #1e3a5f;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        .center-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+        .center-header h1 {
+            font-size: 24px;
+            color: #f8fafc;
+            margin-bottom: 8px;
         }
 
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px #10b981;
-            animation: pulse 2s infinite;
+        .center-header p {
+            color: #94a3b8;
+            font-size: 14px;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        .control-grid {
+        .security-grid {
             display: grid;
-            gap: 16px;
+            gap: 14px;
         }
 
-        .control-module {
+        .security-card {
             background: #0f1d2f;
             border: 1px solid #233e5f;
-            border-radius: 14px;
-            padding: 18px;
-            transition: all 0.25s ease;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
         }
 
-        .control-module:hover {
+        .security-card:hover {
             border-color: #38bdf8;
             background: #13263f;
         }
 
-        .module-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #f8fafc;
-            margin-bottom: 6px;
+        .card-content {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .module-desc {
+        .card-icon {
+            font-size: 24px;
+        }
+
+        .card-info h3 {
+            margin: 0 0 4px 0;
+            font-size: 15px;
+            color: #f8fafc;
+        }
+
+        .card-info p {
+            margin: 0;
             font-size: 13px;
             color: #94a3b8;
-            margin-bottom: 14px;
         }
 
-        .execute-btn {
+        .card-action-btn {
             background: #0284c7;
             color: white;
             border: none;
-            padding: 10px 18px;
+            padding: 8px 14px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
+            white-space: nowrap;
             transition: background 0.2s;
         }
 
-        .execute-btn:hover {
+        .card-action-btn:hover {
             background: #0369a1;
         }
 
-        #controlOutput {
+        /* Interactive Detail Drawer */
+        #detailDrawer {
             display: none;
-            margin-top: 20px;
-            background: #050a12;
+            margin-top: 24px;
+            background: #070e18;
             border: 1px solid #0284c7;
             border-radius: 12px;
-            padding: 18px;
-            font-family: monospace;
-            font-size: 13px;
-            color: #38bdf8;
+            padding: 20px;
+            font-size: 14px;
             line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        #drawerTitle {
+            margin-top: 0;
+            color: #38bdf8;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-    <div class="control-center">
-        <!-- Live Environment Status -->
-        <div class="system-status-card">
-            <div class="status-header">
-                <strong>🛡️ TrustAI Security Engine</strong>
-                <span><span class="pulse-dot"></span> Live Guard Active</span>
-            </div>
-            <div id="envSummary" style="font-size: 13px; color: #94a3b8;">
-                Scanning client environment and verifying session state...
-            </div>
+    <div class="security-center-container">
+        <div class="center-header">
+            <h1>🛡️ TrustAI Device Security Center</h1>
+            <p>Your command center to check, protect, and defend your personal devices and accounts.</p>
         </div>
 
-        <h2>Device Control Center</h2>
-        <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">
-            Inspect your active setup, audit permissions, and execute protective controls.
-        </p>
+        <div class="security-grid">
 
-        <!-- Interactive Control Modules -->
-        <div class="control-grid">
-
-            <!-- Module 1: Session Inspector -->
-            <div class="control-module">
-                <div class="module-title">💻 Active Session Audit</div>
-                <div class="module-desc">Analyze current browser handshakes and check for rogue remote logins.</div>
-                <button class="execute-btn" onclick="runControlAction('sessions')">Scan & Inspect Sessions</button>
+            <!-- 1. Password Security -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">🔐</span>
+                    <div class="card-info">
+                        <h3>Password Security</h3>
+                        <p>Tips and automated checks for building stronger passwords.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('passwords')">Review</button>
             </div>
 
-            <!-- Module 2: Permission Lockdown -->
-            <div class="control-module">
-                <div class="module-title">👁️ Browser Permission Shield</div>
-                <div class="module-desc">Check if sensitive device sensors (Camera, Location, Mic) are exposed.</div>
-                <button class="execute-btn" onclick="runControlAction('permissions')">Run Permission Audit</button>
+            <!-- 2. OTP Security -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">🔑</span>
+                    <div class="card-info">
+                        <h3>OTP Security</h3>
+                        <p>Critical warnings: Never share verification codes with anyone.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('otp')">Check Rules</button>
             </div>
 
-            <!-- Module 3: Threat Mitigation -->
-            <div class="control-module">
-                <div class="module-title">⚡ Instant Threat Quarantine</div>
-                <div class="module-desc">Lock down local data storage and clear cached credentials immediately.</div>
-                <button class="execute-btn" onclick="runControlAction('quarantine')">Execute Quarantine Protocol</button>
+            <!-- 3. Suspicious Apps -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">🦠</span>
+                    <div class="card-info">
+                        <h3>Suspicious Apps</h3>
+                        <p>Guidance and detection checks for potentially unsafe applications.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('apps')">Audit Apps</button>
+            </div>
+
+            <!-- 4. Suspicious Links -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">🔗</span>
+                    <div class="card-info">
+                        <h3>Suspicious Links</h3>
+                        <p>Instant warnings and verifications for dangerous phishing URLs.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('links')">Verify Link</button>
+            </div>
+
+            <!-- 5. Unknown Devices -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">📱</span>
+                    <div class="card-info">
+                        <h3>Unknown Devices</h3>
+                        <p>Recognize and terminate unfamiliar hardware logged into your account.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('devices')">View Sessions</button>
+            </div>
+
+            <!-- 6. Security Alerts -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">🚨</span>
+                    <div class="card-info">
+                        <h3>Security Alerts</h3>
+                        <p>Real-time system notices regarding active threat disclosures.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('alerts')">Check Status</button>
+            </div>
+
+            <!-- 7. Account Recovery -->
+            <div class="security-card">
+                <div class="card-content">
+                    <span class="card-icon">🛡️</span>
+                    <div class="card-info">
+                        <h3>Account Recovery</h3>
+                        <p>Step-by-step guidance if an account has already been compromised.</p>
+                    </div>
+                </div>
+                <button class="card-action-btn" onclick="openSecurityTool('recovery')">Emergency Steps</button>
             </div>
 
         </div>
 
-        <!-- Live Execution Console Output -->
-        <div id="controlOutput"></div>
+        <!-- Dynamic Action Drawer -->
+        <div id="detailDrawer">
+            <h3 id="drawerTitle"></h3>
+            <div id="drawerBody"></div>
+        </div>
     </div>
 
     <script>
-    // Auto-detect environment on load
-    window.addEventListener('DOMContentLoaded', () => {
-        const summary = document.getElementById('envSummary');
-        summary.textContent = `Environment: ${navigator.platform} | User Agent: ${navigator.userAgent.substring(0, 50)}...`;
-    });
-
-    function runControlAction(type) {
-        const output = document.getElementById('controlOutput');
-        output.style.display = 'block';
+    function openSecurityTool(type) {
+        const drawer = document.getElementById('detailDrawer');
+        const title = document.getElementById('drawerTitle');
+        const body = document.getElementById('drawerBody');
         
-        if (type === 'sessions') {
-            output.innerHTML = `
-                <strong>[INFO]</strong> Initializing session handshake check...<br>
-                <strong>[OK]</strong> Local storage tokens validated.<br>
-                <strong>[OK]</strong> Zero unauthorized cross-origin hooks detected.<br>
-                <span style="color: #10b981;">➔ Result: Current device session is secure and isolated.</span>
+        drawer.style.display = 'block';
+
+        if (type === 'passwords') {
+            title.textContent = "🔐 Password Security Audit";
+            body.innerHTML = `
+                <p>Weak passwords are the #1 entry point for hackers. Follow these core rules:</p>
+                <ul style="padding-left: 20px; margin: 8px 0;">
+                    <li>Use a minimum of 12-16 characters mixing letters, numbers, and symbols.</li>
+                    <li>Never reuse the same password across your banking, email, and social accounts.</li>
+                    <li>Consider using a reputable password manager to generate and store keys securely.</li>
+                </ul>
             `;
-        } else if (type === 'permissions') {
-            output.innerHTML = `
-                <strong>[INFO]</strong> Querying client permission states...<br>
-                <strong>[WARNING]</strong> Location and notification hooks require manual browser review.<br>
-                <span style="color: #f59e0b;">➔ Recommendation: Check your browser address bar settings to revoke untrusted site permissions.</span>
+        } else if (type === 'otp') {
+            title.textContent = "🔑 OTP & Verification Code Protection";
+            body.innerHTML = `
+                <p style="color: #f87171; font-weight: 600;">⚠️ Golden Rule: Never share your One-Time Password (OTP) or PIN with anyone under any circumstance.</p>
+                <p>Scammers often pose as bank or customer support agents tricking you into reading your SMS code aloud. Legitimate companies will never ask for your verification code.</p>
             `;
-        } else if (type === 'quarantine') {
-            output.innerHTML = `
-                <strong>[INFO]</strong> Initiating emergency data wipe protocol...<br>
-                <strong>[OK]</strong> Local cache cleared successfully.<br>
-                <strong>[OK]</strong> Temporary input buffers purged.<br>
-                <span style="color: #10b981;">➔ Result: Device environment successfully sanitized.</span>
+        } else if (type === 'apps') {
+            title.textContent = "🦠 Suspicious Apps Evaluation";
+            body.innerHTML = `
+                <p>Protect your phone from malicious side-loaded apps or hidden spyware:</p>
+                <ul style="padding-left: 20px; margin: 8px 0;">
+                    <li>Only download applications from official stores (Google Play Store or Apple App Store).</li>
+                    <li>Regularly check your phone's permission settings and revoke camera/mic access from unknown apps.</li>
+                    <li>Uninstall any app showing abnormal battery drain or unexplained background data usage.</li>
+                </ul>
+            `;
+        } else if (type === 'links') {
+            title.textContent = "🔗 Suspicious Link Checker";
+            body.innerHTML = `
+                <p>Before clicking links sent via SMS, email, or messaging apps:</p>
+                <ul style="padding-left: 20px; margin: 8px 0;">
+                    <li>Inspect the URL closely for subtle spelling errors (e.g., *g00gle.com* instead of *google.com*).</li>
+                    <li>Paste suspicious links directly into TrustAI's main scanner engine to verify safety before opening.</li>
+                </ul>
+            `;
+        } else if (type === 'devices') {
+            title.textContent = "📱 Unknown Devices & Active Sessions";
+            body.innerHTML = `
+                <p>If you spot an unrecognized device connected to your email or social accounts:</p>
+                <ol style="padding-left: 20px; margin: 8px 0;">
+                    <li>Navigate directly to your account's security or login history settings.</li>
+                    <li>Instantly click <strong>Log Out All Devices</strong> or terminate the specific unfamiliar session.</li>
+                    <li>Change your account password immediately to cut off persistent access tokens.</li>
+                </ol>
+            `;
+        } else if (type === 'alerts') {
+            title.textContent = "🚨 Security System Status";
+            body.innerHTML = `
+                <p><strong>System Status:</strong> <span style="color: #10b981;">🟢 All local protection guards active.</span></p>
+                <p>No active security flags or high-risk warnings have been triggered on your current browser environment.</p>
+            `;
+        } else if (type === 'recovery') {
+            title.textContent = "🛡️ Emergency Account Recovery Protocol";
+            body.innerHTML = `
+                <p>If you believe you have been hacked or scammed:</p>
+                <ol style="padding-left: 20px; margin: 8px 0;">
+                    <li>Secure your primary email address immediately, as hackers use it to reset your other accounts.</li>
+                    <li>Trigger official password recovery links on compromised platforms.</li>
+                    <li>Alert your bank or financial institutions immediately if financial details were exposed.</li>
+                </ol>
             `;
         }
-        
-        output.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     </script>
+
 </body>
 </html>
