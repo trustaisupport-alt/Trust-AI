@@ -141,17 +141,27 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
     </div>
 </main>
 
-<!-- Forgot Password Modal -->
+<!-- Forgot Password / Reset Modal -->
 <div class="modal-overlay" id="forgotModal">
     <div class="modal-card">
-        <h3>Reset Password</h3>
-        <p>Enter your account email address. We'll send you a secure link to create a new password.</p>
-        <div class="form-group">
+        <h3 id="modalTitle">Reset Password</h3>
+        <p id="modalDesc">Enter your account email address. We'll send you a password recovery code.</p>
+        
+        <div class="form-group" id="modalEmailGroup">
             <input type="email" id="resetEmail" placeholder="you@example.com">
         </div>
+        
+        <div class="form-group" id="modalCodeGroup" style="display:none;">
+            <input type="text" id="resetCode" placeholder="Enter 6-digit code from email">
+        </div>
+
+        <div class="form-group" id="modalNewPwdGroup" style="display:none;">
+            <input type="password" id="modalNewPassword" placeholder="Enter new password" minlength="6">
+        </div>
+
         <div class="modal-actions">
             <button type="button" class="btn-cancel" onclick="closeForgotModal()">Cancel</button>
-            <button type="button" class="btn-submit" onclick="submitPasswordReset()">Send Reset Link</button>
+            <button type="button" class="btn-submit" id="modalSubmitBtn" onclick="processPasswordResetStep()">Send Reset Code</button>
         </div>
     </div>
 </div>
@@ -173,6 +183,8 @@ try {
 let isSignUp = false;
 let isPhoneMode = false;
 let pendingPhone = "";
+let resetStep = 1; // 1: Enter Email, 2: Enter Code & New Password
+let storedResetEmail = "";
 
 function showMessage(text, type = "info") {
     const message = document.getElementById("message");
@@ -195,33 +207,83 @@ function togglePasswordVisibility() {
 }
 
 function openForgotModal() {
+    resetStep = 1;
+    storedResetEmail = "";
+    document.getElementById("modalTitle").textContent = "Reset Password";
+    document.getElementById("modalDesc").textContent = "Enter your account email address. We'll send you a password recovery code.";
+    document.getElementById("modalEmailGroup").style.display = "block";
+    document.getElementById("modalCodeGroup").style.display = "none";
+    document.getElementById("modalNewPwdGroup").style.display = "none";
+    document.getElementById("modalSubmitBtn").textContent = "Send Reset Code";
+    document.getElementById("resetEmail").value = "";
     document.getElementById("forgotModal").classList.add("active");
 }
 
 function closeForgotModal() {
     document.getElementById("forgotModal").classList.remove("active");
-    document.getElementById("resetEmail").value = "";
 }
 
-async function submitPasswordReset() {
-    const emailVal = document.getElementById("resetEmail").value.trim();
-    if (!emailVal) {
-        alert("Please enter your email address.");
-        return;
-    }
+async function processPasswordResetStep() {
     if (!supabaseClient) {
         alert("Connection error.");
         return;
     }
-    try {
-        const { error } = await supabaseClient.auth.resetPasswordForEmail(emailVal, {
-            redirectTo: "https://trustaisupport-alt.github.io/Trust-AI/update-password.html",
-        });
-        if (error) throw error;
-        alert("Password reset link sent to your email!");
-        closeForgotModal();
-    } catch (err) {
-        alert("Error: " + err.message);
+
+    if (resetStep === 1) {
+        const emailVal = document.getElementById("resetEmail").value.trim();
+        if (!emailVal) { alert("Please enter your email address."); return; }
+        
+        try {
+            const btn = document.getElementById("modalSubmitBtn");
+            btn.disabled = true; btn.textContent = "Sending...";
+
+            const { error } = await supabaseClient.auth.resetPasswordForEmail(emailVal);
+            if (error) throw error;
+
+            storedResetEmail = emailVal;
+            resetStep = 2;
+            
+            document.getElementById("modalTitle").textContent = "Enter New Password";
+            document.getElementById("modalDesc").textContent = "Check your email for the 6-digit code, enter it below along with your new password.";
+            document.getElementById("modalEmailGroup").style.display = "none";
+            document.getElementById("modalCodeGroup").style.display = "block";
+            document.getElementById("modalNewPwdGroup").style.display = "block";
+            btn.textContent = "Update Password";
+            btn.disabled = false;
+        } catch (err) {
+            alert("Error: " + err.message);
+            document.getElementById("modalSubmitBtn").disabled = false;
+            document.getElementById("modalSubmitBtn").textContent = "Send Reset Code";
+        }
+    } else if (resetStep === 2) {
+        const token = document.getElementById("resetCode").value.trim();
+        const newPassword = document.getElementById("modalNewPassword").value;
+
+        if (!token || !newPassword) { alert("Please enter both the code and the new password."); return; }
+
+        try {
+            const btn = document.getElementById("modalSubmitBtn");
+            btn.disabled = true; btn.textContent = "Updating...";
+
+            // Verify recovery token
+            const { error: verifyError } = await supabaseClient.auth.verifyOtp({
+                email: storedResetEmail,
+                token: token,
+                type: 'recovery'
+            });
+            if (verifyError) throw verifyError;
+
+            // Update user password immediately using authenticated session
+            const { error: updateError } = await supabaseClient.auth.updateUser({ password: newPassword });
+            if (updateError) throw updateError;
+
+            alert("Password updated successfully! You can now log in with your new password.");
+            closeForgotModal();
+        } catch (err) {
+            alert("Error: " + err.message);
+            document.getElementById("modalSubmitBtn").disabled = false;
+            document.getElementById("modalSubmitBtn").textContent = "Update Password";
+        }
     }
 }
 
