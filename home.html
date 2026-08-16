@@ -906,28 +906,6 @@ footer {
     font-size: 15px;
 }
 
-.logout-btn-container {
-    margin-top: 24px;
-}
-
-.logout-btn {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.3);
-    color: #f87171;
-    padding: 10px 24px;
-    border-radius: var(--radius-md);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.logout-btn:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: rgba(239, 68, 68, 0.5);
-    transform: translateY(-2px);
-}
-
 
 /* =====================================================
    MOBILE
@@ -1066,13 +1044,15 @@ footer {
         <span class="menu-icon">⚙️</span>
         Settings & Privacy
     </a>
-  <div class="menu-divider"></div>
 
-    <!-- ADD LOG OUT BUTTON TO SIDE MENU HERE -->
+    <div class="menu-divider"></div>
+
+    <!-- LOG OUT BUTTON -->
     <a href="#" class="menu-link" onclick="handleLogout(); return false;" style="color: #f87171;">
         <span class="menu-icon">🚪</span>
         Log Out
     </a>
+
 </nav>
 
 
@@ -1235,7 +1215,7 @@ footer {
         <div class="card-icon">
             🌐
         </div>
- <h2>
+        <h2>
             Website Checker
         </h2>
         <p>
@@ -1246,8 +1226,6 @@ footer {
     </a>
 
 </div>
-
-
 <!-- =====================================================
      SECURITY
      ===================================================== -->
@@ -1343,11 +1321,7 @@ footer {
 
 <footer>
 
-    <div class="logout-btn-container">
-        <button type="button" class="logout-btn" onclick="handleLogout()">Log Out</button>
-    </div>
-
-    <div class="footer-brand" style="margin-top: 20px;">
+    <div class="footer-brand">
         🛡️ TrustAI
     </div>
 
@@ -1594,4 +1568,3 @@ function handleLogout() {
 </body>
 
 </html>
-        
