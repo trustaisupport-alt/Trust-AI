@@ -215,7 +215,7 @@ async function submitPasswordReset() {
     }
     try {
         const { error } = await supabaseClient.auth.resetPasswordForEmail(emailVal, {
-            redirectTo: TRUSTAI_HOME,
+            redirectTo: "https://trustaisupport-alt.github.io/Trust-AI/update-password.html",
         });
         if (error) throw error;
         alert("Password reset link sent to your email!");
