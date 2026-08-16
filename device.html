@@ -503,6 +503,54 @@ body {
 }
 
 /* =========================
+   CHECKLIST & SHORTCUTS
+========================= */
+
+.recovery-checklist {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 13.5px;
+    cursor: pointer;
+}
+
+.checklist-item input {
+    width: 16px;
+    height: 16px;
+    accent-color: #2586e8;
+}
+
+.quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.quick-link-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.quick-link-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* =========================
    INFO CARDS
 ========================= */
 
@@ -660,7 +708,6 @@ footer p {
     <span class="menu-icon">💬</span> Conversation Checker
 </a>
 
-<!-- FIXED: lowercase 'website.html' with relative path -->
 <a href="./website.html" class="menu-link">
     <span class="menu-icon">🌐</span> Website Checker
 </a>
@@ -687,8 +734,6 @@ footer p {
     <span class="menu-icon">💬</span> Contact TrustAI
 </a>
     
-    
-
 </nav>
 
 
@@ -726,22 +771,24 @@ footer p {
 </section>
 
 
+<!-- =========================
+     ENVIRONMENT INFO DETECTION
+========================= -->
+
 <section class="status-card">
 
     <div class="status-icon">
-        🛡️
+        💻
     </div>
 
     <div>
 
         <strong>
-            Security awareness check
+            Current Environment Detected
         </strong>
 
-        <span>
-            TrustAI uses the information you provide.
-            This webpage cannot directly scan or control
-            your private device.
+        <span id="detectedEnvironment">
+            Scanning environment details...
         </span>
 
     </div>
@@ -1034,6 +1081,31 @@ menuOverlay.addEventListener("click", function () {
 
 
 /* =========================
+   DETECT ENVIRONMENT INFO
+========================= */
+
+window.addEventListener("DOMContentLoaded", function() {
+    const envBox = document.getElementById("detectedEnvironment");
+    const ua = navigator.userAgent;
+    let os = "Unknown OS";
+    let browser = "Unknown Browser";
+
+    if (ua.indexOf("Win") !== -1) os = "Windows";
+    if (ua.indexOf("Mac") !== -1) os = "macOS";
+    if (ua.indexOf("Linux") !== -1) os = "Linux";
+    if (ua.indexOf("Android") !== -1) os = "Android Mobile/Device";
+    if (ua.indexOf("like Mac") !== -1 || ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) os = "iOS Apple Device";
+
+    if (ua.indexOf("Chrome") !== -1) browser = "Google Chrome";
+    else if (ua.indexOf("Safari") !== -1) browser = "Apple Safari";
+    else if (ua.indexOf("Firefox") !== -1) browser = "Mozilla Firefox";
+    else if (ua.indexOf("Edge") !== -1) browser = "Microsoft Edge";
+
+    envBox.textContent = `OS: ${os} | Browser: ${browser} (Checked locally for security context).`;
+});
+
+
+/* =========================
    SECURITY CHECK
 ========================= */
 
@@ -1069,149 +1141,66 @@ checkButton.addEventListener("click", function () {
 
 
     let title = "";
-
     let warning = "";
-
     let advice = "";
-
     let resultClass = "";
 
 
     if (selected.value === "login") {
 
-        title =
-            "🟠 Unrecognized Login Activity";
+        title = "🟠 Unrecognized Login Activity";
+        warning = "An unfamiliar login alert may indicate an attempted or unauthorized login.";
+        advice = "Open the official service yourself and review recent login activity. If you do not recognize the activity, change your password and enable two-factor authentication.";
+        resultClass = "result-warning";
 
-        warning =
-            "An unfamiliar login alert may indicate an attempted or unauthorized login.";
+    } else if (selected.value === "device") {
 
-        advice =
-            "Open the official service yourself and review recent login activity. " +
-            "If you do not recognize the activity, change your password and enable two-factor authentication.";
+        title = "🔴 Unknown Device or Session";
+        warning = "An unfamiliar device or session can be a sign that someone else has accessed the account.";
+        advice = "Review active sessions immediately. Remove unrecognized devices, change your password, and enable two-factor authentication.";
+        resultClass = "result-critical";
 
-        resultClass =
-            "result-warning";
+    } else if (selected.value === "password") {
 
-    }
+        title = "🔴 Unexpected Password Change";
+        warning = "An unexpected password change is a serious warning sign that another person may have accessed the account.";
+        advice = "Use the official account recovery process immediately. Do not use recovery links sent by unknown people.";
+        resultClass = "result-critical";
 
+    } else if (selected.value === "code") {
 
-    else if (selected.value === "device") {
+        title = "🔴 Unexpected Verification Code";
+        warning = "Someone may be attempting to access or change your account.";
+        advice = "Do not share the code with anyone. Check your account through the official app or website.";
+        resultClass = "result-critical";
 
-        title =
-            "🔴 Unknown Device or Session";
+    } else if (selected.value === "access") {
 
-        warning =
-            "An unfamiliar device or session can be a sign that someone else has accessed the account.";
+        title = "🔴 Possible Unauthorized Access";
+        warning = "A suspected unauthorized account access should be treated seriously.";
+        advice = "Change your password, review active sessions, remove unfamiliar devices and enable two-factor authentication.";
+        resultClass = "result-critical";
 
-        advice =
-            "Review active sessions immediately. Remove unrecognized devices, change your password, " +
-            "and enable two-factor authentication.";
+    } else if (selected.value === "message") {
 
-        resultClass =
-            "result-critical";
+        title = "🟠 Suspicious Security Message";
+        warning = "The message may be attempting to make you reveal private information or interact with a dangerous link.";
+        advice = "Do not click unexpected links or provide passwords, PINs, OTPs or verification codes. Verify the message through the official service.";
+        resultClass = "result-warning";
 
-    }
+    } else if (selected.value === "locked") {
 
+        title = "🟡 Unexpected Account Lock";
+        warning = "An unexpected lock can have several causes, including unusual activity or failed login attempts.";
+        advice = "Use the official recovery process. After regaining access, review your recent security activity.";
+        resultClass = "result-caution";
 
-    else if (selected.value === "password") {
+    } else {
 
-        title =
-            "🔴 Unexpected Password Change";
-
-        warning =
-            "An unexpected password change is a serious warning sign that another person may have accessed the account.";
-
-        advice =
-            "Use the official account recovery process immediately. Do not use recovery links sent by unknown people.";
-
-        resultClass =
-            "result-critical";
-
-    }
-
-
-    else if (selected.value === "code") {
-
-        title =
-            "🔴 Unexpected Verification Code";
-
-        warning =
-            "Someone may be attempting to access or change your account.";
-
-        advice =
-            "Do not share the code with anyone. Check your account through the official app or website.";
-
-        resultClass =
-            "result-critical";
-
-    }
-
-
-    else if (selected.value === "access") {
-
-        title =
-            "🔴 Possible Unauthorized Access";
-
-        warning =
-            "A suspected unauthorized account access should be treated seriously.";
-
-        advice =
-            "Change your password, review active sessions, remove unfamiliar devices and enable two-factor authentication.";
-
-        resultClass =
-            "result-critical";
-
-    }
-
-
-    else if (selected.value === "message") {
-
-        title =
-            "🟠 Suspicious Security Message";
-
-        warning =
-            "The message may be attempting to make you reveal private information or interact with a dangerous link.";
-
-        advice =
-            "Do not click unexpected links or provide passwords, PINs, OTPs or verification codes. " +
-            "Verify the message through the official service.";
-
-        resultClass =
-            "result-warning";
-
-    }
-
-
-    else if (selected.value === "locked") {
-
-        title =
-            "🟡 Unexpected Account Lock";
-
-        warning =
-            "An unexpected lock can have several causes, including unusual activity or failed login attempts.";
-
-        advice =
-            "Use the official recovery process. After regaining access, review your recent security activity.";
-
-        resultClass =
-            "result-caution";
-
-    }
-
-
-    else {
-
-        title =
-            "🟡 Unusual Activity";
-
-        warning =
-            "You noticed something unusual, but there is not enough information to identify the exact cause.";
-
-        advice =
-            "Review recent account activity, connected devices, security alerts and messages.";
-
-        resultClass =
-            "result-caution";
+        title = "🟡 Unusual Activity";
+        warning = "You noticed something unusual, but there is not enough information to identify the exact cause.";
+        advice = "Review recent account activity, connected devices, security alerts and messages.";
+        resultClass = "result-caution";
 
     }
 
@@ -1227,7 +1216,7 @@ checkButton.addEventListener("click", function () {
 
 
 /* =========================
-   SHOW RESULT
+   SHOW RESULT WITH CHECKLIST & SHORTCUTS
 ========================= */
 
 function showResult(
@@ -1243,24 +1232,27 @@ function showResult(
 
     deviceResult.innerHTML =
 
-        '<div class="result-title">' +
-        title +
+        '<div class="result-title">' + title + '</div>' +
+
+        '<span class="result-heading">What TrustAI noticed</span>' +
+        '<div>' + warning + '</div>' +
+
+        '<span class="result-heading">What to do next</span>' +
+        '<div>' + advice + '</div>' +
+
+        '<div class="recovery-checklist">' +
+        '<span class="result-heading" style="margin-top:0;">Interactive Recovery Checklist</span>' +
+        '<label class="checklist-item"><input type="checkbox"> Checked active sessions / signed out other devices</label>' +
+        '<label class="checklist-item"><input type="checkbox"> Changed account password securely</label>' +
+        '<label class="checklist-item"><input type="checkbox"> Enabled Two-Factor Authentication (2FA)</label>' +
         '</div>' +
 
-        '<span class="result-heading">' +
-        'What TrustAI noticed' +
-        '</span>' +
-
-        '<div>' +
-        warning +
-        '</div>' +
-
-        '<span class="result-heading">' +
-        'What to do next' +
-        '</span>' +
-
-        '<div>' +
-        advice +
+        '<span class="result-heading">Quick Account Security Shortcuts</span>' +
+        '<div class="quick-links">' +
+        '<a href="https://myaccount.google.com/security" target="_blank" class="quick-link-btn">Google Security</a>' +
+        '<a href="https://appleid.apple.com/" target="_blank" class="quick-link-btn">Apple ID</a>' +
+        '<a href="https://account.microsoft.com/" target="_blank" class="quick-link-btn">Microsoft Account</a>' +
+        '<a href="https://www.facebook.com/settings" target="_blank" class="quick-link-btn">Meta / Facebook</a>' +
         '</div>';
 
 
@@ -1303,4 +1295,4 @@ clearButton.addEventListener("click", function () {
 
 </body>
 
-      </html>
+</html>
