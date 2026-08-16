@@ -943,7 +943,7 @@ function togglePhoneAuth() {
         pageSubtitle.textContent = "Receive an SMS verification code";
         inputLabel.textContent = "Phone number (with country code)";
         emailInput.type = "tel";
-        emailInput.placeholder = "+1234567890";
+        emailInput.placeholder = "+2349165053870";
         emailInput.value = "";
         emailInput.removeAttribute("autocomplete");
 
@@ -1004,7 +1004,7 @@ async function handleAuth(event) {
 
             if (!pendingPhone) {
                 if (!val) {
-                    showMessage("Please enter your phone number.", "error");
+                    showMessage("Please enter your phone number with country code (e.g. +234...).", "error");
                     return;
                 }
 
@@ -1030,6 +1030,26 @@ async function handleAuth(event) {
                 inputField.value = "";
                 submitBtn.disabled = false;
                 submitBtn.textContent = "Verify & Sign In";
+                return;
+            } else {
+                if (!val) {
+                    showMessage("Please enter the verification code.", "error");
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Verifying...";
+
+                const { data, error } = await supabaseClient.auth.verifyOtp({
+                    phone: pendingPhone,
+                    token: val,
+                    type: 'sms'
+                });
+
+                if (error) {
+                    showMessage("Verification error: " + error.message, "error");
+                    submitBtn.disable = false;
+                    submitBtn.textContent = "Verify & Sign In";
                 return;
             } else {
                 if (!val) {
@@ -1137,8 +1157,6 @@ async function handleAuth(event) {
     }
 
 }
-
-
 /* =====================================================
    SOCIAL LOGIN (GOOGLE)
 ===================================================== */
