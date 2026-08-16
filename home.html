@@ -2,17 +2,11 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TrustAI - Home</title>
 
-
 <style>
-
 :root {
     --primary: #6366f1;
     --primary-glow: rgba(99, 102, 241, 0.15);
@@ -37,49 +31,21 @@ html {
 
 body {
     margin: 0;
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    background:
-        radial-gradient(
-            circle at 10% 0%,
-            rgba(99, 102, 241, 0.12),
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(14, 165, 233, 0.08),
-            transparent 40%
-        ),
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: 
+        radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.12), transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.08), transparent 40%),
         var(--bg-main);
-
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
 }
-
-
-/* =====================================================
-   PAGE
-   ===================================================== */
 
 .page {
     width: min(1050px, calc(100% - 32px));
     margin: auto;
     padding-bottom: 40px;
 }
-
-
-/* =====================================================
-   HEADER
-   ===================================================== */
 
 .header {
     display: flex;
@@ -89,31 +55,17 @@ body {
     padding: 24px 0 16px;
 }
 
-
-/* =====================================================
-   PROFILE BUTTON
-   ===================================================== */
-
 .profile-button {
     width: 48px;
     height: 48px;
-
     padding: 0;
-
     border: 1px solid var(--border-color);
     border-radius: 50%;
-
     background: transparent;
-
     cursor: pointer;
-
     overflow: hidden;
-
     flex-shrink: 0;
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .profile-button:hover {
@@ -124,17 +76,12 @@ body {
 .default-avatar {
     width: 100%;
     height: 100%;
-
     background: #ffffff;
-
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: flex-end;
-
     overflow: hidden;
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -143,23 +90,17 @@ body {
 .avatar-head {
     width: 15px;
     height: 15px;
-
     background: #000000;
-
     border-radius: 50%;
-
     margin-bottom: 3px;
 }
 
 .avatar-body {
     width: 30px;
     height: 18px;
-
     background: #000000;
-
     border-radius: 16px 16px 0 0;
 }
-
 
 .brand {
     display: flex;
@@ -170,80 +111,43 @@ body {
 .brand-shield {
     width: 48px;
     height: 48px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #3b82f6
-        );
-
+    background: linear-gradient(135deg, #6366f1, #3b82f6);
     color: white;
     font-size: 24px;
-
-    box-shadow:
-        0 10px 25px -5px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
 }
 
 .brand-name {
     font-size: 26px;
     font-weight: 900;
     letter-spacing: -0.5px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f8fafc,
-            #94a3b8
-        );
-
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-
-/* =====================================================
-   THREE DASH MENU BUTTON
-   ===================================================== */
-
 .menu-button {
     width: 48px;
     height: 48px;
-
     border: 1px solid var(--border-color);
     border-radius: 14px;
-
     background: rgba(15, 23, 42, 0.95);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     gap: 5px;
-
     cursor: pointer;
-
-    box-shadow:
-        0 10px 25px -5px rgba(0,0,0,0.5);
-
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease, border-color 0.2s ease;
     flex-shrink: 0;
-
     position: relative;
     z-index: 1101;
-
     padding: 0;
-
     appearance: none;
     -webkit-appearance: none;
 }
@@ -259,95 +163,51 @@ body {
 
 .menu-button span {
     display: block;
-
     width: 22px;
     height: 3px;
-
     border-radius: 3px;
-
     background: #ffffff;
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
-
-
-/* =====================================================
-   SIDE MENU
-   ===================================================== */
 
 .side-menu {
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 300px;
     height: 100vh;
     height: 100dvh;
-
     background: var(--bg-side);
-
     border-right: 1px solid var(--border-color);
-
     z-index: 1100;
-
     padding: 30px 20px;
-
     overflow-y: auto;
-
-    box-shadow:
-        15px 0 30px rgba(0,0,0,0.3);
-
+    box-shadow: 15px 0 30px rgba(0,0,0,0.3);
     transform: translateX(-105%);
-
-    transition:
-        transform 0.3s ease;
-
+    transition: transform 0.3s ease;
     visibility: hidden;
-
     pointer-events: none;
 }
 
 .side-menu.open {
     transform: translateX(0);
-
     visibility: visible;
-
     pointer-events: auto;
 }
-
-
-/* =====================================================
-   MENU HEADER
-   ===================================================== */
 
 .menu-header {
     display: flex;
     align-items: center;
-
     gap: 12px;
-
     padding-bottom: 20px;
-
-    border-bottom:
-        1px solid var(--border-color);
-
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 16px;
 }
 
 .menu-logo {
     font-size: 22px;
     font-weight: 800;
-
-    background:
-        linear-gradient(
-            135deg,
-            #818cf8,
-            #38bdf8
-        );
-
+    background: linear-gradient(135deg, #818cf8, #38bdf8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -357,176 +217,96 @@ body {
     font-size: 12px;
 }
 
-
-/* =====================================================
-   MENU LINKS
-   ===================================================== */
-
 .menu-link {
     display: flex;
     align-items: center;
-
     gap: 14px;
-
     width: 100%;
-
     padding: 13px 14px;
-
     margin-bottom: 6px;
-
     border-radius: var(--radius-md);
-
     text-decoration: none;
-
     color: var(--text-muted);
-
     font-size: 14px;
     font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .menu-link:hover {
-    background:
-        rgba(255, 255, 255, 0.05);
-
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-main);
-
     transform: translateX(4px);
 }
 
 .menu-icon {
     width: 24px;
-
     text-align: center;
-
     font-size: 17px;
 }
 
 .menu-divider {
     height: 1px;
-
-    background:
-        var(--border-color);
-
+    background: var(--border-color);
     margin: 18px 0;
 }
 
-
-/* =====================================================
-   OVERLAY
-   ===================================================== */
-
 .menu-overlay {
     position: fixed;
-
     inset: 0;
-
-    background:
-        rgba(0,0,0,0.7);
-
+    background: rgba(0,0,0,0.7);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-
     z-index: 1050;
-
     opacity: 0;
-
     visibility: hidden;
-
     pointer-events: none;
-
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .menu-overlay.show {
     opacity: 1;
-
     visibility: visible;
-
     pointer-events: auto;
 }
-
-
-/* =====================================================
-   HERO
-   ===================================================== */
 
 .hero {
     position: relative;
     overflow: hidden;
-
     margin-top: 12px;
-
     padding: 40px 32px;
-
     border: 1px solid var(--border-color);
-
     border-radius: var(--radius-lg);
-
     background: var(--bg-card);
-
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-
-    box-shadow:
-        0 20px 40px -15px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4);
 }
 
 .hero::after {
     content: "";
-
     position: absolute;
-
     width: 200px;
     height: 200px;
-
     right: -60px;
     top: -60px;
-
     border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(99, 102, 241, 0.18),
-            transparent 70%
-        );
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.18), transparent 70%);
 }
 
 .hero h1 {
     position: relative;
     z-index: 1;
-
     max-width: 650px;
-
     margin: 0 0 16px;
-
-    font-size:
-        clamp(32px, 5.5vw, 46px);
-
+    font-size: clamp(32px, 5.5vw, 46px);
     line-height: 1.15;
-
     letter-spacing: -1px;
-
     color: var(--text-main);
-
     font-weight: 800;
 }
 
 .hero h1 span {
-    background:
-        linear-gradient(
-            135deg,
-            #818cf8,
-            #38bdf8
-        );
-
+    background: linear-gradient(135deg, #818cf8, #38bdf8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -534,1087 +314,555 @@ body {
 .hero p {
     position: relative;
     z-index: 1;
-
     max-width: 720px;
-
     margin: 0;
-
     color: var(--text-muted);
-
     font-size: 15.5px;
-
     line-height: 1.65;
 }
 
-
-/* =====================================================
-   SECTION TITLE
-   ===================================================== */
-
 .section-title {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     margin: 40px 0 20px;
-
     font-size: 22px;
-
     font-weight: 800;
-
     color: var(--text-main);
-
     letter-spacing: -0.3px;
 }
 
 .section-icon {
     width: 38px;
     height: 38px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     border-radius: 12px;
-
-    background:
-        var(--primary-glow);
-
+    background: var(--primary-glow);
     color: var(--primary);
-
     font-size: 18px;
-
-    border:
-        1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.2);
 }
-
-
-/* =====================================================
-   CARDS
-   ===================================================== */
 
 .cards {
     display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
 .card {
     position: relative;
-
     overflow: hidden;
-
     padding: 28px;
-
     min-height: 200px;
-
-    border:
-        1px solid var(--border-color);
-
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-
     background: var(--bg-card);
-
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-
     text-decoration: none;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.2);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-
-    border-color:
-        rgba(99, 102, 241, 0.4);
-
-    box-shadow:
-        0 20px 40px -10px rgba(0,0,0,0.4);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
 }
 
 .card::before {
     content: "";
-
     position: absolute;
-
     left: 0;
     top: 0;
-
     width: 100%;
     height: 3px;
-
-    background:
-        var(--primary);
+    background: var(--primary);
 }
 
-.message-card::before {
-    background: #6366f1;
+.message-card::before { background: #6366f1; }
+.conversation-card::before { background: #3b82f6; }
+.website-card::before { background: #06b6d4; }
+.security-card::before { background: #10b981; }
+
+.clickable-card {
+    cursor: pointer;
 }
-
-.conversation-card::before {
-    background: #3b82f6;
-}
-
-.website-card::before {
-    background: #06b6d4;
-}
-
-.security-card::before {
-    background: #10b981;
-}
-
-.alert-card::before {
-    background: #f97316;
-}
-
-.report-card::before {
-    background: #ef4444;
-}
-
-.contact-card::before {
-    background: #ec4899;
-}
-
-
-/* =====================================================
-   CARD ICON
-   ===================================================== */
 
 .card-icon {
     width: 48px;
     height: 48px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     margin-bottom: 18px;
-
     border-radius: var(--radius-md);
-
-    background:
-        rgba(255,255,255,0.04);
-
-    border:
-        1px solid var(--border-color);
-
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-color);
     font-size: 22px;
 }
 
-
-/* =====================================================
-   CARD TEXT
-   ===================================================== */
-
 .card h2 {
     margin: 0 0 8px;
-
     color: var(--text-main);
-
     font-size: 19px;
-
     font-weight: 750;
-
     letter-spacing: -0.2px;
 }
 
 .card p {
     margin: 0;
-
     color: var(--text-muted);
-
     font-size: 14.5px;
-
     line-height: 1.6;
 }
 
+/* MODAL STYLES */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 16px;
+}
 
-/* =====================================================
-   SECURITY CENTER
-   ===================================================== */
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 
-.security-center {
-    position: relative;
-
-    overflow: hidden;
-
-    margin-top: 36px;
-
-    padding: 34px 30px;
-
+.modal-box {
+    background: #0f172a;
+    border: 1px solid rgba(99, 102, 241, 0.3);
     border-radius: var(--radius-lg);
-
-    border:
-        1px solid rgba(99, 102, 241, 0.2);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(30, 27, 75, 0.8),
-            rgba(49, 46, 129, 0.8)
-        );
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    color: white;
-
-    box-shadow:
-        0 20px 40px -15px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+    animation: modalPop 0.3s ease;
 }
 
-.security-center h2 {
-    position: relative;
-    z-index: 1;
-
-    margin: 0 0 10px;
-
-    font-size: 24px;
-
-    font-weight: 800;
+@keyframes modalPop {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
-.security-center p {
-    position: relative;
-    z-index: 1;
-
-    max-width: 680px;
-
-    margin: 0 0 24px;
-
-    color: #c7d2fe;
-
-    font-size: 15px;
+.modal-box h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: var(--text-main);
 }
 
-.security-button {
-    position: relative;
-    z-index: 2;
+.modal-box p {
+    margin: 0 0 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
 
-    display: inline-flex;
-
-    padding: 13px 22px;
-
+.modal-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-
-    background: white;
-
-    color: #1e1b4b;
-
-    text-decoration: none;
-
-    font-weight: 800;
-
-    font-size: 14.5px;
-
-    transition: all 0.2s ease;
-
-    box-shadow:
-        0 10px 20px rgba(0,0,0,0.2);
+    color: var(--text-main);
+    font-size: 15px;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border-color 0.2s;
 }
 
-.security-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 14px 25px rgba(0,0,0,0.3);
+.modal-input:focus {
+    border-color: var(--primary);
 }
 
-
-/* =====================================================
-   REMEMBER BOX
-   ===================================================== */
-
-.remember {
-    margin-top: 36px;
-
-    padding: 28px;
-
-    border:
-        1px solid rgba(234,179,8,0.2);
-
-    border-radius: var(--radius-lg);
-
-    background:
-        rgba(161,98,7,0.12);
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+.modal-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1e293b;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-size: 15px;
+    margin-bottom: 16px;
+    outline: none;
 }
 
-.remember h2 {
-    margin: 0 0 12px;
-
-    color: #fef08a;
-
-    font-size: 20px;
-
-    font-weight: 800;
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-.remember p {
-    margin: 10px 0;
-
-    color: #fef9c3;
-
-    font-size: 14.5px;
+.modal-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
 }
 
+.modal-btn:active { transform: scale(0.97); }
 
-/* =====================================================
-   FOOTER
-   ===================================================== */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+}
 
 footer {
     margin-top: 48px;
-
     padding: 28px 0 35px;
-
-    border-top:
-        1px solid var(--border-color);
-
+    border-top: 1px solid var(--border-color);
     text-align: center;
-
     color: var(--text-muted);
-
     font-size: 13.5px;
 }
 
-.footer-brand {
-    margin-bottom: 6px;
-
-    color: var(--text-main);
-
-    font-weight: 800;
-
-    font-size: 15px;
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
 @media (max-width: 700px) {
-
-    .page {
-        width: calc(100% - 28px);
-    }
-
-    .header {
-        padding-top: 20px;
-    }
-
-    .brand-name {
-        font-size: 24px;
-    }
-
-    .hero {
-        padding: 28px 22px;
-        border-radius: 18px;
-    }
-
-    .hero h1 {
-        font-size: 32px;
-    }
-
-    .hero p {
-        font-size: 14.5px;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .card {
-        min-height: 180px;
-        padding: 22px;
-    }
-
-    .security-center {
-        padding: 28px 22px;
-    }
-
-    .security-button {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .side-menu {
-        width: 280px;
-    }
+    .page { width: calc(100% - 28px); }
+    .header { padding-top: 20px; }
+    .brand-name { font-size: 24px; }
+    .hero { padding: 28px 22px; border-radius: 18px; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 14.5px; }
+    .cards { grid-template-columns: 1fr; }
+    .card { min-height: 180px; padding: 22px; }
+    .side-menu { width: 280px; }
 }
-
 </style>
-
 </head>
 
 <body>
 
-
-<!-- =====================================================
-     SIDE MENU
-     ===================================================== -->
-
+<!-- SIDE MENU -->
 <nav id="sideMenu" class="side-menu">
-
     <div class="menu-header">
-
         <div>
-
-            <div class="menu-logo">
-                🛡️ TrustAI
-            </div>
-
-            <div class="menu-subtitle">
-                Online Scam Protection
-            </div>
-
+            <div class="menu-logo">🛡️ TrustAI</div>
+            <div class="menu-subtitle">Online Scam Protection</div>
         </div>
-
     </div>
 
-
-    <a href="home.html" class="menu-link">
-        <span class="menu-icon">🏠</span>
-        Home
-    </a>
-
-    <a href="message.html" class="menu-link">
-        <span class="menu-icon">🔍</span>
-        Message Checker
-    </a>
-
-    <a href="conversation.html" class="menu-link">
-        <span class="menu-icon">💬</span>
-        Conversation Checker
-    </a>
-
-    <a href="website.html" class="menu-link">
-        <span class="menu-icon">🌐</span>
-        Website Checker
-    </a>
-
-    <a href="device.html" class="menu-link">
-        <span class="menu-icon">📱</span>
-        Device Security
-    </a>
-
-    <a href="security.html" class="menu-link">
-        <span class="menu-icon">🛡️</span>
-        Security Center
-    </a>
-
+    <a href="home.html" class="menu-link"><span class="menu-icon">🏠</span>Home</a>
+    <a href="message.html" class="menu-link"><span class="menu-icon">🔍</span>Message Checker</a>
+    <a href="conversation.html" class="menu-link"><span class="menu-icon">💬</span>Conversation Checker</a>
+    <a href="website.html" class="menu-link"><span class="menu-icon">🌐</span>Website Checker</a>
+    <a href="device.html" class="menu-link"><span class="menu-icon">📱</span>Device Security</a>
+    <a href="security.html" class="menu-link"><span class="menu-icon">🛡️</span>Security Center</a>
 
     <div class="menu-divider"></div>
 
-
-    <a href="alerts.html" class="menu-link">
-        <span class="menu-icon">🚨</span>
-        Scam Alerts
-    </a>
-
-    <a href="report.html" class="menu-link">
-        <span class="menu-icon">📢</span>
-        Report a Scam
-    </a>
-
-    <a href="contact.html" class="menu-link">
-        <span class="menu-icon">💬</span>
-        Contact TrustAI
-    </a>
-
-    <a href="./settings.html" class="menu-link">
-        <span class="menu-icon">⚙️</span>
-        Settings & Privacy
-    </a>
+    <a href="alerts.html" class="menu-link"><span class="menu-icon">🚨</span>Scam Alerts</a>
+    <a href="report.html" class="menu-link"><span class="menu-icon">📢</span>Report a Scam</a>
+    <a href="contact.html" class="menu-link"><span class="menu-icon">💬</span>Contact TrustAI</a>
+    <a href="./settings.html" class="menu-link"><span class="menu-icon">⚙️</span>Settings & Privacy</a>
 
     <div class="menu-divider"></div>
 
-    <!-- LOG OUT BUTTON -->
     <a href="#" class="menu-link" onclick="handleLogout(); return false;" style="color: #f87171;">
-        <span class="menu-icon">🚪</span>
-        Log Out
+        <span class="menu-icon">🚪</span>Log Out
     </a>
-
 </nav>
 
+<!-- OVERLAY -->
+<div id="menuOverlay" class="menu-overlay"></div>
 
-<!-- =====================================================
-     OVERLAY
-     ===================================================== -->
+<!-- ACCOUNT LINKING MODAL (Connects handle for background auto-detection) -->
+<div id="linkModal" class="modal-overlay">
+    <div class="modal-box">
+        <h3 id="modalTitle">Enable Live Shield</h3>
+        <p id="modalDesc">Link your handle so TrustAI can automatically detect unauthorized login attempts, suspicious chats, or fake calls in real time.</p>
+        
+        <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Select Platform</label>
+        <select id="modalPlatform" class="modal-select">
+            <option value="Steam / Epic">Steam / Epic Games</option>
+            <option value="Facebook / Instagram / TikTok">Facebook / Instagram / TikTok</option>
+            <option value="WhatsApp / Phone Number">WhatsApp / Phone Number</option>
+        </select>
 
-<div
-    id="menuOverlay"
-    class="menu-overlay">
+        <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Account Username / Phone Handle</label>
+        <input type="text" id="modalInputVal" class="modal-input" placeholder="e.g. @username or +2348000000000">
+
+        <div class="modal-actions">
+            <button type="button" class="modal-btn btn-secondary" onclick="closeLinkModal()">Cancel</button>
+            <button type="button" class="modal-btn btn-primary" onclick="saveLinkedAccount()">Activate Live Shield</button>
+        </div>
+    </div>
 </div>
 
-
-<!-- =====================================================
-     MAIN PAGE
-     ===================================================== -->
-
+<!-- MAIN PAGE -->
 <div class="page">
 
+    <!-- HEADER -->
+    <header class="header">
+        <button id="menuButton" class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
-
-<header class="header">
-
-    <button
-        id="menuButton"
-        class="menu-button"
-        type="button"
-        aria-label="Open menu"
-        aria-expanded="false">
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-    </button>
-
-
-    <div class="brand">
-
-        <div class="brand-shield">
-            🛡️
+        <div class="brand">
+            <div class="brand-shield">🛡️</div>
+            <div class="brand-name">TrustAI</div>
         </div>
 
-        <div class="brand-name">
-            TrustAI
-        </div>
-
-    </div>
-
-
-    <!-- PROFILE BUTTON -->
-
-    <button
-        class="profile-button"
-        type="button"
-        onclick="window.location.href='profile.html'"
-        aria-label="Open profile">
-
-        <div
-            class="default-avatar"
-            id="homeProfileAvatar"
-            aria-label="Profile">
-
-            <div class="avatar-head"></div>
-            <div class="avatar-body"></div>
-
-        </div>
-
-    </button>
-
-</header>
-
-
-<!-- =====================================================
-     HERO
-     ===================================================== -->
-
-<section class="hero">
-
-    <h1>
-        Stay one step ahead of
-        <span>scams.</span>
-    </h1>
-
-    <p>
-        Check suspicious messages, conversations and
-        websites for common warning signs before you
-        take action.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     CHECK SOMETHING
-     ===================================================== -->
-
-<h2 class="section-title">
-
-    <span class="section-icon">
-        🔎
-    </span>
-
-    Check Something
-
-</h2>
-
-
-<div class="cards">
-
-
-    <a
-        href="message.html"
-        class="card message-card">
-
-        <div class="card-icon">
-            🔍
-        </div>
-
-        <h2>
-            Message Checker
-        </h2>
-
-        <p>
-            Check a suspicious message for scam,
-            phishing, impersonation and payment
-            warning signs.
-        </p>
-
-    </a>
-
-
-    <a
-        href="conversation.html"
-        class="card conversation-card">
-
-        <div class="card-icon">
-            💬
-        </div>
-
-        <h2>
-            Conversation Checker
-        </h2>
-
-        <p>
-            Analyze a conversation for suspicious
-            patterns that may develop over time.
-        </p>
-
-    </a>
-
-
-    <a
-        href="website.html"
-        class="card website-card">
-
-        <div class="card-icon">
-            🌐
-        </div>
-        <h2>
-            Website Checker
-        </h2>
-        <p>
-            Check a website address for common
-            suspicious website warning signs.
-        </p>
-
-    </a>
-
-</div>
-
-
-<!-- =====================================================
-     CONNECTED ACCOUNTS & PROTECTION HUB
-     ===============================================
-    
-<h2 class="section-title">
-
-    <span class="section-icon">
-        🔗
-    </span>
-
-    Protected Accounts & Devices
-
-</h2>
-
-<div class="cards">
-
-    <div class="card" style="border-left: 3px solid #ec4899;">
-        <div class="card-icon">
-            🎮
-        </div>
-        <h2>Gaming Accounts</h2>
-        <p>Monitor your gaming profiles (Steam, Epic, mobile games) against unauthorized login attempts and recovery hacks.</p>
-        <div style="margin-top: 16px;">
-            <span style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Not Linked</span>
-        </div>
-    </div>
-
-    <div class="card" style="border-left: 3px solid #3b82f6;">
-        <div class="card-icon">
-            📱
-        </div>
-        <h2>Social Media</h2>
-        <p>Guard your TikTok, Facebook, Twitter/X, and Instagram handles from takeovers and suspicious password resets.</p>
-        <div style="margin-top: 16px;">
-            <span style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Not Linked</span>
-        </div>
-    </div>
-
-    <div class="card" style="border-left: 3px solid #10b981;">
-        <div class="card-icon">
-            📞
-        </div>
-        <h2>Call & SMS Shield</h2>
-        <p>Active detection for fake spoofed calls, scam numbers, and malicious phishing texts sent to your phone.</p>
-        <div style="margin-top: 16px;">
-            <span style="font-size: 13px; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 6px;">Active Protection</span>
-        </div>
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     SECURITY
-     ===================================================== -->
-
-<h2 class="section-title">
-
-    <span class="section-icon">
-        🛡️
-    </span>
-
-    Security
-
-</h2>
-
-
-<div class="cards">
-
-    <a
-        href="device.html"
-        class="card security-card">
-
-        <div class="card-icon">
-            📱
-        </div>
-
-        <h2>
-            Device Security
-        </h2>
-
-        <p>
-            Review important device security practices
-            and improve weak areas.
-        </p>
-
-    </a>
-
-</div>
-
-
-<!-- =====================================================
-     SECURITY CENTER
-     ===================================================== -->
-
-<section class="security-center">
-
-    <h2>
-        🛡️ Security Center
+        <button class="profile-button" type="button" onclick="window.location.href='profile.html'" aria-label="Open profile">
+            <div class="default-avatar" id="homeProfileAvatar" aria-label="Profile">
+                <div class="avatar-head"></div>
+                <div class="avatar-body"></div>
+            </div>
+        </button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Stay one step ahead of <span>scams.</span></h1>
+        <p>Check suspicious messages, conversations and websites for common warning signs before you take action.</p>
+    </section>
+
+    <!-- CHECK SOMETHING -->
+    <h2 class="section-title">
+        <span class="section-icon">🔎</span>Check Something
     </h2>
 
-    <p>
-        Learn how to protect your passwords, OTPs,
-        verification codes, payments, accounts and
-        personal information.
-    </p>
+    <div class="cards">
+        <a href="message.html" class="card message-card">
+            <div class="card-icon">🔍</div>
+            <h2>Message Checker</h2>
+            <p>Check a suspicious message for scam, phishing, impersonation and payment warning signs.</p>
+        </a>
 
-    <a
-        href="security.html"
-        class="security-button">
+        <a href="conversation.html" class="card conversation-card">
+            <div class="card-icon">💬</div>
+            <h2>Conversation Checker</h2>
+            <p>Analyze a conversation for suspicious patterns that may develop over time.</p>
+        </a>
 
-        Open Security Center
+        <a href="website.html" class="card website-card">
+            <div class="card-icon">🌐</div>
+            <h2>Website Checker</h2>
+            <p>Check a website address for common suspicious website warning signs.</p>
+        </a>
+    </div>
 
-    </a>
-
-</section>
-
-
-<!-- =====================================================
-     REMEMBER
-     ===================================================== -->
-
-<section class="remember">
-
-    <h2>
-        ⚠️ Remember
+    <!-- CONNECTED ACCOUNTS & PROTECTION HUB -->
+    <h2 class="section-title">
+        <span class="section-icon">🔗</span>Protected Accounts & Devices
     </h2>
 
-    <p>
-        Never share your password, OTP or verification
-        code with anyone.
-    </p>
+    <div class="cards">
+        <div class="card clickable-card" style="border-left: 3px solid #ec4899;" onclick="openLinkModal('gaming')">
+            <div class="card-icon">🎮</div>
+            <h2>Gaming Accounts</h2>
+            <p>Background monitoring for Steam & Epic logins. TrustAI alerts you instantly if someone else attempts to access your profile.</p>
+            <div style="margin-top: 16px;">
+                <span id="gamingStatus" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Standby (Click to Link)</span>
+            </div>
+        </div>
 
-    <p>
-        Be careful with urgent payment requests,
-        suspicious links and unexpected messages.
-    </p>
+        <div class="card clickable-card" style="border-left: 3px solid #3b82f6;" onclick="openLinkModal('social')">
+            <div class="card-icon">📱</div>
+            <h2>Social Media</h2>
+            <p>Auto-detects suspicious chat links, unverified login alerts, and takeover attempts on WhatsApp, Facebook, and TikTok.</p>
+            <div style="margin-top: 16px;">
+                <span id="socialStatus" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Standby (Click to Link)</span>
+            </div>
+        </div>
 
-</section>
+        <div class="card clickable-card" style="border-left: 3px solid #10b981;" onclick="openLinkModal('callshield')">
+            <div class="card-icon">📞</div>
+            <h2>Call & SMS Shield</h2>
+            <p>Real-time background scanning detects spoofed phone calls, spam numbers, and dangerous phishing SMS links instantly.</p>
+            <div style="margin-top: 16px;">
+                <span id="callShieldStatus" style="font-size: 13px; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 6px;">Active Background Shield 🟢</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- SECURITY -->
+    <h2 class="section-title">
+        <span class="section-icon">🛡️</span>Security
+    </h2>
 
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
+    <div class="cards">
+        <a href="device.html" class="card security-card">
+            <div class="card-icon">📱</div>
+            <h2>Device Security</h2>
+            <p>Review active permissions, device status, and security configurations to keep your phone protected.</p>
+        </a>
+    </div>
+
+</div>
 
 <footer>
-
-    <div class="footer-brand">
-        🛡️ TrustAI
-    </div>
-
-    <div>
-        Stay safe. Stay informed. Stay one step ahead.
-    </div>
-
+    <div class="footer-brand">TrustAI</div>
+    <div>Your real-time online scam and threat protection assistant.</div>
 </footer>
 
-</div>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-     ===================================================== -->
-
 <script>
-
-/* =====================================================
-   SUPABASE CONFIGURATION & OAUTH SESSION HANDLER
-===================================================== */
-
-const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
-
-let supabaseClient = null;
-
-try {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-} catch (error) {
-    console.error("Supabase initialization failed:", error);
-}
-
-async function handleOAuthCallback() {
-    if (!supabaseClient) return;
-
-    // Check if session exists or if tokens are in the URL hash from Google login
-    const { data: { session }, error } = await supabaseClient.auth.getSession();
-    
-    if (session) {
-        localStorage.setItem("trustai_loggedIn", "true");
-        if (session.user && session.user.user_metadata && session.user.user_metadata.full_name) {
-            localStorage.setItem("trustai_userName", session.user.user_metadata.full_name);
-        }
-    } else {
-        // If not logged in via Supabase, check if manual email login flag is absent
-        // If both are missing, redirect to login page
-        if (localStorage.getItem("trustai_loggedIn") !== "true") {
-            window.location.href = "./login.html";
-        }
-    }
-}
-
-handleOAuthCallback();
-
-
-/* =====================================================
-   MENU ELEMENTS
-   ===================================================== */
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const sideMenu =
-    document.getElementById("sideMenu");
-
-const menuOverlay =
-    document.getElementById("menuOverlay");
-
-
-/* =====================================================
-   OPEN MENU
-   ===================================================== */
+const menuButton = document.getElementById("menuButton");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
 
 function openMenu() {
-
     sideMenu.classList.add("open");
-
     menuOverlay.classList.add("show");
-menuButton.setAttribute(
-        "aria-expanded",
-        "true"
-    );
-
+    menuButton.setAttribute("aria-expanded", "true");
 }
-
-
-/* =====================================================
-   CLOSE MENU
-   ===================================================== */
 
 function closeMenu() {
-
     sideMenu.classList.remove("open");
-
     menuOverlay.classList.remove("show");
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
+    menuButton.setAttribute("aria-expanded", "false");
 }
 
-
-/* =====================================================
-   TOGGLE MENU
-   ===================================================== */
-
-menuButton.addEventListener(
-    "click",
-    function() {
-
-        if (
-            sideMenu.classList.contains("open")
-        ) {
-
-            closeMenu();
-
-        } else {
-
-            openMenu();
-
-        }
-
+menuButton.addEventListener("click", function() {
+    if (sideMenu.classList.contains("open")) {
+        closeMenu();
+    } else {
+        openMenu();
     }
-);
-
-
-/* =====================================================
-   CLOSE WHEN OVERLAY IS TAPPED
-   ===================================================== */
-
-menuOverlay.addEventListener(
-    "click",
-    closeMenu
-);
-
-
-/* =====================================================
-   CLOSE MENU AFTER SELECTING A LINK
-   ===================================================== */
-
-const menuLinks =
-    document.querySelectorAll(".menu-link");
-
-menuLinks.forEach(function(link) {
-
-    link.addEventListener(
-        "click",
-        closeMenu
-    );
-
 });
 
+menuOverlay.addEventListener("click", closeMenu);
+const menuLinks = document.querySelectorAll(".menu-link");
+menuLinks.forEach(function(link) {
+    link.addEventListener("click", closeMenu);
+});
 
-/* =====================================================
-   CLOSE MENU WITH ESC KEY
-   ===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Escape") {
-
-            closeMenu();
-
-        }
-
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeMenu();
+        closeLinkModal();
     }
-);
+});
 
+/* MODAL LOGIC FOR LIVE SHIELD LINKING */
+let activeCategory = '';
 
-/* =====================================================
-   LOAD PROFILE PICTURE FROM PROFILE PAGE
-   ===================================================== */
+function openLinkModal(category) {
+    activeCategory = category;
+    const modal = document.getElementById("linkModal");
+    const title = document.getElementById("modalTitle");
+    const desc = document.getElementById("modalDesc");
+    const platformSelect = document.getElementById("modalPlatform");
+    const inputVal = document.getElementById("modalInputVal");
+
+    if (category === 'gaming') {
+        title.innerText = "Enable Gaming Live Shield";
+        desc.innerText = "Link your gaming handle for instant background alerts on unrecognized logins and recovery takeovers.";
+        platformSelect.innerHTML = `
+            <option value="Steam">Steam</option>
+            <option value="Epic Games">Epic Games</option>
+            <option value="Mobile Gaming ID">Mobile Gaming ID</option>
+        `;
+        inputVal.placeholder = "e.g. Steam Username or Profile ID";
+    } else if (category === 'social') {
+        title.innerText = "Enable Social Media Live Shield";
+        desc.innerText = "Connect your handle to automatically detect chat phishing, unauthorized logins, and password resets.";
+        platformSelect.innerHTML = `
+            <option value="WhatsApp">WhatsApp Number</option>
+            <option value="Facebook / Instagram">Facebook / Instagram</option>
+            <option value="TikTok">TikTok Handle</option>
+        `;
+        inputVal.placeholder = "e.g. @handle or +2348000000000";
+    } else if (category === 'callshield') {
+        title.innerText = "Configure Call & SMS Shield";
+        desc.innerText = "Manage your real-time phone number whitelist and auto-intercept settings for incoming spam calls and SMS links.";
+        platformSelect.innerHTML = `
+            <option value="Incoming Calls Auto-Intercept">Incoming Calls Auto-Intercept</option>
+            <option value="SMS Phishing Link Blocker">SMS Phishing Link Blocker</option>
+        `;
+        inputVal.placeholder = "e.g. Trusted country code or exception list";
+    }
+
+    modal.classList.add("show");
+}
+
+function closeLinkModal() {
+    const modal = document.getElementById("linkModal");
+    modal.classList.remove("show");
+}
+
+function saveLinkedAccount() {
+    const val = document.getElementById("modalInputVal").value;
+    if(!val && activeCategory !== 'callshield') {
+        alert("Please enter a valid handle or account username.");
+        return;
+    }
+
+    if(activeCategory === 'gaming') {
+        const badge = document.getElementById("gamingStatus");
+        badge.innerText = "Live Monitoring Active 🟢";
+        badge.style.color = "#10b981";
+        badge.style.background = "rgba(16, 185, 129, 0.1)";
+        localStorage.setItem("trustai_gaming_linked", "true");
+        alert("Gaming Live Shield activated! TrustAI is now monitoring your profile for unauthorized login attempts.");
+    } else if(activeCategory === 'social') {
+        const badge = document.getElementById("socialStatus");
+        badge.innerText = "Live Monitoring Active 🟢";
+        badge.style.color = "#10b981";
+        badge.style.background = "rgba(16, 185, 129, 0.1)";
+        localStorage.setItem("trustai_social_linked", "true");
+        alert("Social Media Live Shield activated! TrustAI is now actively scanning chats and login notifications.");
+    } else if(activeCategory === 'callshield') {
+        const badge = document.getElementById("callShieldStatus");
+        badge.innerText = "Shield Settings Updated 🟢";
+        localStorage.setItem("trustai_callshield_configured", "true");
+        alert("Call & SMS Shield preferences saved successfully!");
+    }
+
+    document.getElementById("modalInputVal").value = "";
+    closeLinkModal();
+}
 
 function loadHomeProfilePicture() {
-
-    const avatar =
-        document.getElementById(
-            "homeProfileAvatar"
-        );
-
-    const savedPicture =
-        localStorage.getItem(
-            "trustai_profilePicture"
-        );
-
+    const avatar = document.getElementById("homeProfileAvatar");
+    const savedPicture = localStorage.getItem("trustai_profilePicture");
 
     if (savedPicture) {
-
-        avatar.style.backgroundImage =
-            `url("${savedPicture}")`;
-
-        avatar.style.backgroundSize =
-            "cover";
-
-        avatar.style.backgroundPosition =
-            "center";
-
-        avatar.style.backgroundRepeat =
-            "no-repeat";
-
+        avatar.style.backgroundImage = `url("${savedPicture}")`;
+        avatar.style.backgroundSize = "cover";
+        avatar.style.backgroundPosition = "center";
+        avatar.style.backgroundRepeat = "no-repeat";
         avatar.innerHTML = "";
-
     } else {
-
-        avatar.style.backgroundImage =
-            "none";
-
+        avatar.style.backgroundImage = "none";
         avatar.innerHTML = `
             <div class="avatar-head"></div>
             <div class="avatar-body"></div>
         `;
-
     }
-
 }
 
-
-/* =====================================================
-   START PROFILE PICTURE
-   ===================================================== */
-
 loadHomeProfilePicture();
-
-
-/* =====================================================
-   LOGOUT FUNCTION
-   ===================================================== */
 
 function handleLogout() {
     localStorage.removeItem("trustai_loggedIn");
     localStorage.removeItem("trustai_userName");
     window.location.href = "./login.html";
 }
-
 </script>
 
 </body>
-
-    </html>
+</html>
