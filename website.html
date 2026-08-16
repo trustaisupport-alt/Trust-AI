@@ -6,12 +6,12 @@
     <title>Trust AI - Global Website Fraud Checker</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
+            --bg-color: #050b14;
+            --card-bg: #0f1d2f;
             --text-color: #f8fafc;
             --text-muted: #94a3b8;
             --accent: #38bdf8;
-            --border: #334155;
+            --border: #233e5f;
         }
 
         body {
@@ -19,17 +19,69 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
+        /* Hamburger Menu */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-color);
+            transition: 0.3s;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background: #081220;
+            border-right: 1px solid var(--border);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding-top: 80px;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+            overflow-y: auto;
+        }
+
+        .sidebar.open { left: 0; }
+
+        .sidebar-brand { padding: 0 20px 20px 20px; border-bottom: 1px solid var(--border); margin-bottom: 15px; }
+        .sidebar-brand h2 { color: var(--accent); font-size: 20px; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px; }
+        .sidebar-brand p { color: var(--text-muted); font-size: 12px; margin: 0; }
+
+        .sidebar-links { list-style: none; padding: 0; margin: 0; }
+        .sidebar-links li a { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #cbd5e1; text-decoration: none; font-size: 14px; transition: background 0.2s, color 0.2s; }
+        .sidebar-links li a:hover { background: #112238; color: var(--accent); }
+
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.active { display: block; }
+
+        /* Content Container */
         .container {
-            width: 100%;
+            width: 90%;
             max-width: 600px;
+            margin: 100px auto 40px auto;
             background-color: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -61,7 +113,7 @@
         input[type="text"] {
             flex: 1;
             padding: 12px 16px;
-            background-color: #0f172a;
+            background-color: var(--bg-color);
             border: 1px solid var(--border);
             border-radius: 8px;
             color: var(--text-color);
@@ -77,7 +129,7 @@
         button {
             padding: 12px 20px;
             background-color: var(--accent);
-            color: #0f172a;
+            color: var(--bg-color);
             border: none;
             border-radius: 8px;
             font-weight: 600;
@@ -94,7 +146,7 @@
             margin-top: 20px;
             padding: 16px;
             border-radius: 8px;
-            background-color: #0f172a;
+            background-color: var(--bg-color);
             border: 1px solid var(--border);
             display: none;
         }
@@ -142,6 +194,33 @@
 </head>
 <body>
 
+    <!-- Hamburger Menu Button -->
+    <div class="menu-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Overlay Background -->
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <!-- Slide-out Sidebar Navigation -->
+    <nav class="sidebar" id="appSidebar">
+        <div class="sidebar-brand">
+            <h2>🛡️ TrustAI</h2>
+            <p>Online Scam Protection</p>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="scanner.html">🔍 Message Checker</a></li>
+            <li><a href="conversation.html">💬 Conversation Checker</a></li>
+            <li><a href="website.html" style="color: var(--accent); background: #112238;">🌐 Website Checker</a></li>
+            <li><a href="device.html">📱 Device Security</a></li>
+            <li><a href="security-center.html">🛡️ Security Center</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
     <div class="container">
         <h1>Trust AI</h1>
         <p class="subtitle">Global Website & Phishing Fraud Defense System</p>
@@ -163,10 +242,16 @@
     </div>
 
     <script>
-        /* =========================  
-           WEBSITE CHECKER (GLOBAL FRAUD & SCAM DEFENSE)  
-        ========================= */  
+        function toggleMenu() {
+            const sidebar = document.getElementById('appSidebar');
+            const overlay = document.getElementById('menuOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
 
+        /* =========================  
+           WEBSITE CHECKER LOGIC  
+        ========================= */  
         document.getElementById("websiteForm").addEventListener("submit", checkWebsite);  
 
         function checkWebsite(event) {  
@@ -215,9 +300,7 @@
             let score = 0;  
             let reasons = [];  
 
-            // ==========================================
             // 1. GLOBAL TRUSTED DOMAINS
-            // ==========================================
             const trustedDomains = [  
                 "google.com", "microsoft.com", "apple.com", "amazon.com", "github.com",  
                 "stackoverflow.com", "reddit.com", "wikipedia.org", "yahoo.com", "outlook.com",  
@@ -250,9 +333,7 @@
                 return hostname === domain || hostname.endsWith("." + domain);  
             });  
 
-            // ==========================================
-            // 2. WORLDWIDE BRAND IMPERSONATION & TYPOSQUATTING PATTERNS
-            // ==========================================
+            // 2. BRAND IMPERSONATION & TYPOSQUATTING PATTERNS
             const lookalikePatterns = [  
                 "g00gle", "goog1e", "gogle", "gogole", "googe", "goog-le", "google-", 
                 "micros0ft", "microsooft", "micosoft", "microsft", "microsoft-", 
@@ -282,9 +363,7 @@
                 }  
             }  
 
-            // ==========================================
-            // 3. SUSPICIOUS TOP-LEVEL DOMAINS (TLDs)
-            // ==========================================
+            // 3. SUSPICIOUS TLDs
             const riskyTLDs = [
                 ".zip", ".mov", ".click", ".top", ".gq", ".cf", ".ml", ".tk", ".cc", 
                 ".work", ".loan", ".party", ".gdn", ".trade", ".date", ".faith", ".racing", 
@@ -297,9 +376,7 @@
                 reasons.push("Domain uses an extension frequently associated with spam or phishing.");  
             }  
 
-            // ==========================================
             // 4. PROTOCOL & TECHNICAL RED FLAGS
-            // ==========================================
             if (url.protocol === "http:") {  
                 score += 2;  
                 reasons.push("Website does not use a secure HTTPS connection.");  
@@ -326,15 +403,7 @@
                 reasons.push("Domain contains multiple hyphens, a common trick for fake sites.");  
             }  
 
-            const parts = hostname.split(".");  
-            if (parts.length >= 4) {  
-                score += 2;  
-                reasons.push("Domain has excessive subdomains, indicating subdomain takeover or phishing.");  
-            }  
-
-            // ==========================================
-            // 5. GLOBAL PHISHING, SCAM & FRAUD KEYWORDS
-            // ==========================================
+            // 5. PHISHING & SCAM KEYWORDS
             const suspiciousWords = [  
                 "verify", "verification", "verifiy", "confirm", "confirmation", "update", 
                 "suspended", "suspend", "locked", "unlock", "restricted", "restriction", 
@@ -361,9 +430,7 @@
                 }  
             }  
 
-            // ==========================================
             // 6. URL SHORTENERS
-            // ==========================================
             const shorteners = [  
                 "bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "buff.ly", 
                 "adf.ly", "ow.ly", "bl.ink", "shorte.st", "rb.gy", "rebrand.ly", "lnkd.in"
@@ -372,14 +439,6 @@
             if (shorteners.includes(hostname)) {  
                 score += 3;  
                 reasons.push("Uses a URL shortener which masks the destination website.");  
-            }  
-
-            // ==========================================
-            // 7. PUNYCODE ATTACKS
-            // ==========================================
-            if (hostname.startsWith("xn--") || hostname.includes(".xn--")) {  
-                score += 4;  
-                reasons.push("Uses internationalized/Punycode characters often used in spoofing.");  
             }  
 
             score = Math.min(score, 10);  
@@ -439,7 +498,7 @@
                 "No obvious scam patterns were found in the URL.",  
                 "TrustAI cannot confirm that this website is legitimate.",  
                 "Action: Verify important websites independently."  
-            );  
+          );  
         }  
 
         function showResult(type, statusText, site, messageText, reasonText, actionText) {  
