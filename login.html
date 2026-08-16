@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign in — TrustAI</title>
-<meta name="description" content="Sign in to your TrustAI account">
+<title>Log In / Create Account — TrustAI</title>
+<meta name="description" content="Log in or create a TrustAI account">
 <!-- SUPABASE JS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -69,8 +69,8 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
     <div class="logo">🛡️ Trust<span>AI</span></div>
 
     <section class="login-card">
-        <h1 id="pageTitle">Sign in to TrustAI</h1>
-        <p class="subtitle" id="pageSubtitle">Continue to your TrustAI account</p>
+        <h1 id="pageTitle">Log In / Create Account</h1>
+        <p class="subtitle" id="pageSubtitle">Access your TrustAI security dashboard</p>
         
         <div id="message" class="message"></div>
 
@@ -91,23 +91,23 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
         <form id="loginForm" onsubmit="handleAuth(event)">
             <div class="form-group" id="nameGroup" style="display:none;">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" placeholder="John Doe">
+                <input type="text" id="fullName" placeholder="John Doe" autocomplete="name">
             </div>
 
             <div class="form-group" id="identifierGroup">
                 <label for="email" id="inputLabel">Email address</label>
-                <input type="email" id="email" placeholder="you@example.com" required>
+                <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
             </div>
 
             <div class="form-group" id="passwordGroupContainer">
                 <label for="password">Password</label>
                 <div class="password-wrapper">
-                    <input type="password" id="password" placeholder="••••••••" minlength="6" required>
+                    <input type="password" id="password" placeholder="••••••••" minlength="6" autocomplete="current-password" required>
                     <button type="button" id="togglePassword" class="toggle-password-btn" onclick="togglePasswordVisibility()">🙈</button>
                 </div>
             </div>
 
-            <button type="submit" id="submitBtn" class="continue-button">Continue</button>
+            <button type="submit" id="submitBtn" class="continue-button">Log In</button>
         </form>
 
         <div class="other-options">
@@ -170,11 +170,11 @@ function toggleAuthMode(event) {
     hideMessage();
     
     document.getElementById("nameGroup").style.display = isSignUp ? "block" : "none";
-    document.getElementById("submitBtn").textContent = isSignUp ? "Create Account" : "Continue";
+    document.getElementById("submitBtn").textContent = isSignUp ? "Create Account" : "Log In";
     document.getElementById("toggleText").textContent = isSignUp ? "Already have a TrustAI account?" : "Don't have a TrustAI account?";
-    document.getElementById("toggleLink").textContent = isSignUp ? "Sign in" : "Create account";
-    document.getElementById("pageTitle").textContent = isSignUp ? "Create TrustAI Account" : "Sign in to TrustAI";
-    document.getElementById("pageSubtitle").textContent = isSignUp ? "Start protecting your links and messages" : "Continue to your TrustAI account";
+    document.getElementById("toggleLink").textContent = isSignUp ? "Log in" : "Create account";
+    document.getElementById("pageTitle").textContent = isSignUp ? "Create TrustAI Account" : "Log In / Create Account";
+    document.getElementById("pageSubtitle").textContent = isSignUp ? "Start protecting your links and messages" : "Access your TrustAI security dashboard";
 }
 
 function togglePhoneAuth() {
@@ -186,7 +186,7 @@ function togglePhoneAuth() {
     const passwordInput = document.getElementById("password");
     
     if (isPhoneMode) {
-        document.getElementById("pageTitle").textContent = "Sign in with Phone";
+        document.getElementById("pageTitle").textContent = "Log In with Phone";
         document.getElementById("pageSubtitle").textContent = "Receive an SMS verification code";
         document.getElementById("inputLabel").textContent = "Phone number (with country code)";
         
@@ -203,10 +203,10 @@ function togglePhoneAuth() {
         document.getElementById("divider").style.display = "none";
         
         document.getElementById("submitBtn").textContent = "Send Verification Code";
-        document.getElementById("phoneToggleBtn").textContent = "Continue with Email & Password";
+        document.getElementById("phoneToggleBtn").textContent = "Log In with Email & Password";
     } else {
-        document.getElementById("pageTitle").textContent = "Sign in to TrustAI";
-        document.getElementById("pageSubtitle").textContent = "Continue to your TrustAI account";
+        document.getElementById("pageTitle").textContent = "Log In / Create Account";
+        document.getElementById("pageSubtitle").textContent = "Access your TrustAI security dashboard";
         document.getElementById("inputLabel").textContent = "Email address";
         
         emailInput.type = "email";
@@ -220,7 +220,7 @@ function togglePhoneAuth() {
         document.getElementById("googleBtn").style.display = "flex";
         document.getElementById("divider").style.display = "flex";
         
-        document.getElementById("submitBtn").textContent = "Continue";
+        document.getElementById("submitBtn").textContent = "Log In";
         document.getElementById("phoneToggleBtn").textContent = "Continue with phone";
     }
 }
@@ -253,7 +253,7 @@ async function handleAuth(event) {
                 document.getElementById("email").placeholder = "123456";
                 document.getElementById("email").value = "";
                 
-                submitBtn.disabled = false; submitBtn.textContent = "Verify & Sign In";
+                submitBtn.disabled = false; submitBtn.textContent = "Verify & Log In";
                 return;
             } else {
                 if (!val) { showMessage("Enter the verification code.", "error"); return; }
@@ -262,7 +262,7 @@ async function handleAuth(event) {
                 const { data, error } = await supabaseClient.auth.verifyOtp({ phone: pendingPhone, token: val, type: 'sms' });
                 if (error) throw error;
                 
-                showMessage("Signed in successfully!", "success");
+                showMessage("Log in successful!", "success");
                 setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
                 return;
             }
@@ -270,23 +270,23 @@ async function handleAuth(event) {
         
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
-        submitBtn.disabled = true; submitBtn.textContent = isSignUp ? "Creating..." : "Signing In...";
+        submitBtn.disabled = true; submitBtn.textContent = isSignUp ? "Creating..." : "Logging In...";
         
         if (isSignUp) {
             const { error } = await supabaseClient.auth.signUp({ email, password, options: { data: { full_name: document.getElementById("fullName").value.trim() } } });
             if (error) throw error;
-            showMessage("Account created! Check email or sign in.", "success");
+            showMessage("Create account successful!", "success");
             submitBtn.disabled = false; submitBtn.textContent = "Create Account";
         } else {
             const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
             if (error) throw error;
-            showMessage("Signed in successfully!", "success");
+            showMessage("Log in successful!", "success");
             setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
         }
     } catch (error) {
         showMessage(error.message || "An error occurred.", "error");
         submitBtn.disabled = false;
-        submitBtn.textContent = isPhoneMode ? (pendingPhone ? "Verify & Sign In" : "Send Verification Code") : (isSignUp ? "Create Account" : "Continue");
+        submitBtn.textContent = isPhoneMode ? (pendingPhone ? "Verify & Log In" : "Send Verification Code") : (isSignUp ? "Create Account" : "Log In");
     }
 }
 
@@ -304,5 +304,5 @@ async function socialLogin() {
 }
 </script>
 </body>
-                </html>
-                
+        </html>
+    
