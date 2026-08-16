@@ -1,551 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sign in — TrustAI</title>
-
-<meta name="description"
-content="Sign in to your TrustAI account">
-
+<meta name="description" content="Sign in to your TrustAI account">
 <!-- SUPABASE JS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 body {
-    margin: 0;
-    min-height: 100vh;
-
-    background: #f6f7f9;
-    color: #111820;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 24px;
+    margin: 0; min-height: 100vh; background: #f6f7f9; color: #111820;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
 }
-
-.login-page {
-    width: 100%;
-    max-width: 440px;
-}
-
-/* LOGO */
-
-.logo {
-    text-align: center;
-    margin-bottom: 28px;
-
-    font-size: 27px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-.logo span {
-    color: #1687ff;
-}
-
-/* CARD */
-
-.login-card {
-    background: #ffffff;
-
-    border: 1px solid #dfe3e8;
-
-    border-radius: 14px;
-
-    padding: 32px;
-
-    box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.07);
-}
-
-/* TITLE */
-
-.login-card h1 {
-    margin: 0;
-
-    text-align: center;
-
-    font-size: 26px;
-    line-height: 1.25;
-
-    letter-spacing: -0.3px;
-}
-
-.subtitle {
-    margin: 9px 0 25px;
-
-    text-align: center;
-
-    color: #6b7280;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-/* GOOGLE BUTTON */
-
+.login-page { width: 100%; max-width: 440px; }
+.logo { text-align: center; margin-bottom: 28px; font-size: 27px; font-weight: 800; letter-spacing: -0.5px; }
+.logo span { color: #1687ff; }
+.login-card { background: #ffffff; border: 1px solid #dfe3e8; border-radius: 14px; padding: 32px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07); }
+.login-card h1 { margin: 0; text-align: center; font-size: 26px; line-height: 1.25; letter-spacing: -0.3px; }
+.subtitle { margin: 9px 0 25px; text-align: center; color: #6b7280; font-size: 14px; line-height: 1.5; }
 .social-button {
-    width: 100%;
-
-    height: 48px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    position: relative;
-
-    border: 1px solid #cfd5dc;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #111820;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    margin-bottom: 10px;
-
-    transition:
-        background 0.15s ease,
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
+    width: 100%; height: 48px; display: flex; align-items: center; justify-content: center; position: relative;
+    border: 1px solid #cfd5dc; border-radius: 8px; background: #ffffff; color: #111820; font-size: 14px; font-weight: 700;
+    cursor: pointer; margin-bottom: 10px;
 }
-
-.social-button:hover {
-    background: #f8fafc;
-
-    border-color: #aeb7c2;
-
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.social-icon {
-    position: absolute;
-
-    left: 15px;
-
-    width: 21px;
-    height: 21px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 17px;
-}
-
-/* DIVIDER */
-
-.divider {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin: 23px 0;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-
-    height: 1px;
-
-    flex: 1;
-
-    background: #e1e5ea;
-}
-
-.divider span {
-    color: #8a939e;
-
-    font-size: 12px;
-
-    font-weight: 600;
-}
-
-/* FORM */
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-size: 13px;
-
-    font-weight: 700;
-}
-
-/* PASSWORD */
-
-.password-wrapper {
-    position: relative;
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-}
-
+.social-button:hover { background: #f8fafc; }
+.social-icon { position: absolute; left: 15px; width: 21px; height: 21px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+.divider { display: flex; align-items: center; gap: 12px; margin: 23px 0; }
+.divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: #e1e5ea; }
+.divider span { color: #8a939e; font-size: 12px; font-weight: 600; }
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 700; }
+.password-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
 .toggle-password-btn {
-    position: absolute;
-
-    right: 12px;
-
-    background: transparent;
-
-    border: none;
-
-    cursor: pointer;
-
-    font-size: 18px;
-
-    line-height: 1;
-
-    padding: 4px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    user-select: none;
-
-    -webkit-tap-highlight-color: transparent;
+    position: absolute; right: 12px; background: transparent; border: none; cursor: pointer; font-size: 18px;
+    padding: 4px; display: flex; align-items: center; justify-content: center;
 }
-
-/* INPUT */
-
 input {
-    width: 100%;
-
-    height: 48px;
-
-    padding: 0 14px;
-
-    border: 1px solid #bfc7d1;
-
-    border-radius: 8px;
-
-    background: #ffffff;
-
-    color: #111820;
-
-    font-size: 15px;
-
-    outline: none;
-
-    transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
+    width: 100%; height: 48px; padding: 0 14px; border: 1px solid #bfc7d1; border-radius: 8px; background: #ffffff;
+    color: #111820; font-size: 15px; outline: none;
 }
-
-.password-wrapper input {
-    padding-right: 45px;
-}
-
-input:focus {
-    border-color: #1687ff;
-
-    box-shadow:
-        0 0 0 3px rgba(22, 135, 255, 0.12);
-}
-
-input::placeholder {
-    color: #9aa3ad;
-}
-
-/* CONTINUE */
-
+.password-wrapper input { padding-right: 45px; }
+input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.12); }
 .continue-button {
-    width: 100%;
-
-    height: 48px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #1687ff;
-
-    color: #ffffff;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        background 0.15s ease,
-        transform 0.05s ease;
+    width: 100%; height: 48px; border: none; border-radius: 8px; background: #1687ff; color: #ffffff;
+    font-size: 14px; font-weight: 700; cursor: pointer;
 }
-
-.continue-button:hover {
-    background: #0877eb;
-}
-
-.continue-button:active {
-    transform: translateY(1px);
-}
-
-.continue-button:disabled,
-.social-button:disabled {
-    opacity: 0.65;
-
-    cursor: not-allowed;
-}
-
-/* OTHER OPTIONS */
-
-.other-options {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 18px;
-
-    margin-top: 19px;
-
-    flex-wrap: wrap;
-}
-
-.other-options button {
-    border: none;
-
-    background: none;
-
-    padding: 0;
-
-    color: #1687ff;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-.other-options button:hover {
-    text-decoration: underline;
-}
-
-/* CREATE ACCOUNT */
-
-.create-account {
-    text-align: center;
-
-    margin-top: 26px;
-
-    padding-top: 24px;
-
-    border-top: 1px solid #e5e8ec;
-
-    color: #66707c;
-
-    font-size: 13px;
-}
-
-.create-account a {
-    color: #1687ff;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    cursor: pointer;
-}
-
-.create-account a:hover {
-    text-decoration: underline;
-}
-
-/* LEGAL */
-
-.legal {
-    margin-top: 20px;
-
-    text-align: center;
-
-    color: #8a939e;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-}
-
-.legal a {
-    color: #687482;
-
-    text-decoration: underline;
-}
-
-/* MESSAGE */
-
-.message {
-    display: none;
-
-    margin-bottom: 17px;
-
-    padding: 11px 13px;
-
-    border-radius: 8px;
-
-    background: #eef6ff;
-
-    border: 1px solid #c8e1ff;
-
-    color: #145ea8;
-
-    font-size: 13px;
-
-    line-height: 1.4;
-}
-
-.message.show {
-    display: block;
-}
-
-/* ERROR */
-
-.message.error {
-    background: #fff1f1;
-
-    border-color: #ffcaca;
-
-    color: #b42318;
-}
-
-/* SUCCESS */
-
-.message.success {
-    background: #effaf3;
-
-    border-color: #b7ebc6;
-
-    color: #18733b;
-}
-
-/* MOBILE */
-
-@media (max-width: 520px) {
-
-    body {
-        padding: 15px;
-
-        align-items: flex-start;
-    }
-
-    .login-page {
-        margin-top: 25px;
-    }
-
-    .login-card {
-        padding: 24px 20px;
-    }
-
-    .logo {
-        margin-bottom: 22px;
-    }
-
-    .login-card h1 {
-        font-size: 24px;
-    }
-
-}
-
+.continue-button:hover { background: #0877eb; }
+.other-options { display: flex; justify-content: center; gap: 18px; margin-top: 19px; flex-wrap: wrap; }
+.other-options button { border: none; background: none; padding: 10px; color: #1687ff; font-size: 14px; font-weight: 700; cursor: pointer; }
+.other-options button:hover { text-decoration: underline; }
+.create-account { text-align: center; margin-top: 26px; padding-top: 24px; border-top: 1px solid #e5e8ec; color: #66707c; font-size: 13px; }
+.create-account a { color: #1687ff; font-weight: 700; text-decoration: none; cursor: pointer; }
+.legal { margin-top: 20px; text-align: center; color: #8a939e; font-size: 11px; line-height: 1.6; }
+.legal a { color: #687482; text-decoration: underline; }
+.message { display: none; margin-bottom: 17px; padding: 11px 13px; border-radius: 8px; background: #eef6ff; border: 1px solid #c8e1ff; color: #145ea8; font-size: 13px; }
+.message.show { display: block; }
+.message.error { background: #fff1f1; border-color: #ffcaca; color: #b42318; }
+.message.success { background: #effaf3; border-color: #b7ebc6; color: #18733b; }
+@media (max-width: 520px) { body { padding: 15px; align-items: flex-start; } .login-page { margin-top: 25px; } .login-card { padding: 24px 20px; } }
 </style>
-
 </head>
 
-
 <body>
-
-
 <main class="login-page">
-
-
-    <!-- TRUSTAI LOGO -->
-
-    <div class="logo">
-
-        🛡️ Trust<span>AI</span>
-
-    </div>
-
-
-    <!-- LOGIN CARD -->
+    <div class="logo">🛡️ Trust<span>AI</span></div>
 
     <section class="login-card">
+        <h1 id="pageTitle">Sign in to TrustAI</h1>
+        <p class="subtitle" id="pageSubtitle">Continue to your TrustAI account</p>
+        
+        <div id="message" class="message"></div>
 
-
-        <h1 id="pageTitle">
-            Sign in to TrustAI
-        </h1>
-
-
-        <p
-            class="subtitle"
-            id="pageSubtitle">
-
-            Continue to your TrustAI account
-
-        </p>
-
-
-        <!-- MESSAGE -->
-
-        <div
-            id="message"
-            class="message">
-        </div>
-
-
-        <!-- GOOGLE -->
-
-        <button
-            type="button"
-            id="googleBtn"
-            class="social-button"
-            onclick="socialLogin()">
-
+        <button type="button" id="googleBtn" class="social-button" onclick="socialLogin()">
             <span class="social-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
@@ -554,650 +83,226 @@ input::placeholder {
                     <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.28 0 3.21 2.68 1.19 6.61l4.08 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/>
                 </svg>
             </span>
-
             Continue with Google
-
         </button>
 
+        <div class="divider" id="divider"><span>OR</span></div>
 
-        <!-- DIVIDER -->
-
-        <div class="divider">
-
-            <span>OR</span>
-
-        </div>
-
-
-        <!-- EMAIL FORM -->
-
-        <form
-            id="loginForm"
-            onsubmit="handleAuth(event)">
-
-
-            <!-- FULL NAME -->
-
-            <div
-                class="form-group"
-                id="nameGroup"
-                style="display:none;">
-
-                <label for="fullName">
-                    Full Name
-                </label>
-
-                <input
-                    type="text"
-                    id="fullName"
-                    placeholder="John Doe"
-                    autocomplete="name">
-
+        <form id="loginForm" onsubmit="handleAuth(event)">
+            <div class="form-group" id="nameGroup" style="display:none;">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="John Doe">
             </div>
-
-
-            <!-- EMAIL / PHONE CONTAINER -->
 
             <div class="form-group" id="identifierGroup">
-
-                <label for="email" id="inputLabel">
-                    Email address
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="you@example.com"
-                    autocomplete="email"
-                    required>
-
+                <label for="email" id="inputLabel">Email address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
             </div>
-
-
-            <!-- PASSWORD -->
 
             <div class="form-group" id="passwordGroupContainer">
-
-                <label for="password">
-                    Password
-                </label>
-
+                <label for="password">Password</label>
                 <div class="password-wrapper">
-
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="••••••••"
-                        autocomplete="current-password"
-                        minlength="6"
-                        required>
-
-                    <button
-                        type="button"
-                        id="togglePassword"
-                        class="toggle-password-btn"
-                        onclick="togglePasswordVisibility()"
-                        aria-label="Show password">
-
-                        🙈
-
-                    </button>
-
+                    <input type="password" id="password" placeholder="••••••••" minlength="6" required>
+                    <button type="button" id="togglePassword" class="toggle-password-btn" onclick="togglePasswordVisibility()">🙈</button>
                 </div>
-
             </div>
 
-
-            <!-- SUBMIT -->
-
-            <button
-                type="submit"
-                id="submitBtn"
-                class="continue-button">
-
-                Continue
-
-            </button>
-
-
+            <button type="submit" id="submitBtn" class="continue-button">Continue</button>
         </form>
 
-
-        <!-- OTHER LOGIN METHODS -->
-
         <div class="other-options">
-
-            <button
-                type="button"
-                id="phoneToggleBtn"
-                onclick="togglePhoneAuth()">
-
-                Continue with phone
-
-            </button>
-
+            <button type="button" id="phoneToggleBtn" onclick="togglePhoneAuth()">Continue with phone</button>
         </div>
 
-
-        <!-- CREATE ACCOUNT -->
-
-        <div class="create-account">
-
-            <span id="toggleText">
-
-                Don't have a TrustAI account?
-
-            </span>
-
-            <br><br>
-
-            <a
-                id="toggleLink"
-                href="#"
-                onclick="toggleAuthMode(event)">
-
-                Create account
-
-            </a>
-
+        <div class="create-account" id="createAccountSection">
+            <span id="toggleText">Don't have a TrustAI account?</span><br><br>
+            <a id="toggleLink" href="#" onclick="toggleAuthMode(event)">Create account</a>
         </div>
-
-
     </section>
 
-
-    <!-- LEGAL -->
-
     <div class="legal">
-
-        By continuing, you agree to the
-
-        <a href="./terms.html">
-            Terms of Service
-        </a>
-
-        and
-
-        <a href="./privacy.html">
-            Privacy Policy
-        </a>.
-
+        By continuing, you agree to the <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>.
     </div>
-
-
 </main>
 
-
 <script>
-
-/* =====================================================
-   SUPABASE CONFIGURATION
-===================================================== */
-
-const SUPABASE_URL =
-    "https://xbsurdlaixeynaxarqma.supabase.co";
-
-const SUPABASE_ANON_KEY =
-    "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
-
-
-/* =====================================================
-   TRUSTAI URLS
-===================================================== */
-
-const TRUSTAI_HOME =
-    "https://trustaisupport-alt.github.io/Trust-AI/home.html";
-
-
-/* =====================================================
-   CREATE SUPABASE CLIENT
-===================================================== */
+const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_C5gmKnTVYqNDhLD2zIikwg_lQFxPNL7";
+const TRUSTAI_HOME = "https://trustaisupport-alt.github.io/Trust-AI/home.html";
 
 let supabaseClient = null;
-
 try {
-
-    supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_ANON_KEY
-        );
-
-} catch (error) {
-
-    console.error(
-        "Supabase initialization failed:",
-        error
-    );
-
+    if (window.supabase && typeof window.supabase.createClient === 'function') {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+} catch (e) {
+    console.error("Supabase load error:", e);
 }
-
-
-/* =====================================================
-   AUTH MODES
-===================================================== */
 
 let isSignUp = false;
 let isPhoneMode = false;
 let pendingPhone = "";
 
-
-/* =====================================================
-   SHOW MESSAGE
-===================================================== */
-
-function showMessage(
-    text,
-    type = "info"
-) {
-
-    const message =
-        document.getElementById("message");
-
+function showMessage(text, type = "info") {
+    const message = document.getElementById("message");
+    if (!message) return;
     message.textContent = text;
-
-    message.classList.remove(
-        "error",
-        "success"
-    );
-
-    if (type === "error") {
-        message.classList.add("error");
-    }
-
-    if (type === "success") {
-        message.classList.add("success");
-    }
-
-    message.classList.add("show");
-
+    message.className = "message show " + (type === "error" ? "error" : type === "success" ? "success" : "");
 }
-
-
-/* =====================================================
-   HIDE MESSAGE
-===================================================== */
 
 function hideMessage() {
-
-    const message =
-        document.getElementById("message");
-
-    message.classList.remove(
-        "show",
-        "error",
-        "success"
-    );
-
+    const message = document.getElementById("message");
+    if (message) message.className = "message";
 }
-
-
-/* =====================================================
-   PASSWORD VISIBILITY
-===================================================== */
 
 function togglePasswordVisibility() {
-
-    const password =
-        document.getElementById("password");
-
-    const button =
-        document.getElementById("togglePassword");
-
-    if (password.type === "password") {
-        password.type = "text";
-        button.textContent = "👁️";
-        button.setAttribute("aria-label", "Hide password");
-    } else {
-        password.type = "password";
-        button.textContent = "🙈";
-        button.setAttribute("aria-label", "Show password");
-    }
-
+    const pwd = document.getElementById("password");
+    const btn = document.getElementById("togglePassword");
+    if (!pwd || !btn) return;
+    if (pwd.type === "password") { pwd.type = "text"; btn.textContent = "👁️"; } 
+    else { pwd.type = "password"; btn.textContent = "🙈"; }
 }
-
-
-/* =====================================================
-   SWITCH LOGIN / SIGNUP
-===================================================== */
 
 function toggleAuthMode(event) {
-
-    if (event) {
-        event.preventDefault();
-    }
-
-    if (isPhoneMode) {
-        togglePhoneAuth();
-    }
-
+    if (event) event.preventDefault();
+    if (isPhoneMode) togglePhoneAuth();
     isSignUp = !isSignUp;
-
-    const nameGroup =
-        document.getElementById("nameGroup");
-
-    const submitBtn =
-        document.getElementById("submitBtn");
-
-    const toggleText =
-        document.getElementById("toggleText");
-
-    const toggleLink =
-        document.getElementById("toggleLink");
-
-    const pageTitle =
-        document.getElementById("pageTitle");
-
-    const pageSubtitle =
-        document.getElementById("pageSubtitle");
-
-    const password =
-        document.getElementById("password");
-
     hideMessage();
-
-    if (isSignUp) {
-        nameGroup.style.display = "block";
-        submitBtn.textContent = "Create Account";
-        toggleText.textContent = "Already have a TrustAI account?";
-        toggleLink.textContent = "Sign in";
-        pageTitle.textContent = "Create TrustAI Account";
-        pageSubtitle.textContent = "Start protecting your links and messages";
-        password.setAttribute("autocomplete", "new-password");
-    } else {
-        nameGroup.style.display = "none";
-        submitBtn.textContent = "Continue";
-        toggleText.textContent = "Don't have a TrustAI account?";
-        toggleLink.textContent = "Create account";
-        pageTitle.textContent = "Sign in to TrustAI";
-        pageSubtitle.textContent = "Continue to your TrustAI account";
-        password.setAttribute("autocomplete", "current-password");
-    }
-
+    
+    document.getElementById("nameGroup").style.display = isSignUp ? "block" : "none";
+    document.getElementById("submitBtn").textContent = isSignUp ? "Create Account" : "Continue";
+    document.getElementById("toggleText").textContent = isSignUp ? "Already have a TrustAI account?" : "Don't have a TrustAI account?";
+    document.getElementById("toggleLink").textContent = isSignUp ? "Sign in" : "Create account";
+    document.getElementById("pageTitle").textContent = isSignUp ? "Create TrustAI Account" : "Sign in to TrustAI";
+    document.getElementById("pageSubtitle").textContent = isSignUp ? "Start protecting your links and messages" : "Continue to your TrustAI account";
 }
-
-
-/* =====================================================
-   TOGGLE PHONE AUTHENTICATION MODE
-===================================================== */
 
 function togglePhoneAuth() {
     isPhoneMode = !isPhoneMode;
     pendingPhone = "";
     hideMessage();
-
-    const pageTitle = document.getElementById("pageTitle");
-    const pageSubtitle = document.getElementById("pageSubtitle");
-    const inputLabel = document.getElementById("inputLabel");
+    
     const emailInput = document.getElementById("email");
-    const passwordGroupContainer = document.getElementById("passwordGroupContainer");
-    const nameGroup = document.getElementById("nameGroup");
-    const submitBtn = document.getElementById("submitBtn");
-    const phoneToggleBtn = document.getElementById("phoneToggleBtn");
-    const createAccountSection = document.querySelector(".create-account");
-    const googleBtn = document.getElementById("googleBtn");
-    const divider = document.querySelector(".divider");
-
+    const passwordInput = document.getElementById("password");
+    
     if (isPhoneMode) {
-        pageTitle.textContent = "Sign in with Phone";
-        pageSubtitle.textContent = "Receive an SMS verification code";
-        inputLabel.textContent = "Phone number (with country code)";
+        document.getElementById("pageTitle").textContent = "Sign in with Phone";
+        document.getElementById("pageSubtitle").textContent = "Receive an SMS verification code";
+        document.getElementById("inputLabel").textContent = "Phone number (with country code)";
+        
         emailInput.type = "tel";
         emailInput.placeholder = "+2349165053870";
         emailInput.value = "";
-        emailInput.removeAttribute("autocomplete");
-
-        passwordGroupContainer.style.display = "none";
-        nameGroup.style.display = "none";
-        createAccountSection.style.display = "none";
-        googleBtn.style.display = "none";
-        divider.style.display = "none";
-
-        submitBtn.textContent = "Send Verification Code";
-        phoneToggleBtn.textContent = "Continue with Email & Password";
+        emailInput.removeAttribute("required");
+        if (passwordInput) passwordInput.removeAttribute("required");
+        
+        document.getElementById("passwordGroupContainer").style.display = "none";
+        document.getElementById("nameGroup").style.display = "none";
+        document.getElementById("createAccountSection").style.display = "none";
+        document.getElementById("googleBtn").style.display = "none";
+        document.getElementById("divider").style.display = "none";
+        
+        document.getElementById("submitBtn").textContent = "Send Verification Code";
+        document.getElementById("phoneToggleBtn").textContent = "Continue with Email & Password";
     } else {
-        pageTitle.textContent = "Sign in to TrustAI";
-        pageSubtitle.textContent = "Continue to your TrustAI account";
-        inputLabel.textContent = "Email address";
+        document.getElementById("pageTitle").textContent = "Sign in to TrustAI";
+        document.getElementById("pageSubtitle").textContent = "Continue to your TrustAI account";
+        document.getElementById("inputLabel").textContent = "Email address";
+        
         emailInput.type = "email";
         emailInput.placeholder = "you@example.com";
         emailInput.value = "";
-        emailInput.setAttribute("autocomplete", "email");
-
-        passwordGroupContainer.style.display = "block";
-        createAccountSection.style.display = "block";
-        googleBtn.style.display = "flex";
-        divider.style.display = "flex";
-
-        submitBtn.textContent = "Continue";
-        phoneToggleBtn.textContent = "Continue with phone";
+        emailInput.setAttribute("required", "true");
+        if (passwordInput) passwordInput.setAttribute("required", "true");
+        
+        document.getElementById("passwordGroupContainer").style.display = "block";
+        document.getElementById("createAccountSection").style.display = "block";
+        document.getElementById("googleBtn").style.display = "flex";
+        document.getElementById("divider").style.display = "flex";
+        
+        document.getElementById("submitBtn").textContent = "Continue";
+        document.getElementById("phoneToggleBtn").textContent = "Continue with phone";
     }
 }
 
-
-/* =====================================================
-   AUTHENTICATION SUBMISSION HANDLER
-===================================================== */
-
 async function handleAuth(event) {
-
     event.preventDefault();
     hideMessage();
-
+    
     if (!supabaseClient) {
-        showMessage(
-            "TrustAI could not connect to the authentication server.",
-            "error"
-        );
+        showMessage("Connection error. Please reload the page.", "error");
         return;
     }
-
+    
     const submitBtn = document.getElementById("submitBtn");
-
+    
     try {
-        /* =================================================
-           PHONE OTP FLOW
-        ================================================= */
         if (isPhoneMode) {
-            const inputField = document.getElementById("email");
-            const val = inputField.value.trim();
-
+            const val = document.getElementById("email").value.trim();
             if (!pendingPhone) {
-                if (!val) {
-                    showMessage("Please enter your phone number with country code (e.g. +234...).", "error");
-                    return;
-                }
-
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Sending Code...";
-
-                const { error } = await supabaseClient.auth.signInWithOtp({
-                    phone: val
-                });
-
-                if (error) {
-                    showMessage("Phone auth error: " + error.message, "error");
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = "Send Verification Code";
-                    return;
-                }
-
+                if (!val) { showMessage("Enter phone number.", "error"); return; }
+                submitBtn.disabled = true; submitBtn.textContent = "Sending Code...";
+                
+                const { error } = await supabaseClient.auth.signInWithOtp({ phone: val });
+                if (error) throw error;
+                
                 pendingPhone = val;
-                showMessage("Verification code sent! Enter the 6-digit code below.", "success");
-                inputLabel.textContent = "Enter 6-Digit Code";
-                inputField.type = "text";
-                inputField.placeholder = "123456";
-                inputField.value = "";
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Verify & Sign In";
+                showMessage("Code sent! Enter the 6-digit code below.", "success");
+                document.getElementById("inputLabel").textContent = "Enter 6-Digit Code";
+                document.getElementById("email").type = "text";
+                document.getElementById("email").placeholder = "123456";
+                document.getElementById("email").value = "";
+                
+                submitBtn.disabled = false; submitBtn.textContent = "Verify & Sign In";
                 return;
             } else {
-                if (!val) {
-                    showMessage("Please enter the verification code.", "error");
-                    return;
-                }
-
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Verifying...";
-
-                const { data, error } = await supabaseClient.auth.verifyOtp({
-                    phone: pendingPhone,
-                    token: val,
-                    type: 'sms'
-                });
-
-                if (error) {
-                    showMessage("Verification error: " + error.message, "error");
-                    submitBtn.disable = false;
-                    submitBtn.textContent = "Verify & Sign In";
-                return;
-            } else {
-                if (!val) {
-                    showMessage("Please enter the verification code.", "error");
-                    return;
-                }
-
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Verifying...";
-
-                const { data, error } = await supabaseClient.auth.verifyOtp({
-                    phone: pendingPhone,
-                    token: val,
-                    type: 'sms'
-                });
-
-                if (error) {
-                    showMessage("Verification error: " + error.message, "error");
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = "Verify & Sign In";
-                    return;
-                }
-
-                if (data && data.session) {
-                    localStorage.setItem("trustai_loggedIn", "true");
-                    const user = data.user;
-
-                    if (user && user.user_metadata && user.user_metadata.full_name) {
-                        localStorage.setItem(
-                            "trustai_userName",
-                            user.user_metadata.full_name
-                        );
-                    }
-                }
-
-                showMessage(
-                    "Signed in successfully. Opening TrustAI...",
-                    "success"
-                );
-
-                setTimeout(
-                    function() {
-                        window.location.href = TRUSTAI_HOME;
-                    },
-                    500
-                );
+                if (!val) { showMessage("Enter the verification code.", "error"); return; }
+                submitBtn.disabled = true; submitBtn.textContent = "Verifying...";
+                
+                const { data, error } = await supabaseClient.auth.verifyOtp({ phone: pendingPhone, token: val, type: 'sms' });
+                if (error) throw error;
+                
+                showMessage("Signed in successfully!", "success");
+                setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
                 return;
             }
         }
-
-        /* =================================================
-           EMAIL & PASSWORD FLOW (SIGN IN / SIGN UP)
-        ================================================= */
+        
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = isSignUp ? "Creating Account..." : "Signing In...";
-
+        submitBtn.disabled = true; submitBtn.textContent = isSignUp ? "Creating..." : "Signing In...";
+        
         if (isSignUp) {
-            const fullName = document.getElementById("fullName").value.trim();
-            const { data, error } = await supabaseClient.auth.signUp({
-                email: email,
-                password: password,
-                options: {
-                    data: { full_name: fullName }
-                }
-            });
-
-            if (error) {
-                throw error;
-            }
-
-            showMessage("Account created successfully! Please check your email or sign in.", "success");
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Create Account";
+            const { error } = await supabaseClient.auth.signUp({ email, password, options: { data: { full_name: document.getElementById("fullName").value.trim() } } });
+            if (error) throw error;
+            showMessage("Account created! Check email or sign in.", "success");
+            submitBtn.disabled = false; submitBtn.textContent = "Create Account";
         } else {
-            const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-
-            if (error) {
-                throw error;
-            }
-
-            if (data && data.session) {
-                localStorage.setItem("trustai_loggedIn", "true");
-            }
-
-            showMessage("Signed in successfully. Opening TrustAI...", "success");
-            setTimeout(function() {
-                window.location.href = TRUSTAI_HOME;
-            }, 500);
+            const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            showMessage("Signed in successfully!", "success");
+            setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
         }
-
     } catch (error) {
-        console.error(error);
-        showMessage(
-            error.message || "Something went wrong. Please try again.",
-            "error"
-        );
+        showMessage(error.message || "An error occurred.", "error");
         submitBtn.disabled = false;
         submitBtn.textContent = isPhoneMode ? (pendingPhone ? "Verify & Sign In" : "Send Verification Code") : (isSignUp ? "Create Account" : "Continue");
     }
-
 }
-/* =====================================================
-   SOCIAL LOGIN (GOOGLE)
-===================================================== */
 
 async function socialLogin() {
     hideMessage();
-
     if (!supabaseClient) {
-        showMessage(
-            "TrustAI could not connect to the authentication server.",
-            "error"
-        );
+        showMessage("Connection error. Please reload.", "error");
         return;
     }
-
-    try {
-        const { error } = await supabaseClient.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: TRUSTAI_HOME
-            }
-        });
-
-        if (error) {
-            showMessage(
-                "Google sign-in error: " + error.message,
-                "error"
-            );
-        }
-    } catch (error) {
-        console.error(error);
-        showMessage(
-            "Something went wrong while connecting to Google.",
-            "error"
-        );
-    }
+    try { 
+        const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: TRUSTAI_HOME } });
+        if (error) throw error;
+    } 
+    catch (e) { showMessage("Google sign-in error: " + e.message, "error"); }
 }
-
 </script>
-
 </body>
-
-</html>
-                    
+                </html>
+                
