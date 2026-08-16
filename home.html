@@ -595,12 +595,10 @@ footer {
         
         <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Select Platform</label>
         <select id="modalPlatform" class="modal-select">
-            <option value="Steam / Epic">Steam / Epic Games</option>
-            <option value="Facebook / Instagram / TikTok">Facebook / Instagram / TikTok</option>
-            <option value="WhatsApp / Phone Number">WhatsApp / Phone Number</option>
+            <!-- Dynamically populated options based on category -->
         </select>
 
-        <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Account Username / Phone Handle</label>
+        <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;" id="modalInputLabel">Account Username / Phone Handle</label>
         <input type="text" id="modalInputVal" class="modal-input" placeholder="e.g. @username or +2348000000000">
 
         <div class="modal-actions">
@@ -674,7 +672,7 @@ footer {
         <div class="card clickable-card" style="border-left: 3px solid #ec4899;" onclick="openLinkModal('gaming')">
             <div class="card-icon">🎮</div>
             <h2>Gaming Accounts</h2>
-            <p>Background monitoring for Steam & Epic logins. TrustAI alerts you instantly if someone else attempts to access your profile.</p>
+            <p>Background monitoring for Free Fire, Call of Duty, eFootball, Steam, & Epic logins. TrustAI alerts you instantly if someone attempts to access your profile.</p>
             <div style="margin-top: 16px;">
                 <span id="gamingStatus" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Standby (Click to Link)</span>
             </div>
@@ -682,8 +680,8 @@ footer {
 
         <div class="card clickable-card" style="border-left: 3px solid #3b82f6;" onclick="openLinkModal('social')">
             <div class="card-icon">📱</div>
-            <h2>Social Media</h2>
-            <p>Auto-detects suspicious chat links, unverified login alerts, and takeover attempts on WhatsApp, Facebook, and TikTok.</p>
+            <h2>Social Media & Chat</h2>
+            <p>Auto-detects suspicious chat links, unverified login alerts, and takeover attempts on WhatsApp, Telegram, TikTok, and Instagram.</p>
             <div style="margin-top: 16px;">
                 <span id="socialStatus" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Standby (Click to Link)</span>
             </div>
@@ -692,7 +690,7 @@ footer {
         <div class="card clickable-card" style="border-left: 3px solid #10b981;" onclick="openLinkModal('callshield')">
             <div class="card-icon">📞</div>
             <h2>Call & SMS Shield</h2>
-            <p>Real-time background scanning detects spoofed phone calls, spam numbers, and dangerous phishing SMS links instantly.</p>
+            <p>Real-time background scanning detects spoofed phone calls, scam numbers, and dangerous phishing SMS links instantly.</p>
             <div style="margin-top: 16px;">
                 <span id="callShieldStatus" style="font-size: 13px; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 6px;">Active Background Shield 🟢</span>
             </div>
@@ -745,6 +743,7 @@ menuButton.addEventListener("click", function() {
 });
 
 menuOverlay.addEventListener("click", closeMenu);
+
 const menuLinks = document.querySelectorAll(".menu-link");
 menuLinks.forEach(function(link) {
     link.addEventListener("click", closeMenu);
@@ -753,87 +752,103 @@ menuLinks.forEach(function(link) {
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
         closeMenu();
-        closeLinkModal();
     }
 });
 
-/* MODAL LOGIC FOR LIVE SHIELD LINKING */
-let activeCategory = '';
+/* MODAL & ACCOUNT LINKING LOGIC */
+let currentCategory = '';
 
 function openLinkModal(category) {
-    activeCategory = category;
+    currentCategory = category;
     const modal = document.getElementById("linkModal");
     const title = document.getElementById("modalTitle");
     const desc = document.getElementById("modalDesc");
     const platformSelect = document.getElementById("modalPlatform");
-    const inputVal = document.getElementById("modalInputVal");
+    const inputField = document.getElementById("modalInputVal");
+    const inputLabel = document.getElementById("modalInputLabel");
+
+    inputField.value = "";
 
     if (category === 'gaming') {
         title.innerText = "Enable Gaming Live Shield";
-        desc.innerText = "Link your gaming handle for instant background alerts on unrecognized logins and recovery takeovers.";
+        desc.innerText = "Link your gaming account handle or UID so TrustAI can monitor for unauthorized login recovery and takeover attempts.";
+        inputLabel.innerText = "Game Username / Player UID";
+        inputField.placeholder = "e.g. Free Fire UID, CoD ID, or Steam Username";
         platformSelect.innerHTML = `
-            <option value="Steam">Steam</option>
-            <option value="Epic Games">Epic Games</option>
-            <option value="Mobile Gaming ID">Mobile Gaming ID</option>
+            <option value="Free Fire">Free Fire</option>
+            <option value="Call of Duty Mobile">Call of Duty: Mobile</option>
+            <option value="eFootball">eFootball</option>
+            <option value="Steam / Epic">Steam / Epic Games</option>
         `;
-        inputVal.placeholder = "e.g. Steam Username or Profile ID";
     } else if (category === 'social') {
-        title.innerText = "Enable Social Media Live Shield";
-        desc.innerText = "Connect your handle to automatically detect chat phishing, unauthorized logins, and password resets.";
+        title.innerText = "Enable Social & Chat Shield";
+        desc.innerText = "Connect your messaging handles or phone numbers to scan for malicious chat links and unauthorized takeover warnings.";
+        inputLabel.innerText = "Account Username / Phone Number";
+        inputField.placeholder = "e.g. @username or +2348000000000";
         platformSelect.innerHTML = `
             <option value="WhatsApp">WhatsApp Number</option>
-            <option value="Facebook / Instagram">Facebook / Instagram</option>
+            <option value="Telegram">Telegram Handle</option>
             <option value="TikTok">TikTok Handle</option>
+            <option value="Instagram / Facebook">Instagram / Facebook</option>
         `;
-        inputVal.placeholder = "e.g. @handle or +2348000000000";
     } else if (category === 'callshield') {
         title.innerText = "Configure Call & SMS Shield";
-        desc.innerText = "Manage your real-time phone number whitelist and auto-intercept settings for incoming spam calls and SMS links.";
+        desc.innerText = "Verify the primary mobile phone number used for real-time Truecaller-style incoming call screening and SMS phishing filters.";
+        inputLabel.innerText = "Primary Mobile Phone Number";
+        inputField.placeholder = "e.g. +2348012345678";
         platformSelect.innerHTML = `
-            <option value="Incoming Calls Auto-Intercept">Incoming Calls Auto-Intercept</option>
-            <option value="SMS Phishing Link Blocker">SMS Phishing Link Blocker</option>
+            <option value="Primary Device SIM">Primary Mobile Line</option>
         `;
-        inputVal.placeholder = "e.g. Trusted country code or exception list";
     }
 
     modal.classList.add("show");
 }
 
 function closeLinkModal() {
-    const modal = document.getElementById("linkModal");
-    modal.classList.remove("show");
+    document.getElementById("linkModal").classList.remove("show");
 }
 
 function saveLinkedAccount() {
-    const val = document.getElementById("modalInputVal").value;
-    if(!val && activeCategory !== 'callshield') {
-        alert("Please enter a valid handle or account username.");
+    const platform = document.getElementById("modalPlatform").value;
+    const handleVal = document.getElementById("modalInputVal").value.trim();
+
+    if (!handleVal) {
+        alert("Please enter a valid handle, ID, or phone number.");
         return;
     }
 
-    if(activeCategory === 'gaming') {
-        const badge = document.getElementById("gamingStatus");
-        badge.innerText = "Live Monitoring Active 🟢";
-        badge.style.color = "#10b981";
-        badge.style.background = "rgba(16, 185, 129, 0.1)";
-        localStorage.setItem("trustai_gaming_linked", "true");
-        alert("Gaming Live Shield activated! TrustAI is now monitoring your profile for unauthorized login attempts.");
-    } else if(activeCategory === 'social') {
-        const badge = document.getElementById("socialStatus");
-        badge.innerText = "Live Monitoring Active 🟢";
-        badge.style.color = "#10b981";
-        badge.style.background = "rgba(16, 185, 129, 0.1)";
-        localStorage.setItem("trustai_social_linked", "true");
-        alert("Social Media Live Shield activated! TrustAI is now actively scanning chats and login notifications.");
-    } else if(activeCategory === 'callshield') {
-        const badge = document.getElementById("callShieldStatus");
-        badge.innerText = "Shield Settings Updated 🟢";
-        localStorage.setItem("trustai_callshield_configured", "true");
-        alert("Call & SMS Shield preferences saved successfully!");
+    // Save configuration in localStorage
+    localStorage.setItem(`trustai_${currentCategory}_platform`, platform);
+    localStorage.setItem(`trustai_${currentCategory}_handle`, handleVal);
+    localStorage.setItem(`trustai_${currentCategory}_status`, "Protected 🟢");
+
+    alert(`Success! Live Shield activated for ${platform} (${handleVal}). TrustAI is now monitoring for security threats.`);
+    closeLinkModal();
+    updateAccountStatuses();
+}
+
+function updateAccountStatuses() {
+    const gamingHandle = localStorage.getItem("trustai_gaming_handle");
+    const socialHandle = localStorage.getItem("trustai_social_handle");
+    const callHandle = localStorage.getItem("trustai_callshield_handle");
+
+    if (gamingHandle) {
+        const platform = localStorage.getItem("trustai_gaming_platform");
+        document.getElementById("gamingStatus").innerText = `Protected (${platform})`;
+        document.getElementById("gamingStatus").style.color = "#10b981";
+        document.getElementById("gamingStatus").style.background = "rgba(16, 185, 129, 0.1)";
     }
 
-    document.getElementById("modalInputVal").value = "";
-    closeLinkModal();
+    if (socialHandle) {
+        const platform = localStorage.getItem("trustai_social_platform");
+        document.getElementById("socialStatus").innerText = `Protected (${platform})`;
+        document.getElementById("socialStatus").style.color = "#10b981";
+        document.getElementById("socialStatus").style.background = "rgba(16, 185, 129, 0.1)";
+    }
+
+    if (callHandle) {
+        document.getElementById("callShieldStatus").innerText = `Active Background Shield 🟢`;
+    }
 }
 
 function loadHomeProfilePicture() {
@@ -856,6 +871,7 @@ function loadHomeProfilePicture() {
 }
 
 loadHomeProfilePicture();
+updateAccountStatuses();
 
 function handleLogout() {
     localStorage.removeItem("trustai_loggedIn");
