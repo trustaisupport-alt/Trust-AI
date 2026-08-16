@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Settings & Privacy — TrustAI</title>
+<title>Settings — TrustAI</title>
 
 <style>
 
@@ -245,11 +245,11 @@ body {
 <section class="title">
 
     <h1>
-        Settings & Privacy
+        Settings
     </h1>
 
     <p>
-        Manage your TrustAI preferences, privacy,
+        Manage your TrustAI preferences,
         security and account settings.
     </p>
 
@@ -278,10 +278,10 @@ body {
             </div>
 
             <button
-    class="setting-button"
-    onclick="window.location.href='./profile.html'">
+                class="setting-button"
+                onclick="window.location.href='./profile.html'">
 
-    Manage
+                Manage
 
             </button>
         </div>
@@ -366,68 +366,6 @@ body {
 
 </section>
 
-<!-- PRIVACY -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        Privacy
-    </h2>
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🔒 Privacy controls
-                </strong>
-
-                <span>
-                    Review how TrustAI handles your information.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="window.location.href='./privacy-controls.html'">
-
-                View
-
-            </button>
-
-        </div>
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🗑️ Clear activity history
-                </strong>
-
-                <span>
-                    Remove locally stored TrustAI activity.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button danger"
-                onclick="clearHistory()">
-
-                Clear
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
 <!-- SECURITY -->
 
 <section class="section">
@@ -453,10 +391,10 @@ body {
             </div>
 
             <button
-    class="setting-button"
-    onclick="window.location.href='./security-settings.html'">
+                class="setting-button"
+                onclick="window.location.href='./security-settings.html'">
 
-    Manage
+                Manage
 
             </button>
 
@@ -477,10 +415,10 @@ body {
             </div>
 
           <button
-    class="setting-button"
-    onclick="window.location.href='./login-sessions.html'">
+                class="setting-button"
+                onclick="window.location.href='./login-sessions.html'">
 
-    View
+                View
 
           </button>  
         </div>
@@ -674,7 +612,6 @@ function saveSetting(name, value) {
 
 /* =========================
    DARK MODE
-   ONLY CHANGE NEEDED
 ========================= */
 
 function toggleDarkMode(enabled) {
@@ -766,37 +703,6 @@ function loadSettings() {
 
 
     applyDarkMode(enabled);
-
-}
-
-
-/* =========================
-   CLEAR HISTORY
-========================= */
-
-function clearHistory() {
-
-    const confirmed =
-        confirm(
-            "Are you sure you want to clear your TrustAI activity history?"
-        );
-
-
-    if (!confirmed) {
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        "trustai_activity"
-    );
-
-
-    alert(
-        "Your TrustAI activity history has been cleared."
-    );
 
 }
 
