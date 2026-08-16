@@ -46,12 +46,12 @@ input {
 input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.12); }
 .continue-button {
     width: 100%; height: 48px; border: none; border-radius: 8px; background: #1687ff; color: #ffffff;
-    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 5px;
 }
 .continue-button:hover { background: #0877eb; }
-.other-options { display: flex; justify-content: center; gap: 18px; margin-top: 19px; flex-wrap: wrap; }
-.other-options button { border: none; background: none; padding: 10px; color: #1687ff; font-size: 14px; font-weight: 700; cursor: pointer; }
-.other-options button:hover { text-decoration: underline; }
+.auth-links-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; flex-wrap: wrap; gap: 10px; }
+.auth-links-row button { border: none; background: none; padding: 0; color: #1687ff; font-size: 13px; font-weight: 700; cursor: pointer; }
+.auth-links-row button:hover { text-decoration: underline; }
 .create-account { text-align: center; margin-top: 26px; padding-top: 24px; border-top: 1px solid #e5e8ec; color: #66707c; font-size: 13px; }
 .create-account a { color: #1687ff; font-weight: 700; text-decoration: none; cursor: pointer; }
 .legal { margin-top: 20px; text-align: center; color: #8a939e; font-size: 11px; line-height: 1.6; }
@@ -60,6 +60,21 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
 .message.show { display: block; }
 .message.error { background: #fff1f1; border-color: #ffcaca; color: #b42318; }
 .message.success { background: #effaf3; border-color: #b7ebc6; color: #18733b; }
+
+/* Modal Styles for Forgot Password */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
+}
+.modal-overlay.active { display: flex; }
+.modal-card { background: #fff; padding: 24px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.modal-card h3 { margin-top: 0; margin-bottom: 10px; font-size: 20px; }
+.modal-card p { color: #6b7280; font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+.modal-actions button { padding: 10px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; border: none; font-size: 13px; }
+.btn-cancel { background: #e5e8ec; color: #374151; }
+.btn-submit { background: #1687ff; color: #fff; }
+
 @media (max-width: 520px) { body { padding: 15px; align-items: flex-start; } .login-page { margin-top: 25px; } .login-card { padding: 24px 20px; } }
 </style>
 </head>
@@ -107,12 +122,13 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
                 </div>
             </div>
 
+            <div class="auth-links-row" id="authLinksRow">
+                <button type="button" id="phoneToggleBtn" onclick="togglePhoneAuth()">Continue with phone</button>
+                <button type="button" id="forgotPwdBtn" onclick="openForgotModal()">Forgot password?</button>
+            </div>
+
             <button type="submit" id="submitBtn" class="continue-button">Log In</button>
         </form>
-
-        <div class="other-options">
-            <button type="button" id="phoneToggleBtn" onclick="togglePhoneAuth()">Continue with phone</button>
-        </div>
 
         <div class="create-account" id="createAccountSection">
             <span id="toggleText">Don't have a TrustAI account?</span><br><br>
@@ -124,6 +140,21 @@ input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.
         By continuing, you agree to the <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>.
     </div>
 </main>
+
+<!-- Forgot Password Modal -->
+<div class="modal-overlay" id="forgotModal">
+    <div class="modal-card">
+        <h3>Reset Password</h3>
+        <p>Enter your account email address. We'll send you a secure link to create a new password.</p>
+        <div class="form-group">
+            <input type="email" id="resetEmail" placeholder="you@example.com">
+        </div>
+        <div class="modal-actions">
+            <button type="button" class="btn-cancel" onclick="closeForgotModal()">Cancel</button>
+            <button type="button" class="btn-submit" onclick="submitPasswordReset()">Send Reset Link</button>
+        </div>
+    </div>
+</div>
 
 <script>
 const SUPABASE_URL = "https://xbsurdlaixeynaxarqma.supabase.co";
@@ -161,6 +192,37 @@ function togglePasswordVisibility() {
     if (!pwd || !btn) return;
     if (pwd.type === "password") { pwd.type = "text"; btn.textContent = "👁️"; } 
     else { pwd.type = "password"; btn.textContent = "🙈"; }
+}
+
+function openForgotModal() {
+    document.getElementById("forgotModal").classList.add("active");
+}
+
+function closeForgotModal() {
+    document.getElementById("forgotModal").classList.remove("active");
+    document.getElementById("resetEmail").value = "";
+}
+
+async function submitPasswordReset() {
+    const emailVal = document.getElementById("resetEmail").value.trim();
+    if (!emailVal) {
+        alert("Please enter your email address.");
+        return;
+    }
+    if (!supabaseClient) {
+        alert("Connection error.");
+        return;
+    }
+    try {
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(emailVal, {
+            redirectTo: TRUSTAI_HOME,
+        });
+        if (error) throw error;
+        alert("Password reset link sent to your email!");
+        closeForgotModal();
+    } catch (err) {
+        alert("Error: " + err.message);
+    }
 }
 
 function toggleAuthMode(event) {
@@ -201,6 +263,7 @@ function togglePhoneAuth() {
         document.getElementById("createAccountSection").style.display = "none";
         document.getElementById("googleBtn").style.display = "none";
         document.getElementById("divider").style.display = "none";
+        document.getElementById("forgotPwdBtn").style.display = "none";
         
         document.getElementById("submitBtn").textContent = "Send Verification Code";
         document.getElementById("phoneToggleBtn").textContent = "Log In with Email & Password";
@@ -219,6 +282,7 @@ function togglePhoneAuth() {
         document.getElementById("createAccountSection").style.display = "block";
         document.getElementById("googleBtn").style.display = "flex";
         document.getElementById("divider").style.display = "flex";
+        document.getElementById("forgotPwdBtn").style.display = "inline-block";
         
         document.getElementById("submitBtn").textContent = "Log In";
         document.getElementById("phoneToggleBtn").textContent = "Continue with phone";
@@ -304,5 +368,4 @@ async function socialLogin() {
 }
 </script>
 </body>
-        </html>
-    
+</html>
