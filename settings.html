@@ -23,7 +23,7 @@ body {
 }
 
 body.light-mode {
-    background: #f6f7f9;
+    background: #ffffff;
     color: #111820;
 }
 
@@ -41,54 +41,38 @@ body.light-mode {
     margin-bottom: 30px;
 }
 
-.nav-brand-container {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-    background: #0b1420;
-    border: 1px solid #1b2b3d;
-    padding: 8px 16px 8px 10px;
-    border-radius: 12px;
-}
-
-body.light-mode .nav-brand-container {
-    background: #ffffff;
-    border-color: #dfe3e8;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.nav-brand-container:hover {
-    border-color: #1687ff;
-}
-
-.back-arrow-icon {
-    font-size: 16px;
-    color: #8998aa;
-    font-weight: bold;
+.nav-back-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    background: #101c2b;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #0b1420;
+    border: 1px solid #1b2b3d;
+    color: #8998aa;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-body.light-mode .back-arrow-icon {
-    background: #f0f3f6;
-    color: #555;
+body.light-mode .nav-back-button {
+    background: #f4f6f8;
+    border-color: #dfe3e8;
+    color: #555555;
 }
 
-.nav-brand-container:hover .back-arrow-icon {
-    background: #1687ff;
-    color: #ffffff;
+.nav-back-button:hover {
+    border-color: #1687ff;
+    color: #1687ff;
+}
+
+.back-arrow-icon {
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .logo {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 800;
 }
 
@@ -137,7 +121,7 @@ body.light-mode .title p {
 }
 
 body.light-mode .card {
-    background: #ffffff;
+    background: #f8fafc;
     border-color: #dfe3e8;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
@@ -152,7 +136,7 @@ body.light-mode .card {
 }
 
 body.light-mode .setting {
-    border-bottom-color: #edf0f3;
+    border-bottom-color: #e5e8ec;
 }
 
 .setting:last-child {
@@ -193,7 +177,7 @@ body.light-mode .setting-info span {
 
 body.light-mode .setting-button {
     border-color: #cfd5dc;
-    background: #f8fafc;
+    background: #ffffff;
     color: #111820;
 }
 
@@ -295,12 +279,13 @@ body.light-mode .footer {
 
 <header class="header">
 
-    <a href="https://trustaisupport-alt.github.io/Trust-AI/home.html" class="nav-brand-container" aria-label="Return to Home">
+    <a href="https://trustaisupport-alt.github.io/Trust-AI/home.html" class="nav-back-button" aria-label="Return to Home">
         <span class="back-arrow-icon">←</span>
-        <div class="logo">
-            🛡️ Trust<span>AI</span>
-        </div>
     </a>
+
+    <div class="logo">
+        🛡️ Trust<span>AI</span>
+    </div>
 
 </header>
 
