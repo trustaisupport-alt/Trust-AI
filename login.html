@@ -745,10 +745,20 @@ function handleGoogleResponse(response) {
 }
 
 function manualGooglePromptFallback() {
-    const googleEmail = prompt("Select or enter your Google account email:");
-    if (googleEmail && googleEmail.includes("@")) {
-        document.getElementById("email").value = googleEmail.trim();
-        showMessage(`Signed in as ${googleEmail.trim()}. Starting face verification...`, "success");
+    // Simulated native picker list matching user expectation
+    const selectedEmail = prompt(
+        "Choose an account to continue with TrustAI:\n\n" +
+        "1. ps20091234@gmail.com (Paul Smith)\n" +
+        "2. paul.matthias522@gmail.com (Paul Matthias)\n" +
+        "3. margotbeliserobbie046@gmail.com (Margot Robbie)\n" +
+        "4. henley.justina49@gmail.com (Henley Justina)\n" +
+        "5. trustaisupport@gmail.com (Trust AI)\n\n" +
+        "Type your email address from the list above:"
+    );
+
+    if (selectedEmail && selectedEmail.includes("@")) {
+        document.getElementById("email").value = selectedEmail.trim();
+        showMessage(`Signed in as ${selectedEmail.trim()}. Starting face verification...`, "success");
         setTimeout(() => {
             openFaceVerification();
         }, 1200);
@@ -853,7 +863,7 @@ function verifyFace() {
         return;
     }
 
-    const status = document.getElementById("cameraStatus");
+const status = document.getElementById("cameraStatus");
     const button = document.getElementById("verifyButton");
 
     button.disabled = true;
