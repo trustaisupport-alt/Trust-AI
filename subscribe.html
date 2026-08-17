@@ -1,1 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI Protection Plans</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(37,99,235,.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14,165,233,.12),
+            transparent 35%
+        ),
+        #050b14;
+
+    color: #f8fafc;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+.page {
+    width: min(900px, calc(100% - 24px));
+
+    margin: auto;
+
+    padding: 25px 0 50px;
+}
+
+.header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 30px;
+}
+
+.back-button {
+    width: 45px;
+
+    height: 45px;
+
+    border: 1px solid #23415f;
+
+    border-radius: 12px;
+
+    background: #0d1c2d;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+.logo {
+    font-size: 23px;
+
+    font-weight: 900;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.hero {
+    text-align: center;
+
+    padding: 15px 10px 30px;
+}
+
+.hero-icon {
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1261c9,
+            #0ea5e9
+        );
+
+    font-size: 34px;
+}
+
+.hero h1 {
+    margin: 0 0 10px;
+
+    font-size:
+        clamp(30px, 7vw, 46px);
+}
+
+.hero h1 span {
+    color: #38bdf8;
+}
+
+.hero p {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #91a7bf;
+
+    font-size: 15px;
+}
+
+.plans {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.plan {
+    position: relative;
+
+    padding: 25px;
+
+    border: 1px solid #23415f;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d2034,
+            #091522
+        );
+}
+
+.plan.featured {
+    border-color: #1687ff;
+
+    box-shadow:
+        0 0 30px rgba(22,135,255,.12);
+}
+
+.plan-badge {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    margin-bottom: 12px;
+
+    border-radius: 20px;
+
+    background: rgba(22,135,255,.12);
+
+    color: #62a9ff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+.plan h2 {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+}
+
+.plan-description {
+    color: #91a7bf;
+
+    font-size: 13px;
+
+    margin-bottom: 18px;
+}
+
+.price {
+    margin-bottom: 20px;
+
+    font-size: 30px;
+
+    font-weight: 900;
+}
+
+.price small {
+    color: #8197ad;
+
+    font-size: 12px;
+
+    font-weight: normal;
+}
+
+.features {
+    padding: 0;
+
+    margin: 0 0 22px;
+
+    list-style: none;
+}
+
+.features li {
+    padding: 8px 0;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+}
+
+.features li::before {
+    content: "✓";
+
+    margin-right: 8px;
+
+    color: #22c55e;
+
+    font-weight: bold;
+}
+
+.plan-button {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1677ff,
+            #168bdc
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.plan-button:hover {
+    opacity: .9;
+}
