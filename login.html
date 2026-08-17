@@ -9,6 +9,8 @@
 <meta name="description"
 content="Log in or create a TrustAI account">
 
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 <style>
 
 * {
@@ -696,24 +698,63 @@ function handleAuth(event) {
 function socialLogin() {
     hideMessage();
     
-    const googleEmail = prompt("Choose an account to continue with TrustAI:\nEnter your Google Email address:");
-    
-    if (!googleEmail || !googleEmail.trim()) {
+    if (typeof google === 'undefined' || !google.accounts) {
+        manualGooglePromptFallback();
+        return;
+    }
+
+    google.accounts.id.initialize({
+        client_id: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+        callback: handleGoogleResponse,
+        auto_select: false,
+        cancel_on_tap_outside: true
+    });
+
+    google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+            manualGooglePromptFallback();
+        }
+    });
+}
+
+function handleGoogleResponse(response) {
+    if (!response.credential) {
+        showMessage("Google authentication failed.", "error");
+        return;
+    }
+
+    try {
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        
+        const googleUser = JSON.parse(jsonPayload);
+        
+        document.getElementById("email").value = googleUser.email;
+        showMessage(`Signed in as ${googleUser.email}. Starting face verification...`, "success");
+
+        setTimeout(() => {
+            openFaceVerification();
+        }, 1200);
+        
+    } catch (e) {
+        showMessage("Error processing Google account details.", "error");
+    }
+}
+
+function manualGooglePromptFallback() {
+    const googleEmail = prompt("Select or enter your Google account email:");
+    if (googleEmail && googleEmail.includes("@")) {
+        document.getElementById("email").value = googleEmail.trim();
+        showMessage(`Signed in as ${googleEmail.trim()}. Starting face verification...`, "success");
+        setTimeout(() => {
+            openFaceVerification();
+        }, 1200);
+    } else {
         showMessage("Google sign-in was cancelled.", "error");
-        return;
     }
-    
-    if (!googleEmail.includes("@")) {
-        showMessage("Please enter a valid email address.", "error");
-        return;
-    }
-
-    document.getElementById("email").value = googleEmail.trim();
-    showMessage(`Signed in as ${googleEmail.trim()}. Starting face verification...`, "success");
-
-    setTimeout(() => {
-        openFaceVerification();
-    }, 1200);
 }
 
 async function openFaceVerification() {
@@ -872,5 +913,4 @@ window.addEventListener("beforeunload", stopCamera);
 </script>
 
 </body>
-                        </html>
-    
+</html>
