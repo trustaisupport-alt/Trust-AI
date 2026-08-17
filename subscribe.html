@@ -1007,9 +1007,7 @@ function useFreePlan() {
 function chooseProtection() {
 
     const currency =
-        document.getElementById(
-            "currency"
-        ).value;
+        document.getElementById("currency").value;
 
     localStorage.setItem(
         "trustai_selected_plan",
@@ -1020,6 +1018,9 @@ function chooseProtection() {
         "trustai_selected_currency",
         currency
     );
+
+    window.location.href = "./checkout.html";
+    }
 
     /*
        Payment is NOT marked successful here.
