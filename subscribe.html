@@ -10,10 +10,17 @@ content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI Protection Plans</title>
 
+<meta name="description"
+content="Choose a TrustAI protection plan and strengthen your online security.">
+
 <style>
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -50,6 +57,10 @@ body {
     padding: 25px 0 50px;
 }
 
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
 .header {
     display: flex;
 
@@ -76,6 +87,14 @@ body {
     font-size: 22px;
 
     cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.back-button:hover {
+    border-color: #1687ff;
+
+    transform: translateY(-2px);
 }
 
 .logo {
@@ -87,6 +106,10 @@ body {
 .logo span {
     color: #38bdf8;
 }
+
+/* ========================= */
+/* HERO */
+/* ========================= */
 
 .hero {
     text-align: center;
@@ -117,6 +140,9 @@ body {
         );
 
     font-size: 34px;
+
+    box-shadow:
+        0 15px 35px rgba(14,165,233,.18);
 }
 
 .hero h1 {
@@ -124,6 +150,8 @@ body {
 
     font-size:
         clamp(30px, 7vw, 46px);
+
+    line-height: 1.15;
 }
 
 .hero h1 span {
@@ -139,6 +167,10 @@ body {
 
     font-size: 15px;
 }
+
+/* ========================= */
+/* PLANS */
+/* ========================= */
 
 .plans {
     display: grid;
@@ -164,6 +196,17 @@ body {
             #0d2034,
             #091522
         );
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.plan:hover {
+    transform: translateY(-5px);
+
+    border-color: #31597d;
 }
 
 .plan.featured {
@@ -171,6 +214,11 @@ body {
 
     box-shadow:
         0 0 30px rgba(22,135,255,.12);
+}
+
+.plan.featured:hover {
+    box-shadow:
+        0 15px 40px rgba(22,135,255,.15);
 }
 
 .plan-badge {
@@ -247,6 +295,10 @@ body {
     font-weight: bold;
 }
 
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
 .plan-button {
     width: 100%;
 
@@ -270,8 +322,376 @@ body {
     font-weight: 800;
 
     cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
 }
 
 .plan-button:hover {
     opacity: .9;
+
+    transform: translateY(-2px);
 }
+
+.plan-button:active {
+    transform: scale(.98);
+}
+
+.free-button {
+    background: #14283b;
+
+    border: 1px solid #31506c;
+}
+
+.free-button:hover {
+    background: #19334c;
+}
+
+/* ========================= */
+/* INFORMATION */
+/* ========================= */
+
+.info-section {
+    margin-top: 30px;
+
+    padding: 22px;
+
+    border: 1px solid #1d3852;
+
+    border-radius: 18px;
+
+    background: rgba(13,32,52,.65);
+
+    text-align: center;
+}
+
+.info-section h3 {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+}
+
+.info-section p {
+    margin: 0;
+
+    color: #91a7bf;
+
+    font-size: 13px;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+.footer {
+    margin-top: 35px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #193047;
+
+    text-align: center;
+
+    color: #71869c;
+
+    font-size: 12px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 700px) {
+
+    .plans {
+        grid-template-columns: 1fr;
+    }
+
+    .page {
+        width: calc(100% - 24px);
+
+        padding-top: 18px;
+    }
+
+    .hero {
+        padding-top: 10px;
+    }
+
+    .plan {
+        padding: 22px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <button
+            class="back-button"
+            type="button"
+            onclick="goBack()"
+            aria-label="Go back">
+
+            ←
+
+        </button>
+
+        <div class="logo">
+            🛡️ Trust<span>AI</span>
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-icon">
+            🛡️
+        </div>
+
+        <h1>
+            Protect yourself with
+            <span>TrustAI.</span>
+        </h1>
+
+        <p>
+            Choose the protection plan that fits your security needs.
+            Start with the free tools or upgrade when you need more.
+        </p>
+
+    </section>
+
+
+    <!-- PLANS -->
+
+    <section class="plans">
+
+
+        <!-- FREE PLAN -->
+
+        <article class="plan">
+
+            <div class="plan-badge">
+                STARTER
+            </div>
+
+            <h2>
+                TrustAI Free
+            </h2>
+
+            <p class="plan-description">
+                Essential tools for checking suspicious
+                messages, conversations and websites.
+            </p>
+
+            <div class="price">
+                ₦0
+                <small>
+                    / forever
+                </small>
+            </div>
+
+            <ul class="features">
+
+                <li>
+                    Message Checker
+                </li>
+
+                <li>
+                    Conversation Checker
+                </li>
+
+                <li>
+                    Website Checker
+                </li>
+
+                <li>
+                    Scam awareness tools
+                </li>
+
+                <li>
+                    Basic security guidance
+                </li>
+
+            </ul>
+
+            <button
+                class="plan-button free-button"
+                type="button"
+                onclick="useFreePlan()">
+
+                Continue with Free
+
+            </button>
+
+        </article>
+
+
+        <!-- PREMIUM PLAN -->
+
+        <article class="plan featured">
+
+            <div class="plan-badge">
+                ⭐ RECOMMENDED
+            </div>
+
+            <h2>
+                TrustAI Protection
+            </h2>
+
+            <p class="plan-description">
+                Enhanced protection features for users
+                who want a stronger TrustAI security experience.
+            </p>
+
+            <div class="price">
+                Coming Soon
+            </div>
+
+            <ul class="features">
+
+                <li>
+                    Everything in Free
+                </li>
+
+                <li>
+                    Advanced protection features
+                </li>
+
+                <li>
+                    Enhanced threat analysis
+                </li>
+
+                <li>
+                    Priority security features
+                </li>
+
+                <li>
+                    Future premium protection tools
+                </li>
+
+            </ul>
+
+            <button
+                class="plan-button"
+                type="button"
+                onclick="chooseProtection()">
+
+                Get Protection
+
+            </button>
+
+        </article>
+
+    </section>
+
+
+    <!-- INFORMATION -->
+
+    <section class="info-section">
+
+        <h3>
+            🔒 Your security comes first
+        </h3>
+
+        <p>
+            TrustAI protection plans are designed to help
+            users identify suspicious activity before taking
+            risky actions online.
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div>
+            🛡️ TrustAI
+        </div>
+
+        <div>
+            Your online scam protection assistant.
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+/* ========================= */
+/* BACK BUTTON */
+/* ========================= */
+
+function goBack() {
+
+    if (document.referrer) {
+
+        window.history.back();
+
+    } else {
+
+        window.location.href = "./home.html";
+
+    }
+
+}
+
+
+/* ========================= */
+/* FREE PLAN */
+/* ========================= */
+
+function useFreePlan() {
+
+    localStorage.setItem(
+        "trustai_plan",
+        "free"
+    );
+
+    window.location.href =
+        "./home.html";
+
+}
+
+
+/* ========================= */
+/* PROTECTION PLAN */
+/* ========================= */
+
+function chooseProtection() {
+
+    /*
+       The payment system is not connected yet.
+
+       We do NOT pretend that a payment has been
+       completed.
+
+       For now, send the user to the Protection page.
+    */
+
+    window.location.href =
+        "./protection.html";
+
+}
+
+</script>
+
+</body>
+
+</html>
