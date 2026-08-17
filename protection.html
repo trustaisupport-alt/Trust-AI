@@ -1733,7 +1733,6 @@ footer {
 
 
 <script>
-<script>
 
 function toggleMenu() {
 
@@ -1934,7 +1933,6 @@ function activateProtection() {
 
 updateProtectionStatus();
 
-</script>
 function protectionAlert(type) {
 
     if (type === "calls") {
@@ -1992,7 +1990,19 @@ function protectionAlert(type) {
     }
 
 }
+function openCallProtection() {
 
+    alert(
+        "📞 TrustAI Incoming Call Protection\n\n" +
+        "TrustAI Call Protection is ready to be configured.\n\n" +
+        "It is designed to help identify suspicious callers " +
+        "and warn you about possible scam calls.\n\n" +
+        "⚠️ A normal website cannot automatically intercept " +
+        "every incoming phone call. Real-time call detection " +
+        "requires a mobile app with the appropriate device permissions."
+    );
+
+}
 </script>
 </body>
 
