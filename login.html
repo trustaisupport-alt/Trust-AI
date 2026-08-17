@@ -89,6 +89,8 @@ body {
 .social-icon {
     position: absolute;
     left: 15px;
+    display: flex;
+    align-items: center;
 }
 
 .divider {
@@ -285,8 +287,7 @@ input:focus {
     border: 3px solid rgba(255,255,255,.9);
     border-radius: 50%;
     pointer-events: none;
-    box-shadow:
-        0 0 0 9999px rgba(0,0,0,.18);
+    box-shadow: 0 0 0 9999px rgba(0,0,0,.18);
 }
 
 .camera-status {
@@ -355,20 +356,16 @@ input:focus {
 }
 
 @media (max-width:520px) {
-
     body {
         padding: 15px;
         align-items: flex-start;
     }
-
     .login-page {
         margin-top: 25px;
     }
-
     .login-card {
         padding: 24px 20px;
     }
-
 }
 
 </style>
@@ -402,7 +399,14 @@ input:focus {
             class="social-button"
             onclick="socialLogin()">
 
-            <span class="social-icon">G</span>
+            <span class="social-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.14C3.15 21.36 7.23 24 12 24z"/>
+                    <path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.62H1.18C.43 8.13 0 9.83 0 12s.43 3.87 1.18 5.38l4.09-3.14z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.15 2.64 1.18 6.62l4.09 3.14c.95-2.85 3.6-4.96 6.73-4.96z"/>
+                </svg>
+            </span>
 
             Continue with Google
 
@@ -431,7 +435,6 @@ input:focus {
 
             </div>
 
-
             <div class="form-group">
 
                 <label for="email" id="inputLabel">
@@ -446,7 +449,6 @@ input:focus {
                     required>
 
             </div>
-
 
             <div
                 class="form-group"
@@ -479,7 +481,6 @@ input:focus {
 
             </div>
 
-
             <div class="auth-links-row">
 
                 <button
@@ -502,7 +503,6 @@ input:focus {
 
             </div>
 
-
             <button
                 type="submit"
                 id="submitBtn"
@@ -513,7 +513,6 @@ input:focus {
             </button>
 
         </form>
-
 
         <div class="create-account">
 
@@ -536,7 +535,6 @@ input:focus {
 
     </section>
 
-
     <!-- FACE VERIFICATION AREA -->
 
     <section
@@ -548,82 +546,60 @@ input:focus {
         </h1>
 
         <p class="face-subtitle">
-
-            TrustAI needs to verify that a real person is present
-            before continuing.
-
+            TrustAI needs to verify that a real person is present before continuing.
         </p>
 
-
         <div class="camera-container">
-
             <video
                 id="cameraVideo"
                 autoplay
                 muted
                 playsinline>
             </video>
-
             <div class="face-frame"></div>
-
         </div>
-
 
         <div
             id="cameraStatus"
             class="camera-status">
-
             Starting secure camera...
-
         </div>
-
 
         <button
             id="verifyButton"
             class="verify-button"
             onclick="verifyFace()"
             disabled>
-
             Verify My Face
-
         </button>
-
 
         <button
             class="back-button"
             onclick="returnToLogin()">
-
             Back to Login
-
         </button>
 
-
         <div class="security-note">
-
             🔒 Your camera is accessed only through your browser.
             Face verification will be connected to the secure
             TrustAI authentication system in the next stage.
-
         </div>
 
     </section>
 
-
     <div class="legal">
-
         By continuing, you agree to the
         <a href="./terms.html">Terms of Service</a>
         and
         <a href="./privacy.html">Privacy Policy</a>.
-
     </div>
 
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 
-   <script>
-const TRUSTAI_HOME =
-"https://trustaisupport-alt.github.io/Trust-AI/home.html";
+<script>
+const TRUSTAI_HOME = "https://trustaisupport-alt.github.io/Trust-AI/home.html";
 
 let isSignUp = false;
 let isPhoneMode = false;
@@ -633,16 +609,9 @@ let cameraReady = false;
 let faceDetectionRunning = false;
 let faceCurrentlyDetected = false;
 
-
-/* ============================= */
-/* MESSAGE */
-/* ============================= */
-
 function showMessage(text, type = "info") {
     const message = document.getElementById("message");
-
     message.textContent = text;
-
     message.className =
         "message show " +
         (type === "error"
@@ -652,50 +621,28 @@ function showMessage(text, type = "info") {
                 : "");
 }
 
-
 function hideMessage() {
     const message = document.getElementById("message");
-
     if (message) {
         message.className = "message";
     }
 }
 
-
-/* ============================= */
-/* PASSWORD */
-/* ============================= */
-
 function togglePasswordVisibility() {
-
-    const pwd =
-        document.getElementById("password");
-
-    const button =
-        document.querySelector(".toggle-password-btn");
+    const pwd = document.getElementById("password");
+    const button = document.querySelector(".toggle-password-btn");
 
     if (pwd.type === "password") {
-
         pwd.type = "text";
         button.textContent = "👁️";
-
     } else {
-
         pwd.type = "password";
         button.textContent = "🙈";
-
     }
 }
 
-
-/* ============================= */
-/* LOGIN / SIGN UP */
-/* ============================= */
-
 function toggleAuthMode(event) {
-
     event.preventDefault();
-
     isSignUp = !isSignUp;
 
     document.getElementById("nameGroup").style.display =
@@ -723,444 +670,207 @@ function toggleAuthMode(event) {
             : "Access your TrustAI security dashboard";
 }
 
-
-/* ============================= */
-/* LOGIN */
-/* ============================= */
-
 function handleAuth(event) {
-
     event.preventDefault();
-
     hideMessage();
 
-    const email =
-        document.getElementById("email").value.trim();
-
-    const password =
-        document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
     if (!email || !password) {
-
-        showMessage(
-            "Please fill in all fields.",
-            "error"
-        );
-
+        showMessage("Please fill in all fields.", "error");
         return;
     }
 
-
     if (isSignUp) {
-
-        const fullName =
-            document.getElementById("fullName")
-            .value.trim();
-
+        const fullName = document.getElementById("fullName").value.trim();
         if (!fullName) {
-
-            showMessage(
-                "Please enter your full name.",
-                "error"
-            );
-
+            showMessage("Please enter your full name.", "error");
             return;
         }
     }
 
-
     openFaceVerification();
 }
-
-
-/* ============================= */
-/* GOOGLE */
-/* ============================= */
 
 function socialLogin() {
+    hideMessage();
+    
+    const googleEmail = prompt("Choose an account to continue with TrustAI:\nEnter your Google Email address:");
+    
+    if (!googleEmail || !googleEmail.trim()) {
+        showMessage("Google sign-in was cancelled.", "error");
+        return;
+    }
+    
+    if (!googleEmail.includes("@")) {
+        showMessage("Please enter a valid email address.", "error");
+        return;
+    }
 
-    openFaceVerification();
+    document.getElementById("email").value = googleEmail.trim();
+    showMessage(`Signed in as ${googleEmail.trim()}. Starting face verification...`, "success");
+
+    setTimeout(() => {
+        openFaceVerification();
+    }, 1200);
 }
 
-
-/* ============================= */
-/* FACE VERIFICATION */
-/* ============================= */
-
 async function openFaceVerification() {
+    document.getElementById("loginCard").style.display = "none";
+    document.getElementById("faceVerification").style.display = "block";
 
-    document.getElementById("loginCard")
-        .style.display = "none";
+    const status = document.getElementById("cameraStatus");
+    const button = document.getElementById("verifyButton");
 
-    document.getElementById("faceVerification")
-        .style.display = "block";
-
-    const status =
-        document.getElementById("cameraStatus");
-
-    const button =
-        document.getElementById("verifyButton");
-
-    status.className =
-        "camera-status";
-
-    status.textContent =
-        "Loading face detection AI...";
-
+    status.className = "camera-status";
+    status.textContent = "Loading face detection AI...";
     button.disabled = true;
 
-
     try {
+        const MODEL_URL = "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
+        await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
 
-        /* Load the face detector */
+        status.textContent = "Face detection AI ready. Starting camera...";
 
-        const MODEL_URL =
-            "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
+        cameraStream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: "user",
+                width: { ideal: 720 },
+                height: { ideal: 960 }
+            },
+            audio: false
+        });
 
-        await faceapi.nets.tinyFaceDetector
-            .loadFromUri(MODEL_URL);
-
-
-        status.textContent =
-            "Face detection AI ready. Starting camera...";
-
-
-        /* Start camera */
-
-        cameraStream =
-            await navigator.mediaDevices
-                .getUserMedia({
-
-                    video: {
-
-                        facingMode: "user",
-
-                        width: {
-                            ideal: 720
-                        },
-
-                        height: {
-                            ideal: 960
-                        }
-
-                    },
-
-                    audio: false
-
-                });
-
-
-        const video =
-            document.getElementById("cameraVideo");
-
-        video.srcObject =
-            cameraStream;
-
+        const video = document.getElementById("cameraVideo");
+        video.srcObject = cameraStream;
         await video.play();
 
         cameraReady = true;
-
-        status.textContent =
-            "Looking for your face...";
-
-
-        /* Start continuous face detection */
+        status.textContent = "Looking for your face...";
 
         startFaceDetection();
 
-
     } catch (error) {
-
-        console.error(
-            "Face verification error:",
-            error
-        );
-
-        status.className =
-            "camera-status error";
-
-        status.textContent =
-            "Unable to start face detection. Check your camera and internet connection.";
-
+        console.error("Face verification error:", error);
+        status.className = "camera-status error";
+        status.textContent = "Unable to start face detection. Check your camera and internet connection.";
     }
 }
 
-
-/* ============================= */
-/* CONTINUOUS FACE DETECTION */
-/* ============================= */
-
 async function startFaceDetection() {
-
-    if (faceDetectionRunning) {
-        return;
-    }
-
+    if (faceDetectionRunning) return;
     faceDetectionRunning = true;
 
-    const video =
-        document.getElementById("cameraVideo");
-
-    const status =
-        document.getElementById("cameraStatus");
-
-    const button =
-        document.getElementById("verifyButton");
-
+    const video = document.getElementById("cameraVideo");
+    const status = document.getElementById("cameraStatus");
+    const button = document.getElementById("verifyButton");
 
     async function detect() {
-
-        if (!cameraReady ||
-            video.readyState < 2) {
-
+        if (!cameraReady || video.readyState < 2) {
             requestAnimationFrame(detect);
-
             return;
         }
 
-
         try {
-
-            const detection =
-                await faceapi.detectSingleFace(
-                    video,
-                    new faceapi.TinyFaceDetectorOptions({
-
-                        inputSize: 224,
-
-                        scoreThreshold: 0.5
-
-                    })
-                );
-
-
-            if (detection) {
-
-                faceCurrentlyDetected = true;
-
-                status.className =
-                    "camera-status success";
-
-                status.textContent =
-                    "Face detected ✓ Keep your face centered.";
-
-                button.disabled = false;
-
-
-            } else {
-
-                faceCurrentlyDetected = false;
-
-                status.className =
-                    "camera-status";
-
-                status.textContent =
-                    "No face detected. Look directly at the camera.";
-
-                button.disabled = true;
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Detection error:",
-                error
+            const detection = await faceapi.detectSingleFace(
+                video,
+                new faceapi.TinyFaceDetectorOptions({
+                    inputSize: 224,
+                    scoreThreshold: 0.5
+                })
             );
 
+            if (detection) {
+                faceCurrentlyDetected = true;
+                status.className = "camera-status success";
+                status.textContent = "Face detected ✓ Keep your face centered.";
+                button.disabled = false;
+            } else {
+                faceCurrentlyDetected = false;
+                status.className = "camera-status";
+                status.textContent = "No face detected. Look directly at the camera.";
+                button.disabled = true;
+            }
+        } catch (error) {
+            console.error("Detection error:", error);
         }
-
 
         requestAnimationFrame(detect);
     }
 
-
     detect();
 }
 
-
-/* ============================= */
-/* VERIFY BUTTON */
-/* ============================= */
-
 function verifyFace() {
-
-    if (!cameraReady) {
-        return;
-    }
-
+    if (!cameraReady) return;
 
     if (!faceCurrentlyDetected) {
-
-        const status =
-            document.getElementById("cameraStatus");
-
-        status.className =
-            "camera-status error";
-
-        status.textContent =
-            "No face detected. Position your face inside the circle.";
-
+        const status = document.getElementById("cameraStatus");
+        status.className = "camera-status error";
+        status.textContent = "No face detected. Position your face inside the circle.";
         return;
     }
 
-
-    const status =
-        document.getElementById("cameraStatus");
-
-    const button =
-        document.getElementById("verifyButton");
-
+    const status = document.getElementById("cameraStatus");
+    const button = document.getElementById("verifyButton");
 
     button.disabled = true;
-
-    status.className =
-        "camera-status";
-
-    status.textContent =
-        "Face detected. Preparing secure verification...";
-
+    status.className = "camera-status";
+    status.textContent = "Face detected. Preparing secure verification...";
 
     setTimeout(() => {
-
-        status.className =
-            "camera-status success";
-
-        status.textContent =
-            "Face detection successful ✓";
-
-        button.textContent =
-            "Continue";
-
+        status.className = "camera-status success";
+        status.textContent = "Face detection successful ✓";
+        button.textContent = "Continue";
         button.disabled = false;
-
-        button.onclick =
-            finishVerification;
-
+        button.onclick = finishVerification;
     }, 1200);
 }
 
-
-/* ============================= */
-/* FINISH */
-/* ============================= */
-
 function finishVerification() {
-
     stopCamera();
-
-    const status =
-        document.getElementById("cameraStatus");
-
-    status.className =
-        "camera-status success";
-
-    status.textContent =
-        "Security check complete. Opening TrustAI...";
-
+    const status = document.getElementById("cameraStatus");
+    status.className = "camera-status success";
+    status.textContent = "Security check complete. Opening TrustAI...";
 
     setTimeout(() => {
-
-        window.location.href =
-            TRUSTAI_HOME;
-
+        window.location.href = TRUSTAI_HOME;
     }, 800);
 }
 
-
-/* ============================= */
-/* BACK TO LOGIN */
-/* ============================= */
-
 function returnToLogin() {
-
     stopCamera();
-
-    document.getElementById("faceVerification")
-        .style.display = "none";
-
-    document.getElementById("loginCard")
-        .style.display = "block";
+    document.getElementById("faceVerification").style.display = "none";
+    document.getElementById("loginCard").style.display = "block";
 }
 
-
-/* ============================= */
-/* STOP CAMERA */
-/* ============================= */
-
 function stopCamera() {
-
     if (cameraStream) {
-
-        cameraStream
-            .getTracks()
-            .forEach(track => track.stop());
-
+        cameraStream.getTracks().forEach(track => track.stop());
         cameraStream = null;
     }
-
     cameraReady = false;
-
     faceDetectionRunning = false;
-
     faceCurrentlyDetected = false;
 }
 
-
-/* ============================= */
-/* PHONE */
-/* ============================= */
-
 function togglePhoneAuth() {
-
-    showMessage(
-        "Phone authentication will be connected to real SMS verification next.",
-        "info"
-    );
+    showMessage("Phone authentication will be connected to real SMS verification next.", "info");
 }
-
-
-/* ============================= */
-/* PASSWORD RESET */
-/* ============================= */
 
 function forgotPassword() {
-
-    const email =
-        document.getElementById("email")
-        .value.trim();
-
+    const email = document.getElementById("email").value.trim();
     if (!email) {
-
-        showMessage(
-            "Enter your email address first.",
-            "error"
-        );
-
+        showMessage("Enter your email address first.", "error");
         return;
     }
-
-    showMessage(
-        "Password recovery will be connected to real email verification next.",
-        "success"
-    );
+    showMessage("Password recovery will be connected to real email verification next.", "success");
 }
 
-
-/* ============================= */
-/* CLEANUP */
-/* ============================= */
-
-window.addEventListener(
-    "beforeunload",
-    stopCamera
-);
-
-            </script> 
-                            
-        
-            
+window.addEventListener("beforeunload", stopCamera);
+</script>
 
 </body>
-                </html>
+                        </html>
+    
