@@ -1719,7 +1719,67 @@ function activateProtection() {
 
 </script>
 
+<script>
 
+function protectionAlert(type) {
+
+    if (type === "calls") {
+
+        alert(
+            "📞 Incoming Call Protection\n\n" +
+            "TrustAI can help identify suspicious callers " +
+            "and warn you about possible scam patterns.\n\n" +
+            "⚠️ Never share OTPs, PINs, passwords or banking information with an unknown caller."
+        );
+
+    }
+
+    else if (type === "messages") {
+
+        alert(
+            "💬 Incoming Message Protection\n\n" +
+            "TrustAI can analyze suspicious messages for scam patterns, " +
+            "fake offers, impersonation and urgent money requests.\n\n" +
+            "⚠️ Do not send money or sensitive information before verifying the sender."
+        );
+
+    }
+
+    else if (type === "links") {
+
+        alert(
+            "🔗 Incoming Link Protection\n\n" +
+            "TrustAI can check suspicious links for common phishing warning signs.\n\n" +
+            "⚠️ Do not open an unfamiliar link before checking it."
+        );
+
+    }
+
+    else if (type === "social") {
+
+        alert(
+            "📱 Social Media Protection\n\n" +
+            "TrustAI can help you monitor suspicious login activity " +
+            "and recognize possible account takeover attempts.\n\n" +
+            "⚠️ Turn on two-factor authentication whenever the platform supports it."
+        );
+
+    }
+
+    else if (type === "gaming") {
+
+        alert(
+            "🎮 Gaming Account Protection\n\n" +
+            "TrustAI can help you recognize suspicious login attempts, " +
+            "fake giveaways and account-stealing messages.\n\n" +
+            "⚠️ Never give anyone your password, OTP or recovery code."
+        );
+
+    }
+
+}
+
+</script>
 </body>
 
     </html>
