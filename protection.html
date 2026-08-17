@@ -1731,7 +1731,6 @@ footer {
 
 </div>
 
-
 <script>
 
 function toggleMenu() {
@@ -1739,27 +1738,25 @@ function toggleMenu() {
     const menu = document.getElementById("sideMenu");
     const overlay = document.getElementById("menuOverlay");
 
-    menu.classList.toggle("open");
-    overlay.classList.toggle("show");
+    if (menu) menu.classList.toggle("open");
+    if (overlay) overlay.classList.toggle("show");
 
 }
 
 
 function closeMenu() {
 
-    document
-        .getElementById("sideMenu")
-        .classList.remove("open");
+    const menu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("menuOverlay");
 
-    document
-        .getElementById("menuOverlay")
-        .classList.remove("show");
+    if (menu) menu.classList.remove("open");
+    if (overlay) overlay.classList.remove("show");
 
 }
 
 
 /* =====================================================
-   PROTECTION TOGGLES
+   PROTECTION STATE
 ===================================================== */
 
 const protectionState = {
@@ -1773,43 +1770,47 @@ const protectionState = {
 };
 
 
+/* =====================================================
+   TOGGLE PROTECTION
+===================================================== */
+
 function toggleProtection(type) {
+
+    if (!protectionState.hasOwnProperty(type)) {
+        return;
+    }
 
     protectionState[type] =
         !protectionState[type];
 
-
     const toggle =
-        document.getElementById(
-            type + "Toggle"
-        );
+        document.getElementById(type + "Toggle");
 
     const status =
-        document.getElementById(
-            type + "Status"
+        document.getElementById(type + "Status");
+
+    if (toggle) {
+
+        toggle.classList.toggle(
+            "active",
+            protectionState[type]
         );
-
-
-    if (protectionState[type]) {
-
-        toggle.classList.add("active");
-
-        status.classList.add("enabled");
-
-        status.textContent =
-            "Protection enabled";
-
-    } else {
-
-        toggle.classList.remove("active");
-
-        status.classList.remove("enabled");
-
-        status.textContent =
-            "Not enabled";
 
     }
 
+    if (status) {
+
+        status.classList.toggle(
+            "enabled",
+            protectionState[type]
+        );
+
+        status.textContent =
+            protectionState[type]
+                ? "Protection enabled"
+                : "Not enabled";
+
+    }
 
     updateProtectionStatus();
 
@@ -1817,90 +1818,157 @@ function toggleProtection(type) {
 
 
 /* =====================================================
-   OVERALL PROTECTION STATUS
+   OVERALL STATUS
 ===================================================== */
 
 function updateProtectionStatus() {
 
+    const types =
+        Object.keys(protectionState);
+
     let enabledCount = 0;
 
-    Object.keys(protectionState).forEach(function(type) {
+    types.forEach(function(type) {
 
         if (protectionState[type]) {
-
             enabledCount++;
-
         }
 
     });
 
-
-    const total =
-        Object.keys(protectionState).length;
-
+    const total = types.length;
 
     const percentage =
-        (enabledCount / total) * 100;
+        total === 0
+            ? 0
+            : (enabledCount / total) * 100;
 
 
-    document.getElementById(
-        "progressBar"
-    ).style.width =
-        percentage + "%";
-
+    const progressBar =
+        document.getElementById("progressBar");
 
     const statusText =
-        document.getElementById(
-            "statusText"
-        );
+        document.getElementById("statusText");
 
     const statusPill =
-        document.getElementById(
-            "statusPill"
-        );
+        document.getElementById("statusPill");
+
+
+    if (progressBar) {
+
+        progressBar.style.width =
+            percentage + "%";
+
+    }
 
 
     if (enabledCount === 0) {
 
-        statusText.textContent =
-            "No protection features enabled yet.";
+        if (statusText) {
 
-        statusPill.textContent =
-            "NOT ACTIVE";
+            statusText.textContent =
+                "No protection features enabled yet.";
 
-        statusPill.classList.remove(
-            "active"
-        );
+        }
+
+        if (statusPill) {
+
+            statusPill.textContent =
+                "NOT ACTIVE";
+
+            statusPill.classList.remove("active");
+
+        }
 
     }
 
     else if (enabledCount === total) {
 
-        statusText.textContent =
-            "All TrustAI protection features are enabled.";
+        if (statusText) {
 
-        statusPill.textContent =
-            "FULLY ACTIVE";
+            statusText.textContent =
+                "All TrustAI protection features are enabled.";
 
-        statusPill.classList.add(
-            "active"
-        );
+        }
+
+        if (statusPill) {
+
+            statusPill.textContent =
+                "FULLY ACTIVE";
+
+            statusPill.classList.add("active");
+
+        }
 
     }
 
     else {
 
-        statusText.textContent =
-            enabledCount +
-            " of " +
-            total +
-            " protection features enabled.";
+        if (statusText) {
 
-        statusPill.textContent =
-            "ACTIVE";
+            statusText.textContent =
+                enabledCount +
+                " of " +
+                total +
+                " protection features enabled.";
 
-        statusPill.classList.add(
-            "active"
+        }
+
+        if (statusPill) {
+
+            statusPill.textContent =
+                "ACTIVE";
+
+            statusPill.classList.add("active");
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   INCOMING CALL PROTECTION
+===================================================== */
+
+function openCallProtection() {
+
+    if (protectionState.call) {
+
+        alert(
+            "🛡️ TrustAI Call Protection\n\n" +
+            "Call Protection is ACTIVE.\n\n" +
+            "TrustAI is configured to help identify " +
+            "suspicious callers and scam-call patterns.\n\n" +
+            "⚠️ Real-time incoming-call detection " +
+            "requires a supported mobile app and " +
+            "the appropriate device permissions."
+        );
+
+        return;
+
+    }
+
+
+    const activate =
+        confirm(
+            "📞 TrustAI Incoming Call Protection\n\n" +
+            "Call Protection is currently OFF.\n\n" +
+            "Would you like to activate it?"
+        );
+
+
+    if (activate) {
+
+        toggleProtection("call");
+
+        alert(
+            "🛡️ Call Protection Activated\n\n" +
+            "TrustAI Call Protection is now enabled.\n\n" +
+            "⚠️ Real-time incoming-call detection " +
+            "will require the appropriate mobile-app " +
+            "permissions."
         );
 
     }
@@ -1909,7 +1977,7 @@ function updateProtectionStatus() {
 
 
 /* =====================================================
-   ACTIVATE PROTECTION BUTTON
+   ACTIVATE PROTECTION
 ===================================================== */
 
 function activateProtection() {
@@ -1928,107 +1996,61 @@ function activateProtection() {
 
 
 /* =====================================================
-   STARTUP
+   PROTECTION INFORMATION
+===================================================== */
+
+function protectionAlert(type) {
+
+    const messages = {
+
+        calls:
+            "📞 Incoming Call Protection\n\n" +
+            "TrustAI can help identify suspicious callers " +
+            "and warn you about possible scam patterns.",
+
+        messages:
+            "💬 Incoming Message Protection\n\n" +
+            "TrustAI can analyze suspicious messages " +
+            "for scam patterns and suspicious requests.",
+
+        links:
+            "🔗 Incoming Link Protection\n\n" +
+            "TrustAI can check suspicious links for " +
+            "common phishing warning signs.",
+
+        social:
+            "📱 Social Media Protection\n\n" +
+            "TrustAI can help you recognize suspicious " +
+            "login activity and possible account takeover attempts.",
+
+        gaming:
+            "🎮 Gaming Account Protection\n\n" +
+            "TrustAI can help you recognize suspicious " +
+            "login attempts and account-stealing messages."
+
+    };
+
+
+    if (messages[type]) {
+
+        alert(messages[type]);
+
+    }
+
+}
+
+
+/* =====================================================
+   START
 ===================================================== */
 
 updateProtectionStatus();
 
-function protectionAlert(type) {
-
-    if (type === "calls") {
-
-        alert(
-            "📞 Incoming Call Protection\n\n" +
-            "TrustAI can help identify suspicious callers " +
-            "and warn you about possible scam patterns.\n\n" +
-            "⚠️ Never share OTPs, PINs, passwords or banking information with an unknown caller."
-        );
-
-    }
-
-    else if (type === "messages") {
-
-        alert(
-            "💬 Incoming Message Protection\n\n" +
-            "TrustAI can analyze suspicious messages for scam patterns, " +
-            "fake offers, impersonation and urgent money requests.\n\n" +
-            "⚠️ Do not send money or sensitive information before verifying the sender."
-        );
-
-    }
-
-    else if (type === "links") {
-
-        alert(
-            "🔗 Incoming Link Protection\n\n" +
-            "TrustAI can check suspicious links for common phishing warning signs.\n\n" +
-            "⚠️ Do not open an unfamiliar link before checking it."
-        );
-
-    }
-
-    else if (type === "social") {
-
-        alert(
-            "📱 Social Media Protection\n\n" +
-            "TrustAI can help you monitor suspicious login activity " +
-            "and recognize possible account takeover attempts.\n\n" +
-            "⚠️ Turn on two-factor authentication whenever the platform supports it."
-        );
-
-    }
-
-    else if (type === "gaming") {
-
-        alert(
-            "🎮 Gaming Account Protection\n\n" +
-            "TrustAI can help you recognize suspicious login attempts, " +
-            "fake giveaways and account-stealing messages.\n\n" +
-            "⚠️ Never give anyone your password, OTP or recovery code."
-        );
-
-    }
-
- function openCallProtection() {
-
-    const enabled = protectionState.call;
-
-    if (enabled) {
-
-        alert(
-            "🛡️ TrustAI Call Protection\n\n" +
-            "Call Protection is ACTIVE.\n\n" +
-            "TrustAI is configured to help identify " +
-            "suspicious callers and scam-call patterns.\n\n" +
-            "⚠️ Live incoming-call detection requires " +
-            "a supported mobile app and device permissions."
-        );
-
-    } else {
-
-        const activate = confirm(
-            "📞 TrustAI Incoming Call Protection\n\n" +
-            "Call Protection is currently OFF.\n\n" +
-            "Would you like to activate it?"
-        );
-
-        if (activate) {
-
-            toggleProtection("call");
-
-            alert(
-                "🛡️ Call Protection Activated\n\n" +
-                "TrustAI Call Protection is now enabled.\n\n" +
-                "⚠️ Real-time incoming-call detection will " +
-                "require the appropriate mobile-app permissions."
-            );
-
-        }
-
-    }
-
- }
 </script>
+</body>
+
+    </html>
+
 </body>
 
     </html>
