@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI — Checkout</title>
+
+<meta name="description"
+content="Complete your TrustAI Protection subscription.">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(37,99,235,.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14,165,233,.12),
+            transparent 35%
+        ),
+        #050b14;
+
+    color: #f8fafc;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    line-height: 1.6;
+}
+
+.page {
+    width: min(900px, calc(100% - 24px));
+
+    margin: auto;
+
+    padding: 20px 0 50px;
+}
+
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+.back-button {
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid #23415f;
+
+    border-radius: 12px;
+
+    background: #0d1c2d;
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.back-button:hover {
+    border-color: #1687ff;
+
+    transform: translateY(-2px);
+}
+
+.logo {
+    font-size: 23px;
+
+    font-weight: 900;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+
+/* ========================= */
+/* TITLE */
+/* ========================= */
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.page-title .icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1261c9,
+            #0ea5e9
+        );
+
+    font-size: 30px;
+
+    box-shadow:
+        0 15px 35px rgba(14,165,233,.18);
+}
+
+.page-title h1 {
+    margin: 0 0 8px;
+
+    font-size:
+        clamp(28px, 7vw, 40px);
+}
+
+.page-title p {
+    margin: 0;
+
+    color: #91a7bf;
+
+    font-size: 14px;
+}
+
+
+/* ========================= */
+/* CHECKOUT GRID */
+/* ========================= */
+
+.checkout-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+}
+
+
+/* ========================= */
+/* CARDS */
+/* ========================= */
+
+.card {
+    border: 1px solid #23415f;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d2034,
+            #091522
+        );
+
+    padding: 24px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.18);
+}
+
+.card h2 {
+    margin: 0 0 18px;
+
+    font-size: 20px;
+}
+
+
+/* ========================= */
+/* PLAN SUMMARY */
+/* ========================= */
+
+.plan-summary {
+    border-color: #1687ff;
+
+    box-shadow:
+        0 0 30px rgba(22,135,255,.10);
+}
+
+.plan-label {
+    color: #62a9ff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+    margin-bottom: 8px;
+}
+
+.plan-name {
+    font-size: 24px;
+
+    font-weight: 900;
+
+    margin-bottom: 5px;
+}
+
+.plan-description {
+    color: #91a7bf;
+
+    font-size: 13px;
+
+    margin-bottom: 22px;
+}
+
+.price-box {
+    padding: 18px;
+
+    border-radius: 14px;
+
+    background: rgba(22,135,255,.08);
+
+    border: 1px solid rgba(22,135,255,.20);
+
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 34px;
+
+    font-weight: 900;
+}
+
+.price-period {
+    color: #91a7bf;
+
+    font-size: 13px;
+}
+
+.currency-name {
+    margin-top: 5px;
+
+    color: #71869c;
+
+    font-size: 11px;
+}
+
+
+/* ========================= */
+/* FEATURES */
+/* ========================= */
+
+.features {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+.features li {
+    padding: 8px 0;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+}
+
+.features li::before {
+    content: "✓";
+
+    color: #22c55e;
+
+    font-weight: bold;
+
+    margin-right: 9px;
+}
+
+
+/* ========================= */
+/* FORM */
+/* ========================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 13px;
+
+    border: 1px solid #31506c;
+
+    border-radius: 10px;
+
+    background: #091522;
+
+    color: white;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1687ff;
+
+    box-shadow:
+        0 0 0 3px rgba(22,135,255,.10);
+}
+
+.form-note {
+    color: #71869c;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+
+/* ========================= */
+/* PAYMENT METHOD */
+/* ========================= */
+
+.payment-methods {
+    display: grid;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.payment-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border: 1px solid #23415f;
+
+    border-radius: 11px;
+
+    background: rgba(255,255,255,.025);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.payment-option:hover {
+    border-color: #1687ff;
+}
+
+.payment-option input {
+    width: 17px;
+    height: 17px;
+}
+
+.payment-icon {
+    font-size: 21px;
+}
+
+.payment-text {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.payment-text strong {
+    font-size: 13px;
+}
+
+.payment-text span {
+    color: #71869c;
+
+    font-size: 11px;
+}
+
+
+/* ========================= */
+/* TOTAL */
+/* ========================= */
+
+.total-box {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px 0;
+
+    margin-top: 5px;
+
+    border-top: 1px solid #23415f;
+
+    border-bottom: 1px solid #23415f;
+}
+
+.total-label {
+    color: #91a7bf;
+
+    font-size: 13px;
+}
+
+.total-price {
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+
+/* ========================= */
+/* CHECKOUT BUTTON */
+/* ========================= */
+
+.checkout-button {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1677ff,
+            #168bdc
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.checkout-button:hover {
+    transform: translateY(-2px);
+
+    opacity: .92;
+}
+
+.checkout-button:active {
+    transform: scale(.98);
+}
+
+
+/* ========================= */
+/* SECURITY NOTICE */
+/* ========================= */
+
+.security-notice {
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 11px;
+
+    background: rgba(34,197,94,.05);
+
+    border: 1px solid rgba(34,197,94,.15);
+
+    color: #91a7bf;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* ========================= */
+/* MESSAGE */
+/* ========================= */
+
+.message {
+    display: none;
+
+    margin-bottom: 18px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: rgba(22,135,255,.08);
+
+    border: 1px solid rgba(22,135,255,.2);
+
+    color: #8fc4ff;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.error {
+    background: rgba(239,68,68,.08);
+
+    border-color: rgba(239,68,68,.25);
+
+    color: #fca5a5;
+}
+
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+.footer {
+    margin-top: 35px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #193047;
+
+    text-align: center;
+
+    color: #71869c;
+
+    font-size: 12px;
+}
+
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 700px) {
+
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page {
+        width: calc(100% - 24px);
+    }
+
+    .card {
+        padding: 21px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <button
+            class="back-button"
+            type="button"
+            onclick="goBack()"
+            aria-label="Go back">
+
+            ←
+
+        </button>
+
+        <div class="logo">
+            🛡️ Trust<span>AI</span>
+        </div>
+
+    </header>
+
+
+    <!-- TITLE -->
+
+    <section class="page-title">
+
+        <div class="icon">
+            🛡️
+        </div>
+
+        <h1>
+            TrustAI Protection
+        </h1>
+
+        <p>
+            Review your subscription before continuing.
+        </p>
+
+    </section>
+
+
+    <!-- MESSAGE -->
+
+    <div
+        id="message"
+        class="message">
+    </div>
+
+
+    <!-- CHECKOUT -->
+
+    <div class="checkout-grid">
+
+
+        <!-- PLAN SUMMARY -->
+
+        <section class="card plan-summary">
+
+            <div class="plan-label">
+                SELECTED PLAN
+            </div>
+
+            <div class="plan-name">
+                TrustAI Protection
+            </div>
+
+            <div class="plan-description">
+                Enhanced protection for users who want
+                a stronger TrustAI security experience.
+            </div>
+
+
+            <div class="price-box">
+
+                <div
+                    class="price"
+                    id="planPrice">
+
+                    ₦5,000
+
+                </div>
+
+                <div class="price-period">
+                    per month
+                </div>
+
+                <div
+                    class="currency-name"
+                    id="currencyName">
+
+                    Nigerian Naira
+
+                </div>
+
+            </div>
+
+
+            <ul class="features">
+
+                <li>
+                    Everything in TrustAI Free
+                </li>
+
+                <li>
+                    Advanced threat analysis
+                </li>
+
+                <li>
+                    Enhanced protection features
+                </li>
+
+                <li>
+                    Priority security tools
+                </li>
+
+                <li>
+                    Future premium features
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- CUSTOMER / PAYMENT -->
+
+        <section class="card">
+
+            <h2>
+                Checkout
+            </h2>
+
+
+            <form
+                id="checkoutForm"
+                onsubmit="startCheckout(event)">
+
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required>
+
+                    <div class="form-note">
+                        We'll use this for your payment receipt.
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="country">
+                        Country / Region
+                    </label>
+
+                    <select
+                        id="country"
+                        required>
+
+                        <option value="">
+                            Select your country
+                        </option>
+
+                        <option value="NG">
+                            🇳🇬 Nigeria
+                        </option>
+
+                        <option value="US">
+                            🇺🇸 United States
+                        </option>
+
+                        <option value="GB">
+                            🇬🇧 United Kingdom
+                        </option>
+
+                        <option value="CA">
+                            🇨🇦 Canada
+                        </option>
+
+                        <option value="GH">
+                            🇬🇭 Ghana
+                        </option>
+
+                        <option value="KE">
+                            🇰🇪 Kenya
+                        </option>
+
+                        <option value="ZA">
+                            🇿🇦 South Africa
+                        </option>
+
+                        <option value="OTHER">
+                            🌍 Other country
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Payment method
+                    </label>
+
+
+                    <div class="payment-methods">
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="card"
+                                checked>
+
+                            <span class="payment-icon">
+                                💳
+                            </span>
+
+                            <span class="payment-text">
+
+                                <strong>
+                                    Card
+                                </strong>
+
+                                <span>
+                                    Visa, Mastercard and supported cards
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="provider">
+
+                            <span class="payment-icon">
+                                🌍
+                            </span>
+
+                            <span class="payment-text">
+
+                                <strong>
+                                    Payment Provider
+                                </strong>
+
+                                <span>
+                                    Available payment methods
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <span class="total-label">
+                        Total today
+                    </span>
+
+                    <span
+                        class="total-price"
+                        id="totalPrice">
+
+                        ₦5,000
+
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="checkout-button">
+
+                    Continue to Secure Payment
+
+                </button>
+
+
+                <div class="security-notice">
+
+                    🔒 Secure checkout<br>
+
+                    TrustAI will only activate Protection
+                    after the payment provider confirms
+                    a successful payment.
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div>
+            🛡️ TrustAI
+        </div>
+
+        <div>
+            Your online scam protection assistant.
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+<script>
+
+/* ========================= */
+/* TRUSTAI PRICES */
+/* ========================= */
+
+const prices = {
+
+    NGN: {
+        symbol: "₦",
+        amount: "5,000",
+        currencyName: "Nigerian Naira"
+    },
+
+    USD: {
+        symbol: "$",
+        amount: "5.00",
+        currencyName: "US Dollar"
+    },
+
+    GBP: {
+        symbol: "£",
+        amount: "4.00",
+        currencyName: "British Pound"
+    },
+
+    EUR: {
+        symbol: "€",
+        amount: "5.00",
+        currencyName: "Euro"
+    },
+
+    CAD: {
+        symbol: "C$",
+        amount: "7.00",
+        currencyName: "Canadian Dollar"
+    },
+
+    GHS: {
+        symbol: "GH₵",
+        amount: "65.00",
+        currencyName: "Ghanaian Cedi"
+    },
+
+    KES: {
+        symbol: "KSh",
+        amount: "650",
+        currencyName: "Kenyan Shilling"
+    },
+
+    ZAR: {
+        symbol: "R",
+        amount: "95.00",
+        currencyName: "South African Rand"
+    }
+
+};
+
+
+/* ========================= */
+/* SHOW MESSAGE */
+/* ========================= */
+
+function showMessage(text, type = "info") {
+
+    const message =
+        document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+        "message show " +
+        (type === "error" ? "error" : "");
+
+}
+
+
+/* ========================= */
+/* LOAD SELECTED CURRENCY */
+/* ========================= */
+
+function loadCheckoutCurrency() {
+
+    let currency =
+        localStorage.getItem(
+            "trustai_selected_currency"
+        );
+
+    if (!currency) {
+
+        currency =
+            localStorage.getItem(
+                "trustai_currency"
+            );
+
+    }
+
+    if (!prices[currency]) {
+
+        currency = "NGN";
+
+    }
+
+    const selected =
+        prices[currency];
+
+
+    document.getElementById(
+        "planPrice"
+    ).textContent =
+        `${selected.symbol}${selected.amount}`;
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        `${selected.symbol}${selected.amount}`;
+
+
+    document.getElementById(
+        "currencyName"
+    ).textContent =
+        selected.currencyName;
+
+
+    localStorage.setItem(
+        "trustai_selected_currency",
+        currency
+    );
+
+}
+
+
+/* ========================= */
+/* LOAD USER EMAIL */
+/* ========================= */
+
+function loadUserEmail() {
+
+    const savedEmail =
+        localStorage.getItem(
+            "trustai_userEmail"
+        );
+
+    if (savedEmail) {
+
+        document.getElementById(
+            "email"
+        ).value = savedEmail;
+
+    }
+
+}
+
+
+/* ========================= */
+/* START CHECKOUT */
+/* ========================= */
+
+function startCheckout(event) {
+
+    event.preventDefault();
+
+
+    const email =
+        document.getElementById(
+            "email"
+        ).value.trim();
+
+
+    const country =
+        document.getElementById(
+            "country"
+        ).value;
+
+
+    const paymentMethod =
+        document.querySelector(
+            'input[name="paymentMethod"]:checked'
+        );
+
+
+    if (!email) {
+
+        showMessage(
+            "Please enter your email address.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!country) {
+
+        showMessage(
+            "Please select your country or region.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (!paymentMethod) {
+
+        showMessage(
+            "Please select a payment method.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Save checkout information.
+
+       This does NOT mean payment was successful.
+    */
+
+    localStorage.setItem(
+        "trustai_userEmail",
+        email
+    );
+
+    localStorage.setItem(
+        "trustai_checkout_country",
+        country
+    );
+
+    localStorage.setItem(
+        "trustai_payment_method",
+        paymentMethod.value
+    );
+
+    localStorage.setItem(
+        "trustai_checkout_started",
+        "true"
+    );
+
+
+    /*
+       REAL PAYMENT PROCESSING IS NOT
+       CONNECTED YET.
+
+       Do NOT activate Protection here.
+    */
+
+    showMessage(
+        "Secure payment setup is ready. The real payment provider will be connected next.",
+        "info"
+    );
+
+}
+
+
+/* ========================= */
+/* BACK */
+/* ========================= */
+
+function goBack() {
+
+    if (document.referrer) {
+
+        window.history.back();
+
+    } else {
+
+        window.location.href =
+            "./subscribe.html";
+
+    }
+
+}
+
+
+/* ========================= */
+/* START */
+/* ========================= */
+
+loadCheckoutCurrency();
+
+loadUserEmail();
+
+</script>
+
+
+</body>
+
+</html>
