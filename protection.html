@@ -1187,22 +1187,51 @@ footer {
 
         <!-- CALL -->
 
-        <article class="protection-card">
+        <!-- CALL PROTECTION -->
 
-            <div class="card-top">
+<article class="protection-card">
 
-                <div class="protection-icon">
-                    📞
-                </div>
+    <div class="card-top">
 
-                <button
-                    class="card-toggle"
-                    id="callToggle"
-                    onclick="toggleProtection('call')"
-                    aria-label="Toggle Call Protection">
-                </button>
+        <div class="protection-icon">
+            📞
+        </div>
 
-            </div>
+        <button
+            class="card-toggle"
+            id="callToggle"
+            onclick="toggleProtection('call')"
+            aria-label="Toggle Call Protection">
+        </button>
+
+    </div>
+
+    <h3>
+        Incoming Call Protection
+    </h3>
+
+    <p>
+        TrustAI can help identify suspicious callers
+        and warn you about possible scam patterns.
+    </p>
+
+    <span
+        id="callStatus"
+        class="protection-status">
+
+        Not enabled
+
+    </span>
+
+    <button
+        class="call-protection-button"
+        onclick="openCallProtection()">
+
+        Configure Protection
+
+    </button>
+
+</article>
 
 
             <h3>
@@ -1704,23 +1733,208 @@ footer {
 
 
 <script>
+<script>
+
+function toggleMenu() {
+
+    const menu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("menuOverlay");
+
+    menu.classList.toggle("open");
+    overlay.classList.toggle("show");
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("sideMenu")
+        .classList.remove("open");
+
+    document
+        .getElementById("menuOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   PROTECTION TOGGLES
+===================================================== */
+
+const protectionState = {
+
+    call: false,
+    message: false,
+    link: false,
+    account: false,
+    gaming: false
+
+};
+
+
+function toggleProtection(type) {
+
+    protectionState[type] =
+        !protectionState[type];
+
+
+    const toggle =
+        document.getElementById(
+            type + "Toggle"
+        );
+
+    const status =
+        document.getElementById(
+            type + "Status"
+        );
+
+
+    if (protectionState[type]) {
+
+        toggle.classList.add("active");
+
+        status.classList.add("enabled");
+
+        status.textContent =
+            "Protection enabled";
+
+    } else {
+
+        toggle.classList.remove("active");
+
+        status.classList.remove("enabled");
+
+        status.textContent =
+            "Not enabled";
+
+    }
+
+
+    updateProtectionStatus();
+
+}
+
+
+/* =====================================================
+   OVERALL PROTECTION STATUS
+===================================================== */
+
+function updateProtectionStatus() {
+
+    let enabledCount = 0;
+
+    Object.keys(protectionState).forEach(function(type) {
+
+        if (protectionState[type]) {
+
+            enabledCount++;
+
+        }
+
+    });
+
+
+    const total =
+        Object.keys(protectionState).length;
+
+
+    const percentage =
+        (enabledCount / total) * 100;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+
+
+    const statusText =
+        document.getElementById(
+            "statusText"
+        );
+
+    const statusPill =
+        document.getElementById(
+            "statusPill"
+        );
+
+
+    if (enabledCount === 0) {
+
+        statusText.textContent =
+            "No protection features enabled yet.";
+
+        statusPill.textContent =
+            "NOT ACTIVE";
+
+        statusPill.classList.remove(
+            "active"
+        );
+
+    }
+
+    else if (enabledCount === total) {
+
+        statusText.textContent =
+            "All TrustAI protection features are enabled.";
+
+        statusPill.textContent =
+            "FULLY ACTIVE";
+
+        statusPill.classList.add(
+            "active"
+        );
+
+    }
+
+    else {
+
+        statusText.textContent =
+            enabledCount +
+            " of " +
+            total +
+            " protection features enabled.";
+
+        statusPill.textContent =
+            "ACTIVE";
+
+        statusPill.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ACTIVATE PROTECTION BUTTON
+===================================================== */
 
 function activateProtection() {
 
     alert(
         "🛡️ TrustAI Protection\n\n" +
-        "Protection setup is ready.\n\n" +
-        "Real-time call, message and account " +
-        "monitoring will require the appropriate " +
-        "device permissions and service integrations."
+        "Your protection settings are ready.\n\n" +
+        "Enable the protection features you want " +
+        "to use above.\n\n" +
+        "⚠️ Real-time call, message and account " +
+        "monitoring requires appropriate device " +
+        "permissions and official service integrations."
     );
 
 }
 
+
+/* =====================================================
+   STARTUP
+===================================================== */
+
+updateProtectionStatus();
+
 </script>
-
-<script>
-
 function protectionAlert(type) {
 
     if (type === "calls") {
