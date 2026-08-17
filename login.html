@@ -6,24 +6,27 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>Log In / Create Account — TrustAI</title>
 
 <meta name="description"
-content="Log in or create a TrustAI account">
+      content="Log in or create a TrustAI account.">
 
 <!-- Google Identity Services -->
-<script
-src="https://accounts.google.com/gsi/client"
-async
-defer>
-</script>
+<script src="https://accounts.google.com/gsi/client"
+        async
+        defer></script>
 
 <style>
 
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -43,7 +46,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    padding: 24px;
+    padding: 20px;
 }
 
 .login-page {
@@ -54,11 +57,10 @@ body {
 .logo {
     text-align: center;
 
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 
     font-size: 27px;
-
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .logo span {
@@ -66,17 +68,18 @@ body {
 }
 
 .login-card {
+    width: 100%;
+
     background: #ffffff;
 
     border: 1px solid #dfe3e8;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
-    padding: 32px;
+    padding: 30px;
 
     box-shadow:
-        0 8px 30px
-        rgba(0,0,0,0.07);
+        0 8px 30px rgba(0,0,0,.07);
 }
 
 .login-card h1 {
@@ -88,8 +91,7 @@ body {
 }
 
 .subtitle {
-    margin:
-        9px 0 25px;
+    margin: 9px 0 24px;
 
     text-align: center;
 
@@ -100,38 +102,88 @@ body {
     line-height: 1.5;
 }
 
+
+/* ========================= */
+/* MESSAGE */
+/* ========================= */
+
+.message {
+    display: none;
+
+    margin-bottom: 17px;
+
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    background: #eef6ff;
+
+    border: 1px solid #c8e1ff;
+
+    color: #145ea8;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.error {
+    background: #fff1f1;
+    border-color: #ffcaca;
+    color: #b42318;
+}
+
+.message.success {
+    background: #effaf3;
+    border-color: #b7ebc6;
+    color: #18733b;
+}
+
+
+/* ========================= */
+/* GOOGLE BUTTON */
+/* ========================= */
+
 .social-button {
     width: 100%;
-
     height: 48px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     position: relative;
 
-    border:
-        1px solid #cfd5dc;
+    border: 1px solid #cfd5dc;
 
     border-radius: 8px;
 
-    background: #fff;
+    background: #ffffff;
 
     color: #111820;
 
     font-size: 14px;
-
     font-weight: 700;
 
     cursor: pointer;
 
     margin-bottom: 10px;
+
+    transition: .2s ease;
 }
 
 .social-button:hover {
     background: #f8fafc;
+
+    border-color: #aeb7c2;
+}
+
+.social-button:active {
+    transform: scale(.99);
 }
 
 .social-icon {
@@ -140,9 +192,13 @@ body {
     left: 15px;
 
     display: flex;
-
     align-items: center;
 }
+
+
+/* ========================= */
+/* DIVIDER */
+/* ========================= */
 
 .divider {
     display: flex;
@@ -170,8 +226,13 @@ body {
 
     font-size: 12px;
 
-    font-weight: 600;
+    font-weight: 700;
 }
+
+
+/* ========================= */
+/* FORM */
+/* ========================= */
 
 .form-group {
     margin-bottom: 15px;
@@ -192,15 +253,13 @@ input {
 
     height: 48px;
 
-    padding:
-        0 14px;
+    padding: 0 14px;
 
-    border:
-        1px solid #bfc7d1;
+    border: 1px solid #bfc7d1;
 
     border-radius: 8px;
 
-    background: #fff;
+    background: #ffffff;
 
     color: #111820;
 
@@ -213,8 +272,7 @@ input:focus {
     border-color: #1687ff;
 
     box-shadow:
-        0 0 0 3px
-        rgba(22,135,255,.12);
+        0 0 0 3px rgba(22,135,255,.12);
 }
 
 .password-wrapper {
@@ -222,69 +280,46 @@ input:focus {
 }
 
 .password-wrapper input {
-    padding-right: 45px;
+    padding-right: 48px;
 }
 
 .toggle-password-btn {
     position: absolute;
 
-    right: 12px;
+    right: 10px;
+    top: 7px;
 
-    top: 10px;
-
-    background: transparent;
+    width: 34px;
+    height: 34px;
 
     border: none;
+
+    background: transparent;
 
     cursor: pointer;
 
     font-size: 18px;
 }
 
-.continue-button {
-    width: 100%;
 
-    height: 48px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #1687ff;
-
-    color: #fff;
-
-    font-size: 14px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    margin-top: 5px;
-}
-
-.continue-button:hover {
-    background: #0877eb;
-}
+/* ========================= */
+/* FORGOT PASSWORD */
+/* ========================= */
 
 .auth-links-row {
     display: flex;
 
     justify-content: flex-end;
 
-    align-items: center;
+    margin-top: 5px;
 
-    margin-top: 15px;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
+    margin-bottom: 15px;
 }
 
 .auth-links-row button {
     border: none;
 
-    background: none;
+    background: transparent;
 
     padding: 0;
 
@@ -297,15 +332,54 @@ input:focus {
     cursor: pointer;
 }
 
+
+/* ========================= */
+/* CONTINUE BUTTON */
+/* ========================= */
+
+.continue-button {
+    width: 100%;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1687ff;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.continue-button:hover {
+    background: #0877eb;
+}
+
+.continue-button:active {
+    transform: scale(.99);
+}
+
+
+/* ========================= */
+/* CREATE ACCOUNT */
+/* ========================= */
+
 .create-account {
     text-align: center;
 
-    margin-top: 26px;
+    margin-top: 25px;
 
-    padding-top: 24px;
+    padding-top: 23px;
 
-    border-top:
-        1px solid #e5e8ec;
+    border-top: 1px solid #e5e8ec;
 
     color: #66707c;
 
@@ -322,50 +396,10 @@ input:focus {
     cursor: pointer;
 }
 
-.message {
-    display: none;
 
-    margin-bottom: 17px;
-
-    padding:
-        11px 13px;
-
-    border-radius: 8px;
-
-    background: #eef6ff;
-
-    border:
-        1px solid #c8e1ff;
-
-    color: #145ea8;
-
-    font-size: 13px;
-}
-
-.message.show {
-    display: block;
-}
-
-.message.error {
-    background: #fff1f1;
-
-    border-color: #ffcaca;
-
-    color: #b42318;
-}
-
-.message.success {
-    background: #effaf3;
-
-    border-color: #b7ebc6;
-
-    color: #18733b;
-}
-
-
-/* ============================= */
+/* ========================= */
 /* FACE VERIFICATION */
-/* ============================= */
+/* ========================= */
 
 #faceVerification {
     display: none;
@@ -388,8 +422,7 @@ input:focus {
 
     line-height: 1.5;
 
-    margin:
-        10px 0 20px;
+    margin: 10px 0 20px;
 }
 
 .camera-container {
@@ -412,8 +445,7 @@ input:focus {
 
     object-fit: cover;
 
-    transform:
-        scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .face-frame {
@@ -425,28 +457,26 @@ input:focus {
     left: 17%;
     top: 14%;
 
-    border:
-        3px solid
-        rgba(255,255,255,.9);
+    border: 3px solid rgba(255,255,255,.9);
 
     border-radius: 50%;
 
     pointer-events: none;
 
     box-shadow:
-        0 0 0 9999px
-        rgba(0,0,0,.18);
+        0 0 0 9999px rgba(0,0,0,.18);
 }
 
 .camera-status {
     text-align: center;
 
-    margin:
-        16px 0;
+    margin: 16px 0;
 
     font-size: 14px;
 
     color: #4b5563;
+
+    min-height: 21px;
 }
 
 .camera-status.success {
@@ -492,8 +522,7 @@ input:focus {
 
     margin-top: 10px;
 
-    border:
-        1px solid #cfd5dc;
+    border: 1px solid #cfd5dc;
 
     border-radius: 8px;
 
@@ -518,6 +547,11 @@ input:focus {
     color: #8a939e;
 }
 
+
+/* ========================= */
+/* LEGAL */
+/* ========================= */
+
 .legal {
     margin-top: 20px;
 
@@ -534,7 +568,12 @@ input:focus {
     text-decoration: underline;
 }
 
-@media (max-width:520px) {
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media (max-width: 520px) {
 
     body {
         padding: 15px;
@@ -543,12 +582,11 @@ input:focus {
     }
 
     .login-page {
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     .login-card {
-        padding:
-            24px 20px;
+        padding: 24px 20px;
     }
 
 }
@@ -560,33 +598,41 @@ input:focus {
 
 <body>
 
+
 <main class="login-page">
+
+
+    <!-- LOGO -->
 
     <div class="logo">
         🛡️ Trust<span>AI</span>
     </div>
 
 
-    <!-- ============================= -->
-    <!-- LOGIN -->
-    <!-- ============================= -->
+    <!-- ======================== -->
+    <!-- LOGIN CARD -->
+    <!-- ======================== -->
 
     <section
         class="login-card"
-        id="loginCard"
-    >
+        id="loginCard">
+
 
         <h1 id="pageTitle">
-            Log In / Create Account
+            Log In
         </h1>
+
 
         <p
             class="subtitle"
-            id="pageSubtitle"
-        >
+            id="pageSubtitle">
+
             Access your TrustAI security dashboard
+
         </p>
 
+
+        <!-- MESSAGE -->
 
         <div
             id="message"
@@ -594,62 +640,36 @@ input:focus {
         </div>
 
 
-        <!-- GOOGLE CONFIGURATION -->
-
-        <div
-            id="g_id_onload"
-
-            data-client_id=
-            "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-
-            data-callback=
-            "handleGoogleResponse"
-
-            data-auto_select="false"
-
-            data-cancel_on_tap_outside="true">
-        </div>
-
-
-        <!-- GOOGLE BUTTON -->
+        <!-- GOOGLE -->
 
         <button
             type="button"
-
             id="googleBtn"
-
             class="social-button"
-
-            onclick="triggerGoogleLogin()"
-        >
+            onclick="triggerGoogleLogin()">
 
             <span class="social-icon">
 
                 <svg
                     width="18"
                     height="18"
-                    viewBox="0 0 24 24"
-                >
+                    viewBox="0 0 24 24">
 
                     <path
                         fill="#4285F4"
-                        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
-                    />
+                        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
 
                     <path
                         fill="#34A853"
-                        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.14C3.15 21.36 7.23 24 12 24z"
-                    />
+                        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.14C3.15 21.36 7.23 24 12 24z"/>
 
                     <path
                         fill="#FBBC05"
-                        d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.62H1.18C.43 8.13 0 9.83 0 12s.43 3.87 1.18 5.38l4.09-3.14z"
-                    />
+                        d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.62H1.18C.43 8.13 0 9.83 0 12s.43 3.87 1.18 5.38l4.09-3.14z"/>
 
                     <path
                         fill="#EA4335"
-                        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.15 2.64 1.18 6.62l4.09 3.14c.95-2.85 3.6-4.96 6.73-4.96z"
-                    />
+                        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.15 2.64 1.18 6.62l4.09 3.14c.95-2.85 3.6-4.96 6.73-4.96z"/>
 
                 </svg>
 
@@ -661,26 +681,25 @@ input:focus {
 
 
         <div class="divider">
-
-            <span>
-                OR
-            </span>
-
+            <span>OR</span>
         </div>
 
 
-        <!-- LOGIN FORM -->
+        <!-- ======================== -->
+        <!-- FORM -->
+        <!-- ======================== -->
 
         <form
             id="loginForm"
-            onsubmit="handleAuth(event)"
-        >
+            onsubmit="handleAuth(event)">
+
+
+            <!-- FULL NAME -->
 
             <div
                 class="form-group"
                 id="nameGroup"
-                style="display:none;"
-            >
+                style="display:none;">
 
                 <label for="fullName">
                     Full Name
@@ -690,18 +709,16 @@ input:focus {
                     type="text"
                     id="fullName"
                     placeholder="John Doe"
-                    autocomplete="name"
-                >
+                    autocomplete="name">
 
             </div>
 
 
+            <!-- EMAIL -->
+
             <div class="form-group">
 
-                <label
-                    for="email"
-                    id="inputLabel"
-                >
+                <label for="email">
                     Email address
                 </label>
 
@@ -710,21 +727,20 @@ input:focus {
                     id="email"
                     placeholder="you@example.com"
                     autocomplete="email"
-                    required
-                >
+                    required>
 
             </div>
 
 
+            <!-- PASSWORD -->
+
             <div
                 class="form-group"
-                id="passwordGroupContainer"
-            >
+                id="passwordGroup">
 
                 <label for="password">
                     Password
                 </label>
-
 
                 <div class="password-wrapper">
 
@@ -734,16 +750,16 @@ input:focus {
                         placeholder="••••••••"
                         minlength="6"
                         autocomplete="current-password"
-                        required
-                    >
-
+                        required>
 
                     <button
                         type="button"
                         class="toggle-password-btn"
-                        onclick="togglePasswordVisibility()"
-                    >
+                        id="passwordToggle"
+                        onclick="togglePasswordVisibility()">
+
                         🙈
+
                     </button>
 
                 </div>
@@ -751,29 +767,37 @@ input:focus {
             </div>
 
 
+            <!-- FORGOT PASSWORD -->
+
             <div class="auth-links-row">
 
                 <button
                     type="button"
-                    id="forgotPwdBtn"
-                    onclick="forgotPassword()"
-                >
+                    onclick="forgotPassword()">
+
                     Forgot password?
+
                 </button>
 
             </div>
 
 
+            <!-- SUBMIT -->
+
             <button
                 type="submit"
                 id="submitBtn"
-                class="continue-button"
-            >
+                class="continue-button">
+
                 Log In
+
             </button>
+
 
         </form>
 
+
+        <!-- CREATE ACCOUNT -->
 
         <div class="create-account">
 
@@ -786,38 +810,37 @@ input:focus {
             <a
                 href="#"
                 id="toggleLink"
-                onclick="toggleAuthMode(event)"
-            >
+                onclick="toggleAuthMode(event)">
+
                 Create account
+
             </a>
 
         </div>
 
+
     </section>
 
 
-    <!-- ============================= -->
+    <!-- ======================== -->
     <!-- FACE VERIFICATION -->
-    <!-- ============================= -->
+    <!-- ======================== -->
 
     <section
         class="login-card"
-        id="faceVerification"
-    >
+        id="faceVerification">
 
-        <h1
-            class="face-title"
-            id="faceTitleText"
-        >
+
+        <h1 class="face-title">
             Face Verification
         </h1>
 
 
-        <p
-            class="face-subtitle"
-            id="faceSubtitleText"
-        >
-            Please verify your face to continue.
+        <p class="face-subtitle">
+
+            Please position your face inside
+            the circle to continue.
+
         </p>
 
 
@@ -827,8 +850,7 @@ input:focus {
                 id="cameraVideo"
                 autoplay
                 muted
-                playsinline
-            >
+                playsinline>
             </video>
 
             <div class="face-frame"></div>
@@ -838,9 +860,10 @@ input:focus {
 
         <div
             id="cameraStatus"
-            class="camera-status"
-        >
-            Starting face verification...
+            class="camera-status">
+
+            Starting camera...
+
         </div>
 
 
@@ -848,29 +871,36 @@ input:focus {
             id="verifyButton"
             class="verify-button"
             onclick="verifyFace()"
-            disabled
-        >
+            disabled>
+
             Verify My Face
+
         </button>
 
 
         <button
             class="back-button"
-            onclick="returnToLogin()"
-        >
+            onclick="returnToLogin()">
+
             Back to Login
+
         </button>
 
 
         <div class="security-note">
 
-            🔒 Please keep your face inside the
-            circle while verification is taking place.
+            🔒 TrustAI uses your browser camera
+            for the face-presence check on this page.
+            Camera access stops when you leave
+            verification.
 
         </div>
 
+
     </section>
 
+
+    <!-- LEGAL -->
 
     <div class="legal">
 
@@ -888,24 +918,31 @@ input:focus {
 
     </div>
 
+
 </main>
 
 
 <!-- FACE API -->
 
-<script
-src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 
 
 <script>
 
-/* ============================= */
-/* VARIABLES */
-/* ============================= */
+/* ================================= */
+/* TRUSTAI SETTINGS */
+/* ================================= */
 
 const TRUSTAI_HOME =
-    "https://trustaisupport-alt.github.io/Trust-AI/home.html";
+    "./home.html";
+
+const GOOGLE_CLIENT_ID =
+    "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+
+
+/* ================================= */
+/* STATE */
+/* ================================= */
 
 let isSignUp = false;
 
@@ -917,20 +954,19 @@ let faceDetectionRunning = false;
 
 let faceCurrentlyDetected = false;
 
-let pendingAuthData = null;
+let faceDetectionAnimation = null;
 
 
-/* ============================= */
+/* ================================= */
 /* MESSAGE */
-/* ============================= */
+/* ================================= */
 
-function showMessage(
-    text,
-    type = "info"
-) {
+function showMessage(text, type = "info") {
 
     const message =
         document.getElementById("message");
+
+    if (!message) return;
 
     message.textContent = text;
 
@@ -952,40 +988,34 @@ function hideMessage() {
     const message =
         document.getElementById("message");
 
-    if (message) {
+    if (!message) return;
 
-        message.className =
-            "message";
-
-    }
+    message.className = "message";
 
 }
 
 
-/* ============================= */
+/* ================================= */
 /* PASSWORD */
-/* ============================= */
+/* ================================= */
 
 function togglePasswordVisibility() {
 
-    const pwd =
+    const password =
         document.getElementById("password");
 
     const button =
-        document.querySelector(
-            ".toggle-password-btn"
-        );
+        document.getElementById("passwordToggle");
 
+    if (password.type === "password") {
 
-    if (pwd.type === "password") {
-
-        pwd.type = "text";
+        password.type = "text";
 
         button.textContent = "👁️";
 
     } else {
 
-        pwd.type = "password";
+        password.type = "password";
 
         button.textContent = "🙈";
 
@@ -994,70 +1024,84 @@ function togglePasswordVisibility() {
 }
 
 
-/* ============================= */
+/* ================================= */
 /* LOGIN / SIGNUP MODE */
-/* ============================= */
+/* ================================= */
 
 function toggleAuthMode(event) {
 
     event.preventDefault();
 
+    hideMessage();
+
     isSignUp = !isSignUp;
 
 
-    document.getElementById(
-        "nameGroup"
-    ).style.display =
-        isSignUp
-            ? "block"
-            : "none";
+    const nameGroup =
+        document.getElementById("nameGroup");
+
+    const submitButton =
+        document.getElementById("submitBtn");
+
+    const toggleText =
+        document.getElementById("toggleText");
+
+    const toggleLink =
+        document.getElementById("toggleLink");
+
+    const pageTitle =
+        document.getElementById("pageTitle");
+
+    const pageSubtitle =
+        document.getElementById("pageSubtitle");
 
 
-    document.getElementById(
-        "submitBtn"
-    ).textContent =
-        isSignUp
-            ? "Create Account"
-            : "Log In";
+    if (isSignUp) {
 
+        nameGroup.style.display = "block";
 
-    document.getElementById(
-        "toggleText"
-    ).textContent =
-        isSignUp
-            ? "Already have a TrustAI account?"
-            : "Don't have a TrustAI account?";
+        submitButton.textContent =
+            "Create Account";
 
+        toggleText.textContent =
+            "Already have a TrustAI account?";
 
-    document.getElementById(
-        "toggleLink"
-    ).textContent =
-        isSignUp
-            ? "Log in"
-            : "Create account";
+        toggleLink.textContent =
+            "Log in";
 
+        pageTitle.textContent =
+            "Create TrustAI Account";
 
-    document.getElementById(
-        "pageTitle"
-    ).textContent =
-        isSignUp
-            ? "Create TrustAI Account"
-            : "Log In / Create Account";
+        pageSubtitle.textContent =
+            "Start protecting your online activity";
 
+    } else {
 
-    document.getElementById(
-        "pageSubtitle"
-    ).textContent =
-        isSignUp
-            ? "Start protecting your links and messages"
-            : "Access your TrustAI security dashboard";
+        nameGroup.style.display = "none";
+
+        submitButton.textContent =
+            "Log In";
+
+        toggleText.textContent =
+            "Don't have a TrustAI account?";
+
+        toggleLink.textContent =
+            "Create account";
+
+        pageTitle.textContent =
+            "Log In";
+
+        pageSubtitle.textContent =
+            "Access your TrustAI security dashboard";
+
+    }
 
 }
 
 
-/* ============================= */
+/* ================================= */
 /* NORMAL LOGIN */
-/* ============================= */
+/* ================================= */
 
 function handleAuth(event) {
 
@@ -1067,21 +1111,31 @@ function handleAuth(event) {
 
 
     const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
+        document.getElementById("email")
+        .value
+        .trim();
 
     const password =
-        document.getElementById(
-            "password"
-        ).value;
+        document.getElementById("password")
+        .value;
 
 
     if (!email || !password) {
 
         showMessage(
-            "Please fill in all fields.",
+            "Please enter your email and password.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (password.length < 6) {
+
+        showMessage(
+            "Your password must contain at least 6 characters.",
             "error"
         );
 
@@ -1093,9 +1147,9 @@ function handleAuth(event) {
     if (isSignUp) {
 
         const fullName =
-            document.getElementById(
-                "fullName"
-            ).value.trim();
+            document.getElementById("fullName")
+            .value
+            .trim();
 
 
         if (!fullName) {
@@ -1112,44 +1166,21 @@ function handleAuth(event) {
     }
 
 
-    pendingAuthData = {
-
-        type:
-            isSignUp
-                ? "signup"
-                : "login",
-
-        email: email
-
-    };
-
-
     /*
-       IMPORTANT:
-       Do not tell the user that a new
-       login was detected.
+       Move directly to face verification.
 
-       Simply request face verification.
+       No "new device" message.
+       No fake security alert.
     */
 
-    openFaceVerification(
-
-        isSignUp
-            ? "Verify Your Face"
-            : "Face Verification",
-
-        isSignUp
-            ? "Please verify your face to create your TrustAI account."
-            : "Please verify your face to continue."
-
-    );
+    openFaceVerification();
 
 }
 
 
-/* ============================= */
+/* ================================= */
 /* GOOGLE LOGIN */
-/* ============================= */
+/* ================================= */
 
 function triggerGoogleLogin() {
 
@@ -1157,12 +1188,12 @@ function triggerGoogleLogin() {
 
 
     if (
-        typeof google === "undefined" ||
-        !google.accounts
+        GOOGLE_CLIENT_ID ===
+        "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
     ) {
 
         showMessage(
-            "Google Sign-In is still loading. Please try again.",
+            "Google Sign-In needs your real Google Client ID first. Normal email login is still available.",
             "error"
         );
 
@@ -1171,33 +1202,70 @@ function triggerGoogleLogin() {
     }
 
 
-    google.accounts.id.prompt(
-        (notification) => {
+    if (
+        typeof google === "undefined" ||
+        !google.accounts ||
+        !google.accounts.id
+    ) {
 
-            if (
-                notification.isNotDisplayed() ||
-                notification.isSkippedMoment()
-            ) {
+        showMessage(
+            "Google Sign-In is still loading. Please wait a moment and try again.",
+            "error"
+        );
 
-                console.log(
-                    "Google Sign-In prompt was not displayed."
-                );
+        return;
 
-            }
+    }
 
-        }
-    );
+
+    try {
+
+        google.accounts.id.initialize({
+
+            client_id:
+                GOOGLE_CLIENT_ID,
+
+            callback:
+                handleGoogleResponse,
+
+            auto_select:
+                false
+
+        });
+
+
+        google.accounts.id.prompt();
+
+    } catch (error) {
+
+        console.error(
+            "Google Sign-In error:",
+            error
+        );
+
+        showMessage(
+            "Google Sign-In could not start. Please try again.",
+            "error"
+        );
+
+    }
 
 }
 
 
-/* ============================= */
+/* ================================= */
 /* GOOGLE RESPONSE */
-/* ============================= */
+/* ================================= */
 
 function handleGoogleResponse(response) {
 
-    if (!response.credential) {
+    hideMessage();
+
+
+    if (
+        !response ||
+        !response.credential
+    ) {
 
         showMessage(
             "Google authentication failed.",
@@ -1207,133 +1275,48 @@ function handleGoogleResponse(response) {
         return;
 
     }
-const base64Url =
-            response.credential
-                .split(".")[1];
-
-
-        const base64 =
-            base64Url
-                .replace(/-/g, "+")
-                .replace(/_/g, "/");
-
-
-        const jsonPayload =
-            decodeURIComponent(
-                atob(base64)
-                    .split("")
-                    .map(function(c) {
-
-                        return "%" +
-                            (
-                                "00" +
-                                c
-                                    .charCodeAt(0)
-                                    .toString(16)
-                            ).slice(-2);
-
-                    })
-                    .join("")
-            );
-
-
-        const googleUser =
-            JSON.parse(jsonPayload);
-
-
-        document.getElementById(
-            "email"
-        ).value =
-            googleUser.email;
-
-
-        pendingAuthData = {
-
-            type: "google",
-
-            email:
-                googleUser.email
-
-        };
 
 
         /*
-           No login-security alert here.
+       The Google credential has been received.
 
-           The user simply moves to
-           face verification.
-        */
+       A real production application should
+       verify the Google credential on a backend
+       before creating a session.
+    */
 
-        showMessage(
-            "Google sign-in successful. Please verify your face to continue.",
-            "success"
-        );
-
-
-        setTimeout(() => {
-
-            openFaceVerification(
-
-                "Face Verification",
-
-                "Please verify your face to continue."
-
-            );
-
-        }, 700);
+    showMessage(
+        "Google authentication successful. Continue to face verification.",
+        "success"
+    );
 
 
-    } catch (error) {
+    setTimeout(() => {
 
-        console.error(
-            "Google account processing error:",
-            error
-        );
+        openFaceVerification();
 
-
-        showMessage(
-            "Unable to process your Google sign-in. Please try again.",
-            "error"
-        );
-
-    }
+    }, 800);
 
 }
 
 
-/* ============================= */
-/* OPEN FACE VERIFICATION */
-/* ============================= */
+/* ================================= */
+/* FACE VERIFICATION */
+/* ================================= */
 
-async function openFaceVerification(
-    customTitle,
-    customSubtitle
-) {
+async function openFaceVerification() {
+
+    stopCamera();
+
 
     document.getElementById(
         "loginCard"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     document.getElementById(
         "faceVerification"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "faceTitleText"
-    ).textContent =
-        customTitle ||
-        "Face Verification";
-
-
-    document.getElementById(
-        "faceSubtitleText"
-    ).textContent =
-        customSubtitle ||
-        "Please verify your face to continue.";
+    ).style.display = "block";
 
 
     const status =
@@ -1341,72 +1324,83 @@ async function openFaceVerification(
             "cameraStatus"
         );
 
-
     const button =
         document.getElementById(
             "verifyButton"
         );
 
 
-    status.className =
-        "camera-status";
-
-
-    status.textContent =
-        "Starting face verification...";
-
-
-    button.disabled =
-        true;
-
+    button.disabled = true;
 
     button.textContent =
         "Verify My Face";
 
 
-    button.onclick =
-        verifyFace;
+    status.className =
+        "camera-status";
+
+    status.textContent =
+        "Loading face detection...";
 
 
     try {
+
+        if (
+            typeof faceapi === "undefined"
+        ) {
+
+            throw new Error(
+                "Face API library failed to load."
+            );
+
+        }
+
 
         const MODEL_URL =
             "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
 
 
-        status.textContent =
-            "Preparing face verification...";
-
-
-        await faceapi.nets.tinyFaceDetector.loadFromUri(
-            MODEL_URL
-        );
+        await faceapi.nets.tinyFaceDetector
+            .loadFromUri(MODEL_URL);
 
 
         status.textContent =
-            "Face verification ready. Starting camera...";
+            "Face detection ready. Starting camera...";
+
+
+        if (
+            !navigator.mediaDevices ||
+            !navigator.mediaDevices.getUserMedia
+        ) {
+
+            throw new Error(
+                "Camera access is not supported by this browser."
+            );
+
+        }
 
 
         cameraStream =
-            await navigator.mediaDevices.getUserMedia({
+            await navigator.mediaDevices
+                .getUserMedia({
 
-                video: {
+                    video: {
 
-                    facingMode: "user",
+                        facingMode: "user",
 
-                    width: {
-                        ideal: 720
+                        width: {
+                            ideal: 720
+                        },
+
+                        height: {
+                            ideal: 960
+                        }
+
                     },
 
-                    height: {
-                        ideal: 960
-                    }
+                    audio: false
 
-                },
-
-                audio: false
-
-            });
+                });
 
 
         const video =
@@ -1422,12 +1416,11 @@ async function openFaceVerification(
         await video.play();
 
 
-        cameraReady =
-            true;
+        cameraReady = true;
 
 
         status.textContent =
-            "Please position your face inside the circle.";
+            "Looking for your face...";
 
 
         startFaceDetection();
@@ -1436,7 +1429,7 @@ async function openFaceVerification(
     } catch (error) {
 
         console.error(
-            "Face verification error:",
+            "Camera / face verification error:",
             error
         );
 
@@ -1446,26 +1439,73 @@ async function openFaceVerification(
 
 
         status.textContent =
-            "Unable to start face verification. Please allow camera access and try again.";
+            getCameraErrorMessage(error);
 
     }
 
 }
 
 
-/* ============================= */
-/* FACE DETECTION */
-/* ============================= */
+/* ================================= */
+/* CAMERA ERROR MESSAGE */
+/* ================================= */
 
-async function startFaceDetection() {
+function getCameraErrorMessage(error) {
+
+    if (
+        error &&
+        (
+            error.name ===
+            "NotAllowedError" ||
+            error.name ===
+            "PermissionDeniedError"
+        )
+    ) {
+
+        return "Camera permission was denied. Allow camera access and try again.";
+
+    }
+
+
+    if (
+        error &&
+        error.name ===
+        "NotFoundError"
+    ) {
+
+        return "No camera was found on this device.";
+
+    }
+
+
+    if (
+        error &&
+        error.name ===
+        "NotReadableError"
+    ) {
+
+        return "The camera is already being used by another application.";
+
+    }
+
+
+    return "Unable to start the camera. Please check your browser permissions and try again.";
+
+}
+
+
+/* ================================= */
+/* FACE DETECTION */
+/* ================================= */
+
+function startFaceDetection() {
 
     if (faceDetectionRunning) {
         return;
     }
 
 
-    faceDetectionRunning =
-        true;
+    faceDetectionRunning = true;
 
 
     const video =
@@ -1490,12 +1530,12 @@ async function startFaceDetection() {
 
         if (
             !cameraReady ||
+            !video ||
             video.readyState < 2
         ) {
 
-            requestAnimationFrame(
-                detect
-            );
+            faceDetectionAnimation =
+                requestAnimationFrame(detect);
 
             return;
 
@@ -1509,13 +1549,14 @@ async function startFaceDetection() {
 
                     video,
 
-                    new faceapi.TinyFaceDetectorOptions({
+                    new faceapi
+                        .TinyFaceDetectorOptions({
 
-                        inputSize: 224,
+                            inputSize: 224,
 
-                        scoreThreshold: 0.5
+                            scoreThreshold: 0.5
 
-                    })
+                        })
 
                 );
 
@@ -1548,13 +1589,14 @@ async function startFaceDetection() {
 
 
                 status.textContent =
-                    "Please position your face inside the circle.";
+                    "Position your face inside the circle.";
 
 
                 button.disabled =
                     true;
 
             }
+
 
         } catch (error) {
 
@@ -1566,9 +1608,12 @@ async function startFaceDetection() {
         }
 
 
-        requestAnimationFrame(
-            detect
-        );
+        if (faceDetectionRunning) {
+
+            faceDetectionAnimation =
+                requestAnimationFrame(detect);
+
+        }
 
     }
 
@@ -1578,32 +1623,13 @@ async function startFaceDetection() {
 }
 
 
-/* ============================= */
+/* ================================= */
 /* VERIFY FACE */
-/* ============================= */
+/* ================================= */
 
 function verifyFace() {
 
     if (!cameraReady) {
-        return;
-    }
-
-
-    if (!faceCurrentlyDetected) {
-
-        const status =
-            document.getElementById(
-                "cameraStatus"
-            );
-
-
-        status.className =
-            "camera-status error";
-
-
-        status.textContent =
-            "Please position your face inside the circle.";
-
 
         return;
 
@@ -1622,8 +1648,20 @@ function verifyFace() {
         );
 
 
-    button.disabled =
-        true;
+    if (!faceCurrentlyDetected) {
+
+        status.className =
+            "camera-status error";
+
+        status.textContent =
+            "No face detected. Position your face inside the circle.";
+
+        return;
+
+    }
+
+
+    button.disabled = true;
 
 
     status.className =
@@ -1631,8 +1669,16 @@ function verifyFace() {
 
 
     status.textContent =
-        "Verifying your face...";
+        "Checking face presence...";
 
+
+    /*
+       This is a face-presence check.
+
+       It does NOT claim that the face has been
+       matched against an account owner's stored
+       biometric identity.
+    */
 
     setTimeout(() => {
 
@@ -1641,11 +1687,11 @@ function verifyFace() {
 
 
         status.textContent =
-            "Face verification complete ✓";
+            "Face check completed ✓";
 
 
         button.textContent =
-            "Continue to TrustAI";
+            "Continue";
 
 
         button.disabled =
@@ -1658,30 +1704,20 @@ function verifyFace() {
     }, 1200);
 
 }
-
-
-/* ============================= */
-/* FINISH */
-/* ============================= */
+    }
 
 function finishVerification() {
 
     stopCamera();
 
-
     const status =
-        document.getElementById(
-            "cameraStatus"
-        );
-
+        document.getElementById("cameraStatus");
 
     status.className =
         "camera-status success";
 
-
     status.textContent =
-        "Verification complete. Opening TrustAI...";
-
+        "Verification complete ✓ Opening TrustAI...";
 
     setTimeout(() => {
 
@@ -1693,32 +1729,30 @@ function finishVerification() {
 }
 
 
-/* ============================= */
-/* RETURN TO LOGIN */
-/* ============================= */
-
 function returnToLogin() {
 
     stopCamera();
 
-
     document.getElementById(
         "faceVerification"
-    ).style.display =
-        "none";
-
+    ).style.display = "none";
 
     document.getElementById(
         "loginCard"
-    ).style.display =
-        "block";
+    ).style.display = "block";
+
+    document.getElementById(
+        "verifyButton"
+    ).textContent = "Verify My Face";
+
+    document.getElementById(
+        "verifyButton"
+    ).onclick = verifyFace;
+
+    hideMessage();
 
 }
 
-
-/* ============================= */
-/* STOP CAMERA */
-/* ============================= */
 
 function stopCamera() {
 
@@ -1726,42 +1760,24 @@ function stopCamera() {
 
         cameraStream
             .getTracks()
-            .forEach(track => {
-                track.stop();
-            });
+            .forEach(track => track.stop());
 
-
-        cameraStream =
-            null;
-
+        cameraStream = null;
     }
 
-
-    cameraReady =
-        false;
-
-
-    faceDetectionRunning =
-        false;
-
-
-    faceCurrentlyDetected =
-        false;
+    cameraReady = false;
+    faceDetectionRunning = false;
+    faceCurrentlyDetected = false;
 
 }
 
 
-/* ============================= */
-/* FORGOT PASSWORD */
-/* ============================= */
-
 function forgotPassword() {
 
     const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
+        document.getElementById("email")
+        .value
+        .trim();
 
     if (!email) {
 
@@ -1771,9 +1787,7 @@ function forgotPassword() {
         );
 
         return;
-
     }
-
 
     showMessage(
         "Password recovery will be connected to real email verification next.",
@@ -1782,10 +1796,6 @@ function forgotPassword() {
 
 }
 
-
-/* ============================= */
-/* PAGE EXIT */
-/* ============================= */
 
 window.addEventListener(
     "beforeunload",
@@ -1798,4 +1808,4 @@ window.addEventListener(
 
 </html>
 
-    
+
