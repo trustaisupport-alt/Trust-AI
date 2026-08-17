@@ -650,6 +650,8 @@ input:focus {
 
             <span class="social-icon">
 
+                <!-- ORIGINAL GOOGLE LOGO -->
+
                 <svg
                     width="18"
                     height="18"
@@ -880,6 +882,7 @@ input:focus {
 
         <button
             class="back-button"
+            type="button"
             onclick="returnToLogin()">
 
             Back to Login
@@ -935,6 +938,12 @@ input:focus {
 
 const TRUSTAI_HOME =
     "./home.html";
+
+/*
+   Replace this with your real Google
+   OAuth Client ID when Google Sign-In
+   is configured.
+*/
 
 const GOOGLE_CLIENT_ID =
     "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
@@ -1007,6 +1016,10 @@ function togglePasswordVisibility() {
     const button =
         document.getElementById("passwordToggle");
 
+    if (!password || !button) {
+        return;
+    }
+
     if (password.type === "password") {
 
         password.type = "text";
@@ -1030,7 +1043,9 @@ function togglePasswordVisibility() {
 
 function toggleAuthMode(event) {
 
-    event.preventDefault();
+    if (event) {
+        event.preventDefault();
+    }
 
     hideMessage();
 
@@ -1167,10 +1182,7 @@ function handleAuth(event) {
 
 
     /*
-       Move directly to face verification.
-
-       No "new device" message.
-       No fake security alert.
+       Continue to face verification.
     */
 
     openFaceVerification();
@@ -1277,7 +1289,7 @@ function handleGoogleResponse(response) {
     }
 
 
-        /*
+    /*
        The Google credential has been received.
 
        A real production application should
@@ -1309,25 +1321,28 @@ async function openFaceVerification() {
     stopCamera();
 
 
-    document.getElementById(
-        "loginCard"
-    ).style.display = "none";
+    const loginCard =
+        document.getElementById("loginCard");
+
+    const faceVerification =
+        document.getElementById("faceVerification");
 
 
-    document.getElementById(
-        "faceVerification"
-    ).style.display = "block";
+    if (!loginCard || !faceVerification) {
+        return;
+    }
+
+
+    loginCard.style.display = "none";
+
+    faceVerification.style.display = "block";
 
 
     const status =
-        document.getElementById(
-            "cameraStatus"
-        );
+        document.getElementById("cameraStatus");
 
     const button =
-        document.getElementById(
-            "verifyButton"
-        );
+        document.getElementById("verifyButton");
 
 
     button.disabled = true;
@@ -1630,9 +1645,7 @@ function startFaceDetection() {
 function verifyFace() {
 
     if (!cameraReady) {
-
         return;
-
     }
 
 
@@ -1704,20 +1717,30 @@ function verifyFace() {
     }, 1200);
 
 }
-    }
+
+
+/* ================================= */
+/* FINISH VERIFICATION */
+/* ================================= */
 
 function finishVerification() {
 
     stopCamera();
 
+
     const status =
-        document.getElementById("cameraStatus");
+        document.getElementById(
+            "cameraStatus"
+        );
+
 
     status.className =
         "camera-status success";
 
+
     status.textContent =
         "Verification complete ✓ Opening TrustAI...";
+
 
     setTimeout(() => {
 
@@ -1729,48 +1752,106 @@ function finishVerification() {
 }
 
 
+/* ================================= */
+/* RETURN TO LOGIN */
+/* ================================= */
+
 function returnToLogin() {
 
     stopCamera();
+
 
     document.getElementById(
         "faceVerification"
     ).style.display = "none";
 
+
     document.getElementById(
         "loginCard"
     ).style.display = "block";
 
-    document.getElementById(
-        "verifyButton"
-    ).textContent = "Verify My Face";
 
-    document.getElementById(
-        "verifyButton"
-    ).onclick = verifyFace;
+    const button =
+        document.getElementById(
+            "verifyButton"
+        );
+
+
+    button.textContent =
+        "Verify My Face";
+
+
+    button.disabled =
+        true;
+
+
+    button.onclick =
+        verifyFace;
+
 
     hideMessage();
 
 }
 
 
+/* ================================= */
+/* STOP CAMERA */
+/* ================================= */
+
 function stopCamera() {
+
+    if (faceDetectionAnimation) {
+
+        cancelAnimationFrame(
+            faceDetectionAnimation
+        );
+
+        faceDetectionAnimation =
+            null;
+
+    }
+
 
     if (cameraStream) {
 
         cameraStream
             .getTracks()
-            .forEach(track => track.stop());
+            .forEach(track => {
+
+                track.stop();
+
+            });
 
         cameraStream = null;
+
     }
 
+
+    const video =
+        document.getElementById(
+            "cameraVideo"
+        );
+
+
+    if (video) {
+
+        video.srcObject = null;
+
+    }
+
+
     cameraReady = false;
+
     faceDetectionRunning = false;
+
     faceCurrentlyDetected = false;
 
 }
 
+
+/* ================================= */
+/* FORGOT PASSWORD */
+/* ================================= */
 
 function forgotPassword() {
 
@@ -1778,6 +1859,7 @@ function forgotPassword() {
         document.getElementById("email")
         .value
         .trim();
+
 
     if (!email) {
 
@@ -1787,7 +1869,9 @@ function forgotPassword() {
         );
 
         return;
+
     }
+
 
     showMessage(
         "Password recovery will be connected to real email verification next.",
@@ -1796,6 +1880,10 @@ function forgotPassword() {
 
 }
 
+
+/* ================================= */
+/* PAGE EXIT */
+/* ================================= */
 
 window.addEventListener(
     "beforeunload",
@@ -1807,5 +1895,3 @@ window.addEventListener(
 </body>
 
 </html>
-
-
