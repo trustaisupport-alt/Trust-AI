@@ -3,347 +3,1058 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Log In / Create Account — TrustAI</title>
-<meta name="description" content="Log in or create a TrustAI account">
+
+<meta name="description"
+content="Log in or create a TrustAI account">
 
 <style>
-* { box-sizing: border-box; }
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin: 0; min-height: 100vh; background: #f6f7f9; color: #111820;
+    margin: 0;
+    min-height: 100vh;
+    background: #f6f7f9;
+    color: #111820;
     font-family: Arial, Helvetica, sans-serif;
-    display: flex; align-items: center; justify-content: center; padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 }
-.login-page { width: 100%; max-width: 440px; }
-.logo { text-align: center; margin-bottom: 28px; font-size: 27px; font-weight: 800; letter-spacing: -0.5px; }
-.logo span { color: #1687ff; }
-.login-card { background: #ffffff; border: 1px solid #dfe3e8; border-radius: 14px; padding: 32px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07); }
-.login-card h1 { margin: 0; text-align: center; font-size: 26px; line-height: 1.25; letter-spacing: -0.3px; }
-.subtitle { margin: 9px 0 25px; text-align: center; color: #6b7280; font-size: 14px; line-height: 1.5; }
+
+.login-page {
+    width: 100%;
+    max-width: 440px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #1687ff;
+}
+
+.login-card {
+    background: #ffffff;
+    border: 1px solid #dfe3e8;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+}
+
+.login-card h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 26px;
+}
+
+.subtitle {
+    margin: 9px 0 25px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 .social-button {
-    width: 100%; height: 48px; display: flex; align-items: center; justify-content: center; position: relative;
-    border: 1px solid #cfd5dc; border-radius: 8px; background: #ffffff; color: #111820; font-size: 14px; font-weight: 700;
-    cursor: pointer; margin-bottom: 10px;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 1px solid #cfd5dc;
+    border-radius: 8px;
+    background: #fff;
+    color: #111820;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
-.social-button:hover { background: #f8fafc; }
-.social-icon { position: absolute; left: 15px; width: 21px; height: 21px; display: flex; align-items: center; justify-content: center; font-size: 17px; }
-.divider { display: flex; align-items: center; gap: 12px; margin: 23px 0; }
-.divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: #e1e5ea; }
-.divider span { color: #8a939e; font-size: 12px; font-weight: 600; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 700; }
-.password-wrapper { position: relative; width: 100%; display: flex; align-items: center; }
-.toggle-password-btn {
-    position: absolute; right: 12px; background: transparent; border: none; cursor: pointer; font-size: 18px;
-    padding: 4px; display: flex; align-items: center; justify-content: center;
+
+.social-button:hover {
+    background: #f8fafc;
 }
+
+.social-icon {
+    position: absolute;
+    left: 15px;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 23px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: #e1e5ea;
+}
+
+.divider span {
+    color: #8a939e;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
 input {
-    width: 100%; height: 48px; padding: 0 14px; border: 1px solid #bfc7d1; border-radius: 8px; background: #ffffff;
-    color: #111820; font-size: 15px; outline: none;
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #bfc7d1;
+    border-radius: 8px;
+    background: #fff;
+    color: #111820;
+    font-size: 15px;
+    outline: none;
 }
-.password-wrapper input { padding-right: 45px; }
-input:focus { border-color: #1687ff; box-shadow: 0 0 0 3px rgba(22, 135, 255, 0.12); }
+
+input:focus {
+    border-color: #1687ff;
+    box-shadow: 0 0 0 3px rgba(22,135,255,.12);
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper input {
+    padding-right: 45px;
+}
+
+.toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
 .continue-button {
-    width: 100%; height: 48px; border: none; border-radius: 8px; background: #1687ff; color: #ffffff;
-    font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 5px;
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #1687ff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 5px;
 }
-.continue-button:hover { background: #0877eb; }
-.auth-links-row { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; flex-wrap: wrap; gap: 10px; }
-.auth-links-row button { border: none; background: none; padding: 0; color: #1687ff; font-size: 13px; font-weight: 700; cursor: pointer; }
-.auth-links-row button:hover { text-decoration: underline; }
-.create-account { text-align: center; margin-top: 26px; padding-top: 24px; border-top: 1px solid #e5e8ec; color: #66707c; font-size: 13px; }
-.create-account a { color: #1687ff; font-weight: 700; text-decoration: none; cursor: pointer; }
-.legal { margin-top: 20px; text-align: center; color: #8a939e; font-size: 11px; line-height: 1.6; }
-.legal a { color: #687482; text-decoration: underline; }
-.message { display: none; margin-bottom: 17px; padding: 11px 13px; border-radius: 8px; background: #eef6ff; border: 1px solid #c8e1ff; color: #145ea8; font-size: 13px; }
-.message.show { display: block; }
-.message.error { background: #fff1f1; border-color: #ffcaca; color: #b42318; }
-.message.success { background: #effaf3; border-color: #b7ebc6; color: #18733b; }
 
-/* Modal Styles for Forgot Password */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
+.continue-button:hover {
+    background: #0877eb;
 }
-.modal-overlay.active { display: flex; }
-.modal-card { background: #fff; padding: 24px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-.modal-card h3 { margin-top: 0; margin-bottom: 10px; font-size: 20px; }
-.modal-card p { color: #6b7280; font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
-.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
-.modal-actions button { padding: 10px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; border: none; font-size: 13px; }
-.btn-cancel { background: #e5e8ec; color: #374151; }
-.btn-submit { background: #1687ff; color: #fff; }
 
-@media (max-width: 520px) { body { padding: 15px; align-items: flex-start; } .login-page { margin-top: 25px; } .login-card { padding: 24px 20px; } }
+.auth-links-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.auth-links-row button {
+    border: none;
+    background: none;
+    padding: 0;
+    color: #1687ff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 26px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e8ec;
+    color: #66707c;
+    font-size: 13px;
+}
+
+.create-account a {
+    color: #1687ff;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.message {
+    display: none;
+    margin-bottom: 17px;
+    padding: 11px 13px;
+    border-radius: 8px;
+    background: #eef6ff;
+    border: 1px solid #c8e1ff;
+    color: #145ea8;
+    font-size: 13px;
+}
+
+.message.show {
+    display: block;
+}
+
+.message.error {
+    background: #fff1f1;
+    border-color: #ffcaca;
+    color: #b42318;
+}
+
+.message.success {
+    background: #effaf3;
+    border-color: #b7ebc6;
+    color: #18733b;
+}
+
+
+/* ============================= */
+/* FACE VERIFICATION SCREEN */
+/* ============================= */
+
+#faceVerification {
+    display: none;
+}
+
+.face-title {
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+}
+
+.face-subtitle {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 10px 0 20px;
+}
+
+.camera-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: #111820;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+#cameraVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.face-frame {
+    position: absolute;
+    width: 66%;
+    height: 72%;
+    left: 17%;
+    top: 14%;
+    border: 3px solid rgba(255,255,255,.9);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow:
+        0 0 0 9999px rgba(0,0,0,.18);
+}
+
+.camera-status {
+    text-align: center;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.camera-status.success {
+    color: #18733b;
+    font-weight: 700;
+}
+
+.camera-status.error {
+    color: #b42318;
+    font-weight: 700;
+}
+
+.verify-button {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #1687ff;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.verify-button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.back-button {
+    width: 100%;
+    height: 44px;
+    margin-top: 10px;
+    border: 1px solid #cfd5dc;
+    border-radius: 8px;
+    background: white;
+    color: #374151;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.security-note {
+    margin-top: 17px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #8a939e;
+}
+
+.legal {
+    margin-top: 20px;
+    text-align: center;
+    color: #8a939e;
+    font-size: 11px;
+}
+
+.legal a {
+    color: #687482;
+    text-decoration: underline;
+}
+
+@media (max-width:520px) {
+
+    body {
+        padding: 15px;
+        align-items: flex-start;
+    }
+
+    .login-page {
+        margin-top: 25px;
+    }
+
+    .login-card {
+        padding: 24px 20px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
-<main class="login-page">
-    <div class="logo">🛡️ Trust<span>AI</span></div>
 
-    <section class="login-card">
-        <h1 id="pageTitle">Log In / Create Account</h1>
-        <p class="subtitle" id="pageSubtitle">Access your TrustAI security dashboard</p>
-        
+<main class="login-page">
+
+    <div class="logo">
+        🛡️ Trust<span>AI</span>
+    </div>
+
+    <!-- LOGIN AREA -->
+
+    <section class="login-card" id="loginCard">
+
+        <h1 id="pageTitle">
+            Log In / Create Account
+        </h1>
+
+        <p class="subtitle" id="pageSubtitle">
+            Access your TrustAI security dashboard
+        </p>
+
         <div id="message" class="message"></div>
 
-        <button type="button" id="googleBtn" class="social-button" onclick="socialLogin()">
-            <span class="social-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24">
-                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
-                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.19v3.15C3.21 21.32 7.28 24 12 24z"/>
-                    <path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.19C.43 8.13 0 9.84 0 12s.43 3.87 1.19 5.39l4.08-3.15z"/>
-                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.28 0 3.21 2.68 1.19 6.61l4.08 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/>
-                </svg>
-            </span>
+        <button
+            type="button"
+            id="googleBtn"
+            class="social-button"
+            onclick="socialLogin()">
+
+            <span class="social-icon">G</span>
+
             Continue with Google
+
         </button>
 
-        <div class="divider" id="divider"><span>OR</span></div>
+        <div class="divider">
+            <span>OR</span>
+        </div>
 
         <form id="loginForm" onsubmit="handleAuth(event)">
-            <div class="form-group" id="nameGroup" style="display:none;">
-                <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" placeholder="John Doe" autocomplete="name">
+
+            <div
+                class="form-group"
+                id="nameGroup"
+                style="display:none;">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="John Doe"
+                    autocomplete="name">
+
             </div>
 
-            <div class="form-group" id="identifierGroup">
-                <label for="email" id="inputLabel">Email address</label>
-                <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
+
+            <div class="form-group">
+
+                <label for="email" id="inputLabel">
+                    Email address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required>
+
             </div>
 
-            <div class="form-group" id="passwordGroupContainer">
-                <label for="password">Password</label>
+
+            <div
+                class="form-group"
+                id="passwordGroupContainer">
+
+                <label for="password">
+                    Password
+                </label>
+
                 <div class="password-wrapper">
-                    <input type="password" id="password" placeholder="••••••••" minlength="6" autocomplete="current-password" required>
-                    <button type="button" id="togglePassword" class="toggle-password-btn" onclick="togglePasswordVisibility()">🙈</button>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="••••••••"
+                        minlength="6"
+                        autocomplete="current-password"
+                        required>
+
+                    <button
+                        type="button"
+                        class="toggle-password-btn"
+                        onclick="togglePasswordVisibility()">
+
+                        🙈
+
+                    </button>
+
                 </div>
+
             </div>
 
-            <div class="auth-links-row" id="authLinksRow">
-                <button type="button" id="phoneToggleBtn" onclick="togglePhoneAuth()">Continue with phone</button>
-                <button type="button" id="forgotPwdBtn" onclick="openForgotModal()">Forgot password?</button>
+
+            <div class="auth-links-row">
+
+                <button
+                    type="button"
+                    id="phoneToggleBtn"
+                    onclick="togglePhoneAuth()">
+
+                    Continue with phone
+
+                </button>
+
+                <button
+                    type="button"
+                    id="forgotPwdBtn"
+                    onclick="forgotPassword()">
+
+                    Forgot password?
+
+                </button>
+
             </div>
 
-            <button type="submit" id="submitBtn" class="continue-button">Log In</button>
+
+            <button
+                type="submit"
+                id="submitBtn"
+                class="continue-button">
+
+                Log In
+
+            </button>
+
         </form>
 
-        <div class="create-account" id="createAccountSection">
-            <span id="toggleText">Don't have a TrustAI account?</span><br><br>
-            <a id="toggleLink" href="#" onclick="toggleAuthMode(event)">Create account</a>
+
+        <div class="create-account">
+
+            <span id="toggleText">
+                Don't have a TrustAI account?
+            </span>
+
+            <br><br>
+
+            <a
+                href="#"
+                id="toggleLink"
+                onclick="toggleAuthMode(event)">
+
+                Create account
+
+            </a>
+
         </div>
+
     </section>
 
+
+    <!-- FACE VERIFICATION AREA -->
+
+    <section
+        class="login-card"
+        id="faceVerification">
+
+        <h1 class="face-title">
+            Face Verification
+        </h1>
+
+        <p class="face-subtitle">
+
+            TrustAI needs to verify that a real person is present
+            before continuing.
+
+        </p>
+
+
+        <div class="camera-container">
+
+            <video
+                id="cameraVideo"
+                autoplay
+                muted
+                playsinline>
+            </video>
+
+            <div class="face-frame"></div>
+
+        </div>
+
+
+        <div
+            id="cameraStatus"
+            class="camera-status">
+
+            Starting secure camera...
+
+        </div>
+
+
+        <button
+            id="verifyButton"
+            class="verify-button"
+            onclick="verifyFace()"
+            disabled>
+
+            Verify My Face
+
+        </button>
+
+
+        <button
+            class="back-button"
+            onclick="returnToLogin()">
+
+            Back to Login
+
+        </button>
+
+
+        <div class="security-note">
+
+            🔒 Your camera is accessed only through your browser.
+            Face verification will be connected to the secure
+            TrustAI authentication system in the next stage.
+
+        </div>
+
+    </section>
+
+
     <div class="legal">
-        By continuing, you agree to the <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>.
+
+        By continuing, you agree to the
+        <a href="./terms.html">Terms of Service</a>
+        and
+        <a href="./privacy.html">Privacy Policy</a>.
+
     </div>
+
 </main>
 
-<!-- Forgot Password / Reset Modal -->
-<div class="modal-overlay" id="forgotModal">
-    <div class="modal-card">
-        <h3 id="modalTitle">Reset Password</h3>
-        <p id="modalDesc">Enter your account email address. We'll send you a password recovery code.</p>
-        
-        <div class="form-group" id="modalEmailGroup">
-            <input type="email" id="resetEmail" placeholder="you@example.com">
-        </div>
-        
-        <div class="form-group" id="modalCodeGroup" style="display:none;">
-            <input type="text" id="resetCode" placeholder="Enter 6-digit code from email">
-        </div>
-
-        <div class="form-group" id="modalNewPwdGroup" style="display:none;">
-            <input type="password" id="modalNewPassword" placeholder="Enter new password" minlength="6">
-        </div>
-
-        <div class="modal-actions">
-            <button type="button" class="btn-cancel" onclick="closeForgotModal()">Cancel</button>
-            <button type="button" class="btn-submit" id="modalSubmitBtn" onclick="processPasswordResetStep()">Send Reset Code</button>
-        </div>
-    </div>
-</div>
 
 <script>
-const TRUSTAI_HOME = "https://trustaisupport-alt.github.io/Trust-AI/home.html";
+
+const TRUSTAI_HOME =
+"https://trustaisupport-alt.github.io/Trust-AI/home.html";
 
 let isSignUp = false;
 let isPhoneMode = false;
-let pendingPhone = "";
-let resetStep = 1; 
-let storedResetEmail = "";
 
-function showMessage(text, type = "info") {
-    const message = document.getElementById("message");
-    if (!message) return;
+let cameraStream = null;
+let cameraReady = false;
+
+
+/* ============================= */
+/* MESSAGE */
+/* ============================= */
+
+function showMessage(text, type="info") {
+
+    const message =
+        document.getElementById("message");
+
     message.textContent = text;
-    message.className = "message show " + (type === "error" ? "error" : type === "success" ? "success" : "");
+
+    message.className =
+        "message show " +
+        (type === "error"
+            ? "error"
+            : type === "success"
+                ? "success"
+                : "");
+
 }
+
 
 function hideMessage() {
-    const message = document.getElementById("message");
-    if (message) message.className = "message";
+
+    const message =
+        document.getElementById("message");
+
+    message.className = "message";
+
 }
+
+
+/* ============================= */
+/* PASSWORD */
+/* ============================= */
 
 function togglePasswordVisibility() {
-    const pwd = document.getElementById("password");
-    const btn = document.getElementById("togglePassword");
-    if (!pwd || !btn) return;
-    if (pwd.type === "password") { pwd.type = "text"; btn.textContent = "👁️"; } 
-    else { pwd.type = "password"; btn.textContent = "🙈"; }
-}
 
-function openForgotModal() {
-    resetStep = 1;
-    storedResetEmail = "";
-    document.getElementById("modalTitle").textContent = "Reset Password";
-    document.getElementById("modalDesc").textContent = "Enter your account email address. We'll send you a password recovery code.";
-    document.getElementById("modalEmailGroup").style.display = "block";
-    document.getElementById("modalCodeGroup").style.display = "none";
-    document.getElementById("modalNewPwdGroup").style.display = "none";
-    document.getElementById("modalSubmitBtn").textContent = "Send Reset Code";
-    document.getElementById("resetEmail").value = "";
-    document.getElementById("forgotModal").classList.add("active");
-}
+    const pwd =
+        document.getElementById("password");
 
-function closeForgotModal() {
-    document.getElementById("forgotModal").classList.remove("active");
-}
+    const button =
+        document.querySelector(".toggle-password-btn");
 
-function processPasswordResetStep() {
-    if (resetStep === 1) {
-        const emailVal = document.getElementById("resetEmail").value.trim();
-        if (!emailVal) { alert("Please enter your email address."); return; }
-        
-        storedResetEmail = emailVal;
-        resetStep = 2;
-        
-        document.getElementById("modalTitle").textContent = "Enter New Password";
-        document.getElementById("modalDesc").textContent = "Check your email for the 6-digit code, enter it below along with your new password.";
-        document.getElementById("modalEmailGroup").style.display = "none";
-        document.getElementById("modalCodeGroup").style.display = "block";
-        document.getElementById("modalNewPwdGroup").style.display = "block";
-        document.getElementById("modalSubmitBtn").textContent = "Update Password";
-    } else if (resetStep === 2) {
-        const token = document.getElementById("resetCode").value.trim();
-        const newPassword = document.getElementById("modalNewPassword").value;
+    if (pwd.type === "password") {
 
-        if (!token || !newPassword) { alert("Please enter both the code and the new password."); return; }
+        pwd.type = "text";
+        button.textContent = "👁️";
 
-        alert("Password updated successfully! You can now log in with your new password.");
-        closeForgotModal();
+    } else {
+
+        pwd.type = "password";
+        button.textContent = "🙈";
+
     }
+
 }
+
+
+/* ============================= */
+/* LOGIN / SIGN UP */
+/* ============================= */
 
 function toggleAuthMode(event) {
-    if (event) event.preventDefault();
-    if (isPhoneMode) togglePhoneAuth();
+
+    event.preventDefault();
+
     isSignUp = !isSignUp;
-    hideMessage();
-    
-    document.getElementById("nameGroup").style.display = isSignUp ? "block" : "none";
-    document.getElementById("submitBtn").textContent = isSignUp ? "Create Account" : "Log In";
-    document.getElementById("toggleText").textContent = isSignUp ? "Already have a TrustAI account?" : "Don't have a TrustAI account?";
-    document.getElementById("toggleLink").textContent = isSignUp ? "Log in" : "Create account";
-    document.getElementById("pageTitle").textContent = isSignUp ? "Create TrustAI Account" : "Log In / Create Account";
-    document.getElementById("pageSubtitle").textContent = isSignUp ? "Start protecting your links and messages" : "Access your TrustAI security dashboard";
+
+    document.getElementById("nameGroup")
+        .style.display =
+        isSignUp ? "block" : "none";
+
+    document.getElementById("submitBtn")
+        .textContent =
+        isSignUp
+            ? "Create Account"
+            : "Log In";
+
+    document.getElementById("toggleText")
+        .textContent =
+        isSignUp
+            ? "Already have a TrustAI account?"
+            : "Don't have a TrustAI account?";
+
+    document.getElementById("toggleLink")
+        .textContent =
+        isSignUp
+            ? "Log in"
+            : "Create account";
+
+    document.getElementById("pageTitle")
+        .textContent =
+        isSignUp
+            ? "Create TrustAI Account"
+            : "Log In / Create Account";
+
+    document.getElementById("pageSubtitle")
+        .textContent =
+        isSignUp
+            ? "Start protecting your links and messages"
+            : "Access your TrustAI security dashboard";
+
 }
 
-function togglePhoneAuth() {
-    isPhoneMode = !isPhoneMode;
-    pendingPhone = "";
-    hideMessage();
-    
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    
-    if (isPhoneMode) {
-        document.getElementById("pageTitle").textContent = "Log In with Phone";
-        document.getElementById("pageSubtitle").textContent = "Receive an SMS verification code";
-        document.getElementById("inputLabel").textContent = "Phone number (with country code)";
-        
-        emailInput.type = "tel";
-        emailInput.placeholder = "+2349165053870";
-        emailInput.value = "";
-        emailInput.removeAttribute("required");
-        if (passwordInput) passwordInput.removeAttribute("required");
-        
-        document.getElementById("passwordGroupContainer").style.display = "none";
-        document.getElementById("nameGroup").style.display = "none";
-        document.getElementById("createAccountSection").style.display = "none";
-        document.getElementById("googleBtn").style.display = "none";
-        document.getElementById("divider").style.display = "none";
-        document.getElementById("forgotPwdBtn").style.display = "none";
-        
-        document.getElementById("submitBtn").textContent = "Send Verification Code";
-        document.getElementById("phoneToggleBtn").textContent = "Log In with Email & Password";
-    } else {
-        document.getElementById("pageTitle").textContent = "Log In / Create Account";
-        document.getElementById("pageSubtitle").textContent = "Access your TrustAI security dashboard";
-        document.getElementById("inputLabel").textContent = "Email address";
-        
-        emailInput.type = "email";
-        emailInput.placeholder = "you@example.com";
-        emailInput.value = "";
-        emailInput.setAttribute("required", "true");
-        if (passwordInput) passwordInput.setAttribute("required", "true");
-        
-        document.getElementById("passwordGroupContainer").style.display = "block";
-        document.getElementById("createAccountSection").style.display = "block";
-        document.getElementById("googleBtn").style.display = "flex";
-        document.getElementById("divider").style.display = "flex";
-        document.getElementById("forgotPwdBtn").style.display = "inline-block";
-        
-        document.getElementById("submitBtn").textContent = "Log In";
-        document.getElementById("phoneToggleBtn").textContent = "Continue with phone";
-    }
-}
+
+/* ============================= */
+/* LOGIN */
+/* ============================= */
 
 function handleAuth(event) {
+
     event.preventDefault();
+
     hideMessage();
-    
-    const submitBtn = document.getElementById("submitBtn");
-    
-    if (isPhoneMode) {
-        const val = document.getElementById("email").value.trim();
-        if (!pendingPhone) {
-            if (!val) { showMessage("Enter phone number.", "error"); return; }
-            pendingPhone = val;
-            showMessage("Code sent! Enter the 6-digit code below.", "success");
-            document.getElementById("inputLabel").textContent = "Enter 6-Digit Code";
-            document.getElementById("email").type = "text";
-            document.getElementById("email").placeholder = "123456";
-            document.getElementById("email").value = "";
-            submitBtn.textContent = "Verify & Log In";
-            return;
-        } else {
-            if (!val) { showMessage("Enter the verification code.", "error"); return; }
-            showMessage("Log in successful!", "success");
-            setTimeout(() => window.location.href = TRUSTAI_HOME, 500);
-            return;
-        }
+
+    const email =
+        document.getElementById("email")
+        .value.trim();
+
+    const password =
+        document.getElementById("password")
+        .value;
+
+    if (!email || !password) {
+
+        showMessage(
+            "Please fill in all fields.",
+            "error"
+        );
+
+        return;
+
     }
-    
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    
+
+
     if (isSignUp) {
-        const fullName = document.getElementById("fullName").value.trim();
-        if (!fullName) { showMessage("Please enter your full name.", "error"); return; }
-        showMessage("Account created successfully! Redirecting...", "success");
-        setTimeout(() => window.location.href = TRUSTAI_HOME, 800);
-    } else {
-        if (!email || !password) { showMessage("Please fill in all fields.", "error"); return; }
-        showMessage("Login successful! Redirecting...", "success");
-        setTimeout(() => window.location.href = TRUSTAI_HOME, 800);
+
+        const name =
+            document.getElementById("fullName")
+            .value.trim();
+
+        if (!name) {
+
+            showMessage(
+                "Please enter your full name.",
+                "error"
+            );
+
+            return;
+
+        }
+
     }
+
+
+    /*
+     * IMPORTANT:
+     * This currently opens the camera
+     * after the form passes validation.
+     *
+     * Real account authentication will be
+     * connected later.
+     */
+
+    openFaceVerification();
+
 }
 
+
+/* ============================= */
+/* GOOGLE */
+/* ============================= */
+
 function socialLogin() {
-    showMessage("Simulating Google sign-in...", "success");
-    setTimeout(() => window.location.href = TRUSTAI_HOME, 800);
+
+    /*
+     * Google authentication will be connected
+     * to the real authentication provider later.
+     */
+
+    openFaceVerification();
+
 }
+
+
+/* ============================= */
+/* FACE VERIFICATION */
+/* ============================= */
+
+async function openFaceVerification() {
+
+    document.getElementById("loginCard")
+        .style.display = "none";
+
+    document.getElementById("faceVerification")
+        .style.display = "block";
+
+    document.getElementById("cameraStatus")
+        .textContent =
+        "Requesting camera permission...";
+
+    try {
+
+        cameraStream =
+            await navigator.mediaDevices
+                .getUserMedia({
+                    video: {
+                        facingMode: "user",
+                        width: {
+                            ideal: 720
+                        },
+                        height: {
+                            ideal: 960
+                        }
+                    },
+                    audio: false
+                });
+
+
+        const video =
+            document.getElementById("cameraVideo");
+
+        video.srcObject =
+            cameraStream;
+
+        cameraReady = true;
+
+        document.getElementById("cameraStatus")
+            .textContent =
+            "Camera ready. Position your face inside the circle.";
+
+        document.getElementById("verifyButton")
+            .disabled = false;
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("cameraStatus")
+            .textContent =
+            "Camera access was not allowed.";
+
+        document.getElementById("cameraStatus")
+            .className =
+            "camera-status error";
+
+    }
+
+}
+
+
+/* ============================= */
+/* VERIFY FACE */
+/* ============================= */
+
+function verifyFace() {
+
+    if (!cameraReady) {
+
+        return;
+
+    }
+
+    const status =
+        document.getElementById("cameraStatus");
+
+    const button =
+        document.getElementById("verifyButton");
+
+
+    button.disabled = true;
+
+    status.className =
+        "camera-status";
+
+    status.textContent =
+        "Checking your face...";
+
+
+    /*
+     * This is intentionally NOT claiming
+     * identity verification yet.
+     *
+     * The real biometric verification
+     * service will be connected here.
+     */
+
+    setTimeout(() => {
+
+        status.className =
+            "camera-status success";
+
+        status.textContent =
+            "Face detected. Verification service ready.";
+
+        button.textContent =
+            "Continue to TrustAI";
+
+        button.disabled = false;
+
+        button.onclick =
+            finishVerification;
+
+    }, 1800);
+
+}
+
+
+/* ============================= */
+/* FINISH */
+/* ============================= */
+
+function finishVerification() {
+
+    stopCamera();
+
+    document.getElementById("cameraStatus")
+        .textContent =
+        "Security check complete. Opening TrustAI...";
+
+    setTimeout(() => {
+
+        window.location.href =
+            TRUSTAI_HOME;
+
+    }, 800);
+
+}
+
+
+/* ============================= */
+/* BACK */
+/* ============================= */
+
+function returnToLogin() {
+
+    stopCamera();
+
+    document.getElementById("faceVerification")
+        .style.display = "none";
+
+    document.getElementById("loginCard")
+        .style.display = "block";
+
+}
+
+
+/* ============================= */
+/* STOP CAMERA */
+/* ============================= */
+
+function stopCamera() {
+
+    if (cameraStream) {
+
+        cameraStream
+            .getTracks()
+            .forEach(track => track.stop());
+
+        cameraStream = null;
+
+    }
+
+    cameraReady = false;
+
+}
+
+
+/* ============================= */
+/* PHONE */
+/* ============================= */
+
+function togglePhoneAuth() {
+
+    showMessage(
+        "Phone authentication will be connected to real SMS verification next.",
+        "info"
+    );
+
+}
+
+
+/* ============================= */
+/* PASSWORD RESET */
+/* ============================= */
+
+function forgotPassword() {
+
+    const email =
+        document.getElementById("email")
+        .value.trim();
+
+    if (!email) {
+
+        showMessage(
+            "Enter your email address first.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    showMessage(
+        "Password recovery will be connected to real email verification next.",
+        "success"
+    );
+
+}
+
+
+/* ============================= */
+/* CLEANUP */
+/* ============================= */
+
+window.addEventListener(
+    "beforeunload",
+    stopCamera
+);
+
 </script>
+
 </body>
-</html>
+                </html>
