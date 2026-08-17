@@ -111,13 +111,13 @@ body {
 
 
 /*
- IMPORTANT:
+IMPORTANT:
 
- The Google button is rendered by
- Google Identity Services.
+This is the official Google Identity
+Services button.
 
- Do NOT replace this with a normal
- custom onclick Google button.
+Do not replace it with a custom
+Google account picker.
 */
 
 
@@ -578,7 +578,6 @@ input:focus {
     </div>
 
 
-
     <!-- ============================= -->
     <!-- LOGIN CARD -->
     <!-- ============================= -->
@@ -610,17 +609,14 @@ input:focus {
         </div>
 
 
-
         <!-- ============================= -->
-        <!-- REAL GOOGLE SIGN-IN -->
+        <!-- REAL GOOGLE SIGN-IN BUTTON -->
         <!-- ============================= -->
 
         <div
             id="googleButton"
             class="google-button-container">
-
         </div>
-
 
 
         <div class="divider">
@@ -628,7 +624,6 @@ input:focus {
             <span>OR</span>
 
         </div>
-
 
 
         <!-- ============================= -->
@@ -647,13 +642,11 @@ input:focus {
                 id="nameGroup"
                 style="display:none;">
 
-
                 <label for="fullName">
 
                     Full Name
 
                 </label>
-
 
                 <input
                     type="text"
@@ -661,15 +654,12 @@ input:focus {
                     placeholder="John Doe"
                     autocomplete="name">
 
-
             </div>
-
 
 
             <!-- EMAIL -->
 
             <div class="form-group">
-
 
                 <label
                     for="email"
@@ -679,7 +669,6 @@ input:focus {
 
                 </label>
 
-
                 <input
                     type="email"
                     id="email"
@@ -687,9 +676,7 @@ input:focus {
                     autocomplete="email"
                     required>
 
-
             </div>
-
 
 
             <!-- PASSWORD -->
@@ -698,16 +685,13 @@ input:focus {
                 class="form-group"
                 id="passwordGroupContainer">
 
-
                 <label for="password">
 
                     Password
 
                 </label>
 
-
                 <div class="password-wrapper">
-
 
                     <input
                         type="password"
@@ -716,7 +700,6 @@ input:focus {
                         minlength="6"
                         autocomplete="current-password"
                         required>
-
 
                     <button
                         type="button"
@@ -727,18 +710,14 @@ input:focus {
 
                     </button>
 
-
                 </div>
 
-
             </div>
-
 
 
             <!-- AUTH LINKS -->
 
             <div class="auth-links-row">
-
 
                 <button
                     type="button"
@@ -759,9 +738,7 @@ input:focus {
 
                 </button>
 
-
             </div>
-
 
 
             <!-- SUBMIT -->
@@ -775,15 +752,12 @@ input:focus {
 
             </button>
 
-
         </form>
-
 
 
         <!-- CREATE ACCOUNT -->
 
         <div class="create-account">
-
 
             <span id="toggleText">
 
@@ -791,9 +765,7 @@ input:focus {
 
             </span>
 
-
             <br><br>
-
 
             <a
                 href="#"
@@ -804,12 +776,10 @@ input:focus {
 
             </a>
 
-
         </div>
 
 
     </section>
-
 
 
     <!-- ============================= -->
@@ -836,9 +806,7 @@ input:focus {
         </p>
 
 
-
         <div class="camera-container">
-
 
             <video
                 id="cameraVideo"
@@ -847,12 +815,9 @@ input:focus {
                 playsinline>
             </video>
 
-
             <div class="face-frame"></div>
 
-
         </div>
-
 
 
         <div
@@ -862,7 +827,6 @@ input:focus {
             Starting secure camera...
 
         </div>
-
 
 
         <button
@@ -876,7 +840,6 @@ input:focus {
         </button>
 
 
-
         <button
             class="back-button"
             onclick="returnToLogin()">
@@ -884,7 +847,6 @@ input:focus {
             Back to Login
 
         </button>
-
 
 
         <div class="security-note">
@@ -897,7 +859,6 @@ input:focus {
 
 
     </section>
-
 
 
     <!-- LEGAL -->
@@ -926,7 +887,6 @@ input:focus {
 </main>
 
 
-
 <!-- ============================= -->
 <!-- FACE API -->
 <!-- ============================= -->
@@ -934,7 +894,6 @@ input:focus {
 <script
 src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js">
 </script>
-
 
 
 <script>
@@ -945,14 +904,14 @@ src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js">
 
 
 /*
- IMPORTANT:
+IMPORTANT:
 
- Replace this with your REAL Google
- OAuth Web Client ID.
+Replace this with your REAL Google
+OAuth Web Client ID.
 
- Example:
+Example:
 
- 123456789012-xxxxxxxxxxxxxxxx.apps.googleusercontent.com
+123456789012-xxxxxxxxxxxxxxxx.apps.googleusercontent.com
 */
 
 const GOOGLE_CLIENT_ID =
@@ -978,35 +937,24 @@ let faceCurrentlyDetected = false;
 let googleUserEmail = "";
 
 
-
 /* ================================================= */
 /* MESSAGE */
 /* ================================================= */
 
-function showMessage(
-    text,
-    type = "info"
-) {
+function showMessage(text, type = "info") {
 
     const message =
         document.getElementById("message");
 
-
     message.textContent = text;
-
 
     message.className =
         "message show " +
-
         (
             type === "error"
-
                 ? "error"
-
                 : type === "success"
-
                     ? "success"
-
                     : ""
         );
 
@@ -1018,16 +966,13 @@ function hideMessage() {
     const message =
         document.getElementById("message");
 
-
     if (message) {
 
-        message.className =
-            "message";
+        message.className = "message";
 
     }
 
 }
-
 
 
 /* ================================================= */
@@ -1036,9 +981,8 @@ function hideMessage() {
 
 function togglePasswordVisibility() {
 
-    const pwd =
+    const password =
         document.getElementById("password");
-
 
     const button =
         document.querySelector(
@@ -1046,19 +990,15 @@ function togglePasswordVisibility() {
         );
 
 
-    if (
-        pwd.type === "password"
-    ) {
+    if (password.type === "password") {
 
-        pwd.type = "text";
+        password.type = "text";
 
         button.textContent = "👁️";
 
-    }
+    } else {
 
-    else {
-
-        pwd.type = "password";
+        password.type = "password";
 
         button.textContent = "🙈";
 
@@ -1067,15 +1007,13 @@ function togglePasswordVisibility() {
 }
 
 
-
 /* ================================================= */
-/* LOGIN / SIGN UP */
+/* LOGIN / CREATE ACCOUNT */
 /* ================================================= */
 
 function toggleAuthMode(event) {
 
     event.preventDefault();
-
 
     isSignUp = !isSignUp;
 
@@ -1100,9 +1038,7 @@ function toggleAuthMode(event) {
         "toggleText"
     ).textContent =
         isSignUp
-
             ? "Already have a TrustAI account?"
-
             : "Don't have a TrustAI account?";
 
 
@@ -1118,9 +1054,7 @@ function toggleAuthMode(event) {
         "pageTitle"
     ).textContent =
         isSignUp
-
             ? "Create TrustAI Account"
-
             : "Log In / Create Account";
 
 
@@ -1128,13 +1062,13 @@ function toggleAuthMode(event) {
         "pageSubtitle"
     ).textContent =
         isSignUp
-
             ? "Start protecting your links and messages"
-
             : "Access your TrustAI security dashboard";
 
-}
 
+    initializeGoogleSignIn();
+
+}
 
 
 /* ================================================= */
@@ -1173,6 +1107,18 @@ function handleAuth(event) {
     }
 
 
+    if (password.length < 6) {
+
+        showMessage(
+            "Password must be at least 6 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
     if (isSignUp) {
 
         const fullName =
@@ -1201,34 +1147,31 @@ function handleAuth(event) {
 }
 
 
-
 /* ================================================= */
 /* GOOGLE SIGN-IN */
 /* ================================================= */
 
 
 /*
- Google must render the actual button.
+Google renders the real Google button.
 
- This is NOT a fake account picker.
-
- When the user clicks the Google button,
- Google's own interface handles the account
- selection/sign-in process.
+There is NO fake account picker here.
+When the user taps the Google button,
+Google handles account selection.
 */
 
 
 function initializeGoogleSignIn() {
 
     if (
-        GOOGLE_CLIENT_ID.includes(
-            "YOUR_GOOGLE_CLIENT_ID"
-        )
+        typeof google === "undefined" ||
+        !google.accounts ||
+        !google.accounts.id
     ) {
 
-        showMessage(
-            "Google sign-in is not configured yet. Add your Google Web Client ID first.",
-            "error"
+        setTimeout(
+            initializeGoogleSignIn,
+            500
         );
 
         return;
@@ -1237,14 +1180,13 @@ function initializeGoogleSignIn() {
 
 
     if (
-        typeof google === "undefined" ||
-        !google.accounts ||
-        !google.accounts.id
+        GOOGLE_CLIENT_ID.includes(
+            "YOUR_GOOGLE_CLIENT_ID"
+        )
     ) {
 
-        showMessage(
-            "Google Sign-In is still loading. Please try again.",
-            "error"
+        console.warn(
+            "Google Client ID has not been configured yet."
         );
 
         return;
@@ -1273,6 +1215,11 @@ function initializeGoogleSignIn() {
         document.getElementById(
             "googleButton"
         );
+
+
+    if (!container) {
+        return;
+    }
 
 
     container.innerHTML = "";
@@ -1307,14 +1254,11 @@ function initializeGoogleSignIn() {
 }
 
 
-
 /* ================================================= */
 /* GOOGLE RESPONSE */
 /* ================================================= */
 
-function handleGoogleResponse(
-    response
-) {
+function handleGoogleResponse(response) {
 
     hideMessage();
 
@@ -1337,13 +1281,13 @@ function handleGoogleResponse(
     try {
 
         /*
-         This reads the Google ID token
-         returned by Google.
+        Google authentication succeeded.
 
-         IMPORTANT:
-         A production TrustAI backend should
-         validate this token server-side before
-         treating the account as authenticated.
+        The ID token is decoded here only to
+        read the account information.
+
+        A real production backend must verify
+        the token server-side.
         */
 
 
@@ -1373,26 +1317,19 @@ function handleGoogleResponse(
             "email"
         ).value =
             googleUserEmail;
-        /*
-         Google authentication succeeded.
-
-         Now move to TrustAI's next
-         security stage.
-        */
-
-        document.getElementById("email").value =
-            googleUser.email;
 
         showMessage(
-            "Google account selected: " +
-            googleUser.email +
-            ". Continue to face verification.",
+            "Google authentication succeeded. Continue to face verification.",
             "success"
         );
 
+
         setTimeout(() => {
+
             openFaceVerification();
-        }, 1200);
+
+        }, 1000);
+
 
     } catch (error) {
 
@@ -1401,11 +1338,14 @@ function handleGoogleResponse(
             error
         );
 
+
         showMessage(
             "Unable to process your Google account.",
             "error"
         );
+
     }
+
 }
 
 
@@ -1438,8 +1378,10 @@ function manualGooglePromptFallback() {
         );
 
         setTimeout(() => {
+
             openFaceVerification();
-        }, 1200);
+
+        }, 1000);
 
     } else {
 
@@ -1471,57 +1413,70 @@ async function openFaceVerification() {
     const button =
         document.getElementById("verifyButton");
 
-    status.className =
-        "camera-status";
+    status.className = "camera-status";
 
     status.textContent =
         "Loading face detection AI...";
 
     button.disabled = true;
 
+
     try {
 
         const MODEL_URL =
             "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
 
+
         await faceapi.nets.tinyFaceDetector
             .loadFromUri(MODEL_URL);
+
 
         status.textContent =
             "Face detection AI ready. Starting camera...";
 
-        cameraStream =
-            await navigator.mediaDevices
-                .getUserMedia({
 
-                    video: {
-                        facingMode: "user",
-                        width: {
-                            ideal: 720
-                        },
-                        height: {
-                            ideal: 960
-                        }
+        cameraStream =
+            await navigator.mediaDevices.getUserMedia({
+
+                video: {
+
+                    facingMode: "user",
+
+                    width: {
+                        ideal: 720
                     },
 
-                    audio: false
+                    height: {
+                        ideal: 960
+                    }
 
-                });
+                },
+
+                audio: false
+
+            });
+
 
         const video =
             document.getElementById("cameraVideo");
 
+
         video.srcObject =
             cameraStream;
 
+
         await video.play();
 
+
         cameraReady = true;
+
 
         status.textContent =
             "Looking for your face...";
 
+
         startFaceDetection();
+
 
     } catch (error) {
 
@@ -1530,8 +1485,10 @@ async function openFaceVerification() {
             error
         );
 
+
         status.className =
             "camera-status error";
+
 
         status.textContent =
             "Unable to start face detection. Check your camera and internet connection.";
@@ -1551,7 +1508,9 @@ async function startFaceDetection() {
         return;
     }
 
+
     faceDetectionRunning = true;
+
 
     const video =
         document.getElementById("cameraVideo");
@@ -1570,7 +1529,9 @@ async function startFaceDetection() {
             video.readyState < 2
         ) {
 
-            requestAnimationFrame(detect);
+            if (faceDetectionRunning) {
+                requestAnimationFrame(detect);
+            }
 
             return;
 
@@ -1711,11 +1672,14 @@ function finishVerification() {
 
     stopCamera();
 
+
     const status =
         document.getElementById("cameraStatus");
 
+
     status.className =
         "camera-status success";
+
 
     status.textContent =
         "Security check complete. Opening TrustAI...";
@@ -1739,8 +1703,10 @@ function returnToLogin() {
 
     stopCamera();
 
+
     document.getElementById("faceVerification")
         .style.display = "none";
+
 
     document.getElementById("loginCard")
         .style.display = "block";
@@ -1763,6 +1729,7 @@ function stopCamera() {
         cameraStream = null;
 
     }
+
 
     cameraReady = false;
 
@@ -1831,3 +1798,4 @@ window.addEventListener(
 
 </body>
 </html>
+        
