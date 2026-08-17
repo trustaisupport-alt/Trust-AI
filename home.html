@@ -2,11 +2,16 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>TrustAI - Home</title>
 
 <style>
+
 :root {
     --primary: #6366f1;
     --primary-glow: rgba(99, 102, 241, 0.15);
@@ -31,11 +36,22 @@ html {
 
 body {
     margin: 0;
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    background: 
-        radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.12), transparent 40%),
-        radial-gradient(circle at 90% 20%, rgba(14, 165, 233, 0.08), transparent 40%),
+    font-family: Inter, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(99, 102, 241, 0.12),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14, 165, 233, 0.08),
+            transparent 40%
+        ),
         var(--bg-main);
+
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
@@ -47,6 +63,8 @@ body {
     padding-bottom: 40px;
 }
 
+/* HEADER */
+
 .header {
     display: flex;
     align-items: center;
@@ -55,17 +73,24 @@ body {
     padding: 24px 0 16px;
 }
 
+/* PROFILE */
+
 .profile-button {
     width: 48px;
     height: 48px;
     padding: 0;
+
     border: 1px solid var(--border-color);
     border-radius: 50%;
+
     background: transparent;
     cursor: pointer;
     overflow: hidden;
     flex-shrink: 0;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .profile-button:hover {
@@ -76,12 +101,16 @@ body {
 .default-avatar {
     width: 100%;
     height: 100%;
+
     background: #ffffff;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+
     overflow: hidden;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -90,17 +119,22 @@ body {
 .avatar-head {
     width: 15px;
     height: 15px;
+
     background: #000000;
     border-radius: 50%;
+
     margin-bottom: 3px;
 }
 
 .avatar-body {
     width: 30px;
     height: 18px;
+
     background: #000000;
     border-radius: 16px 16px 0 0;
 }
+
+/* BRAND */
 
 .brand {
     display: flex;
@@ -111,43 +145,78 @@ body {
 .brand-shield {
     width: 48px;
     height: 48px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 14px;
-    background: linear-gradient(135deg, #6366f1, #3b82f6);
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #3b82f6
+        );
+
     color: white;
     font-size: 24px;
-    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+
+    box-shadow:
+        0 10px 25px -5px
+        rgba(99, 102, 241, 0.4);
 }
 
 .brand-name {
     font-size: 26px;
     font-weight: 900;
     letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #94a3b8
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+/* MENU BUTTON */
+
 .menu-button {
     width: 48px;
     height: 48px;
+
     border: 1px solid var(--border-color);
     border-radius: 14px;
+
     background: rgba(15, 23, 42, 0.95);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     gap: 5px;
+
     cursor: pointer;
-    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+
+    box-shadow:
+        0 10px 25px -5px rgba(0,0,0,0.5);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+
     flex-shrink: 0;
+
     position: relative;
     z-index: 1101;
+
     padding: 0;
+
     appearance: none;
     -webkit-appearance: none;
 }
@@ -163,34 +232,56 @@ body {
 
 .menu-button span {
     display: block;
+
     width: 22px;
     height: 3px;
+
     border-radius: 3px;
+
     background: #ffffff;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
 }
+
+/* SIDE MENU */
 
 .side-menu {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 300px;
     height: 100vh;
     height: 100dvh;
+
     background: var(--bg-side);
+
     border-right: 1px solid var(--border-color);
+
     z-index: 1100;
+
     padding: 30px 20px;
+
     overflow-y: auto;
-    box-shadow: 15px 0 30px rgba(0,0,0,0.3);
+
+    box-shadow:
+        15px 0 30px rgba(0,0,0,0.3);
+
     transform: translateX(-105%);
-    transition: transform 0.3s ease;
+
+    transition:
+        transform 0.3s ease;
+
     visibility: hidden;
     pointer-events: none;
 }
 
 .side-menu.open {
     transform: translateX(0);
+
     visibility: visible;
     pointer-events: auto;
 }
@@ -198,16 +289,28 @@ body {
 .menu-header {
     display: flex;
     align-items: center;
+
     gap: 12px;
+
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
+
+    border-bottom:
+        1px solid var(--border-color);
+
     margin-bottom: 16px;
 }
 
 .menu-logo {
     font-size: 22px;
     font-weight: 800;
-    background: linear-gradient(135deg, #818cf8, #38bdf8);
+
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -220,21 +323,36 @@ body {
 .menu-link {
     display: flex;
     align-items: center;
+
     gap: 14px;
+
     width: 100%;
+
     padding: 13px 14px;
+
     margin-bottom: 6px;
+
     border-radius: var(--radius-md);
+
     text-decoration: none;
+
     color: var(--text-muted);
+
     font-size: 14px;
     font-weight: 600;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .menu-link:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background:
+        rgba(255, 255, 255, 0.05);
+
     color: var(--text-main);
+
     transform: translateX(4px);
 }
 
@@ -246,67 +364,124 @@ body {
 
 .menu-divider {
     height: 1px;
-    background: var(--border-color);
+
+    background:
+        var(--border-color);
+
     margin: 18px 0;
 }
 
+/* MENU OVERLAY */
+
 .menu-overlay {
     position: fixed;
+
     inset: 0;
-    background: rgba(0,0,0,0.7);
+
+    background:
+        rgba(0,0,0,0.7);
+
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+
     z-index: 1050;
+
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
 }
 
 .menu-overlay.show {
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
 }
 
+/* HERO */
+
 .hero {
     position: relative;
+
     overflow: hidden;
+
     margin-top: 12px;
+
     padding: 40px 32px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-card);
+
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4);
+
+    box-shadow:
+        0 20px 40px -15px
+        rgba(0,0,0,0.4);
 }
 
 .hero::after {
     content: "";
+
     position: absolute;
+
     width: 200px;
     height: 200px;
+
     right: -60px;
     top: -60px;
+
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.18), transparent 70%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.18),
+            transparent 70%
+        );
 }
 
 .hero h1 {
     position: relative;
     z-index: 1;
+
     max-width: 650px;
+
     margin: 0 0 16px;
-    font-size: clamp(32px, 5.5vw, 46px);
+
+    font-size:
+        clamp(32px, 5.5vw, 46px);
+
     line-height: 1.15;
+
     letter-spacing: -1px;
+
     color: var(--text-main);
+
     font-weight: 800;
 }
 
 .hero h1 span {
-    background: linear-gradient(135deg, #818cf8, #38bdf8);
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -314,574 +489,868 @@ body {
 .hero p {
     position: relative;
     z-index: 1;
+
     max-width: 720px;
+
     margin: 0;
+
     color: var(--text-muted);
+
     font-size: 15.5px;
+
     line-height: 1.65;
 }
+
+/* SECTION TITLE */
 
 .section-title {
     display: flex;
     align-items: center;
+
     gap: 12px;
+
     margin: 40px 0 20px;
+
     font-size: 22px;
+
     font-weight: 800;
+
     color: var(--text-main);
+
     letter-spacing: -0.3px;
 }
 
 .section-icon {
     width: 38px;
     height: 38px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: 12px;
-    background: var(--primary-glow);
+
+    background:
+        var(--primary-glow);
+
     color: var(--primary);
+
     font-size: 18px;
-    border: 1px solid rgba(99, 102, 241, 0.2);
+
+    border:
+        1px solid
+        rgba(99, 102, 241, 0.2);
 }
+
+/* CARDS */
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
     gap: 20px;
 }
 
 .card {
     position: relative;
+
     overflow: hidden;
+
     padding: 28px;
+
     min-height: 200px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-card);
+
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+
     text-decoration: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: rgba(99, 102, 241, 0.4);
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
+
+    border-color:
+        rgba(99, 102, 241, 0.4);
+
+    box-shadow:
+        0 20px 40px -10px
+        rgba(0,0,0,0.4);
 }
 
 .card::before {
     content: "";
+
     position: absolute;
+
     left: 0;
     top: 0;
+
     width: 100%;
     height: 3px;
-    background: var(--primary);
+
+    background:
+        var(--primary);
 }
 
-.message-card::before { background: #6366f1; }
-.conversation-card::before { background: #3b82f6; }
-.website-card::before { background: #06b6d4; }
-.security-card::before { background: #10b981; }
+/* CARD COLORS */
 
-.clickable-card {
-    cursor: pointer;
+.message-card::before {
+    background: #6366f1;
 }
+
+.conversation-card::before {
+    background: #3b82f6;
+}
+
+.website-card::before {
+    background: #06b6d4;
+}
+
+.protection-card::before {
+    background: #8b5cf6;
+}
+
+.security-card::before {
+    background: #10b981;
+}
+
+/* CARD ICON */
 
 .card-icon {
     width: 48px;
     height: 48px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     margin-bottom: 18px;
-    border-radius: var(--radius-md);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid var(--border-color);
+
     font-size: 22px;
 }
 
 .card h2 {
     margin: 0 0 8px;
+
     color: var(--text-main);
+
     font-size: 19px;
+
     font-weight: 750;
+
     letter-spacing: -0.2px;
 }
 
 .card p {
     margin: 0;
+
     color: var(--text-muted);
+
     font-size: 14.5px;
+
     line-height: 1.6;
 }
 
-/* MODAL STYLES */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 1200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    padding: 16px;
-}
-
-.modal-overlay.show {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.modal-box {
-    background: #0f172a;
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    border-radius: var(--radius-lg);
-    width: 100%;
-    max-width: 420px;
-    padding: 30px;
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
-    animation: modalPop 0.3s ease;
-}
-
-@keyframes modalPop {
-    0% { transform: scale(0.95); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-.modal-box h3 {
-    margin: 0 0 8px;
-    font-size: 22px;
-    color: var(--text-main);
-}
-
-.modal-box p {
-    margin: 0 0 20px;
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-.modal-input {
-    width: 100%;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    color: var(--text-main);
-    font-size: 15px;
-    margin-bottom: 16px;
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.modal-input:focus {
-    border-color: var(--primary);
-}
-
-.modal-select {
-    width: 100%;
-    padding: 12px 16px;
-    background: #1e293b;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    color: var(--text-main);
-    font-size: 15px;
-    margin-bottom: 16px;
-    outline: none;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.modal-btn {
-    flex: 1;
-    padding: 12px;
-    border-radius: var(--radius-md);
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    transition: transform 0.2s;
-}
-
-.modal-btn:active { transform: scale(0.97); }
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-muted);
-}
+/* FOOTER */
 
 footer {
     margin-top: 48px;
-    padding: 28px 0 35px;
-    border-top: 1px solid var(--border-color);
+
+    padding:
+        28px 0 35px;
+
+    border-top:
+        1px solid var(--border-color);
+
     text-align: center;
+
     color: var(--text-muted);
+
     font-size: 13.5px;
 }
 
-@media (max-width: 700px) {
-    .page { width: calc(100% - 28px); }
-    .header { padding-top: 20px; }
-    .brand-name { font-size: 24px; }
-    .hero { padding: 28px 22px; border-radius: 18px; }
-    .hero h1 { font-size: 32px; }
-    .hero p { font-size: 14.5px; }
-    .cards { grid-template-columns: 1fr; }
-    .card { min-height: 180px; padding: 22px; }
-    .side-menu { width: 280px; }
+.footer-brand {
+    font-weight: 800;
+
+    color: var(--text-main);
+
+    margin-bottom: 4px;
 }
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .page {
+        width:
+            calc(100% - 28px);
+    }
+
+    .header {
+        padding-top: 20px;
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+
+    .hero {
+        padding: 28px 22px;
+
+        border-radius: 18px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 14.5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 180px;
+
+        padding: 22px;
+    }
+
+    .side-menu {
+        width: 280px;
+    }
+}
+
 </style>
+
 </head>
 
 <body>
 
 <!-- SIDE MENU -->
+
 <nav id="sideMenu" class="side-menu">
+
     <div class="menu-header">
+
         <div>
-            <div class="menu-logo">🛡️ TrustAI</div>
-            <div class="menu-subtitle">Online Scam Protection</div>
+
+            <div class="menu-logo">
+                🛡️ TrustAI
+            </div>
+
+            <div class="menu-subtitle">
+                Online Scam Protection
+            </div>
+
         </div>
+
     </div>
 
-    <a href="home.html" class="menu-link"><span class="menu-icon">🏠</span>Home</a>
-    <a href="message.html" class="menu-link"><span class="menu-icon">🔍</span>Message Checker</a>
-    <a href="conversation.html" class="menu-link"><span class="menu-icon">💬</span>Conversation Checker</a>
-    <a href="website.html" class="menu-link"><span class="menu-icon">🌐</span>Website Checker</a>
-    <a href="device.html" class="menu-link"><span class="menu-icon">📱</span>Device Security</a>
+
+    <a href="home.html" class="menu-link">
+
+        <span class="menu-icon">
+            🏠
+        </span>
+
+        Home
+
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+
+        <span class="menu-icon">
+            🔍
+        </span>
+
+        Message Checker
+
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+
+        <span class="menu-icon">
+            💬
+        </span>
+
+        Conversation Checker
+
+    </a>
+
+
+    <a href="website.html" class="menu-link">
+
+        <span class="menu-icon">
+            🌐
+        </span>
+
+        Website Checker
+
+    </a>
+
+
+    <a href="device.html" class="menu-link">
+
+        <span class="menu-icon">
+            📱
+        </span>
+
+        Device Security
+
+    </a>
+
+
     <a href="./protection.html" class="menu-link">
-    <span class="menu-icon">🛡️</span>
-    TrustAI Protection
+
+        <span class="menu-icon">
+            🛡️
+        </span>
+
+        TrustAI Protection
+
     </a>
-    <a href="security.html" class="menu-link"><span class="menu-icon">🛡️</span>Security Center</a>
+
+
+    <a href="security.html" class="menu-link">
+
+        <span class="menu-icon">
+            🛡️
+        </span>
+
+        Security Center
+
+    </a>
+
 
     <div class="menu-divider"></div>
 
-    <a href="alerts.html" class="menu-link"><span class="menu-icon">🚨</span>Scam Alerts</a>
-    <a href="report.html" class="menu-link"><span class="menu-icon">📢</span>Report a Scam</a>
-    <a href="contact.html" class="menu-link"><span class="menu-icon">💬</span>Contact TrustAI</a>
-    <a href="./settings.html" class="menu-link"><span class="menu-icon">⚙️</span>Settings & Privacy</a>
+
+    <a href="alerts.html" class="menu-link">
+
+        <span class="menu-icon">
+            🚨
+        </span>
+
+        Scam Alerts
+
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+
+        <span class="menu-icon">
+            📢
+        </span>
+
+        Report a Scam
+
+    </a>
+
+
+    <a href="contact.html" class="menu-link">
+
+        <span class="menu-icon">
+            💬
+        </span>
+
+        Contact TrustAI
+
+    </a>
+
+
+    <a href="./settings.html" class="menu-link">
+
+        <span class="menu-icon">
+            ⚙️
+        </span>
+
+        Settings & Privacy
+
+    </a>
+
 
     <div class="menu-divider"></div>
 
-    <a href="#" class="menu-link" onclick="handleLogout(); return false;" style="color: #f87171;">
-        <span class="menu-icon">🚪</span>Log Out
+
+    <a
+        href="#"
+        class="menu-link"
+        onclick="handleLogout(); return false;"
+        style="color: #f87171;"
+    >
+
+        <span class="menu-icon">
+            🚪
+        </span>
+
+        Log Out
+
     </a>
+
 </nav>
 
-<!-- OVERLAY -->
-<div id="menuOverlay" class="menu-overlay"></div>
 
-<!-- ACCOUNT LINKING MODAL (Connects handle for background auto-detection) -->
-<div id="linkModal" class="modal-overlay">
-    <div class="modal-box">
-        <h3 id="modalTitle">Enable Live Shield</h3>
-        <p id="modalDesc">Link your handle so TrustAI can automatically detect unauthorized login attempts, suspicious chats, or fake calls in real time.</p>
-        
-        <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;">Select Platform</label>
-        <select id="modalPlatform" class="modal-select">
-            <!-- Dynamically populated options based on category -->
-        </select>
+<!-- MENU OVERLAY -->
 
-        <label style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px;" id="modalInputLabel">Account Username / Phone Handle</label>
-        <input type="text" id="modalInputVal" class="modal-input" placeholder="e.g. @username or +2348000000000">
-
-        <div class="modal-actions">
-            <button type="button" class="modal-btn btn-secondary" onclick="closeLinkModal()">Cancel</button>
-            <button type="button" class="modal-btn btn-primary" onclick="saveLinkedAccount()">Activate Live Shield</button>
-        </div>
-    </div>
+<div
+    id="menuOverlay"
+    class="menu-overlay">
 </div>
 
+
 <!-- MAIN PAGE -->
+
 <div class="page">
 
     <!-- HEADER -->
+
     <header class="header">
-        <button id="menuButton" class="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+
+        <button
+            id="menuButton"
+            class="menu-button"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+
             <span></span>
             <span></span>
             <span></span>
+
         </button>
+
 
         <div class="brand">
-            <div class="brand-shield">🛡️</div>
-            <div class="brand-name">TrustAI</div>
+
+            <div class="brand-shield">
+                🛡️
+            </div>
+
+            <div class="brand-name">
+                TrustAI
+            </div>
+
         </div>
 
-        <button class="profile-button" type="button" onclick="window.location.href='profile.html'" aria-label="Open profile">
-            <div class="default-avatar" id="homeProfileAvatar" aria-label="Profile">
+
+        <button
+            class="profile-button"
+            type="button"
+            onclick="window.location.href='profile.html'"
+            aria-label="Open profile"
+        >
+
+            <div
+                class="default-avatar"
+                id="homeProfileAvatar"
+                aria-label="Profile"
+            >
+
                 <div class="avatar-head"></div>
+
                 <div class="avatar-body"></div>
+
             </div>
+
         </button>
+
     </header>
 
+
     <!-- HERO -->
+
     <section class="hero">
-        <h1>Stay one step ahead of <span>scams.</span></h1>
-        <p>Check suspicious messages, conversations and websites for common warning signs before you take action.</p>
+
+        <h1>
+            Stay one step ahead of
+            <span>scams.</span>
+        </h1>
+
+        <p>
+            Check suspicious messages, conversations and
+            websites for common warning signs before you
+            take action. Explore TrustAI Protection for
+            additional security features.
+        </p>
+
     </section>
 
+
     <!-- CHECK SOMETHING -->
+
     <h2 class="section-title">
-        <span class="section-icon">🔎</span>Check Something
+
+        <span class="section-icon">
+            🔎
+        </span>
+
+        Check Something
+
     </h2>
 
-    <div class="cards">
-        <a href="message.html" class="card message-card">
-            <div class="card-icon">🔍</div>
-            <h2>Message Checker</h2>
-            <p>Check a suspicious message for scam, phishing, impersonation and payment warning signs.</p>
-        </a>
-
-        <a href="conversation.html" class="card conversation-card">
-            <div class="card-icon">💬</div>
-            <h2>Conversation Checker</h2>
-            <p>Analyze a conversation for suspicious patterns that may develop over time.</p>
-        </a>
-
-        <a href="website.html" class="card website-card">
-            <div class="card-icon">🌐</div>
-            <h2>Website Checker</h2>
-            <p>Check a website address for common suspicious website warning signs.</p>
-        </a>
-    </div>
-
-    <!-- CONNECTED ACCOUNTS & PROTECTION HUB -->
-    <h2 class="section-title">
-        <span class="section-icon">🔗</span>Protected Accounts & Devices
-    </h2>
 
     <div class="cards">
-        <div class="card clickable-card" style="border-left: 3px solid #ec4899;" onclick="openLinkModal('gaming')">
-            <div class="card-icon">🎮</div>
-            <h2>Gaming Accounts</h2>
-            <p>Background monitoring for Free Fire, Call of Duty, eFootball, Steam, & Epic logins. TrustAI alerts you instantly if someone attempts to access your profile.</p>
-            <div style="margin-top: 16px;">
-                <span id="gamingStatus" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Standby (Click to Link)</span>
-            </div>
-        </div>
 
-        <div class="card clickable-card" style="border-left: 3px solid #3b82f6;" onclick="openLinkModal('social')">
-            <div class="card-icon">📱</div>
-            <h2>Social Media & Chat</h2>
-            <p>Auto-detects suspicious chat links, unverified login alerts, and takeover attempts on WhatsApp, Telegram, TikTok, and Instagram.</p>
-            <div style="margin-top: 16px;">
-                <span id="socialStatus" style="font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px;">Status: Standby (Click to Link)</span>
-            </div>
-        </div>
+        <!-- MESSAGE CHECKER -->
 
-        <div class="card clickable-card" style="border-left: 3px solid #10b981;" onclick="openLinkModal('callshield')">
-            <div class="card-icon">📞</div>
-            <h2>Call & SMS Shield</h2>
-            <p>Real-time background scanning detects spoofed phone calls, scam numbers, and dangerous phishing SMS links instantly.</p>
-            <div style="margin-top: 16px;">
-                <span id="callShieldStatus" style="font-size: 13px; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 4px 10px; border-radius: 6px;">Active Background Shield 🟢</span>
+        <a
+            href="message.html"
+            class="card message-card"
+        >
+
+            <div class="card-icon">
+                🔍
             </div>
-        </div>
+
+            <h2>
+                Message Checker
+            </h2>
+
+            <p>
+                Check a suspicious message for scam,
+                phishing, impersonation and payment
+                warning signs.
+            </p>
+
+        </a>
+
+
+        <!-- CONVERSATION CHECKER -->
+
+        <a
+            href="conversation.html"
+            class="card conversation-card"
+        >
+
+            <div class="card-icon">
+                💬
+            </div>
+
+            <h2>
+                Conversation Checker
+            </h2>
+
+            <p>
+                Analyze a conversation for suspicious
+                patterns that may develop over time.
+            </p>
+
+        </a>
+
+
+        <!-- WEBSITE CHECKER -->
+
+        <a
+            href="website.html"
+            class="card website-card"
+        >
+
+            <div class="card-icon">
+                🌐
+            </div>
+
+            <h2>
+                Website Checker
+            </h2>
+
+            <p>
+                Check a website address for common
+                suspicious website warning signs.
+            </p>
+
+        </a>
+
+
+        <!-- TRUSTAI PROTECTION -->
+
+        <a
+            href="protection.html"
+            class="card protection-card"
+        >
+
+            <div class="card-icon">
+                🛡️
+            </div>
+
+            <h2>
+                TrustAI Protection
+            </h2>
+
+            <p>
+                Explore TrustAI protection features
+                designed to help keep your accounts,
+                devices and online activity safer.
+            </p>
+
+        </a>
+
     </div>
+
 
     <!-- SECURITY -->
+
     <h2 class="section-title">
-        <span class="section-icon">🛡️</span>Security
+
+        <span class="section-icon">
+            🛡️
+        </span>
+
+        Security
+
     </h2>
 
+
     <div class="cards">
-        <a href="device.html" class="card security-card">
-            <div class="card-icon">📱</div>
-            <h2>Device Security</h2>
-            <p>Review active permissions, device status, and security configurations to keep your phone protected.</p>
+
+        <a
+            href="device.html"
+            class="card security-card"
+        >
+
+            <div class="card-icon">
+                📱
+            </div>
+
+            <h2>
+                Device Security
+            </h2>
+
+            <p>
+                Review active permissions, device
+                status, and security configurations
+                to keep your phone protected.
+            </p>
+
         </a>
+
     </div>
 
 </div>
 
+
+<!-- FOOTER -->
+
 <footer>
-    <div class="footer-brand">TrustAI</div>
-    <div>Your real-time online scam and threat protection assistant.</div>
+
+    <div class="footer-brand">
+        TrustAI
+    </div>
+
+    <div>
+        Your real-time online scam and threat
+        protection assistant.
+    </div>
+
 </footer>
 
+
 <script>
-const menuButton = document.getElementById("menuButton");
-const sideMenu = document.getElementById("sideMenu");
-const menuOverlay = document.getElementById("menuOverlay");
+
+/* MENU */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
 
 function openMenu() {
+
     sideMenu.classList.add("open");
+
     menuOverlay.classList.add("show");
-    menuButton.setAttribute("aria-expanded", "true");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
 }
+
 
 function closeMenu() {
+
     sideMenu.classList.remove("open");
+
     menuOverlay.classList.remove("show");
-    menuButton.setAttribute("aria-expanded", "false");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
 }
 
-menuButton.addEventListener("click", function() {
-    if (sideMenu.classList.contains("open")) {
-        closeMenu();
-    } else {
-        openMenu();
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        if (
+            sideMenu.classList.contains("open")
+        ) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
     }
-});
+);
 
-menuOverlay.addEventListener("click", closeMenu);
 
-const menuLinks = document.querySelectorAll(".menu-link");
-menuLinks.forEach(function(link) {
-    link.addEventListener("click", closeMenu);
-});
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
 
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        closeMenu();
+
+const menuLinks =
+    document.querySelectorAll(".menu-link");
+
+
+menuLinks.forEach(
+    function(link) {
+
+        link.addEventListener(
+            "click",
+            closeMenu
+        );
+
     }
-});
+);
 
-/* MODAL & ACCOUNT LINKING LOGIC */
-let currentCategory = '';
 
-function openLinkModal(category) {
-    currentCategory = category;
-    const modal = document.getElementById("linkModal");
-    const title = document.getElementById("modalTitle");
-    const desc = document.getElementById("modalDesc");
-    const platformSelect = document.getElementById("modalPlatform");
-    const inputField = document.getElementById("modalInputVal");
-    const inputLabel = document.getElementById("modalInputLabel");
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    inputField.value = "";
+        if (event.key === "Escape") {
 
-    if (category === 'gaming') {
-        title.innerText = "Enable Gaming Live Shield";
-        desc.innerText = "Link your gaming account handle or UID so TrustAI can monitor for unauthorized login recovery and takeover attempts.";
-        inputLabel.innerText = "Game Username / Player UID";
-        inputField.placeholder = "e.g. Free Fire UID, CoD ID, or Steam Username";
-        platformSelect.innerHTML = `
-            <option value="Free Fire">Free Fire</option>
-            <option value="Call of Duty Mobile">Call of Duty: Mobile</option>
-            <option value="eFootball">eFootball</option>
-            <option value="Steam / Epic">Steam / Epic Games</option>
-        `;
-    } else if (category === 'social') {
-        title.innerText = "Enable Social & Chat Shield";
-        desc.innerText = "Connect your messaging handles or phone numbers to scan for malicious chat links and unauthorized takeover warnings.";
-        inputLabel.innerText = "Account Username / Phone Number";
-        inputField.placeholder = "e.g. @username or +2348000000000";
-        platformSelect.innerHTML = `
-            <option value="WhatsApp">WhatsApp Number</option>
-            <option value="Telegram">Telegram Handle</option>
-            <option value="TikTok">TikTok Handle</option>
-            <option value="Instagram / Facebook">Instagram / Facebook</option>
-        `;
-    } else if (category === 'callshield') {
-        title.innerText = "Configure Call & SMS Shield";
-        desc.innerText = "Verify the primary mobile phone number used for real-time Truecaller-style incoming call screening and SMS phishing filters.";
-        inputLabel.innerText = "Primary Mobile Phone Number";
-        inputField.placeholder = "e.g. +2348012345678";
-        platformSelect.innerHTML = `
-            <option value="Primary Device SIM">Primary Mobile Line</option>
-        `;
+            closeMenu();
+
+        }
+
     }
+);
 
-    modal.classList.add("show");
-}
 
-function closeLinkModal() {
-    document.getElementById("linkModal").classList.remove("show");
-}
-
-function saveLinkedAccount() {
-    const platform = document.getElementById("modalPlatform").value;
-    const handleVal = document.getElementById("modalInputVal").value.trim();
-
-    if (!handleVal) {
-        alert("Please enter a valid handle, ID, or phone number.");
-        return;
-    }
-
-    localStorage.setItem(`trustai_${currentCategory}_platform`, platform);
-    localStorage.setItem(`trustai_${currentCategory}_handle`, handleVal);
-    localStorage.setItem(`trustai_${currentCategory}_status`, "Protected 🟢");
-
-    alert(`Success! Live Shield activated for ${platform} (${handleVal}). TrustAI is now monitoring for security threats.`);
-    closeLinkModal();
-    updateAccountStatuses();
-}
-
-function updateAccountStatuses() {
-    const gamingHandle = localStorage.getItem("trustai_gaming_handle");
-    const socialHandle = localStorage.getItem("trustai_social_handle");
-    const callHandle = localStorage.getItem("trustai_callshield_handle");
-
-    if (gamingHandle) {
-        const platform = localStorage.getItem("trustai_gaming_platform");
-        document.getElementById("gamingStatus").innerText = `Protected (${platform})`;
-        document.getElementById("gamingStatus").style.color = "#10b981";
-        document.getElementById("gamingStatus").style.background = "rgba(16, 185, 129, 0.1)";
-    }
-
-    if (socialHandle) {
-        const platform = localStorage.getItem("trustai_social_platform");
-        document.getElementById("socialStatus").innerText = `Protected (${platform})`;
-        document.getElementById("socialStatus").style.color = "#10b981";
-        document.getElementById("socialStatus").style.background = "rgba(16, 185, 129, 0.1)";
-    }
-
-    if (callHandle) {
-        document.getElementById("callShieldStatus").innerText = `Active Background Shield 🟢`;
-    }
-}
+/* PROFILE PICTURE */
 
 function loadHomeProfilePicture() {
-    const avatar = document.getElementById("homeProfileAvatar");
-    const savedPicture = localStorage.getItem("trustai_profilePicture");
+
+    const avatar =
+        document.getElementById(
+            "homeProfileAvatar"
+        );
+
+    const savedPicture =
+        localStorage.getItem(
+            "trustai_profilePicture"
+        );
+
 
     if (savedPicture) {
-        avatar.style.backgroundImage = `url("${savedPicture}")`;
-        avatar.style.backgroundSize = "cover";
-        avatar.style.backgroundPosition = "center";
-        avatar.style.backgroundRepeat = "no-repeat";
+
+        avatar.style.backgroundImage =
+            `url("${savedPicture}")`;
+
+        avatar.style.backgroundSize =
+            "cover";
+
+        avatar.style.backgroundPosition =
+            "center";
+
+        avatar.style.backgroundRepeat =
+            "no-repeat";
+
         avatar.innerHTML = "";
+
     } else {
-        avatar.style.backgroundImage = "none";
+
+        avatar.style.backgroundImage =
+            "none";
+
         avatar.innerHTML = `
+
             <div class="avatar-head"></div>
+
             <div class="avatar-body"></div>
+
         `;
+
     }
+
 }
+
 
 loadHomeProfilePicture();
-updateAccountStatuses();
+
+
+/* LOGOUT */
 
 function handleLogout() {
-    localStorage.removeItem("trustai_loggedIn");
-    localStorage.removeItem("trustai_userName");
-    window.location.href = "./login.html";
+
+    localStorage.removeItem(
+        "trustai_loggedIn"
+    );
+
+    localStorage.removeItem(
+        "trustai_userName"
+    );
+
+    window.location.href =
+        "./login.html";
+
 }
+
 </script>
 
 </body>
+
 </html>
