@@ -825,64 +825,198 @@ function socialLogin() {
 
 async function openFaceVerification() {
 
-    document.getElementById("loginCard")
-        .style.display = "none";
+    document.getElementById("loginCard").style.display = "none";
+    document.getElementById("faceVerification").style.display = "block";
 
-    document.getElementById("faceVerification")
-        .style.display = "block";
+    const status = document.getElementById("cameraStatus");
+    const button = document.getElementById("verifyButton");
 
-    document.getElementById("cameraStatus")
-        .textContent =
-        "Requesting camera permission...";
+    status.className = "camera-status";
+    status.textContent = "Loading face detection AI...";
+    button.disabled = true;
 
     try {
 
-        cameraStream =
-            await navigator.mediaDevices
-                .getUserMedia({
-                    video: {
-                        facingMode: "user",
-                        width: {
-                            ideal: 720
-                        },
-                        height: {
-                            ideal: 960
-                        }
-                    },
-                    audio: false
-                });
+        const MODEL_URL =
+            "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
 
+        await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+
+        status.textContent =
+            "Face detection AI ready. Starting camera...";
+
+        cameraStream =
+            await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: "user",
+                    width: { ideal: 720 },
+                    height: { ideal: 960 }
+                },
+                audio: false
+            });
 
         const video =
             document.getElementById("cameraVideo");
 
-        video.srcObject =
-            cameraStream;
+        video.srcObject = cameraStream;
+
+        await video.play();
 
         cameraReady = true;
 
-        document.getElementById("cameraStatus")
-            .textContent =
-            "Camera ready. Position your face inside the circle.";
+        status.textContent =
+            "Looking for your face...";
 
-        document.getElementById("verifyButton")
-            .disabled = false;
+        startFaceDetection();
 
     } catch (error) {
 
         console.error(error);
 
-        document.getElementById("cameraStatus")
-            .textContent =
-            "Camera access was not allowed.";
-
-        document.getElementById("cameraStatus")
-            .className =
+        status.className =
             "camera-status error";
 
+        status.textContent =
+            "Unable to start face detection. Check your camera and internet connection.";
+
+    }
+}
+
+
+let faceDetectionRunning = false;
+let faceCurrentlyDetected = false;
+
+
+async function startFaceDetection() {
+
+    if (faceDetectionRunning) return;
+
+    faceDetectionRunning = true;
+
+    const video =
+        document.getElementById("cameraVideo");
+
+    const status =
+        document.getElementById("cameraStatus");
+
+    const button =
+        document.getElementById("verifyButton");
+
+
+    async function detect() {
+
+        if (!cameraReady ||
+            video.readyState < 2) {
+
+            requestAnimationFrame(detect);
+            return;
+
+        }
+
+
+        try {
+
+            const detection =
+                await faceapi.detectSingleFace(
+                    video,
+                    new faceapi.TinyFaceDetectorOptions({
+                        inputSize: 224,
+                        scoreThreshold: 0.5
+                    })
+                );
+
+
+            if (detection) {
+
+                faceCurrentlyDetected = true;
+
+                status.className =
+                    "camera-status success";
+
+                status.textContent =
+                    "Face detected ✓ Keep your face centered.";
+
+                button.disabled = false;
+
+            } else {
+
+                faceCurrentlyDetected = false;
+
+                status.className =
+                    "camera-status";
+
+                status.textContent =
+                    "No face detected. Look directly at the camera.";
+
+                button.disabled = true;
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+
+        requestAnimationFrame(detect);
     }
 
+
+    detect();
 }
+
+
+function verifyFace() {
+
+    if (!cameraReady) {
+        return;
+    }
+
+    if (!faceCurrentlyDetected) {
+
+        document.getElementById("cameraStatus")
+            .textContent =
+            "No face detected. Please position your face inside the circle.";
+
+        return;
+    }
+
+
+    const status =
+        document.getElementById("cameraStatus");
+
+    const button =
+        document.getElementById("verifyButton");
+
+
+    button.disabled = true;
+
+    status.className =
+        "camera-status";
+
+    status.textContent =
+        "Face detected. Preparing secure verification...";
+
+
+    setTimeout(() => {
+
+        status.className =
+            "camera-status success";
+
+        status.textContent =
+            "Face detection successful ✓";
+
+        button.textContent =
+            "Continue";
+
+        button.disabled = false;
+
+        button.onclick =
+            finishVerification;
+
+    }, 1200);
+    }
 
 
 /* ============================= */
