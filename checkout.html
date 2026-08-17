@@ -52,10 +52,8 @@ body {
 }
 
 .page {
-    width: min(900px, calc(100% - 24px));
-
+    width: min(700px, calc(100% - 24px));
     margin: auto;
-
     padding: 20px 0 50px;
 }
 
@@ -66,11 +64,8 @@ body {
 
 .header {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
-
     margin-bottom: 28px;
 }
 
@@ -79,29 +74,21 @@ body {
     height: 45px;
 
     border: 1px solid #23415f;
-
     border-radius: 12px;
 
     background: #0d1c2d;
-
     color: white;
 
     font-size: 22px;
-
     cursor: pointer;
-
-    transition: .2s ease;
 }
 
 .back-button:hover {
     border-color: #1687ff;
-
-    transform: translateY(-2px);
 }
 
 .logo {
     font-size: 23px;
-
     font-weight: 900;
 }
 
@@ -111,23 +98,21 @@ body {
 
 
 /* ========================= */
-/* TITLE */
+/* HERO */
 /* ========================= */
 
-.page-title {
+.hero {
     text-align: center;
-
     margin-bottom: 25px;
 }
 
-.page-title .icon {
+.hero-icon {
     width: 65px;
     height: 65px;
 
     margin: 0 auto 15px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -141,48 +126,31 @@ body {
         );
 
     font-size: 30px;
-
-    box-shadow:
-        0 15px 35px rgba(14,165,233,.18);
 }
 
-.page-title h1 {
+.hero h1 {
     margin: 0 0 8px;
 
     font-size:
         clamp(28px, 7vw, 40px);
 }
 
-.page-title p {
+.hero p {
     margin: 0;
 
     color: #91a7bf;
-
     font-size: 14px;
 }
 
 
 /* ========================= */
-/* CHECKOUT GRID */
+/* CHECKOUT CARD */
 /* ========================= */
 
-.checkout-grid {
-    display: grid;
+.checkout-card {
 
-    grid-template-columns:
-        1fr 1fr;
+    padding: 25px;
 
-    gap: 20px;
-
-    align-items: start;
-}
-
-
-/* ========================= */
-/* CARDS */
-/* ========================= */
-
-.card {
     border: 1px solid #23415f;
 
     border-radius: 20px;
@@ -194,16 +162,8 @@ body {
             #091522
         );
 
-    padding: 24px;
-
     box-shadow:
-        0 15px 35px rgba(0,0,0,.18);
-}
-
-.card h2 {
-    margin: 0 0 18px;
-
-    font-size: 20px;
+        0 15px 40px rgba(0,0,0,.25);
 }
 
 
@@ -212,103 +172,76 @@ body {
 /* ========================= */
 
 .plan-summary {
-    border-color: #1687ff;
 
-    box-shadow:
-        0 0 30px rgba(22,135,255,.10);
-}
+    padding: 18px;
 
-.plan-label {
-    color: #62a9ff;
+    border: 1px solid #31506c;
 
-    font-size: 11px;
+    border-radius: 15px;
 
-    font-weight: 800;
-
-    text-transform: uppercase;
-
-    letter-spacing: .5px;
-
-    margin-bottom: 8px;
-}
-
-.plan-name {
-    font-size: 24px;
-
-    font-weight: 900;
-
-    margin-bottom: 5px;
-}
-
-.plan-description {
-    color: #91a7bf;
-
-    font-size: 13px;
+    background: rgba(22,135,255,.06);
 
     margin-bottom: 22px;
 }
 
-.price-box {
-    padding: 18px;
+.summary-top {
 
-    border-radius: 14px;
+    display: flex;
 
-    background: rgba(22,135,255,.08);
+    justify-content: space-between;
 
-    border: 1px solid rgba(22,135,255,.20);
+    align-items: center;
 
-    margin-bottom: 20px;
+    gap: 15px;
 }
 
-.price {
-    font-size: 34px;
+.summary-title {
 
-    font-weight: 900;
+    font-size: 18px;
+
+    font-weight: 800;
 }
 
-.price-period {
+.summary-badge {
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: rgba(22,135,255,.12);
+
+    color: #62a9ff;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.summary-description {
+
+    margin: 8px 0 0;
+
     color: #91a7bf;
 
     font-size: 13px;
 }
 
-.currency-name {
-    margin-top: 5px;
+.price {
 
-    color: #71869c;
+    margin-top: 15px;
 
-    font-size: 11px;
+    font-size: 30px;
+
+    font-weight: 900;
 }
 
+.price small {
 
-/* ========================= */
-/* FEATURES */
-/* ========================= */
+    color: #8197ad;
 
-.features {
-    list-style: none;
+    font-size: 12px;
 
-    padding: 0;
-
-    margin: 0;
-}
-
-.features li {
-    padding: 8px 0;
-
-    color: #cbd5e1;
-
-    font-size: 13px;
-}
-
-.features li::before {
-    content: "✓";
-
-    color: #22c55e;
-
-    font-weight: bold;
-
-    margin-right: 9px;
+    font-weight: normal;
 }
 
 
@@ -317,34 +250,34 @@ body {
 /* ========================= */
 
 .form-group {
-    margin-bottom: 16px;
+
+    margin-bottom: 17px;
 }
 
 .form-group label {
+
     display: block;
 
     margin-bottom: 7px;
 
-    color: #cbd5e1;
-
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 700;
 }
 
-.form-group input,
-.form-group select {
+input {
+
     width: 100%;
 
     height: 48px;
 
-    padding: 0 13px;
+    padding: 0 14px;
 
     border: 1px solid #31506c;
 
     border-radius: 10px;
 
-    background: #091522;
+    background: #07111d;
 
     color: white;
 
@@ -353,115 +286,80 @@ body {
     outline: none;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+input:focus {
+
     border-color: #1687ff;
 
     box-shadow:
-        0 0 0 3px rgba(22,135,255,.10);
-}
-
-.form-note {
-    color: #71869c;
-
-    font-size: 11px;
-
-    margin-top: 5px;
+        0 0 0 3px rgba(22,135,255,.12);
 }
 
 
 /* ========================= */
-/* PAYMENT METHOD */
+/* PAYMENT METHODS */
 /* ========================= */
+
+.section-title {
+
+    margin: 24px 0 12px;
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
 
 .payment-methods {
+
     display: grid;
 
     gap: 10px;
-
-    margin-bottom: 18px;
 }
 
 .payment-option {
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
 
-    padding: 13px;
+    padding: 14px;
 
-    border: 1px solid #23415f;
+    border: 1px solid #31506c;
 
-    border-radius: 11px;
+    border-radius: 12px;
 
-    background: rgba(255,255,255,.025);
+    background: #091522;
 
     cursor: pointer;
-
-    transition: .2s ease;
 }
 
 .payment-option:hover {
+
     border-color: #1687ff;
 }
 
 .payment-option input {
-    width: 17px;
-    height: 17px;
+
+    width: auto;
+
+    height: auto;
+
+    accent-color: #1687ff;
 }
 
-.payment-icon {
-    font-size: 21px;
+.payment-name {
+
+    font-size: 14px;
+
+    font-weight: 700;
 }
 
-.payment-text {
-    display: flex;
+.payment-description {
 
-    flex-direction: column;
-}
-
-.payment-text strong {
-    font-size: 13px;
-}
-
-.payment-text span {
-    color: #71869c;
+    color: #8197ad;
 
     font-size: 11px;
-}
-
-
-/* ========================= */
-/* TOTAL */
-/* ========================= */
-
-.total-box {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 16px 0;
-
-    margin-top: 5px;
-
-    border-top: 1px solid #23415f;
-
-    border-bottom: 1px solid #23415f;
-}
-
-.total-label {
-    color: #91a7bf;
-
-    font-size: 13px;
-}
-
-.total-price {
-    font-size: 22px;
-
-    font-weight: 900;
 }
 
 
@@ -470,11 +368,12 @@ body {
 /* ========================= */
 
 .checkout-button {
+
     width: 100%;
 
-    margin-top: 20px;
+    height: 52px;
 
-    padding: 15px;
+    margin-top: 22px;
 
     border: none;
 
@@ -494,43 +393,18 @@ body {
     font-weight: 800;
 
     cursor: pointer;
-
-    transition: .2s ease;
 }
 
 .checkout-button:hover {
-    transform: translateY(-2px);
 
-    opacity: .92;
+    opacity: .9;
 }
 
-.checkout-button:active {
-    transform: scale(.98);
-}
+.checkout-button:disabled {
 
+    opacity: .55;
 
-/* ========================= */
-/* SECURITY NOTICE */
-/* ========================= */
-
-.security-notice {
-    margin-top: 15px;
-
-    padding: 13px;
-
-    border-radius: 11px;
-
-    background: rgba(34,197,94,.05);
-
-    border: 1px solid rgba(34,197,94,.15);
-
-    color: #91a7bf;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-
-    text-align: center;
+    cursor: not-allowed;
 }
 
 
@@ -539,35 +413,69 @@ body {
 /* ========================= */
 
 .message {
+
     display: none;
 
     margin-bottom: 18px;
 
-    padding: 12px;
+    padding: 12px 14px;
 
     border-radius: 10px;
 
-    background: rgba(22,135,255,.08);
+    background: #10253a;
 
-    border: 1px solid rgba(22,135,255,.2);
+    border: 1px solid #31506c;
 
-    color: #8fc4ff;
+    color: #cbd5e1;
 
-    font-size: 12px;
-
-    text-align: center;
+    font-size: 13px;
 }
 
 .message.show {
+
     display: block;
 }
 
 .message.error {
-    background: rgba(239,68,68,.08);
 
-    border-color: rgba(239,68,68,.25);
+    background: #351719;
 
-    color: #fca5a5;
+    border-color: #713238;
+
+    color: #ffb4b4;
+}
+
+.message.success {
+
+    background: #102b20;
+
+    border-color: #286b4a;
+
+    color: #a7f3c6;
+}
+
+
+/* ========================= */
+/* SECURITY NOTE */
+/* ========================= */
+
+.security-note {
+
+    margin-top: 18px;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.03);
+
+    color: #8197ad;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    line-height: 1.6;
 }
 
 
@@ -576,9 +484,10 @@ body {
 /* ========================= */
 
 .footer {
-    margin-top: 35px;
 
-    padding-top: 22px;
+    margin-top: 30px;
+
+    padding-top: 20px;
 
     border-top: 1px solid #193047;
 
@@ -586,7 +495,7 @@ body {
 
     color: #71869c;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 
@@ -594,18 +503,16 @@ body {
 /* MOBILE */
 /* ========================= */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
-    .checkout-grid {
-        grid-template-columns: 1fr;
+    .checkout-card {
+
+        padding: 20px;
     }
 
-    .page {
-        width: calc(100% - 24px);
-    }
+    .summary-top {
 
-    .card {
-        padding: 21px;
+        align-items: flex-start;
     }
 
 }
@@ -636,322 +543,220 @@ body {
         </button>
 
         <div class="logo">
+
             🛡️ Trust<span>AI</span>
+
         </div>
 
     </header>
 
 
-    <!-- TITLE -->
+    <!-- HERO -->
 
-    <section class="page-title">
+    <section class="hero">
 
-        <div class="icon">
-            🛡️
+        <div class="hero-icon">
+
+            🔒
+
         </div>
 
         <h1>
-            TrustAI Protection
+
+            Secure checkout
+
         </h1>
 
         <p>
-            Review your subscription before continuing.
+
+            Complete your TrustAI Protection subscription.
+
         </p>
 
     </section>
 
 
-    <!-- MESSAGE -->
-
-    <div
-        id="message"
-        class="message">
-    </div>
-
-
     <!-- CHECKOUT -->
 
-    <div class="checkout-grid">
+    <main class="checkout-card">
+
+
+        <div
+            id="message"
+            class="message">
+        </div>
 
 
         <!-- PLAN SUMMARY -->
 
-        <section class="card plan-summary">
+        <section class="plan-summary">
 
-            <div class="plan-label">
-                SELECTED PLAN
-            </div>
+            <div class="summary-top">
 
-            <div class="plan-name">
-                TrustAI Protection
-            </div>
+                <div class="summary-title">
 
-            <div class="plan-description">
-                Enhanced protection for users who want
-                a stronger TrustAI security experience.
-            </div>
-
-
-            <div class="price-box">
-
-                <div
-                    class="price"
-                    id="planPrice">
-
-                    ₦5,000
+                    TrustAI Protection
 
                 </div>
 
-                <div class="price-period">
-                    per month
-                </div>
+                <div class="summary-badge">
 
-                <div
-                    class="currency-name"
-                    id="currencyName">
-
-                    Nigerian Naira
+                    PROTECTION
 
                 </div>
 
             </div>
 
 
-            <ul class="features">
+            <p class="summary-description">
 
-                <li>
-                    Everything in TrustAI Free
-                </li>
+                Enhanced protection for users
+                who want a stronger TrustAI security experience.
 
-                <li>
-                    Advanced threat analysis
-                </li>
+            </p>
 
-                <li>
-                    Enhanced protection features
-                </li>
 
-                <li>
-                    Priority security tools
-                </li>
+            <div
+                class="price"
+                id="checkoutPrice">
 
-                <li>
-                    Future premium features
-                </li>
+                Loading...
 
-            </ul>
+            </div>
 
         </section>
 
 
-        <!-- CUSTOMER / PAYMENT -->
+        <!-- CUSTOMER INFORMATION -->
 
-        <section class="card">
+        <div class="section-title">
 
-            <h2>
-                Checkout
-            </h2>
+            Customer information
 
-
-            <form
-                id="checkoutForm"
-                onsubmit="startCheckout(event)">
+        </div>
 
 
-                <div class="form-group">
+        <div class="form-group">
 
-                    <label for="email">
-                        Email address
-                    </label>
+            <label for="email">
 
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="you@example.com"
-                        autocomplete="email"
-                        required>
+                Email address
 
-                    <div class="form-note">
-                        We'll use this for your payment receipt.
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="section-title">
+
+            Payment method
+
+        </div>
+
+
+        <div class="payment-methods">
+
+
+            <label class="payment-option">
+
+                <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="card"
+                    checked>
+
+                <div>
+
+                    <div class="payment-name">
+
+                        💳 Debit / Credit Card
+
                     </div>
 
-                </div>
+                    <div class="payment-description">
 
-
-                <div class="form-group">
-
-                    <label for="country">
-                        Country / Region
-                    </label>
-
-                    <select
-                        id="country"
-                        required>
-
-                        <option value="">
-                            Select your country
-                        </option>
-
-                        <option value="NG">
-                            🇳🇬 Nigeria
-                        </option>
-
-                        <option value="US">
-                            🇺🇸 United States
-                        </option>
-
-                        <option value="GB">
-                            🇬🇧 United Kingdom
-                        </option>
-
-                        <option value="CA">
-                            🇨🇦 Canada
-                        </option>
-
-                        <option value="GH">
-                            🇬🇭 Ghana
-                        </option>
-
-                        <option value="KE">
-                            🇰🇪 Kenya
-                        </option>
-
-                        <option value="ZA">
-                            🇿🇦 South Africa
-                        </option>
-
-                        <option value="OTHER">
-                            🌍 Other country
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Payment method
-                    </label>
-
-
-                    <div class="payment-methods">
-
-
-                        <label class="payment-option">
-
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="card"
-                                checked>
-
-                            <span class="payment-icon">
-                                💳
-                            </span>
-
-                            <span class="payment-text">
-
-                                <strong>
-                                    Card
-                                </strong>
-
-                                <span>
-                                    Visa, Mastercard and supported cards
-                                </span>
-
-                            </span>
-
-                        </label>
-
-
-                        <label class="payment-option">
-
-                            <input
-                                type="radio"
-                                name="paymentMethod"
-                                value="provider">
-
-                            <span class="payment-icon">
-                                🌍
-                            </span>
-
-                            <span class="payment-text">
-
-                                <strong>
-                                    Payment Provider
-                                </strong>
-
-                                <span>
-                                    Available payment methods
-                                </span>
-
-                            </span>
-
-                        </label>
-
+                        Pay securely through a supported payment provider.
 
                     </div>
 
                 </div>
 
-
-                <div class="total-box">
-
-                    <span class="total-label">
-                        Total today
-                    </span>
-
-                    <span
-                        class="total-price"
-                        id="totalPrice">
-
-                        ₦5,000
-
-                    </span>
-
-                </div>
+            </label>
 
 
-                <button
-                    type="submit"
-                    class="checkout-button">
+            <label class="payment-option">
 
-                    Continue to Secure Payment
+                <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="international">
 
-                </button>
+                <div>
 
+                    <div class="payment-name">
 
-                <div class="security-notice">
+                        🌍 International Payment
 
-                    🔒 Secure checkout<br>
+                    </div>
 
-                    TrustAI will only activate Protection
-                    after the payment provider confirms
-                    a successful payment.
+                    <div class="payment-description">
+
+                        Available payment options may depend on your country.
+
+                    </div>
 
                 </div>
 
+            </label>
 
-            </form>
 
-        </section>
+        </div>
 
-    </div>
+
+        <!-- CHECKOUT BUTTON -->
+
+        <button
+            id="checkoutButton"
+            class="checkout-button"
+            type="button"
+            onclick="startCheckout()">
+
+            Continue to Secure Payment
+
+        </button>
+
+
+        <div class="security-note">
+
+            🔒 Your payment information should be handled
+            by the selected payment provider.
+            TrustAI does not mark a subscription as paid
+            until payment is successfully verified.
+
+        </div>
+
+
+    </main>
 
 
     <!-- FOOTER -->
 
     <footer class="footer">
 
-        <div>
-            🛡️ TrustAI
-        </div>
+        🛡️ TrustAI
 
-        <div>
-            Your online scam protection assistant.
-        </div>
+        <br>
+
+        Your online scam protection assistant.
 
     </footer>
 
@@ -962,64 +767,56 @@ body {
 <script>
 
 /* ========================= */
-/* TRUSTAI PRICES */
+/* TRUSTAI CHECKOUT SETTINGS */
 /* ========================= */
 
 const prices = {
 
     NGN: {
         symbol: "₦",
-        amount: "5,000",
-        currencyName: "Nigerian Naira"
+        amount: "5,000"
     },
 
     USD: {
         symbol: "$",
-        amount: "5.00",
-        currencyName: "US Dollar"
+        amount: "5.00"
     },
 
     GBP: {
         symbol: "£",
-        amount: "4.00",
-        currencyName: "British Pound"
+        amount: "4.00"
     },
 
     EUR: {
         symbol: "€",
-        amount: "5.00",
-        currencyName: "Euro"
+        amount: "5.00"
     },
 
     CAD: {
         symbol: "C$",
-        amount: "7.00",
-        currencyName: "Canadian Dollar"
+        amount: "7.00"
     },
 
     GHS: {
         symbol: "GH₵",
-        amount: "65.00",
-        currencyName: "Ghanaian Cedi"
+        amount: "65.00"
     },
 
     KES: {
         symbol: "KSh",
-        amount: "650",
-        currencyName: "Kenyan Shilling"
+        amount: "650"
     },
 
     ZAR: {
         symbol: "R",
-        amount: "95.00",
-        currencyName: "South African Rand"
+        amount: "95.00"
     }
 
 };
 
 
 /* ========================= */
-/* SHOW MESSAGE */
+/* MESSAGE */
 /* ========================= */
 
 function showMessage(text, type = "info") {
@@ -1031,76 +828,73 @@ function showMessage(text, type = "info") {
 
     message.className =
         "message show " +
-        (type === "error" ? "error" : "");
+        (type === "error"
+            ? "error"
+            : type === "success"
+                ? "success"
+                : "");
 
 }
 
 
 /* ========================= */
-/* LOAD SELECTED CURRENCY */
+/* LOAD CHECKOUT */
 /* ========================= */
 
-function loadCheckoutCurrency() {
+function loadCheckout() {
 
-    let currency =
+    const plan =
         localStorage.getItem(
-            "trustai_selected_currency"
+            "trustai_selected_plan"
         );
 
-    if (!currency) {
+    const currency =
+        localStorage.getItem(
+            "trustai_selected_currency"
+        ) || "NGN";
 
-        currency =
-            localStorage.getItem(
-                "trustai_currency"
-            );
+
+    /*
+       Make sure the customer actually
+       selected the Protection plan.
+    */
+
+    if (plan !== "protection") {
+
+        showMessage(
+            "No TrustAI Protection plan was selected.",
+            "error"
+        );
+
+        document.getElementById(
+            "checkoutButton"
+        ).disabled = true;
+
+        return;
 
     }
 
-    if (!prices[currency]) {
-
-        currency = "NGN";
-
-    }
 
     const selected =
-        prices[currency];
+        prices[currency] || prices.NGN;
 
 
     document.getElementById(
-        "planPrice"
-    ).textContent =
-        `${selected.symbol}${selected.amount}`;
+        "checkoutPrice"
+    ).innerHTML =
+
+        `${selected.symbol}${selected.amount}
+        <small>/ month</small>`;
 
 
-    document.getElementById(
-        "totalPrice"
-    ).textContent =
-        `${selected.symbol}${selected.amount}`;
-
-
-    document.getElementById(
-        "currencyName"
-    ).textContent =
-        selected.currencyName;
-
-
-    localStorage.setItem(
-        "trustai_selected_currency",
-        currency
-    );
-
-}
-
-
-/* ========================= */
-/* LOAD USER EMAIL */
-/* ========================= */
-
-function loadUserEmail() {
+    /*
+       Restore previously entered email
+       if available.
+    */
 
     const savedEmail =
         localStorage.getItem(
-            "trustai_userEmail"
+            "trustai_checkout_email"
         );
 
     if (savedEmail) {
@@ -1118,27 +912,12 @@ function loadUserEmail() {
 /* START CHECKOUT */
 /* ========================= */
 
-function startCheckout(event) {
-
-    event.preventDefault();
-
+function startCheckout() {
 
     const email =
         document.getElementById(
             "email"
         ).value.trim();
-
-
-    const country =
-        document.getElementById(
-            "country"
-        ).value;
-
-
-    const paymentMethod =
-        document.querySelector(
-            'input[name="paymentMethod"]:checked'
-        );
 
 
     if (!email) {
@@ -1153,16 +932,32 @@ function startCheckout(event) {
     }
 
 
-    if (!country) {
+    if (!email.includes("@")) {
 
         showMessage(
-            "Please select your country or region.",
+            "Please enter a valid email address.",
             "error"
         );
 
         return;
 
     }
+
+
+    const currency =
+        localStorage.getItem(
+            "trustai_selected_currency"
+        ) || "NGN";
+
+
+    const selected =
+        prices[currency] || prices.NGN;
+
+
+    const paymentMethod =
+        document.querySelector(
+            'input[name="paymentMethod"]:checked'
+        );
 
 
     if (!paymentMethod) {
@@ -1179,18 +974,11 @@ function startCheckout(event) {
 
     /*
        Save checkout information.
-
-       This does NOT mean payment was successful.
     */
 
     localStorage.setItem(
-        "trustai_userEmail",
+        "trustai_checkout_email",
         email
-    );
-
-    localStorage.setItem(
-        "trustai_checkout_country",
-        country
     );
 
     localStorage.setItem(
@@ -1198,23 +986,47 @@ function startCheckout(event) {
         paymentMethod.value
     );
 
-    localStorage.setItem(
-        "trustai_checkout_started",
-        "true"
-    );
-
 
     /*
-       REAL PAYMENT PROCESSING IS NOT
-       CONNECTED YET.
+       IMPORTANT:
+       This does NOT claim that payment
+       has succeeded.
 
-       Do NOT activate Protection here.
+       A real payment provider will be
+       connected here later.
     */
 
     showMessage(
-        "Secure payment setup is ready. The real payment provider will be connected next.",
-        "info"
+        `Checkout prepared for ${selected.symbol}${selected.amount} per month.`,
+        "success"
     );
+
+
+    const button =
+        document.getElementById(
+            "checkoutButton"
+        );
+
+    button.disabled = true;
+
+    button.textContent =
+        "Preparing secure payment...";
+
+
+    setTimeout(() => {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Continue to Secure Payment";
+
+
+        showMessage(
+            "Secure payment provider is not connected yet. No payment has been taken.",
+            "info"
+        );
+
+    }, 1500);
 
 }
 
@@ -1243,9 +1055,7 @@ function goBack() {
 /* START */
 /* ========================= */
 
-loadCheckoutCurrency();
-
-loadUserEmail();
+loadCheckout();
 
 </script>
 
