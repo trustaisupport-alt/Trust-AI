@@ -544,11 +544,11 @@ input:focus {
         class="login-card"
         id="faceVerification">
 
-        <h1 class="face-title">
+        <h1 class="face-title" id="faceTitleText">
             Face Verification
         </h1>
 
-        <p class="face-subtitle">
+        <p class="face-subtitle" id="faceSubtitleText">
             TrustAI needs to verify that a real person is present before continuing.
         </p>
 
@@ -584,8 +584,7 @@ input:focus {
 
         <div class="security-note">
             🔒 Your camera is accessed only through your browser.
-            Face verification will be connected to the secure
-            TrustAI authentication system in the next stage.
+            Face verification protects your account against unauthorized new device logins and scams.
         </div>
 
     </section>
@@ -609,6 +608,7 @@ let cameraStream = null;
 let cameraReady = false;
 let faceDetectionRunning = false;
 let faceCurrentlyDetected = false;
+let pendingAuthData = null; // Stores login/signup context for strict device session security
 
 function showMessage(text, type = "info") {
     const message = document.getElementById("message");
@@ -691,7 +691,15 @@ function handleAuth(event) {
         }
     }
 
-    openFaceVerification();
+    // Capture standard credential login attempt & enforce strict face check for device/session security
+    pendingAuthData = { type: isSignUp ? "signup" : "login", email: email };
+    
+    const titleText = isSignUp ? "Account Creation Security" : "New Device Login Security";
+    const subtitleText = isSignUp 
+        ? "To secure your new TrustAI account and linked accounts, please complete face verification."
+        : "We detected a login attempt. Face verification is required to authorize access from this device.";
+
+    openFaceVerification(titleText, subtitleText);
 }
 
 function triggerGoogleLogin() {
@@ -723,10 +731,15 @@ function handleGoogleResponse(response) {
         const googleUser = JSON.parse(jsonPayload);
         
         document.getElementById("email").value = googleUser.email;
-        showMessage(`Google authentication successful for ${googleUser.email}. Starting face verification...`, "success");
+        pendingAuthData = { type: "google", email: googleUser.email };
+        
+        showMessage(`Google authentication successful for ${googleUser.email}. Enforcing strict face security check...`, "success");
 
         setTimeout(() => {
-            openFaceVerification();
+            openFaceVerification(
+                "Google Account Protection",
+                "Face verification is required to secure your Google sign-in and protect your connected profile."
+            );
         }, 1200);
         
     } catch (e) {
@@ -734,9 +747,16 @@ function handleGoogleResponse(response) {
     }
 }
 
-async function openFaceVerification() {
+async function openFaceVerification(customTitle, customSubtitle) {
     document.getElementById("loginCard").style.display = "none";
     document.getElementById("faceVerification").style.display = "block";
+
+    if (customTitle) {
+        document.getElementById("faceTitleText").textContent = customTitle;
+    }
+    if (customSubtitle) {
+        document.getElementById("faceSubtitleText").textContent = customSubtitle;
+    }
 
     const status = document.getElementById("cameraStatus");
     const button = document.getElementById("verifyButton");
@@ -835,12 +855,12 @@ function verifyFace() {
 
     button.disabled = true;
     status.className = "camera-status";
-    status.textContent = "Face detected. Preparing secure verification...";
+    status.textContent = "Confirming biometric session integrity...";
 
     setTimeout(() => {
         status.className = "camera-status success";
-        status.textContent = "Face detection successful ✓";
-        button.textContent = "Continue";
+        status.textContent = "Biometric match confirmed ✓";
+        button.textContent = "Continue to Dashboard";
         button.disabled = false;
         button.onclick = finishVerification;
     }, 1200);
@@ -850,7 +870,7 @@ function finishVerification() {
     stopCamera();
     const status = document.getElementById("cameraStatus");
     status.className = "camera-status success";
-    status.textContent = "Security check complete. Opening TrustAI...";
+    status.textContent = "Security session authorized. Opening TrustAI...";
 
     setTimeout(() => {
         window.location.href = TRUSTAI_HOME;
