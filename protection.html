@@ -1989,20 +1989,45 @@ function protectionAlert(type) {
 
     }
 
-}
-function openCallProtection() {
+ function openCallProtection() {
 
-    alert(
-        "📞 TrustAI Incoming Call Protection\n\n" +
-        "TrustAI Call Protection is ready to be configured.\n\n" +
-        "It is designed to help identify suspicious callers " +
-        "and warn you about possible scam calls.\n\n" +
-        "⚠️ A normal website cannot automatically intercept " +
-        "every incoming phone call. Real-time call detection " +
-        "requires a mobile app with the appropriate device permissions."
-    );
+    const enabled = protectionState.call;
 
-}
+    if (enabled) {
+
+        alert(
+            "🛡️ TrustAI Call Protection\n\n" +
+            "Call Protection is ACTIVE.\n\n" +
+            "TrustAI is configured to help identify " +
+            "suspicious callers and scam-call patterns.\n\n" +
+            "⚠️ Live incoming-call detection requires " +
+            "a supported mobile app and device permissions."
+        );
+
+    } else {
+
+        const activate = confirm(
+            "📞 TrustAI Incoming Call Protection\n\n" +
+            "Call Protection is currently OFF.\n\n" +
+            "Would you like to activate it?"
+        );
+
+        if (activate) {
+
+            toggleProtection("call");
+
+            alert(
+                "🛡️ Call Protection Activated\n\n" +
+                "TrustAI Call Protection is now enabled.\n\n" +
+                "⚠️ Real-time incoming-call detection will " +
+                "require the appropriate mobile-app permissions."
+            );
+
+        }
+
+    }
+
+ }
 </script>
 </body>
 
