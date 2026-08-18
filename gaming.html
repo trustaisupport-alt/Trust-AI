@@ -1221,7 +1221,38 @@ footer {
         id="connectButton"
         class="game-button secondary"
         onclick="beginSecuritySetup()">
+<div
+    id="securitySetupBox"
+    style="
+        display:none;
+        margin-top:20px;
+        padding:20px;
+        border:1px solid #214d73;
+        border-radius:16px;
+        background:rgba(22,135,255,.07);
+    ">
 
+    <h3
+        id="securitySetupTitle"
+        style="margin-top:0;">
+
+        🔐 Security Setup
+
+    </h3>
+
+    <p
+        id="securitySetupText"
+        style="
+            color:#8fa5bd;
+            font-size:13px;
+            line-height:1.6;
+        ">
+
+        Security setup will appear here.
+
+    </p>
+
+</div>
         Select a game first
 
     </button>
@@ -1398,6 +1429,219 @@ function selectGame(game) {
     if (selectedBox) {
 
         selectedBox.classList.add("show");
+
+    }
+
+
+    if (selectedName) {
+
+        selectedName.textContent =
+            "Selected game: " +
+            selectedGame;
+
+    }
+
+
+    if (connectButton) {
+
+        connectButton.textContent =
+            "🔐 Begin " +
+            selectedGame +
+            " Security Setup";
+
+    }
+
+
+    updateGamingStatus();
+
+}
+
+/* =====================================================
+   BEGIN SECURITY SETUP
+===================================================== */
+
+function beginSecuritySetup() {
+
+    if (!selectedGame) {
+
+        alert(
+            "🎮 Gaming Protection\n\n" +
+            "Please select a game first."
+        );
+
+        return;
+
+    }
+
+
+    const setupBox =
+        document.getElementById(
+            "securitySetupBox"
+        );
+
+
+    const setupTitle =
+        document.getElementById(
+            "securitySetupTitle"
+        );
+
+
+    const setupText =
+        document.getElementById(
+            "securitySetupText"
+        );
+
+
+    if (setupBox) {
+
+        setupBox.style.display =
+            "block";
+
+    }
+
+
+    if (setupTitle) {
+
+        setupTitle.textContent =
+            "🔐 " +
+            selectedGame +
+            " Security Setup";
+
+    }
+
+
+    if (setupText) {
+
+        setupText.textContent =
+            "TrustAI is ready to help you set up " +
+            selectedGame +
+            " security. " +
+            "Choose the security options below.";
+
+    }
+
+
+    localStorage.setItem(
+        "trustai_gaming_protection_active",
+        "true"
+    );
+
+
+    updateGamingStatus();
+
+}
+
+
+/* =====================================================
+   GAMING STATUS
+===================================================== */
+
+function updateGamingStatus() {
+
+    const active =
+        localStorage.getItem(
+            "trustai_gaming_protection_active"
+        ) === "true";
+
+
+    const statusText =
+        document.getElementById(
+            "gamingStatusText"
+        );
+
+
+    const statusPill =
+        document.getElementById(
+            "gamingStatusPill"
+        );
+
+
+    if (active && selectedGame) {
+
+        if (statusText) {
+
+            statusText.textContent =
+                selectedGame +
+                " protection setup started.";
+
+        }
+
+
+        if (statusPill) {
+
+            statusPill.textContent =
+                "ACTIVE";
+
+            statusPill.classList.add(
+                "active"
+            );
+
+        }
+
+    } else {
+
+        if (statusText) {
+
+            statusText.textContent =
+                "No gaming account connected yet.";
+
+        }
+
+
+        if (statusPill) {
+
+            statusPill.textContent =
+                "NOT ACTIVE";
+
+            statusPill.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   RESTORE GAMING STATE
+===================================================== */
+
+function restoreGamingState() {
+
+    if (!selectedGame) {
+
+        updateGamingStatus();
+
+        return;
+
+    }
+
+
+    const selectedBox =
+        document.getElementById(
+            "selectedGame"
+        );
+
+
+    const selectedName =
+        document.getElementById(
+            "selectedGameName"
+        );
+
+
+    const connectButton =
+        document.getElementById(
+            "connectButton"
+        );
+
+
+    if (selectedBox) {
+
+        selectedBox.classList.add(
+            "show"
+        );
 
     }
 
