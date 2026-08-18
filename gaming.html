@@ -1553,7 +1553,6 @@ function selectGame(game) {
 
 }
 
-
 /* =====================================================
    BEGIN SECURITY SETUP
 ===================================================== */
@@ -1568,7 +1567,6 @@ function beginSecuritySetup() {
         );
 
         return;
-
     }
 
 
@@ -1577,10 +1575,12 @@ function beginSecuritySetup() {
             "securitySetupBox"
         );
 
+
     const setupTitle =
         document.getElementById(
             "securitySetupTitle"
         );
+
 
     const setupText =
         document.getElementById(
@@ -1590,8 +1590,7 @@ function beginSecuritySetup() {
 
     if (setupBox) {
 
-        setupBox.style.display =
-            "block";
+        setupBox.style.display = "block";
 
     }
 
@@ -1608,153 +1607,164 @@ function beginSecuritySetup() {
 
     if (setupText) {
 
-    if (selectedGame === "eFootball") {
+        if (selectedGame === "eFootball") {
 
-        setupText.innerHTML = `
+            setupText.innerHTML = `
 
-            <strong style="
-                display:block;
-                color:#62a9ff;
-                font-size:16px;
-                margin-bottom:12px;
-            ">
-
-                ⚽ eFootball Security
-
-            </strong>
-
-
-            <p style="
-                color:#8fa5bd;
-                font-size:13px;
-                line-height:1.6;
-                margin:0 0 15px;
-            ">
-
-                Follow these steps to improve the
-                security of your eFootball account.
-
-            </p>
-
-
-            <div style="
-                display:grid;
-                gap:10px;
-            ">
-
-                <div style="
-                    padding:13px;
-                    border:1px solid #214362;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.03);
+                <strong style="
+                    display:block;
+                    color:#62a9ff;
+                    font-size:16px;
+                    margin-bottom:12px;
                 ">
 
-                    🛡️
-                    <strong>
-                        Secure your account
-                    </strong>
+                    ⚽ eFootball Security
 
-                    <br>
+                </strong>
 
-                    <small style="color:#8fa5bd;">
-                        Use the official account-security
-                        options provided by the game.
-                    </small>
+
+                <p style="
+                    color:#8fa5bd;
+                    font-size:13px;
+                    line-height:1.6;
+                    margin:0 0 15px;
+                ">
+
+                    Follow these steps to improve
+                    the security of your eFootball
+                    account.
+
+                </p>
+
+
+                <div style="
+                    display:grid;
+                    gap:10px;
+                ">
+
+
+                    <div style="
+                        padding:13px;
+                        border:1px solid #214362;
+                        border-radius:12px;
+                        background:rgba(255,255,255,.03);
+                    ">
+
+                        🛡️
+                        <strong>
+                            Secure your account
+                        </strong>
+
+                        <br>
+
+                        <small style="color:#8fa5bd;">
+
+                            Use the official account-security
+                            options provided by the game.
+
+                        </small>
+
+                    </div>
+
+
+                    <div style="
+                        padding:13px;
+                        border:1px solid #214362;
+                        border-radius:12px;
+                        background:rgba(255,255,255,.03);
+                    ">
+
+                        🔍
+                        <strong>
+                            Check suspicious activity
+                        </strong>
+
+                        <br>
+
+                        <small style="color:#8fa5bd;">
+
+                            Review your account for activity
+                            you do not recognize.
+
+                        </small>
+
+                    </div>
+
+
+                    <div style="
+                        padding:13px;
+                        border:1px solid #214362;
+                        border-radius:12px;
+                        background:rgba(255,255,255,.03);
+                    ">
+
+                        🚨
+                        <strong>
+                            Watch for phishing
+                        </strong>
+
+                        <br>
+
+                        <small style="color:#8fa5bd;">
+
+                            Never enter your account details
+                            on suspicious links or websites.
+
+                        </small>
+
+                    </div>
+
+
+                    <div style="
+                        padding:13px;
+                        border:1px solid #214362;
+                        border-radius:12px;
+                        background:rgba(255,255,255,.03);
+                    ">
+
+                        🔐
+                        <strong>
+                            Protect your credentials
+                        </strong>
+
+                        <br>
+
+                        <small style="color:#8fa5bd;">
+
+                            TrustAI will never ask you for
+                            your eFootball password.
+
+                        </small>
+
+                    </div>
+
 
                 </div>
 
 
-                <div style="
-                    padding:13px;
-                    border:1px solid #214362;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.03);
-                ">
+                <button
+                    type="button"
+                    class="game-button"
+                    style="margin-top:16px;"
+                    onclick="enableGamingAlerts()">
 
-                    🔍
-                    <strong>
-                        Check suspicious activity
-                    </strong>
+                    🔔 Enable TrustAI Security Alerts
 
-                    <br>
+                </button>
 
-                    <small style="color:#8fa5bd;">
-                        Review your account for activity
-                        you do not recognize.
-                    </small>
+            `;
 
-                </div>
+        } else {
 
+            setupText.textContent =
+                "TrustAI is ready to help you " +
+                "set up security protection for " +
+                selectedGame +
+                ". Review the security options below.";
 
-                <div style="
-                    padding:13px;
-                    border:1px solid #214362;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.03);
-                ">
-
-                    🚨
-                    <strong>
-                        Watch for phishing
-                    </strong>
-
-                    <br>
-
-                    <small style="color:#8fa5bd;">
-                        Never enter your account details
-                        on suspicious links or websites.
-                    </small>
-
-                </div>
-
-
-                <div style="
-                    padding:13px;
-                    border:1px solid #214362;
-                    border-radius:12px;
-                    background:rgba(255,255,255,.03);
-                ">
-
-                    🔐
-                    <strong>
-                        Protect your credentials
-                    </strong>
-
-                    <br>
-
-                    <small style="color:#8fa5bd;">
-                        TrustAI will never ask you for
-                        your eFootball password.
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="game-button"
-                style="margin-top:16px;"
-                onclick="enableGamingAlerts()">
-
-                🔔 Enable TrustAI Security Alerts
-
-            </button>
-
-        `;
-
-    } else {
-
-        setupText.textContent =
-            "TrustAI is ready to help you " +
-            "set up security protection for " +
-            selectedGame +
-            ". Review the security options below.";
+        }
 
     }
-
-      }
 
 
     localStorage.setItem(
@@ -1767,6 +1777,11 @@ function beginSecuritySetup() {
 
 }
 
+
+    
+
+            
+                    
 
 /* =====================================================
    ENABLE GAMING ALERTS
