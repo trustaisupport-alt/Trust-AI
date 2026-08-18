@@ -1019,22 +1019,18 @@ function chooseProtection() {
         currency
     );
 
-    window.location.href = "./checkout.html";
-    }
-
     /*
-       Payment is NOT marked successful here.
+       Send the user to checkout.
 
-       The next stage will connect this
-       button to the real checkout.
+       Payment is NOT marked successful here.
+       Protection will only be activated after
+       successful payment verification.
     */
 
-    alert(
-        "TrustAI Protection checkout is ready to be connected."
-    );
+    window.location.href =
+        "./checkout.html";
 
 }
-
 
 /* ========================= */
 /* BACK */
