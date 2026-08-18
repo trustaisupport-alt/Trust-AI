@@ -54,7 +54,6 @@ body {
         #050b14;
 
     color: #f1f5f9;
-
     min-height: 100vh;
 }
 
@@ -77,7 +76,7 @@ body {
 
     border-radius: 13px;
 
-    background: rgba(10, 25, 42, .92);
+    background: rgba(10, 25, 42, .95);
 
     display: flex;
 
@@ -92,9 +91,6 @@ body {
     cursor: pointer;
 
     z-index: 1001;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.35);
 }
 
 .menu-button span {
@@ -157,16 +153,7 @@ body {
 
     font-size: 22px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #62a9ff,
-            #38bdf8
-        );
-
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent;
+    color: #62a9ff;
 }
 
 .menu-brand span {
@@ -369,9 +356,6 @@ body {
     padding: 22px;
 
     margin-bottom: 20px;
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.22);
 }
 
 .security-top {
@@ -501,15 +485,12 @@ body {
 
     transform:
         translateY(-2px);
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.22);
 }
 
 .game-icon {
 
-    width: 58px;
-    height: 58px;
+    width: 70px;
+    height: 70px;
 
     border-radius: 16px;
 
@@ -521,9 +502,19 @@ body {
 
     justify-content: center;
 
-    font-size: 30px;
-
     margin-bottom: 17px;
+
+    overflow: hidden;
+}
+
+.game-icon img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 8px;
 }
 
 .game-card h3 {
@@ -572,6 +563,11 @@ body {
 .game-button:hover {
 
     background: #0877eb;
+}
+
+.game-button:active {
+
+    transform: scale(.98);
 }
 
 .game-button.secondary {
@@ -664,6 +660,75 @@ body {
     color: #8fa5bd;
 
     font-size: 12px;
+}
+
+
+/* =====================================================
+   SECURITY SETUP BOX
+===================================================== */
+
+.security-setup-box {
+
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border:
+        1px solid #214d73;
+
+    border-radius: 16px;
+
+    background:
+        rgba(22,135,255,.07);
+}
+
+.security-setup-box.show {
+    display: block;
+}
+
+.security-setup-box h3 {
+
+    margin-top: 0;
+
+    color: #ffffff;
+}
+
+.security-setup-box p {
+
+    color: #8fa5bd;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.protection-started {
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(34,197,94,.08);
+
+    border:
+        1px solid #286b4a;
+}
+
+.protection-started strong {
+
+    color: #86efac;
+}
+
+.protection-started p {
+
+    margin: 7px 0 0;
+
+    color: #9da9b7;
 }
 
 
@@ -799,6 +864,13 @@ footer {
             1fr;
     }
 
+    .security-top {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
 }
 
 </style>
@@ -850,7 +922,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">🏠</span>
-
         Home
 
     </a>
@@ -861,7 +932,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">🔍</span>
-
         Message Checker
 
     </a>
@@ -872,7 +942,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">💬</span>
-
         Conversation Checker
 
     </a>
@@ -883,7 +952,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">🌐</span>
-
         Website Checker
 
     </a>
@@ -894,7 +962,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">📱</span>
-
         Device Security
 
     </a>
@@ -905,7 +972,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">🛡️</span>
-
         TrustAI Protection
 
     </a>
@@ -916,7 +982,6 @@ footer {
         class="menu-link active">
 
         <span class="menu-icon">🎮</span>
-
         Gaming Protection
 
     </a>
@@ -930,7 +995,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">🚨</span>
-
         Scam Alerts
 
     </a>
@@ -941,7 +1005,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">📢</span>
-
         Report a Scam
 
     </a>
@@ -952,7 +1015,6 @@ footer {
         class="menu-link">
 
         <span class="menu-icon">💬</span>
-
         Contact TrustAI
 
     </a>
@@ -985,9 +1047,7 @@ footer {
 <header class="header">
 
     <div class="header-badge">
-
         🎮 TRUSTAI GAMING PROTECTION
-
     </div>
 
 
@@ -1065,7 +1125,12 @@ footer {
     <article class="game-card">
 
         <div class="game-icon">
-            ⚽
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1a/EFootball_Logo.svg/512px-EFootball_Logo.svg.png"
+                alt="eFootball logo"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='⚽';">
+
         </div>
 
         <h3>
@@ -1073,9 +1138,11 @@ footer {
         </h3>
 
         <p>
+
             Set up security protection for your
             eFootball account and learn how to
             respond to suspicious login activity.
+
         </p>
 
         <button
@@ -1095,7 +1162,12 @@ footer {
     <article class="game-card">
 
         <div class="game-icon">
-            🔫
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/5/57/Call_of_Duty_logo_2023.svg"
+                alt="Call of Duty logo"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='🎯';">
+
         </div>
 
         <h3>
@@ -1103,9 +1175,11 @@ footer {
         </h3>
 
         <p>
+
             Protect your supported Call of Duty
             account from phishing and account
             takeover scams.
+
         </p>
 
         <button
@@ -1125,7 +1199,12 @@ footer {
     <article class="game-card">
 
         <div class="game-icon">
-            🔥
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/4/45/Garena_Free_Fire_Logo.svg/512px-Garena_Free_Fire_Logo.svg.png"
+                alt="Free Fire logo"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='🔥';">
+
         </div>
 
         <h3>
@@ -1133,8 +1212,10 @@ footer {
         </h3>
 
         <p>
+
             Get security guidance and protection
             against common gaming-account scams.
+
         </p>
 
         <button
@@ -1154,7 +1235,12 @@ footer {
     <article class="game-card">
 
         <div class="game-icon">
-            🧱
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg"
+                alt="Roblox logo"
+                onerror="this.style.display='none'; this.parentElement.innerHTML='🧱';">
+
         </div>
 
         <h3>
@@ -1162,9 +1248,11 @@ footer {
         </h3>
 
         <p>
+
             Improve your Roblox account security
             and protect against phishing and
             suspicious account activity.
+
         </p>
 
         <button
@@ -1182,7 +1270,7 @@ footer {
 
 
 <!-- =====================================================
-     ACCOUNT CONNECTION
+     ACCOUNT SECURITY SETUP
 ===================================================== -->
 
 <section class="connect-section">
@@ -1193,9 +1281,9 @@ footer {
 
     <p>
 
-        Choose a game above to begin. TrustAI
-        should never ask you to send your gaming
-        password to us.
+        Choose a game above to begin.
+        TrustAI should never ask you to send
+        your gaming password to us.
 
     </p>
 
@@ -1209,8 +1297,10 @@ footer {
         </strong>
 
         <span>
+
             Follow the official account-security
             process for your selected game.
+
         </span>
 
     </div>
@@ -1221,41 +1311,58 @@ footer {
         id="connectButton"
         class="game-button secondary"
         onclick="beginSecuritySetup()">
-<div
-    id="securitySetupBox"
-    style="
-        display:none;
-        margin-top:20px;
-        padding:20px;
-        border:1px solid #214d73;
-        border-radius:16px;
-        background:rgba(22,135,255,.07);
-    ">
 
-    <h3
-        id="securitySetupTitle"
-        style="margin-top:0;">
-
-        🔐 Security Setup
-
-    </h3>
-
-    <p
-        id="securitySetupText"
-        style="
-            color:#8fa5bd;
-            font-size:13px;
-            line-height:1.6;
-        ">
-
-        Security setup will appear here.
-
-    </p>
-
-</div>
         Select a game first
 
     </button>
+
+
+    <!-- SECURITY SETUP BOX -->
+
+    <div
+        id="securitySetupBox"
+        class="security-setup-box">
+
+        <h3 id="securitySetupTitle">
+            🔐 Security Setup
+        </h3>
+
+
+        <p id="securitySetupText">
+
+            Security setup will appear here.
+
+        </p>
+
+
+        <div class="protection-started">
+
+            <strong>
+                🛡️ Protection Setup Started
+            </strong>
+
+            <p>
+
+                TrustAI can help identify suspicious
+                login activity, phishing attempts and
+                account-security risks.
+
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="game-button"
+            style="margin-top:15px;"
+            onclick="enableGamingAlerts()">
+
+            🔔 Enable Security Alerts
+
+        </button>
+
+    </div>
 
 </section>
 
@@ -1266,20 +1373,22 @@ footer {
 
 <section class="notice">
 
-    <h3>
-        ⚠️ Never give TrustAI your gaming password
-    </h3>
+      <h3>
+    ⚠️ Never give TrustAI your gaming password
+</h3>
 
-    <p>
+<p>
 
-        TrustAI will not ask you to send us your
-        eFootball, Call of Duty, Free Fire or
-        Roblox password. Account authentication
-        should use the game's official sign-in or
-        security process when an official integration
-        is available.
+    TrustAI will not ask you to send us your
+    eFootball, Call of Duty, Free Fire or
+    Roblox password.
 
-    </p>
+    Account authentication should always use
+    the game's official sign-in or security
+    process when an official integration is
+    available.
+
+</p>
 
 </section>
 
@@ -1299,10 +1408,12 @@ footer {
         When official integrations and supported
         device services are available, TrustAI can
         be designed to receive security events and
-        notify the account owner. Without an official
-        integration, TrustAI cannot directly see
-        another person's login attempt inside a
-        game's private account system.
+        notify the account owner.
+
+        Without an official integration, TrustAI
+        cannot directly see another person's login
+        attempt inside a game's private account
+        system.
 
     </p>
 
@@ -1401,7 +1512,6 @@ function selectGame(game) {
 
     selectedGame = game;
 
-
     localStorage.setItem(
         "trustai_selected_game",
         game
@@ -1413,14 +1523,12 @@ function selectGame(game) {
             "selectedGame"
         );
 
-
     const selectedName =
         document.getElementById(
             "selectedGameName"
         );
 
-
-        const connectButton =
+    const connectButton =
         document.getElementById(
             "connectButton"
         );
@@ -1456,6 +1564,7 @@ function selectGame(game) {
 
 }
 
+
 /* =====================================================
    BEGIN SECURITY SETUP
 ===================================================== */
@@ -1465,7 +1574,7 @@ function beginSecuritySetup() {
     if (!selectedGame) {
 
         alert(
-            "🎮 Gaming Protection\n\n" +
+            "🎮 TrustAI Gaming Protection\n\n" +
             "Please select a game first."
         );
 
@@ -1479,12 +1588,10 @@ function beginSecuritySetup() {
             "securitySetupBox"
         );
 
-
     const setupTitle =
         document.getElementById(
             "securitySetupTitle"
         );
-
 
     const setupText =
         document.getElementById(
@@ -1513,10 +1620,11 @@ function beginSecuritySetup() {
     if (setupText) {
 
         setupText.textContent =
-            "TrustAI is ready to help you set up " +
+            "TrustAI is ready to help you " +
+            "set up security protection for " +
             selectedGame +
-            " security. " +
-            "Choose the security options below.";
+            ". Review the security " +
+            "options below.";
 
     }
 
@@ -1528,6 +1636,43 @@ function beginSecuritySetup() {
 
 
     updateGamingStatus();
+
+}
+
+
+/* =====================================================
+   ENABLE GAMING ALERTS
+===================================================== */
+
+function enableGamingAlerts() {
+
+    if (!selectedGame) {
+
+        alert(
+            "Please select a game first."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "trustai_gaming_alerts",
+        "true"
+    );
+
+
+    alert(
+        "🔔 TrustAI Security Alerts\n\n" +
+        "Security alerts have been enabled " +
+        "for " +
+        selectedGame +
+        ".\n\n" +
+        "TrustAI will provide security warnings " +
+        "when supported security events are " +
+        "available."
+    );
 
 }
 
@@ -1549,7 +1694,6 @@ function updateGamingStatus() {
             "gamingStatusText"
         );
 
-
     const statusPill =
         document.getElementById(
             "gamingStatusPill"
@@ -1565,185 +1709,116 @@ function updateGamingStatus() {
                 " protection setup started.";
 
         }
-/* =====================================================
-   BEGIN SECURITY SETUP
-===================================================== */
-
-function beginSecuritySetup() {
-
-    if (!selectedGame) {
-
-        alert(
-            "🎮 TrustAI Gaming Protection\n\n" +
-            "Please select a game first."
-        );
-
-        return;
-    }
 
 
-    let setupBox =
-        document.getElementById(
-            "securitySetupBox"
-        );
+        if (statusPill) {
 
+            statusPill.textContent =
+                "ACTIVE";
 
-    /* CREATE SETUP BOX AUTOMATICALLY */
-
-    if (!setupBox) {
-
-        setupBox =
-            document.createElement("div");
-
-        setupBox.id =
-            "securitySetupBox";
-
-        setupBox.style.marginTop =
-            "20px";
-
-        setupBox.style.padding =
-            "20px";
-
-        setupBox.style.border =
-            "1px solid #214d73";
-
-        setupBox.style.borderRadius =
-            "16px";
-
-        setupBox.style.background =
-            "rgba(22,135,255,.07)";
-
-
-        setupBox.innerHTML = `
-
-            <h3 style="
-                margin-top:0;
-                color:#ffffff;
-            ">
-
-                🔐 ${selectedGame}
-                Security Setup
-
-            </h3>
-
-
-            <p style="
-                color:#8fa5bd;
-                font-size:13px;
-                line-height:1.6;
-            ">
-
-                TrustAI is ready to help you
-                set up security protection for
-                your ${selectedGame} account.
-
-            </p>
-
-
-            <div style="
-                margin-top:15px;
-                padding:14px;
-                border-radius:12px;
-                background:rgba(34,197,94,.08);
-                border:1px solid #286b4a;
-            ">
-
-                <strong style="
-                    color:#86efac;
-                ">
-
-                    🛡️ Protection Setup Started
-
-                </strong>
-
-                <p style="
-                    margin:7px 0 0;
-                    color:#9da9b7;
-                    font-size:12px;
-                    line-height:1.5;
-                ">
-
-                    TrustAI will help you identify
-                    suspicious login activity,
-                    phishing attempts and account
-                    security risks.
-
-                </p>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="game-button"
-                style="margin-top:15px;"
-                onclick="enableGamingAlerts()">
-
-                🔔 Enable Security Alerts
-
-            </button>
-
-        `;
-
-
-        const connectSection =
-            document.querySelector(
-                ".connect-section"
+            statusPill.classList.add(
+                "active"
             );
 
+        }
 
-        if (connectSection) {
+    } else {
 
-            connectSection.appendChild(
-                setupBox
+        if (statusText) {
+
+            statusText.textContent =
+                "No gaming account connected yet.";
+
+        }
+
+
+        if (statusPill) {
+
+            statusPill.textContent =
+                "NOT ACTIVE";
+
+            statusPill.classList.remove(
+                "active"
             );
 
         }
 
     }
 
-
-    setupBox.style.display =
-        "block";
+}
 
 
-    localStorage.setItem(
-        "trustai_gaming_protection_active",
-        "true"
-    );
+/* =====================================================
+   RESTORE GAMING STATE
+===================================================== */
+
+function restoreGamingState() {
+
+    const selectedBox =
+        document.getElementById(
+            "selectedGame"
+        );
+
+    const selectedName =
+        document.getElementById(
+            "selectedGameName"
+        );
+
+    const connectButton =
+        document.getElementById(
+            "connectButton"
+        );
+
+
+    if (selectedGame) {
+
+        if (selectedBox) {
+
+            selectedBox.classList.add(
+                "show"
+            );
+
+        }
+
+
+        if (selectedName) {
+
+            selectedName.textContent =
+                "Selected game: " +
+                selectedGame;
+
+        }
+
+
+        if (connectButton) {
+
+            connectButton.textContent =
+                "🔐 Begin " +
+                selectedGame +
+                " Security Setup";
+
+        }
+
+    }
 
 
     updateGamingStatus();
 
-              }
-          /* =====================================================
-   ENABLE GAMING ALERTS
+}
+
+
+/* =====================================================
+   START PAGE
 ===================================================== */
 
-function enableGamingAlerts() {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    localStorage.setItem(
-        "trustai_gaming_alerts",
-        "true"
-    );
+        restoreGamingState();
 
-
-    alert(
-        "🔔 TrustAI Security Alerts\n\n" +
-
-        "Gaming security alerts have been " +
-        "enabled for " +
-
-        selectedGame +
-
-        ".\n\n" +
-
-        "TrustAI will provide security warnings " +
-        "when supported security events are " +
-        "available."
-    );
-
-}
+    }
+);
 
 </script>
 
