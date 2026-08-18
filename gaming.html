@@ -2651,6 +2651,98 @@ document.addEventListener(
     }
 );
 
+      // =====================================================
+// GAMING SECURITY CHECKLIST PERSISTENCE
+// =====================================================
+
+function loadGamingChecklist() {
+
+    const checks =
+        document.querySelectorAll(".gaming-check");
+
+    let completed = 0;
+
+    checks.forEach(function(check) {
+
+        const key =
+            "trustai_check_" +
+            (selectedGame || "default") +
+            "_" +
+            check.dataset.check;
+
+        const saved =
+            localStorage.getItem(key) === "true";
+
+        check.checked = saved;
+
+        if (saved) {
+            completed++;
+        }
+
+        check.addEventListener("change", function() {
+
+            localStorage.setItem(
+                key,
+                check.checked ? "true" : "false"
+            );
+
+            updateChecklistProgress();
+
+        });
+
+    });
+
+    updateChecklistProgress();
+}
+
+
+// =====================================================
+// CHECKLIST PROGRESS
+// =====================================================
+
+function updateChecklistProgress() {
+
+    const checks =
+        document.querySelectorAll(".gaming-check");
+
+    const progress =
+        document.getElementById(
+            "checklistProgress"
+        );
+
+    if (!progress) return;
+
+    let completed = 0;
+
+    checks.forEach(function(check) {
+
+        if (check.checked) {
+            completed++;
+        }
+
+    });
+
+    progress.textContent =
+        completed +
+        " of " +
+        checks.length +
+        " security steps completed";
+
+}
+
+
+// =====================================================
+// LOAD CHECKLIST
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadGamingChecklist();
+
+    }
+);
 </script>
 
 
