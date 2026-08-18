@@ -2214,7 +2214,6 @@ function beginSecuritySetup() {
 
             
                     
-
 /* =====================================================
    ENABLE GAMING ALERTS
 ===================================================== */
@@ -2224,13 +2223,15 @@ function enableGamingAlerts() {
     if (!selectedGame) {
 
         alert(
+            "🎮 TrustAI Gaming Protection\n\n" +
             "Please select a game first."
         );
 
         return;
-
     }
 
+
+    /* SAVE ALERT STATUS */
 
     localStorage.setItem(
         "trustai_gaming_alerts",
@@ -2238,15 +2239,56 @@ function enableGamingAlerts() {
     );
 
 
+    /* SAVE SELECTED GAME */
+
+    localStorage.setItem(
+        "trustai_selected_game",
+        selectedGame
+    );
+
+
+    /* UPDATE BUTTON */
+
+    const alertButton =
+        document.querySelector(
+            "#securitySetupBox .game-button"
+        );
+
+
+    if (alertButton) {
+
+        alertButton.textContent =
+            "🟢 Security Alerts Enabled";
+
+        alertButton.disabled =
+            true;
+
+        alertButton.style.opacity =
+            "0.75";
+
+        alertButton.style.cursor =
+            "default";
+
+    }
+
+
+    /* UPDATE STATUS */
+
+    updateGamingStatus();
+
+
     alert(
         "🔔 TrustAI Security Alerts\n\n" +
-        "Security alerts have been enabled " +
+
+        "Security alerts are now enabled " +
         "for " +
+
         selectedGame +
+
         ".\n\n" +
-        "TrustAI will provide security warnings " +
-        "when supported security events are " +
-        "available."
+
+        "Your alert preference has been saved " +
+        "on this device."
     );
 
 }
@@ -2263,7 +2305,11 @@ function updateGamingStatus() {
             "trustai_gaming_protection_active"
         ) === "true";
 
-
+    const alertsEnabled =
+        localStorage.getItem(
+            "trustai_gaming_alerts"
+        ) === "true";
+      
     const statusText =
         document.getElementById(
             "gamingStatusText"
