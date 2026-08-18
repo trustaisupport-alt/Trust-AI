@@ -1754,13 +1754,159 @@ function beginSecuritySetup() {
 
             `;
 
-        } else {
+        } else if (selectedGame === "Call of Duty") {
 
-            setupText.textContent =
-                "TrustAI is ready to help you " +
-                "set up security protection for " +
-                selectedGame +
-                ". Review the security options below.";
+    setupText.innerHTML = `
+
+        <strong style="
+            display:block;
+            color:#62a9ff;
+            font-size:16px;
+            margin-bottom:12px;
+        ">
+
+            🎮 Call of Duty Security
+
+        </strong>
+
+
+        <p style="
+            color:#8fa5bd;
+            font-size:13px;
+            line-height:1.6;
+            margin:0 0 15px;
+        ">
+
+            Follow these steps to improve the
+            security of your Call of Duty account.
+
+        </p>
+
+
+        <div style="
+            display:grid;
+            gap:10px;
+        ">
+
+
+            <div style="
+                padding:13px;
+                border:1px solid #214362;
+                border-radius:12px;
+                background:rgba(255,255,255,.03);
+            ">
+
+                🛡️
+                <strong>
+                    Secure your account
+                </strong>
+
+                <br>
+
+                <small style="color:#8fa5bd;">
+
+                    Use the official Call of Duty
+                    account-security options.
+
+                </small>
+
+            </div>
+
+
+            <div style="
+                padding:13px;
+                border:1px solid #214362;
+                border-radius:12px;
+                background:rgba(255,255,255,.03);
+            ">
+
+                🔍
+                <strong>
+                    Check account activity
+                </strong>
+
+                <br>
+
+                <small style="color:#8fa5bd;">
+
+                    Review your account for
+                    activity you don't recognize.
+
+                </small>
+
+            </div>
+
+
+            <div style="
+                padding:13px;
+                border:1px solid #214362;
+                border-radius:12px;
+                background:rgba(255,255,255,.03);
+            ">
+
+                🚨
+                <strong>
+                    Avoid phishing
+                </strong>
+
+                <br>
+
+                <small style="color:#8fa5bd;">
+
+                    Never enter your account details
+                    into suspicious websites or links.
+
+                </small>
+
+            </div>
+
+
+            <div style="
+                padding:13px;
+                border:1px solid #214362;
+                border-radius:12px;
+                background:rgba(255,255,255,.03);
+            ">
+
+                🔐
+                <strong>
+                    Protect your credentials
+                </strong>
+
+                <br>
+
+                <small style="color:#8fa5bd;">
+
+                    TrustAI will never ask for your
+                    Call of Duty password.
+
+                </small>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="button"
+            class="game-button"
+            style="margin-top:16px;"
+            onclick="enableGamingAlerts()">
+
+            🔔 Enable TrustAI Security Alerts
+
+        </button>
+
+    `;
+
+} else {
+
+    setupText.textContent =
+        "TrustAI is ready to help you " +
+        "set up security protection for " +
+        selectedGame +
+        ". Review the security options below.";
 
         }
 
