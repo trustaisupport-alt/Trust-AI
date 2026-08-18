@@ -10,6 +10,9 @@
 
 <title>TrustAI Protection Center</title>
 
+<meta name="description"
+      content="Manage TrustAI protection features and security settings.">
+
 <style>
 
 /* =====================================================
@@ -97,7 +100,9 @@ body {
 }
 
 .menu-button:hover {
+
     border-color: #1687ff;
+
     transform: translateY(-2px);
 }
 
@@ -277,7 +282,8 @@ body {
 
 .page {
 
-    width: min(900px, calc(100% - 24px));
+    width:
+        min(900px, calc(100% - 24px));
 
     margin: auto;
 
@@ -422,7 +428,8 @@ body {
 
 .status-title h2 {
 
-    margin: 0 0 3px;
+    margin:
+        0 0 3px;
 
     font-size: 19px;
 }
@@ -443,7 +450,8 @@ body {
 
     border-radius: 20px;
 
-    background: rgba(234,179,8,.12);
+    background:
+        rgba(234,179,8,.12);
 
     border:
         1px solid #7b6410;
@@ -764,40 +772,171 @@ body {
 
 
 /* =====================================================
-   ALERT BOX
+   NOTICE
 ===================================================== */
 
-.alert-box {
+.notice {
 
     margin-top: 20px;
 
     padding: 20px;
 
     border:
-        1px solid #214362;
+        1px solid #665218;
 
     border-radius: 18px;
 
-    background: #091a2a;
+    background:
+        rgba(82, 65, 12, .12);
 }
 
-.alert-box h3 {
+.notice h3 {
 
     margin:
         0 0 7px;
 
+    color: #fde68a;
+
     font-size: 16px;
 }
 
-.alert-box p {
+.notice p {
 
     margin: 0;
 
-    color: #8fa5bd;
+    color: #9da9b7;
 
     font-size: 13px;
 
     line-height: 1.6;
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services {
+
+    margin-top: 20px;
+
+    padding: 22px;
+
+    border:
+        1px solid #203d59;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d1f32,
+            #091522
+        );
+}
+
+.services h2 {
+
+    margin:
+        0 0 6px;
+
+    font-size: 21px;
+}
+
+.services > p {
+
+    margin:
+        0 0 18px;
+
+    color: #8fa5bd;
+
+    font-size: 13px;
+}
+
+.service-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid #1b3248;
+}
+
+.service-row:last-child {
+
+    border-bottom: 0;
+}
+
+.service-name {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.service-name-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: #102b46;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.service-name strong {
+
+    display: block;
+
+    font-size: 14px;
+}
+
+.service-name small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #7f95ab;
+
+    font-size: 11px;
+}
+
+.service-status {
+
+    padding:
+        5px 9px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(34,197,94,.10);
+
+    border:
+        1px solid #286b4a;
+
+    color: #86efac;
+
+    font-size: 11px;
+
+    font-weight: 800;
 }
 
 
@@ -890,19 +1029,25 @@ footer {
 @media (max-width: 430px) {
 
     .status-title h2 {
+
         font-size: 17px;
     }
 
     .status-title p {
+
         font-size: 12px;
     }
 
     .status-pill {
-        padding: 6px 8px;
+
+        padding:
+            6px 8px;
     }
 
     .account-button {
+
         width: 100%;
+
         min-width: 100%;
     }
 
@@ -922,6 +1067,7 @@ footer {
 
 <button
     class="menu-button"
+    type="button"
     onclick="toggleMenu()"
     aria-label="Open navigation menu">
 
@@ -1084,7 +1230,9 @@ footer {
 <main class="page">
 
 
-    <!-- HEADER -->
+    <!-- =================================================
+         HEADER
+    ================================================= -->
 
     <header class="header">
 
@@ -1138,7 +1286,9 @@ footer {
                     </h2>
 
                     <p id="statusText">
+
                         No protection features enabled yet.
+
                     </p>
 
                 </div>
@@ -1185,64 +1335,43 @@ footer {
     <section class="protection-grid">
 
 
-        <!-- CALL -->
-
         <!-- CALL PROTECTION -->
 
-<article class="protection-card">
+        <article class="protection-card">
 
-    <div class="card-top">
+            <div class="card-top">
 
-        <div class="protection-icon">
-            📞
-        </div>
+                <div class="protection-icon">
 
-        <button
-            class="card-toggle"
-            id="callToggle"
-            onclick="toggleProtection('call')"
-            aria-label="Toggle Call Protection">
-        </button>
+                    📞
 
-    </div>
+                </div>
 
-    <h3>
-        Incoming Call Protection
-    </h3>
 
-    <p>
-        TrustAI can help identify suspicious callers
-        and warn you about possible scam patterns.
-    </p>
+                <button
+                    type="button"
+                    class="card-toggle"
+                    id="callToggle"
+                    onclick="toggleProtection('call')"
+                    aria-label="Toggle Call Protection">
+                </button>
 
-    <span
-        id="callStatus"
-        class="protection-status">
-
-        Not enabled
-
-    </span>
-
-    <button
-        class="call-protection-button"
-        onclick="openCallProtection()">
-
-        Configure Protection
-
-    </button>
-
-</article>
+            </div>
 
 
             <h3>
-                Call Protection
+
+                Incoming Call Protection
+
             </h3>
 
 
             <p>
-                Designed to help identify suspicious
-                incoming callers and provide warnings
-                before you respond.
+
+                TrustAI can help identify suspicious
+                callers and warn you about possible
+                scam patterns.
+
             </p>
 
 
@@ -1254,20 +1383,35 @@ footer {
 
             </span>
 
+
+            <button
+                type="button"
+                class="account-button"
+                style="margin-top:15px;"
+                onclick="openCallProtection()">
+
+                Configure Protection
+
+            </button>
+
         </article>
 
 
-        <!-- MESSAGE -->
+        <!-- MESSAGE PROTECTION -->
 
         <article class="protection-card">
 
             <div class="card-top">
 
                 <div class="protection-icon">
+
                     💬
+
                 </div>
 
+
                 <button
+                    type="button"
                     class="card-toggle"
                     id="messageToggle"
                     onclick="toggleProtection('message')"
@@ -1278,14 +1422,18 @@ footer {
 
 
             <h3>
+
                 Message Protection
+
             </h3>
 
 
             <p>
+
                 Designed to identify suspicious
                 messages, impersonation attempts,
                 payment requests and scam patterns.
+
             </p>
 
 
@@ -1300,17 +1448,21 @@ footer {
         </article>
 
 
-        <!-- LINK -->
+        <!-- LINK PROTECTION -->
 
         <article class="protection-card">
 
             <div class="card-top">
 
                 <div class="protection-icon">
+
                     🔗
+
                 </div>
 
+
                 <button
+                    type="button"
                     class="card-toggle"
                     id="linkToggle"
                     onclick="toggleProtection('link')"
@@ -1319,118 +1471,111 @@ footer {
 
             </div>
 
+<h3>
+    Link Protection
+</h3>
 
-            <h3>
-                Link Protection
-            </h3>
+<p>
+    Helps identify suspicious or phishing
+    links before you open them.
+</p>
 
+<span
+    id="linkStatus"
+    class="protection-status">
 
-            <p>
-                Helps identify suspicious or phishing
-                links before you open them.
-            </p>
+    Not enabled
 
+</span>
 
-            <span
-                id="linkStatus"
-                class="protection-status">
-
-                Not enabled
-
-            </span>
-
-        </article>
+</article>
 
 
-        <!-- ACCOUNT -->
+<!-- ACCOUNT PROTECTION -->
 
-        <article class="protection-card">
+<article class="protection-card">
 
-            <div class="card-top">
+    <div class="card-top">
 
-                <div class="protection-icon">
-                    🔐
-                </div>
+        <div class="protection-icon">
+            🔐
+        </div>
 
-                <button
-                    class="card-toggle"
-                    id="accountToggle"
-                    onclick="toggleProtection('account')"
-                    aria-label="Toggle Account Protection">
-                </button>
+        <button
+            type="button"
+            class="card-toggle"
+            id="accountToggle"
+            onclick="toggleProtection('account')"
+            aria-label="Toggle Account Protection">
+        </button>
 
-            </div>
+    </div>
 
+    <h3>
+        Account Protection
+    </h3>
 
-            <h3>
-                Account Protection
-            </h3>
+    <p>
+        Monitor supported account-security
+        events and receive alerts about
+        unusual login activity.
+    </p>
 
+    <span
+        id="accountStatus"
+        class="protection-status">
 
-            <p>
-                Monitor supported account-security
-                events and receive alerts about
-                unusual login activity.
-            </p>
+        Not enabled
 
+    </span>
 
-            <span
-                id="accountStatus"
-                class="protection-status">
-
-                Not enabled
-
-            </span>
-
-        </article>
+</article>
 
 
-        <!-- GAMING -->
+<!-- GAMING PROTECTION -->
 
-        <article class="protection-card">
+<article class="protection-card">
 
-            <div class="card-top">
+    <div class="card-top">
 
-                <div class="protection-icon">
-                    🎮
-                </div>
+        <div class="protection-icon">
+            🎮
+        </div>
 
-                <button
-                    class="card-toggle"
-                    id="gamingToggle"
-                    onclick="toggleProtection('gaming')"
-                    aria-label="Toggle Gaming Protection">
-                </button>
+        <button
+            type="button"
+            class="card-toggle"
+            id="gamingToggle"
+            onclick="toggleProtection('gaming')"
+            aria-label="Toggle Gaming Protection">
+        </button>
 
-            </div>
+    </div>
 
+    <h3>
+        Gaming Protection
+    </h3>
 
-            <h3>
-                Gaming Protection
-            </h3>
+    <p>
+        Protect supported gaming accounts
+        against suspicious login activity,
+        phishing and account scams.
+    </p>
 
+    <span
+        id="gamingStatus"
+        class="protection-status">
 
-            <p>
-                Protect supported gaming accounts
-                against suspicious login activity,
-                phishing and account scams.
-            </p>
+        Not enabled
 
+    </span>
 
-            <span
-                id="gamingStatus"
-                class="protection-status">
-
-                Not enabled
-
-            </span>
-
-        </article>
+</article>
 
 
-        <!-- ALERTS -->
+<!-- GENERAL PROTECTION INFORMATION -->
 
-        <article class="protection-card">
+<article class="protection-card">
 
     <div class="card-top">
 
@@ -1438,116 +1583,52 @@ footer {
             🛡️
         </div>
 
-        <div class="protection-status">
-            <span class="status-dot"></span>
-            Protection Active
-        </div>
+        <span class="protection-status enabled">
+            Protection Center
+        </span>
 
     </div>
 
-    <div class="card-content">
+    <h3>
+        TrustAI Protection
+    </h3>
 
-        <h2>
-            TrustAI Protection
-        </h2>
+    <p>
+        Manage your calls, messages, links,
+        accounts and gaming protection settings
+        from one place.
+    </p>
 
-        <p>
-            Protect your accounts, calls, messages, links,
-            social media and gaming accounts from suspicious
-            activity.
-        </p>
+    <span class="protection-status">
+        Configure your protection above
+    </span>
 
-    </div>
+</article>
 
-    <div class="protection-features">
 
-        <div class="protection-feature">
-            <span>📞</span>
-            <div>
-                <strong>Incoming Calls</strong>
-                <small>
-                    Detect suspicious or potentially fraudulent callers.
-                </small>
-            </div>
-        </div>
+</section>
 
-        <div class="protection-feature">
-            <span>💬</span>
-            <div>
-                <strong>Incoming Messages</strong>
-                <small>
-                    Check messages for scam patterns and suspicious requests.
-                </small>
-            </div>
-        </div>
 
-        <div class="protection-feature">
-            <span>🔗</span>
-            <div>
-                <strong>Incoming Links</strong>
-                <small>
-                    Warn you about potentially dangerous links before you open them.
-                </small>
-            </div>
-        </div>
-
-        <div class="protection-feature">
-            <span>📱</span>
-            <div>
-                <strong>Social Media Accounts</strong>
-                <small>
-                    Get alerts about suspicious login activity on supported accounts.
-                </small>
-            </div>
-        </div>
-
-        <div class="protection-feature">
-            <span>🎮</span>
-            <div>
-                <strong>Gaming Accounts</strong>
-                <small>
-                    Monitor supported gaming accounts for suspicious sign-in activity.
-                </small>
-            </div>
-        </div>
-
-        <div class="protection-feature">
-            <span>🔐</span>
-            <div>
-                <strong>Login Alerts</strong>
-                <small>
-                    Receive an alert when suspicious account access is detected.
-                </small>
-            </div>
-        </div>
-
-    </div>
-
-    <button
-        class="protection-button"
-        onclick="window.location.href='protection.html'">
-
-        Activate Protection
-
-    </button>
-
-        </article>
-         <!-- =====================================================
+<!-- =====================================================
      PROTECTION ACTIVATION
 ===================================================== -->
 
 <section class="account-section">
 
-    <h2>🛡️ Activate TrustAI Protection</h2>
+    <h2>
+        🛡️ Activate TrustAI Protection
+    </h2>
 
     <p>
-        Choose your protection features and manage
-        your TrustAI security settings from one place.
+        Choose the protection features you want
+        to enable and manage your TrustAI security
+        settings from one place.
     </p>
 
     <div class="account-actions">
 
         <button
+            type="button"
             class="account-button"
             onclick="activateProtection()">
 
@@ -1556,8 +1637,9 @@ footer {
         </button>
 
         <button
+            type="button"
             class="account-button secondary"
-            onclick="alert('Your TrustAI protection settings are available here.')">
+            onclick="showProtectionSettings()">
 
             Protection Settings
 
@@ -1565,10 +1647,14 @@ footer {
 
     </div>
 
-</section> 
-      <!-- IMPORTANT NOTICE -->
+</section>
 
-<section class="notice">
+
+<!-- =====================================================
+     IMPORTANT NOTICE
+===================================================== -->
+
+<section class="alert-box">
 
     <h3>
         ⚠️ Important
@@ -1587,166 +1673,77 @@ footer {
 </section>
 
 
-<!-- PROTECTION SERVICES -->
+<!-- =====================================================
+     PROTECTION SERVICES
+===================================================== -->
 
-<section class="services">
+<section class="account-section">
 
     <h2>
         Protection Services
     </h2>
 
     <p>
-        These are the areas TrustAI is designed to
-        help protect.
+        These are the areas TrustAI is designed
+        to help protect.
     </p>
 
 
-    <div class="service-row">
+    <div class="account-actions">
 
-        <div class="service-name">
+        <button
+            type="button"
+            class="account-button secondary"
+            onclick="protectionAlert('calls')">
 
-            <div class="service-name-icon">
-                📞
-            </div>
+            📞 Call Protection
 
-            <div>
+        </button>
 
-                <strong>
-                    Call Protection
-                </strong>
+        <button
+            type="button"
+            class="account-button secondary"
+            onclick="protectionAlert('messages')">
 
-                <small>
-                    Suspicious caller detection
-                </small>
+            💬 Message Protection
 
-            </div>
+        </button>
 
-        </div>
+        <button
+            type="button"
+            class="account-button secondary"
+            onclick="protectionAlert('links')">
 
-        <div class="service-status">
-            Ready
-        </div>
+            🔗 Link Protection
 
-    </div>
+        </button>
 
+        <button
+            type="button"
+            class="account-button secondary"
+            onclick="protectionAlert('social')">
 
-    <div class="service-row">
+            📱 Account Protection
 
-        <div class="service-name">
+        </button>
 
-            <div class="service-name-icon">
-                💬
-            </div>
+        <button
+            type="button"
+            class="account-button secondary"
+            onclick="protectionAlert('gaming')">
 
-            <div>
+            🎮 Gaming Protection
 
-                <strong>
-                    Message Protection
-                </strong>
-
-                <small>
-                    Scam message analysis
-                </small>
-
-            </div>
-
-        </div>
-
-        <div class="service-status">
-            Ready
-        </div>
-
-    </div>
-
-
-    <div class="service-row">
-
-        <div class="service-name">
-
-            <div class="service-name-icon">
-                🔗
-            </div>
-
-            <div>
-
-                <strong>
-                    Link Protection
-                </strong>
-
-                <small>
-                    Phishing and suspicious URL checks
-                </small>
-
-            </div>
-
-        </div>
-
-        <div class="service-status">
-            Ready
-        </div>
-
-    </div>
-    <div class="service-row">
-
-        <div class="service-name">
-
-            <div class="service-name-icon">
-                📱
-            </div>
-
-            <div>
-
-                <strong>
-                    Social Account Protection
-                </strong>
-
-                <small>
-                    Suspicious login awareness
-                </small>
-
-            </div>
-
-        </div>
-
-        <div class="service-status">
-            Supported
-        </div>
-
-    </div>
-
-
-    <div class="service-row">
-
-        <div class="service-name">
-
-            <div class="service-name-icon">
-                🎮
-            </div>
-
-            <div>
-
-                <strong>
-                    Gaming Account Protection
-                </strong>
-
-                <small>
-                    Account security monitoring
-                </small>
-
-            </div>
-
-        </div>
-
-        <div class="service-status">
-            Supported
-        </div>
+        </button>
 
     </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -1763,28 +1760,49 @@ footer {
 </footer>
 
 
-</div>
+</main>
+
 
 <script>
 
+/* =====================================================
+   MENU
+===================================================== */
+
 function toggleMenu() {
 
-    const menu = document.getElementById("sideMenu");
-    const overlay = document.getElementById("menuOverlay");
+    const menu =
+        document.getElementById("sideMenu");
 
-    if (menu) menu.classList.toggle("open");
-    if (overlay) overlay.classList.toggle("show");
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    if (menu) {
+        menu.classList.toggle("open");
+    }
+
+    if (overlay) {
+        overlay.classList.toggle("show");
+    }
 
 }
 
 
 function closeMenu() {
 
-    const menu = document.getElementById("sideMenu");
-    const overlay = document.getElementById("menuOverlay");
+    const menu =
+        document.getElementById("sideMenu");
 
-    if (menu) menu.classList.remove("open");
-    if (overlay) overlay.classList.remove("show");
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    if (menu) {
+        menu.classList.remove("open");
+    }
+
+    if (overlay) {
+        overlay.classList.remove("show");
+    }
 
 }
 
@@ -1796,9 +1814,13 @@ function closeMenu() {
 const protectionState = {
 
     call: false,
+
     message: false,
+
     link: false,
+
     account: false,
+
     gaming: false
 
 };
@@ -1806,22 +1828,37 @@ const protectionState = {
 
 /* =====================================================
    TOGGLE PROTECTION
-======================,=============================== */
+===================================================== */
 
 function toggleProtection(type) {
 
-    if (!protectionState.hasOwnProperty(type)) {
+    if (
+        !Object.prototype.hasOwnProperty.call(
+            protectionState,
+            type
+        )
+    ) {
+
         return;
+
     }
+
 
     protectionState[type] =
         !protectionState[type];
 
+
     const toggle =
-        document.getElementById(type + "Toggle");
+        document.getElementById(
+            type + "Toggle"
+        );
+
 
     const status =
-        document.getElementById(type + "Status");
+        document.getElementById(
+            type + "Status"
+        );
+
 
     if (toggle) {
 
@@ -1832,6 +1869,7 @@ function toggleProtection(type) {
 
     }
 
+
     if (status) {
 
         status.classList.toggle(
@@ -1839,12 +1877,132 @@ function toggleProtection(type) {
             protectionState[type]
         );
 
+
         status.textContent =
             protectionState[type]
                 ? "Protection enabled"
                 : "Not enabled";
 
     }
+
+
+    saveProtectionState();
+
+    updateProtectionStatus();
+
+}
+
+
+/* =====================================================
+   SAVE PROTECTION STATE
+===================================================== */
+
+function saveProtectionState() {
+
+    localStorage.setItem(
+        "trustai_protection_state",
+        JSON.stringify(protectionState)
+    );
+
+}
+
+
+/* =====================================================
+   LOAD PROTECTION STATE
+===================================================== */
+
+function loadProtectionState() {
+
+    const saved =
+        localStorage.getItem(
+            "trustai_protection_state"
+        );
+
+
+    if (!saved) {
+
+        updateProtectionStatus();
+
+        return;
+
+    }
+
+
+    try {
+
+        const parsed =
+            JSON.parse(saved);
+
+
+        Object.keys(protectionState).forEach(
+            function(type) {
+
+                if (
+                    typeof parsed[type] ===
+                    "boolean"
+                ) {
+
+                    protectionState[type] =
+                        parsed[type];
+
+                }
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "TrustAI protection state error:",
+            error
+        );
+
+    }
+
+
+    Object.keys(protectionState).forEach(
+        function(type) {
+
+            const toggle =
+                document.getElementById(
+                    type + "Toggle"
+                );
+
+            const status =
+                document.getElementById(
+                    type + "Status"
+                );
+
+
+            if (toggle) {
+
+                toggle.classList.toggle(
+                    "active",
+                    protectionState[type]
+                );
+
+            }
+
+
+            if (status) {
+
+                status.classList.toggle(
+                    "enabled",
+                    protectionState[type]
+                );
+
+
+                status.textContent =
+                    protectionState[type]
+                        ? "Protection enabled"
+                        : "Not enabled";
+
+            }
+
+        }
+    );
+
 
     updateProtectionStatus();
 
@@ -1860,17 +2018,26 @@ function updateProtectionStatus() {
     const types =
         Object.keys(protectionState);
 
+
     let enabledCount = 0;
 
-    types.forEach(function(type) {
 
-        if (protectionState[type]) {
-            enabledCount++;
+    types.forEach(
+        function(type) {
+
+            if (protectionState[type]) {
+
+                enabledCount++;
+
+            }
+
         }
+    );
 
-    });
 
-    const total = types.length;
+    const total =
+        types.length;
+
 
     const percentage =
         total === 0
@@ -1879,13 +2046,21 @@ function updateProtectionStatus() {
 
 
     const progressBar =
-        document.getElementById("progressBar");
+        document.getElementById(
+            "progressBar"
+        );
+
 
     const statusText =
-        document.getElementById("statusText");
+        document.getElementById(
+            "statusText"
+        );
+
 
     const statusPill =
-        document.getElementById("statusPill");
+        document.getElementById(
+            "statusPill"
+        );
 
 
     if (progressBar) {
@@ -1905,18 +2080,24 @@ function updateProtectionStatus() {
 
         }
 
+
         if (statusPill) {
 
             statusPill.textContent =
                 "NOT ACTIVE";
 
-            statusPill.classList.remove("active");
+            statusPill.classList.remove(
+                "active"
+            );
 
         }
 
+        return;
+
     }
 
-    else if (enabledCount === total) {
+
+    if (enabledCount === total) {
 
         if (statusText) {
 
@@ -1925,37 +2106,42 @@ function updateProtectionStatus() {
 
         }
 
+
         if (statusPill) {
 
             statusPill.textContent =
                 "FULLY ACTIVE";
 
-            statusPill.classList.add("active");
+            statusPill.classList.add(
+                "active"
+            );
 
         }
+
+        return;
 
     }
 
-    else {
 
-        if (statusText) {
+    if (statusText) {
 
-            statusText.textContent =
-                enabledCount +
-                " of " +
-                total +
-                " protection features enabled.";
+        statusText.textContent =
+            enabledCount +
+            " of " +
+            total +
+            " protection features enabled.";
 
-        }
+    }
 
-        if (statusPill) {
 
-            statusPill.textContent =
-                "ACTIVE";
+    if (statusPill) {
 
-            statusPill.classList.add("active");
+        statusPill.textContent =
+            "ACTIVE";
 
-        }
+        statusPill.classList.add(
+            "active"
+        );
 
     }
 
@@ -1963,7 +2149,7 @@ function updateProtectionStatus() {
 
 
 /* =====================================================
-   INCOMING CALL PROTECTION
+   CALL PROTECTION
 ===================================================== */
 
 function openCallProtection() {
@@ -1973,11 +2159,9 @@ function openCallProtection() {
         alert(
             "🛡️ TrustAI Call Protection\n\n" +
             "Call Protection is ACTIVE.\n\n" +
-            "TrustAI is configured to help identify " +
-            "suspicious callers and scam-call patterns.\n\n" +
-            "⚠️ Real-time incoming-call detection " +
-            "requires a supported mobile app and " +
-            "the appropriate device permissions."
+            "Real-time incoming-call detection " +
+            "requires a supported mobile app " +
+            "and the appropriate device permissions."
         );
 
         return;
@@ -1997,12 +2181,13 @@ function openCallProtection() {
 
         toggleProtection("call");
 
+
         alert(
             "🛡️ Call Protection Activated\n\n" +
-            "TrustAI Call Protection is now enabled.\n\n" +
-            "⚠️ Real-time incoming-call detection " +
-            "will require the appropriate mobile-app " +
-            "permissions."
+            "The TrustAI Call Protection setting " +
+            "has been enabled.\n\n" +
+            "Real-time call detection will require " +
+            "the appropriate mobile-app permissions."
         );
 
     }
@@ -2016,14 +2201,54 @@ function openCallProtection() {
 
 function activateProtection() {
 
+    const enabledCount =
+        Object.values(
+            protectionState
+        ).filter(Boolean).length;
+
+
+    if (enabledCount === 0) {
+
+        alert(
+            "🛡️ TrustAI Protection\n\n" +
+            "Please enable at least one protection " +
+            "feature above first."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "trustai_protection_active",
+        "true"
+    );
+
+
     alert(
         "🛡️ TrustAI Protection\n\n" +
-        "Your protection settings are ready.\n\n" +
-        "Enable the protection features you want " +
-        "to use above.\n\n" +
-        "⚠️ Real-time call, message and account " +
-        "monitoring requires appropriate device " +
+        enabledCount +
+        " protection feature(s) enabled.\n\n" +
+        "Your selected settings have been saved.\n\n" +
+        "Some real-time features require device " +
         "permissions and official service integrations."
+    );
+
+}
+
+
+/* =====================================================
+   PROTECTION SETTINGS
+===================================================== */
+
+function showProtectionSettings() {
+
+    alert(
+        "⚙️ TrustAI Protection Settings\n\n" +
+        "Use the switches above to enable or " +
+        "disable individual protection features.\n\n" +
+        "Your settings are saved automatically."
     );
 
 }
@@ -2038,29 +2263,33 @@ function protectionAlert(type) {
     const messages = {
 
         calls:
-            "📞 Incoming Call Protection\n\n" +
-            "TrustAI can help identify suspicious callers " +
-            "and warn you about possible scam patterns.",
+            "📞 Call Protection\n\n" +
+            "Helps identify suspicious callers " +
+            "and possible scam-call patterns.",
+
 
         messages:
-            "💬 Incoming Message Protection\n\n" +
-            "TrustAI can analyze suspicious messages " +
-            "for scam patterns and suspicious requests.",
+            "💬 Message Protection\n\n" +
+            "Analyzes suspicious messages for " +
+            "scam patterns and suspicious requests.",
+
 
         links:
-            "🔗 Incoming Link Protection\n\n" +
-            "TrustAI can check suspicious links for " +
-            "common phishing warning signs.",
+            "🔗 Link Protection\n\n" +
+            "Checks suspicious links for common " +
+            "phishing warning signs.",
+
 
         social:
-            "📱 Social Media Protection\n\n" +
-            "TrustAI can help you recognize suspicious " +
-            "login activity and possible account takeover attempts.",
+            "📱 Account Protection\n\n" +
+            "Helps you recognize suspicious login " +
+            "activity and possible account takeover attempts.",
+
 
         gaming:
-            "🎮 Gaming Account Protection\n\n" +
-            "TrustAI can help you recognize suspicious " +
-            "login attempts and account-stealing messages."
+            "🎮 Gaming Protection\n\n" +
+            "Helps identify suspicious gaming-account " +
+            "login attempts and account scams."
 
     };
 
@@ -2078,14 +2307,14 @@ function protectionAlert(type) {
    START
 ===================================================== */
 
+loadProtectionState();
+
 updateProtectionStatus();
 
 </script>
-</body>
 
-    </html>
 
 </body>
 
-    </html>
-            
+</html>
+      
