@@ -2157,29 +2157,17 @@ function enableGamingAlerts() {
         );
 
         return;
-
     }
-
 
     localStorage.setItem(
         "trustai_gaming_alerts",
         "true"
     );
 
-
-    alert(
-        "🔔 TrustAI Security Alerts\n\n" +
-        "Security alerts have been enabled " +
-        "for " +
-        selectedGame +
-        ".\n\n" +
-        "TrustAI will provide security warnings " +
-        "when supported security events are " +
-        "available."
-    );
-
+    window.location.href =
+        "gamealert.html";
 }
-
+      }
 
 /* =====================================================
    GAMING STATUS
