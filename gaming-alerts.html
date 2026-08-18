@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI Gaming Alerts</title>
+
+<meta name="description"
+      content="TrustAI Gaming Security Alerts">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(37,99,235,.16),
+            transparent 35%
+        ),
+        #050b14;
+
+    color: #f1f5f9;
+    min-height: 100vh;
+}
+
+.page {
+    width: min(850px, calc(100% - 24px));
+    margin: auto;
+    padding: 45px 0;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #214362;
+    background: #0b1c2d;
+    color: #a9bdd2;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.header {
+    text-align: center;
+    padding: 35px 15px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    border: 1px solid #21476c;
+    background: rgba(15,42,68,.65);
+    color: #62a9ff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.header h1 {
+    margin: 18px 0 10px;
+    font-size: clamp(30px, 7vw, 45px);
+}
+
+.header h1 span {
+    color: #62a9ff;
+}
+
+.header p {
+    color: #8fa5bd;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.status-card,
+.alert-card,
+.empty-card {
+    padding: 22px;
+    margin-bottom: 18px;
+    border-radius: 20px;
+    border: 1px solid #203d59;
+    background:
+        linear-gradient(
+            145deg,
+            #0d1f32,
+            #091522
+        );
+}
+
+.status-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.status-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    background: #123554;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.status-card h2 {
+    margin: 0 0 5px;
+    font-size: 19px;
+}
+
+.status-card p {
+    margin: 0;
+    color: #8fa5bd;
+    font-size: 13px;
+}
+
+.status-pill {
+    padding: 7px 11px;
+    border-radius: 20px;
+    background: rgba(234,179,8,.12);
+    border: 1px solid #7b6410;
+    color: #fde68a;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.status-pill.active {
+    background: rgba(34,197,94,.12);
+    border-color: #267542;
+    color: #86efac;
+}
+
+.alert-card h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+}
+
+.alert-card p {
+    margin: 0;
+    color: #8fa5bd;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.alert-time {
+    margin-top: 12px;
+    color: #627890;
+    font-size: 11px;
+}
+
+.empty-card {
+    text-align: center;
+    color: #8fa5bd;
+    line-height: 1.6;
+}
+
+footer {
+    margin-top: 35px;
+    padding: 25px 10px;
+    border-top: 1px solid #1c334a;
+    text-align: center;
+    color: #667c93;
+    font-size: 12px;
+}
+
+.footer-brand {
+    color: #a9bdd2;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        padding-top: 25px;
+    }
+
+    .status-top {
+        align-items: flex-start;
+    }
+
+    .status-pill {
+        white-space: nowrap;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<main class="page">
+
+
+<a
+    href="./gaming.html"
+    class="back-button">
+
+    ← Back to Gaming Protection
+
+</a>
+
+
+<header class="header">
+
+    <div class="badge">
+
+        🔔 TRUSTAI SECURITY ALERTS
+
+    </div>
+
+
+    <h1>
+
+        Gaming <span>Alerts</span>
+
+    </h1>
+
+
+    <p>
+
+        Review your TrustAI gaming protection
+        status and security notifications.
+
+    </p>
+
+</header>
+
+
+<section class="status-card">
+
+    <div class="status-top">
+
+        <div class="status-left">
+
+            <div class="status-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h2>
+                    Protection Status
+                </h2>
+
+                <p id="statusText">
+                    Checking protection status...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="statusPill"
+            class="status-pill">
+
+            CHECKING
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="alertsContainer">
+
+</section>
+
+
+<footer>
+
+    <div class="footer-brand">
+        🛡️ TrustAI
+    </div>
+
+    Gaming security and scam protection.
+
+    <br><br>
+
+    © 2026 TrustAI
+
+</footer>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   LOAD SAVED GAMING STATE
+===================================================== */
+
+const selectedGame =
+    localStorage.getItem(
+        "trustai_selected_game"
+    ) || "";
+
+
+const protectionActive =
+    localStorage.getItem(
+        "trustai_gaming_protection_active"
+    ) === "true";
+
+
+const alertsEnabled =
+    localStorage.getItem(
+        "trustai_gaming_alerts"
+    ) === "true";
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+const statusText =
+    document.getElementById(
+        "statusText"
+    );
+
+
+const statusPill =
+    document.getElementById(
+        "statusPill"
+    );
+
+
+if (
+    protectionActive &&
+    selectedGame
+) {
+
+    statusText.textContent =
+        selectedGame +
+        " protection is active.";
+
+
+    statusPill.textContent =
+        alertsEnabled
+            ? "PROTECTED"
+            : "SETUP ACTIVE";
+
+
+    statusPill.classList.add(
+        "active"
+    );
+
+} else {
+
+    statusText.textContent =
+        "No gaming protection is currently active.";
+
+    statusPill.textContent =
+        "NOT ACTIVE";
+
+}
+
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
+const alertsContainer =
+    document.getElementById(
+        "alertsContainer"
+    );
+
+
+if (!alertsEnabled) {
+
+    alertsContainer.innerHTML = `
+
+        <div class="empty-card">
+
+            🔔
+
+            <br><br>
+
+            Security alerts are currently
+            disabled.
+
+            <br><br>
+
+            Return to Gaming Protection
+            and enable TrustAI Security Alerts.
+
+        </div>
+
+    `;
+
+} else {
+
+    alertsContainer.innerHTML = `
+
+        <div class="alert-card">
+
+            <h3>
+                🟢 Security Alerts Enabled
+            </h3>
+
+            <p>
+
+                TrustAI security alerts are enabled
+                for your selected gaming protection.
+
+                No suspicious security event has
+                been reported by TrustAI on this page.
+
+            </p>
+
+            <div class="alert-time">
+
+                Protection: ${selectedGame}
+
+            </div>
+
+        </div>
+
+
+        <div class="alert-card">
+
+            <h3>
+                🛡️ Security Reminder
+            </h3>
+
+            <p>
+
+                Never share your gaming password,
+                verification code or recovery code
+                with another person.
+
+            </p>
+
+            <div class="alert-time">
+
+                TrustAI security reminder
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
