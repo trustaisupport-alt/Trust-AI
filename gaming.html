@@ -1565,116 +1565,185 @@ function updateGamingStatus() {
                 " protection setup started.";
 
         }
-
-
-        if (statusPill) {
-
-            statusPill.textContent =
-                "ACTIVE";
-
-            statusPill.classList.add(
-                "active"
-            );
-
-        }
-
-    } else {
-
-        if (statusText) {
-
-            statusText.textContent =
-                "No gaming account connected yet.";
-
-        }
-
-
-        if (statusPill) {
-
-            statusPill.textContent =
-                "NOT ACTIVE";
-
-            statusPill.classList.remove(
-                "active"
-            );
-
-        }
-
-    }
-
-}
-
-
 /* =====================================================
-   RESTORE GAMING STATE
+   BEGIN SECURITY SETUP
 ===================================================== */
 
-function restoreGamingState() {
+function beginSecuritySetup() {
 
     if (!selectedGame) {
 
-        updateGamingStatus();
+        alert(
+            "🎮 TrustAI Gaming Protection\n\n" +
+            "Please select a game first."
+        );
 
         return;
-
     }
 
 
-    const selectedBox =
+    let setupBox =
         document.getElementById(
-            "selectedGame"
+            "securitySetupBox"
         );
 
 
-    const selectedName =
-        document.getElementById(
-            "selectedGameName"
-        );
+    /* CREATE SETUP BOX AUTOMATICALLY */
+
+    if (!setupBox) {
+
+        setupBox =
+            document.createElement("div");
+
+        setupBox.id =
+            "securitySetupBox";
+
+        setupBox.style.marginTop =
+            "20px";
+
+        setupBox.style.padding =
+            "20px";
+
+        setupBox.style.border =
+            "1px solid #214d73";
+
+        setupBox.style.borderRadius =
+            "16px";
+
+        setupBox.style.background =
+            "rgba(22,135,255,.07)";
 
 
-    const connectButton =
-        document.getElementById(
-            "connectButton"
-        );
+        setupBox.innerHTML = `
+
+            <h3 style="
+                margin-top:0;
+                color:#ffffff;
+            ">
+
+                🔐 ${selectedGame}
+                Security Setup
+
+            </h3>
 
 
-    if (selectedBox) {
+            <p style="
+                color:#8fa5bd;
+                font-size:13px;
+                line-height:1.6;
+            ">
 
-        selectedBox.classList.add(
-            "show"
-        );
+                TrustAI is ready to help you
+                set up security protection for
+                your ${selectedGame} account.
+
+            </p>
+
+
+            <div style="
+                margin-top:15px;
+                padding:14px;
+                border-radius:12px;
+                background:rgba(34,197,94,.08);
+                border:1px solid #286b4a;
+            ">
+
+                <strong style="
+                    color:#86efac;
+                ">
+
+                    🛡️ Protection Setup Started
+
+                </strong>
+
+                <p style="
+                    margin:7px 0 0;
+                    color:#9da9b7;
+                    font-size:12px;
+                    line-height:1.5;
+                ">
+
+                    TrustAI will help you identify
+                    suspicious login activity,
+                    phishing attempts and account
+                    security risks.
+
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="game-button"
+                style="margin-top:15px;"
+                onclick="enableGamingAlerts()">
+
+                🔔 Enable Security Alerts
+
+            </button>
+
+        `;
+
+
+        const connectSection =
+            document.querySelector(
+                ".connect-section"
+            );
+
+
+        if (connectSection) {
+
+            connectSection.appendChild(
+                setupBox
+            );
+
+        }
 
     }
 
 
-    if (selectedName) {
-
-        selectedName.textContent =
-            "Selected game: " +
-            selectedGame;
-
-    }
+    setupBox.style.display =
+        "block";
 
 
-    if (connectButton) {
-
-        connectButton.textContent =
-            "🔐 Begin " +
-            selectedGame +
-            " Security Setup";
-
-    }
+    localStorage.setItem(
+        "trustai_gaming_protection_active",
+        "true"
+    );
 
 
     updateGamingStatus();
 
-}
-
-
-/* =====================================================
-   START
+              }
+          /* =====================================================
+   ENABLE GAMING ALERTS
 ===================================================== */
 
-restoreGamingState();
+function enableGamingAlerts() {
+
+    localStorage.setItem(
+        "trustai_gaming_alerts",
+        "true"
+    );
+
+
+    alert(
+        "🔔 TrustAI Security Alerts\n\n" +
+
+        "Gaming security alerts have been " +
+        "enabled for " +
+
+        selectedGame +
+
+        ".\n\n" +
+
+        "TrustAI will provide security warnings " +
+        "when supported security events are " +
+        "available."
+    );
+
+}
 
 </script>
 
