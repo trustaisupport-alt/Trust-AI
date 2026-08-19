@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI Admin Reports</title>
+
+<meta name="description"
+      content="TrustAI administrator scam reports dashboard">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: white;
+}
+
+header {
+    background: #0d1b2a;
+    border-bottom: 1px solid #1d334b;
+    padding: 18px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.brand {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.brand span {
+    color: #35a7ff;
+}
+
+.admin-label {
+    color: #8fa1b5;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.logout {
+    border: 1px solid #29425d;
+    background: #101f30;
+    color: white;
+
+    padding: 10px 15px;
+    border-radius: 9px;
+
+    cursor: pointer;
+}
+
+.logout:hover {
+    background: #172b41;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 20px 50px;
+}
+
+.page-title {
+    margin-bottom: 25px;
+}
+
+.page-title h1 {
+    margin: 0 0 7px;
+    font-size: 28px;
+}
+
+.page-title p {
+    margin: 0;
+    color: #91a0b2;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: #0d1b2a;
+    border: 1px solid #1d334b;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.stat-label {
+    color: #91a0b2;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.controls {
+    background: #0d1b2a;
+    border: 1px solid #1d334b;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 20px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr) 190px;
+    gap: 12px;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    border: 1px solid #29425d;
+
+    background: #081522;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+input:focus,
+select:focus {
+    border-color: #35a7ff;
+}
+
+.message {
+    display: none;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+
+    line-height: 1.5;
+
+    font-size: 14px;
+}
+
+.error {
+    display: block;
+
+    background: rgba(255, 70, 70, 0.12);
+
+    border: 1px solid rgba(255, 70, 70, 0.35);
+
+    color: #ff8585;
+}
+
+.loading {
+    display: block;
+
+    background: rgba(53, 167, 255, 0.10);
+
+    border: 1px solid rgba(53, 167, 255, 0.25);
+
+    color: #8bcaff;
+}
+
+.table-container {
+    background: #0d1b2a;
+    border: 1px solid #1d334b;
+    border-radius: 14px;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 950px;
+}
+
+th,
+td {
+    padding: 15px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #1d334b;
+
+    vertical-align: top;
+}
+
+th {
+    color: #91a0b2;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    background: #0a1725;
+}
+
+td {
+    font-size: 14px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.description-cell {
+    max-width: 300px;
+    line-height: 1.5;
+    color: #c4ced9;
+}
+
+.website {
+    color: #55b5ff;
+    word-break: break-all;
+}
+
+.phone {
+    white-space: nowrap;
+}
+
+.scam-type {
+    display: inline-block;
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    background: #142b42;
+
+    color: #8bcaff;
+
+    font-size: 12px;
+}
+
+.date {
+    white-space: nowrap;
+    color: #aeb9c6;
+}
+
+.empty {
+    text-align: center;
+
+    padding: 40px;
+
+    color: #8190a1;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 15px;
+    }
+
+    .header-inner {
+        align-items: flex-start;
+    }
+
+    main {
+        padding: 20px 12px 40px;
+    }
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .admin-label {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="header-inner">
+
+        <div>
+
+            <div class="brand">
+                Trust<span>AI</span>
+            </div>
+
+            <div class="admin-label">
+                Security Administration
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout"
+            id="logoutButton">
+
+            Log Out
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+    <div class="page-title">
+
+        <h1>
+            Scam Reports
+        </h1>
+
+        <p>
+            Review reports submitted by the TrustAI community.
+        </p>
+
+    </div>
+
+
+
+    <div id="message"
+         class="message">
+    </div>
+
+
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Total Reports
+            </div>
+
+            <div class="stat-value"
+                 id="totalReports">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Reports Shown
+            </div>
+
+            <div class="stat-value"
+                 id="shownReports">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-label">
+                Scam Types
+            </div>
+
+            <div class="stat-value"
+                 id="scamTypes">
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="controls">
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search phone, website, reporter, type or description...">
+
+
+        <select id="typeFilter">
+
+            <option value="">
+                All scam types
+            </option>
+
+        </select>
+
+    </section>
+
+
+
+    <section class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Date
+                    </th>
+
+                    <th>
+                        Reporter
+                    </th>
+
+                    <th>
+                        Phone
+                    </th>
+
+                    <th>
+                        Scam Type
+                    </th>
+
+                    <th>
+                        Website
+                    </th>
+
+                    <th>
+                        Description
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="reportsBody">
+
+            </tbody>
+
+        </table>
+
+
+        <div
+            id="emptyMessage"
+            class="empty hidden">
+
+            No reports found.
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* =========================================
+   TRUSTAI SUPABASE CONFIGURATION
+========================================= */
+
+const SUPABASE_URL =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================
+   ADMIN CONFIGURATION
+========================================= */
+
+const ADMIN_EMAIL =
+    "trustai.support@gmail.com";
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const messageBox =
+    document.getElementById("message");
+
+const reportsBody =
+    document.getElementById("reportsBody");
+
+const emptyMessage =
+    document.getElementById("emptyMessage");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const typeFilter =
+    document.getElementById("typeFilter");
+
+const totalReports =
+    document.getElementById("totalReports");
+
+const shownReports =
+    document.getElementById("shownReports");
+
+const scamTypes =
+    document.getElementById("scamTypes");
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+
+let allReports = [];
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(text, type) {
+
+    messageBox.textContent = text;
+
+    messageBox.className =
+        "message " + type;
+}
+
+
+function hideMessage() {
+
+    messageBox.textContent = "";
+
+    messageBox.className =
+        "message";
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================
+   AUTHORIZATION CHECK
+========================================= */
+
+async function checkAdminAccess() {
+
+    showMessage(
+        "Checking administrator access...",
+        "loading"
+    );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient.auth.getUser();
+
+
+        if (error) {
+
+            console.error(error);
+
+            window.location.href =
+                "admin-login.html";
+
+            return false;
+        }
+
+
+        const user =
+            data.user;
+
+
+        if (!user) {
+
+            window.location.href =
+                "admin-login.html";
+
+            return false;
+        }
+
+
+        const userEmail =
+            (user.email || "")
+            .toLowerCase()
+            .trim();
+
+
+        if (userEmail !==
+            ADMIN_EMAIL.toLowerCase()) {
+
+            await supabaseClient.auth.signOut();
+
+            document.body.innerHTML = `
+
+                <div style="
+                    min-height:100vh;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    background:#07111f;
+                    color:white;
+                    font-family:Arial,sans-serif;
+                    padding:20px;
+                    text-align:center;
+                ">
+
+                    <div>
+
+                        <div style="
+                            font-size:50px;
+                            margin-bottom:15px;
+                        ">
+                            🔒
+                        </div>
+
+                        <h1>
+                            Access Denied
+                        </h1>
+
+                        <p style="
+                            color:#91a0b2;
+                        ">
+                            This account is not authorized
+                            to access the TrustAI
+                            administrator dashboard.
+                        </p>
+
+                        <a
+                            href="admin-login.html"
+                            style="
+                                color:#55b5ff;
+                                text-decoration:none;
+                            ">
+                            Return to Admin Login
+                        </a>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return false;
+        }
+
+
+        hideMessage();
+
+        return true;
+
+    } catch (error) {
+
+        console.error(error);
+
+        window.location.href =
+            "admin-login.html";
+
+        return false;
+    }
+
+}
+
+
+/* =========================================
+   LOAD REPORTS
+========================================= */
+
+async function loadReports() {
+
+    showMessage(
+        "Loading reports...",
+        "loading"
+    );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("reports")
+            .select(
+                "id, created_at, phone_number, scam_type, description, website, reporter_name"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Report loading error:",
+                error
+            );
+
+            showMessage(
+                "Reports could not be loaded. Check your Supabase RLS policy.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        allReports =
+            data || [];
+
+
+        updateStatistics();
+
+        populateFilter();
+
+        renderReports();
+
+        hideMessage();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "An unexpected error occurred while loading reports.",
+            "error"
+        );
+    }
+
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+function updateStatistics() {
+
+    totalReports.textContent =
+        allReports.length;
+
+
+    const types =
+        new Set();
+
+
+    allReports.forEach(function(report) {
+
+        if (report.scam_type) {
+
+            types.add(
+                report.scam_type
+            );
+        }
+
+    });
+
+
+    scamTypes.textContent =
+        types.size;
+}
+
+
+/* =========================================
+   FILTER OPTIONS
+========================================= */
+
+function populateFilter() {
+
+    const currentValue =
+        typeFilter.value;
+
+
+    typeFilter.innerHTML = `
+
+        <option value="">
+            All scam types
+        </option>
+
+    `;
+
+
+    const types =
+        [...new Set(
+
+            allReports
+
+                .map(function(report) {
+
+                    return report.scam_type;
+
+                })
+
+                .filter(Boolean)
+
+        )]
+
+
+        .sort();
+
+
+    types.forEach(function(type) {
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            type;
+
+        option.textContent =
+            type;
+
+        typeFilter.appendChild(
+            option
+        );
+
+    });
+
+
+    typeFilter.value =
+        currentValue;
+}
+
+
+/* =========================================
+   FILTER REPORTS
+========================================= */
+
+function getFilteredReports() {
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    const selectedType =
+        typeFilter.value;
+
+
+    return allReports.filter(
+        function(report) {
+
+            const searchableText = [
+
+                report.phone_number,
+
+                report.scam_type,
+
+                report.description,
+
+                report.website,
+
+                report.reporter_name
+
+            ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+
+            const matchesSearch =
+                !search ||
+                searchableText.includes(
+                    search
+                );
+
+
+            const matchesType =
+                !selectedType ||
+                report.scam_type ===
+                selectedType;
+
+
+            return (
+                matchesSearch &&
+                matchesType
+            );
+
+        }
+    );
+}
+
+
+/* =========================================
+   RENDER REPORTS
+========================================= */
+
+function renderReports() {
+
+    const reports =
+        getFilteredReports();
+
+
+    reportsBody.innerHTML = "";
+
+
+    shownReports.textContent =
+        reports.length;
+
+
+    if (!reports.length) {
+
+        emptyMessage.classList.remove(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    emptyMessage.classList.add(
+        "hidden"
+    );
+
+
+    reports.forEach(function(report) {
+
+        const row =
+            document.createElement("tr");
+
+
+        const date =
+            report.created_at
+                ? new Date(
+                    report.created_at
+                  ).toLocaleString()
+                : "Unknown";
+
+
+        row.innerHTML = `
+
+            <td class="date">
+                ${escapeHTML(date)}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    report.reporter_name ||
+                    "Anonymous"
+                )}
+            </td>
+
+            <td class="phone">
+                ${escapeHTML(
+                    report.phone_number ||
+                    "—"
+                )}
+            </td>
+
+            <td>
+
+                <span class="scam-type">
+
+                    ${escapeHTML(
+                        report.scam_type ||
+                        "Unspecified"
+                    )}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                ${
+                    report.website
+
+                    ? `
+
+                        <div class="website">
+
+                            ${escapeHTML(
+                                report.website
+                            )}
+
+                        </div>
+
+                      `
+
+                    : "—"
+                }
+
+            </td>
+
+            <td class="description-cell">
+
+                ${escapeHTML(
+                    report.description ||
+                    "No description provided."
+                )}
+
+            </td>
+
+        `;
+
+
+        reportsBody.appendChild(
+            row
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+searchInput.addEventListener(
+    "input",
+    renderReports
+);
+
+
+typeFilter.addEventListener(
+    "change",
+    renderReports
+);
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+logoutButton.addEventListener(
+    "click",
+    async function() {
+
+        logoutButton.disabled =
+            true;
+
+        logoutButton.textContent =
+            "Logging out...";
+
+
+        await supabaseClient.auth.signOut();
+
+
+        window.location.href =
+            "admin-login.html";
+
+    }
+);
+
+
+/* =========================================
+   START
+========================================= */
+
+async function startDashboard() {
+
+    const authorized =
+        await checkAdminAccess();
+
+
+    if (!authorized) {
+        return;
+    }
+
+
+    await loadReports();
+
+}
+
+
+startDashboard();
+
+</script>
+
+</body>
+
+  </html>
