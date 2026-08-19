@@ -1,1 +1,1757 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Phone Number Checker - TrustAI</title>
+
+<meta name="description"
+content="Check a phone number for known scam reports and suspicious activity with TrustAI.">
+
+<style>
+
+*
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(22, 131, 232, .12),
+            transparent 35%
+        ),
+        #050d18;
+
+    color: #eef6ff;
+}
+
+/* =========================
+   MENU BUTTON
+========================= */
+
+.menu-button {
+    position: fixed;
+
+    top: 16px;
+    left: 16px;
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid #294b6b;
+    border-radius: 13px;
+
+    background: #102b45;
+
+    cursor: pointer;
+
+    z-index: 3000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.menu-button span {
+    width: 23px;
+    height: 3px;
+
+    background: white;
+
+    border-radius: 5px;
+
+    transition: .2s ease;
+}
+
+.menu-button:hover {
+    border-color: #3da4ff;
+}
+
+/* =========================
+   SIDE MENU
+========================= */
+
+.side-menu {
+    position: fixed;
+
+    top: 0;
+    left: -300px;
+
+    width: 285px;
+    height: 100vh;
+    height: 100dvh;
+
+    padding: 85px 18px 25px;
+
+    background: #091a2c;
+
+    border-right: 1px solid #294763;
+
+    z-index: 2500;
+
+    transition: left .3s ease;
+
+    overflow-y: auto;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-title {
+    padding: 0 12px 18px;
+
+    border-bottom: 1px solid #29425a;
+
+    margin-bottom: 12px;
+}
+
+.menu-title strong {
+    display: block;
+
+    color: #55a9ff;
+
+    font-size: 22px;
+}
+
+.menu-title span {
+    display: block;
+
+    color: #8298ae;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+.menu-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    margin-bottom: 4px;
+
+    border-radius: 11px;
+
+    color: #dce9f6;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+.menu-link:hover {
+    background: #123552;
+
+    color: #62b1ff;
+
+    transform: translateX(3px);
+}
+
+.menu-icon {
+    width: 25px;
+
+    text-align: center;
+}
+
+.menu-divider {
+    height: 1px;
+
+    background: #29425a;
+
+    margin: 14px 0;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.menu-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.65);
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    z-index: 2000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+}
+
+.menu-overlay.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    width: min(950px, calc(100% - 28px));
+
+    margin: auto;
+
+    padding: 85px 0 50px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10395e,
+            #071625
+        );
+
+    border: 1px solid #2c5b80;
+
+    border-radius: 28px;
+
+    padding: 38px 28px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.3);
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -80px;
+    top: -80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(55,160,255,.12);
+}
+
+.hero-label {
+    position: relative;
+    z-index: 1;
+
+    color: #63b4ff;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+}
+
+.hero h1 {
+    position: relative;
+    z-index: 1;
+
+    margin: 10px 0 12px;
+
+    font-size: 34px;
+
+    line-height: 1.2;
+}
+
+.hero p {
+    position: relative;
+    z-index: 1;
+
+    margin: 0;
+
+    max-width: 700px;
+
+    color: #a9bdd0;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+/* =========================
+   CHECKER CARD
+========================= */
+
+.checker-card {
+    background: #0a1b2d;
+
+    border: 1px solid #294863;
+
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.2);
+}
+
+.checker-card h2 {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+}
+
+.checker-intro {
+    margin: 0 0 24px;
+
+    color: #8fa6bb;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   INPUT
+========================= */
+
+.field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #dce9f5;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.phone-input-wrap {
+    position: relative;
+}
+
+.phone-input {
+    width: 100%;
+
+    padding: 16px 15px 16px 48px;
+
+    border: 1px solid #31516d;
+
+    border-radius: 13px;
+
+    background: #061321;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+.phone-input::placeholder {
+    color: #60778d;
+}
+
+.phone-input:focus {
+    border-color: #3298f4;
+
+    box-shadow:
+        0 0 0 3px rgba(50,152,244,.12);
+}
+
+.phone-symbol {
+    position: absolute;
+
+    left: 16px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 20px;
+
+    pointer-events: none;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.check-button {
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background: #1683e8;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .15s ease;
+}
+
+.check-button:hover {
+    background: #0d6ec8;
+}
+
+.check-button:active {
+    transform: scale(.98);
+}
+
+/* =========================
+   RESULT
+========================= */
+
+#result {
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    line-height: 1.6;
+}
+
+#result.show {
+    display: block;
+}
+
+.result-icon {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.result-title {
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+.result-number {
+    font-family: monospace;
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+
+    opacity: .85;
+}
+
+.result-message {
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+.result-reasons {
+    margin: 0;
+
+    padding-left: 20px;
+
+    font-size: 13px;
+}
+
+.result-reasons li {
+    margin-bottom: 5px;
+}
+
+/* RESULT TYPES */
+
+.result-clear {
+    background: #102c25;
+
+    border: 1px solid #287a5b;
+
+    color: #b5f1d4;
+}
+
+.result-review {
+    background: #302a12;
+
+    border: 1px solid #8b742b;
+
+    color: #f3e4a5;
+}
+
+.result-suspicious {
+    background: #352316;
+
+    border: 1px solid #a76632;
+
+    color: #ffd0a7;
+}
+
+.result-danger {
+    background: #35141a;
+
+    border: 1px solid #8d3945;
+
+    color: #ffc4cb;
+}
+
+.result-error {
+    background: #35141a;
+
+    border: 1px solid #8d3945;
+
+    color: #ffc4cb;
+}
+
+/* =========================
+   REPORT BUTTON
+========================= */
+
+.report-box {
+    margin-top: 18px;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background: #0b2034;
+
+    border: 1px solid #294b66;
+
+    text-align: center;
+}
+
+.report-box p {
+    margin: 0 0 12px;
+
+    color: #91a8bd;
+
+    font-size: 13px;
+}
+
+.report-button {
+    display: inline-block;
+
+    padding: 12px 18px;
+
+    border-radius: 11px;
+
+    background: #172d43;
+
+    border: 1px solid #34516b;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.report-button:hover {
+    background: #223c54;
+}
+
+/* =========================
+   INFO CARDS
+========================= */
+
+.info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.info-card {
+    background: #0a1b2d;
+
+    border: 1px solid #294863;
+
+    border-radius: 18px;
+
+    padding: 20px;
+}
+
+.info-icon {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.info-card h3 {
+    margin: 0 0 7px;
+
+    font-size: 16px;
+}
+
+.info-card p {
+    margin: 0;
+
+    color: #879db2;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   PRIVACY NOTICE
+========================= */
+
+.privacy {
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: #081725;
+
+    border: 1px solid #243e54;
+}
+
+.privacy h3 {
+    margin: 0 0 7px;
+
+    font-size: 16px;
+}
+
+.privacy p {
+    margin: 0;
+
+    color: #8198ad;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 30px 10px 0;
+
+    color: #71879c;
+
+    font-size: 12px;
+}
+
+footer strong {
+    color: #a5c9e8;
+
+    font-size: 15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        width: calc(100% - 26px);
+
+        padding-top: 80px;
+    }
+
+    .hero {
+        padding: 30px 20px;
+
+        border-radius: 22px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .checker-card {
+        padding: 18px;
+
+        border-radius: 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .side-menu {
+        width: 280px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     MENU BUTTON
+========================= -->
+
+<button
+    id="menuButton"
+    class="menu-button"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false">
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+</button>
+
+
+<!-- =========================
+     SIDE MENU
+========================= -->
+
+<nav
+    id="sideMenu"
+    class="side-menu">
+
+    <div class="menu-title">
+
+        <strong>🛡️ TrustAI</strong>
+
+        <span>
+            Online Scam Protection
+        </span>
+
+    </div>
+
+
+    <a href="home.html" class="menu-link">
+
+        <span class="menu-icon">
+            🏠
+        </span>
+
+        Home
+
+    </a>
+
+
+    <a href="message.html" class="menu-link">
+
+        <span class="menu-icon">
+            🔍
+        </span>
+
+        Message Checker
+
+    </a>
+
+
+    <a href="conversation.html" class="menu-link">
+
+        <span class="menu-icon">
+            💬
+        </span>
+
+        Conversation Checker
+
+    </a>
+
+
+    <a href="website.html" class="menu-link">
+
+        <span class="menu-icon">
+            🌐
+        </span>
+
+        Website Checker
+
+    </a>
+
+
+    <a href="phone.html" class="menu-link">
+
+        <span class="menu-icon">
+            📞
+        </span>
+
+        Phone Number Checker
+
+    </a>
+
+
+    <a href="device_checker.html" class="menu-link">
+
+        <span class="menu-icon">
+            📱
+        </span>
+
+        Device Security
+
+    </a>
+
+
+    <a href="protection.html" class="menu-link">
+
+        <span class="menu-icon">
+            🛡️
+        </span>
+
+        TrustAI Protection
+
+    </a>
+
+
+    <a href="security.html" class="menu-link">
+
+        <span class="menu-icon">
+            🛡️
+        </span>
+
+        Security Center
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html" class="menu-link">
+
+        <span class="menu-icon">
+            🚨
+        </span>
+
+        Scam Alerts
+
+    </a>
+
+
+    <a href="report.html" class="menu-link">
+
+        <span class="menu-icon">
+            📢
+        </span>
+
+        Report a Scam
+
+    </a>
+
+
+    <a href="contact.html" class="menu-link">
+
+        <span class="menu-icon">
+            ✉️
+        </span>
+
+        Contact TrustAI
+
+    </a>
+
+
+    <a href="settings.html" class="menu-link">
+
+        <span class="menu-icon">
+            ⚙️
+        </span>
+
+        Settings & Privacy
+
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     OVERLAY
+========================= -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay">
+</div>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="page">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-label">
+            TRUSTAI PHONE PROTECTION
+        </div>
+
+        <h1>
+            📞 Check a Phone Number
+        </h1>
+
+        <p>
+            Check whether a phone number has known
+            TrustAI scam reports or suspicious activity.
+            A number with no reports is not automatically
+            considered safe.
+        </p>
+
+    </section>
+
+
+    <!-- CHECKER -->
+
+    <section class="checker-card">
+
+        <h2>
+            🔎 Phone Number Scanner
+        </h2>
+
+        <p class="checker-intro">
+            Enter the phone number that called or
+            contacted you. Include the country code
+            when possible.
+        </p>
+
+
+        <div class="field">
+
+            <label for="phoneNumber">
+                Phone number
+            </label>
+
+
+            <div class="phone-input-wrap">
+
+                <span class="phone-symbol">
+                    📞
+                </span>
+
+                <input
+                    id="phoneNumber"
+                    class="phone-input"
+                    type="tel"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    placeholder="+234 801 234 5678">
+
+            </div>
+
+        </div>
+
+
+        <button
+            id="checkButton"
+            class="check-button"
+            type="button">
+
+            🔎 Check Number
+
+        </button>
+
+
+        <!-- RESULT -->
+
+        <div
+            id="result"
+            aria-live="polite">
+        </div>
+
+
+        <!-- REPORT -->
+
+        <div class="report-box">
+
+            <p>
+                Can't find a report for this number?
+                If you experienced suspicious activity,
+                you can report it to TrustAI.
+            </p>
+
+            <a
+                href="report.html"
+                class="report-button">
+
+                🚨 Report This Number
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- INFO -->
+
+    <section class="info-grid">
+
+
+        <article class="info-card">
+
+            <div class="info-icon">
+                🔎
+            </div>
+
+            <h3>
+                What we check
+            </h3>
+
+            <p>
+                TrustAI checks its available reputation
+                records for previous reports associated
+                with the number.
+            </p>
+
+        </article>
+
+
+        <article class="info-card">
+
+            <div class="info-icon">
+                ⚠️
+            </div>
+
+            <h3>
+                No report doesn't mean safe
+            </h3>
+
+            <p>
+                A new scam number may not have been
+                reported yet. Always remain cautious
+                with unexpected calls and messages.
+            </p>
+
+        </article>
+
+
+        <article class="info-card">
+
+            <div class="info-icon">
+                🛡️
+            </div>
+
+            <h3>
+                Protect yourself
+            </h3>
+
+            <p>
+                Never give callers your OTP, PIN,
+                password or banking credentials.
+            </p>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- PRIVACY -->
+
+    <section class="privacy">
+
+        <h3>
+            🔒 Privacy & Accuracy
+        </h3>
+
+        <p>
+            This first version uses TrustAI's local
+            reputation data. It does not contact the
+            owner of the number. Results are indicators,
+            not proof of identity or criminal activity.
+            The system will become more powerful when
+            connected to TrustAI's secure backend and
+            verified reputation sources.
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>
+            🛡️ TrustAI
+        </strong>
+
+        <p>
+            Online scam awareness and protection.
+        </p>
+
+        <p>
+            © 2026 TrustAI
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+<script>
+
+/* =========================
+   MENU
+========================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+
+function openMenu() {
+
+    sideMenu.classList.add("open");
+
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
+
+
+function closeMenu() {
+
+    sideMenu.classList.remove("open");
+
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        if (
+            sideMenu.classList.contains("open")
+        ) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
+    }
+);
+
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   PHONE DATABASE
+   FIRST VERSION
+========================= */
+
+/*
+    IMPORTANT:
+
+    These are DEMO records only.
+
+    They are included so you can test
+    the checker before connecting TrustAI
+    to your real backend/database.
+
+    Replace/add records later through
+    your backend reputation system.
+*/
+
+const scamDatabase = {
+
+    "+2348011111111": {
+
+        reports: 5,
+
+        category:
+            "Impersonation / Payment scam",
+
+        reason:
+            "Multiple users have reported suspicious payment requests and impersonation activity."
+
+    },
+
+    "+2348022222222": {
+
+        reports: 2,
+
+        category:
+            "Investment scam",
+
+        reason:
+            "Reports indicate an investment-related request with suspicious payment instructions."
+
+    },
+
+    "+2348033333333": {
+
+        reports: 1,
+
+        category:
+            "Phishing",
+
+        reason:
+            "A user reported receiving a suspicious message requesting sensitive account information."
+
+    }
+
+};
+
+
+/* =========================
+   NORMALIZE NUMBER
+========================= */
+
+function normalizePhoneNumber(value) {
+
+    let number =
+        String(value || "")
+        .trim()
+        .replace(/[^\d+]/g, "");
+
+
+    /*
+        Convert Nigerian local format:
+
+        08012345678
+
+        into:
+
+        +2348012345678
+    */
+
+    if (
+        number.startsWith("0") &&
+        number.length === 11
+    ) {
+
+        number =
+            "+234" +
+            number.substring(1);
+
+    }
+
+
+    /*
+        Convert:
+
+        2348012345678
+
+        into:
+
+        +2348012345678
+    */
+
+    if (
+        number.startsWith("234") &&
+        !number.startsWith("+")
+    ) {
+
+        number =
+            "+" + number;
+
+    }
+
+
+    return number;
+
+}
+
+
+/* =========================
+   BASIC VALIDATION
+========================= */
+
+function isValidPhoneNumber(number) {
+
+    /*
+        Basic international phone format.
+
+        This does NOT prove the number
+        actually exists.
+    */
+
+    return /^\+[1-9]\d{7,14}$/.test(number);
+
+}
+
+
+/* =========================
+   CHECK NUMBER
+========================= */
+
+function checkPhoneNumber() {
+
+    const input =
+        document.getElementById(
+            "phoneNumber"
+        );
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    const rawNumber =
+        input.value.trim();
+
+
+    if (rawNumber === "") {
+
+        showResult(
+
+            "error",
+
+            "⚠️",
+
+            "Enter a phone number",
+
+            "",
+
+            "Please enter the phone number you want TrustAI to check.",
+
+            []
+
+        );
+
+        return;
+
+    }
+
+
+    const normalized =
+        normalizePhoneNumber(
+            rawNumber
+        );
+
+!isValidPhoneNumber(
+            normalized
+        )
+    ) {
+
+        showResult(
+
+            "error",
+
+            "⚠️",
+
+            "Invalid number format",
+
+            normalized,
+
+            "Please enter a valid phone number with a country code, such as +2348012345678.",
+
+            []
+
+        );
+
+        return;
+
+    }
+
+
+    const record =
+        scamDatabase[
+            normalized
+        ];
+
+
+    /*
+        NO REPORTS
+    */
+
+    if (!record) {
+
+        showResult(
+
+            "clear",
+
+            "🟢",
+
+            "No Known Reports",
+
+            normalized,
+
+            "TrustAI currently has no known scam reports for this number. This does not mean the number is guaranteed to be safe.",
+
+            [
+
+                "No matching TrustAI report was found.",
+
+                "The number may be new or simply not reported yet.",
+
+                "Remain cautious with unexpected calls or messages."
+
+            ]
+
+        );
+
+        return;
+
+    }
+
+
+    /*
+        HIGH RISK
+    */
+
+    if (
+        record.reports >= 4
+    ) {
+
+        showResult(
+
+            "danger",
+
+            "🔴",
+
+            "High Risk — Multiple Reports",
+
+            normalized,
+
+            "This number has multiple TrustAI reports associated with suspicious activity.",
+
+            [
+
+                "Reports: " +
+                record.reports,
+
+                "Category: " +
+                record.category,
+
+                record.reason,
+
+                "Do not send money or share sensitive information."
+
+            ]
+
+        );
+
+        return;
+
+    }
+
+
+    /*
+        SUSPICIOUS
+    */
+
+    if (
+        record.reports >= 2
+    ) {
+
+        showResult(
+
+            "suspicious",
+
+            "🟠",
+
+            "Suspicious — Reported",
+
+            normalized,
+
+            "TrustAI has received multiple reports associated with this number.",
+
+            [
+
+                "Reports: " +
+                record.reports,
+
+                "Category: " +
+                record.category,
+
+                record.reason,
+
+                "Use caution and verify the caller independently."
+
+            ]
+
+        );
+
+        return;
+
+    }
+
+
+    /*
+        ONE REPORT
+    */
+
+    showResult(
+
+        "review",
+
+        "🟠",
+
+        "Under Review — 1 Report",
+
+        normalized,
+
+        "This number has been reported to TrustAI, but there is not enough information to confirm that it is a scam.",
+
+        [
+
+            "Reports: 1",
+
+            "Category: " +
+            record.category,
+
+            record.reason,
+
+            "Do not share OTPs, PINs, passwords or banking information."
+
+        ]
+
+    );
+
+}
+
+
+/* =========================
+   SHOW RESULT
+========================= */
+
+function showResult(
+    type,
+    icon,
+    title,
+    number,
+    message,
+    reasons
+) {
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    let reasonsHTML = "";
+
+
+    if (
+        Array.isArray(reasons) &&
+        reasons.length > 0
+    ) {
+
+        reasonsHTML =
+            "<ul class='result-reasons'>" +
+
+            reasons.map(
+                function(reason) {
+
+                    return (
+                        "<li>" +
+                        escapeHTML(reason) +
+                        "</li>"
+                    );
+
+                }
+            ).join("") +
+
+            "</ul>";
+
+    }
+
+
+    result.className =
+        "show result-" +
+        type;
+
+
+    result.innerHTML =
+
+        "<div class='result-icon'>" +
+        icon +
+        "</div>" +
+
+        "<div class='result-title'>" +
+        escapeHTML(title) +
+        "</div>" +
+
+        (
+            number
+            ?
+            "<div class='result-number'>" +
+            escapeHTML(number) +
+            "</div>"
+            :
+            ""
+        ) +
+
+        "<div class='result-message'>" +
+        escapeHTML(message) +
+        "</div>" +
+
+        reasonsHTML;
+
+}
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+document
+.getElementById("checkButton")
+.addEventListener(
+    "click",
+    checkPhoneNumber
+);
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+document
+.getElementById("phoneNumber")
+.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            checkPhoneNumber();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
+  
