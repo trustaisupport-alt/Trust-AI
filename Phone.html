@@ -11,11 +11,11 @@ content="width=device-width, initial-scale=1.0">
 <title>Phone Number Checker - TrustAI</title>
 
 <meta name="description"
-content="Check a phone number for known scam reports and suspicious activity with TrustAI.">
+content="Check international phone numbers for known TrustAI scam reports and suspicious activity.">
 
 <style>
 
-*
+* {
     box-sizing: border-box;
 }
 
@@ -44,7 +44,6 @@ body {
 
 .menu-button {
     position: fixed;
-
     top: 16px;
     left: 16px;
 
@@ -57,7 +56,6 @@ body {
     background: #102b45;
 
     cursor: pointer;
-
     z-index: 3000;
 
     display: flex;
@@ -73,10 +71,7 @@ body {
     height: 3px;
 
     background: white;
-
     border-radius: 5px;
-
-    transition: .2s ease;
 }
 
 .menu-button:hover {
@@ -169,23 +164,18 @@ body {
 
 .menu-link:hover {
     background: #123552;
-
     color: #62b1ff;
-
     transform: translateX(3px);
 }
 
 .menu-icon {
     width: 25px;
-
     text-align: center;
 }
 
 .menu-divider {
     height: 1px;
-
     background: #29425a;
-
     margin: 14px 0;
 }
 
@@ -206,9 +196,7 @@ body {
     z-index: 2000;
 
     opacity: 0;
-
     visibility: hidden;
-
     pointer-events: none;
 
     transition:
@@ -218,9 +206,7 @@ body {
 
 .menu-overlay.show {
     opacity: 1;
-
     visibility: visible;
-
     pointer-events: auto;
 }
 
@@ -277,8 +263,7 @@ body {
 
     border-radius: 50%;
 
-    background:
-        rgba(55,160,255,.12);
+    background: rgba(55,160,255,.12);
 }
 
 .hero-label {
@@ -481,39 +466,30 @@ body {
 
 .result-icon {
     font-size: 30px;
-
     margin-bottom: 8px;
 }
 
 .result-title {
     font-size: 20px;
-
     font-weight: bold;
-
     margin-bottom: 6px;
 }
 
 .result-number {
     font-family: monospace;
-
     font-size: 14px;
-
     margin-bottom: 12px;
-
     opacity: .85;
 }
 
 .result-message {
     font-size: 14px;
-
     margin-bottom: 15px;
 }
 
 .result-reasons {
     margin: 0;
-
     padding-left: 20px;
-
     font-size: 13px;
 }
 
@@ -521,45 +497,37 @@ body {
     margin-bottom: 5px;
 }
 
-/* RESULT TYPES */
+/* =========================
+   RESULT TYPES
+========================= */
 
 .result-clear {
     background: #102c25;
-
     border: 1px solid #287a5b;
-
     color: #b5f1d4;
 }
 
 .result-review {
     background: #302a12;
-
     border: 1px solid #8b742b;
-
     color: #f3e4a5;
 }
 
 .result-suspicious {
     background: #352316;
-
     border: 1px solid #a76632;
-
     color: #ffd0a7;
 }
 
 .result-danger {
     background: #35141a;
-
     border: 1px solid #8d3945;
-
     color: #ffc4cb;
 }
 
 .result-error {
     background: #35141a;
-
     border: 1px solid #8d3945;
-
     color: #ffc4cb;
 }
 
@@ -640,13 +608,11 @@ body {
 
 .info-icon {
     font-size: 25px;
-
     margin-bottom: 10px;
 }
 
 .info-card h3 {
     margin: 0 0 7px;
-
     font-size: 16px;
 }
 
@@ -661,7 +627,7 @@ body {
 }
 
 /* =========================
-   PRIVACY NOTICE
+   PRIVACY
 ========================= */
 
 .privacy {
@@ -678,7 +644,6 @@ body {
 
 .privacy h3 {
     margin: 0 0 7px;
-
     font-size: 16px;
 }
 
@@ -708,7 +673,6 @@ footer {
 
 footer strong {
     color: #a5c9e8;
-
     font-size: 15px;
 }
 
@@ -720,13 +684,11 @@ footer strong {
 
     .page {
         width: calc(100% - 26px);
-
         padding-top: 80px;
     }
 
     .hero {
         padding: 30px 20px;
-
         border-radius: 22px;
     }
 
@@ -740,7 +702,6 @@ footer strong {
 
     .checker-card {
         padding: 18px;
-
         border-radius: 20px;
     }
 
@@ -760,10 +721,7 @@ footer strong {
 
 <body>
 
-
-<!-- =========================
-     MENU BUTTON
-========================= -->
+<!-- MENU BUTTON -->
 
 <button
     id="menuButton"
@@ -779,9 +737,7 @@ footer strong {
 </button>
 
 
-<!-- =========================
-     SIDE MENU
-========================= -->
+<!-- SIDE MENU -->
 
 <nav
     id="sideMenu"
@@ -797,147 +753,72 @@ footer strong {
 
     </div>
 
-
     <a href="home.html" class="menu-link">
-
-        <span class="menu-icon">
-            🏠
-        </span>
-
+        <span class="menu-icon">🏠</span>
         Home
-
     </a>
-
 
     <a href="message.html" class="menu-link">
-
-        <span class="menu-icon">
-            🔍
-        </span>
-
+        <span class="menu-icon">🔍</span>
         Message Checker
-
     </a>
-
 
     <a href="conversation.html" class="menu-link">
-
-        <span class="menu-icon">
-            💬
-        </span>
-
+        <span class="menu-icon">💬</span>
         Conversation Checker
-
     </a>
-
 
     <a href="website.html" class="menu-link">
-
-        <span class="menu-icon">
-            🌐
-        </span>
-
+        <span class="menu-icon">🌐</span>
         Website Checker
-
     </a>
-
 
     <a href="phone.html" class="menu-link">
-
-        <span class="menu-icon">
-            📞
-        </span>
-
+        <span class="menu-icon">📞</span>
         Phone Number Checker
-
     </a>
-
 
     <a href="device_checker.html" class="menu-link">
-
-        <span class="menu-icon">
-            📱
-        </span>
-
+        <span class="menu-icon">📱</span>
         Device Security
-
     </a>
-
 
     <a href="protection.html" class="menu-link">
-
-        <span class="menu-icon">
-            🛡️
-        </span>
-
+        <span class="menu-icon">🛡️</span>
         TrustAI Protection
-
     </a>
-
 
     <a href="security.html" class="menu-link">
-
-        <span class="menu-icon">
-            🛡️
-        </span>
-
+        <span class="menu-icon">🛡️</span>
         Security Center
-
     </a>
-
 
     <div class="menu-divider"></div>
 
-
     <a href="alerts.html" class="menu-link">
-
-        <span class="menu-icon">
-            🚨
-        </span>
-
+        <span class="menu-icon">🚨</span>
         Scam Alerts
-
     </a>
-
 
     <a href="report.html" class="menu-link">
-
-        <span class="menu-icon">
-            📢
-        </span>
-
+        <span class="menu-icon">📢</span>
         Report a Scam
-
     </a>
-
 
     <a href="contact.html" class="menu-link">
-
-        <span class="menu-icon">
-            ✉️
-        </span>
-
+        <span class="menu-icon">✉️</span>
         Contact TrustAI
-
     </a>
 
-
     <a href="settings.html" class="menu-link">
-
-        <span class="menu-icon">
-            ⚙️
-        </span>
-
+        <span class="menu-icon">⚙️</span>
         Settings & Privacy
-
     </a>
 
 </nav>
 
 
-<!-- =========================
-     OVERLAY
-========================= -->
+<!-- OVERLAY -->
 
 <div
     id="menuOverlay"
@@ -945,19 +826,15 @@ footer strong {
 </div>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <main class="page">
 
 
-    <!-- HERO -->
-
     <section class="hero">
 
         <div class="hero-label">
-            TRUSTAI PHONE PROTECTION
+            TRUSTAI GLOBAL PHONE PROTECTION
         </div>
 
         <h1>
@@ -965,16 +842,14 @@ footer strong {
         </h1>
 
         <p>
-            Check whether a phone number has known
-            TrustAI scam reports or suspicious activity.
-            A number with no reports is not automatically
-            considered safe.
+            Check an international phone number for
+            known TrustAI scam reports or suspicious
+            activity. Numbers from different countries
+            can be checked using their country code.
         </p>
 
     </section>
 
-
-    <!-- CHECKER -->
 
     <section class="checker-card">
 
@@ -984,17 +859,17 @@ footer strong {
 
         <p class="checker-intro">
             Enter the phone number that called or
-            contacted you. Include the country code
-            when possible.
+            contacted you. For the most reliable result,
+            include the international country code.
+            For example: +234..., +1..., +44...
         </p>
 
 
         <div class="field">
 
             <label for="phoneNumber">
-                Phone number
+                International phone number
             </label>
-
 
             <div class="phone-input-wrap">
 
@@ -1008,7 +883,8 @@ footer strong {
                     type="tel"
                     inputmode="tel"
                     autocomplete="tel"
-                    placeholder="+234 801 234 5678">
+                    maxlength="25"
+                    placeholder="+1 202 555 0123">
 
             </div>
 
@@ -1025,15 +901,11 @@ footer strong {
         </button>
 
 
-        <!-- RESULT -->
-
         <div
             id="result"
             aria-live="polite">
         </div>
 
-
-        <!-- REPORT -->
 
         <div class="report-box">
 
@@ -1056,25 +928,24 @@ footer strong {
     </section>
 
 
-    <!-- INFO -->
-
     <section class="info-grid">
 
 
         <article class="info-card">
 
             <div class="info-icon">
-                🔎
+                🌍
             </div>
 
             <h3>
-                What we check
+                International numbers
             </h3>
 
             <p>
-                TrustAI checks its available reputation
-                records for previous reports associated
-                with the number.
+                TrustAI accepts international phone
+                numbers using country codes, including
+                numbers from the US, UK, Nigeria, Canada,
+                India and many other countries.
             </p>
 
         </article>
@@ -1091,9 +962,9 @@ footer strong {
             </h3>
 
             <p>
-                A new scam number may not have been
-                reported yet. Always remain cautious
-                with unexpected calls and messages.
+                A number can be new or simply not have
+                been reported yet. Always verify
+                unexpected callers independently.
             </p>
 
         </article>
@@ -1120,8 +991,6 @@ footer strong {
     </section>
 
 
-    <!-- PRIVACY -->
-
     <section class="privacy">
 
         <h3>
@@ -1129,19 +998,17 @@ footer strong {
         </h3>
 
         <p>
-            This first version uses TrustAI's local
-            reputation data. It does not contact the
+            This version checks TrustAI's available
+            reputation records. It does not contact the
             owner of the number. Results are indicators,
-            not proof of identity or criminal activity.
-            The system will become more powerful when
-            connected to TrustAI's secure backend and
-            verified reputation sources.
+            not proof that a person is a criminal or that
+            a number is safe. A secure online reputation
+            database will allow reports to be shared
+            across TrustAI users worldwide.
         </p>
 
     </section>
 
-
-    <!-- FOOTER -->
 
     <footer>
 
@@ -1158,7 +1025,6 @@ footer strong {
         </p>
 
     </footer>
-
 
 </main>
 
@@ -1248,22 +1114,8 @@ document.addEventListener(
 
 
 /* =========================
-   PHONE DATABASE
-   FIRST VERSION
+   DEMO PHONE DATABASE
 ========================= */
-
-/*
-    IMPORTANT:
-
-    These are DEMO records only.
-
-    They are included so you can test
-    the checker before connecting TrustAI
-    to your real backend/database.
-
-    Replace/add records later through
-    your backend reputation system.
-*/
 
 const scamDatabase = {
 
@@ -1307,41 +1159,43 @@ const scamDatabase = {
 
 
 /* =========================
-   NORMALIZE NUMBER
+   NORMALIZE INTERNATIONAL NUMBER
 ========================= */
 
 function normalizePhoneNumber(value) {
 
     let number =
         String(value || "")
-        .trim()
-        .replace(/[^\d+]/g, "");
+        .trim();
 
 
     /*
-        Convert Nigerian local format:
+        Remove spaces, brackets,
+        hyphens and other formatting.
+    */
 
-        08012345678
+    number =
+        number.replace(/[^\d+]/g, "");
 
-        into:
 
-        +2348012345678
+    /*
+        A leading + is allowed only
+        at the beginning.
     */
 
     if (
-        number.startsWith("0") &&
-        number.length === 11
+        number.includes("+") &&
+        !number.startsWith("+")
     ) {
 
         number =
-            "+234" +
-            number.substring(1);
+            number.replace(/\+/g, "");
 
     }
 
 
     /*
-        Convert:
+        Convert a number written as:
 
         2348012345678
 
@@ -1351,12 +1205,32 @@ function normalizePhoneNumber(value) {
     */
 
     if (
-        number.startsWith("234") &&
+        number.length > 0 &&
         !number.startsWith("+")
     ) {
 
+        number = "+" + number;
+
+    }
+
+
+    /*
+        Nigerian local numbers are still
+        supported as a convenience.
+
+        08012345678
+        ->
+        +2348012345678
+    */
+
+    if (
+        number.startsWith("+0") &&
+        number.length === 12
+    ) {
+
         number =
-            "+" + number;
+            "+234" +
+            number.substring(2);
 
     }
 
@@ -1367,19 +1241,24 @@ function normalizePhoneNumber(value) {
 
 
 /* =========================
-   BASIC VALIDATION
+   INTERNATIONAL VALIDATION
 ========================= */
 
 function isValidPhoneNumber(number) {
 
     /*
-        Basic international phone format.
+        Accepts international numbers
+        in E.164-style format.
 
-        This does NOT prove the number
-        actually exists.
+        + followed by 8–15 digits.
+
+        This checks FORMAT only.
+        It does not prove the number exists.
     */
 
-    return /^\+[1-9]\d{7,14}$/.test(number);
+    return /^\+[1-9]\d{7,14}$/.test(
+        number
+    );
 
 }
 
@@ -1433,7 +1312,9 @@ function checkPhoneNumber() {
             rawNumber
         );
 
-!isValidPhoneNumber(
+
+    if (
+        !isValidPhoneNumber(
             normalized
         )
     ) {
@@ -1444,13 +1325,22 @@ function checkPhoneNumber() {
 
             "⚠️",
 
-            "Invalid number format",
+            "Invalid international number",
 
             normalized,
+"Please enter a valid international phone number. Include the country code, for example +1, +44, +234 or +91.",
 
-            "Please enter a valid phone number with a country code, such as +2348012345678.",
+            [
 
-            []
+                "Use the + country-code format when possible.",
+
+                "Example US: +12025550123",
+
+                "Example UK: +442071838750",
+
+                "Example Nigeria: +2348012345678"
+
+            ]
 
         );
 
@@ -1458,6 +1348,11 @@ function checkPhoneNumber() {
 
     }
 
+
+    /*
+        Look for the normalized number
+        in TrustAI's current reputation data.
+    */
 
     const record =
         scamDatabase[
@@ -1481,7 +1376,7 @@ function checkPhoneNumber() {
 
             normalized,
 
-            "TrustAI currently has no known scam reports for this number. This does not mean the number is guaranteed to be safe.",
+            "TrustAI currently has no known scam reports for this number.",
 
             [
 
@@ -1489,7 +1384,7 @@ function checkPhoneNumber() {
 
                 "The number may be new or simply not reported yet.",
 
-                "Remain cautious with unexpected calls or messages."
+                "No report does NOT guarantee that the number is safe."
 
             ]
 
@@ -1714,7 +1609,7 @@ function escapeHTML(value) {
 
 
 /* =========================
-   BUTTON
+   CHECK BUTTON
 ========================= */
 
 document
@@ -1750,8 +1645,7 @@ document
 
 </script>
 
-
 </body>
 
 </html>
-  
+            
