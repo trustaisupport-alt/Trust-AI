@@ -34,11 +34,15 @@ body {
     position: fixed;
     top: 16px;
     left: 16px;
+
     width: 48px;
     height: 48px;
+
     border: 1px solid #294b6b;
     border-radius: 13px;
+
     background: #102b45;
+
     cursor: pointer;
     z-index: 3000;
 
@@ -46,12 +50,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     gap: 5px;
 }
 
 .menu-button span {
     width: 23px;
     height: 3px;
+
     background: white;
     border-radius: 5px;
 }
@@ -62,21 +68,25 @@ body {
 
 .side-menu {
     position: fixed;
+
     top: 0;
     left: -300px;
 
     width: 285px;
+
     height: 100vh;
     height: 100dvh;
 
     padding: 85px 18px 25px;
 
     background: #091a2c;
+
     border-right: 1px solid #294763;
 
     z-index: 2500;
 
     transition: left .3s ease;
+
     overflow-y: auto;
 }
 
@@ -86,53 +96,76 @@ body {
 
 .menu-title {
     padding: 0 12px 18px;
+
     border-bottom: 1px solid #29425a;
+
     margin-bottom: 12px;
 }
 
 .menu-title strong {
     display: block;
+
     color: #55a9ff;
+
     font-size: 22px;
 }
 
 .menu-title span {
     display: block;
+
     color: #8298ae;
+
     font-size: 12px;
+
     margin-top: 5px;
 }
 
 .menu-link {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 
     padding: 13px 12px;
+
     margin-bottom: 4px;
 
     border-radius: 11px;
 
     color: #dce9f6;
+
     text-decoration: none;
 
     font-size: 14px;
+
     font-weight: bold;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
 }
 
 .menu-link:hover {
     background: #123552;
+
     color: #62b1ff;
+
+    transform: translateX(3px);
 }
 
 .menu-icon {
     width: 25px;
+
     text-align: center;
 }
 
 .menu-divider {
     height: 1px;
+
     background: #29425a;
+
     margin: 14px 0;
 }
 
@@ -142,6 +175,7 @@ body {
 
 .menu-overlay {
     position: fixed;
+
     inset: 0;
 
     background: rgba(0,0,0,.65);
@@ -149,7 +183,9 @@ body {
     z-index: 2000;
 
     opacity: 0;
+
     visibility: hidden;
+
     pointer-events: none;
 
     transition: .25s ease;
@@ -157,7 +193,9 @@ body {
 
 .menu-overlay.show {
     opacity: 1;
+
     visibility: visible;
+
     pointer-events: auto;
 }
 
@@ -167,7 +205,9 @@ body {
 
 .page {
     width: min(950px, calc(100% - 28px));
+
     margin: auto;
+
     padding: 85px 0 50px;
 }
 
@@ -177,6 +217,7 @@ body {
 
 .hero {
     position: relative;
+
     overflow: hidden;
 
     background:
@@ -187,9 +228,11 @@ body {
         );
 
     border: 1px solid #2c5b80;
+
     border-radius: 28px;
 
     padding: 38px 28px;
+
     margin-bottom: 20px;
 
     box-shadow:
@@ -214,27 +257,33 @@ body {
 
 .hero-label {
     position: relative;
+
     z-index: 1;
 
     color: #63b4ff;
 
     font-size: 12px;
+
     font-weight: bold;
+
     letter-spacing: 1.5px;
 }
 
 .hero h1 {
     position: relative;
+
     z-index: 1;
 
     margin: 10px 0 12px;
 
     font-size: 34px;
+
     line-height: 1.2;
 }
 
 .hero p {
     position: relative;
+
     z-index: 1;
 
     margin: 0;
@@ -244,6 +293,7 @@ body {
     color: #a9bdd0;
 
     line-height: 1.7;
+
     font-size: 15px;
 }
 
@@ -253,15 +303,19 @@ body {
 
 .notice {
     display: flex;
+
     gap: 15px;
+
     align-items: flex-start;
 
     background: #0b2034;
 
     border: 1px solid #294b66;
+
     border-radius: 18px;
 
     padding: 20px;
+
     margin-bottom: 20px;
 }
 
@@ -272,6 +326,7 @@ body {
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -284,6 +339,7 @@ body {
 
 .notice h2 {
     margin: 0 0 5px;
+
     font-size: 17px;
 }
 
@@ -293,6 +349,7 @@ body {
     color: #91a8bd;
 
     font-size: 13px;
+
     line-height: 1.6;
 }
 
@@ -304,6 +361,7 @@ body {
     background: #0a1b2d;
 
     border: 1px solid #294863;
+
     border-radius: 24px;
 
     padding: 25px;
@@ -314,6 +372,7 @@ body {
 
 .form-card h2 {
     margin: 0 0 7px;
+
     font-size: 22px;
 }
 
@@ -351,24 +410,27 @@ body {
     color: #dce9f5;
 
     font-size: 13px;
+
     font-weight: bold;
 }
 
 input,
 textarea,
 select {
-
     width: 100%;
 
     border: 1px solid #31516d;
+
     border-radius: 12px;
 
     padding: 14px;
 
     background: #061321;
+
     color: white;
 
     font-family: inherit;
+
     font-size: 14px;
 }
 
@@ -380,7 +442,6 @@ textarea::placeholder {
 input:focus,
 textarea:focus,
 select:focus {
-
     outline: none;
 
     border-color: #3298f4;
@@ -390,7 +451,6 @@ select:focus {
 }
 
 textarea {
-
     min-height: 170px;
 
     resize: vertical;
@@ -412,26 +472,28 @@ option {
 
 .button-row {
     display: flex;
+
     gap: 10px;
+
     margin-top: 22px;
 }
 
 .submit-button,
 .clear-button {
-
     border: none;
+
     border-radius: 12px;
 
     padding: 15px 20px;
 
     font-size: 14px;
+
     font-weight: bold;
 
     cursor: pointer;
 }
 
 .submit-button {
-
     flex: 1;
 
     background: #1683e8;
@@ -445,11 +507,11 @@ option {
 
 .submit-button:disabled {
     opacity: .65;
+
     cursor: wait;
 }
 
 .clear-button {
-
     width: 120px;
 
     background: #172d43;
@@ -468,7 +530,6 @@ option {
 ========================= */
 
 #reportResult {
-
     display: none;
 
     margin-top: 18px;
@@ -487,7 +548,6 @@ option {
 }
 
 .success {
-
     background: #0d3325;
 
     border: 1px solid #27845d;
@@ -496,7 +556,6 @@ option {
 }
 
 .error {
-
     background: #35141a;
 
     border: 1px solid #8d3945;
@@ -509,7 +568,6 @@ option {
 ========================= */
 
 .bottom-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -521,7 +579,6 @@ option {
 }
 
 .bottom-card {
-
     background: #0a1b2d;
 
     border: 1px solid #294863;
@@ -532,21 +589,18 @@ option {
 }
 
 .bottom-card-icon {
-
     font-size: 25px;
 
     margin-bottom: 10px;
 }
 
 .bottom-card h3 {
-
     margin: 0 0 7px;
 
     font-size: 16px;
 }
 
 .bottom-card p {
-
     margin: 0;
 
     color: #879db2;
@@ -561,7 +615,6 @@ option {
 ========================= */
 
 footer {
-
     text-align: center;
 
     padding: 30px 10px 0;
@@ -572,7 +625,6 @@ footer {
 }
 
 footer strong {
-
     color: #a5c9e8;
 
     font-size: 15px;
@@ -585,58 +637,48 @@ footer strong {
 @media (max-width: 700px) {
 
     .page {
-
         width: calc(100% - 26px);
 
         padding-top: 80px;
     }
 
     .hero {
-
         padding: 30px 20px;
 
         border-radius: 22px;
     }
 
     .hero h1 {
-
         font-size: 28px;
     }
 
     .hero p {
-
         font-size: 14px;
     }
 
     .form-card {
-
         padding: 18px;
 
         border-radius: 20px;
     }
 
     .form-grid {
-
         grid-template-columns: 1fr;
     }
 
     .field.full {
-
         grid-column: auto;
     }
 
     .bottom-grid {
-
         grid-template-columns: 1fr;
     }
 
     .button-row {
-
         flex-direction: column;
     }
 
     .clear-button {
-
         width: 100%;
     }
 
@@ -837,7 +879,6 @@ footer strong {
 
     <form id="reportForm">
 
-
         <div class="form-grid">
 
 
@@ -854,6 +895,7 @@ footer strong {
                     type="tel"
                     inputmode="tel"
                     autocomplete="tel"
+                    maxlength="30"
                     placeholder="+234 801 234 5678">
 
             </div>
@@ -891,35 +933,20 @@ footer strong {
                     </option>
 
                     <option>Phishing</option>
-
                     <option>Impersonation</option>
-
                     <option>Investment scam</option>
-
                     <option>Romance scam</option>
-
                     <option>Payment scam</option>
-
                     <option>Prize or lottery scam</option>
-
                     <option>Job scam</option>
-
                     <option>Delivery scam</option>
-
                     <option>Account takeover</option>
-
                     <option>Fake customer support</option>
-
                     <option>Social media scam</option>
-
                     <option>Marketplace scam</option>
-
                     <option>Crypto scam</option>
-
                     <option>Loan scam</option>
-
                     <option>Charity scam</option>
-
                     <option>Other</option>
 
                 </select>
@@ -985,7 +1012,6 @@ footer strong {
             </button>
 
         </div>
-
 
     </form>
 
@@ -1080,9 +1106,9 @@ footer strong {
 </main>
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
+<!-- =====================================================
+     SUPABASE LIBRARY
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1090,25 +1116,30 @@ footer strong {
 <script>
 
 /* =====================================================
-   TRUSTAI SUPABASE CONFIGURATION
+   SUPABASE CONFIGURATION
 ===================================================== */
 
 const SUPABASE_URL =
     "https://opyjaljpowzgmkqlmjrb.supabase.co";
 
+
 /*
    IMPORTANT:
-   Paste your Supabase PUBLISHABLE key below.
 
-   Use the sb_publishable_... key.
+   Replace the value below with the
+   sb_publishable_... key from your
+   Supabase project.
 
-   NEVER use a Supabase secret/service-role key
-   in this file.
+   Do NOT use a secret/service-role key.
 */
 
 const SUPABASE_PUBLISHABLE_KEY =
     "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
 
+
+/* =====================================================
+   CREATE SUPABASE CLIENT
+===================================================== */
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1200,7 +1231,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   NORMALIZE PHONE NUMBER
+   PHONE NORMALIZATION
 ===================================================== */
 
 function normalizePhoneNumber(value) {
@@ -1209,6 +1240,26 @@ function normalizePhoneNumber(value) {
         String(value || "")
         .trim()
         .replace(/[^\d+]/g, "");
+
+
+    /*
+       Convert international format:
+
+       0044...
+       into:
+
+       +44...
+    */
+
+    if (
+        number.startsWith("00")
+    ) {
+
+        number =
+            "+" +
+            number.substring(2);
+
+    }
 
 
     /*
@@ -1234,7 +1285,7 @@ function normalizePhoneNumber(value) {
 
 
     /*
-       International number without +:
+       Nigerian number entered without +:
 
        2348012345678
 
@@ -1242,17 +1293,6 @@ function normalizePhoneNumber(value) {
 
        +2348012345678
     */
-
-    if (
-        number.startsWith("00")
-    ) {
-
-        number =
-            "+" +
-            number.substring(2);
-
-    }
-
 
     if (
         number.startsWith("234") &&
@@ -1278,17 +1318,13 @@ function normalizePhoneNumber(value) {
 function isValidPhoneNumber(number) {
 
     /*
-       Accepts international E.164-style numbers.
+       Basic international/E.164-style format.
 
-       Example:
+       This accepts numbers from different countries.
 
-       +2348012345678
-       +12025550123
-       +447911123456
-       +919876543210
+       It checks FORMAT only.
 
-       This checks the FORMAT only.
-       It does not prove that the number exists.
+       It does NOT prove that the number exists.
     */
 
     return /^\+[1-9]\d{7,14}$/.test(number);
@@ -1297,9 +1333,8 @@ function isValidPhoneNumber(number) {
 
 
 /* =====================================================
-   ESCAPE HTML
+   HTML ESCAPE
 ===================================================== */
-
 function escapeHTML(value) {
 
     return String(value || "")
@@ -1308,32 +1343,6 @@ function escapeHTML(value) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
-}
-
-
-/* =====================================================
-   RESULT MESSAGE
-===================================================== */
-
-function showSuccess(message) {
-
-    reportResult.className =
-        "show success";
-
-    reportResult.innerHTML =
-        message;
-
-}
-
-
-function showError(message) {
-
-    reportResult.className =
-        "show error";
-
-    reportResult.textContent =
-        message;
 
 }
 
@@ -1359,6 +1368,36 @@ const submitButton =
 
 
 /* =====================================================
+   SHOW SUCCESS
+===================================================== */
+
+function showSuccess(message) {
+
+    reportResult.className =
+        "show success";
+
+    reportResult.innerHTML =
+        message;
+
+}
+
+
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showError(message) {
+
+    reportResult.className =
+        "show error";
+
+    reportResult.textContent =
+        message;
+
+}
+
+
+/* =====================================================
    SUBMIT REPORT
 ===================================================== */
 
@@ -1368,6 +1407,10 @@ reportForm.addEventListener(
 
         event.preventDefault();
 
+
+        /* =========================
+           GET FORM VALUES
+        ========================= */
 
         const rawPhone =
             document
@@ -1463,7 +1506,7 @@ reportForm.addEventListener(
 
 
         /* =========================
-           PREVENT DOUBLE SUBMISSION
+           BUTTON LOADING
         ========================= */
 
         submitButton.disabled = true;
@@ -1472,49 +1515,59 @@ reportForm.addEventListener(
             "⏳ Sending Report...";
 
 
+        reportResult.className = "";
+
+        reportResult.innerHTML = "";
+
+
         try {
 
             /* =========================
-               SEND TO SUPABASE
+               INSERT INTO SUPABASE
+
+               IMPORTANT:
+
+               We intentionally DO NOT use
+               .select() here.
+
+               Your current RLS setup allows
+               INSERT but does not require a
+               public SELECT policy.
             ========================= */
 
             const {
-                data,
                 error
             } =
             await supabaseClient
             .from("scam_reports")
-            .insert([
-                {
+            .insert({
 
-                    phone_number:
-                        phoneNumber,
+                phone_number:
+                    phoneNumber,
 
-                    scam_type:
-                        scamType,
+                scam_type:
+                    scamType,
 
-                    description:
-                        description,
+                description:
+                    description,
 
-                    website:
-                        website || null,
+                website:
+                    website || null,
 
-                    reporter_name:
-                        name || null
+                reporter_name:
+                    name || null
 
-                }
-            ])
-            .select();
+            });
 
 
             /* =========================
-               DATABASE ERROR
+               HANDLE SUPABASE ERROR
             ========================= */
 
             if (error) {
 
                 console.error(
-                    "Supabase report error:",
+                    "TrustAI Supabase error:",
                     error
                 );
 
@@ -1539,18 +1592,17 @@ reportForm.addEventListener(
 
                 "<small>" +
 
-                "The report has been sent to the TrustAI database. " +
-
-                "Other users may receive a warning when this number " +
-
-                "is checked, depending on the available reports and " +
-
-                "TrustAI's reputation system." +
+                "Your report has been saved to the TrustAI database." +
 
                 "</small>"
 
             );
 
+
+            /*
+               Clear the form after
+               successful submission.
+            */
 
             reportForm.reset();
 
@@ -1563,13 +1615,28 @@ reportForm.addEventListener(
             );
 
 
-            showError(
+            /*
+               Show a more useful error
+               during development.
+            */
 
-                "❌ We could not submit your report right now. " +
+            let message =
+                "❌ We could not submit your report right now.";
 
-                "Please check your internet connection and try again."
 
-            );
+            if (
+                error &&
+                error.message
+            ) {
+
+                message +=
+                    " " +
+                    error.message;
+
+            }
+
+
+            showError(message);
 
         } finally {
 
