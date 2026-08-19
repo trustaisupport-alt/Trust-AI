@@ -312,6 +312,88 @@ tr:last-child td {
 
 }
 
+      .modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 100;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-card {
+    width: 100%;
+    max-width: 600px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #0d1b2a;
+
+    border: 1px solid #29425d;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    position: relative;
+}
+
+.modal-card h2 {
+    margin-top: 0;
+}
+
+.close-modal {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+.detail {
+    border-bottom: 1px solid #1d334b;
+
+    padding: 13px 0;
+}
+
+.detail-label {
+    color: #91a0b2;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+
+    text-transform: uppercase;
+}
+
+.detail-value {
+    color: white;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
 </style>
 
 </head>
@@ -503,6 +585,9 @@ tr:last-child td {
                     <th>
                         Description
                     </th>
+                      <th>
+                         Action
+                      </th>
 
                 </tr>
 
@@ -525,11 +610,32 @@ tr:last-child td {
         </div>
 
     </section>
+<div
+    id="reportModal"
+    class="modal hidden">
 
+    <div class="modal-card">
+
+        <button
+            type="button"
+            id="closeModal"
+            class="close-modal">
+
+            ×
+
+        </button>
+
+        <h2>
+            Report Details
+        </h2>
+
+        <div id="reportDetails"></div>
+
+    </div>
+
+</div>
 
 </main>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -595,6 +701,14 @@ const logoutButton =
     document.getElementById("logoutButton");
 const refreshButton =
     document.getElementById("refreshButton");
+      const reportModal =
+    document.getElementById("reportModal");
+
+const reportDetails =
+    document.getElementById("reportDetails");
+
+const closeModal =
+    document.getElementById("closeModal");
 
 let allReports = [];
 
@@ -1102,6 +1216,19 @@ function renderReports() {
 
             </td>
 
+            <td>
+
+                <button
+                    type="button"
+                    class="view-button"
+                    data-report-id="${escapeHTML(report.id)}">
+
+                    View
+
+                </button>
+
+            </td>
+
         `;
 
 
@@ -1111,8 +1238,7 @@ function renderReports() {
 
     });
 
-}
-
+          }
 
 /* =========================================
    SEARCH
