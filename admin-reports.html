@@ -1274,6 +1274,121 @@ function renderReports() {
     });
 
           }
+      /* =========================================
+   DELETE REPORT
+========================================= */
+
+async function deleteReport(reportId) {
+
+    const report =
+        allReports.find(function(item) {
+
+            return String(item.id) ===
+                   String(reportId);
+
+        });
+
+
+    if (!report) {
+
+        alert(
+            "Report could not be found."
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete this report?\n\n" +
+            "This action cannot be undone."
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const {
+            error
+        } = await supabaseClient
+            .from("scam_reports")
+            .delete()
+            .eq("id", reportId);
+
+
+        if (error) {
+
+            console.error(
+                "Delete report error:",
+                error
+            );
+
+            alert(
+                "Report could not be deleted."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Report deleted successfully."
+        );
+
+
+        await loadReports();
+
+
+    } catch (error) {
+
+        console.error(
+            "Unexpected delete error:",
+            error
+        );
+
+        alert(
+            "An unexpected error occurred."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   REPORT BUTTONS
+========================================= */
+
+reportsBody.addEventListener(
+    "click",
+    function(event) {
+
+        const deleteButton =
+            event.target.closest(
+                ".delete-button"
+            );
+
+
+        if (!deleteButton) {
+            return;
+        }
+
+
+        const reportId =
+            deleteButton.dataset.reportId;
+
+
+        deleteReport(reportId);
+
+    }
+);
 
 /* =========================================
    SEARCH
