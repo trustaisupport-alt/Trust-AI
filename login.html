@@ -925,6 +925,11 @@ input:focus {
 </main>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <!-- FACE API -->
 
 <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
@@ -933,8 +938,40 @@ input:focus {
 <script>
 
 /* ================================= */
+/* SUPABASE CONFIGURATION */
+/* ================================= */
+
+const SUPABASE_URL =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* ================================= */
 /* TRUSTAI SETTINGS */
 /* ================================= */
+
+const TRUSTAI_HOME =
+    "./home.html";
+
+
+/*
+   Replace this with your real Google
+   OAuth Client ID when Google Sign-In
+   is configured.
+*/
+
+const GOOGLE_CLIENT_ID =
+    "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
 
 const TRUSTAI_HOME =
     "./home.html";
@@ -1118,7 +1155,7 @@ function toggleAuthMode(event) {
 /* NORMAL LOGIN */
 /* ================================= */
 
-function handleAuth(event) {
+async function handleAuth(event) {
 
     event.preventDefault();
 
@@ -1159,35 +1196,219 @@ function handleAuth(event) {
     }
 
 
-    if (isSignUp) {
-
-        const fullName =
-            document.getElementById("fullName")
-            .value
-            .trim();
+    const submitButton =
+        document.getElementById("submitBtn");
 
 
-        if (!fullName) {
+    submitButton.disabled = true;
+
+
+    submitButton.textContent =
+        isSignUp
+            ? "Creating Account..."
+            : "Logging In...";
+
+
+    try {
+
+        /* ============================= */
+        /* CREATE ACCOUNT */
+        /* ============================= */
+
+        if (isSignUp) {
+
+            const fullName =
+                document.getElementById("fullName")
+                .value
+                .trim();
+
+
+            if (!fullName) {
+
+                showMessage(
+                    "Please enter your full name.",
+                    "error"
+                );
+
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    "Create Account";
+
+                return;
+
+            }
+
+
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.signUp({
+
+                email: email,
+
+                password: password,
+
+                options: {
+
+                    data: {
+
+                        full_name: fullName
+
+                    }
+
+                }
+
+            });
+
+
+            if (error) {
+
+                console.error(
+                    "Account creation error:",
+                    error
+                );
+
+                showMessage(
+                    error.message,
+                    "error"
+                );
+
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    "Create Account";
+
+                return;
+
+            }
+
+
+            if (!data.user) {
+
+                showMessage(
+                    "Account could not be created. Please try again.",
+                    "error"
+                );
+
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    "Create Account";
+
+                return;
+
+            }
+
 
             showMessage(
-                "Please enter your full name.",
-                "error"
+                "TrustAI account created successfully. Continue to face verification.",
+                "success"
             );
+
+
+            setTimeout(() => {
+
+                openFaceVerification();
+
+            }, 800);
+
 
             return;
 
         }
 
+
+        /* ============================= */
+        /* LOGIN */
+        /* ============================= */
+
+        const {
+            data,
+            error
+        } = await supabaseClient.auth.signInWithPassword({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+        if (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+            showMessage(
+                "Login failed: " + error.message,
+                "error"
+            );
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "Log In";
+
+            return;
+
+        }
+
+
+        if (!data.user) {
+
+            showMessage(
+                "Login failed. Please try again.",
+                "error"
+            );
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "Log In";
+
+            return;
+
+        }
+
+
+        showMessage(
+            "Login successful. Continue to face verification.",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            openFaceVerification();
+
+        }, 800);
+
+
+    } catch (error) {
+
+        console.error(
+            "Authentication error:",
+            error
+        );
+
+        showMessage(
+            "Something went wrong during authentication. Please try again.",
+            "error"
+        );
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            isSignUp
+                ? "Create Account"
+                : "Log In";
+
     }
 
-
-    /*
-       Continue to face verification.
-    */
-
-    openFaceVerification();
-
-}
+      }
 
 
 /* ================================= */
