@@ -1,1 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TrustAI Admin Login</title>
+
+    <meta name="description"
+          content="Secure TrustAI administrator login">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #07111f;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .shield {
+            width: 72px;
+            height: 72px;
+
+            margin: auto;
+
+            border-radius: 20px;
+
+            background: #12345a;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 36px;
+        }
+
+        .brand {
+            margin-top: 14px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .brand span {
+            color: #35a7ff;
+        }
+
+        .subtitle {
+            color: #9eabbc;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
+        .card {
+            background: #0d1b2a;
+
+            border: 1px solid #1d334b;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 23px;
+        }
+
+        .description {
+            color: #9eabbc;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 18px;
+
+            border-radius: 10px;
+
+            border: 1px solid #29425d;
+
+            background: #081522;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #35a7ff;
+        }
+
+        button {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 14px;
+
+            background: #168cff;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.92;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+        }
+
+        .error {
+            display: block;
+
+            background: rgba(255, 70, 70, 0.12);
+
+            border: 1px solid rgba(255, 70, 70, 0.35);
+
+            color: #ff8585;
+        }
+
+        .success {
+            display: block;
+
+            background: rgba(40, 200, 120, 0.12);
+
+            border: 1px solid rgba(40, 200, 120, 0.35);
+
+            color: #69e0a5;
+        }
+
+        .security-note {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #75869a;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+
+        <div class="shield">
+            🛡️
+        </div>
+
+        <div class="brand">
+            Trust<span>AI</span>
+        </div>
+
+        <div class="subtitle">
+            Security Administration
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h1>
+            Admin Login
+        </h1>
+
+        <div class="description">
+            Sign in with your authorized TrustAI administrator
+            account to access the reports dashboard.
+        </div>
+
+
+        <div id="message"
+             class="message">
+        </div>
+
+
+        <form id="loginForm">
+
+            <label for="email">
+                Admin Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter admin email"
+                autocomplete="username"
+                required
+            >
+
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+            >
+
+
+            <button
+                type="submit"
+                id="loginButton">
+                Sign In
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="security-note">
+        🔒 Protected by TrustAI security controls.<br>
+        Unauthorized access is prohibited.
+    </div>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+    /* =========================================
+       TRUSTAI SUPABASE CONFIGURATION
+    ========================================= */
+
+    const SUPABASE_URL =
+        "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+
+    const SUPABASE_KEY =
+        "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
+
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    /* =========================================
+       ELEMENTS
+    ========================================= */
+
+    const loginForm =
+        document.getElementById("loginForm");
+
+    const emailInput =
+        document.getElementById("email");
+
+    const passwordInput =
+        document.getElementById("password");
+
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const messageBox =
+        document.getElementById("message");
+
+
+    /* =========================================
+       MESSAGE
+    ========================================= */
+
+    function showMessage(text, type) {
+
+        messageBox.textContent = text;
+
+        messageBox.className =
+            "message " + type;
+    }
+
+
+    function hideMessage() {
+
+        messageBox.textContent = "";
+
+        messageBox.className =
+            "message";
+    }
+
+
+    /* =========================================
+       CHECK EXISTING SESSION
+    ========================================= */
+
+    async function checkExistingSession() {
+
+        try {
+
+            const {
+                data,
+                error
+            } = await supabaseClient.auth.getSession();
+
+
+            if (error) {
+
+                console.error(
+                    "Session check error:",
+                    error
+                );
+
+                return;
+            }
+
+
+            if (data.session) {
+
+                window.location.href =
+                    "admin-reports.html";
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Session check failed:",
+                error
+            );
+
+        }
+
+    }
+
+
+    checkExistingSession();
+
+
+    /* =========================================
+       LOGIN
+    ========================================= */
+
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            hideMessage();
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email || !password) {
+
+                showMessage(
+                    "Please enter your email and password.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent =
+                "Signing in...";
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient.auth.signInWithPassword({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+                if (error) {
+
+                    console.error(
+                        "Supabase login error:",
+                        error
+                    );
+
+                    showMessage(
+                        "Login failed. Please check your email and password.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                if (!data.session) {
+
+                    showMessage(
+                        "Login could not be completed. Please try again.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                showMessage(
+                    "Login successful. Opening admin dashboard...",
+                    "success"
+                );
+
+
+                setTimeout(function() {
+
+                    window.location.href =
+                        "admin-reports.html";
+
+                }, 700);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Admin login error:",
+                    error
+                );
+
+                showMessage(
+                    "An unexpected error occurred. Please try again.",
+                    "error"
+                );
+
+            } finally {
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "Sign In";
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
