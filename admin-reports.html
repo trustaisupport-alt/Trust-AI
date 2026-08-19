@@ -754,7 +754,7 @@ async function loadReports() {
             data,
             error
         } = await supabaseClient
-            .from("reports")
+            .from("scam_reports")
             .select(
                 "id, created_at, phone_number, scam_type, description, website, reporter_name"
             )
