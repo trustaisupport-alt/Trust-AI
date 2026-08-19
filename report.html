@@ -11,7 +11,7 @@ content="width=device-width, initial-scale=1.0">
 <title>Report a Scam - TrustAI</title>
 
 <meta name="description"
-content="Report suspicious scams, websites, messages and online activity to TrustAI.">
+content="Report suspicious phone numbers, websites, messages and online activity to TrustAI.">
 
 <style>
 
@@ -34,33 +34,25 @@ body {
     position: fixed;
     top: 16px;
     left: 16px;
-
     width: 48px;
     height: 48px;
-
     border: 1px solid #294b6b;
     border-radius: 13px;
-
     background: #102b45;
-
     cursor: pointer;
-
     z-index: 3000;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     gap: 5px;
 }
 
 .menu-button span {
     width: 23px;
     height: 3px;
-
     background: white;
-
     border-radius: 5px;
 }
 
@@ -70,23 +62,21 @@ body {
 
 .side-menu {
     position: fixed;
-
     top: 0;
     left: -300px;
 
     width: 285px;
     height: 100vh;
+    height: 100dvh;
 
     padding: 85px 18px 25px;
 
     background: #091a2c;
-
     border-right: 1px solid #294763;
 
     z-index: 2500;
 
     transition: left .3s ease;
-
     overflow-y: auto;
 }
 
@@ -96,69 +86,53 @@ body {
 
 .menu-title {
     padding: 0 12px 18px;
-
     border-bottom: 1px solid #29425a;
-
     margin-bottom: 12px;
 }
 
 .menu-title strong {
     display: block;
-
     color: #55a9ff;
-
     font-size: 22px;
 }
 
 .menu-title span {
     display: block;
-
     color: #8298ae;
-
     font-size: 12px;
-
     margin-top: 5px;
 }
 
 .menu-link {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
 
     padding: 13px 12px;
-
     margin-bottom: 4px;
 
     border-radius: 11px;
 
     color: #dce9f6;
-
     text-decoration: none;
 
     font-size: 14px;
-
     font-weight: bold;
 }
 
 .menu-link:hover {
     background: #123552;
-
     color: #62b1ff;
 }
 
 .menu-icon {
     width: 25px;
-
     text-align: center;
 }
 
 .menu-divider {
     height: 1px;
-
     background: #29425a;
-
     margin: 14px 0;
 }
 
@@ -168,18 +142,23 @@ body {
 
 .menu-overlay {
     position: fixed;
-
     inset: 0;
 
     background: rgba(0,0,0,.65);
 
     z-index: 2000;
 
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: .25s ease;
 }
 
 .menu-overlay.show {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 /* =========================
@@ -187,11 +166,9 @@ body {
 ========================= */
 
 .page {
-    max-width: 950px;
-
+    width: min(950px, calc(100% - 28px));
     margin: auto;
-
-    padding: 85px 16px 50px;
+    padding: 85px 0 50px;
 }
 
 /* =========================
@@ -200,7 +177,6 @@ body {
 
 .hero {
     position: relative;
-
     overflow: hidden;
 
     background:
@@ -211,11 +187,9 @@ body {
         );
 
     border: 1px solid #2c5b80;
-
     border-radius: 28px;
 
     padding: 38px 28px;
-
     margin-bottom: 20px;
 
     box-shadow:
@@ -239,22 +213,30 @@ body {
 }
 
 .hero-label {
+    position: relative;
+    z-index: 1;
+
     color: #63b4ff;
 
     font-size: 12px;
-
     font-weight: bold;
-
     letter-spacing: 1.5px;
 }
 
 .hero h1 {
+    position: relative;
+    z-index: 1;
+
     margin: 10px 0 12px;
 
     font-size: 34px;
+    line-height: 1.2;
 }
 
 .hero p {
+    position: relative;
+    z-index: 1;
+
     margin: 0;
 
     max-width: 700px;
@@ -262,29 +244,24 @@ body {
     color: #a9bdd0;
 
     line-height: 1.7;
-
     font-size: 15px;
 }
 
 /* =========================
-   TRUST NOTICE
+   NOTICE
 ========================= */
 
 .notice {
     display: flex;
-
     gap: 15px;
-
     align-items: flex-start;
 
     background: #0b2034;
 
     border: 1px solid #294b66;
-
     border-radius: 18px;
 
     padding: 20px;
-
     margin-bottom: 20px;
 }
 
@@ -295,9 +272,7 @@ body {
     flex-shrink: 0;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     background: #173957;
@@ -309,7 +284,6 @@ body {
 
 .notice h2 {
     margin: 0 0 5px;
-
     font-size: 17px;
 }
 
@@ -319,7 +293,6 @@ body {
     color: #91a8bd;
 
     font-size: 13px;
-
     line-height: 1.6;
 }
 
@@ -331,7 +304,6 @@ body {
     background: #0a1b2d;
 
     border: 1px solid #294863;
-
     border-radius: 24px;
 
     padding: 25px;
@@ -342,7 +314,6 @@ body {
 
 .form-card h2 {
     margin: 0 0 7px;
-
     font-size: 22px;
 }
 
@@ -351,11 +322,13 @@ body {
 
     font-size: 13px;
 
-    margin-bottom: 24px;
+    margin: 0 0 24px;
+
+    line-height: 1.6;
 }
 
 /* =========================
-   FORM GRID
+   FORM
 ========================= */
 
 .form-grid {
@@ -378,27 +351,24 @@ body {
     color: #dce9f5;
 
     font-size: 13px;
-
     font-weight: bold;
 }
 
 input,
 textarea,
 select {
+
     width: 100%;
 
     border: 1px solid #31516d;
-
     border-radius: 12px;
 
     padding: 14px;
 
     background: #061321;
-
     color: white;
 
     font-family: inherit;
-
     font-size: 14px;
 }
 
@@ -410,6 +380,7 @@ textarea::placeholder {
 input:focus,
 textarea:focus,
 select:focus {
+
     outline: none;
 
     border-color: #3298f4;
@@ -419,6 +390,7 @@ select:focus {
 }
 
 textarea {
+
     min-height: 170px;
 
     resize: vertical;
@@ -440,28 +412,26 @@ option {
 
 .button-row {
     display: flex;
-
     gap: 10px;
-
     margin-top: 22px;
 }
 
 .submit-button,
 .clear-button {
-    border: none;
 
+    border: none;
     border-radius: 12px;
 
     padding: 15px 20px;
 
     font-size: 14px;
-
     font-weight: bold;
 
     cursor: pointer;
 }
 
 .submit-button {
+
     flex: 1;
 
     background: #1683e8;
@@ -473,7 +443,13 @@ option {
     background: #0d6ec8;
 }
 
+.submit-button:disabled {
+    opacity: .65;
+    cursor: wait;
+}
+
 .clear-button {
+
     width: 120px;
 
     background: #172d43;
@@ -492,6 +468,7 @@ option {
 ========================= */
 
 #reportResult {
+
     display: none;
 
     margin-top: 18px;
@@ -510,6 +487,7 @@ option {
 }
 
 .success {
+
     background: #0d3325;
 
     border: 1px solid #27845d;
@@ -518,6 +496,7 @@ option {
 }
 
 .error {
+
     background: #35141a;
 
     border: 1px solid #8d3945;
@@ -530,9 +509,11 @@ option {
 ========================= */
 
 .bottom-grid {
+
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 15px;
 
@@ -540,6 +521,7 @@ option {
 }
 
 .bottom-card {
+
     background: #0a1b2d;
 
     border: 1px solid #294863;
@@ -550,18 +532,21 @@ option {
 }
 
 .bottom-card-icon {
+
     font-size: 25px;
 
     margin-bottom: 10px;
 }
 
 .bottom-card h3 {
+
     margin: 0 0 7px;
 
     font-size: 16px;
 }
 
 .bottom-card p {
+
     margin: 0;
 
     color: #879db2;
@@ -576,6 +561,7 @@ option {
 ========================= */
 
 footer {
+
     text-align: center;
 
     padding: 30px 10px 0;
@@ -586,6 +572,7 @@ footer {
 }
 
 footer strong {
+
     color: #a5c9e8;
 
     font-size: 15px;
@@ -598,38 +585,58 @@ footer strong {
 @media (max-width: 700px) {
 
     .page {
-        padding: 80px 13px 40px;
+
+        width: calc(100% - 26px);
+
+        padding-top: 80px;
     }
 
     .hero {
+
         padding: 30px 20px;
+
+        border-radius: 22px;
     }
 
     .hero h1 {
+
         font-size: 28px;
     }
 
+    .hero p {
+
+        font-size: 14px;
+    }
+
     .form-card {
+
         padding: 18px;
+
+        border-radius: 20px;
     }
 
     .form-grid {
+
         grid-template-columns: 1fr;
     }
 
     .field.full {
+
         grid-column: auto;
     }
 
     .bottom-grid {
+
         grid-template-columns: 1fr;
     }
 
     .button-row {
+
         flex-direction: column;
     }
 
     .clear-button {
+
         width: 100%;
     }
 
@@ -649,7 +656,9 @@ footer strong {
 <button
     id="menuButton"
     class="menu-button"
-    type="button">
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false">
 
     <span></span>
     <span></span>
@@ -670,7 +679,9 @@ footer strong {
 
         <strong>🛡️ TrustAI</strong>
 
-        <span>Online Scam Protection</span>
+        <span>
+            Online Scam Protection
+        </span>
 
     </div>
 
@@ -699,9 +710,21 @@ footer strong {
     </a>
 
 
+    <a href="phone.html" class="menu-link">
+        <span class="menu-icon">📞</span>
+        Phone Number Checker
+    </a>
+
+
     <a href="device_checker.html" class="menu-link">
         <span class="menu-icon">📱</span>
         Device Security
+    </a>
+
+
+    <a href="protection.html" class="menu-link">
+        <span class="menu-icon">🛡️</span>
+        TrustAI Protection
     </a>
 
 
@@ -731,8 +754,18 @@ footer strong {
         Contact TrustAI
     </a>
 
+
+    <a href="settings.html" class="menu-link">
+        <span class="menu-icon">⚙️</span>
+        Settings & Privacy
+    </a>
+
 </nav>
 
+
+<!-- =========================
+     OVERLAY
+========================= -->
 
 <div
     id="menuOverlay"
@@ -758,9 +791,9 @@ footer strong {
     </h1>
 
     <p>
-        Spotted something suspicious?
-        Tell TrustAI what happened so you can document
-        the incident and help raise awareness about scams.
+        Report a suspicious phone number, website,
+        message or other scam activity to TrustAI.
+        Your report can help protect other users.
     </p>
 
 </section>
@@ -779,9 +812,9 @@ footer strong {
         </h2>
 
         <p>
-            Never include passwords, OTPs, PINs, bank
-            login details or other sensitive information
-            in your report.
+            Never include passwords, OTPs, PINs,
+            bank login details or other sensitive
+            information in your report.
         </p>
 
     </div>
@@ -796,8 +829,9 @@ footer strong {
     </h2>
 
     <p class="form-intro">
-        Provide as much useful information as possible.
-        Fields marked optional can be left blank.
+        Provide useful information about the
+        suspicious activity. Your report will be
+        stored securely in TrustAI's online database.
     </p>
 
 
@@ -806,6 +840,26 @@ footer strong {
 
         <div class="form-grid">
 
+
+            <!-- PHONE NUMBER -->
+
+            <div class="field full">
+
+                <label for="phoneNumber">
+                    📞 Suspicious phone number
+                </label>
+
+                <input
+                    id="phoneNumber"
+                    type="tel"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    placeholder="+234 801 234 5678">
+
+            </div>
+
+
+            <!-- NAME -->
 
             <div class="field">
 
@@ -816,10 +870,13 @@ footer strong {
                 <input
                     id="name"
                     type="text"
+                    maxlength="100"
                     placeholder="Optional">
 
             </div>
 
+
+            <!-- SCAM TYPE -->
 
             <div class="field">
 
@@ -870,29 +927,35 @@ footer strong {
             </div>
 
 
+            <!-- WEBSITE -->
+
             <div class="field full">
 
                 <label for="website">
-                    Suspicious website or link
+                    🌐 Suspicious website or link
                 </label>
 
                 <input
                     id="website"
                     type="text"
+                    maxlength="2000"
                     placeholder="Optional — paste the suspicious website or link">
 
             </div>
 
 
+            <!-- DESCRIPTION -->
+
             <div class="field full">
 
                 <label for="description">
-                    What happened?
+                    📄 What happened?
                 </label>
 
                 <textarea
                     id="description"
-                    placeholder="Describe the message, website, account, payment request or other suspicious activity..."></textarea>
+                    maxlength="5000"
+                    placeholder="Describe the call, message, website, payment request or other suspicious activity..."></textarea>
 
             </div>
 
@@ -904,6 +967,7 @@ footer strong {
 
             <button
                 type="submit"
+                id="submitButton"
                 class="submit-button">
 
                 🚨 Submit Scam Report
@@ -926,7 +990,10 @@ footer strong {
     </form>
 
 
-    <div id="reportResult"></div>
+    <div
+        id="reportResult"
+        aria-live="polite">
+    </div>
 
 
 </section>
@@ -982,8 +1049,9 @@ footer strong {
         </h3>
 
         <p>
-            If money or an account is involved, contact
-            the relevant official service quickly.
+            If money or an account is involved,
+            contact the relevant official service
+            quickly.
         </p>
 
     </article>
@@ -1012,11 +1080,46 @@ footer strong {
 </main>
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
 
-/* =========================
+/* =====================================================
+   TRUSTAI SUPABASE CONFIGURATION
+===================================================== */
+
+const SUPABASE_URL =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+/*
+   IMPORTANT:
+   Paste your Supabase PUBLISHABLE key below.
+
+   Use the sb_publishable_... key.
+
+   NEVER use a Supabase secret/service-role key
+   in this file.
+*/
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =====================================================
    MENU
-========================= */
+===================================================== */
 
 const menuButton =
     document.getElementById("menuButton");
@@ -1028,141 +1131,201 @@ const menuOverlay =
     document.getElementById("menuOverlay");
 
 
-menuButton.addEventListener("click", function () {
+function openMenu() {
 
-    sideMenu.classList.toggle("open");
+    sideMenu.classList.add("open");
 
-    menuOverlay.classList.toggle("show");
+    menuOverlay.classList.add("show");
 
-});
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
 
 
-menuOverlay.addEventListener("click", function () {
+function closeMenu() {
 
     sideMenu.classList.remove("open");
 
     menuOverlay.classList.remove("show");
 
-});
-
-
-/* =========================
-   REPORT FORM
-========================= */
-
-const reportForm =
-    document.getElementById("reportForm");
-
-const reportResult =
-    document.getElementById("reportResult");
-
-
-reportForm.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const description =
-        document.getElementById("description").value.trim();
-
-    const website =
-        document.getElementById("website").value.trim();
-
-    const scamType =
-        document.getElementById("scamType").value;
-
-
-    if (description === "") {
-
-        showError(
-            "⚠️ Please describe what happened."
-        );
-
-        return;
-
-    }
-
-
-    if (scamType === "") {
-
-        showError(
-            "⚠️ Please select a scam type."
-        );
-
-        return;
-
-    }
-
-
-    const report = {
-
-        name:
-            name || "Anonymous",
-
-        description:
-            description,
-
-        website:
-            website || "Not provided",
-
-        scamType:
-            scamType,
-
-        date:
-            new Date().toLocaleString()
-
-    };
-
-
-    let reports =
-        JSON.parse(
-            localStorage.getItem("trustAIReports")
-        ) || [];
-
-
-    reports.push(report);
-
-
-    localStorage.setItem(
-        "trustAIReports",
-        JSON.stringify(reports)
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
     );
 
+}
+
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        if (
+            sideMenu.classList.contains("open")
+        ) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
+    }
+);
+
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NORMALIZE PHONE NUMBER
+===================================================== */
+
+function normalizePhoneNumber(value) {
+
+    let number =
+        String(value || "")
+        .trim()
+        .replace(/[^\d+]/g, "");
+
+
+    /*
+       Nigerian local number:
+
+       08012345678
+
+       becomes:
+
+       +2348012345678
+    */
+
+    if (
+        number.startsWith("0") &&
+        number.length === 11
+    ) {
+
+        number =
+            "+234" +
+            number.substring(1);
+
+    }
+
+
+    /*
+       International number without +:
+
+       2348012345678
+
+       becomes:
+
+       +2348012345678
+    */
+
+    if (
+        number.startsWith("00")
+    ) {
+
+        number =
+            "+" +
+            number.substring(2);
+
+    }
+
+
+    if (
+        number.startsWith("234") &&
+        !number.startsWith("+")
+    ) {
+
+        number =
+            "+" +
+            number;
+
+    }
+
+
+    return number;
+
+}
+
+
+/* =====================================================
+   INTERNATIONAL PHONE VALIDATION
+===================================================== */
+
+function isValidPhoneNumber(number) {
+
+    /*
+       Accepts international E.164-style numbers.
+
+       Example:
+
+       +2348012345678
+       +12025550123
+       +447911123456
+       +919876543210
+
+       This checks the FORMAT only.
+       It does not prove that the number exists.
+    */
+
+    return /^\+[1-9]\d{7,14}$/.test(number);
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   RESULT MESSAGE
+===================================================== */
+
+function showSuccess(message) {
 
     reportResult.className =
         "show success";
 
-
     reportResult.innerHTML =
+        message;
 
-        "<strong>✅ Report saved successfully</strong><br><br>" +
+}
 
-        "Thank you for helping raise awareness about online scams." +
-
-        "<br><br>" +
-
-        "<small>" +
-
-        "This version stores the report on this device only. " +
-
-        "A secure online reporting system can be connected " +
-
-        "when TrustAI has a backend." +
-
-        "</small>";
-
-
-    reportForm.reset();
-
-});
-
-
-/* =========================
-   ERROR
-========================= */
 
 function showError(message) {
 
@@ -1175,22 +1338,270 @@ function showError(message) {
 }
 
 
-/* =========================
-   CLEAR
-========================= */
+/* =====================================================
+   FORM ELEMENTS
+===================================================== */
+
+const reportForm =
+    document.getElementById(
+        "reportForm"
+    );
+
+const reportResult =
+    document.getElementById(
+        "reportResult"
+    );
+
+const submitButton =
+    document.getElementById(
+        "submitButton"
+    );
+
+
+/* =====================================================
+   SUBMIT REPORT
+===================================================== */
+
+reportForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const rawPhone =
+            document
+            .getElementById("phoneNumber")
+            .value
+            .trim();
+
+
+        const name =
+            document
+            .getElementById("name")
+            .value
+            .trim();
+
+
+        const scamType =
+            document
+            .getElementById("scamType")
+            .value
+            .trim();
+
+
+        const website =
+            document
+            .getElementById("website")
+            .value
+            .trim();
+
+
+        const description =
+            document
+            .getElementById("description")
+            .value
+            .trim();
+
+
+        /* =========================
+           VALIDATION
+        ========================= */
+
+        if (rawPhone === "") {
+
+            showError(
+                "⚠️ Please enter the suspicious phone number."
+            );
+
+            return;
+
+        }
+
+
+        const phoneNumber =
+            normalizePhoneNumber(
+                rawPhone
+            );
+
+
+        if (
+            !isValidPhoneNumber(
+                phoneNumber
+            )
+        ) {
+
+            showError(
+                "⚠️ Please enter a valid international phone number, for example +2348012345678 or +12025550123."
+            );
+
+            return;
+
+        }
+
+
+        if (scamType === "") {
+
+            showError(
+                "⚠️ Please select a scam type."
+            );
+
+            return;
+
+        }
+
+
+        if (description === "") {
+
+            showError(
+                "⚠️ Please describe what happened."
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           PREVENT DOUBLE SUBMISSION
+        ========================= */
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "⏳ Sending Report...";
+
+
+        try {
+
+            /* =========================
+               SEND TO SUPABASE
+            ========================= */
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient
+            .from("scam_reports")
+            .insert([
+                {
+
+                    phone_number:
+                        phoneNumber,
+
+                    scam_type:
+                        scamType,
+
+                    description:
+                        description,
+
+                    website:
+                        website || null,
+
+                    reporter_name:
+                        name || null
+
+                }
+            ])
+            .select();
+
+
+            /* =========================
+               DATABASE ERROR
+            ========================= */
+
+            if (error) {
+
+                console.error(
+                    "Supabase report error:",
+                    error
+                );
+
+                throw error;
+
+            }
+
+
+            /* =========================
+               SUCCESS
+            ========================= */
+
+            showSuccess(
+
+                "<strong>✅ Report submitted successfully.</strong>" +
+
+                "<br><br>" +
+
+                "Thank you for helping protect the TrustAI community." +
+
+                "<br><br>" +
+
+                "<small>" +
+
+                "The report has been sent to the TrustAI database. " +
+
+                "Other users may receive a warning when this number " +
+
+                "is checked, depending on the available reports and " +
+
+                "TrustAI's reputation system." +
+
+                "</small>"
+
+            );
+
+
+            reportForm.reset();
+
+
+        } catch (error) {
+
+            console.error(
+                "TrustAI report submission failed:",
+                error
+            );
+
+
+            showError(
+
+                "❌ We could not submit your report right now. " +
+
+                "Please check your internet connection and try again."
+
+            );
+
+        } finally {
+
+            submitButton.disabled = false;
+
+            submitButton.textContent =
+                "🚨 Submit Scam Report";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CLEAR BUTTON
+===================================================== */
 
 document
 .getElementById("clearButton")
-.addEventListener("click", function() {
+.addEventListener(
+    "click",
+    function() {
 
-    reportForm.reset();
+        reportForm.reset();
 
-    reportResult.innerHTML = "";
+        reportResult.innerHTML = "";
 
-    reportResult.className = "";
+        reportResult.className = "";
 
-});
-
+    }
+);
 
 </script>
 
