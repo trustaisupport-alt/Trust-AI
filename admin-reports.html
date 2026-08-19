@@ -356,13 +356,44 @@ tr:last-child td {
 
     <div class="page-title">
 
-        <h1>
-            Scam Reports
-        </h1>
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:15px;
+        flex-wrap:wrap;
+    ">
 
-        <p>
-            Review reports submitted by the TrustAI community.
-        </p>
+        <div>
+
+            <h1>
+                Scam Reports
+            </h1>
+
+            <p>
+                Review reports submitted by the TrustAI community.
+            </p>
+
+        </div>
+
+        <button
+            id="refreshButton"
+            type="button"
+            style="
+                border:none;
+                border-radius:9px;
+                padding:11px 16px;
+                background:#168cff;
+                color:white;
+                font-size:14px;
+                font-weight:bold;
+                cursor:pointer;
+            "
+        >
+            ↻ Refresh Reports
+        </button>
+
+    </div>
 
     </div>
 
@@ -562,7 +593,8 @@ const scamTypes =
 
 const logoutButton =
     document.getElementById("logoutButton");
-
+const refreshButton =
+    document.getElementById("refreshButton");
 
 let allReports = [];
 
@@ -1121,7 +1153,28 @@ logoutButton.addEventListener(
 
     }
 );
+/* =========================================
+   REFRESH REPORTS
+========================================= */
 
+refreshButton.addEventListener(
+    "click",
+    async function() {
+
+        refreshButton.disabled = true;
+
+        refreshButton.textContent =
+            "↻ Refreshing...";
+
+        await loadReports();
+
+        refreshButton.disabled = false;
+
+        refreshButton.textContent =
+            "↻ Refresh Reports";
+
+    }
+);
 
 /* =========================================
    START
