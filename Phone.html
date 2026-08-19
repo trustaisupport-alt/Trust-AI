@@ -1536,6 +1536,239 @@ function showResult(
     if (
         Array.isArray(reasons) &&
         reasons.length > 0
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+/* =====================================================
+   TRUSTAI SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+
+function openMenu() {
+
+    sideMenu.classList.add("open");
+
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
+
+
+function closeMenu() {
+
+    sideMenu.classList.remove("open");
+
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        if (
+            sideMenu.classList.contains("open")
+        ) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
+    }
+);
+
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   NORMALIZE PHONE NUMBER
+===================================================== */
+
+function normalizePhoneNumber(value) {
+
+    let number =
+        String(value || "")
+        .trim()
+        .replace(/[^\d+]/g, "");
+
+
+    /*
+       Convert 00 international format.
+
+       00447891123456
+       ->
+       +447891123456
+    */
+
+    if (
+        number.startsWith("00")
+    ) {
+
+        number =
+            "+" +
+            number.substring(2);
+
+    }
+
+
+    /*
+       Nigerian local number.
+
+       08012345678
+       ->
+       +2348012345678
+    */
+
+    if (
+        number.startsWith("0") &&
+        number.length === 11
+    ) {
+
+        number =
+            "+234" +
+            number.substring(1);
+
+    }
+
+
+    /*
+       International number without +.
+
+       447891123456
+       ->
+       +447891123456
+    */
+
+    if (
+        !number.startsWith("+") &&
+        number.length > 0
+    ) {
+
+        number =
+            "+" +
+            number;
+
+    }
+
+
+    return number;
+
+}
+
+
+/* =====================================================
+   INTERNATIONAL PHONE VALIDATION
+===================================================== */
+
+function isValidPhoneNumber(number) {
+
+    return /^\+[1-9]\d{7,14}$/.test(
+        number
+    );
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function showResult(
+    type,
+    icon,
+    title,
+    number,
+    message,
+    reasons
+) {
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    let reasonsHTML = "";
+
+
+    if (
+        Array.isArray(reasons) &&
+        reasons.length > 0
     ) {
 
         reasonsHTML =
@@ -1566,7 +1799,7 @@ function showResult(
     result.innerHTML =
 
         "<div class='result-icon'>" +
-        icon +
+        escapeHTML(icon) +
         "</div>" +
 
         "<div class='result-title'>" +
@@ -1592,25 +1825,406 @@ function showResult(
 }
 
 
-/* =========================
-   HTML ESCAPE
-========================= */
+/* =====================================================
+   CHECK PHONE NUMBER
+===================================================== */
 
-function escapeHTML(value) {
+async function checkPhoneNumber() {
 
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    const input =
+        document.getElementById(
+            "phoneNumber"
+        );
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+    const button =
+        document.getElementById(
+            "checkButton"
+        );
+
+
+    const rawNumber =
+        input.value.trim();
+
+
+    /* =========================
+       EMPTY NUMBER
+    ========================= */
+
+    if (rawNumber === "") {
+
+        showResult(
+
+            "error",
+
+            "⚠️",
+
+            "Enter a phone number",
+
+            "",
+
+            "Please enter the phone number you want TrustAI to check.",
+
+            []
+
+        );
+
+        return;
+
+    }
+
+
+    /* =========================
+       NORMALIZE
+    ========================= */
+
+    const normalized =
+        normalizePhoneNumber(
+            rawNumber
+        );
+
+
+    /* =========================
+       VALIDATE
+    ========================= */
+
+    if (
+        !isValidPhoneNumber(
+            normalized
+        )
+    ) {
+
+        showResult(
+
+            "error",
+
+            "⚠️",
+
+            "Invalid international number",
+
+            normalized,
+
+            "Please enter a valid international phone number.",
+
+            [
+
+                "Use the + country-code format when possible.",
+
+                "Example US: +12025550123",
+
+                "Example UK: +447911123456",
+
+                "Example Nigeria: +2348012345678"
+
+            ]
+
+        );
+
+        return;
+
+    }
+
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    button.disabled = true;
+
+    button.textContent =
+        "⏳ Checking TrustAI Database...";
+
+
+    showResult(
+
+        "review",
+
+        "🔎",
+
+        "Checking TrustAI...",
+
+        normalized,
+
+        "Searching TrustAI's available scam reports.",
+
+        []
+
+    );
+
+
+    try {
+
+        /* =========================
+           QUERY SUPABASE
+        ========================= */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+        .from("scam_reports")
+        .select(
+            "phone_number, scam_type, description"
+        )
+        .eq(
+            "phone_number",
+            normalized
+        );
+
+
+        /* =========================
+           DATABASE ERROR
+        ========================= */
+
+        if (error) {
+
+            console.error(
+                "TrustAI phone lookup error:",
+                error
+            );
+
+            throw error;
+
+        }
+
+
+        /* =========================
+           NO REPORT
+        ========================= */
+
+        if (
+            !data ||
+            data.length === 0
+        ) {
+
+            showResult(
+
+                "clear",
+
+                "🟢",
+
+                "No Known Reports",
+
+                normalized,
+
+                "TrustAI currently has no known scam reports for this number.",
+
+                [
+
+                    "No matching TrustAI report was found.",
+
+                    "The number may be new or simply not reported yet.",
+
+                    "No report does NOT guarantee that the number is safe."
+
+                ]
+
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           REPORT COUNT
+        ========================= */
+
+        const reportCount =
+            data.length;
+
+
+        /*
+           Collect the scam categories
+           reported for this number.
+        */
+
+        const categories =
+            [
+                ...new Set(
+                    data
+                    .map(
+                        report =>
+                            report.scam_type
+                    )
+                    .filter(Boolean)
+                )
+            ];
+
+
+        const categoryText =
+            categories.length > 0
+            ?
+            categories.join(", ")
+            :
+            "Suspicious activity";
+
+
+        /* =========================
+           HIGH RISK
+        ========================= */
+
+        if (
+            reportCount >= 4
+        ) {
+
+            showResult(
+
+                "danger",
+
+                "🔴",
+
+                "High Risk — Multiple Reports",
+
+                normalized,
+
+                "This number has multiple TrustAI reports associated with suspicious activity.",
+
+                [
+
+                    "Reports found: " +
+                    reportCount,
+
+                    "Reported categories: " +
+                    categoryText,
+
+                    "The number has been reported by multiple users.",
+
+                    "Do not send money or share sensitive information."
+
+                ]
+
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           SUSPICIOUS
+        ========================= */
+
+        if (
+            reportCount >= 2
+        ) {
+
+            showResult(
+
+                "suspicious",
+
+                "🟠",
+
+                "Suspicious — Reported",
+
+                normalized,
+
+                "TrustAI has received multiple reports associated with this number.",
+
+                [
+
+                    "Reports found: " +
+                    reportCount,
+
+                    "Reported categories: " +
+                    categoryText,
+
+                    "Use caution and verify the caller independently.",
+
+                    "Do not share OTPs, PINs or passwords."
+
+                ]
+
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           ONE REPORT
+        ========================= */
+
+        showResult(
+
+            "review",
+
+            "🟠",
+
+            "Under Review — 1 Report",
+
+            normalized,
+
+            "This number has been reported to TrustAI, but one report alone does not establish that the number is a scam.",
+
+            [
+
+                "Reports found: 1",
+
+                "Reported category: " +
+                categoryText,
+
+                "Treat unexpected contact with caution.",
+
+                "Do not share OTPs, PINs, passwords or banking information."
+
+            ]
+
+        );
+
+    } catch (error) {
+
+        console.error(
+            "TrustAI phone check failed:",
+            error
+        );
+
+
+        showResult(
+
+            "error",
+
+            "❌",
+
+            "Unable to Check Number",
+
+            normalized,
+
+            "TrustAI could not connect to the scam-report database right now.",
+
+            [
+
+                "Check your internet connection.",
+
+                "Try again in a moment.",
+
+                "If the problem continues, check the Supabase configuration."
+
+            ]
+
+        );
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "🔎 Check Number";
+
+    }
 
 }
 
 
-/* =========================
+/* =====================================================
    CHECK BUTTON
-========================= */
+===================================================== */
 
 document
 .getElementById("checkButton")
@@ -1620,9 +2234,9 @@ document
 );
 
 
-/* =========================
+/* =====================================================
    ENTER KEY
-========================= */
+===================================================== */
 
 document
 .getElementById("phoneNumber")
