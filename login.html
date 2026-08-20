@@ -1583,9 +1583,18 @@ async function openFaceVerification() {
             "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
 
 
-        await faceapi.nets.tinyFaceDetector
-            .loadFromUri(MODEL_URL);
+        await Promise.all([
 
+    faceapi.nets.tinyFaceDetector
+        .loadFromUri(MODEL_URL),
+
+    faceapi.nets.faceLandmark68Net
+        .loadFromUri(MODEL_URL),
+
+    faceapi.nets.faceRecognitionNet
+        .loadFromUri(MODEL_URL)
+
+]);
 
         status.textContent =
             "Face detection ready. Starting camera...";
