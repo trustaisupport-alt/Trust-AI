@@ -1978,75 +1978,144 @@ async function verifyFace() {
             throw fetchError;
         }
 
+/* ============================= */
+/* FIRST-TIME FACE ENROLLMENT */
+/* ============================= */
 
-        /* ============================= */
-        /* FIRST-TIME FACE ENROLLMENT */
-        /* ============================= */
+if (
+    !existingRecord ||
+    existingRecord.enrolled !== true ||
+    !existingRecord.face_descriptor
+) {
 
-        if (
-            !existingRecord ||
-            !existingRecord.enrolled ||
-            !existingRecord.face_descriptor
-        ) {
+    status.className =
+        "camera-status";
 
-            const {
-                error: saveError
-            } = await supabaseClient
-                .from("face_verification")
-                .upsert({
+    status.textContent =
+        "Saving your face securely...";
 
-                    user_id:
-                        user.id,
+    /*
+       Make sure the descriptor is a normal
+       JavaScript array before sending it
+       to the Supabase JSONB column.
+    */
 
-                    enrolled:
-                        true,
+    const faceDescriptor =
+        Array.from(result.descriptor);
 
-                    face_descriptor:
-                        descriptor,
+    if (
+        !Array.isArray(faceDescriptor) ||
+        faceDescriptor.length !== 128
+    ) {
 
-                    verification_provider:
-                        "face-api.js",
+        throw new Error(
+            "A valid face descriptor could not be created. Please try again."
+        );
 
-                    enrolled_at:
-                        new Date().toISOString(),
-
-                    last_verified_at:
-                        new Date().toISOString()
-
-                }, {
-
-                    onConflict:
-                        "user_id"
-
-                });
+    }
 
 
-            if (saveError) {
-                throw saveError;
-            }
+    const now =
+        new Date().toISOString();
 
 
-            status.className =
-                "camera-status success";
+    /*
+       Save the face enrollment.
+    */
 
-            status.textContent =
-                "Your face has been securely linked to your TrustAI account ✓";
+    const {
+        data: savedRecord,
+        error: saveError
+    } = await supabaseClient
+        .from("face_verification")
+        .upsert({
 
-            button.textContent =
-                "Continue";
+            user_id:
+                user.id,
 
-            button.disabled =
-                false;
+            enrolled:
+                true,
 
-            button.onclick =
-                finishVerification;
+            face_descriptor:
+                faceDescriptor,
 
-            stopCamera();
+            verification_provider:
+                "face-api.js",
 
-            return;
-        }
+            enrolled_at:
+                now,
+
+            last_verified_at:
+                now
+
+        }, {
+
+            onConflict:
+                "user_id",
+
+            returning:
+                "representation"
+
+        })
+        .select()
+        .single();
 
 
+    if (saveError) {
+
+        console.error(
+            "Face enrollment save error:",
+            saveError
+        );
+
+        throw new Error(
+            "Your face could not be saved. " +
+            saveError.message
+        );
+
+    }
+
+
+    /*
+       Confirm that Supabase actually returned
+       the saved face record.
+    */
+
+    if (
+        !savedRecord ||
+        savedRecord.enrolled !== true ||
+        !savedRecord.face_descriptor
+    ) {
+
+        throw new Error(
+            "Face enrollment could not be confirmed in the database."
+        );
+
+    }
+
+
+    status.className =
+        "camera-status success";
+
+    status.textContent =
+        "Your face has been securely linked to your TrustAI account ✓";
+
+
+    button.textContent =
+        "Continue";
+
+    button.disabled =
+        false;
+
+    button.onclick =
+        finishVerification;
+
+
+    stopCamera();
+
+    return;
+              }
+        
         /* ============================= */
         /* FACE MATCHING */
         /* ============================= */
