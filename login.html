@@ -1859,24 +1859,17 @@ function startFaceDetection() {
 /* VERIFY FACE */
 /* ================================= */
 
-function verifyFace() {
+async function verifyFace() {
 
     if (!cameraReady) {
         return;
     }
 
-
     const status =
-        document.getElementById(
-            "cameraStatus"
-        );
-
+        document.getElementById("cameraStatus");
 
     const button =
-        document.getElementById(
-            "verifyButton"
-        );
-
+        document.getElementById("verifyButton");
 
     if (!faceCurrentlyDetected) {
 
@@ -1887,53 +1880,307 @@ function verifyFace() {
             "No face detected. Position your face inside the circle.";
 
         return;
-
     }
-
 
     button.disabled = true;
 
+    button.textContent =
+        "Checking Face...";
 
     status.className =
         "camera-status";
 
-
     status.textContent =
-        "Checking face presence...";
+        "Analyzing your face...";
+
+    try {
+
+        /* ============================= */
+        /* GET CURRENT TRUSTAI USER */
+        /* ============================= */
+
+        const {
+            data: sessionData,
+            error: sessionError
+        } = await supabaseClient.auth.getSession();
+
+        if (sessionError) {
+            throw sessionError;
+        }
+
+        const user =
+            sessionData &&
+            sessionData.session &&
+            sessionData.session.user;
+
+        if (!user) {
+
+            throw new Error(
+                "Your TrustAI session could not be found. Please log in again."
+            );
+
+        }
 
 
-    /*
-       This is a face-presence check.
+        /* ============================= */
+        /* CAPTURE FACE DESCRIPTOR */
+        /* ============================= */
 
-       It does NOT claim that the face has been
-       matched against an account owner's stored
-       biometric identity.
-    */
+        const video =
+            document.getElementById("cameraVideo");
 
-    setTimeout(() => {
+        const result =
+            await faceapi
+                .detectSingleFace(
+                    video,
+                    new faceapi.TinyFaceDetectorOptions({
+                        inputSize: 224,
+                        scoreThreshold: 0.5
+                    })
+                )
+                .withFaceLandmarks()
+                .withFaceDescriptor();
+
+
+        if (!result) {
+
+            throw new Error(
+                "Your face could not be detected clearly. Please center your face and try again."
+            );
+
+        }
+
+
+        const descriptor =
+            Array.from(result.descriptor);
+
+
+        /* ============================= */
+        /* CHECK EXISTING FACE RECORD */
+        /* ============================= */
+
+        const {
+            data: existingRecord,
+            error: fetchError
+        } = await supabaseClient
+            .from("face_verification")
+            .select(
+                "user_id, enrolled, face_descriptor"
+            )
+            .eq(
+                "user_id",
+                user.id
+            )
+            .maybeSingle();
+
+
+        if (fetchError) {
+            throw fetchError;
+        }
+
+
+        /* ============================= */
+        /* FIRST-TIME FACE ENROLLMENT */
+        /* ============================= */
+
+        if (
+            !existingRecord ||
+            !existingRecord.enrolled ||
+            !existingRecord.face_descriptor
+        ) {
+
+            const {
+                error: saveError
+            } = await supabaseClient
+                .from("face_verification")
+                .upsert({
+
+                    user_id:
+                        user.id,
+
+                    enrolled:
+                        true,
+
+                    face_descriptor:
+                        descriptor,
+
+                    verification_provider:
+                        "face-api.js",
+
+                    enrolled_at:
+                        new Date().toISOString(),
+
+                    last_verified_at:
+                        new Date().toISOString()
+
+                }, {
+
+                    onConflict:
+                        "user_id"
+
+                });
+
+
+            if (saveError) {
+                throw saveError;
+            }
+
+
+            status.className =
+                "camera-status success";
+
+            status.textContent =
+                "Your face has been securely linked to your TrustAI account ✓";
+
+            button.textContent =
+                "Continue";
+
+            button.disabled =
+                false;
+
+            button.onclick =
+                finishVerification;
+
+            stopCamera();
+
+            return;
+        }
+
+
+        /* ============================= */
+        /* FACE MATCHING */
+        /* ============================= */
+
+        const storedDescriptor =
+            new Float32Array(
+                existingRecord.face_descriptor
+            );
+
+
+        const distance =
+            faceapi.euclideanDistance(
+                descriptor,
+                storedDescriptor
+            );
+
+
+        /*
+           Lower distance = stronger match.
+
+           0.50 is a reasonably strict starting
+           threshold for this browser-based check.
+        */
+
+        const MATCH_THRESHOLD =
+            0.50;
+
+
+        if (distance > MATCH_THRESHOLD) {
+
+            stopCamera();
+
+            status.className =
+                "camera-status error";
+
+            status.textContent =
+                "Face does not match the face registered to this TrustAI account.";
+
+            button.textContent =
+                "Try Again";
+
+            button.disabled =
+                false;
+
+            button.onclick =
+                () => {
+
+                    openFaceVerification();
+
+                };
+
+            return;
+        }
+
+
+        /* ============================= */
+        /* MATCH SUCCESSFUL */
+        /* ============================= */
+
+        const {
+            error: updateError
+        } = await supabaseClient
+            .from("face_verification")
+            .update({
+
+                last_verified_at:
+                    new Date().toISOString()
+
+            })
+            .eq(
+                "user_id",
+                user.id
+            );
+
+
+        if (updateError) {
+            throw updateError;
+        }
+
 
         status.className =
             "camera-status success";
 
-
         status.textContent =
-            "Face check completed ✓";
-
+            "Face matched successfully ✓";
 
         button.textContent =
             "Continue";
 
-
         button.disabled =
             false;
-
 
         button.onclick =
             finishVerification;
 
-    }, 1200);
+        stopCamera();
+
+
+    } catch (error) {
+
+        console.error(
+            "Face verification error:",
+            error
+        );
+
+
+        status.className =
+            "camera-status error";
+
+        status.textContent =
+            "Face verification failed: " +
+            (
+                error.message ||
+                "Please try again."
+            );
+
+
+        button.textContent =
+            "Try Again";
+
+        button.disabled =
+            false;
+
+        button.onclick =
+            () => {
+
+                openFaceVerification();
+
+            };
+
+    }
 
 }
+
 
 
 /* ================================= */
