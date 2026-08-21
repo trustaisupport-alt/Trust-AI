@@ -1350,42 +1350,80 @@ if (guaranteedInvestment) {
         ]);
 
 
-    /* =================================================
-       15. DELIVERY / PACKAGE
-    ================================================= */
+/* =================================================
+   15. DELIVERY / PACKAGE
+================================================= */
 
-    const packageStory =
-        hasAny([
+const packageStory =
+    hasAny([
 
-            "your package",
-            "your parcel",
-            "package is waiting",
-            "parcel is waiting",
-            "delivery",
-            "delivery agent",
-            "customs",
-            "customs clearance",
-            "redelivery",
-            "package could not be delivered"
+        "your package",
+        "your parcel",
+        "package is waiting",
+        "parcel is waiting",
+        "package is ready",
+        "parcel is ready",
+        "delivery",
+        "delivery agent",
+        "delivery service",
+        "courier",
+        "courier service",
+        "customs",
+        "customs clearance",
+        "redelivery",
+        "redelivery attempt",
+        "package could not be delivered",
+        "parcel could not be delivered",
+        "package will be returned",
+        "parcel will be returned"
 
-        ]);
-
-
-    const deliveryPayment =
-        hasAny([
-
-            "delivery fee",
-            "delivery payment",
-            "customs fee",
-            "customs fees",
-            "clearance fee",
-            "redelivery fee",
-            "pay for delivery",
-            "pay customs"
-
-        ]);
+    ]);
 
 
+const deliveryPayment =
+    hasAny([
+
+        "delivery fee",
+        "delivery payment",
+        "customs fee",
+        "customs fees",
+        "customs clearance",
+        "clearance fee",
+        "clearance fees",
+        "redelivery fee",
+        "redelivery fees",
+        "pay for delivery",
+        "pay delivery",
+        "pay customs",
+        "pay customs clearance",
+        "payment for customs",
+        "customs payment",
+        "shipping fee",
+        "shipping payment",
+        "courier fee",
+        "courier payment",
+        "release the package",
+        "release your package",
+        "release the parcel",
+        "release your parcel"
+
+    ]);
+/* =================================================
+   DELIVERY PAYMENT + URGENCY
+================================================= */
+
+if (
+    packageStory &&
+    deliveryPayment
+) {
+
+    addRisk(
+        6,
+        "A package or delivery story is combined with a demand for customs, clearance, delivery, or shipping payment.",
+        "Delivery scam"
+    );
+
+}
     /* =================================================
        16. CRYPTO WALLET
     ================================================= */
