@@ -839,34 +839,43 @@ function checkConversation() {
     ================================================= */
 
     const paymentRequest =
-        hasAny([
+    hasAny([
 
-            "send me money",
-            "send money",
-            "send some money",
-            "send the money",
-            "send cash",
-            "transfer money",
-            "transfer funds",
-            "make a transfer",
-            "make a payment",
-            "pay me",
-            "send the funds",
-            "deposit money",
-            "deposit the money",
-            "make a deposit",
-            "give me money",
-            "lend me money",
-            "borrow money",
-            "financial help",
-            "send ₦",
-            "send n",
-            "send $",
-            "pay ₦",
-            "pay n",
-            "pay $"
+        "send the money now",
+        "send money now",
+        "send the cash now",
+        "send ₦20,000",
+        "send ₦",
+        "send n",
+        "send $",
+        "pay now",
+        "transfer now",
+        "invest now",
+        "invest today",
 
-        ]);
+        "send me money",
+        "send money",
+        "send some money",
+        "send the money",
+        "send cash",
+        "transfer money",
+        "transfer funds",
+        "make a transfer",
+        "make a payment",
+        "pay me",
+        "send the funds",
+        "deposit money",
+        "deposit the money",
+        "make a deposit",
+        "give me money",
+        "lend me money",
+        "borrow money",
+        "financial help",
+        "pay ₦",
+        "pay n",
+        "pay $"
+
+    ]);
 
 
     /* =================================================
@@ -1258,28 +1267,64 @@ function checkConversation() {
     ================================================= */
 
     const investmentScam =
-        hasAny([
+    hasAny([
 
-            "investment opportunity",
-            "invest now",
-            "invest today",
-            "guaranteed profit",
-            "guaranteed returns",
-            "guaranteed return",
+        "investment opportunity",
+        "invest now",
+        "invest today",
+        "guarantee ₦",
+        "guaranteed ₦",
+        "guarantee n",
+        "guaranteed n",
+        "guaranteed money",
+        "guaranteed profit",
+        "guaranteed profits",
+        "guaranteed return",
+        "guaranteed returns",
+        "double your money",
+        "triple your money",
+        "10x your money",
+        "10 times your money",
+        "500% profit",
+        "100% profit",
+        "200% profit",
+        "make ₦",
+        "make n",
+        "make ₦200,000",
+        "make n200,000",
+        "risk free",
+        "risk-free",
+        "no risk",
+        "crypto investment",
+        "trading opportunity",
+        "secret trading system"
+
+    ]);
+
+    const guaranteedInvestment =
+    investmentScam &&
+    paymentRequest &&
+    (
+        urgency ||
+        hasAny([
+            "guarantee",
+            "guaranteed",
             "double your money",
             "triple your money",
-            "500% profit",
-            "100% profit",
-            "risk free",
-            "risk-free",
-            "no risk",
-            "make ₦",
-            "make n",
-            "crypto investment",
-            "trading opportunity",
-            "secret trading system"
+            "10x",
+            "10 times"
+        ])
+    );
 
-        ]);
+if (guaranteedInvestment) {
+
+    addRisk(
+        7,
+        "The conversation combines an investment opportunity with a guaranteed or unusually large return and a request to send money.",
+        "Investment scam"
+    );
+
+}
 
 
     /* =================================================
