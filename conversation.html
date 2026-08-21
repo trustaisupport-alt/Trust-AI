@@ -1222,22 +1222,56 @@ function checkConversation() {
     ================================================= */
 
     const romance =
-        hasAny([
+    hasAny([
 
-            "i love you",
-            "i really care about you",
-            "my love",
-            "baby",
-            "darling",
-            "sweetheart",
-            "relationship",
-            "only person i trust",
-            "i need you",
-            "i miss you"
+        "i love you",
+        "i really care about you",
+        "my love",
+        "baby",
+        "darling",
+        "sweetheart",
+        "relationship",
+        "only person i trust",
+        "only one i trust",
+        "you're the only person i trust",
+        "you are the only person i trust",
+        "i need you",
+        "i miss you",
+        "love of my life",
+        "my boyfriend",
+        "my girlfriend",
+        "my husband",
+        "my wife"
 
-        ]);
+    ]);
+
+    if (
+    romance &&
+    paymentRequest
+) {
+
+    addRisk(
+        4,
+        "Romantic or emotional language is combined with a financial request.",
+        "Romance scam"
+    );
+
+}
 
 
+if (
+    romance &&
+    paymentRequest &&
+    urgency
+) {
+
+    addRisk(
+        6,
+        "Romantic or emotional language is combined with an urgent request for money.",
+        "Romance scam"
+    );
+
+}
     /* =================================================
        12. EMERGENCY STORY
     ================================================= */
@@ -1261,7 +1295,19 @@ function checkConversation() {
 
         ]);
 
+if (
+    emergencyStory &&
+    paymentRequest &&
+    urgency
+) {
 
+    addRisk(
+        5,
+        "An emergency story is combined with an urgent request for money.",
+        "Emergency manipulation"
+    );
+
+}
     /* =================================================
        13. INVESTMENT
     ================================================= */
