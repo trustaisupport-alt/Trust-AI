@@ -583,130 +583,717 @@ function loadRandomSample(){
 
 /* =====================================================
    ADVANCED GLOBAL MESSAGE CHECKER ENGINE
-   ===================================================== */
+===================================================== */
 
 function checkMessage(){
-    const original = document.getElementById("message").value.trim();
-    const text = original.toLowerCase();
-    const result = document.getElementById("result");
+
+    const original =
+        document.getElementById("message").value.trim();
+
+    const text =
+        original.toLowerCase();
+
+    const result =
+        document.getElementById("result");
+
+
+    /* =================================================
+       EMPTY MESSAGE
+    ================================================= */
 
     if(!text){
+
         showResult(
             "caution",
             "⚠️ NO MESSAGE ENTERED",
             0,
-            ["Paste a message before checking it."],
+            [
+                "Paste a message before checking it."
+            ],
             "Enter a message and run the checker again."
         );
+
         return;
     }
 
+
     let score = 0;
+
     const reasons = [];
 
+
+    /* =================================================
+       HELPER
+    ================================================= */
+
     function add(points, reason){
+
         score += points;
+
         reasons.push(reason);
+
     }
 
-    if(/(send|give|share|tell|provide|forward|drop|submit).{0,50}(password|passcode|login|username|login details)/i.test(text))
-        add(10,"The message requests login credentials.");
 
-    if(/(send|give|share|tell|forward|provide|read).{0,45}(otp|one[- ]time password|verification code|security code|confirmation code)/i.test(text))
-        add(15,"The message requests an OTP or verification code.");
+    /* =================================================
+       1. PASSWORD / LOGIN CREDENTIALS
+    ================================================= */
 
-    if(/(send|give|share|tell|provide|forward|drop|submit).{0,60}(bvn|bank verification number|nin|national identification number)/i.test(text))
-        add(15,"The message requests sensitive banking or identity information.");
+    if(
+        /(send|give|share|tell|provide|forward|drop|submit).{0,60}
+        (password|passcode|login|username|login details|credentials)/i
+        .test(text)
+    ){
 
-    if(/(send|give|share|tell|provide|forward|drop|submit).{0,45}(pin|atm pin|card pin|cvv|cvc|card number|expiry date)/i.test(text))
-        add(15,"The message requests sensitive card or PIN information.");
+        add(
+            10,
+            "The message requests login credentials."
+        );
 
-    if(/(send me money|send money|transfer money|transfer funds|wire money|make a payment|pay me|send cash|lend me money|borrow money)/i.test(text))
-        add(7,"The message contains a direct money request.");
-
-    if(/(urgent|urgently|act now|act immediately|right now|immediately|last chance|final warning|don't delay|do not delay)/i.test(text))
-        add(4,"Urgency or pressure is being used.");
-
-    if(/(don't tell anyone|do not tell anyone|keep this secret|keep it secret|secret)/i.test(text))
-        add(5,"The sender is encouraging secrecy.");
-
-    if(/(account will be closed|account will be suspended|account suspended|account locked|account disabled|you will lose your account|account deleted|legal action|police|arrest|fine|penalty)/i.test(text))
-        add(6,"The message uses threats or account consequences.");
-
-    if(/(click here|click this link|click the link|tap this link|open this link|login here|verify here|confirm here)/i.test(text))
-        add(6,"The message asks you to interact with a link.");
-
-    if(/(https?:\/\/|www\.|bit\.ly|tinyurl\.com|t\.co|cutt\.ly|is\.gd)/i.test(text))
-        add(5,"A website or shortened link was detected.");
-
-    if(/(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|administrator)/i.test(text)
-       && /(send|give|share|verify|confirm|provide|code|password|otp|pin)/i.test(text))
-        add(10,"The message may be impersonating support or a security team.");
-if(/(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account)/i.test(text))
-        add(8,"Possible contact impersonation was detected.");
-
-    if(/(you have won|you won|claim your prize|claim prize|free gift|free money|giveaway winner|you are selected)/i.test(text))
-        add(8,"The message contains a possible fake prize or giveaway claim.");
-
-    if(/(guaranteed profit|guaranteed returns|zero risk|no risk|double your money|triple your money|instant profit|easy money|make money fast|100% profit|daily profit)/i.test(text))
-        add(10,"The message contains an unrealistic money-making promise.");
-
-    if(/(job offer|job vacancy|employment opportunity|work from home|remote job|hiring)/i.test(text)
-       && /(registration fee|application fee|processing fee|pay first|send money|deposit)/i.test(text))
-        add(10,"Possible fake job offer requesting payment.");
-
-    if(/(package|parcel|delivery).{0,80}(fee|payment|customs|address|link|click)/i.test(text))
-        add(7,"Possible delivery or package scam detected.");
-
-    let level = "low";
-    let title = "🟢 LOW RISK / SAFE MESSAGE";
-    let note = "No major scam indicators were detected, but always stay cautious.";
-
-    if(score >= 20){
-        level = "critical";
-        title = "🔴 CRITICAL RISK SCAM";
-        note = "Do not reply, do not send any codes/money, and block the sender immediately.";
-    } else if(score >= 14){
-        level = "very-high";
-        title = "🟠 VERY HIGH RISK";
-        note = "High likelihood of fraud or phishing. Do not share personal or financial details.";
-    } else if(score >= 9){
-        level = "high";
-        title = "🟡 HIGH RISK WARNING";
-        note = "Suspicious signals found. Verify independently before taking any action.";
-    } else if(score >= 4){
-        level = "caution";
-        title = "⚠️ CAUTION REQUIRED";
-        note = "Some warning signs detected. Proceed with caution.";
     }
+
+
+    /* =================================================
+       2. OTP / VERIFICATION CODE
+    ================================================= */
+
+    if(
+        /(send|give|share|tell|forward|provide|read|enter).{0,60}
+        (otp|one[- ]time password|verification code|security code|confirmation code)/i
+        .test(text)
+    ){
+
+        add(
+            15,
+            "The message requests an OTP or verification code."
+        );
+
+    }
+
+
+    /* =================================================
+       3. BVN / NIN / IDENTITY
+    ================================================= */
+
+    if(
+        /(send|give|share|tell|provide|forward|drop|submit).{0,60}
+        (bvn|bank verification number|nin|national identification number|identity number|passport)/i
+        .test(text)
+    ){
+
+        add(
+            15,
+            "The message requests sensitive banking or identity information."
+        );
+
+    }
+
+
+    /* =================================================
+       4. CARD / PIN INFORMATION
+    ================================================= */
+
+    if(
+        /(send|give|share|tell|provide|forward|drop|submit).{0,60}
+        (pin|atm pin|card pin|cvv|cvc|card number|expiry date)/i
+        .test(text)
+    ){
+
+        add(
+            15,
+            "The message requests sensitive card or PIN information."
+        );
+
+    }
+
+
+    /* =================================================
+       5. MONEY REQUEST
+    ================================================= */
+
+    const moneyRequest =
+        /(send me money|send money|send the money|send cash|send the cash|transfer money|transfer funds|wire money|make a payment|pay me|pay now|lend me money|borrow money|send ₦|send n|send \$|pay ₦|pay n|pay \$|deposit money|deposit the money|registration fee|processing fee|activation fee|application fee)/i
+        .test(text);
+
+
+    if(moneyRequest){
+
+        add(
+            7,
+            "The message contains a request for money or payment."
+        );
+
+    }
+
+
+    /* =================================================
+       6. URGENCY
+    ================================================= */
+
+    const urgency =
+        /(urgent|urgently|act now|act immediately|right now|immediately|today|tomorrow|before registration closes|before it closes|last chance|final warning|don't delay|do not delay|limited time|expires tonight)/i
+        .test(text);
+
+
+    if(urgency){
+
+        add(
+            4,
+            "Urgency or pressure is being used."
+        );
+
+    }
+
+
+    /* =================================================
+       7. SECRECY
+    ================================================= */
+
+    if(
+        /(don't tell anyone|do not tell anyone|keep this secret|keep it secret|secret|don't tell your family|do not tell your family)/i
+        .test(text)
+    ){
+
+        add(
+            5,
+            "The sender is encouraging secrecy."
+        );
+
+    }
+
+
+    /* =================================================
+       8. THREATS
+    ================================================= */
+
+    if(
+        /(account will be closed|account will be suspended|account suspended|account locked|account disabled|you will lose your account|account deleted|legal action|police|arrest|fine|penalty)/i
+        .test(text)
+    ){
+
+        add(
+            6,
+            "The message uses threats or account consequences."
+        );
+
+    }
+
+
+    /* =================================================
+       9. LINK
+    ================================================= */
+
+    const hasLink =
+        /(https?:\/\/|www\.|bit\.ly|tinyurl\.com|t\.co|cutt\.ly|is\.gd)/i
+        .test(text);
+
+
+    if(hasLink){
+
+        add(
+            5,
+            "A website or shortened link was detected."
+        );
+
+    }
+
+
+    /* =================================================
+       10. LINK ACTION
+    ================================================= */
+
+    if(
+        /(click here|click this link|click the link|tap this link|open this link|login here|verify here|confirm here)/i
+        .test(text)
+    ){
+
+        add(
+            6,
+            "The message asks you to interact with a link."
+        );
+
+    }
+
+
+    /* =================================================
+       11. SUPPORT IMPERSONATION
+    ================================================= */
+
+    if(
+        /(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|administrator)/i
+        .test(text)
+        &&
+        /(send|give|share|verify|confirm|provide|code|password|otp|pin)/i
+        .test(text)
+    ){
+
+        add(
+            10,
+            "The message may be impersonating a support or security team."
+        );
+
+    }
+
+
+    /* =================================================
+       12. CONTACT IMPERSONATION
+    ================================================= */
+
+    if(
+        /(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account)/i
+        .test(text)
+    ){
+
+        add(
+            8,
+            "Possible contact impersonation was detected."
+        );
+
+    }
+
+
+    /* =================================================
+       13. PRIZE / GIVEAWAY
+    ================================================= */
+
+    if(
+        /(you have won|you won|claim your prize|claim prize|free gift|free money|giveaway winner|you are selected)/i
+        .test(text)
+    ){
+
+        add(
+            8,
+            "The message contains a possible fake prize or giveaway claim."
+        );
+
+    }
+
+
+    /* =================================================
+       14. INVESTMENT LANGUAGE
+    ================================================= */
+
+    const investment =
+        /(invest|investment|crypto investment|crypto|bitcoin|ethereum|forex|trading|trading platform|investment platform|investment opportunity|profit|returns|return on investment|roi)/i
+        .test(text);
+
+
+    /* =================================================
+       15. GUARANTEED / UNREALISTIC RETURNS
+    ================================================= */
+
+    const guaranteedReturn =
+        /(guaranteed profit|guaranteed profits|guaranteed return|guaranteed returns|guarantee|guaranteed|zero risk|no risk|risk[- ]free|double your money|triple your money|10x your money|100% profit|200% profit|300% profit|500% profit|instant profit|easy money|make money fast|earn .* (daily|weekly|tomorrow))/i
+        .test(text);
+
+
+    if(guaranteedReturn){
+
+        add(
+            10,
+            "The message contains an unrealistic or guaranteed financial return."
+        );
+
+    }
+
+
+    /* =================================================
+       16. INVESTMENT + GUARANTEED RETURN
+    ================================================= */
+
+    if(
+        investment &&
+        guaranteedReturn
+    ){
+
+        add(
+            8,
+            "Investment language is combined with a guaranteed or unusually large return."
+        );
+
+    }
+
+
+    /* =================================================
+       17. INVESTMENT + MONEY
+    ================================================= */
+
+    if(
+        investment &&
+        moneyRequest
+    ){
+
+        add(
+            6,
+            "An investment opportunity is combined with a request for money."
+        );
+
+    }
+
+
+    /* =================================================
+       18. INVESTMENT + GUARANTEE + URGENCY
+    ================================================= */
+
+    if(
+        investment &&
+        guaranteedReturn &&
+        urgency
+    ){
+
+        add(
+            6,
+            "The investment promise is combined with guaranteed returns and pressure to act quickly."
+        );
+
+    }
+
+
+    /* =================================================
+       19. INVESTMENT AMOUNT
+    ================================================= */
+
+    if(
+        investment &&
+        /(?:₦|n|naira|\$|usd|€|£)\s?\d[\d,]*/i
+        .test(text)
+    ){
+
+        add(
+            4,
+            "The investment message contains a specific monetary amount."
+        );
+
+    }
+
+
+    /* =================================================
+       20. ROMANCE + MONEY
+    ================================================= */
+
+    const romance =
+        /(i love you|i really care about you|my love|baby|darling|sweetheart|relationship|only person i trust|you are the only person i trust|i need you|i miss you|love of my life|my boyfriend|my girlfriend|my husband|my wife)/i
+        .test(text);
+
+
+    if(
+        romance &&
+        moneyRequest
+    ){
+
+        add(
+            10,
+            "Romantic or emotional language is combined with a financial request."
+        );
+
+    }
+
+
+    /* =================================================
+       21. EMERGENCY + MONEY
+    ================================================= */
+
+    const emergency =
+        /(hospital|surgery|medical emergency|emergency|accident|stranded|stuck at the airport|my mother is sick|my father is sick|my child is sick|need money for treatment|need money urgently|family emergency)/i
+        .test(text);
+
+
+    if(
+        emergency &&
+        moneyRequest
+    ){
+
+        add(
+            9,
+            "An emergency story is combined with a request for money."
+        );
+
+    }
+
+
+    /* =================================================
+       22. JOB + PAYMENT
+    ================================================= */
+
+    const job =
+        /(job offer|job vacancy|employment opportunity|work from home|remote job|hiring|online job|job opportunity)/i
+        .test(text);
+
+
+    if(
+        job &&
+        moneyRequest
+    ){
+
+        add(
+            10,
+            "A job or employment claim is combined with a request for upfront payment."
+        );
+
+    }
+
+
+    /* =================================================
+       23. JOB + HIGH EARNINGS
+    ================================================= */
+
+    if(
+        job &&
+        /(earn|make|salary).{0,50}(₦|n|naira|\$|usd|€|£)/i
+        .test(text)
+        &&
+        /(registration fee|application fee|processing fee|pay|deposit)/i
+        .test(text)
+    ){
+
+        add(
+            8,
+            "The job offer promises earnings while requiring an upfront payment."
+        );
+
+    }
+
+
+    /* =================================================
+       24. DELIVERY SCAM
+    ================================================= */
+
+    if(
+        /(package|parcel|delivery|courier|customs).{0,100}
+        (fee|payment|customs|link|click|release)/i
+        .test(text)
+    ){
+
+        add(
+            9,
+            "Possible delivery or package scam detected."
+        );
+
+    }
+
+
+    /* =================================================
+       25. FINAL RISK CLASSIFICATION
+    ================================================= */
+
+    score =
+        Math.min(score, 10);
+
+
+    let level =
+        "low";
+
+    let title =
+        "🟢 LOW RISK / NO STRONG SCAM SIGNALS";
+
+    let note =
+        "No major scam indicators were detected, but always stay cautious.";
+
+
+    if(score >= 8){
+
+        level =
+            "critical";
+
+        title =
+            "🔴 VERY HIGH SCAM RISK";
+
+        note =
+            "Do not send money, passwords, OTPs, PINs, or other sensitive information. Verify the sender independently.";
+
+    }
+
+    else if(score >= 6){
+
+        level =
+            "very-high";
+
+        title =
+            "🟠 HIGH SCAM RISK";
+
+        note =
+            "Multiple suspicious signals were detected. Do not take financial or security-related action until independently verified.";
+
+    }
+
+    else if(score >= 4){
+
+        level =
+            "high";
+
+        title =
+            "🟡 HIGH RISK WARNING";
+
+        note =
+            "Suspicious signals were detected. Verify the sender and the request independently.";
+
+    }
+
+    else if(score >= 2){
+
+        level =
+            "caution";
+
+        title =
+            "⚠️ CAUTION REQUIRED";
+
+        note =
+            "Some warning signs were detected. Slow down and verify before taking action.";
+
+    }
+
+
+    /* =================================================
+       NO REASONS
+    ================================================= */
 
     if(reasons.length === 0){
-        reasons.push("The message text appears normal and standard.");
+
+        reasons.push(
+            "The message text appears normal and standard."
+        );
+
     }
 
-    result.className = "result show " + level;
+
+    /* =================================================
+       DISPLAY
+    ================================================= */
+
+    result.className =
+        "result show " + level;
+
+
     result.innerHTML = `
-        <div class="result-title">${title}</div>
-        <div class="score">Risk score: ${score}</div>
+
+        <div class="result-title">
+            ${title}
+        </div>
+
+        <div class="score">
+            Risk score: ${score}/10
+        </div>
+
         <ul>
-            ${reasons.map(reason => `<li>${escapeHTML(reason)}</li>`).join("")}
+
+            ${reasons.map(function(reason){
+
+                return `
+                    <li>
+                        ${escapeHTML(reason)}
+                    </li>
+                `;
+
+            }).join("")}
+
         </ul>
-        <div class="warning-note">${escapeHTML(note)}</div>
+
+        <div class="warning-note">
+            ${escapeHTML(note)}
+        </div>
+
     `;
+
 }
 
-function showResult(level, title, score, reasons, note){
-    const result = document.getElementById("result");
-    result.className = "result show " + level;
+
+/* =====================================================
+   SHOW RESULT
+===================================================== */
+
+function showResult(
+    level,
+    title,
+    score,
+    reasons,
+    note
+){
+
+    const result =
+        document.getElementById("result");
+
+
+    result.className =
+        "result show " + level;
+
+
     result.innerHTML = `
-        <div class="result-title">${title}</div>
-        <div class="score">Risk score: ${score}</div>
+
+        <div class="result-title">
+            ${escapeHTML(title)}
+        </div>
+
+        <div class="score">
+            Risk score: ${score}/10
+        </div>
+
         <ul>
-            ${reasons.map(reason => `<li>${escapeHTML(reason)}</li>`).join("")}
+
+            ${reasons.map(function(reason){
+
+                return `
+                    <li>
+                        ${escapeHTML(reason)}
+                    </li>
+                `;
+
+            }).join("")}
+
         </ul>
-        <div class="warning-note">${escapeHTML(note)}</div>
+
+        <div class="warning-note">
+            ${escapeHTML(note)}
+        </div>
+
     `;
+
 }
+
+
+/* =====================================================
+   CLEAR
+===================================================== */
+
+function clearMessage(){
+
+    document
+        .getElementById("message")
+        .value = "";
+
+
+    const result =
+        document.getElementById("result");
+
+
+    result.className =
+        "result";
+
+
+    result.innerHTML =
+        "";
+
+}
+
+
+/* =====================================================
+   HTML ESCAPING
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+    }
 
 
 /* =====================================================
