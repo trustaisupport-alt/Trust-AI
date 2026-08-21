@@ -1830,7 +1830,15 @@ function checkConversation() {
         secrecy,
         investmentScam,
         jobScam,
-        shortenedLink,
+        hasAny([
+    "bit.ly",
+    "tinyurl.com",
+    "t.co/",
+    "shorturl",
+    "is.gd",
+    "cutt.ly",
+    "rb.gy"
+]),
         accountTakeover
 
     ].filter(Boolean).length;
