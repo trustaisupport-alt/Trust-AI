@@ -427,181 +427,499 @@ Clear
 
 </section>
 </div>
-
 <script>
+
+/* =====================================================
+   TRUSTAI MESSAGE CHECKER
+   EXPANDED GLOBAL MESSAGE DETECTION ENGINE
+   ===================================================== */
+
 
 /* =====================================================
    MENU
    ===================================================== */
 
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("open");
-    document.getElementById("menuOverlay").classList.toggle("show");
+function toggleMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    if (!menu || !overlay) return;
+
+    menu.classList.toggle("open");
+    overlay.classList.toggle("show");
 }
 
-function closeMenu(){
-    document.getElementById("sideMenu").classList.remove("open");
-    document.getElementById("menuOverlay").classList.remove("show");
+
+function closeMenu() {
+
+    const menu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+    if (!menu || !overlay) return;
+
+    menu.classList.remove("open");
+    overlay.classList.remove("show");
 }
 
 
 /* =====================================================
-   MASSIVELY EXPANDED MEGA SAMPLE LIBRARY (130+ MESSAGES)
+   EXPANDED MESSAGE SAMPLE LIBRARY
    ===================================================== */
 
 const sampleCategories = {
-"Bank Scam":[
-"Your bank account has been temporarily restricted. Verify your account immediately.",
-"Your debit card requires urgent security verification.",
-"We detected unusual activity on your bank account. Confirm your details now.",
-"Your bank account will be suspended unless you complete verification.",
-"Your ATM card has been flagged. Confirm your banking information immediately.",
-"ALERT: Unauthorized transaction detected on your account. Click here to reverse it.",
-"Your BVN has been deactivated due to an update. Send your details to reactivate.",
-"Your mobile banking app session has expired. Re-enter your login credentials.",
-"Bank Notice: Failure to update your KYC documents will lead to account freezing.",
-"Your online banking profile is locked due to multiple incorrect login attempts.",
-"Security update: Please confirm your account balance and transaction PIN instantly.",
-"Your corporate account transfer is on hold pending identity confirmation."
-],
-"OTP Scam":[
-"Please send the OTP you just received to complete your verification.",
-"Tell us the security code that was sent to your phone.",
-"Forward the verification code to our support agent.",
-"Your account verification requires the confirmation code you received.",
-"Share the 6-digit code sent via SMS to validate your phone number update.",
-"Urgent: Read out the OTP sent to your device to stop unauthorized access.",
-"Enter the code received in your text messages into our portal to continue.",
-"Your transaction token has been generated. Send it to customer service.",
-"Provide the confirmation PIN sent to your phone line right now to proceed."
-],
-"Credential Scam":[
-"Send your username and password so we can restore your account.",
-"Please provide your login details for account verification.",
-"Your login session has expired. Send your password to support.",
-"Confirm your email password right now to prevent permanent closure.",
-"Provide your administrative credentials to complete system maintenance.",
-"Sign in with your username and secret password on our portal link below.",
-"Your password has been compromised. Send your old and new credentials to verify.",
-"Enter your cloud backup credentials to prevent data deletion."
-],
-"Phishing Scam":[
-"Click here to verify your account immediately.",
-"Your account has been flagged. Login here to confirm your information.",
-"Tap this link to prevent your account from being suspended.",
-"Security update required: Access the secure portal via this link.",
-"Verify your identity instantly by clicking our official authentication link.",
-"Open the attached secure link to update your billing address right now.",
-"Your profile requires attention. Tap the link to review your security settings.",
-"Access our central authentication gateway via this direct link."
-],
-"Crypto & Investment Scam":[
-"Deposit your crypto now and receive 100% guaranteed daily returns with zero risk.",
-"Double your Ethereum or Bitcoin within 24 hours using our automated trading bot.",
-"Claim your exclusive Web3 airdrop tokens by connecting your wallet via this link.",
-"Invest $100 today and earn $5,000 profit by tomorrow morning guaranteed.",
-"Join our exclusive crypto signals channel for risk-free triple returns daily.",
-"Send USDT to our smart contract address to participate in the mega liquidity pool.",
-"Guaranteed profit trading system: Make thousands weekly with zero market risk.",
-"Stake your digital assets in our high-yield vault for instant 50x returns."
-],
-"Tech Support Scam":[
-"Microsoft Security Alert: Your computer is infected with malware. Call toll-free immediately.",
-"Your Apple ID has been locked due to unauthorized login attempts in another country.",
-"Google Support: Verify your account password or your services will be terminated.",
-"Windows Defender detected critical trojan files. Call technician support now.",
-"Your router security has been breached. Update your administrator login immediately.",
-"Tech support notification: Your subscription has expired. Call us to renew.",
-"Critical firewall breach detected on your network. Contact system support."
-],
-"Delivery & Package Scam":[
-"Your package could not be delivered because of incorrect address details. Pay fee here.",
-"Courier service alert: Pay customs clearance duty to release your international parcel.",
-"You have a pending delivery waiting at our sorting hub. Confirm pickup details via link.",
-"Package delivery failed due to unpaid postal fees. Click here to settle payment.",
-"Your shipment is on hold at customs. Submit small clearance fee to release.",
-"Express mail delivery notice: Settle shipping discrepancy online to avoid return."
-],
-"Fake Job Scam":[
-"Work from home data entry job. Earn $500 weekly. Pay small registration fee to start.",
-"Congratulations! You have been selected for a remote position. Send deposit for training kit.",
-"Hiring urgent part-time assistants. Send your application fee via mobile transfer.",
-"Online marketing job: Earn daily commissions after paying onboarding activation charge.",
-"Your resume was selected! Submit processing fee to secure your remote employment.",
-"Virtual assistant wanted: Guaranteed weekly salary after paying setup deposit."
-],
-"Emergency & Impersonation Scam":[
-"Hello my friend, I lost my phone and this is my new WhatsApp number. Save it.",
-"Dad/Mom, I am in serious trouble and need you to send money to this account right now.",
-"This is your boss. I am stuck in a meeting and need you to buy gift cards urgently.",
-"Hi honey, my wallet was stolen while traveling. Please transfer money immediately.",
-"This is Pastor/Director. We are running a secret charity fund, kindly send a donation.",
-"Officer on duty: Your relative is detained, send bail money immediately via transfer."
-],
-"Normal Message":[
-"Hey, are we still meeting at 4pm today?",
-"Good morning. Please remember to bring the documents tomorrow.",
-"Your appointment is scheduled for Monday at 10am.",
-"Let me know when you get home safe.",
-"Can you email me the project notes when you have a moment?",
-"Happy birthday! Wishing you an amazing day ahead.",
-"The grocery store called, they have the items you ordered ready for pickup.",
-"Are we still on for lunch this Friday afternoon?",
-"Please review the attached document when you get a chance.",
-"Thanks for your help with the presentation yesterday!",
-"Can we reschedule our call to tomorrow morning?",
-"Have a wonderful weekend ahead!"
-]
+
+    "Banking Scam": [
+
+        "Your bank account has been temporarily restricted. Verify your account immediately.",
+
+        "We detected unusual activity on your bank account. Confirm your details now.",
+
+        "Your debit card requires urgent security verification.",
+
+        "Your bank account will be suspended unless you complete verification.",
+
+        "Unauthorized transaction detected. Click here to reverse the transaction.",
+
+        "Your BVN requires an urgent update. Send your details to reactivate your account.",
+
+        "Your mobile banking session has expired. Re-enter your login credentials.",
+
+        "Failure to update your KYC information will result in account freezing.",
+
+        "Your ATM card has been flagged. Confirm your banking information immediately."
+
+    ],
+
+
+    "OTP Scam": [
+
+        "Please send the OTP you just received to complete your verification.",
+
+        "Tell me the security code that was sent to your phone.",
+
+        "Forward the verification code to our support agent.",
+
+        "Your account verification requires the confirmation code you received.",
+
+        "Share the 6-digit code sent to your phone.",
+
+        "Read the OTP to me so I can complete the transaction.",
+
+        "Send the verification code immediately to prevent account suspension."
+
+    ],
+
+
+    "Password & Credential Scam": [
+
+        "Send your username and password so we can restore your account.",
+
+        "Please provide your login details for verification.",
+
+        "Your login session expired. Send your password to support.",
+
+        "Confirm your email password immediately.",
+
+        "Provide your administrator credentials to complete maintenance.",
+
+        "Send your old and new password to verify your account.",
+
+        "Enter your banking login details on this verification page."
+
+    ],
+
+
+    "Phishing": [
+
+        "Click here to verify your account immediately.",
+
+        "Tap this link to prevent your account from being suspended.",
+
+        "Login here to confirm your identity.",
+
+        "Open this secure link to update your account.",
+
+        "Verify your identity by clicking the link below.",
+
+        "Your account requires attention. Click here now."
+
+    ],
+
+
+    "Investment Scam": [
+
+        "Invest ₦20,000 today and I'll guarantee ₦200,000 tomorrow.",
+
+        "Send ₦50,000 now and receive ₦500,000 tomorrow.",
+
+        "Guaranteed 100% profit with zero risk.",
+
+        "Double your money within 24 hours with our trading system.",
+
+        "Invest today and receive guaranteed daily returns.",
+
+        "Make ₦1,000,000 every week with no risk.",
+
+        "Send your investment before registration closes.",
+
+        "Crypto investment with guaranteed profits and zero risk."
+
+    ],
+
+
+    "Crypto Scam": [
+
+        "Send USDT to this wallet and receive 10x your investment.",
+
+        "Connect your wallet to claim your free crypto airdrop.",
+
+        "Double your Bitcoin within 24 hours.",
+
+        "Guaranteed crypto profit with zero market risk.",
+
+        "Send Ethereum now to unlock your reward.",
+
+        "Deposit crypto today before the opportunity closes."
+
+    ],
+
+
+    "Fake Job": [
+
+        "You have been selected for an online job. Pay a registration fee to start.",
+
+        "Work from home and earn ₦100,000 every week after paying ₦10,000.",
+
+        "Your application was accepted. Send a processing fee to secure the job.",
+
+        "Remote job available. Pay an activation fee before training.",
+
+        "Congratulations! You have been hired. Send money for your employment kit.",
+
+        "Earn ₦50,000 daily from home after paying a small registration fee."
+
+    ],
+
+
+    "Romance Scam": [
+
+        "My love, I need money urgently. Please send it to me.",
+
+        "Baby, I am stranded and need you to transfer money immediately.",
+
+        "You are the only person I trust. Please help me with this payment.",
+
+        "I love you and I need money for an emergency.",
+
+        "My love, send me money and I promise to pay you back tomorrow."
+
+    ],
+
+
+    "Emergency Scam": [
+
+        "I am in the hospital. Please send money for my treatment immediately.",
+
+        "My mother is sick and we urgently need money.",
+
+        "I had an accident. Send money immediately.",
+
+        "I am stranded at the airport. Please transfer money now.",
+
+        "My child needs emergency treatment. Send money immediately."
+
+    ],
+
+
+    "Impersonation": [
+
+        "Hello, this is my new number. I lost my phone. Save this number.",
+
+        "I changed my WhatsApp number. Send money to my new account.",
+
+        "This is your boss. I need you to buy gift cards urgently.",
+
+        "This is your friend. I lost my phone and need money.",
+
+        "I am your relative. Please send money to this new account."
+
+    ],
+
+
+    "Prize & Giveaway": [
+
+        "Congratulations! You have won ₦5,000,000. Pay a small processing fee to claim it.",
+
+        "You are our lucky winner. Send your details to receive your prize.",
+
+        "Claim your free gift before midnight.",
+
+        "You have won a brand-new car. Pay the delivery fee now.",
+
+        "Congratulations! Send your account details to receive your reward."
+
+    ],
+
+
+    "Delivery Scam": [
+
+        "Your package is waiting. Pay the customs fee to release it.",
+
+        "Your parcel could not be delivered. Pay the delivery fee here.",
+
+        "Your shipment is on hold. Click this link to make payment.",
+
+        "Pay the customs clearance fee before your package is returned.",
+
+        "Your delivery address is incorrect. Confirm your details through this link."
+
+    ],
+
+
+    "Tech Support Scam": [
+
+        "Microsoft Security Alert: Your computer is infected. Call support immediately.",
+
+        "Your Apple account has been locked. Verify your password now.",
+
+        "Windows Defender detected a critical virus. Call this number immediately.",
+
+        "Your computer has been hacked. Give our technician remote access.",
+
+        "Your subscription has expired. Call support to prevent account closure."
+
+    ],
+
+
+    "Social Media Scam": [
+
+        "Your Facebook account will be deleted. Verify it immediately.",
+
+        "Instagram security team needs your password to restore your account.",
+
+        "Your WhatsApp account has been reported. Click here to verify.",
+
+        "Your social media account has been compromised. Send the OTP to support."
+
+    ],
+
+
+    "Lottery Scam": [
+
+        "You have won our international lottery. Pay the processing fee to receive your money.",
+
+        "Congratulations! Your number was selected for a cash prize.",
+
+        "Claim your lottery winnings today by sending the required fee.",
+
+        "You are one of our lucky winners. Pay the release fee immediately."
+
+    ],
+
+
+    "Charity Scam": [
+
+        "Please donate immediately to help this child. Send money to this account.",
+
+        "We are collecting emergency donations. Transfer your donation now.",
+
+        "Our charity needs urgent financial assistance. Donate before midnight.",
+
+        "Send money now to help victims of the disaster."
+
+    ],
+
+
+    "Rental Scam": [
+
+        "The apartment is available. Pay the deposit before viewing the property.",
+
+        "Send ₦200,000 to reserve the apartment immediately.",
+
+        "Pay the house rent today or someone else will take the property.",
+
+        "The landlord requires an upfront payment before inspection."
+
+    ],
+
+
+    "Marketplace Scam": [
+
+        "Send payment first and I will ship the phone to you.",
+
+        "Pay a deposit now to reserve the item.",
+
+        "Transfer the money immediately before another buyer takes it.",
+
+        "I cannot meet in person. Send the payment and I will deliver it."
+
+    ],
+
+
+    "Loan Scam": [
+
+        "You have been approved for a ₦5,000,000 loan. Pay the processing fee first.",
+
+        "Get an instant loan today after paying a small activation fee.",
+
+        "Your loan is ready. Send money to unlock the funds.",
+
+        "Pay the insurance fee before your loan can be released."
+
+    ],
+
+
+    "Normal Message": [
+
+        "Hey, are we still meeting at 4pm today?",
+
+        "Good morning. Please remember to bring the documents tomorrow.",
+
+        "Your appointment is scheduled for Monday at 10am.",
+
+        "Let me know when you get home safely.",
+
+        "Can you send me the project notes when you have time?",
+
+        "Happy birthday! Wishing you an amazing day.",
+
+        "Are we still having lunch on Friday?",
+
+        "Please review the document when you get a chance.",
+
+        "Thanks for your help yesterday.",
+
+        "Can we reschedule our meeting to tomorrow morning?"
+
+    ]
+
 };
 
+
+/* =====================================================
+   BUILD SAMPLE ARRAY
+   ===================================================== */
+
 let finalSampleMessages = [];
-for (let cat in sampleCategories) {
-    sampleCategories[cat].forEach(text => {
-        finalSampleMessages.push({ category: cat, text: text });
+
+for (const category in sampleCategories) {
+
+    sampleCategories[category].forEach(function(text) {
+
+        finalSampleMessages.push({
+            category: category,
+            text: text
+        });
+
     });
+
 }
+
 
 let lastSampleIndex = -1;
 
-function loadRandomSample(){
-    if (finalSampleMessages.length === 0) return;
+
+/* =====================================================
+   RANDOM SAMPLE
+   ===================================================== */
+
+function loadRandomSample() {
+
+    const textarea =
+        document.getElementById("message");
+
+    const result =
+        document.getElementById("result");
+
+    if (!textarea || finalSampleMessages.length === 0) {
+        return;
+    }
+
+
     let randomIndex;
+
     do {
-        randomIndex = Math.floor(Math.random() * finalSampleMessages.length);
+
+        randomIndex =
+            Math.floor(
+                Math.random() *
+                finalSampleMessages.length
+            );
+
     } while (
+
         finalSampleMessages.length > 1 &&
         randomIndex === lastSampleIndex
+
     );
 
-    lastSampleIndex = randomIndex;
-    const sample = finalSampleMessages[randomIndex];
-    document.getElementById("message").value = sample.text;
-    document.getElementById("result").className = "result";
-    document.getElementById("message").focus();
+
+    lastSampleIndex =
+        randomIndex;
+
+
+    const sample =
+        finalSampleMessages[randomIndex];
+
+
+    textarea.value =
+        sample.text;
+
+
+    if (result) {
+
+        result.className =
+            "result";
+
+        result.innerHTML =
+            "";
+
+    }
+
+
+    textarea.focus();
+
 }
 
 
 /* =====================================================
-   ADVANCED GLOBAL MESSAGE CHECKER ENGINE
-===================================================== */
+   MESSAGE CHECKER
+   ===================================================== */
 
-function checkMessage(){
+function checkMessage() {
 
-    const original =
-        document.getElementById("message").value.trim();
-
-    const text =
-        original.toLowerCase();
+    const textarea =
+        document.getElementById("message");
 
     const result =
         document.getElementById("result");
 
 
+    if (!textarea || !result) {
+        return;
+    }
+
+
+    const original =
+        textarea.value.trim();
+
+
+    const text =
+        original.toLowerCase();
+
+
     /* =================================================
        EMPTY MESSAGE
-    ================================================= */
+       ================================================= */
 
-    if(!text){
+    if (!text) {
 
         showResult(
             "caution",
@@ -614,6 +932,7 @@ function checkMessage(){
         );
 
         return;
+
     }
 
 
@@ -621,33 +940,50 @@ function checkMessage(){
 
     const reasons = [];
 
+    const categories = [];
+
 
     /* =================================================
        HELPER
-    ================================================= */
+       ================================================= */
 
-    function add(points, reason){
+    function add(points, reason, category) {
 
         score += points;
 
         reasons.push(reason);
 
+        if (
+            category &&
+            !categories.includes(category)
+        ) {
+
+            categories.push(category);
+
+        }
+
+    }
+
+
+    function has(pattern) {
+
+        return pattern.test(text);
+
     }
 
 
     /* =================================================
-       1. PASSWORD / LOGIN CREDENTIALS
-    ================================================= */
+       1. PASSWORD / CREDENTIALS
+       ================================================= */
 
-    if(
-        /(send|give|share|tell|provide|forward|drop|submit).{0,60}
-        (password|passcode|login|username|login details|credentials)/i
-        .test(text)
-    ){
+    if (
+        /(send|give|share|tell|provide|forward|drop|submit|enter|type).{0,70}(password|passcode|login details|username|credentials|secret key)/i.test(text)
+    ) {
 
         add(
             10,
-            "The message requests login credentials."
+            "The message requests login credentials or a secret.",
+            "Credential scam"
         );
 
     }
@@ -655,53 +991,50 @@ function checkMessage(){
 
     /* =================================================
        2. OTP / VERIFICATION CODE
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(send|give|share|tell|forward|provide|read|enter).{0,60}
-        (otp|one[- ]time password|verification code|security code|confirmation code)/i
-        .test(text)
-    ){
+    if (
+        /(send|give|share|tell|provide|forward|read|enter|type).{0,70}(otp|one[- ]time password|verification code|security code|confirmation code|6[- ]digit code)/i.test(text)
+    ) {
 
         add(
-            15,
-            "The message requests an OTP or verification code."
+            10,
+            "The message requests an OTP or verification code.",
+            "OTP scam"
         );
 
     }
 
 
     /* =================================================
-       3. BVN / NIN / IDENTITY
-    ================================================= */
+       3. BANKING / IDENTITY INFORMATION
+       ================================================= */
 
-    if(
-        /(send|give|share|tell|provide|forward|drop|submit).{0,60}
-        (bvn|bank verification number|nin|national identification number|identity number|passport)/i
-        .test(text)
-    ){
+    if (
+        /(send|give|share|tell|provide|forward|submit|enter).{0,70}(bvn|bank verification number|nin|national identification number|passport|identity number|date of birth|bank details|account number)/i.test(text)
+    ) {
 
         add(
-            15,
-            "The message requests sensitive banking or identity information."
+            9,
+            "The message requests sensitive banking or identity information.",
+            "Identity / banking scam"
         );
 
     }
 
 
     /* =================================================
-       4. CARD / PIN INFORMATION
-    ================================================= */
+       4. CARD / PIN
+       ================================================= */
 
-    if(
-        /(send|give|share|tell|provide|forward|drop|submit).{0,60}
-        (pin|atm pin|card pin|cvv|cvc|card number|expiry date)/i
-        .test(text)
-    ){
+    if (
+        /(send|give|share|tell|provide|forward|submit|enter).{0,70}(pin|atm pin|card pin|cvv|cvc|card number|expiry date|debit card|credit card)/i.test(text)
+    ) {
 
         add(
-            15,
-            "The message requests sensitive card or PIN information."
+            10,
+            "The message requests sensitive card or PIN information.",
+            "Banking scam"
         );
 
     }
@@ -709,18 +1042,19 @@ function checkMessage(){
 
     /* =================================================
        5. MONEY REQUEST
-    ================================================= */
+       ================================================= */
 
-    const moneyRequest =
-        /(send me money|send money|send the money|send cash|send the cash|transfer money|transfer funds|wire money|make a payment|pay me|pay now|lend me money|borrow money|send ₦|send n|send \$|pay ₦|pay n|pay \$|deposit money|deposit the money|registration fee|processing fee|activation fee|application fee)/i
-        .test(text);
+    const moneyRequest = has(
+        /(send me money|send money|send the money|send cash|send the cash|transfer money|transfer funds|wire money|make a payment|pay me|pay now|lend me money|borrow money|send ₦|send n|send \$|pay ₦|pay n|pay \$|deposit money|deposit the money|registration fee|processing fee|activation fee|application fee|release fee|clearance fee|delivery fee|insurance fee|upfront payment)/i
+    );
 
 
-    if(moneyRequest){
+    if (moneyRequest) {
 
         add(
-            7,
-            "The message contains a request for money or payment."
+            6,
+            "The message contains a request for money or payment.",
+            "Financial request"
         );
 
     }
@@ -728,18 +1062,19 @@ function checkMessage(){
 
     /* =================================================
        6. URGENCY
-    ================================================= */
+       ================================================= */
 
-    const urgency =
-        /(urgent|urgently|act now|act immediately|right now|immediately|today|tomorrow|before registration closes|before it closes|last chance|final warning|don't delay|do not delay|limited time|expires tonight)/i
-        .test(text);
+    const urgency = has(
+        /(urgent|urgently|act now|act immediately|right now|immediately|today|tonight|tomorrow|before registration closes|before it closes|last chance|final warning|don't delay|do not delay|limited time|expires tonight|closing soon|ends soon|within 24 hours)/i
+    );
 
 
-    if(urgency){
+    if (urgency) {
 
         add(
-            4,
-            "Urgency or pressure is being used."
+            3,
+            "Urgency or pressure is being used.",
+            "Urgency"
         );
 
     }
@@ -747,16 +1082,18 @@ function checkMessage(){
 
     /* =================================================
        7. SECRECY
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(don't tell anyone|do not tell anyone|keep this secret|keep it secret|secret|don't tell your family|do not tell your family)/i
-        .test(text)
-    ){
+    if (
+        has(
+            /(don't tell anyone|do not tell anyone|keep this secret|keep it secret|secret|don't tell your family|do not tell your family|keep this between us)/i
+        )
+    ) {
 
         add(
             5,
-            "The sender is encouraging secrecy."
+            "The sender is encouraging secrecy.",
+            "Social engineering"
         );
 
     }
@@ -764,35 +1101,38 @@ function checkMessage(){
 
     /* =================================================
        8. THREATS
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(account will be closed|account will be suspended|account suspended|account locked|account disabled|you will lose your account|account deleted|legal action|police|arrest|fine|penalty)/i
-        .test(text)
-    ){
+    if (
+        has(
+            /(account will be closed|account will be suspended|account suspended|account locked|account disabled|you will lose your account|account deleted|legal action|police|arrest|fine|penalty|prosecution|court action)/i
+        )
+    ) {
 
         add(
-            6,
-            "The message uses threats or account consequences."
+            5,
+            "The message uses threats or serious consequences to create pressure.",
+            "Threat / intimidation"
         );
 
     }
 
 
     /* =================================================
-       9. LINK
-    ================================================= */
+       9. LINKS
+       ================================================= */
 
-    const hasLink =
-        /(https?:\/\/|www\.|bit\.ly|tinyurl\.com|t\.co|cutt\.ly|is\.gd)/i
-        .test(text);
+    const hasLink = has(
+        /(https?:\/\/|www\.|bit\.ly|tinyurl\.com|t\.co|cutt\.ly|is\.gd|shorturl)/i
+    );
 
 
-    if(hasLink){
+    if (hasLink) {
 
         add(
             5,
-            "A website or shortened link was detected."
+            "A website or shortened link was detected.",
+            "Link / phishing"
         );
 
     }
@@ -800,16 +1140,18 @@ function checkMessage(){
 
     /* =================================================
        10. LINK ACTION
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(click here|click this link|click the link|tap this link|open this link|login here|verify here|confirm here)/i
-        .test(text)
-    ){
+    if (
+        has(
+            /(click here|click this link|click the link|tap this link|open this link|login here|verify here|confirm here|visit this link|follow this link)/i
+        )
+    ) {
 
         add(
-            6,
-            "The message asks you to interact with a link."
+            5,
+            "The message asks you to interact with a link.",
+            "Phishing"
         );
 
     }
@@ -817,19 +1159,22 @@ function checkMessage(){
 
     /* =================================================
        11. SUPPORT IMPERSONATION
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|administrator)/i
-        .test(text)
+    if (
+        has(
+            /(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|administrator|official support)/i
+        )
         &&
-        /(send|give|share|verify|confirm|provide|code|password|otp|pin)/i
-        .test(text)
-    ){
+        has(
+            /(send|give|share|verify|confirm|provide|code|password|otp|pin|payment)/i
+        )
+    ) {
 
         add(
-            10,
-            "The message may be impersonating a support or security team."
+            9,
+            "The message may be impersonating a support or security team.",
+            "Impersonation"
         );
 
     }
@@ -837,16 +1182,18 @@ function checkMessage(){
 
     /* =================================================
        12. CONTACT IMPERSONATION
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account)/i
-        .test(text)
-    ){
+    if (
+        has(
+            /(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account|save my new number)/i
+        )
+    ) {
 
         add(
-            8,
-            "Possible contact impersonation was detected."
+            7,
+            "Possible contact impersonation was detected.",
+            "Impersonation"
         );
 
     }
@@ -854,61 +1201,65 @@ function checkMessage(){
 
     /* =================================================
        13. PRIZE / GIVEAWAY
-    ================================================= */
+       ================================================= */
 
-    if(
-        /(you have won|you won|claim your prize|claim prize|free gift|free money|giveaway winner|you are selected)/i
-        .test(text)
-    ){
+    if (
+        has(
+            /(you have won|you won|claim your prize|claim prize|free gift|free money|giveaway winner|lucky winner|you are selected|congratulations.*winner)/i
+        )
+    ) {
 
         add(
-            8,
-            "The message contains a possible fake prize or giveaway claim."
+            7,
+            "The message contains a possible prize, giveaway, or winnings claim.",
+            "Prize scam"
         );
 
     }
 
 
     /* =================================================
-       14. INVESTMENT LANGUAGE
-    ================================================= */
+       14. INVESTMENT
+       ================================================= */
 
-    const investment =
-        /(invest|investment|crypto investment|crypto|bitcoin|ethereum|forex|trading|trading platform|investment platform|investment opportunity|profit|returns|return on investment|roi)/i
-        .test(text);
+    const investment = has(
+        /(invest|investment|crypto investment|crypto|bitcoin|ethereum|forex|trading|trading platform|investment platform|investment opportunity|profit|returns|return on investment|roi|stake|liquidity pool)/i
+    );
 
 
-    /* =================================================
+/* =================================================
        15. GUARANTEED / UNREALISTIC RETURNS
-    ================================================= */
+       ================================================= */
 
-    const guaranteedReturn =
-        /(guaranteed profit|guaranteed profits|guaranteed return|guaranteed returns|guarantee|guaranteed|zero risk|no risk|risk[- ]free|double your money|triple your money|10x your money|100% profit|200% profit|300% profit|500% profit|instant profit|easy money|make money fast|earn .* (daily|weekly|tomorrow))/i
-        .test(text);
+    const guaranteedReturn = has(
+        /(guaranteed profit|guaranteed profits|guaranteed return|guaranteed returns|guarantee|guaranteed|zero risk|no risk|risk[- ]free|double your money|triple your money|10x your money|20x your money|50x your money|100% profit|200% profit|300% profit|500% profit|instant profit|easy money|make money fast|huge returns|massive returns|earn .* (daily|weekly|tomorrow))/i
+    );
 
 
-    if(guaranteedReturn){
+    if (guaranteedReturn) {
 
         add(
-            10,
-            "The message contains an unrealistic or guaranteed financial return."
+            7,
+            "The message promises guaranteed or unusually large financial returns.",
+            "Investment scam"
         );
 
     }
 
 
     /* =================================================
-       16. INVESTMENT + GUARANTEED RETURN
-    ================================================= */
+       16. INVESTMENT + GUARANTEE
+       ================================================= */
 
-    if(
+    if (
         investment &&
         guaranteedReturn
-    ){
+    ) {
 
         add(
             8,
-            "Investment language is combined with a guaranteed or unusually large return."
+            "Investment language is combined with a guaranteed or unusually large return.",
+            "Investment scam"
         );
 
     }
@@ -916,16 +1267,17 @@ function checkMessage(){
 
     /* =================================================
        17. INVESTMENT + MONEY
-    ================================================= */
+       ================================================= */
 
-    if(
+    if (
         investment &&
         moneyRequest
-    ){
+    ) {
 
         add(
-            6,
-            "An investment opportunity is combined with a request for money."
+            5,
+            "An investment opportunity is combined with a request for money.",
+            "Investment scam"
         );
 
     }
@@ -933,164 +1285,382 @@ function checkMessage(){
 
     /* =================================================
        18. INVESTMENT + GUARANTEE + URGENCY
-    ================================================= */
+       ================================================= */
 
-    if(
+    if (
         investment &&
         guaranteedReturn &&
         urgency
-    ){
+    ) {
 
         add(
-            6,
-            "The investment promise is combined with guaranteed returns and pressure to act quickly."
+            5,
+            "The investment promise is combined with guaranteed returns and pressure to act quickly.",
+            "Investment scam"
         );
 
     }
 
 
     /* =================================================
-       19. INVESTMENT AMOUNT
-    ================================================= */
+       19. INVESTMENT + URGENCY
+       ================================================= */
 
-    if(
+    if (
         investment &&
-        /(?:₦|n|naira|\$|usd|€|£)\s?\d[\d,]*/i
-        .test(text)
-    ){
+        urgency
+    ) {
 
         add(
-            4,
-            "The investment message contains a specific monetary amount."
+            3,
+            "The investment opportunity uses pressure to make you act quickly.",
+            "Investment scam"
         );
 
     }
 
 
     /* =================================================
-       20. ROMANCE + MONEY
-    ================================================= */
+       20. INVESTMENT AMOUNT
+       ================================================= */
 
-    const romance =
+    if (
+        investment &&
+        /(?:₦|n|naira|\$|usd|€|£)\s?\d[\d,]*/i.test(text)
+    ) {
+
+        add(
+            3,
+            "The investment message contains a specific monetary amount.",
+            "Investment scam"
+        );
+
+    }
+
+
+    /* =================================================
+       21. ROMANCE + MONEY
+       ================================================= */
+
+    const romance = has(
         /(i love you|i really care about you|my love|baby|darling|sweetheart|relationship|only person i trust|you are the only person i trust|i need you|i miss you|love of my life|my boyfriend|my girlfriend|my husband|my wife)/i
-        .test(text);
+    );
 
 
-    if(
+    if (
         romance &&
         moneyRequest
-    ){
-
-        add(
-            10,
-            "Romantic or emotional language is combined with a financial request."
-        );
-
-    }
-
-
-    /* =================================================
-       21. EMERGENCY + MONEY
-    ================================================= */
-
-    const emergency =
-        /(hospital|surgery|medical emergency|emergency|accident|stranded|stuck at the airport|my mother is sick|my father is sick|my child is sick|need money for treatment|need money urgently|family emergency)/i
-        .test(text);
-
-
-    if(
-        emergency &&
-        moneyRequest
-    ){
+    ) {
 
         add(
             9,
-            "An emergency story is combined with a request for money."
+            "Romantic or emotional language is combined with a financial request.",
+            "Romance scam"
         );
 
     }
 
 
     /* =================================================
-       22. JOB + PAYMENT
-    ================================================= */
+       22. EMERGENCY + MONEY
+       ================================================= */
 
-    const job =
-        /(job offer|job vacancy|employment opportunity|work from home|remote job|hiring|online job|job opportunity)/i
-        .test(text);
+    const emergency = has(
+        /(hospital|surgery|medical emergency|emergency|accident|stranded|stuck at the airport|my mother is sick|my father is sick|my child is sick|need money for treatment|need money urgently|family emergency|arrested|detained)/i
+    );
 
 
-    if(
-        job &&
+    if (
+        emergency &&
         moneyRequest
-    ){
+    ) {
 
         add(
-            10,
-            "A job or employment claim is combined with a request for upfront payment."
+            9,
+            "An emergency story is combined with a request for money.",
+            "Emergency scam"
         );
 
     }
 
 
     /* =================================================
-       23. JOB + HIGH EARNINGS
-    ================================================= */
+       23. JOB + PAYMENT
+       ================================================= */
 
-    if(
+    const job = has(
+        /(job offer|job vacancy|employment opportunity|work from home|remote job|hiring|online job|job opportunity|part[- ]time job|virtual assistant|data entry)/i
+    );
+
+
+    if (
         job &&
-        /(earn|make|salary).{0,50}(₦|n|naira|\$|usd|€|£)/i
-        .test(text)
+        moneyRequest
+    ) {
+
+        add(
+            9,
+            "A job or employment claim is combined with a request for upfront payment.",
+            "Fake job scam"
+        );
+
+    }
+
+
+    /* =================================================
+       24. JOB + HIGH EARNINGS
+       ================================================= */
+
+    if (
+        job &&
+        has(
+            /(earn|make|salary|income).{0,70}(₦|n|naira|\$|usd|€|£|\d)/i
+        )
         &&
-        /(registration fee|application fee|processing fee|pay|deposit)/i
-        .test(text)
-    ){
+        moneyRequest
+    ) {
+
+        add(
+            5,
+            "The job offer promises earnings while requiring an upfront payment.",
+            "Fake job scam"
+        );
+
+    }
+
+
+    /* =================================================
+       25. DELIVERY SCAM
+       ================================================= */
+
+    if (
+        has(
+            /(package|parcel|delivery|courier|customs|shipment).{0,100}(fee|payment|customs|link|click|release|charge)/i
+        )
+    ) {
 
         add(
             8,
-            "The job offer promises earnings while requiring an upfront payment."
+            "Possible delivery or package scam detected.",
+            "Delivery scam"
         );
 
     }
 
 
     /* =================================================
-       24. DELIVERY SCAM
-    ================================================= */
+       26. TECH SUPPORT
+       ================================================= */
 
-    if(
-        /(package|parcel|delivery|courier|customs).{0,100}
-        (fee|payment|customs|link|click|release)/i
-        .test(text)
-    ){
+    if (
+        has(
+            /(microsoft security|windows defender|apple support|apple id|google support|computer infected|virus detected|malware detected|firewall breach|technical support).{0,100}(call|pay|password|send|give|remote access|payment)/i
+        )
+    ) {
 
         add(
-            9,
-            "Possible delivery or package scam detected."
+            8,
+            "The message shows signs of a possible technical-support scam.",
+            "Tech support scam"
         );
 
     }
 
 
     /* =================================================
-       25. FINAL RISK CLASSIFICATION
-    ================================================= */
+       27. CHARITY SCAM
+       ================================================= */
+
+    if (
+        has(
+            /(donate|donation|charity|fundraiser|help victims|emergency relief).{0,100}(send|transfer|payment|money|cash)/i
+        )
+    ) {
+
+        add(
+            6,
+            "The message combines a charitable appeal with a financial request.",
+            "Charity scam"
+        );
+
+    }
+
+
+    /* =================================================
+       28. RENTAL / PROPERTY SCAM
+       ================================================= */
+
+    if (
+        has(
+            /(apartment|house|flat|room|property|rent).{0,100}(deposit|payment|transfer|send money|pay now)/i
+        )
+    ) {
+
+        add(
+            7,
+            "The property message requests payment before proper verification.",
+            "Rental scam"
+        );
+
+    }
+
+
+    /* =================================================
+       29. MARKETPLACE SCAM
+       ================================================= */
+
+    if (
+        has(
+            /(buy|purchase|item|phone|laptop|car|goods|product).{0,100}(pay first|deposit|transfer|send payment|payment first)/i
+        )
+    ) {
+
+        add(
+            6,
+            "The marketplace message requests payment before the transaction is independently verified.",
+            "Marketplace scam"
+        );
+
+    }
+
+
+    /* =================================================
+       30. LOAN SCAM
+       ================================================= */
+
+    if (
+        has(
+            /(loan|borrow|credit).{0,100}(processing fee|activation fee|insurance fee|deposit|upfront payment|pay first|send money)/i
+        )
+    ) {
+
+        add(
+            8,
+            "The loan offer requests an upfront payment before releasing funds.",
+            "Loan scam"
+        );
+
+    }
+
+
+    /* =================================================
+       31. ACCOUNT RECOVERY SCAM
+       ================================================= */
+
+    if (
+        has(
+            /(recover|restore|reactivate|unlock).{0,80}(account|profile|wallet).{0,80}(password|otp|code|pin|payment|send)/i
+        )
+    ) {
+
+        add(
+            8,
+            "The account-recovery request asks for sensitive information or payment.",
+            "Account recovery scam"
+        );
+
+    }
+
+
+    /* =================================================
+       32. FAKE VERIFICATION
+       ================================================= */
+
+    if (
+        has(
+            /(verify|verification|confirm identity|identity verification).{0,80}(password|otp|pin|payment|send money|card)/i
+        )
+    ) {
+
+        add(
+            8,
+            "The verification request involves sensitive information or payment.",
+            "Verification scam"
+        );
+
+    }
+
+
+    /* =================================================
+       33. FAKE REFUND
+       ================================================= */
+
+    if (
+        has(
+            /(refund|cashback|reimbursement).{0,100}(fee|payment|password|otp|pin|card|send money)/i
+        )
+    ) {
+
+        add(
+            7,
+            "The refund or cashback message requests sensitive information or payment.",
+            "Refund scam"
+        );
+
+    }
+
+
+    /* =================================================
+       34. CRYPTO WALLET ACCESS
+       ================================================= */
+
+    if (
+        has(
+            /(connect your wallet|wallet verification|seed phrase|recovery phrase|private key|wallet password).{0,80}(send|enter|share|provide|click|link)/i
+        )
+    ) {
+
+        add(
+            10,
+            "The message requests highly sensitive cryptocurrency wallet information.",
+            "Crypto scam"
+        );
+
+    }
+
+
+    /* =================================================
+       35. FAKE AIRDROP
+       ================================================= */
+
+    if (
+        has(
+            /(airdrop|free tokens|free crypto).{0,100}(connect wallet|send|pay|fee|link)/i
+        )
+    ) {
+
+        add(
+            8,
+            "The message shows signs of a possible fake cryptocurrency reward.",
+            "Crypto scam"
+        );
+
+    }
+
+
+    /* =================================================
+       36. FINAL SCORE
+       ================================================= */
 
     score =
-        Math.min(score, 10);
+        Math.min(10, Math.max(0, score));
 
+
+    /* =================================================
+       RISK LEVEL
+       ================================================= */
 
     let level =
         "low";
 
     let title =
-        "🟢 LOW RISK / NO STRONG SCAM SIGNALS";
+        "🟢 LOW RISK — NO STRONG SCAM SIGNALS DETECTED";
 
     let note =
-        "No major scam indicators were detected, but always stay cautious.";
+        "No strong scam indicators were detected. A low-risk result does not prove that the message is safe. Continue to verify important requests independently.";
 
 
-    if(score >= 8){
+    if (score >= 8) {
 
         level =
             "critical";
@@ -1099,11 +1669,11 @@ function checkMessage(){
             "🔴 VERY HIGH SCAM RISK";
 
         note =
-            "Do not send money, passwords, OTPs, PINs, or other sensitive information. Verify the sender independently.";
+            "Multiple strong scam indicators were detected. Do not send money, passwords, OTPs, PINs, or other sensitive information. Verify the sender independently.";
 
     }
 
-    else if(score >= 6){
+    else if (score >= 6) {
 
         level =
             "very-high";
@@ -1112,11 +1682,11 @@ function checkMessage(){
             "🟠 HIGH SCAM RISK";
 
         note =
-            "Multiple suspicious signals were detected. Do not take financial or security-related action until independently verified.";
+            "Several suspicious signals were detected. Do not take financial or security-related action until the request has been independently verified.";
 
     }
 
-    else if(score >= 4){
+    else if (score >= 4) {
 
         level =
             "high";
@@ -1125,11 +1695,11 @@ function checkMessage(){
             "🟡 HIGH RISK WARNING";
 
         note =
-            "Suspicious signals were detected. Verify the sender and the request independently.";
+            "Suspicious signals were detected. Slow down, verify the sender, and independently confirm the request.";
 
     }
 
-    else if(score >= 2){
+    else if (score >= 2) {
 
         level =
             "caution";
@@ -1138,27 +1708,27 @@ function checkMessage(){
             "⚠️ CAUTION REQUIRED";
 
         note =
-            "Some warning signs were detected. Slow down and verify before taking action.";
+            "Some warning signs were detected. Be careful and verify the message before taking action.";
 
     }
 
 
     /* =================================================
        NO REASONS
-    ================================================= */
+       ================================================= */
 
-    if(reasons.length === 0){
+    if (reasons.length === 0) {
 
         reasons.push(
-            "The message text appears normal and standard."
+            "No strong scam patterns were detected in the message."
         );
 
     }
 
 
     /* =================================================
-       DISPLAY
-    ================================================= */
+       DISPLAY RESULT
+       ================================================= */
 
     result.className =
         "result show " + level;
@@ -1167,24 +1737,39 @@ function checkMessage(){
     result.innerHTML = `
 
         <div class="result-title">
-            ${title}
+            ${escapeHTML(title)}
         </div>
 
         <div class="score">
             Risk score: ${score}/10
         </div>
 
+        ${
+            categories.length
+            ?
+            `<div style="margin-bottom:12px;font-weight:700;">
+                Detected category:
+                ${categories.map(function(category){
+                    return escapeHTML(category);
+                }).join(", ")}
+            </div>`
+            :
+            ""
+        }
+
         <ul>
 
-            ${reasons.map(function(reason){
+            ${
+                reasons.map(function(reason){
 
-                return `
-                    <li>
-                        ${escapeHTML(reason)}
-                    </li>
-                `;
+                    return `
+                        <li>
+                            ${escapeHTML(reason)}
+                        </li>
+                    `;
 
-            }).join("")}
+                }).join("")
+            }
 
         </ul>
 
@@ -1199,7 +1784,7 @@ function checkMessage(){
 
 /* =====================================================
    SHOW RESULT
-===================================================== */
+   ===================================================== */
 
 function showResult(
     level,
@@ -1207,10 +1792,15 @@ function showResult(
     score,
     reasons,
     note
-){
+) {
 
     const result =
         document.getElementById("result");
+
+
+    if (!result) {
+        return;
+    }
 
 
     result.className =
@@ -1229,15 +1819,17 @@ function showResult(
 
         <ul>
 
-            ${reasons.map(function(reason){
+            ${
+                reasons.map(function(reason){
 
-                return `
-                    <li>
-                        ${escapeHTML(reason)}
-                    </li>
-                `;
+                    return `
+                        <li>
+                            ${escapeHTML(reason)}
+                        </li>
+                    `;
 
-            }).join("")}
+                }).join("")
+            }
 
         </ul>
 
@@ -1251,77 +1843,61 @@ function showResult(
 
 
 /* =====================================================
-   CLEAR
-===================================================== */
+   CLEAR MESSAGE
+   ===================================================== */
 
-function clearMessage(){
+function clearMessage() {
 
-    document
-        .getElementById("message")
-        .value = "";
-
+    const textarea =
+        document.getElementById("message");
 
     const result =
         document.getElementById("result");
 
 
-    result.className =
-        "result";
+    if (textarea) {
+
+        textarea.value =
+            "";
+
+    }
 
 
-    result.innerHTML =
-        "";
+    if (result) {
+
+        result.className =
+            "result";
+
+        result.innerHTML =
+            "";
+
+    }
 
 }
 
 
 /* =====================================================
    HTML ESCAPING
-===================================================== */
+   ===================================================== */
 
-function escapeHTML(value){
+function escapeHTML(value) {
 
     return String(value)
 
-        .replace(/&/g,"&amp;")
+        .replace(/&/g, "&amp;")
 
-        .replace(/</g,"&lt;")
+        .replace(/</g, "&lt;")
 
-        .replace(/>/g,"&gt;")
+        .replace(/>/g, "&gt;")
 
-        .replace(/"/g,"&quot;")
+        .replace(/"/g, "&quot;")
 
-        .replace(/'/g,"&#039;");
+        .replace(/'/g, "&#039;");
 
-    }
-
-
-/* =====================================================
-   CLEAR
-   ===================================================== */
-
-function clearMessage(){
-    document.getElementById("message").value = "";
-    const result = document.getElementById("result");
-    result.className = "result";
-    result.innerHTML = "";
 }
 
-
-/* =====================================================
-   BASIC HTML ESCAPING
-   ===================================================== */
-
-function escapeHTML(value){
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
 </script>
-
+    
 </body>
 </html>
 
