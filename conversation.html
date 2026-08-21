@@ -714,9 +714,12 @@ Person A: Send it now. Don't tell anyone.">
 
 <script>
     
+            
+    <script>
+
 /* =====================================================
-   TRUSTAI CONVERSATION CHECKER ENGINE
-   Version 2
+   TRUSTAI CONVERSATION CHECKER
+   CLEAN DETECTION ENGINE
 ===================================================== */
 
 
@@ -735,6 +738,7 @@ function toggleMenu() {
         .getElementById("menuOverlay")
         .classList
         .toggle("show");
+
 }
 
 
@@ -749,6 +753,7 @@ function closeMenu() {
         .getElementById("menuOverlay")
         .classList
         .remove("show");
+
 }
 
 
@@ -769,9 +774,9 @@ function checkConversation() {
             .getElementById("result");
 
 
-    /* -------------------------------------------------
-       EMPTY CHECK
-    ------------------------------------------------- */
+    /* =================================================
+       EMPTY INPUT
+    ================================================= */
 
     if (!original) {
 
@@ -780,14 +785,24 @@ function checkConversation() {
 
         result.textContent =
             "⚠️ NO CONVERSATION ENTERED\n\n" +
-            "Paste a conversation before running TrustAI.";
+            "Paste a conversation before running the checker.";
 
         return;
+
     }
 
 
+    /* =================================================
+       NORMALIZE TEXT
+    ================================================= */
+
     const text =
-        original.toLowerCase();
+        original
+            .toLowerCase()
+            .replace(/[’‘]/g, "'")
+            .replace(/[“”]/g, '"')
+            .replace(/\s+/g, " ")
+            .trim();
 
 
     let score = 0;
@@ -805,9 +820,20 @@ function checkConversation() {
 
         return words.some(function(word) {
 
-            return text.includes(word);
+            return text.includes(word.toLowerCase());
 
         });
+
+    }
+
+
+    function countMatches(words) {
+
+        return words.filter(function(word) {
+
+            return text.includes(word.toLowerCase());
+
+        }).length;
 
     }
 
@@ -816,19 +842,12 @@ function checkConversation() {
 
         score += points;
 
-        if (!reasons.includes(reason)) {
-
+        if (reason) {
             reasons.push(reason);
-
         }
 
-        if (
-            category &&
-            !categories.includes(category)
-        ) {
-
+        if (category) {
             categories.push(category);
-
         }
 
     }
@@ -839,95 +858,119 @@ function checkConversation() {
     ================================================= */
 
     const paymentRequest =
-    hasAny([
+        hasAny([
 
-        "send the money now",
-        "send money now",
-        "send the cash now",
-        "send ₦20,000",
-        "send ₦",
-        "send n",
-        "send $",
-        "pay now",
-        "transfer now",
-        "invest now",
-        "invest today",
+            "send me money",
+            "send money",
+            "send some money",
+            "send the money",
+            "send the money now",
+            "send money now",
+            "send it now",
+            "send it right now",
+            "send cash",
+            "send the cash",
+            "send the cash now",
+            "transfer money",
+            "transfer funds",
+            "transfer it",
+            "transfer now",
+            "make a transfer",
+            "make a payment",
+            "pay me",
+            "pay now",
+            "pay immediately",
+            "send the funds",
+            "deposit money",
+            "deposit the money",
+            "make a deposit",
+            "give me money",
+            "lend me money",
+            "borrow money",
+            "financial help",
+            "send ₦",
+            "send n",
+            "send $",
+            "pay ₦",
+            "pay n",
+            "pay $",
+            "invest ₦",
+            "invest n",
+            "invest $",
+            "invest now",
+            "invest today"
 
-        "send me money",
-        "send money",
-        "send some money",
-        "send the money",
-        "send cash",
-        "transfer money",
-        "transfer funds",
-        "make a transfer",
-        "make a payment",
-        "pay me",
-        "send the funds",
-        "deposit money",
-        "deposit the money",
-        "make a deposit",
-        "give me money",
-        "lend me money",
-        "borrow money",
-        "financial help",
-        "pay ₦",
-        "pay n",
-        "pay $"
-
-    ]);
+        ]);
 
 
     /* =================================================
-       2. PERSONAL/FAMILY CONTEXT
+       2. URGENCY / PRESSURE
     ================================================= */
 
-    const normalPersonalRequest =
+    const urgency =
         hasAny([
 
-            "mum",
-            "mom",
-            "mother",
-            "dad",
-            "father",
-            "brother",
-            "sister",
-            "uncle",
-            "aunt",
-            "cousin",
-            "family",
-            "my friend",
-            "my brother",
-            "my sister",
-            "my mum",
-            "my mom",
-            "my dad",
-            "my mother",
-            "my father"
-
-        ]);
-
-
-    const normalLoanLanguage =
-        hasAny([
-
-            "i'll pay you back",
-            "i will pay you back",
-            "pay you back",
-            "repay you",
-            "return the money",
-            "return it",
-            "borrow some money",
-            "can i borrow",
-            "could i borrow",
-            "lend me",
-            "personal loan"
+            "send it now",
+            "send it right now",
+            "send money now",
+            "send the money now",
+            "pay now",
+            "pay immediately",
+            "transfer now",
+            "act now",
+            "do it now",
+            "right now",
+            "immediately",
+            "urgent",
+            "urgently",
+            "within 30 minutes",
+            "within 1 hour",
+            "within an hour",
+            "today only",
+            "before it closes",
+            "before registration closes",
+            "registration closes",
+            "offer expires",
+            "expires tonight",
+            "closes tonight",
+            "last chance",
+            "limited time",
+            "don't delay",
+            "do not delay",
+            "or your account will be blocked",
+            "or your account will be closed",
+            "or you will lose",
+            "or the package will be returned"
 
         ]);
 
 
     /* =================================================
-       3. BANK / FINANCIAL IMPERSONATION
+       3. SECRECY
+    ================================================= */
+
+    const secrecy =
+        hasAny([
+
+            "don't tell anyone",
+            "do not tell anyone",
+            "don't tell anyone about this",
+            "do not tell anyone about this",
+            "keep this secret",
+            "keep it secret",
+            "keep this between us",
+            "don't tell your family",
+            "do not tell your family",
+            "don't tell the bank",
+            "do not tell the bank",
+            "don't tell anyone else",
+            "do not tell anyone else"
+
+        ]);
+
+
+    /* =================================================
+       4. BANK IMPERSONATION
     ================================================= */
 
     const bankImpersonation =
@@ -945,34 +988,70 @@ function checkConversation() {
             "bank security department",
             "bank verification department",
             "bank official",
+            "bank support",
+            "bank security team",
             "cbn officer",
-            "central bank officer",
-            "bank support"
+            "central bank officer"
 
         ]);
 
 
-    if (bankImpersonation) {
+    /* =================================================
+       5. SENSITIVE INFORMATION
+    ================================================= */
 
-        addRisk(
-            3,
-            "Possible bank or financial-institution impersonation was detected.",
-            "Financial impersonation"
-        );
+    const sensitiveInfo =
+        hasAny([
 
-    }
+            "otp",
+            "one time password",
+            "one-time password",
+            "verification code",
+            "security code",
+            "authentication code",
+            "pin",
+            "password",
+            "cvv",
+            "card number",
+            "atm pin",
+            "banking password",
+            "login code",
+            "login details",
+            "verification number"
+
+        ]);
 
 
     /* =================================================
-       4. MONEY / PRIZE / REWARD CLAIM
+       6. IDENTITY INFORMATION
+    ================================================= */
+
+    const identityRequest =
+        hasAny([
+
+            "bvn",
+            "nin",
+            "national id",
+            "identity number",
+            "id number",
+            "date of birth",
+            "passport number",
+            "send your id",
+            "send your identity",
+            "identity verification",
+            "verify your identity"
+
+        ]);
+
+
+    /* =================================================
+       7. MONEY / REWARD CLAIM
     ================================================= */
 
     const moneyClaim =
         hasAny([
 
-            "you have ₦",
-            "you have n",
-            "you have $",
+            "you have money waiting",
             "money is waiting for you",
             "funds are waiting",
             "money has been approved",
@@ -986,31 +1065,19 @@ function checkConversation() {
             "cash is waiting",
             "payment is waiting",
             "funds have been released",
-            "you won",
-            "you have won",
             "claim your money",
             "claim your reward",
             "claim your prize",
-            "cash prize",
-            "cash reward",
-            "special reward"
+            "you won",
+            "you have won",
+            "you won ₦",
+            "you won $"
 
         ]);
 
 
-    if (moneyClaim) {
-
-        addRisk(
-            2,
-            "An unexpected money, reward, prize, credit, or payment claim was detected.",
-            "Unexpected money claim"
-        );
-
-    }
-
-
     /* =================================================
-       5. BANK CREDIT
+       8. BANK CREDIT
     ================================================= */
 
     const bankCredit =
@@ -1029,7 +1096,7 @@ function checkConversation() {
 
 
     /* =================================================
-       6. ADVANCE FEE / RELEASE PAYMENT
+       9. ADVANCE FEE
     ================================================= */
 
     const releasePayment =
@@ -1054,167 +1121,74 @@ function checkConversation() {
             "clearance payment",
             "processing fee",
             "processing payment",
+            "release your funds",
+            "unlock your funds",
+            "activate your funds",
             "pay before withdrawal",
             "fee before withdrawal",
             "pay before release",
-            "fee before release",
-            "pay to receive",
-            "payment to receive"
-
-        ]);
-
-
-    if (releasePayment) {
-
-        addRisk(
-            4,
-            "Payment is being requested to activate, release, unlock, receive, or withdraw supposed funds.",
-            "Advance-fee scam"
-        );
-
-    }
-
-
-    /* =================================================
-       7. SENSITIVE INFORMATION
-    ================================================= */
-
-    const sensitiveInfo =
-        hasAny([
-
-            "send me your otp",
-            "send your otp",
-            "give me your otp",
-            "tell me your otp",
-            "share your otp",
-            "send the otp",
-            "verification code",
-            "verification code you received",
-            "code you received",
-            "one time password",
-            "one-time password",
-            "password",
-            "login password",
-            "bank pin",
-            "banking pin",
-            "your pin",
-            "pin number",
-            "cvv",
-            "card security code",
-            "card number",
-            "debit card number",
-            "credit card number",
-            "bank login",
-            "login details",
-            "bank details",
-            "security code",
-            "authentication code",
-            "authentication codes"
-
-        ]);
-
-
-    if (sensitiveInfo) {
-
-        addRisk(
-            4,
-            "A request for sensitive authentication, banking, or payment information was detected.",
-            "Credential theft"
-        );
-
-    }
-
-
-    /* =================================================
-       8. IDENTITY INFORMATION
-    ================================================= */
-
-    const identityRequest =
-        hasAny([
-
-            "send your bvn",
-            "give me your bvn",
-            "send me your bvn",
-            "send your nin",
-            "give me your nin",
-            "send me your nin",
-            "send your passport",
-            "send your id",
-            "send your identity",
-            "identity verification",
-            "send your date of birth",
-            "send your full name",
-            "send your address",
-            "send your driver's license",
-            "send your drivers license"
-
-        ]);
-
-
-    if (identityRequest) {
-
-        addRisk(
-            3,
-            "The conversation contains a request for sensitive identity information.",
-            "Identity theft"
-        );
-
-    }
-
-
-    /* =================================================
-       9. URGENCY / PRESSURE
-    ================================================= */
-
-    const urgency =
-        hasAny([
-
-            "urgent",
-            "urgently",
-            "immediately",
-            "right now",
-            "act now",
-            "do it now",
-            "send it now",
-            "within 10 minutes",
-            "within 5 minutes",
-            "within one hour",
-            "before midnight",
-            "expires today",
-            "expires soon",
-            "last chance",
-            "don't delay",
-            "do not delay",
-            "hurry",
-            "quickly",
-            "before it is cancelled",
-            "before it gets cancelled",
-            "or your account will be blocked",
-            "or your account will be suspended"
+            "fee before release"
 
         ]);
 
 
     /* =================================================
-       10. SECRECY / ISOLATION
+       10. INVESTMENT SCAM
     ================================================= */
 
-    const secrecy =
+    const investmentLanguage =
         hasAny([
 
-            "don't tell anyone",
-            "do not tell anyone",
-            "keep this secret",
-            "keep it secret",
-            "keep this between us",
-            "don't tell your family",
-            "do not tell your family",
-            "don't contact the bank",
-            "do not contact the bank",
-            "don't ask anyone",
-            "do not ask anyone"
+            "investment opportunity",
+            "invest now",
+            "invest today",
+            "crypto investment",
+            "trading opportunity",
+            "secret trading system",
+            "investment platform",
+            "trading platform",
+            "crypto platform",
+            "forex opportunity",
+            "forex trading"
 
         ]);
+
+
+    const guaranteedReturn =
+        hasAny([
+
+            "guarantee ₦",
+            "guaranteed ₦",
+            "guarantee n",
+            "guaranteed n",
+            "guaranteed money",
+            "guaranteed profit",
+            "guaranteed profits",
+            "guaranteed return",
+            "guaranteed returns",
+            "100% profit",
+            "200% profit",
+            "300% profit",
+            "500% profit",
+            "double your money",
+            "triple your money",
+            "10x your money",
+            "10 times your money",
+            "make ₦",
+            "make n",
+            "make $",
+            "risk free",
+            "risk-free",
+            "no risk",
+            "100% guaranteed",
+            "guaranteed"
+
+        ]);
+
+
+    const investmentScam =
+        investmentLanguage ||
+        guaranteedReturn;
 
 
     /* =================================================
@@ -1222,58 +1196,32 @@ function checkConversation() {
     ================================================= */
 
     const romance =
-    hasAny([
+        hasAny([
 
-        "i love you",
-        "i really care about you",
-        "my love",
-        "baby",
-        "darling",
-        "sweetheart",
-        "relationship",
-        "only person i trust",
-        "only one i trust",
-        "you're the only person i trust",
-        "you are the only person i trust",
-        "i need you",
-        "i miss you",
-        "love of my life",
-        "my boyfriend",
-        "my girlfriend",
-        "my husband",
-        "my wife"
+            "i love you",
+            "i really care about you",
+            "my love",
+            "baby",
+            "darling",
+            "sweetheart",
+            "relationship",
+            "only person i trust",
+            "only one i trust",
+            "you're the only person i trust",
+            "you are the only person i trust",
+            "i need you",
+            "i miss you",
+            "love of my life",
+            "my boyfriend",
+            "my girlfriend",
+            "my husband",
+            "my wife"
 
-    ]);
-
-    if (
-    romance &&
-    paymentRequest
-) {
-
-    addRisk(
-        4,
-        "Romantic or emotional language is combined with a financial request.",
-        "Romance scam"
-    );
-
-}
+        ]);
 
 
-if (
-    romance &&
-    paymentRequest &&
-    urgency
-) {
-
-    addRisk(
-        6,
-        "Romantic or emotional language is combined with an urgent request for money.",
-        "Romance scam"
-    );
-
-}
     /* =================================================
-       12. EMERGENCY STORY
+       12. EMERGENCY
     ================================================= */
 
     const emergencyStory =
@@ -1285,6 +1233,7 @@ if (
             "emergency",
             "accident",
             "stranded",
+            "stranded at the airport",
             "stuck at the airport",
             "my mother is sick",
             "my father is sick",
@@ -1295,256 +1244,160 @@ if (
 
         ]);
 
-if (
-    emergencyStory &&
-    paymentRequest &&
-    urgency
-) {
-
-    addRisk(
-        5,
-        "An emergency story is combined with an urgent request for money.",
-        "Emergency manipulation"
-    );
-
-}
-    /* =================================================
-       13. INVESTMENT
-    ================================================= */
-
-    const investmentScam =
-    hasAny([
-
-        "investment opportunity",
-        "invest now",
-        "invest today",
-        "guarantee ₦",
-        "guaranteed ₦",
-        "guarantee n",
-        "guaranteed n",
-        "guaranteed money",
-        "guaranteed profit",
-        "guaranteed profits",
-        "guaranteed return",
-        "guaranteed returns",
-        "double your money",
-        "triple your money",
-        "10x your money",
-        "10 times your money",
-        "500% profit",
-        "100% profit",
-        "200% profit",
-        "make ₦",
-        "make n",
-        "make ₦200,000",
-        "make n200,000",
-        "risk free",
-        "risk-free",
-        "no risk",
-        "crypto investment",
-        "trading opportunity",
-        "secret trading system"
-
-    ]);
-
-    const guaranteedInvestment =
-    investmentScam &&
-    paymentRequest &&
-    (
-        urgency ||
-        hasAny([
-            "guarantee",
-            "guaranteed",
-            "double your money",
-            "triple your money",
-            "10x",
-            "10 times"
-        ])
-    );
-
-if (guaranteedInvestment) {
-
-    addRisk(
-        7,
-        "The conversation combines an investment opportunity with a guaranteed or unusually large return and a request to send money.",
-        "Investment scam"
-    );
-
-}
-
 
     /* =================================================
-       14. JOB SCAM
+       13. JOB SCAM
     ================================================= */
 
     const jobScam =
         hasAny([
 
-            "online job",
-            "work from home",
+            "job offer",
             "job opportunity",
             "employment opportunity",
+            "you have been selected for the job",
             "you have been selected for a job",
-            "guaranteed job",
-            "pay to get the job",
-            "pay for your job",
-            "registration fee for the job",
+            "online job",
+            "work from home",
+            "registration fee",
             "training fee",
-            "employment certificate",
-            "activate your worker account"
+            "employment fee",
+            "pay to get the job",
+            "pay before you start",
+            "activate your employment",
+            "activate your job"
 
         ]);
 
 
-/* =================================================
-   15. DELIVERY / PACKAGE
-================================================= */
-
-const packageStory =
-    hasAny([
-
-        "your package",
-        "your parcel",
-        "package is waiting",
-        "parcel is waiting",
-        "package is ready",
-        "parcel is ready",
-        "delivery",
-        "delivery agent",
-        "delivery service",
-        "courier",
-        "courier service",
-        "customs",
-        "customs clearance",
-        "redelivery",
-        "redelivery attempt",
-        "package could not be delivered",
-        "parcel could not be delivered",
-        "package will be returned",
-        "parcel will be returned"
-
-    ]);
-
-
-const deliveryPayment =
-    hasAny([
-
-        "delivery fee",
-        "delivery payment",
-        "customs fee",
-        "customs fees",
-        "customs clearance",
-        "clearance fee",
-        "clearance fees",
-        "redelivery fee",
-        "redelivery fees",
-        "pay for delivery",
-        "pay delivery",
-        "pay customs",
-        "pay customs clearance",
-        "payment for customs",
-        "customs payment",
-        "shipping fee",
-        "shipping payment",
-        "courier fee",
-        "courier payment",
-        "release the package",
-        "release your package",
-        "release the parcel",
-        "release your parcel"
-
-    ]);
-/* =================================================
-   DELIVERY PAYMENT + URGENCY
-================================================= */
-
-if (
-    packageStory &&
-    deliveryPayment
-) {
-
-    addRisk(
-        6,
-        "A package or delivery story is combined with a demand for customs, clearance, delivery, or shipping payment.",
-        "Delivery scam"
-    );
-
-}
     /* =================================================
-       16. CRYPTO WALLET
+       14. DELIVERY / PACKAGE
     ================================================= */
 
-    const cryptoWallet =
+    const packageStory =
         hasAny([
 
-            "crypto wallet",
-            "wallet password",
-            "wallet recovery phrase",
-            "seed phrase",
-            "private key",
-            "crypto password",
-            "wallet login"
+            "your package",
+            "your parcel",
+            "package is waiting",
+            "parcel is waiting",
+            "package is ready",
+            "parcel is ready",
+            "delivery",
+            "delivery agent",
+            "delivery service",
+            "courier",
+            "courier service",
+            "customs",
+            "customs clearance",
+            "redelivery",
+            "redelivery attempt",
+            "package could not be delivered",
+            "parcel could not be delivered",
+            "package will be returned",
+            "parcel will be returned"
+
+        ]);
+
+
+    const deliveryPayment =
+        hasAny([
+
+            "delivery fee",
+            "delivery payment",
+            "customs fee",
+            "customs fees",
+            "customs clearance",
+            "clearance fee",
+            "clearance fees",
+            "redelivery fee",
+            "redelivery fees",
+            "pay for delivery",
+            "pay delivery",
+            "pay customs",
+            "pay customs clearance",
+            "payment for customs",
+            "customs payment",
+            "shipping fee",
+            "shipping payment",
+            "courier fee",
+            "courier payment",
+            "release the package",
+            "release your package",
+            "release the parcel",
+            "release your parcel"
 
         ]);
 
 
     /* =================================================
-       17. LINKS
-    ================================================= */
-
-    const linkDetected =
-        hasAny([
-
-            "http://",
-            "https://",
-            "www.",
-            ".com/",
-            ".net/",
-            ".org/"
-
-        ]);
-
-
-    const shortenedLink =
-        hasAny([
-
-            "bit.ly/",
-            "tinyurl.com/",
-            "t.co/",
-            "is.gd/",
-            "shorturl",
-            "shortened link"
-
-        ]);
-
-
-    /* =================================================
-       18. ACCOUNT TAKEOVER
+       15. ACCOUNT TAKEOVER
     ================================================= */
 
     const accountTakeover =
         hasAny([
 
             "your account will be blocked",
-            "your account will be suspended",
-            "your account will be deleted",
-            "account recovery",
-            "recover your account",
-            "restore your account",
+            "your account will be closed",
+            "your account has been compromised",
+            "suspicious login",
+            "suspicious activity",
             "verify your account",
+            "verify your login",
+            "confirm your account",
             "account verification",
-            "login code",
-            "verification code"
+            "someone logged into your account",
+            "someone is trying to access your account"
 
         ]);
 
 
     /* =================================================
-       19. STRONG COMBINATIONS
+       16. LINK DETECTION
+    ================================================= */
+
+    const linkDetected =
+        /https?:\/\/|www\.|\.com\b|\.net\b|\.org\b|\.xyz\b/i.test(text);
+
+
+    const shortenedLink =
+        hasAny([
+
+            "bit.ly",
+            "tinyurl.com",
+            "t.co/",
+            "shorturl",
+            "goo.gl",
+            "ow.ly",
+            "is.gd",
+            "cutt.ly"
+
+        ]);
+
+
+    /* =================================================
+       SCORING RULES
     ================================================= */
 
 
-    /* BANK + OTP/PASSWORD */
+    /* -----------------------------------------------
+       BANK IMPERSONATION
+    ----------------------------------------------- */
+
+    if (bankImpersonation) {
+
+        addRisk(
+            3,
+            "Possible bank or financial-institution impersonation detected.",
+            "Financial impersonation"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       BANK + OTP
+    ----------------------------------------------- */
 
     if (
         bankImpersonation &&
@@ -1552,15 +1405,17 @@ if (
     ) {
 
         addRisk(
-            5,
-            "A person claiming to represent a financial institution is requesting sensitive authentication or payment information.",
+            6,
+            "A person claiming to represent a bank is requesting sensitive authentication information.",
             "Bank credential theft"
         );
 
     }
 
 
-    /* BANK + IDENTITY */
+    /* -----------------------------------------------
+       BANK + IDENTITY
+    ----------------------------------------------- */
 
     if (
         bankImpersonation &&
@@ -1569,110 +1424,143 @@ if (
 
         addRisk(
             4,
-            "A supposed financial representative is requesting sensitive identity information.",
-            "Bank identity theft"
+            "A supposed bank representative is requesting sensitive identity information.",
+            "Identity theft"
         );
 
     }
 
 
-    /* BANK + CREDIT + PAYMENT */
+    /* -----------------------------------------------
+       BANK + MONEY
+    ----------------------------------------------- */
+
+    if (
+        bankImpersonation &&
+        paymentRequest
+    ) {
+
+        addRisk(
+            4,
+            "The conversation combines financial-institution impersonation with a request for money.",
+            "Bank impersonation"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       BANK CREDIT + RELEASE FEE
+    ----------------------------------------------- */
 
     if (
         bankCredit &&
-        paymentRequest
-    ) {
-
-        addRisk(
-            4,
-            "A claimed bank credit is combined with a request for money.",
-            "Financial manipulation"
-        );
-
-    }
-
-
-    /* MONEY CLAIM + PAYMENT */
-
-    if (
-        moneyClaim &&
-        paymentRequest
-    ) {
-
-        addRisk(
-            4,
-            "An unexpected money or reward claim is combined with a request for payment.",
-            "Financial manipulation"
-        );
-
-    }
-
-
-    /* MONEY CLAIM + RELEASE FEE */
-
-    if (
-        moneyClaim &&
         releasePayment
     ) {
 
         addRisk(
+            8,
+            "A claimed account credit is being used to request an activation, release, withdrawal, or processing payment.",
+            "Advance-fee bank scam"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       MONEY CLAIM + PAYMENT
+    ----------------------------------------------- */
+
+    if (
+        moneyClaim &&
+        paymentRequest
+    ) {
+
+        addRisk(
+            3,
+            "An unexpected money or payment claim is combined with a request for money.",
+            "Financial manipulation"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       INVESTMENT + GUARANTEED RETURN
+    ----------------------------------------------- */
+
+    if (
+        investmentLanguage &&
+        guaranteedReturn
+    ) {
+
+        addRisk(
             5,
-            "The conversation claims that money is available but requires a fee before it can be released or received.",
-            "Advance-fee scam"
+            "An investment opportunity is combined with a guaranteed or unusually large return claim.",
+            "Investment scam"
         );
 
     }
 
 
-    /* URGENCY + PAYMENT */
+    /* -----------------------------------------------
+       GUARANTEED RETURN + PAYMENT
+    ----------------------------------------------- */
 
     if (
+        guaranteedReturn &&
+        paymentRequest
+    ) {
+
+        addRisk(
+            5,
+            "A guaranteed or unusually large financial return is combined with a request to send or invest money.",
+            "Investment scam"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       INVESTMENT + PAYMENT
+    ----------------------------------------------- */
+
+    if (
+        investmentLanguage &&
+        paymentRequest
+    ) {
+
+        addRisk(
+            4,
+            "An investment or trading opportunity is combined with a request for money.",
+            "Investment scam"
+        );
+
+    }
+
+
+        /* -----------------------------------------------
+       INVESTMENT + PAYMENT + URGENCY
+    ----------------------------------------------- */
+
+    if (
+        investmentScam &&
         paymentRequest &&
         urgency
     ) {
 
         addRisk(
-            2,
-            "A financial request is combined with pressure to act quickly.",
-            "Pressure tactic"
-        );
-
-    }
-
-
-    /* SECRECY + PAYMENT */
-
-    if (
-        paymentRequest &&
-        secrecy
-    ) {
-
-        addRisk(
             3,
-            "A financial request is combined with an attempt to keep the transaction secret.",
-            "Manipulation"
+            "The investment-related payment request is accompanied by pressure to act quickly.",
+            "Investment pressure"
         );
 
     }
 
 
-    /* OTP + URGENCY */
-
-    if (
-        sensitiveInfo &&
-        urgency
-    ) {
-
-        addRisk(
-            3,
-            "Sensitive information is being requested under time pressure.",
-            "Credential theft"
-        );
-
-    }
-
-
-    /* ROMANCE + MONEY */
+    /* -----------------------------------------------
+       ROMANCE + MONEY
+    ----------------------------------------------- */
 
     if (
         romance &&
@@ -1681,14 +1569,54 @@ if (
 
         addRisk(
             4,
-            "Emotional or romantic language is combined with a financial request.",
+            "Romantic or emotional language is combined with a financial request.",
             "Romance scam"
         );
 
     }
 
 
-    /* EMERGENCY + MONEY */
+    /* -----------------------------------------------
+       ROMANCE + MONEY + URGENCY
+    ----------------------------------------------- */
+
+    if (
+        romance &&
+        paymentRequest &&
+        urgency
+    ) {
+
+        addRisk(
+            4,
+            "Romantic or emotional language is combined with an urgent request for money.",
+            "Romance scam"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       ROMANCE + SECRECY + MONEY
+    ----------------------------------------------- */
+
+    if (
+        romance &&
+        paymentRequest &&
+        secrecy
+    ) {
+
+        addRisk(
+            3,
+            "Romantic or emotional language is combined with a financial request and secrecy.",
+            "Romance manipulation"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       EMERGENCY + MONEY
+    ----------------------------------------------- */
 
     if (
         emergencyStory &&
@@ -1704,23 +1632,47 @@ if (
     }
 
 
-    /* INVESTMENT + PAYMENT */
+    /* -----------------------------------------------
+       EMERGENCY + MONEY + URGENCY
+    ----------------------------------------------- */
 
     if (
-        investmentScam &&
-        paymentRequest
+        emergencyStory &&
+        paymentRequest &&
+        urgency
     ) {
 
         addRisk(
-            5,
-            "An investment or profit claim is combined with a request for money.",
-            "Investment scam"
+            4,
+            "An emergency story is combined with an urgent request for money.",
+            "Emergency manipulation"
         );
 
     }
 
 
-    /* JOB + PAYMENT */
+    /* -----------------------------------------------
+       EMERGENCY + MONEY + SECRECY
+    ----------------------------------------------- */
+
+    if (
+        emergencyStory &&
+        paymentRequest &&
+        secrecy
+    ) {
+
+        addRisk(
+            3,
+            "An emergency story is combined with a financial request and secrecy.",
+            "Emergency manipulation"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       JOB + PAYMENT
+    ----------------------------------------------- */
 
     if (
         jobScam &&
@@ -1728,15 +1680,36 @@ if (
     ) {
 
         addRisk(
-            4,
-            "A job or employment claim is combined with a request for payment.",
+            5,
+            "A job or employment claim is combined with a request for upfront payment.",
             "Job scam"
         );
 
     }
 
 
-    /* PACKAGE + PAYMENT */
+    /* -----------------------------------------------
+       JOB + PAYMENT + URGENCY
+    ----------------------------------------------- */
+
+    if (
+        jobScam &&
+        paymentRequest &&
+        urgency
+    ) {
+
+        addRisk(
+            3,
+            "The job-related payment request is accompanied by pressure to pay quickly.",
+            "Job scam"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       DELIVERY + PAYMENT
+    ----------------------------------------------- */
 
     if (
         packageStory &&
@@ -1744,31 +1717,60 @@ if (
     ) {
 
         addRisk(
-            5,
-            "A package or delivery story is combined with a payment demand.",
+            6,
+            "A package or delivery story is combined with a demand for customs, clearance, delivery, or shipping payment.",
             "Delivery scam"
         );
 
     }
 
 
-    /* CRYPTO + SENSITIVE INFORMATION */
+    /* -----------------------------------------------
+       DELIVERY + PAYMENT + URGENCY
+    ----------------------------------------------- */
 
     if (
-        cryptoWallet &&
+        packageStory &&
+        deliveryPayment &&
+        urgency
+    ) {
+
+        addRisk(
+            3,
+            "The delivery payment demand is accompanied by pressure to pay quickly or risk losing the package.",
+            "Delivery scam"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       CRYPTO + SENSITIVE INFORMATION
+    ----------------------------------------------- */
+
+    if (
+        hasAny([
+            "crypto",
+            "cryptocurrency",
+            "bitcoin",
+            "ethereum",
+            "crypto wallet"
+        ]) &&
         sensitiveInfo
     ) {
 
         addRisk(
-            6,
-            "Cryptocurrency wallet information is being combined with a request for sensitive credentials.",
+            5,
+            "Cryptocurrency or wallet language is combined with a request for sensitive information.",
             "Crypto theft"
         );
 
     }
 
 
-    /* SUSPICIOUS LINK + PAYMENT */
+    /* -----------------------------------------------
+       LINK + PAYMENT
+    ----------------------------------------------- */
 
     if (
         linkDetected &&
@@ -1777,19 +1779,21 @@ if (
 
         addRisk(
             3,
-            "A financial request is accompanied by a website link.",
+            "A financial request is accompanied by a website or online link.",
             "Suspicious link"
         );
 
     }
 
 
-    /* SHORTENED LINK */
+    /* -----------------------------------------------
+       SHORTENED LINK
+    ----------------------------------------------- */
 
     if (shortenedLink) {
 
         addRisk(
-            3,
+            4,
             "A shortened or disguised website link was detected.",
             "Suspicious link"
         );
@@ -1797,58 +1801,109 @@ if (
     }
 
 
-    /* ACCOUNT TAKEOVER + CREDENTIAL */
+    /* -----------------------------------------------
+       ACCOUNT TAKEOVER
+    ----------------------------------------------- */
 
     if (
         accountTakeover &&
-        sensitiveInfo
+        (
+            sensitiveInfo ||
+            identityRequest ||
+            paymentRequest
+        )
     ) {
 
         addRisk(
             5,
-            "Possible account takeover behavior is combined with a request for authentication information.",
+            "Possible account takeover or impersonation behavior is combined with a request for money or sensitive information.",
             "Account takeover"
         );
 
     }
 
 
-    /* =================================================
-       20. MULTIPLE INDEPENDENT SIGNALS
-    ================================================= */
+    /* -----------------------------------------------
+       PAYMENT + URGENCY
+       Only mild by itself.
+    ----------------------------------------------- */
 
-    const majorSignals = [
+    if (
+        paymentRequest &&
+        urgency &&
+        !investmentScam &&
+        !bankImpersonation &&
+        !jobScam &&
+        !packageStory &&
+        !romance &&
+        !emergencyStory &&
+        !sensitiveInfo
+    ) {
+
+        addRisk(
+            1,
+            "A financial request is combined with pressure to act quickly.",
+            "Financial pressure"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       PAYMENT + SECRECY
+    ----------------------------------------------- */
+
+    if (
+        paymentRequest &&
+        secrecy
+    ) {
+
+        addRisk(
+            2,
+            "A financial request is combined with a request for secrecy.",
+            "Financial manipulation"
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       MULTIPLE STRONG SIGNALS
+    ----------------------------------------------- */
+
+    const strongSignals = [
 
         bankImpersonation,
         moneyClaim,
         releasePayment,
+        investmentScam,
+        romance,
+        emergencyStory,
+        jobScam,
+        deliveryPayment,
         sensitiveInfo,
         identityRequest,
-        investmentScam,
-        jobScam,
-        emergencyStory,
-        romance,
-        shortenedLink,
-        accountTakeover
+        accountTakeover,
+        shortenedLink
 
     ].filter(Boolean).length;
 
 
-    if (majorSignals >= 5) {
+    if (strongSignals >= 5) {
 
         addRisk(
             3,
-            "Multiple independent high-risk indicators appear together.",
+            "Multiple independent high-risk signals appear together in the conversation.",
             "Multiple scam signals"
         );
 
     }
 
-    else if (majorSignals >= 3) {
+    else if (strongSignals >= 3) {
 
         addRisk(
             2,
-            "Several independent warning indicators appear together.",
+            "Several independent warning signals appear together.",
             "Multiple scam signals"
         );
 
@@ -1856,7 +1911,7 @@ if (
 
 
     /* =================================================
-       21. SCORE
+       SCORE LIMIT
     ================================================= */
 
     score =
@@ -1867,70 +1922,7 @@ if (
 
 
     /* =================================================
-       22. IMPORTANT SAFETY OVERRIDE
-       
-       Certain combinations should NEVER be green.
-    ================================================= */
-
-    const criticalCombination =
-
-        (
-            bankImpersonation &&
-            sensitiveInfo
-        )
-
-        ||
-
-        (
-            moneyClaim &&
-            releasePayment
-        )
-
-        ||
-
-        (
-            investmentScam &&
-            paymentRequest &&
-            urgency
-        )
-
-        ||
-
-        (
-            jobScam &&
-            paymentRequest &&
-            urgency
-        )
-
-        ||
-
-        (
-            packageStory &&
-            deliveryPayment &&
-            urgency
-        )
-
-        ||
-
-        (
-            romance &&
-            paymentRequest &&
-            urgency
-        );
-
-
-    if (
-        criticalCombination &&
-        score < 5
-    ) {
-
-        score = 5;
-
-    }
-
-
-    /* =================================================
-       23. REMOVE DUPLICATES
+       REMOVE DUPLICATES
     ================================================= */
 
     const uniqueReasons =
@@ -1942,7 +1934,7 @@ if (
 
 
     /* =================================================
-       24. RISK LEVEL
+       RISK LEVEL
     ================================================= */
 
     let level;
@@ -1992,7 +1984,7 @@ if (
     else {
 
         level =
-            "LOW RISK — NO STRONG SCAM SIGNALS DETECTED";
+            "LOWRISK — NO STRONG SCAM SIGNALS DETECTED";
 
         cssClass =
             "low";
@@ -2004,13 +1996,13 @@ if (
 
 
     /* =================================================
-       25. REASONS
+       REASONS
     ================================================= */
 
     let reasonText;
 
 
-    if (uniqueReasons.length) {
+    if (uniqueReasons.length > 0) {
 
         reasonText =
             "Why TrustAI flagged it:\n\n• " +
@@ -2024,19 +2016,19 @@ if (
 
         reasonText =
             "Why TrustAI flagged it:\n\n" +
-            "• No strong scam indicators were detected.";
+            "• No strong scam patterns were detected.";
 
     }
 
 
     /* =================================================
-       26. CATEGORIES
+       THREAT CATEGORIES
     ================================================= */
 
     let categoryText = "";
 
 
-    if (uniqueCategories.length) {
+    if (uniqueCategories.length > 0) {
 
         categoryText =
             "\n\nThreat Categories:\n\n• " +
@@ -2048,7 +2040,7 @@ if (
 
 
     /* =================================================
-       27. NORMAL MONEY REQUEST NOTE
+       NORMAL MONEY REQUEST NOTE
     ================================================= */
 
     let normalMoneyNote = "";
@@ -2056,15 +2048,16 @@ if (
 
     if (
         paymentRequest &&
-        !moneyClaim &&
-        !releasePayment &&
+        !investmentScam &&
         !bankImpersonation &&
         !sensitiveInfo &&
         !identityRequest &&
-        !investmentScam &&
         !jobScam &&
         !romance &&
-        !emergencyStory
+        !emergencyStory &&
+        !packageStory &&
+        !moneyClaim &&
+        !releasePayment
     ) {
 
         normalMoneyNote =
@@ -2079,25 +2072,33 @@ if (
 
 
     /* =================================================
-       28. LOW-RISK EXPLANATION
+       BANK ALERT NOTE
     ================================================= */
 
-    let lowRiskNote = "";
+    let bankNote = "";
 
 
-    if (score < 2) {
+    if (
+        bankCredit &&
+        !bankImpersonation &&
+        !releasePayment &&
+        !sensitiveInfo &&
+        !identityRequest
+    ) {
 
-        lowRiskNote =
-            "\n\nℹ️ Important:\n\n" +
-            "Low Risk does not mean guaranteed safe. " +
-            "It means TrustAI did not detect strong " +
-            "scam indicators in the text provided.";
+        bankNote =
+            "\n\n🏦 Bank Alert Note:\n\n" +
+            "An ordinary account-credit notification " +
+            "is not automatically a scam.\n\n" +
+            "Verify the transaction inside your " +
+            "official banking app or account before " +
+            "taking financial action.";
 
     }
 
 
     /* =================================================
-       29. SAFETY ADVICE
+       SAFETY ADVICE
     ================================================= */
 
     let advice;
@@ -2110,9 +2111,10 @@ if (
             "STOP before sending money or sensitive " +
             "information.\n\n" +
             "Do not provide your PIN, OTP, password, " +
-            "CVV, BVN, NIN, or authentication codes.\n\n" +
-            "Verify the person through an independent " +
-            "official channel.";
+            "CVV, BVN, or authentication codes.\n\n" +
+            "If someone claims to represent your bank, " +
+            "contact the bank through an official " +
+            "channel that you find independently.";
 
     }
 
@@ -2123,8 +2125,8 @@ if (
             "Do not send money or sensitive information " +
             "until you independently verify the person's " +
             "identity and claims.\n\n" +
-            "Do not rely on suspicious links or contact " +
-            "details provided in the conversation.";
+            "Do not rely on links or contact details " +
+            "provided inside a suspicious conversation.";
 
     }
 
@@ -2144,14 +2146,15 @@ if (
         advice =
             "Safety Advice:\n\n" +
             "No strong scam patterns were detected.\n\n" +
-            "Continue to verify important financial, " +
-            "account, and identity requests independently.";
+            "A low-risk result does not prove that the " +
+            "conversation is safe. Continue to verify " +
+            "important requests independently.";
 
     }
 
 
     /* =================================================
-       30. DISPLAY
+       DISPLAY RESULT
     ================================================= */
 
     result.className =
@@ -2181,11 +2184,11 @@ if (
 
         normalMoneyNote +
 
-        lowRiskNote;
+        bankNote;
 
 }
 
-    
+
 /* =====================================================
    CLEAR
 ===================================================== */
@@ -2198,8 +2201,7 @@ function clearConversation() {
 
 
     const result =
-        document
-            .getElementById("result");
+        document.getElementById("result");
 
 
     result.className =
@@ -2252,6 +2254,7 @@ document
 
         }
     );
+
                         
         
      </script>       
