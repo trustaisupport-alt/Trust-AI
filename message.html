@@ -536,8 +536,13 @@ textarea:focus{
     </section>
 
 </div>
-
 <script>
+
+/* =====================================================
+   TRUST AI — UNIVERSAL MESSAGE CLASSIFIER
+   Context-aware normal + suspicious message detection
+===================================================== */
+
 
 /* =====================================================
    MENU
@@ -546,6 +551,7 @@ textarea:focus{
 function toggleMenu(){
     const menu = document.getElementById("sideMenu");
     const overlay = document.getElementById("menuOverlay");
+
     menu.classList.toggle("open");
     overlay.classList.toggle("show");
 }
@@ -561,621 +567,929 @@ function closeMenu(){
 ===================================================== */
 
 const sampleMessages = [
-    { type: "Legitimate", category: "Personal Financial Favor", text: "Please help me with 3k I will send it tomorrow." },
-    { type: "Legitimate", category: "Personal Chat", text: "Hey, are we still meeting up for coffee at 4 PM today?" },
-    { type: "Legitimate", category: "Transactional OTP", text: "Your verification code is 482910. Do not share this OTP with anyone." },
-    { type: "Legitimate", category: "Appointment Alert", text: "Reminder: Your doctor appointment is scheduled for tomorrow at 10:00 AM." },
-    { type: "Threat", category: "Banking Scam", text: "Your bank account has been temporarily restricted. Verify your account immediately." },
-    { type: "Threat", category: "Investment Scam", text: "Invest ₦20,000 today and receive ₦200,000 tomorrow with guaranteed profit." },
-    { type: "Threat", category: "Fake Job", text: "Congratulations! Selected for an online job. Pay a registration fee to start training." },
-    { type: "Threat", category: "Delivery Scam", text: "Your package is waiting at customs. Pay the clearance fee to release it." }
+
+    /* NORMAL */
+
+    {
+        type:"Normal",
+        category:"Greeting",
+        text:"Good morning, how are you doing today?"
+    },
+
+    {
+        type:"Normal",
+        category:"Personal Chat",
+        text:"Hey, are we still meeting up at 4 PM today?"
+    },
+
+    {
+        type:"Normal",
+        category:"Romantic / Personal",
+        text:"I love you and I hope you have a beautiful day."
+    },
+
+    {
+        type:"Normal",
+        category:"Personal Financial Favor",
+        text:"Please help me with 3k. I will send it back tomorrow."
+    },
+
+    {
+        type:"Normal",
+        category:"Appointment",
+        text:"Reminder: your appointment is tomorrow at 10 AM."
+    },
+
+    {
+        type:"Normal",
+        category:"Legitimate OTP",
+        text:"Your OTP is 482910. Never share it with anyone."
+    },
+
+    {
+        type:"Normal",
+        category:"Delivery Notification",
+        text:"Your package has been delivered successfully."
+    },
+
+    {
+        type:"Normal",
+        category:"Work Communication",
+        text:"Please send me the report before the meeting tomorrow."
+    },
+
+    {
+        type:"Normal",
+        category:"School / Education",
+        text:"Your class starts at 9 AM tomorrow. Please come early."
+    },
+
+    {
+        type:"Normal",
+        category:"Social Media",
+        text:"I posted some new pictures. Check them when you are free."
+    },
+
+
+    /* SCAMS / THREATS */
+
+    {
+        type:"Threat",
+        category:"OTP Theft",
+        text:"Send me the OTP you just received so I can verify your account."
+    },
+
+    {
+        type:"Threat",
+        category:"Banking Scam",
+        text:"Your bank account has been suspended. Click here immediately to verify your account."
+    },
+
+    {
+        type:"Threat",
+        category:"Investment Scam",
+        text:"Invest ₦20,000 today and receive ₦200,000 tomorrow with guaranteed profit."
+    },
+
+    {
+        type:"Threat",
+        category:"Fake Job",
+        text:"Congratulations! You have been selected for an online job. Pay a registration fee to begin."
+    },
+
+    {
+        type:"Threat",
+        category:"Delivery Scam",
+        text:"Your package is being held by customs. Pay the clearance fee immediately."
+    },
+
+    {
+        type:"Threat",
+        category:"Romance Scam",
+        text:"My love, I need you to send me ₦50,000 urgently. I promise I will pay you back."
+    },
+
+    {
+        type:"Threat",
+        category:"Impersonation Scam",
+        text:"Hi, this is your boss. I changed my number. Send money to this account immediately."
+    },
+
+    {
+        type:"Threat",
+        category:"Prize Scam",
+        text:"Congratulations! You won ₦500,000. Pay ₦5,000 processing fee to claim your prize."
+    },
+
+    {
+        type:"Threat",
+        category:"Emergency Money Scam",
+        text:"I am stranded at the airport. Please send me money immediately."
+    },
+
+    {
+        type:"Threat",
+        category:"Phishing",
+        text:"Your account will be deleted today. Click this link to verify your account."
+    }
+
 ];
 
 
 /* =====================================================
-   TRUSTAI CONTEXT DETECTION ENGINE
-   Normal messages + scam combinations
+   DETECTION RULES
 ===================================================== */
 
 const detectionRules = [
 
-    /* =================================================
-       BANKING
-    ================================================= */
-
-    {
-        category:"Banking Scam",
-        type:"Threat",
-        score:30,
-
-        keywords:[
-            "bank account",
-            "account restricted",
-            "account suspended",
-            "account blocked",
-            "atm card blocked",
-            "unauthorized transaction",
-            "bvn update",
-            "kyc update"
-        ],
-
-        requiredAny:[
-            "verify",
-            "confirm",
-            "click",
-            "send",
-            "share",
-            "payment",
-            "password",
-            "otp",
-            "details"
-        ]
-    },
-
-
-    /* =================================================
-       OTP / CREDENTIAL THEFT
-    ================================================= */
-
-    {
-        category:"OTP / Credential Theft",
-        type:"Threat",
-        score:40,
-
-        keywords:[
-            "otp",
-            "verification code",
-            "security code",
-            "confirmation code",
-            "login code"
-        ],
-
-        requiredAny:[
-            "send",
-            "share",
-            "forward",
-            "tell me",
-            "give me",
-            "read it",
-            "provide"
-        ]
-    },
-
-
-    {
-        category:"Password Theft",
-        type:"Threat",
-        score:45,
-
-        keywords:[
-            "password",
-            "login details",
-            "username and password",
-            "banking details",
-            "account credentials"
-        ],
-
-        requiredAny:[
-            "send",
-            "share",
-            "provide",
-            "give me",
-            "confirm"
-        ]
-    },
-
-
-    /* =================================================
-       PHISHING
-    ================================================= */
-
-    {
-        category:"Phishing",
-        type:"Threat",
-        score:30,
-
-        keywords:[
-            "click here",
-            "click the link",
-            "tap this link",
-            "open this link",
-            "verify your account",
-            "confirm your identity",
-            "login here"
-        ],
-
-        requiredAny:[
-            "account",
-            "verification",
-            "password",
-            "bank",
-            "security",
-            "suspended"
-        ]
-    },
-
-
-    /* =================================================
-       INVESTMENT
-    ================================================= */
-
-    {
-        category:"Investment Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "guaranteed profit",
-            "guaranteed returns",
-            "double your money",
-            "triple your money",
-            "zero risk",
-            "daily returns",
-            "guaranteed income",
-            "invest today"
-        ]
-    },
-
-
-    /* =================================================
-       CRYPTO
-    ================================================= */
-
-    {
-        category:"Crypto Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "crypto investment",
-            "crypto profit",
-            "bitcoin profit",
-            "usdt",
-            "crypto wallet",
-            "free crypto",
-            "airdrop"
-        ],
-
-        requiredAny:[
-            "send",
-            "deposit",
-            "connect",
-            "transfer",
-            "guaranteed",
-            "double"
-        ]
-    },
-
-
-    /* =================================================
-       FAKE JOB
-    ================================================= */
-
-    {
-        category:"Fake Job",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "online job",
-            "work from home",
-            "job opportunity",
-            "you have been selected",
-            "you have been hired",
-            "remote job"
-        ],
-
-        requiredAny:[
-            "registration fee",
-            "processing fee",
-            "activation fee",
-            "pay",
-            "payment",
-            "deposit",
-            "send money"
-        ]
-    },
-
-
-    /* =================================================
-       PRIZE / GIVEAWAY
-    ================================================= */
-
-    {
-        category:"Prize / Giveaway Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "you have won",
-            "you won",
-            "cash prize",
-            "lottery winner",
-            "free prize",
-            "claim your prize",
-            "congratulations winner"
-        ],
-
-        requiredAny:[
-            "pay",
-            "fee",
-            "send money",
-            "processing",
-            "claim",
-            "transfer"
-        ]
-    },
-
-
-    /* =================================================
-       DELIVERY
-    ================================================= */
-
-    {
-        category:"Delivery / Customs Scam",
-        type:"Threat",
-        score:30,
-
-        keywords:[
-            "package is waiting",
-            "parcel is waiting",
-            "shipment is on hold",
-            "delivery problem",
-            "customs",
-            "customs clearance"
-        ],
-
-        requiredAny:[
-            "pay",
-            "payment",
-            "fee",
-            "click",
-            "send",
-            "verify"
-        ]
-    },
-
-
-    /* =================================================
-       LOAN
-    ================================================= */
-
-    {
-        category:"Loan Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "loan approved",
-            "loan is ready",
-            "instant loan",
-            "loan offer",
-            "loan application"
-        ],
-
-        requiredAny:[
-            "processing fee",
-            "activation fee",
-            "insurance fee",
-            "pay first",
-            "send money",
-            "deposit"
-        ]
-    },
-
-
-    /* =================================================
-       MARKETPLACE
-    ================================================= */
-
-    {
-        category:"Marketplace Scam",
-        type:"Threat",
-        score:30,
-
-        keywords:[
-            "send payment first",
-            "pay before delivery",
-            "pay a deposit",
-            "reserve the item",
-            "another buyer"
-        ],
-
-        requiredAny:[
-            "transfer",
-            "payment",
-            "send money",
-            "deposit"
-        ]
-    },
-
-
-    /* =================================================
-       RENTAL
-    ================================================= */
-
-    {
-        category:"Rental Scam",
-        type:"Threat",
-        score:30,
-
-        keywords:[
-            "apartment",
-            "house for rent",
-            "room for rent",
-            "property available"
-        ],
-
-        requiredAny:[
-            "pay before viewing",
-            "deposit",
-            "upfront payment",
-            "reserve",
-            "send money"
-        ]
-    },
-
-
-    /* =================================================
-       ROMANCE
-    ================================================= */
-
-    {
-        category:"Romance Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "my love",
-            "baby",
-            "darling",
-            "my sweetheart",
-            "my boyfriend",
-            "my girlfriend"
-        ],
-
-        requiredAny:[
-            "send me money",
-            "send money",
-            "transfer money",
-            "i need money",
-            "help me financially",
-            "pay for me",
-            "send me cash"
-        ]
-    },
-
-
-    /* =================================================
-       EMERGENCY
-    ================================================= */
-
-    {
-        category:"Emergency Money Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "i am stranded",
-            "i had an accident",
-            "i am in the hospital",
-            "emergency",
-            "urgent treatment",
-            "stuck at the airport"
-        ],
-
-        requiredAny:[
-            "send money",
-            "transfer money",
-            "send cash",
-            "pay",
-            "help me financially"
-        ]
-    },
-
-
-    /* =================================================
-       IMPERSONATION
-    ================================================= */
-
-    {
-        category:"Impersonation Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "this is your boss",
-            "this is your manager",
-            "this is your friend",
-            "this is your brother",
-            "this is your sister",
-            "this is my new number",
-            "i lost my phone",
-            "i changed my number"
-        ],
-
-        requiredAny:[
-            "send money",
-            "transfer",
-            "buy gift cards",
-            "payment",
-            "send cash"
-        ]
-    },
-
-
-    /* =================================================
-       SOCIAL MEDIA
-    ================================================= */
-
-    {
-        category:"Social Media Scam",
-        type:"Threat",
-        score:30,
-
-        keywords:[
-            "facebook account",
-            "instagram account",
-            "whatsapp account",
-            "social media account"
-        ],
-
-        requiredAny:[
-            "verify",
-            "password",
-            "otp",
-            "click",
-            "login",
-            "suspended",
-            "deleted"
-        ]
-    },
-
-
-    /* =================================================
-       TECH SUPPORT
-    ================================================= */
-
-    {
-        category:"Tech Support Scam",
-        type:"Threat",
-        score:35,
-
-        keywords:[
-            "your computer is infected",
-            "virus detected",
-            "security alert",
-            "your computer has been hacked",
-            "call technical support"
-        ],
-
-        requiredAny:[
-            "call",
-            "remote access",
-            "payment",
-            "install",
-            "download"
-        ]
-    },
-
-
-    /* =================================================
-       PAYMENT REQUEST
-    ================================================= */
-
-    {
-        category:"Suspicious Payment Request",
-        type:"Threat",
-        score:20,
-
-        keywords:[
-            "send money",
-            "transfer money",
-            "send payment",
-            "make payment"
-        ],
-
-        requiredAny:[
-            "immediately",
-            "urgent",
-            "right now",
-            "before midnight",
-            "don't tell anyone",
-            "keep this secret"
-        ]
-    },
-
-
-    /* =================================================
-       SUSPICIOUS LINK
-    ================================================= */
-
-    {
-        category:"Suspicious Link",
-        type:"Threat",
-        score:25,
-
-        keywords:[
-            "bit.ly",
-            "tinyurl",
-            "shorturl",
-            ".xyz",
-            ".top",
-            ".click"
-        ]
-    }
+/* =====================================================
+   OTP / CREDENTIAL THEFT
+===================================================== */
+
+{
+    category:"OTP / Credential Theft",
+    type:"Threat",
+    score:45,
+
+    keywords:[
+        "otp",
+        "verification code",
+        "security code",
+        "confirmation code",
+        "login code",
+        "one time password"
+    ],
+
+    requiredAny:[
+        "send",
+        "share",
+        "forward",
+        "tell me",
+        "give me",
+        "read it",
+        "provide",
+        "send me"
+    ]
+},
+
+
+/* =====================================================
+   PASSWORD THEFT
+===================================================== */
+
+{
+    category:"Password Theft",
+    type:"Threat",
+    score:45,
+
+    keywords:[
+        "password",
+        "login details",
+        "login information",
+        "username and password",
+        "account credentials",
+        "banking details"
+    ],
+
+    requiredAny:[
+        "send",
+        "share",
+        "provide",
+        "give me",
+        "tell me",
+        "forward"
+    ]
+},
+
+
+/* =====================================================
+   BANKING SCAM
+===================================================== */
+
+{
+    category:"Banking Scam",
+    type:"Threat",
+    score:35,
+
+    keywords:[
+        "bank account",
+        "account restricted",
+        "account suspended",
+        "account blocked",
+        "atm card blocked",
+        "unauthorized transaction",
+        "bvn update",
+        "kyc update",
+        "bank verification"
+    ],
+
+    requiredAny:[
+        "verify",
+        "confirm",
+        "click",
+        "send",
+        "share",
+        "payment",
+        "password",
+        "otp",
+        "details",
+        "immediately"
+    ]
+},
+
+
+/* =====================================================
+   PHISHING
+===================================================== */
+
+{
+    category:"Phishing",
+    type:"Threat",
+    score:35,
+
+    keywords:[
+        "click here",
+        "click the link",
+        "tap this link",
+        "open this link",
+        "verify your account",
+        "confirm your identity",
+        "login here",
+        "verify now",
+        "account will be deleted",
+        "account will be closed"
+    ],
+
+    requiredAny:[
+        "account",
+        "bank",
+        "password",
+        "verification",
+        "security",
+        "suspended",
+        "deleted",
+        "blocked",
+        "login"
+    ]
+},
+
+
+/* =====================================================
+   INVESTMENT SCAM
+===================================================== */
+
+{
+    category:"Investment Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "guaranteed profit",
+        "guaranteed returns",
+        "double your money",
+        "triple your money",
+        "zero risk",
+        "daily returns",
+        "guaranteed income",
+        "invest today",
+        "make money fast",
+        "risk free investment"
+    ]
+},
+
+
+/* =====================================================
+   CRYPTO SCAM
+===================================================== */
+
+{
+    category:"Crypto Scam",
+    type:"Threat",
+    score:35,
+
+    keywords:[
+        "crypto investment",
+        "crypto profit",
+        "bitcoin profit",
+        "crypto wallet",
+        "free crypto",
+        "crypto giveaway",
+        "usdt",
+        "bitcoin investment",
+        "crypto airdrop"
+    ],
+
+    requiredAny:[
+        "send",
+        "deposit",
+        "transfer",
+        "connect",
+        "guaranteed",
+        "double",
+        "profit"
+    ]
+},
+
+
+/* =====================================================
+   FAKE JOB
+===================================================== */
+
+{
+    category:"Fake Job Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "online job",
+        "work from home",
+        "job opportunity",
+        "you have been selected",
+        "you have been hired",
+        "remote job",
+        "job vacancy",
+        "employment opportunity"
+    ],
+
+    requiredAny:[
+        "registration fee",
+        "processing fee",
+        "activation fee",
+        "pay",
+        "payment",
+        "deposit",
+        "send money",
+        "training fee"
+    ]
+},
+
+
+/* =====================================================
+   PRIZE / GIVEAWAY
+===================================================== */
+
+{
+    category:"Prize / Giveaway Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "you have won",
+        "you won",
+        "cash prize",
+        "lottery winner",
+        "free prize",
+        "claim your prize",
+        "congratulations winner",
+        "you are the winner"
+    ],
+
+    requiredAny:[
+        "pay",
+        "fee",
+        "send money",
+        "processing",
+        "claim",
+        "transfer",
+        "payment"
+    ]
+},
+
+
+/* =====================================================
+   DELIVERY / CUSTOMS
+===================================================== */
+
+{
+    category:"Delivery / Customs Scam",
+    type:"Threat",
+    score:35,
+
+    keywords:[
+        "package is waiting",
+        "parcel is waiting",
+        "shipment is on hold",
+        "delivery problem",
+        "customs clearance",
+        "package held",
+        "parcel held",
+        "customs fee"
+    ],
+
+    requiredAny:[
+        "pay",
+        "payment",
+        "fee",
+        "click",
+        "send",
+        "verify",
+        "transfer"
+    ]
+},
+
+
+/* =====================================================
+   LOAN SCAM
+===================================================== */
+
+{
+    category:"Loan Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "loan approved",
+        "loan is ready",
+        "instant loan",
+        "loan offer",
+        "loan application",
+        "you qualify for a loan",
+        "loan has been approved"
+    ],
+
+    requiredAny:[
+        "processing fee",
+        "activation fee",
+        "insurance fee",
+        "pay first",
+        "send money",
+        "deposit",
+        "payment"
+    ]
+},
+
+
+/* =====================================================
+   MARKETPLACE SCAM
+===================================================== */
+
+{
+    category:"Marketplace Scam",
+    type:"Threat",
+    score:30,
+
+    keywords:[
+        "send payment first",
+        "pay before delivery",
+        "pay a deposit",
+        "reserve the item",
+        "another buyer",
+        "payment before delivery"
+    ],
+
+    requiredAny:[
+        "transfer",
+        "payment",
+        "send money",
+        "deposit",
+        "pay"
+    ]
+},
+
+
+/* =====================================================
+   RENTAL SCAM
+===================================================== */
+
+{
+    category:"Rental Scam",
+    type:"Threat",
+    score:35,
+
+    keywords:[
+        "house for rent",
+        "room for rent",
+        "apartment for rent",
+        "property available",
+        "house available"
+    ],
+
+    requiredAny:[
+        "pay before viewing",
+        "deposit",
+        "upfront payment",
+        "reserve",
+        "send money",
+        "inspection fee"
+    ]
+},
+
+
+/* =====================================================
+   ROMANCE SCAM
+===================================================== */
+
+{
+    category:"Romance Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "my love",
+        "baby",
+        "darling",
+        "my sweetheart",
+        "my boyfriend",
+        "my girlfriend",
+        "my husband",
+        "my wife"
+    ],
+
+    requiredAny:[
+        "send me money",
+        "send money",
+        "transfer money",
+        "i need money",
+        "help me financially",
+        "pay for me",
+        "send me cash",
+        "need financial help"
+    ]
+},
+
+
+/* =====================================================
+   EMERGENCY MONEY SCAM
+===================================================== */
+
+{
+    category:"Emergency Money Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "i am stranded",
+        "i had an accident",
+        "i am in the hospital",
+        "emergency",
+        "urgent treatment",
+        "stuck at the airport",
+        "my wallet was stolen",
+        "i lost my phone"
+    ],
+
+    requiredAny:[
+        "send money",
+        "transfer money",
+        "send cash",
+        "pay",
+        "help me financially",
+        "send me money"
+    ]
+},
+
+
+/* =====================================================
+   IMPERSONATION
+===================================================== */
+
+{
+    category:"Impersonation Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "this is your boss",
+        "this is your manager",
+        "this is your friend",
+        "this is your brother",
+        "this is your sister",
+        "this is your pastor",
+        "this is your manager",
+        "this is my new number",
+        "i changed my number",
+        "i lost my phone"
+    ],
+
+    requiredAny:[
+        "send money",
+        "transfer",
+        "buy gift cards",
+        "payment",
+        "send cash",
+        "send me money"
+    ]
+},
+
+
+/* =====================================================
+   SOCIAL MEDIA SCAM
+===================================================== */
+
+{
+    category:"Social Media Scam",
+    type:"Threat",
+    score:35,
+
+    keywords:[
+        "facebook account",
+        "instagram account",
+        "whatsapp account",
+        "tiktok account",
+        "social media account"
+    ],
+
+    requiredAny:[
+        "verify",
+        "password",
+        "otp",
+        "click",
+        "login",
+        "suspended",
+        "deleted",
+        "send code"
+    ]
+},
+
+
+/* =====================================================
+   TECH SUPPORT
+===================================================== */
+
+{
+    category:"Tech Support Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "your computer is infected",
+        "virus detected",
+        "security alert",
+        "your computer has been hacked",
+        "call technical support",
+        "your phone is infected",
+        "malware detected"
+    ],
+
+    requiredAny:[
+        "call",
+        "remote access",
+        "payment",
+        "install",
+        "download",
+        "pay"
+    ]
+},
+
+
+/* =====================================================
+   SUSPICIOUS PAYMENT REQUEST
+===================================================== */
+
+{
+    category:"Suspicious Payment Request",
+    type:"Threat",
+    score:25,
+
+    keywords:[
+        "send money",
+        "transfer money",
+        "send payment",
+        "make payment",
+        "send cash"
+    ],
+
+    requiredAny:[
+        "immediately",
+        "urgent",
+        "right now",
+        "before midnight",
+        "don't tell anyone",
+        "keep this secret",
+        "secret",
+        "hurry"
+    ]
+},
+
+
+/* =====================================================
+   BLACKMAIL / EXTORTION
+===================================================== */
+
+{
+    category:"Blackmail / Extortion",
+    type:"Threat",
+    score:50,
+
+    keywords:[
+        "i will expose you",
+        "i will post your pictures",
+        "i will publish your photos",
+        "i will tell everyone",
+        "send money or else",
+        "pay me or",
+        "if you don't pay",
+        "i will expose"
+    ]
+},
+
+
+/* =====================================================
+   THREAT / VIOLENCE
+===================================================== */
+
+{
+    category:"Threatening Message",
+    type:"Threat",
+    score:45,
+
+    keywords:[
+        "i will hurt you",
+        "i will harm you",
+        "you will regret this",
+        "i know where you live",
+        "i will find you",
+        "you are going to pay",
+        "watch your back"
+    ]
+},
+
+
+/* =====================================================
+   SUSPICIOUS LINK
+===================================================== */
+
+{
+    category:"Suspicious Link",
+    type:"Threat",
+    score:25,
+
+    keywords:[
+        "bit.ly",
+        "tinyurl",
+        "shorturl",
+        ".xyz",
+        ".top",
+        ".click",
+        ".zip",
+        ".mov"
+    ]
+},
+
+
+/* =====================================================
+   FAKE GOVERNMENT / OFFICIAL MESSAGE
+===================================================== */
+
+{
+    category:"Government / Official Impersonation",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "government grant",
+        "official grant",
+        "government payment",
+        "customs authority",
+        "police payment",
+        "tax refund",
+        "official verification"
+    ],
+
+    requiredAny:[
+        "pay",
+        "fee",
+        "send money",
+        "click",
+        "verify",
+        "transfer"
+    ]
+},
+
+
+/* =====================================================
+   GIFT CARD SCAM
+===================================================== */
+
+{
+    category:"Gift Card Scam",
+    type:"Threat",
+    score:40,
+
+    keywords:[
+        "buy gift card",
+        "gift cards",
+        "itunes card",
+        "google play card",
+        "amazon gift card",
+        "steam card"
+    ],
+
+    requiredAny:[
+        "send me",
+        "send the code",
+        "scratch the card",
+        "give me the code",
+        "buy it"
+    ]
+}
 
 ];
 
 
 /* =====================================================
-   CONTEXT CHECKER
+   LEGITIMATE CONTEXT RULES
 ===================================================== */
 
-function ruleMatches(text, rule){
+const legitimateRules = [
 
-    const keywordMatch =
-        rule.keywords.some(
-            keyword =>
-                text.includes(
-                    keyword.toLowerCase()
-                )
-        );
+{
+    category:"Legitimate OTP",
+    keywords:[
+        "otp",
+        "verification code",
+        "security code",
+        "confirmation code",
+        "login code"
+    ],
 
+    safeContext:[
+        "never share",
+        "do not share",
+        "don't share",
+        "do not give",
+        "don't give",
+        "keep it private",
+        "for your security",
+        "was requested by you"
+    ]
+},
 
-    if(!keywordMatch){
+{
+    category:"Greeting",
+    keywords:[
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "hello",
+        "hi",
+        "hey",
+        "how are you"
+    ]
+},
 
-        return false;
+{
+    category:"Personal Chat",
+    keywords:[
+        "see you",
+        "talk to you later",
+        "what are you doing",
+        "how was your day",
+        "have a nice day",
+        "thank you",
+        "thanks",
+        "welcome",
+        "take care"
+    ]
+},
 
-    }
+{
+    category:"Romantic / Personal",
+    keywords:[
+        "i love you",
+        "love you",
+        "miss you",
+        "i miss you",
+        "my love",
+        "you mean so much to me",
+        "have a beautiful day"
+    ]
+},
 
+{
+    category:"Appointment / Reminder",
+    keywords:[
+        "appointment",
+        "meeting",
+        "reminder",
+        "scheduled for",
+        "class starts",
+        "flight leaves"
+    ]
+},
 
-    /*
-       Some rules require a second
-       contextual signal.
-    */
+{
+    category:"Normal Work Communication",
+    keywords:[
+        "send me the report",
+        "please send the document",
+        "meeting tomorrow",
+        "project deadline",
+        "work meeting"
+    ]
+},
 
-    if(rule.requiredAny){
-
-        return rule.requiredAny.some(
-            keyword =>
-                text.includes(
-                    keyword.toLowerCase()
-                )
-        );
-
-    }
-
-
-    return true;
-
-    }
-        
-
-/* =====================================================
-   RANDOM SAMPLE
-===================================================== */
-
-let lastSample = -1;
-
-function loadRandomSample(){
-    const textarea = document.getElementById("message");
-    if(!textarea) return;
-
-    let index;
-    do{
-        index = Math.floor(Math.random() * sampleMessages.length);
-    } while(sampleMessages.length > 1 && index === lastSample);
-
-    lastSample = index;
-    textarea.value = sampleMessages[index].text;
-
-    const result = document.getElementById("result");
-    if(result){
-        result.className = "result";
-        result.innerHTML = "";
-    }
+{
+    category:"Normal Delivery Notification",
+    keywords:[
+        "package has been delivered",
+        "parcel has been delivered",
+        "delivery completed",
+        "your package arrived"
+    ]
 }
+
+];
 
 
 /* =====================================================
@@ -1183,176 +1497,52 @@ function loadRandomSample(){
 ===================================================== */
 
 function normalizeText(text){
-    return String(text).toLowerCase().replace(/\s+/g," ").trim();
+
+    return String(text)
+        .toLowerCase()
+        .replace(/[“”‘’]/g,'"')
+        .replace(/\s+/g," ")
+        .trim();
+
 }
 
 
 /* =====================================================
-   CHECK MESSAGE
+   CHECK IF RULE MATCHES
 ===================================================== */
 
-function checkMessage(){
-    const textarea = document.getElementById("message");
-    const result = document.getElementById("result");
+function ruleMatches(text, rule){
 
-    if(!textarea || !result) return;
+    const keywordMatch = rule.keywords.some(
+        keyword => text.includes(keyword.toLowerCase())
+    );
 
-    const original = textarea.value.trim();
-
-    if(!original){
-        result.className = "result show caution";
-        result.innerHTML = `
-            <div class="result-title">⚠️ No message provided</div>
-            <p>Paste text into the checker before scanning.</p>
-        `;
-        return;
+    if(!keywordMatch){
+        return false;
     }
 
-    const text = normalizeText(original);
+    if(rule.requiredAny){
 
-    let score = 15;
-    const detections = [];
-    const matchedCategories = [];
-    let hasLegitimateMatch = false;
-    let hasThreatMatch = false;
+        return rule.requiredAny.some(
+            keyword => text.includes(keyword.toLowerCase())
+        );
 
-    detectionRules.forEach(rule => {
-        const matchedKeywords = rule.keywords.filter(keyword => text.includes(keyword.toLowerCase()));
-
-        if(matchedKeywords.length > 0){
-            score += rule.score;
-            detections.push({
-                category: rule.category,
-                type: rule.type,
-                keywords: matchedKeywords
-            });
-            matchedCategories.push(rule.category);
-
-            if(rule.type === "Legitimate") hasLegitimateMatch = true;
-            if(rule.type === "Threat") hasThreatMatch = true;
-        }
-    });
-
-    score = Math.max(0, Math.min(100, score));
-
-    if(hasLegitimateMatch && !hasThreatMatch){
-        score = Math.min(score, 15);
     }
 
-    let level, cssClass, title, advice;
-
-    if(hasThreatMatch && score >= 60){
-        level = "CRITICAL / THREAT";
-        cssClass = "critical";
-        title = "🚨 THREAT DETECTED";
-        advice = "This message contains strong scam or fraud indicators. Do not follow instructions or send money.";
-    } else if(hasThreatMatch && score >= 35){
-        level = "HIGH RISK";
-        cssClass = "high";
-        title = "🟠 HIGH RISK / SUSPICIOUS";
-        advice = "Exercise extreme caution. Verify the sender through official channels before acting.";
-    } else if(hasThreatMatch){
-        level = "CAUTION";
-        cssClass = "caution";
-        title = "🟡 CAUTION REQUIRED";
-        advice = "Some suspicious phrases were found. Double-check the context.";
-    } else {
-        level = "LEGITIMATE";
-        cssClass = "low";
-        title = "🟢 NORMAL / CASUAL MESSAGE";
-        advice = "Classified as everyday personal communication or a routine favor request. No automated threat patterns found.";
-    }
-
-    let detectionHTML = detections.length > 0 ? detections.map(d => `
-        <li>
-            <strong>${escapeHTML(d.category)}</strong> (${d.type}): matched [${escapeHTML(d.keywords.join(", "))}]
-        </li>
-    `).join("") : `<li>No specific pattern templates matched. Standard conversational text.</li>`;
-
-    let tagsHTML = matchedCategories.length > 0 ? [...new Set(matchedCategories)].map(cat => {
-        const isLegit = detectionRules.find(r => r.category === cat && r.type === "Legitimate");
-        return `<span class="category-tag ${isLegit ? 'legitimate' : ''}">${escapeHTML(cat)}</span>`;
-    }).join("") : `<span class="category-tag legitimate">Standard Text</span>`;
-
-    result.className = "result show " + cssClass;
-    result.innerHTML = `
-        <div class="result-title">${title}</div>
-        <div class="score">Calculated Risk Index: ${score}/100</div>
-        <div class="risk-bar">
-            <div class="risk-fill" style="width:${score}%"></div>
-        </div>
-        <div class="detection-box">
-            <strong>Classification Tags</strong>
-            ${tagsHTML}
-        </div>
-        <div class="detection-box">
-            <strong>🔎 Analysis Breakdown</strong>
-            <ul>${detectionHTML}</ul>
-        </div>
-        <div class="warning-note">
-            🛡️ TrustAI Assessment: ${escapeHTML(advice)}
-        </div>
-    `;
-
-    saveThreatEvent({
-        score: score,
-        level: level,
-        category: matchedCategories.join(" + ") || "Standard Communication",
-        findings: detections.map(d => d.category),
-        messagePreview: original.substring(0, 120)
-    });
+    return true;
 }
 
 
 /* =====================================================
-   SAVE EVENT
-===================================================== */
-
-function saveThreatEvent(data){
-    try{
-        const key = "trustai_threat_history";
-        const history = JSON.parse(localStorage.getItem(key) || "[]");
-        const event = {
-            id: "LOG-" + Date.now().toString().slice(-8),
-            timestamp: new Date().toISOString(),
-            score: Number(data.score || 0),
-            level: data.level || "LOW",
-            category: data.category || "Unknown",
-            findings: data.findings || [],
-            messagePreview: data.messagePreview || ""
-        };
-        history.unshift(event);
-        localStorage.setItem(key, JSON.stringify(history.slice(0, 100)));
-        localStorage.setItem("trustai_last_threat", JSON.stringify(event));
-    }catch(error){
-        console.warn("Could not save analysis log.", error);
-    }
-}
+   CHECK LEGITIMATE CONTEXT
+===========================================
+                            
+        
+    
 
 
-/* =====================================================
-   CLEAR & ESCAPE
-===================================================== */
-
-function clearMessage(){
-    const textarea = document.getElementById("message");
-    const result = document.getElementById("result");
-    if(textarea) textarea.value = "";
-    if(result){
-        result.className = "result";
-        result.innerHTML = "";
-    }
-}
-
-function escapeHTML(value){
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
+    
+    
 </script>
 
 </body>
