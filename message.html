@@ -3,85 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TrustAI - Ultimate Super Strong Message Checker</title>
+
+<title>TrustAI - Threat Monitor</title>
 
 <style>
-:root {
+
+:root{
+    --bg:#070b13;
+    --card:#0f1726;
+    --card2:#111c2d;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:rgba(255,255,255,.08);
     --primary:#6366f1;
-    --primary-dark:#4f46e5;
-    --primary-glow:rgba(99,102,241,.15);
-    --bg-main:#090d16;
-    --bg-card:rgba(17,24,39,.75);
-    --bg-side:#0f172a;
-    --text-main:#f8fafc;
-    --text-muted:#94a3b8;
-    --border-color:rgba(255,255,255,.08);
-    --radius-lg:20px;
-    --radius-md:12px;
+    --cyan:#38bdf8;
+    --red:#ef4444;
+    --orange:#f97316;
+    --yellow:#eab308;
+    --green:#22c55e;
 }
 
 *{
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
 }
 
 body{
     margin:0;
-    font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     background:
-        radial-gradient(circle at 10% 10%,rgba(99,102,241,.12),transparent 40%),
-        radial-gradient(circle at 90% 80%,rgba(14,165,233,.08),transparent 40%),
-        var(--bg-main);
-    color:var(--text-main);
-    line-height:1.6;
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(99,102,241,.14),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(56,189,248,.08),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color:var(--text);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
     min-height:100vh;
 }
 
+
+/* ================================
+   MENU BUTTON
+================================ */
+
 .menu-button{
     position:fixed;
+
     top:20px;
     left:20px;
+
     width:48px;
     height:48px;
-    border:1px solid var(--border-color);
+
     border-radius:14px;
-    background:rgba(15,23,42,.8);
-    backdrop-filter:blur(12px);
-    z-index:1001;
-    cursor:pointer;
+
+    background:#101827;
+
+    border:1px solid var(--border);
+
     display:flex;
     flex-direction:column;
+
     justify-content:center;
     align-items:center;
-    gap:5px;
-    box-shadow:0 10px 25px -5px rgba(0,0,0,.5);
-}
 
-.menu-button:hover{
-    border-color:var(--primary);
-    transform:translateY(-2px);
+    gap:5px;
+
+    cursor:pointer;
+
+    z-index:1001;
 }
 
 .menu-button span{
-    width:20px;
-    height:2.5px;
-    background:var(--text-main);
-    border-radius:3px;
+    width:21px;
+    height:2px;
+
+    background:white;
+
+    border-radius:5px;
 }
 
+
+/* ================================
+   SIDE MENU
+================================ */
+
 .side-menu{
+
     position:fixed;
+
     top:0;
     left:-320px;
+
     width:300px;
     height:100vh;
-    background:var(--bg-side);
-    border-right:1px solid var(--border-color);
-    z-index:1000;
+
+    background:#0c1422;
+
+    border-right:1px solid var(--border);
+
     padding:90px 20px 30px;
-    transition:transform .3s cubic-bezier(.16,1,.3,1);
+
+    z-index:1000;
+
+    transition:.3s;
+
     overflow-y:auto;
-    box-shadow:15px 0 30px rgba(0,0,0,.3);
 }
 
 .side-menu.open{
@@ -90,43 +131,67 @@ body{
 
 .menu-title{
     padding:0 8px 20px;
-    border-bottom:1px solid var(--border-color);
-    margin-bottom:16px;
+
+    border-bottom:1px solid var(--border);
+
+    margin-bottom:15px;
 }
 
 .menu-title strong{
-    background:linear-gradient(135deg,#818cf8,#38bdf8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
     font-size:22px;
-    font-weight:800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
 }
 
 .menu-title span{
     display:block;
-    margin-top:4px;
-    color:var(--text-muted);
+
+    color:var(--muted);
+
     font-size:12px;
+
+    margin-top:4px;
 }
 
 .menu-link{
+
     display:flex;
+
     align-items:center;
-    gap:14px;
+
+    gap:13px;
+
     padding:12px 14px;
+
     margin-bottom:6px;
-    border-radius:var(--radius-md);
+
+    border-radius:12px;
+
     text-decoration:none;
-    color:var(--text-muted);
+
+    color:var(--muted);
+
     font-size:14px;
+
     font-weight:600;
+
     transition:.2s;
 }
 
 .menu-link:hover{
+
     background:rgba(255,255,255,.05);
-    color:var(--text-main);
-    transform:translateX(4px);
+
+    color:white;
 }
 
 .menu-icon{
@@ -135,1770 +200,1345 @@ body{
 }
 
 .menu-divider{
+
     height:1px;
-    background:var(--border-color);
+
+    background:var(--border);
+
     margin:18px 0;
 }
 
 .menu-overlay{
+
     position:fixed;
+
     inset:0;
+
     background:rgba(0,0,0,.7);
-    backdrop-filter:blur(4px);
-    z-index:999;
+
     display:none;
+
+    z-index:999;
 }
 
 .menu-overlay.show{
     display:block;
 }
 
-.page{
-    max-width:880px;
+
+/* ================================
+   PAGE
+================================ */
+
+.container{
+
+    max-width:1100px;
+
     margin:auto;
-    padding:90px 20px 50px;
+
+    padding:
+        90px
+        20px
+        50px;
 }
 
-.header,
-.checker{
-    background:var(--bg-card);
-    backdrop-filter:blur(16px);
-    border:1px solid var(--border-color);
-    border-radius:var(--radius-lg);
-    box-shadow:0 20px 40px -15px rgba(0,0,0,.4);
-}
+
+/* ================================
+   HEADER
+================================ */
 
 .header{
-    padding:36px 30px;
-    margin-bottom:24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.12),
+            rgba(56,189,248,.05)
+        );
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:22px;
 }
 
-.header-label{
+.badge{
+
     display:inline-block;
-    color:var(--primary);
-    background:var(--primary-glow);
-    padding:4px 12px;
+
+    padding:5px 12px;
+
     border-radius:20px;
+
+    background:rgba(99,102,241,.12);
+
+    color:#a5b4fc;
+
     font-size:11px;
+
     font-weight:800;
-    letter-spacing:1.5px;
-    margin-bottom:14px;
+
+    letter-spacing:1.4px;
 }
 
 .header h1{
-    margin:0 0 12px;
+
+    margin:
+        12px
+        0
+        8px;
+
     font-size:32px;
 }
 
 .header p{
+
+    color:var(--muted);
+
     margin:0;
-    color:var(--text-muted);
 }
 
-.checker{
-    padding:32px;
-}
 
-.checker h2{
-    margin:0 0 8px;
-    font-size:22px;
-}
+/* ================================
+   STATUS
+================================ */
 
-.checker-subtitle{
-    color:var(--text-muted);
-    font-size:14px;
-    margin-bottom:20px;
-}
+.system-status{
 
-textarea{
-    width:100%;
-    min-height:200px;
-    padding:18px;
-    background:rgba(10,15,26,.7);
-    color:var(--text-main);
-    border:1px solid var(--border-color);
-    border-radius:var(--radius-md);
-    font-family:inherit;
-    font-size:15px;
-    line-height:1.6;
-    resize:vertical;
-}
+    margin-top:20px;
 
-textarea:focus{
-    outline:none;
-    border-color:var(--primary);
-    box-shadow:0 0 0 4px var(--primary-glow);
-}
-
-.buttons{
     display:flex;
-    gap:12px;
-    margin-top:18px;
-    flex-wrap:wrap;
-}
 
-button.action-button{
-    border:0;
-    border-radius:var(--radius-md);
-    padding:14px 20px;
-    font-family:inherit;
-    font-size:14.5px;
+    align-items:center;
+
+    gap:9px;
+
+    color:#86efac;
+
+    font-size:13px;
+
     font-weight:700;
-    cursor:pointer;
-    transition:.2s;
 }
 
-.check-button{
-    flex:2;
-    background:linear-gradient(135deg,#6366f1,#4f46e5);
+.status-dot{
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 12px
+        rgba(34,197,94,.8);
+}
+
+
+/* ================================
+   STATS
+================================ */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:22px;
+}
+
+.stat-card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:20px;
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:7px;
+}
+
+.stat-number{
+
+    font-size:28px;
+
+    font-weight:800;
+}
+
+
+/* ================================
+   MAIN GRID
+================================ */
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr;
+
+    gap:20px;
+}
+
+.card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+}
+
+.card-header h2{
+
+    margin:0;
+
+    font-size:18px;
+}
+
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn{
+
+    border:1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.04);
+
     color:white;
+
+    padding:
+        9px
+        13px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-weight:700;
 }
 
-.clear-button{
-    flex:1;
-    background:rgba(255,255,255,.05);
-    color:var(--text-muted);
-    border:1px solid var(--border-color)!important;
+.btn:hover{
+    background:rgba(255,255,255,.08);
 }
 
-.sample-button{
-    flex:1;
-    background:rgba(56,189,248,.12);
-    color:#7dd3fc;
-    border:1px solid rgba(56,189,248,.25)!important;
+
+/* ================================
+   THREAT FEED
+================================ */
+
+.threat{
+
+    padding:16px 0;
+
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
-button.action-button:hover{
-    transform:translateY(-2px);
+.threat:last-child{
+    border-bottom:0;
 }
 
-.result{
-    display:none;
-    margin-top:24px;
-    padding:26px;
-    border-radius:var(--radius-md);
-    line-height:1.6;
+.threat-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
 }
 
-.result.show{
-    display:block;
+.threat-id{
+
+    font-family:
+        monospace;
+
+    font-size:12px;
+
+    color:var(--muted);
+}
+
+.threat-title{
+
+    font-weight:800;
+
+    margin-top:4px;
+}
+
+.threat-info{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:7px;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+/* ================================
+   SEVERITY
+================================ */
+
+.severity{
+
+    padding:
+        4px
+        9px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:800;
 }
 
 .critical{
-    background:rgba(153,27,27,.25);
-    border:1px solid #ef4444;
-    color:#fca5a5;
-}
 
-.very-high{
-    background:rgba(153,27,27,.18);
-    border:1px solid #f87171;
-    color:#fecaca;
+    background:
+        rgba(239,68,68,.15);
+
+    color:#fca5a5;
+
+    border:
+        1px solid
+        rgba(239,68,68,.3);
 }
 
 .high{
-    background:rgba(194,65,12,.2);
-    border:1px solid #f97316;
-    color:#ffedd5;
+
+    background:
+        rgba(249,115,22,.15);
+
+    color:#fdba74;
+
+    border:
+        1px solid
+        rgba(249,115,22,.3);
 }
 
 .caution{
-    background:rgba(161,98,7,.2);
-    border:1px solid #eab308;
-    color:#fef08a;
+
+    background:
+        rgba(234,179,8,.15);
+
+    color:#fde047;
+
+    border:
+        1px solid
+        rgba(234,179,8,.3);
 }
 
 .low{
-    background:rgba(21,128,61,.2);
-    border:1px solid #22c55e;
-    color:#bbf7d0;
+
+    background:
+        rgba(34,197,94,.15);
+
+    color:#86efac;
+
+    border:
+        1px solid
+        rgba(34,197,94,.3);
 }
 
-.result-title{
-    font-size:20px;
+
+/* ================================
+   CATEGORY
+================================ */
+
+.category{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:13px 0;
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+.category:last-child{
+    border-bottom:0;
+}
+
+.category-name{
+    font-size:13px;
+}
+
+.category-count{
+
+    min-width:32px;
+
+    text-align:center;
+
+    padding:3px 8px;
+
+    border-radius:20px;
+
+    background:
+        rgba(99,102,241,.12);
+
+    color:#a5b4fc;
+
     font-weight:800;
-    margin-bottom:6px;
+
+    font-size:12px;
 }
 
-.score{
-    font-weight:700;
-    margin-bottom:14px;
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.empty{
+
+    text-align:center;
+
+    padding:45px 15px;
+
+    color:var(--muted);
 }
 
-.result ul{
-    margin-top:10px;
-    padding-left:20px;
+.empty-icon{
+
+    font-size:40px;
+
+    margin-bottom:10px;
 }
 
-.result li{
-    margin-bottom:6px;
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer-note{
+
+    margin-top:20px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    text-align:center;
 }
 
-.warning-note{
-    margin-top:18px;
-    padding-top:14px;
-    border-top:1px solid rgba(255,255,255,.12);
-    font-weight:600;
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:800px){
+
+    .stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
 }
 
-@media(max-width:650px){
-    .page{padding:80px 16px 35px}
-    .header{padding:26px 20px}
-    .header h1{font-size:26px}
-    .checker{padding:22px 18px}
-    .buttons{flex-direction:column}
-    button.action-button{width:100%}
+@media(max-width:550px){
+
+    .container{
+
+        padding:
+            80px
+            14px
+            35px;
+    }
+
+    .header{
+
+        padding:23px 18px;
+    }
+
+    .header h1{
+
+        font-size:26px;
+    }
+
+    .stats{
+
+        gap:10px;
+    }
+
+    .stat-card{
+
+        padding:15px;
+    }
+
+    .stat-number{
+
+        font-size:23px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<button class="menu-button" onclick="toggleMenu()" aria-label="Open menu">
-<span></span><span></span><span></span>
+
+<!-- MENU BUTTON -->
+
+<button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open menu"
+>
+
+    <span></span>
+    <span></span>
+    <span></span>
+
 </button>
 
-<nav id="sideMenu" class="side-menu">
 
-<div class="menu-title">
-<strong>🛡️ TrustAI</strong>
-<span>Online Scam Protection</span>
-</div>
+<!-- SIDE MENU -->
 
-<a href="./home.html" class="menu-link"><span class="menu-icon">🏠</span> Home</a>
-<a href="./message.html" class="menu-link"><span class="menu-icon">🔍</span> Message Checker</a>
-<a href="./conversation.html" class="menu-link"><span class="menu-icon">💬</span> Conversation Checker</a>
-<a href="./website.html" class="menu-link"><span class="menu-icon">🌐</span> Website Checker</a>
-<a href="./device.html" class="menu-link"><span class="menu-icon">📱</span> Device Security</a>
-<a href="./security.html" class="menu-link"><span class="menu-icon">🛡️</span> Security Center</a>
+<nav
+    id="sideMenu"
+    class="side-menu"
+>
 
-<div class="menu-divider"></div>
+    <div class="menu-title">
 
-<a href="./alerts.html" class="menu-link"><span class="menu-icon">🚨</span> Scam Alerts</a>
-<a href="./report.html" class="menu-link"><span class="menu-icon">📢</span> Report a Scam</a>
-<a href="./contact.html" class="menu-link"><span class="menu-icon">💬</span> Contact TrustAI</a>
+        <strong>
+            🛡️ TrustAI
+        </strong>
+
+        <span>
+            Online Scam Protection
+        </span>
+
+    </div>
+
+
+    <a
+        href="./home.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">🏠</span>
+        Home
+    </a>
+
+
+    <a
+        href="./message.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">🔍</span>
+        Message Checker
+    </a>
+
+
+    <a
+        href="./conversation.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">💬</span>
+        Conversation Checker
+    </a>
+
+
+    <a
+        href="./website.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">🌐</span>
+        Website Checker
+    </a>
+
+
+    <a
+        href="./device.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">📱</span>
+        Device Security
+    </a>
+
+
+    <a
+        href="./security.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">🛡️</span>
+        Security Center
+    </a>
+
+
+    <a
+        href="./threat-monitor.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">📡</span>
+        Threat Monitor
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a
+        href="./alerts.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">🚨</span>
+        Scam Alerts
+    </a>
+
+
+    <a
+        href="./report.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">📢</span>
+        Report a Scam
+    </a>
+
+
+    <a
+        href="./contact.html"
+        class="menu-link"
+    >
+        <span class="menu-icon">💬</span>
+        Contact TrustAI
+    </a>
 
 </nav>
 
-<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-<div class="page">
+<div
+    id="menuOverlay"
+    class="menu-overlay"
+    onclick="closeMenu()"
+></div>
 
-<section class="header">
-<div class="header-label">ULTIMATE MESSAGE SECURITY</div>
 
-<h1>💪 Message Checker Pro</h1>
+<!-- MAIN -->
 
-<p>
-Paste any message from anywhere in the world and TrustAI will perform
-an advanced multi-signal inspection to safeguard you against all global fraud vectors.
-</p>
-</section>
+<main class="container">
 
-<section class="checker">
 
-<h2>Check a Message</h2>
+    <!-- HEADER -->
 
-<div class="checker-subtitle">
-Engineered to detect phishing, banking fraud, fake jobs, crypto schemes,
-emergency impersonations, and complex social engineering tactics.
-</div>
+    <section class="header">
 
-<textarea id="message"
-placeholder="Paste the suspicious message here..."></textarea>
+        <span class="badge">
+            TRUST AI SECURITY OPERATIONS
+        </span>
 
-<div class="buttons">
+        <h1>
+            📡 Threat Monitor
+        </h1>
 
-<button class="action-button check-button" onclick="checkMessage()">
-🔍 Check Message
-</button>
+        <p>
+            Monitor security events detected by
+            TrustAI protection tools.
+        </p>
 
-<button class="action-button clear-button" onclick="clearMessage()">
-Clear
-</button>
 
-<button class="action-button sample-button" onclick="loadRandomSample()">
-🎲 Random Sample
-</button>
+        <div class="system-status">
 
-</div>
+            <span class="status-dot"></span>
 
-<div id="result" class="result"></div>
+            Monitoring system active
 
-</section>
-</div>
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Total Scans
+            </div>
+
+            <div
+                id="totalScans"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Threats Detected
+            </div>
+
+            <div
+                id="threatsDetected"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Critical
+            </div>
+
+            <div
+                id="criticalCount"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                High Risk
+            </div>
+
+            <div
+                id="highCount"
+                class="stat-number"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <section class="grid">
+
+
+        <!-- LIVE THREAT FEED -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    🚨 Recent Threats
+                </h2>
+
+                <button
+                    class="btn"
+                    onclick="loadMonitor()"
+                >
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div
+                id="threatFeed"
+            ></div>
+
+        </div>
+
+
+        <!-- CATEGORIES -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    🎯 Threat Categories
+                </h2>
+
+            </div>
+
+
+            <div id="categories"></div>
+
+
+            <button
+                class="btn"
+                style="width:100%;margin-top:20px;"
+                onclick="clearThreatHistory()"
+            >
+                🗑️ Clear Threat History
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+    <div class="footer-note">
+
+        TrustAI Threat Monitor •
+        Security events are stored locally
+        on this device.
+
+    </div>
+
+
+</main>
+
+
 <script>
 
-/* =====================================================
-   TRUSTAI MESSAGE CHECKER
-   EXPANDED GLOBAL MESSAGE DETECTION ENGINE
-   ===================================================== */
-
-
-/* =====================================================
+/* ==========================================
    MENU
-   ===================================================== */
+========================================== */
 
-function toggleMenu() {
+function toggleMenu(){
 
     const menu =
-        document.getElementById("sideMenu");
+        document.getElementById(
+            "sideMenu"
+        );
 
     const overlay =
-        document.getElementById("menuOverlay");
-
-    if (!menu || !overlay) return;
+        document.getElementById(
+            "menuOverlay"
+        );
 
     menu.classList.toggle("open");
+
     overlay.classList.toggle("show");
-}
-
-
-function closeMenu() {
-
-    const menu =
-        document.getElementById("sideMenu");
-
-    const overlay =
-        document.getElementById("menuOverlay");
-
-    if (!menu || !overlay) return;
-
-    menu.classList.remove("open");
-    overlay.classList.remove("show");
-}
-
-
-/* =====================================================
-   EXPANDED MESSAGE SAMPLE LIBRARY
-   ===================================================== */
-
-const sampleCategories = {
-
-    "Banking Scam": [
-
-        "Your bank account has been temporarily restricted. Verify your account immediately.",
-
-        "We detected unusual activity on your bank account. Confirm your details now.",
-
-        "Your debit card requires urgent security verification.",
-
-        "Your bank account will be suspended unless you complete verification.",
-
-        "Unauthorized transaction detected. Click here to reverse the transaction.",
-
-        "Your BVN requires an urgent update. Send your details to reactivate your account.",
-
-        "Your mobile banking session has expired. Re-enter your login credentials.",
-
-        "Failure to update your KYC information will result in account freezing.",
-
-        "Your ATM card has been flagged. Confirm your banking information immediately."
-
-    ],
-
-
-    "OTP Scam": [
-
-        "Please send the OTP you just received to complete your verification.",
-
-        "Tell me the security code that was sent to your phone.",
-
-        "Forward the verification code to our support agent.",
-
-        "Your account verification requires the confirmation code you received.",
-
-        "Share the 6-digit code sent to your phone.",
-
-        "Read the OTP to me so I can complete the transaction.",
-
-        "Send the verification code immediately to prevent account suspension."
-
-    ],
-
-
-    "Password & Credential Scam": [
-
-        "Send your username and password so we can restore your account.",
-
-        "Please provide your login details for verification.",
-
-        "Your login session expired. Send your password to support.",
-
-        "Confirm your email password immediately.",
-
-        "Provide your administrator credentials to complete maintenance.",
-
-        "Send your old and new password to verify your account.",
-
-        "Enter your banking login details on this verification page."
-
-    ],
-
-
-    "Phishing": [
-
-        "Click here to verify your account immediately.",
-
-        "Tap this link to prevent your account from being suspended.",
-
-        "Login here to confirm your identity.",
-
-        "Open this secure link to update your account.",
-
-        "Verify your identity by clicking the link below.",
-
-        "Your account requires attention. Click here now."
-
-    ],
-
-
-    "Investment Scam": [
-
-        "Invest ₦20,000 today and I'll guarantee ₦200,000 tomorrow.",
-
-        "Send ₦50,000 now and receive ₦500,000 tomorrow.",
-
-        "Guaranteed 100% profit with zero risk.",
-
-        "Double your money within 24 hours with our trading system.",
-
-        "Invest today and receive guaranteed daily returns.",
-
-        "Make ₦1,000,000 every week with no risk.",
-
-        "Send your investment before registration closes.",
-
-        "Crypto investment with guaranteed profits and zero risk."
-
-    ],
-
-
-    "Crypto Scam": [
-
-        "Send USDT to this wallet and receive 10x your investment.",
-
-        "Connect your wallet to claim your free crypto airdrop.",
-
-        "Double your Bitcoin within 24 hours.",
-
-        "Guaranteed crypto profit with zero market risk.",
-
-        "Send Ethereum now to unlock your reward.",
-
-        "Deposit crypto today before the opportunity closes."
-
-    ],
-
-
-    "Fake Job": [
-
-        "You have been selected for an online job. Pay a registration fee to start.",
-
-        "Work from home and earn ₦100,000 every week after paying ₦10,000.",
-
-        "Your application was accepted. Send a processing fee to secure the job.",
-
-        "Remote job available. Pay an activation fee before training.",
-
-        "Congratulations! You have been hired. Send money for your employment kit.",
-
-        "Earn ₦50,000 daily from home after paying a small registration fee."
-
-    ],
-
-
-    "Romance Scam": [
-
-        "My love, I need money urgently. Please send it to me.",
-
-        "Baby, I am stranded and need you to transfer money immediately.",
-
-        "You are the only person I trust. Please help me with this payment.",
-
-        "I love you and I need money for an emergency.",
-
-        "My love, send me money and I promise to pay you back tomorrow."
-
-    ],
-
-
-    "Emergency Scam": [
-
-        "I am in the hospital. Please send money for my treatment immediately.",
-
-        "My mother is sick and we urgently need money.",
-
-        "I had an accident. Send money immediately.",
-
-        "I am stranded at the airport. Please transfer money now.",
-
-        "My child needs emergency treatment. Send money immediately."
-
-    ],
-
-
-    "Impersonation": [
-
-        "Hello, this is my new number. I lost my phone. Save this number.",
-
-        "I changed my WhatsApp number. Send money to my new account.",
-
-        "This is your boss. I need you to buy gift cards urgently.",
-
-        "This is your friend. I lost my phone and need money.",
-
-        "I am your relative. Please send money to this new account."
-
-    ],
-
-
-    "Prize & Giveaway": [
-
-        "Congratulations! You have won ₦5,000,000. Pay a small processing fee to claim it.",
-
-        "You are our lucky winner. Send your details to receive your prize.",
-
-        "Claim your free gift before midnight.",
-
-        "You have won a brand-new car. Pay the delivery fee now.",
-
-        "Congratulations! Send your account details to receive your reward."
-
-    ],
-
-
-    "Delivery Scam": [
-
-        "Your package is waiting. Pay the customs fee to release it.",
-
-        "Your parcel could not be delivered. Pay the delivery fee here.",
-
-        "Your shipment is on hold. Click this link to make payment.",
-
-        "Pay the customs clearance fee before your package is returned.",
-
-        "Your delivery address is incorrect. Confirm your details through this link."
-
-    ],
-
-
-    "Tech Support Scam": [
-
-        "Microsoft Security Alert: Your computer is infected. Call support immediately.",
-
-        "Your Apple account has been locked. Verify your password now.",
-
-        "Windows Defender detected a critical virus. Call this number immediately.",
-
-        "Your computer has been hacked. Give our technician remote access.",
-
-        "Your subscription has expired. Call support to prevent account closure."
-
-    ],
-
-
-    "Social Media Scam": [
-
-        "Your Facebook account will be deleted. Verify it immediately.",
-
-        "Instagram security team needs your password to restore your account.",
-
-        "Your WhatsApp account has been reported. Click here to verify.",
-
-        "Your social media account has been compromised. Send the OTP to support."
-
-    ],
-
-
-    "Lottery Scam": [
-
-        "You have won our international lottery. Pay the processing fee to receive your money.",
-
-        "Congratulations! Your number was selected for a cash prize.",
-
-        "Claim your lottery winnings today by sending the required fee.",
-
-        "You are one of our lucky winners. Pay the release fee immediately."
-
-    ],
-
-
-    "Charity Scam": [
-
-        "Please donate immediately to help this child. Send money to this account.",
-
-        "We are collecting emergency donations. Transfer your donation now.",
-
-        "Our charity needs urgent financial assistance. Donate before midnight.",
-
-        "Send money now to help victims of the disaster."
-
-    ],
-
-
-    "Rental Scam": [
-
-        "The apartment is available. Pay the deposit before viewing the property.",
-
-        "Send ₦200,000 to reserve the apartment immediately.",
-
-        "Pay the house rent today or someone else will take the property.",
-
-        "The landlord requires an upfront payment before inspection."
-
-    ],
-
-
-    "Marketplace Scam": [
-
-        "Send payment first and I will ship the phone to you.",
-
-        "Pay a deposit now to reserve the item.",
-
-        "Transfer the money immediately before another buyer takes it.",
-
-        "I cannot meet in person. Send the payment and I will deliver it."
-
-    ],
-
-
-    "Loan Scam": [
-
-        "You have been approved for a ₦5,000,000 loan. Pay the processing fee first.",
-
-        "Get an instant loan today after paying a small activation fee.",
-
-        "Your loan is ready. Send money to unlock the funds.",
-
-        "Pay the insurance fee before your loan can be released."
-
-    ],
-
-
-    "Normal Message": [
-
-        "Hey, are we still meeting at 4pm today?",
-
-        "Good morning. Please remember to bring the documents tomorrow.",
-
-        "Your appointment is scheduled for Monday at 10am.",
-
-        "Let me know when you get home safely.",
-
-        "Can you send me the project notes when you have time?",
-
-        "Happy birthday! Wishing you an amazing day.",
-
-        "Are we still having lunch on Friday?",
-
-        "Please review the document when you get a chance.",
-
-        "Thanks for your help yesterday.",
-
-        "Can we reschedule our meeting to tomorrow morning?"
-
-    ]
-
-};
-
-
-/* =====================================================
-   BUILD SAMPLE ARRAY
-   ===================================================== */
-
-let finalSampleMessages = [];
-
-for (const category in sampleCategories) {
-
-    sampleCategories[category].forEach(function(text) {
-
-        finalSampleMessages.push({
-            category: category,
-            text: text
-        });
-
-    });
 
 }
 
 
-let lastSampleIndex = -1;
+function closeMenu(){
+
+    document
+        .getElementById("sideMenu")
+        .classList.remove("open");
+
+    document
+        .getElementById("menuOverlay")
+        .classList.remove("show");
+
+}
 
 
-/* =====================================================
-   RANDOM SAMPLE
-   ===================================================== */
+/* ==========================================
+   GET THREAT HISTORY
+========================================== */
 
-function loadRandomSample() {
+function getThreatHistory(){
 
-    const textarea =
-        document.getElementById("message");
+    try{
 
-    const result =
-        document.getElementById("result");
+        return JSON.parse(
+            localStorage.getItem(
+                "trustai_threat_history"
+            ) || "[]"
+        );
 
-    if (!textarea || finalSampleMessages.length === 0) {
-        return;
     }
 
+    catch(error){
 
-    let randomIndex;
+        return [];
 
-    do {
+    }
 
-        randomIndex =
-            Math.floor(
-                Math.random() *
-                finalSampleMessages.length
-            );
+}
 
-    } while (
 
-        finalSampleMessages.length > 1 &&
-        randomIndex === lastSampleIndex
+/* ==========================================
+   LOAD MONITOR
+========================================== */
 
+function loadMonitor(){
+
+    const history =
+        getThreatHistory();
+
+
+    /* TOTAL SCANS */
+
+    const totalScans =
+        history.length;
+
+
+    /* THREATS */
+
+    const threats =
+        history.filter(
+            event =>
+                Number(event.score || 0) >= 20
+        );
+
+
+    /* CRITICAL */
+
+    const critical =
+        history.filter(
+            event =>
+                String(event.level)
+                .toUpperCase()
+                === "CRITICAL"
+        );
+
+
+    /* HIGH */
+
+    const high =
+        history.filter(
+            event =>
+                [
+                    "HIGH",
+                    "VERY HIGH"
+                ].includes(
+                    String(event.level)
+                    .toUpperCase()
+                )
+        );
+
+
+    document.getElementById(
+        "totalScans"
+    ).textContent =
+        totalScans;
+
+
+    document.getElementById(
+        "threatsDetected"
+    ).textContent =
+        threats.length;
+
+
+    document.getElementById(
+        "criticalCount"
+    ).textContent =
+        critical.length;
+
+
+    document.getElementById(
+        "highCount"
+    ).textContent =
+        high.length;
+
+
+    renderThreatFeed(
+        history
     );
 
 
-    lastSampleIndex =
-        randomIndex;
-
-
-    const sample =
-        finalSampleMessages[randomIndex];
-
-
-    textarea.value =
-        sample.text;
-
-
-    if (result) {
-
-        result.className =
-            "result";
-
-        result.innerHTML =
-            "";
-
-    }
-
-
-    textarea.focus();
+    renderCategories(
+        history
+    );
 
 }
 
 
-/* =====================================================
-   MESSAGE CHECKER
-   ===================================================== */
+/* ==========================================
+   RENDER THREAT FEED
+========================================== */
 
-function checkMessage() {
+function renderThreatFeed(
+    history
+){
 
-    const textarea =
-        document.getElementById("message");
-
-    const result =
-        document.getElementById("result");
-
-
-    if (!textarea || !result) {
-        return;
-    }
-
-
-    const original =
-        textarea.value.trim();
-
-
-    const text =
-        original.toLowerCase();
-
-
-    /* =================================================
-       EMPTY MESSAGE
-       ================================================= */
-
-    if (!text) {
-
-        showResult(
-            "caution",
-            "⚠️ NO MESSAGE ENTERED",
-            0,
-            [
-                "Paste a message before checking it."
-            ],
-            "Enter a message and run the checker again."
+    const feed =
+        document.getElementById(
+            "threatFeed"
         );
 
+
+    if(history.length === 0){
+
+        feed.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🛡️
+                </div>
+
+                <strong>
+                    No threats detected
+                </strong>
+
+                <p>
+                    Threat events from
+                    connected TrustAI tools
+                    will appear here.
+                </p>
+
+            </div>
+
+        `;
+
         return;
 
     }
 
 
-    let score = 0;
+    feed.innerHTML =
+        history
+        .slice(0,20)
+        .map(
+            event => {
 
-    const reasons = [];
+                const level =
+                    String(
+                        event.level ||
+                        "LOW"
+                    ).toUpperCase();
 
-    const categories = [];
+
+                let severityClass =
+                    "low";
 
 
-    /* =================================================
-       HELPER
-       ================================================= */
+                if(level === "CRITICAL"){
 
-    function add(points, reason, category) {
+                    severityClass =
+                        "critical";
 
-        score += points;
+                }
 
-        reasons.push(reason);
+                else if(
+                    level === "HIGH" ||
+                    level === "VERY HIGH"
+                ){
 
-        if (
-            category &&
-            !categories.includes(category)
-        ) {
+                    severityClass =
+                        "high";
 
-            categories.push(category);
+                }
+
+                else if(
+                    level === "CAUTION"
+                ){
+
+                    severityClass =
+                        "caution";
+
+                }
+
+
+                const time =
+                    event.timestamp
+                    ? new Date(
+                        event.timestamp
+                    ).toLocaleString()
+                    : "Unknown time";
+
+
+                return `
+
+                    <div class="threat">
+
+                        <div class="threat-top">
+
+                            <div>
+
+                                <div class="threat-id">
+
+                                    ${escapeHTML(
+                                        event.id ||
+                                        "UNKNOWN"
+                                    )}
+
+                                </div>
+
+                                <div class="threat-title">
+
+                                    ${escapeHTML(
+                                        event.category ||
+                                        "Unknown Threat"
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                            <span
+                                class="severity ${severityClass}"
+                            >
+
+                                ${escapeHTML(
+                                    level
+                                )}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="threat-info">
+
+                            <span>
+                                Score:
+                                ${Number(
+                                    event.score || 0
+                                )}/100
+                            </span>
+
+                            <span>
+                                ${escapeHTML(
+                                    time
+                                )}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* ==========================================
+   RENDER CATEGORIES
+========================================== */
+
+function renderCategories(
+    history
+){
+
+    const categories =
+        document.getElementById(
+            "categories"
+        );
+
+
+    const counts = {};
+
+
+    history.forEach(
+        event => {
+
+            const category =
+                event.category ||
+                "Unknown";
+
+
+            counts[category] =
+                (counts[category] || 0)
+                + 1;
 
         }
-
-    }
-
-
-    function has(pattern) {
-
-        return pattern.test(text);
-
-    }
-
-
-    /* =================================================
-       1. PASSWORD / CREDENTIALS
-       ================================================= */
-
-    if (
-        /(send|give|share|tell|provide|forward|drop|submit|enter|type).{0,70}(password|passcode|login details|username|credentials|secret key)/i.test(text)
-    ) {
-
-        add(
-            10,
-            "The message requests login credentials or a secret.",
-            "Credential scam"
-        );
-
-    }
-
-
-    /* =================================================
-       2. OTP / VERIFICATION CODE
-       ================================================= */
-
-    if (
-        /(send|give|share|tell|provide|forward|read|enter|type).{0,70}(otp|one[- ]time password|verification code|security code|confirmation code|6[- ]digit code)/i.test(text)
-    ) {
-
-        add(
-            10,
-            "The message requests an OTP or verification code.",
-            "OTP scam"
-        );
-
-    }
-
-
-    /* =================================================
-       3. BANKING / IDENTITY INFORMATION
-       ================================================= */
-
-    if (
-        /(send|give|share|tell|provide|forward|submit|enter).{0,70}(bvn|bank verification number|nin|national identification number|passport|identity number|date of birth|bank details|account number)/i.test(text)
-    ) {
-
-        add(
-            9,
-            "The message requests sensitive banking or identity information.",
-            "Identity / banking scam"
-        );
-
-    }
-
-
-    /* =================================================
-       4. CARD / PIN
-       ================================================= */
-
-    if (
-        /(send|give|share|tell|provide|forward|submit|enter).{0,70}(pin|atm pin|card pin|cvv|cvc|card number|expiry date|debit card|credit card)/i.test(text)
-    ) {
-
-        add(
-            10,
-            "The message requests sensitive card or PIN information.",
-            "Banking scam"
-        );
-
-    }
-
-
-    /* =================================================
-       5. MONEY REQUEST
-       ================================================= */
-
-    const moneyRequest = has(
-        /(send me money|send money|send the money|send cash|send the cash|transfer money|transfer funds|wire money|make a payment|pay me|pay now|lend me money|borrow money|send ₦|send n|send \$|pay ₦|pay n|pay \$|deposit money|deposit the money|registration fee|processing fee|activation fee|application fee|release fee|clearance fee|delivery fee|insurance fee|upfront payment)/i
     );
 
 
-    if (moneyRequest) {
-
-        add(
-            6,
-            "The message contains a request for money or payment.",
-            "Financial request"
+    const sorted =
+        Object.entries(counts)
+        .sort(
+            (a,b) =>
+                b[1] - a[1]
         );
 
-    }
 
+    if(sorted.length === 0){
 
-    /* =================================================
-       6. URGENCY
-       ================================================= */
+        categories.innerHTML = `
 
-    const urgency = has(
-        /(urgent|urgently|act now|act immediately|right now|immediately|today|tonight|tomorrow|before registration closes|before it closes|last chance|final warning|don't delay|do not delay|limited time|expires tonight|closing soon|ends soon|within 24 hours)/i
-    );
+            <div class="empty">
 
+                No categories yet.
 
-    if (urgency) {
+            </div>
 
-        add(
-            3,
-            "Urgency or pressure is being used.",
-            "Urgency"
-        );
+        `;
 
-    }
-
-
-    /* =================================================
-       7. SECRECY
-       ================================================= */
-
-    if (
-        has(
-            /(don't tell anyone|do not tell anyone|keep this secret|keep it secret|secret|don't tell your family|do not tell your family|keep this between us)/i
-        )
-    ) {
-
-        add(
-            5,
-            "The sender is encouraging secrecy.",
-            "Social engineering"
-        );
-
-    }
-
-
-    /* =================================================
-       8. THREATS
-       ================================================= */
-
-    if (
-        has(
-            /(account will be closed|account will be suspended|account suspended|account locked|account disabled|you will lose your account|account deleted|legal action|police|arrest|fine|penalty|prosecution|court action)/i
-        )
-    ) {
-
-        add(
-            5,
-            "The message uses threats or serious consequences to create pressure.",
-            "Threat / intimidation"
-        );
-
-    }
-
-
-    /* =================================================
-       9. LINKS
-       ================================================= */
-
-    const hasLink = has(
-        /(https?:\/\/|www\.|bit\.ly|tinyurl\.com|t\.co|cutt\.ly|is\.gd|shorturl)/i
-    );
-
-
-    if (hasLink) {
-
-        add(
-            5,
-            "A website or shortened link was detected.",
-            "Link / phishing"
-        );
-
-    }
-
-
-    /* =================================================
-       10. LINK ACTION
-       ================================================= */
-
-    if (
-        has(
-            /(click here|click this link|click the link|tap this link|open this link|login here|verify here|confirm here|visit this link|follow this link)/i
-        )
-    ) {
-
-        add(
-            5,
-            "The message asks you to interact with a link.",
-            "Phishing"
-        );
-
-    }
-
-
-    /* =================================================
-       11. SUPPORT IMPERSONATION
-       ================================================= */
-
-    if (
-        has(
-            /(facebook support|instagram support|whatsapp support|google support|bank support|customer support|security team|technical support|administrator|official support)/i
-        )
-        &&
-        has(
-            /(send|give|share|verify|confirm|provide|code|password|otp|pin|payment)/i
-        )
-    ) {
-
-        add(
-            9,
-            "The message may be impersonating a support or security team.",
-            "Impersonation"
-        );
-
-    }
-
-
-    /* =================================================
-       12. CONTACT IMPERSONATION
-       ================================================= */
-
-    if (
-        has(
-            /(this is my new number|i changed my number|new whatsapp number|i lost my phone|this is my new account|save my new number)/i
-        )
-    ) {
-
-        add(
-            7,
-            "Possible contact impersonation was detected.",
-            "Impersonation"
-        );
-
-    }
-
-
-    /* =================================================
-       13. PRIZE / GIVEAWAY
-       ================================================= */
-
-    if (
-        has(
-            /(you have won|you won|claim your prize|claim prize|free gift|free money|giveaway winner|lucky winner|you are selected|congratulations.*winner)/i
-        )
-    ) {
-
-        add(
-            7,
-            "The message contains a possible prize, giveaway, or winnings claim.",
-            "Prize scam"
-        );
-
-    }
-
-
-    /* =================================================
-       14. INVESTMENT
-       ================================================= */
-
-    const investment = has(
-        /(invest|investment|crypto investment|crypto|bitcoin|ethereum|forex|trading|trading platform|investment platform|investment opportunity|profit|returns|return on investment|roi|stake|liquidity pool)/i
-    );
-
-
-/* =================================================
-       15. GUARANTEED / UNREALISTIC RETURNS
-       ================================================= */
-
-    const guaranteedReturn = has(
-        /(guaranteed profit|guaranteed profits|guaranteed return|guaranteed returns|guarantee|guaranteed|zero risk|no risk|risk[- ]free|double your money|triple your money|10x your money|20x your money|50x your money|100% profit|200% profit|300% profit|500% profit|instant profit|easy money|make money fast|huge returns|massive returns|earn .* (daily|weekly|tomorrow))/i
-    );
-
-
-    if (guaranteedReturn) {
-
-        add(
-            7,
-            "The message promises guaranteed or unusually large financial returns.",
-            "Investment scam"
-        );
-
-    }
-
-
-    /* =================================================
-       16. INVESTMENT + GUARANTEE
-       ================================================= */
-
-    if (
-        investment &&
-        guaranteedReturn
-    ) {
-
-        add(
-            8,
-            "Investment language is combined with a guaranteed or unusually large return.",
-            "Investment scam"
-        );
-
-    }
-
-
-    /* =================================================
-       17. INVESTMENT + MONEY
-       ================================================= */
-
-    if (
-        investment &&
-        moneyRequest
-    ) {
-
-        add(
-            5,
-            "An investment opportunity is combined with a request for money.",
-            "Investment scam"
-        );
-
-    }
-
-
-    /* =================================================
-       18. INVESTMENT + GUARANTEE + URGENCY
-       ================================================= */
-
-    if (
-        investment &&
-        guaranteedReturn &&
-        urgency
-    ) {
-
-        add(
-            5,
-            "The investment promise is combined with guaranteed returns and pressure to act quickly.",
-            "Investment scam"
-        );
-
-    }
-
-
-    /* =================================================
-       19. INVESTMENT + URGENCY
-       ================================================= */
-
-    if (
-        investment &&
-        urgency
-    ) {
-
-        add(
-            3,
-            "The investment opportunity uses pressure to make you act quickly.",
-            "Investment scam"
-        );
-
-    }
-
-
-    /* =================================================
-       20. INVESTMENT AMOUNT
-       ================================================= */
-
-    if (
-        investment &&
-        /(?:₦|n|naira|\$|usd|€|£)\s?\d[\d,]*/i.test(text)
-    ) {
-
-        add(
-            3,
-            "The investment message contains a specific monetary amount.",
-            "Investment scam"
-        );
-
-    }
-
-
-    /* =================================================
-       21. ROMANCE + MONEY
-       ================================================= */
-
-    const romance = has(
-        /(i love you|i really care about you|my love|baby|darling|sweetheart|relationship|only person i trust|you are the only person i trust|i need you|i miss you|love of my life|my boyfriend|my girlfriend|my husband|my wife)/i
-    );
-
-
-    if (
-        romance &&
-        moneyRequest
-    ) {
-
-        add(
-            9,
-            "Romantic or emotional language is combined with a financial request.",
-            "Romance scam"
-        );
-
-    }
-
-
-    /* =================================================
-       22. EMERGENCY + MONEY
-       ================================================= */
-
-    const emergency = has(
-        /(hospital|surgery|medical emergency|emergency|accident|stranded|stuck at the airport|my mother is sick|my father is sick|my child is sick|need money for treatment|need money urgently|family emergency|arrested|detained)/i
-    );
-
-
-    if (
-        emergency &&
-        moneyRequest
-    ) {
-
-        add(
-            9,
-            "An emergency story is combined with a request for money.",
-            "Emergency scam"
-        );
-
-    }
-
-
-    /* =================================================
-       23. JOB + PAYMENT
-       ================================================= */
-
-    const job = has(
-        /(job offer|job vacancy|employment opportunity|work from home|remote job|hiring|online job|job opportunity|part[- ]time job|virtual assistant|data entry)/i
-    );
-
-
-    if (
-        job &&
-        moneyRequest
-    ) {
-
-        add(
-            9,
-            "A job or employment claim is combined with a request for upfront payment.",
-            "Fake job scam"
-        );
-
-    }
-
-
-    /* =================================================
-       24. JOB + HIGH EARNINGS
-       ================================================= */
-
-    if (
-        job &&
-        has(
-            /(earn|make|salary|income).{0,70}(₦|n|naira|\$|usd|€|£|\d)/i
-        )
-        &&
-        moneyRequest
-    ) {
-
-        add(
-            5,
-            "The job offer promises earnings while requiring an upfront payment.",
-            "Fake job scam"
-        );
-
-    }
-
-
-    /* =================================================
-       25. DELIVERY SCAM
-       ================================================= */
-
-    if (
-        has(
-            /(package|parcel|delivery|courier|customs|shipment).{0,100}(fee|payment|customs|link|click|release|charge)/i
-        )
-    ) {
-
-        add(
-            8,
-            "Possible delivery or package scam detected.",
-            "Delivery scam"
-        );
-
-    }
-
-
-    /* =================================================
-       26. TECH SUPPORT
-       ================================================= */
-
-    if (
-        has(
-            /(microsoft security|windows defender|apple support|apple id|google support|computer infected|virus detected|malware detected|firewall breach|technical support).{0,100}(call|pay|password|send|give|remote access|payment)/i
-        )
-    ) {
-
-        add(
-            8,
-            "The message shows signs of a possible technical-support scam.",
-            "Tech support scam"
-        );
-
-    }
-
-
-    /* =================================================
-       27. CHARITY SCAM
-       ================================================= */
-
-    if (
-        has(
-            /(donate|donation|charity|fundraiser|help victims|emergency relief).{0,100}(send|transfer|payment|money|cash)/i
-        )
-    ) {
-
-        add(
-            6,
-            "The message combines a charitable appeal with a financial request.",
-            "Charity scam"
-        );
-
-    }
-
-
-    /* =================================================
-       28. RENTAL / PROPERTY SCAM
-       ================================================= */
-
-    if (
-        has(
-            /(apartment|house|flat|room|property|rent).{0,100}(deposit|payment|transfer|send money|pay now)/i
-        )
-    ) {
-
-        add(
-            7,
-            "The property message requests payment before proper verification.",
-            "Rental scam"
-        );
-
-    }
-
-
-    /* =================================================
-       29. MARKETPLACE SCAM
-       ================================================= */
-
-    if (
-        has(
-            /(buy|purchase|item|phone|laptop|car|goods|product).{0,100}(pay first|deposit|transfer|send payment|payment first)/i
-        )
-    ) {
-
-        add(
-            6,
-            "The marketplace message requests payment before the transaction is independently verified.",
-            "Marketplace scam"
-        );
-
-    }
-
-
-    /* =================================================
-       30. LOAN SCAM
-       ================================================= */
-
-    if (
-        has(
-            /(loan|borrow|credit).{0,100}(processing fee|activation fee|insurance fee|deposit|upfront payment|pay first|send money)/i
-        )
-    ) {
-
-        add(
-            8,
-            "The loan offer requests an upfront payment before releasing funds.",
-            "Loan scam"
-        );
-
-    }
-
-
-    /* =================================================
-       31. ACCOUNT RECOVERY SCAM
-       ================================================= */
-
-    if (
-        has(
-            /(recover|restore|reactivate|unlock).{0,80}(account|profile|wallet).{0,80}(password|otp|code|pin|payment|send)/i
-        )
-    ) {
-
-        add(
-            8,
-            "The account-recovery request asks for sensitive information or payment.",
-            "Account recovery scam"
-        );
-
-    }
-
-
-    /* =================================================
-       32. FAKE VERIFICATION
-       ================================================= */
-
-    if (
-        has(
-            /(verify|verification|confirm identity|identity verification).{0,80}(password|otp|pin|payment|send money|card)/i
-        )
-    ) {
-
-        add(
-            8,
-            "The verification request involves sensitive information or payment.",
-            "Verification scam"
-        );
-
-    }
-
-
-    /* =================================================
-       33. FAKE REFUND
-       ================================================= */
-
-    if (
-        has(
-            /(refund|cashback|reimbursement).{0,100}(fee|payment|password|otp|pin|card|send money)/i
-        )
-    ) {
-
-        add(
-            7,
-            "The refund or cashback message requests sensitive information or payment.",
-            "Refund scam"
-        );
-
-    }
-
-
-    /* =================================================
-       34. CRYPTO WALLET ACCESS
-       ================================================= */
-
-    if (
-        has(
-            /(connect your wallet|wallet verification|seed phrase|recovery phrase|private key|wallet password).{0,80}(send|enter|share|provide|click|link)/i
-        )
-    ) {
-
-        add(
-            10,
-            "The message requests highly sensitive cryptocurrency wallet information.",
-            "Crypto scam"
-        );
-
-    }
-
-
-    /* =================================================
-       35. FAKE AIRDROP
-       ================================================= */
-
-    if (
-        has(
-            /(airdrop|free tokens|free crypto).{0,100}(connect wallet|send|pay|fee|link)/i
-        )
-    ) {
-
-        add(
-            8,
-            "The message shows signs of a possible fake cryptocurrency reward.",
-            "Crypto scam"
-        );
-
-    }
-
-
-    /* =================================================
-       36. FINAL SCORE
-       ================================================= */
-
-    score =
-        Math.min(10, Math.max(0, score));
-
-
-    /* =================================================
-       RISK LEVEL
-       ================================================= */
-
-    let level =
-        "low";
-
-    let title =
-        "🟢 LOW RISK — NO STRONG SCAM SIGNALS DETECTED";
-
-    let note =
-        "No strong scam indicators were detected. A low-risk result does not prove that the message is safe. Continue to verify important requests independently.";
-
-
-    if (score >= 8) {
-
-        level =
-            "critical";
-
-        title =
-            "🔴 VERY HIGH SCAM RISK";
-
-        note =
-            "Multiple strong scam indicators were detected. Do not send money, passwords, OTPs, PINs, or other sensitive information. Verify the sender independently.";
-
-    }
-
-    else if (score >= 6) {
-
-        level =
-            "very-high";
-
-        title =
-            "🟠 HIGH SCAM RISK";
-
-        note =
-            "Several suspicious signals were detected. Do not take financial or security-related action until the request has been independently verified.";
-
-    }
-
-    else if (score >= 4) {
-
-        level =
-            "high";
-
-        title =
-            "🟡 HIGH RISK WARNING";
-
-        note =
-            "Suspicious signals were detected. Slow down, verify the sender, and independently confirm the request.";
-
-    }
-
-    else if (score >= 2) {
-
-        level =
-            "caution";
-
-        title =
-            "⚠️ CAUTION REQUIRED";
-
-        note =
-            "Some warning signs were detected. Be careful and verify the message before taking action.";
-
-    }
-
-
-    /* =================================================
-       NO REASONS
-       ================================================= */
-
-    if (reasons.length === 0) {
-
-        reasons.push(
-            "No strong scam patterns were detected in the message."
-        );
-
-    }
-
-
-    /* =================================================
-       DISPLAY RESULT
-       ================================================= */
-
-    result.className =
-        "result show " + level;
-
-
-    result.innerHTML = `
-
-        <div class="result-title">
-            ${escapeHTML(title)}
-        </div>
-
-        <div class="score">
-            Risk score: ${score}/10
-        </div>
-
-        ${
-            categories.length
-            ?
-            `<div style="margin-bottom:12px;font-weight:700;">
-                Detected category:
-                ${categories.map(function(category){
-                    return escapeHTML(category);
-                }).join(", ")}
-            </div>`
-            :
-            ""
-        }
-
-        <ul>
-
-            ${
-                reasons.map(function(reason){
-
-                    return `
-                        <li>
-                            ${escapeHTML(reason)}
-                        </li>
-                    `;
-
-                }).join("")
-            }
-
-        </ul>
-
-        <div class="warning-note">
-            ${escapeHTML(note)}
-        </div>
-
-    `;
-
-}
-
-
-/* =====================================================
-   SHOW RESULT
-   ===================================================== */
-
-function showResult(
-    level,
-    title,
-    score,
-    reasons,
-    note
-) {
-
-    const result =
-        document.getElementById("result");
-
-
-    if (!result) {
         return;
+
     }
 
 
-    result.className =
-        "result show " + level;
+    categories.innerHTML =
+        sorted
+        .slice(0,10)
+        .map(
+            ([name,count]) => `
 
+                <div class="category">
 
-    result.innerHTML = `
+                    <span class="category-name">
 
-        <div class="result-title">
-            ${escapeHTML(title)}
-        </div>
+                        ${escapeHTML(
+                            name
+                        )}
 
-        <div class="score">
-            Risk score: ${score}/10
-        </div>
+                    </span>
 
-        <ul>
+                    <span class="category-count">
 
-            ${
-                reasons.map(function(reason){
+                        ${count}
 
-                    return `
-                        <li>
-                            ${escapeHTML(reason)}
-                        </li>
-                    `;
+                    </span>
 
-                }).join("")
-            }
+                </div>
 
-        </ul>
-
-        <div class="warning-note">
-            ${escapeHTML(note)}
-        </div>
-
-    `;
+            `
+        )
+        .join("");
 
 }
 
 
-/* =====================================================
-   CLEAR MESSAGE
-   ===================================================== */
+/* ==========================================
+   CLEAR HISTORY
+========================================== */
 
-function clearMessage() {
+function clearThreatHistory(){
 
-    const textarea =
-        document.getElementById("message");
+    const confirmClear =
+        confirm(
+            "Clear all TrustAI threat history?"
+        );
 
-    const result =
-        document.getElementById("result");
 
+    if(!confirmClear){
 
-    if (textarea) {
-
-        textarea.value =
-            "";
+        return;
 
     }
 
 
-    if (result) {
+    localStorage.removeItem(
+        "trustai_threat_history"
+    );
 
-        result.className =
-            "result";
 
-        result.innerHTML =
-            "";
+    localStorage.removeItem(
+        "trustai_last_threat"
+    );
 
-    }
+
+    loadMonitor();
 
 }
 
 
-/* =====================================================
-   HTML ESCAPING
-   ===================================================== */
+/* ==========================================
+   SECURITY: ESCAPE HTML
+========================================== */
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+){
 
     return String(value)
 
-        .replace(/&/g, "&amp;")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-        .replace(/</g, "&lt;")
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-        .replace(/>/g, "&gt;")
+        .replace(
+            />/g,
+            "&gt;"
+        )
 
-        .replace(/"/g, "&quot;")
+        .replace(
+            /"/g,
+            "&quot;"
+        )
 
-        .replace(/'/g, "&#039;");
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
+
+/* ==========================================
+   START
+========================================== */
+
+loadMonitor();
+
+
+/* ==========================================
+   AUTO REFRESH
+========================================== */
+
+setInterval(
+    loadMonitor,
+    5000
+);
+
 </script>
-    
+
 </body>
 </html>
-
-
