@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Trust AI — Threat Monitor</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#05070a;
+    color:#e8eef5;
+    font-family:Arial, sans-serif;
+}
+
+.header{
+    padding:22px;
+    border-bottom:1px solid #1d2935;
+    background:#080c11;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#00e5ff;
+}
+
+.status{
+    margin-top:8px;
+    font-size:13px;
+    color:#69ff9b;
+}
+
+.container{
+    padding:20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.card{
+    background:#090e14;
+    border:1px solid #1c2b38;
+    border-radius:12px;
+    padding:18px;
+    box-shadow:0 0 20px rgba(0,0,0,.25);
+}
+
+.card h2{
+    font-size:14px;
+    color:#8ea5b8;
+    margin-bottom:15px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.target{
+    font-size:20px;
+    word-break:break-all;
+    margin-bottom:15px;
+}
+
+.high{
+    color:#ff4d4d;
+}
+
+.medium{
+    color:#ffc44d;
+}
+
+.low{
+    color:#69ff9b;
+}
+
+.worker{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #17222c;
+    font-size:14px;
+}
+
+.online{
+    color:#69ff9b;
+}
+
+.feed{
+    height:300px;
+    overflow-y:auto;
+    background:#030507;
+    padding:12px;
+    font-family:monospace;
+    font-size:12px;
+}
+
+.event{
+    margin-bottom:9px;
+    color:#8fa5b5;
+}
+
+.event strong{
+    color:#00e5ff;
+}
+
+.controls{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+button{
+    background:#0b1720;
+    border:1px solid #254151;
+    color:#d9f5ff;
+    padding:10px 14px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#102532;
+}
+
+.scan{
+    margin-top:15px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    background:#030507;
+    color:white;
+    border:1px solid #263b49;
+    border-radius:7px;
+    outline:none;
+}
+
+.result{
+    margin-top:15px;
+    padding:15px;
+    border-radius:8px;
+    background:#05090d;
+    border:1px solid #1d2c38;
+    display:none;
+}
+
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        TRUST <span>AI</span>
+    </div>
+
+    <div class="status">
+        ● SECURITY ENGINE ONLINE
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="grid">
+
+        <!-- SYSTEM STATUS -->
+        <section class="card">
+
+            <h2>System Status</h2>
+
+            <div class="worker">
+                <span>URL Engine</span>
+                <span class="online">● ONLINE</span>
+            </div>
+
+            <div class="worker">
+                <span>Message Engine</span>
+                <span class="online">● ONLINE</span>
+            </div>
+
+            <div class="worker">
+                <span>Alert Worker</span>
+                <span class="online">● ONLINE</span>
+            </div>
+
+            <div class="worker">
+                <span>Report Engine</span>
+                <span class="online">● ONLINE</span>
+            </div>
+
+        </section>
+
+
+        <!-- CURRENT THREAT -->
+        <section class="card">
+
+            <h2>Current Threat</h2>
+
+            <div class="target" id="target">
+                No active threat
+            </div>
+
+            <div id="threat">
+                Threat Level: <span class="low">LOW</span>
+            </div>
+
+            <div id="category">
+                Category: None
+            </div>
+
+            <div id="action">
+                Action: Monitoring
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- URL SCANNER -->
+
+    <section class="card scan">
+
+        <h2>Trust AI URL Scanner</h2>
+
+        <input
+            type="text"
+            id="urlInput"
+            placeholder="Enter a website URL..."
+        >
+
+        <div class="controls">
+
+            <button onclick="scanURL()">
+                SCAN TARGET
+            </button>
+
+            <button onclick="clearScanner()">
+                CLEAR
+            </button>
+
+        </div>
+
+        <div class="result" id="scanResult"></div>
+
+    </section>
+
+
+    <!-- LIVE TELEMETRY -->
+
+    <section class="card scan">
+
+        <h2>Live Detection Feed</h2>
+
+        <div class="feed" id="feed"></div>
+
+    </section>
+
+</main>
+
+
+<script>
+
+const feed = document.getElementById("feed");
+
+function timestamp(){
+
+    return new Date().toLocaleTimeString();
+
+}
+
+function addEvent(message){
+
+    const event = document.createElement("div");
+
+    event.className = "event";
+
+    event.innerHTML =
+        "[" + timestamp() + "] <strong>TRUST_ENGINE</strong> → "
+        + message;
+
+    feed.prepend(event);
+
+}
+
+
+/*
+=================================================
+URL DETECTION ENGINE
+=================================================
+*/
+
+function analyzeURL(rawURL){
+
+    let url = rawURL.trim();
+
+    let score = 0;
+    let reasons = [];
+
+    if(!url){
+
+        return {
+            score:0,
+            level:"LOW",
+            reasons:["No URL supplied"]
+        };
+
+    }
+
+    /*
+    HTTPS
+    */
+
+    if(!url.startsWith("https://")){
+
+        score += 1;
+
+        reasons.push(
+            "Website does not use HTTPS"
+        );
+
+    }
+
+
+    /*
+    IP ADDRESS
+    */
+
+    if(
+        /https?:\/\/\d{1,3}(\.\d{1,3}){3}/i.test(url)
+    ){
+
+        score += 3;
+
+        reasons.push(
+            "URL uses an IP address"
+        );
+
+    }
+
+
+    /*
+    @ SYMBOL
+    */
+
+    if(url.includes("@")){
+
+        score += 3;
+
+        reasons.push(
+            "Suspicious @ symbol detected"
+        );
+
+    }
+
+
+    /*
+    VERY LONG URL
+    */
+
+    if(url.length > 100){
+
+        score += 1;
+
+        reasons.push(
+            "Unusually long URL"
+        );
+
+    }
+
+
+    /*
+    SHORTENED URL
+    */
+
+    const shorteners = [
+        "bit.ly",
+        "tinyurl.com",
+        "t.co",
+        "goo.gl",
+        "is.gd"
+    ];
+
+    if(
+        shorteners.some(
+            domain => url.toLowerCase().includes(domain)
+        )
+    ){
+
+        score += 2;
+
+        reasons.push(
+            "URL shortener detected"
+        );
+
+    }
+
+
+    /*
+    SUSPICIOUS WORDS
+    */
+
+    const suspiciousWords = [
+        "verify",
+        "login",
+        "secure",
+        "account",
+        "wallet",
+        "password",
+        "claim",
+        "bonus",
+        "prize",
+        "free",
+        "urgent",
+        "payment"
+    ];
+
+    suspiciousWords.forEach(word => {
+
+        if(url.toLowerCase().includes(word)){
+
+            score += 1;
+
+            reasons.push(
+                "Suspicious keyword: " + word
+            );
+
+        }
+
+    });
+
+
+    /*
+    SUSPICIOUS FILE EXTENSIONS
+    */
+
+    if(
+        /\.(exe|scr|apk|zip|rar)$/i.test(url)
+    ){
+
+        score += 4;
+
+        reasons.push(
+            "Suspicious downloadable file"
+        );
+
+    }
+
+
+    let level = "LOW";
+
+    if(score >= 6){
+
+        level = "HIGH";
+
+    }else if(score >= 3){
+
+        level = "MEDIUM";
+
+    }
+
+
+    return {
+        score,
+        level,
+        reasons
+    };
+
+}
+
+
+/*
+=================================================
+SCAN
+=================================================
+*/
+
+function scanURL(){
+
+    const input =
+        document.getElementById("urlInput");
+
+    const result =
+        document.getElementById("scanResult");
+
+    const target =
+        input.value.trim();
+
+    if(!target){
+
+        alert("Enter a URL first.");
+
+        return;
+
+    }
+
+
+    addEvent(
+        "URL SCAN → " + target
+    );
+
+
+    const analysis =
+        analyzeURL(target);
+
+
+    document.getElementById("target")
+        .textContent = target;
+
+
+    document.getElementById("threat")
+        .innerHTML =
+        "Threat Level: <span class='" +
+        analysis.level.toLowerCase() +
+        "'>" +
+        analysis.level +
+        "</span>";
+
+
+    document.getElementById("category")
+        .textContent =
+        "Risk Score: " + analysis.score;
+
+
+    let action =
+        "Monitoring";
+
+    if(analysis.level === "HIGH"){
+
+        action = "BLOCK / WARN RECOMMENDED";
+
+    }else if(analysis.level === "MEDIUM"){
+
+        action = "WARNING RECOMMENDED";
+
+    }
+
+
+    document.getElementById("action")
+        .textContent =
+        "Action: " + action;
+
+
+    result.style.display = "block";
+
+
+    if(analysis.reasons.length){
+
+        result.innerHTML =
+            "<strong>Detection Results</strong><br><br>" +
+            analysis.reasons
+            .map(reason => "• " + reason)
+            .join("<br>");
+
+    }else{
+
+        result.innerHTML =
+            "✓ No obvious suspicious indicators detected.";
+
+    }
+
+
+    addEvent(
+        "THREAT LEVEL → " +
+        analysis.level
+    );
+
+
+    addEvent(
+        "ACTION → " +
+        action
+    );
+
+}
+
+
+function clearScanner(){
+
+    document.getElementById("urlInput").value = "";
+
+    document.getElementById("scanResult").style.display =
+        "none";
+
+    document.getElementById("target").textContent =
+        "No active threat";
+
+    document.getElementById("threat").innerHTML =
+        'Threat Level: <span class="low">LOW</span>';
+
+    document.getElementById("category").textContent =
+        "Category: None";
+
+    document.getElementById("action").textContent =
+        "Action: Monitoring";
+
+}
+
+
+/*
+=================================================
+STARTUP TELEMETRY
+=================================================
+*/
+
+addEvent("Security workers initialized");
+
+setTimeout(
+    () => addEvent("URL engine ready"),
+    500
+);
+
+setTimeout(
+    () => addEvent("Message engine ready"),
+    1000
+);
+
+setTimeout(
+    () => addEvent("Threat monitoring active"),
+    1500
+);
+
+</script>
+
+</body>
+</html>
