@@ -4,121 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI - Threat Monitor</title>
+<title>TrustAI - Message Checker</title>
 
 <style>
 
 :root{
-    --bg:#070b13;
-    --card:#0f1726;
-    --card2:#111c2d;
-    --text:#f8fafc;
-    --muted:#94a3b8;
-    --border:rgba(255,255,255,.08);
     --primary:#6366f1;
-    --cyan:#38bdf8;
-    --red:#ef4444;
-    --orange:#f97316;
-    --yellow:#eab308;
-    --green:#22c55e;
+    --primary-dark:#4f46e5;
+    --primary-glow:rgba(99,102,241,.15);
+    --bg-main:#090d16;
+    --bg-card:rgba(17,24,39,.78);
+    --bg-side:#0f172a;
+    --text-main:#f8fafc;
+    --text-muted:#94a3b8;
+    --border-color:rgba(255,255,255,.08);
+    --radius-lg:20px;
+    --radius-md:12px;
 }
 
 *{
     box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
     margin:0;
+    font-family:Inter,system-ui,-apple-system,
+        BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+
     background:
         radial-gradient(
-            circle at 15% 10%,
-            rgba(99,102,241,.14),
-            transparent 35%
+            circle at 10% 10%,
+            rgba(99,102,241,.12),
+            transparent 40%
         ),
         radial-gradient(
-            circle at 85% 80%,
-            rgba(56,189,248,.08),
-            transparent 35%
+            circle at 90% 80%,
+            rgba(14,165,233,.08),
+            transparent 40%
         ),
-        var(--bg);
+        var(--bg-main);
 
-    color:var(--text);
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
+    color:var(--text-main);
+    line-height:1.6;
     min-height:100vh;
 }
 
-
-/* ================================
-   MENU BUTTON
-================================ */
+/* ==========================================
+   MENU
+========================================== */
 
 .menu-button{
     position:fixed;
-
     top:20px;
     left:20px;
-
     width:48px;
     height:48px;
 
+    border:1px solid var(--border-color);
     border-radius:14px;
 
-    background:#101827;
+    background:rgba(15,23,42,.85);
 
-    border:1px solid var(--border);
+    backdrop-filter:blur(12px);
+
+    z-index:1001;
+
+    cursor:pointer;
 
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
 
     gap:5px;
-
-    cursor:pointer;
-
-    z-index:1001;
 }
 
 .menu-button span{
-    width:21px;
-    height:2px;
-
+    width:20px;
+    height:2.5px;
     background:white;
-
-    border-radius:5px;
+    border-radius:3px;
 }
 
-
-/* ================================
-   SIDE MENU
-================================ */
-
 .side-menu{
-
     position:fixed;
-
     top:0;
     left:-320px;
 
     width:300px;
     height:100vh;
 
-    background:#0c1422;
+    background:var(--bg-side);
 
-    border-right:1px solid var(--border);
-
-    padding:90px 20px 30px;
+    border-right:1px solid var(--border-color);
 
     z-index:1000;
+
+    padding:90px 20px 30px;
 
     transition:.3s;
 
@@ -131,10 +114,8 @@ body{
 
 .menu-title{
     padding:0 8px 20px;
-
-    border-bottom:1px solid var(--border);
-
-    margin-bottom:15px;
+    border-bottom:1px solid var(--border-color);
+    margin-bottom:16px;
 }
 
 .menu-title strong{
@@ -148,50 +129,40 @@ body{
         );
 
     -webkit-background-clip:text;
-
     -webkit-text-fill-color:transparent;
 }
 
 .menu-title span{
     display:block;
-
-    color:var(--muted);
-
+    color:var(--text-muted);
     font-size:12px;
-
     margin-top:4px;
 }
 
 .menu-link{
-
     display:flex;
-
     align-items:center;
-
-    gap:13px;
+    gap:14px;
 
     padding:12px 14px;
-
     margin-bottom:6px;
 
-    border-radius:12px;
+    border-radius:var(--radius-md);
 
     text-decoration:none;
 
-    color:var(--muted);
+    color:var(--text-muted);
 
     font-size:14px;
-
     font-weight:600;
 
     transition:.2s;
 }
 
 .menu-link:hover{
-
     background:rgba(255,255,255,.05);
-
     color:white;
+    transform:translateX(4px);
 }
 
 .menu-icon{
@@ -200,525 +171,400 @@ body{
 }
 
 .menu-divider{
-
     height:1px;
-
-    background:var(--border);
-
+    background:var(--border-color);
     margin:18px 0;
 }
 
 .menu-overlay{
-
     position:fixed;
-
     inset:0;
 
     background:rgba(0,0,0,.7);
 
-    display:none;
+    backdrop-filter:blur(4px);
 
     z-index:999;
+
+    display:none;
 }
 
 .menu-overlay.show{
     display:block;
 }
 
-
-/* ================================
+/* ==========================================
    PAGE
-================================ */
+========================================== */
 
-.container{
-
-    max-width:1100px;
-
+.page{
+    max-width:900px;
     margin:auto;
-
-    padding:
-        90px
-        20px
-        50px;
+    padding:90px 20px 50px;
 }
 
-
-/* ================================
+/* ==========================================
    HEADER
-================================ */
+========================================== */
+
+.header,
+.checker{
+    background:var(--bg-card);
+
+    backdrop-filter:blur(16px);
+
+    border:1px solid var(--border-color);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:
+        0 20px 40px -15px
+        rgba(0,0,0,.4);
+}
 
 .header{
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(99,102,241,.12),
-            rgba(56,189,248,.05)
-        );
-
-    border:1px solid var(--border);
-
-    border-radius:20px;
-
-    padding:30px;
-
-    margin-bottom:22px;
+    padding:36px 30px;
+    margin-bottom:24px;
 }
 
-.badge{
-
+.header-label{
     display:inline-block;
 
-    padding:5px 12px;
+    color:#a5b4fc;
+
+    background:var(--primary-glow);
+
+    padding:4px 12px;
 
     border-radius:20px;
-
-    background:rgba(99,102,241,.12);
-
-    color:#a5b4fc;
 
     font-size:11px;
 
     font-weight:800;
 
-    letter-spacing:1.4px;
+    letter-spacing:1.5px;
 }
 
 .header h1{
-
-    margin:
-        12px
-        0
-        8px;
-
+    margin:12px 0;
     font-size:32px;
 }
 
 .header p{
-
-    color:var(--muted);
-
     margin:0;
+    color:var(--text-muted);
 }
 
+/* ==========================================
+   CHECKER
+========================================== */
 
-/* ================================
-   STATUS
-================================ */
-
-.system-status{
-
-    margin-top:20px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    color:#86efac;
-
-    font-size:13px;
-
-    font-weight:700;
+.checker{
+    padding:32px;
 }
 
-.status-dot{
+.checker h2{
+    margin:0 0 8px;
+    font-size:22px;
+}
 
-    width:9px;
-    height:9px;
+.checker-subtitle{
+    color:var(--text-muted);
+    font-size:14px;
+    margin-bottom:20px;
+}
 
-    border-radius:50%;
+textarea{
+    width:100%;
+    min-height:210px;
 
-    background:var(--green);
+    padding:18px;
+
+    background:rgba(10,15,26,.75);
+
+    color:var(--text-main);
+
+    border:1px solid var(--border-color);
+
+    border-radius:var(--radius-md);
+
+    font-family:inherit;
+
+    font-size:15px;
+
+    line-height:1.6;
+
+    resize:vertical;
+}
+
+textarea:focus{
+    outline:none;
+
+    border-color:var(--primary);
 
     box-shadow:
-        0 0 12px
-        rgba(34,197,94,.8);
+        0 0 0 4px
+        var(--primary-glow);
 }
 
-
-/* ================================
-   STATS
-================================ */
-
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:15px;
-
-    margin-bottom:22px;
-}
-
-.stat-card{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:20px;
-}
-
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:13px;
-
-    margin-bottom:7px;
-}
-
-.stat-number{
-
-    font-size:28px;
-
-    font-weight:800;
-}
-
-
-/* ================================
-   MAIN GRID
-================================ */
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1.5fr
-        1fr;
-
-    gap:20px;
-}
-
-.card{
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:22px;
-}
-
-.card-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:18px;
-}
-
-.card-header h2{
-
-    margin:0;
-
-    font-size:18px;
-}
-
-
-/* ================================
+/* ==========================================
    BUTTONS
-================================ */
+========================================== */
 
-.btn{
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-top:18px;
+    flex-wrap:wrap;
+}
 
-    border:1px solid var(--border);
+.action-button{
+    border:0;
 
-    background:
-        rgba(255,255,255,.04);
+    border-radius:var(--radius-md);
 
-    color:white;
+    padding:14px 20px;
 
-    padding:
-        9px
-        13px;
+    font-family:inherit;
 
-    border-radius:9px;
+    font-size:14.5px;
+
+    font-weight:700;
 
     cursor:pointer;
 
-    font-weight:700;
+    transition:.2s;
 }
 
-.btn:hover{
-    background:rgba(255,255,255,.08);
+.action-button:hover{
+    transform:translateY(-2px);
 }
 
+.check-button{
+    flex:2;
 
-/* ================================
-   THREAT FEED
-================================ */
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4f46e5
+        );
 
-.threat{
-
-    padding:16px 0;
-
-    border-bottom:
-        1px solid
-        var(--border);
+    color:white;
 }
 
-.threat:last-child{
-    border-bottom:0;
+.clear-button{
+    flex:1;
+
+    background:rgba(255,255,255,.05);
+
+    color:var(--text-muted);
+
+    border:1px solid var(--border-color);
 }
 
-.threat-top{
+.sample-button{
+    flex:1;
 
-    display:flex;
+    background:rgba(56,189,248,.12);
 
-    justify-content:space-between;
+    color:#7dd3fc;
 
-    align-items:center;
-
-    gap:10px;
+    border:1px solid rgba(56,189,248,.25);
 }
 
-.threat-id{
+/* ==========================================
+   RESULT
+========================================== */
 
-    font-family:
-        monospace;
+.result{
+    display:none;
 
-    font-size:12px;
+    margin-top:24px;
 
-    color:var(--muted);
+    padding:26px;
+
+    border-radius:var(--radius-md);
 }
 
-.threat-title{
-
-    font-weight:800;
-
-    margin-top:4px;
-}
-
-.threat-info{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:7px;
-
-    color:var(--muted);
-
-    font-size:12px;
-}
-
-
-/* ================================
-   SEVERITY
-================================ */
-
-.severity{
-
-    padding:
-        4px
-        9px;
-
-    border-radius:20px;
-
-    font-size:10px;
-
-    font-weight:800;
+.result.show{
+    display:block;
 }
 
 .critical{
+    background:rgba(153,27,27,.25);
+    border:1px solid #ef4444;
+}
 
-    background:
-        rgba(239,68,68,.15);
-
-    color:#fca5a5;
-
-    border:
-        1px solid
-        rgba(239,68,68,.3);
+.very-high{
+    background:rgba(153,27,27,.18);
+    border:1px solid #f87171;
 }
 
 .high{
-
-    background:
-        rgba(249,115,22,.15);
-
-    color:#fdba74;
-
-    border:
-        1px solid
-        rgba(249,115,22,.3);
+    background:rgba(194,65,12,.2);
+    border:1px solid #f97316;
 }
 
 .caution{
-
-    background:
-        rgba(234,179,8,.15);
-
-    color:#fde047;
-
-    border:
-        1px solid
-        rgba(234,179,8,.3);
+    background:rgba(161,98,7,.2);
+    border:1px solid #eab308;
 }
 
 .low{
+    background:rgba(21,128,61,.2);
+    border:1px solid #22c55e;
+}
+
+.result-title{
+    font-size:21px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.score{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:14px;
+}
+
+.result ul{
+    margin-top:10px;
+    padding-left:20px;
+}
+
+.result li{
+    margin-bottom:6px;
+}
+
+.warning-note{
+    margin-top:18px;
+    padding-top:14px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.12);
+
+    font-weight:700;
+}
+
+/* ==========================================
+   RISK BAR
+========================================== */
+
+.risk-bar{
+    height:10px;
+
+    width:100%;
 
     background:
-        rgba(34,197,94,.15);
+        rgba(255,255,255,.08);
 
-    color:#86efac;
+    border-radius:20px;
 
-    border:
-        1px solid
-        rgba(34,197,94,.3);
+    overflow:hidden;
+
+    margin:
+        15px 0
+        20px;
 }
 
+.risk-fill{
+    height:100%;
 
-/* ================================
-   CATEGORY
-================================ */
-
-.category{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:13px 0;
-
-    border-bottom:
-        1px solid
-        var(--border);
-}
-
-.category:last-child{
-    border-bottom:0;
-}
-
-.category-name{
-    font-size:13px;
-}
-
-.category-count{
-
-    min-width:32px;
-
-    text-align:center;
-
-    padding:3px 8px;
+    width:0%;
 
     border-radius:20px;
 
     background:
-        rgba(99,102,241,.12);
+        linear-gradient(
+            90deg,
+            #22c55e,
+            #eab308,
+            #f97316,
+            #ef4444
+        );
 
-    color:#a5b4fc;
-
-    font-weight:800;
-
-    font-size:12px;
+    transition:
+        width .7s ease;
 }
 
+/* ==========================================
+   DETECTION INFO
+========================================== */
 
-/* ================================
-   EMPTY STATE
-================================ */
-
-.empty{
-
-    text-align:center;
-
-    padding:45px 15px;
-
-    color:var(--muted);
-}
-
-.empty-icon{
-
-    font-size:40px;
-
-    margin-bottom:10px;
-}
-
-
-/* ================================
-   FOOTER
-================================ */
-
-.footer-note{
-
+.detection-box{
     margin-top:20px;
 
-    color:var(--muted);
+    padding:16px;
+
+    border-radius:12px;
+
+    background:
+        rgba(0,0,0,.18);
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+.detection-box strong{
+    display:block;
+    margin-bottom:8px;
+}
+
+.category-tag{
+    display:inline-block;
+
+    padding:
+        5px 10px;
+
+    margin:
+        4px 4px 4px 0;
+
+    border-radius:20px;
+
+    background:
+        rgba(99,102,241,.15);
+
+    color:#c7d2fe;
 
     font-size:12px;
 
-    text-align:center;
+    font-weight:700;
 }
 
-
-/* ================================
+/* ==========================================
    MOBILE
-================================ */
+========================================== */
 
-@media(max-width:800px){
+@media(max-width:650px){
 
-    .stats{
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .grid{
-
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:550px){
-
-    .container{
-
+    .page{
         padding:
-            80px
-            14px
-            35px;
+            80px 16px 35px;
     }
 
     .header{
-
-        padding:23px 18px;
+        padding:
+            26px 20px;
     }
 
     .header h1{
-
         font-size:26px;
     }
 
-    .stats{
-
-        gap:10px;
+    .checker{
+        padding:
+            22px 18px;
     }
 
-    .stat-card{
-
-        padding:15px;
+    .buttons{
+        flex-direction:column;
     }
 
-    .stat-number{
-
-        font-size:23px;
+    .action-button{
+        width:100%;
     }
 
 }
@@ -726,11 +572,11 @@ body{
 </style>
 </head>
 
-
 <body>
 
-
-<!-- MENU BUTTON -->
+<!-- ==========================================
+     MENU BUTTON
+========================================== -->
 
 <button
     class="menu-button"
@@ -745,7 +591,9 @@ body{
 </button>
 
 
-<!-- SIDE MENU -->
+<!-- ==========================================
+     SIDE MENU
+========================================== -->
 
 <nav
     id="sideMenu"
@@ -754,9 +602,7 @@ body{
 
     <div class="menu-title">
 
-        <strong>
-            🛡️ TrustAI
-        </strong>
+        <strong>🛡️ TrustAI</strong>
 
         <span>
             Online Scam Protection
@@ -867,190 +713,105 @@ body{
 ></div>
 
 
-<!-- MAIN -->
+<!-- ==========================================
+     PAGE
+========================================== -->
 
-<main class="container">
+<div class="page">
 
 
     <!-- HEADER -->
 
     <section class="header">
 
-        <span class="badge">
-            TRUST AI SECURITY OPERATIONS
-        </span>
+        <div class="header-label">
+            TRUST AI MESSAGE SECURITY
+        </div>
+
 
         <h1>
-            📡 Threat Monitor
+            🔍 Message Checker
         </h1>
 
+
         <p>
-            Monitor security events detected by
-            TrustAI protection tools.
+            Analyze suspicious messages for scam,
+            phishing, fraud, impersonation and
+            social-engineering indicators.
         </p>
 
-
-        <div class="system-status">
-
-            <span class="status-dot"></span>
-
-            Monitoring system active
-
-        </div>
-
     </section>
 
 
-    <!-- STATISTICS -->
+    <!-- CHECKER -->
 
-    <section class="stats">
+    <section class="checker">
+
+        <h2>
+            Check a Message
+        </h2>
 
 
-        <div class="stat-card">
+        <div class="checker-subtitle">
 
-            <div class="stat-label">
-                Total Scans
-            </div>
+            Paste an SMS, WhatsApp message,
+            Telegram message, email or other
+            suspicious text below.
 
-            <div
-                id="totalScans"
-                class="stat-number"
+        </div>
+
+
+        <textarea
+            id="message"
+            placeholder="Paste the suspicious message here..."
+        ></textarea>
+
+
+        <div class="buttons">
+
+            <button
+                class="action-button check-button"
+                onclick="checkMessage()"
             >
-                0
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Threats Detected
-            </div>
-
-            <div
-                id="threatsDetected"
-                class="stat-number"
-            >
-                0
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                Critical
-            </div>
-
-            <div
-                id="criticalCount"
-                class="stat-number"
-            >
-                0
-            </div>
-
-        </div>
-
-
-        <div class="stat-card">
-
-            <div class="stat-label">
-                High Risk
-            </div>
-
-            <div
-                id="highCount"
-                class="stat-number"
-            >
-                0
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTENT -->
-
-    <section class="grid">
-
-
-        <!-- LIVE THREAT FEED -->
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>
-                    🚨 Recent Threats
-                </h2>
-
-                <button
-                    class="btn"
-                    onclick="loadMonitor()"
-                >
-                    🔄 Refresh
-                </button>
-
-            </div>
-
-
-            <div
-                id="threatFeed"
-            ></div>
-
-        </div>
-
-
-        <!-- CATEGORIES -->
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>
-                    🎯 Threat Categories
-                </h2>
-
-            </div>
-
-
-            <div id="categories"></div>
+                🔍 Check Message
+            </button>
 
 
             <button
-                class="btn"
-                style="width:100%;margin-top:20px;"
-                onclick="clearThreatHistory()"
+                class="action-button clear-button"
+                onclick="clearMessage()"
             >
-                🗑️ Clear Threat History
+                Clear
+            </button>
+
+
+            <button
+                class="action-button sample-button"
+                onclick="loadRandomSample()"
+            >
+                🎲 Random Sample
             </button>
 
         </div>
 
 
+        <!-- RESULT -->
+
+        <div
+            id="result"
+            class="result"
+        ></div>
+
     </section>
 
-
-    <div class="footer-note">
-
-        TrustAI Threat Monitor •
-        Security events are stored locally
-        on this device.
-
-    </div>
-
-
-</main>
+</div>
 
 
 <script>
 
-/* ==========================================
+/* =====================================================
    MENU
-========================================== */
+===================================================== */
 
 function toggleMenu(){
 
@@ -1084,413 +845,1102 @@ function closeMenu(){
 }
 
 
-/* ==========================================
-   GET THREAT HISTORY
-========================================== */
+/* =====================================================
+   MESSAGE SAMPLE LIBRARY
+===================================================== */
 
-function getThreatHistory(){
+const sampleMessages = [
 
-    try{
+    {
+        category:"Banking Scam",
+        text:
+        "Your bank account has been temporarily restricted. Verify your account immediately."
+    },
 
-        return JSON.parse(
-            localStorage.getItem(
-                "trustai_threat_history"
-            ) || "[]"
-        );
+    {
+        category:"OTP Scam",
+        text:
+        "Please send the OTP you just received to complete your verification."
+    },
 
+    {
+        category:"Password Scam",
+        text:
+        "Send your username and password so we can restore your account."
+    },
+
+    {
+        category:"Phishing",
+        text:
+        "Click here to verify your account immediately and prevent suspension."
+    },
+
+    {
+        category:"Investment Scam",
+        text:
+        "Invest ₦20,000 today and receive ₦200,000 tomorrow with guaranteed profit."
+    },
+
+    {
+        category:"Crypto Scam",
+        text:
+        "Send USDT to this wallet and receive 10x your investment."
+    },
+
+    {
+        category:"Fake Job",
+        text:
+        "Congratulations! You have been selected for an online job. Pay a registration fee to start."
+    },
+
+    {
+        category:"Romance Scam",
+        text:
+        "My love, I am stranded and need you to send money immediately."
+    },
+
+    {
+        category:"Emergency Scam",
+        text:
+        "I am in the hospital. Please send money for my treatment immediately."
+    },
+
+    {
+        category:"Impersonation",
+        text:
+        "Hello, this is my new number. I lost my phone. Please send money to this new account."
+    },
+
+    {
+        category:"Prize Scam",
+        text:
+        "Congratulations! You have won ₦5,000,000. Pay a processing fee to claim your prize."
+    },
+
+    {
+        category:"Delivery Scam",
+        text:
+        "Your package is waiting. Pay the customs fee to release it."
+    },
+
+    {
+        category:"Tech Support Scam",
+        text:
+        "Your computer is infected. Call support immediately and give the technician remote access."
+    },
+
+    {
+        category:"Loan Scam",
+        text:
+        "Your ₦5,000,000 loan has been approved. Pay the processing fee first."
+    },
+
+    {
+        category:"Marketplace Scam",
+        text:
+        "Send payment first and I will ship the phone to you."
+    },
+
+    {
+        category:"Normal Message",
+        text:
+        "Hey, are we still meeting at 4pm today?"
+    },
+
+    {
+        category:"Normal Message",
+        text:
+        "Good morning. Please remember to bring the documents tomorrow."
     }
 
-    catch(error){
+];
 
-        return [];
+
+/* =====================================================
+   DETECTION RULES
+===================================================== */
+
+const detectionRules = [
+
+    {
+        category:"OTP Scam",
+
+        score:30,
+
+        keywords:[
+            "otp",
+            "one time password",
+            "verification code",
+            "security code",
+            "6 digit code",
+            "6-digit code",
+            "confirmation code"
+        ]
+    },
+
+
+    {
+        category:"Password & Credential Scam",
+
+        score:30,
+
+        keywords:[
+            "password",
+            "username and password",
+            "login details",
+            "login credentials",
+            "banking details",
+            "account credentials"
+        ]
+    },
+
+
+    {
+        category:"Banking Scam",
+
+        score:22,
+
+        keywords:[
+            "bank account",
+            "bank account will",
+            "debit card",
+            "atm card",
+            "bvn",
+            "kyc",
+            "mobile banking",
+            "bank verification",
+            "unauthorized transaction",
+            "account has been restricted",
+            "account has been blocked",
+            "account will be suspended"
+        ]
+    },
+
+
+    {
+        category:"Phishing",
+
+        score:22,
+
+        keywords:[
+            "click here",
+            "tap this link",
+            "verify your account",
+            "verify your identity",
+            "login here",
+            "open this link",
+            "click the link",
+            "confirm your account"
+        ]
+    },
+
+
+    {
+        category:"Investment Scam",
+
+        score:27,
+
+        keywords:[
+            "guaranteed profit",
+            "guaranteed returns",
+            "double your money",
+            "100% profit",
+            "zero risk",
+            "invest today",
+            "daily returns",
+            "investment opportunity"
+        ]
+    },
+
+
+    {
+        category:"Crypto Scam",
+
+        score:27,
+
+        keywords:[
+            "bitcoin",
+            "ethereum",
+            "usdt",
+            "crypto",
+            "crypto wallet",
+            "airdrop",
+            "connect your wallet",
+            "send crypto"
+        ]
+    },
+
+
+    {
+        category:"Fake Job",
+
+        score:26,
+
+        keywords:[
+            "job opportunity",
+            "online job",
+            "work from home",
+            "registration fee",
+            "processing fee",
+            "activation fee",
+            "employment fee",
+            "pay to start",
+            "pay before training"
+        ]
+    },
+
+
+    {
+        category:"Romance Scam",
+
+        score:18,
+
+        keywords:[
+            "my love",
+            "baby",
+            "darling",
+            "i love you",
+            "stranded",
+            "please send me money",
+            "need money urgently"
+        ]
+    },
+
+
+    {
+        category:"Emergency Scam",
+
+        score:24,
+
+        keywords:[
+            "hospital",
+            "accident",
+            "emergency",
+            "treatment",
+            "medical emergency",
+            "stranded at the airport",
+            "my mother is sick",
+            "my child needs"
+        ]
+    },
+
+
+    {
+        category:"Impersonation",
+
+        score:25,
+
+        keywords:[
+            "new number",
+            "lost my phone",
+            "this is your boss",
+            "this is your friend",
+            "i changed my number",
+            "new account",
+            "send money to my new"
+        ]
+    },
+
+
+    {
+        category:"Prize & Giveaway Scam",
+
+        score:28,
+
+        keywords:[
+            "you have won",
+            "congratulations",
+            "lucky winner",
+            "cash prize",
+            "free gift",
+            "lottery winner",
+            "claim your prize",
+            "processing fee to claim"
+        ]
+    },
+
+
+    {
+        category:"Delivery Scam",
+
+        score:23,
+
+        keywords:[
+            "package is waiting",
+            "parcel",
+            "customs fee",
+            "delivery fee",
+            "shipment is on hold",
+            "customs clearance",
+            "delivery address"
+        ]
+    },
+
+
+    {
+        category:"Tech Support Scam",
+
+        score:24,
+
+        keywords:[
+            "computer is infected",
+            "virus detected",
+            "microsoft security alert",
+            "windows defender",
+            "call support",
+            "remote access",
+            "computer has been hacked"
+        ]
+    },
+
+
+    {
+    category:"Social Media Scam",
+
+    score:23,
+
+    keywords:[
+        "facebook account",
+        "instagram security",
+        "whatsapp account",
+        "social media account",
+        "account will be deleted",
+        "send the otp to support"
+    ]
+},
+
+
+{
+    category:"Lottery Scam",
+
+    score:28,
+
+    keywords:[
+        "international lottery",
+        "lottery winnings",
+        "lottery prize",
+        "selected for a cash prize"
+    ]
+},
+
+
+{
+    category:"Charity Scam",
+
+    score:17,
+
+    keywords:[
+        "donate immediately",
+        "urgent donation",
+        "emergency donation",
+        "send donation",
+        "charity needs"
+    ]
+},
+
+
+{
+    category:"Rental Scam",
+
+    score:24,
+
+    keywords:[
+        "apartment is available",
+        "pay the deposit",
+        "reserve the apartment",
+        "house rent",
+        "upfront payment",
+        "pay before viewing"
+    ]
+},
+
+
+{
+    category:"Marketplace Scam",
+
+    score:22,
+
+    keywords:[
+        "send payment first",
+        "pay a deposit",
+        "reserve the item",
+        "another buyer",
+        "cannot meet in person"
+    ]
+},
+
+
+{
+    category:"Loan Scam",
+
+    score:25,
+
+    keywords:[
+        "loan approved",
+        "loan is ready",
+        "loan processing fee",
+        "loan activation fee",
+        "unlock the funds",
+        "insurance fee"
+    ]
+},
+
+
+{
+    category:"Suspicious Link",
+
+    score:20,
+
+    keywords:[
+        "http://",
+        "https://",
+        "bit.ly",
+        "tinyurl",
+        "shorturl",
+        ".xyz",
+        ".top",
+        ".click"
+    ]
+},
+
+
+{
+    category:"Urgency Manipulation",
+
+    score:15,
+
+    keywords:[
+        "immediately",
+        "urgent",
+        "urgently",
+        "right now",
+        "act now",
+        "within 24 hours",
+        "before midnight",
+        "last chance",
+        "do it now",
+        "as soon as possible"
+    ]
+},
+
+
+{
+    category:"Payment Request",
+
+    score:18,
+
+    keywords:[
+        "send money",
+        "transfer money",
+        "make payment",
+        "send payment",
+        "pay now",
+        "transfer now",
+        "send ₦",
+        "pay ₦"
+    ]
+}
+
+];
+
+
+/* =====================================================
+   RANDOM SAMPLE
+===================================================== */
+
+let lastSample = -1;
+
+
+function loadRandomSample(){
+
+    const textarea =
+        document.getElementById("message");
+
+
+    if(!textarea){
+        return;
+    }
+
+
+    let index;
+
+
+    do{
+
+        index =
+            Math.floor(
+                Math.random() *
+                sampleMessages.length
+            );
+
+    } while(
+        sampleMessages.length > 1 &&
+        index === lastSample
+    );
+
+
+    lastSample = index;
+
+
+    textarea.value =
+        sampleMessages[index].text;
+
+
+    const result =
+        document.getElementById("result");
+
+
+    if(result){
+
+        result.className =
+            "result";
+
+        result.innerHTML =
+            "";
 
     }
 
 }
 
 
-/* ==========================================
-   LOAD MONITOR
-========================================== */
+/* =====================================================
+   NORMALIZE TEXT
+===================================================== */
 
-function loadMonitor(){
+function normalizeText(text){
 
-    const history =
-        getThreatHistory();
-
-
-    /* TOTAL SCANS */
-
-    const totalScans =
-        history.length;
-
-
-    /* THREATS */
-
-    const threats =
-        history.filter(
-            event =>
-                Number(event.score || 0) >= 20
-        );
-
-
-    /* CRITICAL */
-
-    const critical =
-        history.filter(
-            event =>
-                String(event.level)
-                .toUpperCase()
-                === "CRITICAL"
-        );
-
-
-    /* HIGH */
-
-    const high =
-        history.filter(
-            event =>
-                [
-                    "HIGH",
-                    "VERY HIGH"
-                ].includes(
-                    String(event.level)
-                    .toUpperCase()
-                )
-        );
-
-
-    document.getElementById(
-        "totalScans"
-    ).textContent =
-        totalScans;
-
-
-    document.getElementById(
-        "threatsDetected"
-    ).textContent =
-        threats.length;
-
-
-    document.getElementById(
-        "criticalCount"
-    ).textContent =
-        critical.length;
-
-
-    document.getElementById(
-        "highCount"
-    ).textContent =
-        high.length;
-
-
-    renderThreatFeed(
-        history
-    );
-
-
-    renderCategories(
-        history
-    );
+    return String(text)
+        .toLowerCase()
+        .replace(/\s+/g," ")
+        .trim();
 
 }
 
 
-/* ==========================================
-   RENDER THREAT FEED
-========================================== */
+/* =====================================================
+   CHECK MESSAGE
+===================================================== */
 
-function renderThreatFeed(
-    history
-){
+function checkMessage(){
 
-    const feed =
-        document.getElementById(
-            "threatFeed"
-        );
+    const textarea =
+        document.getElementById("message");
+
+    const result =
+        document.getElementById("result");
 
 
-    if(history.length === 0){
+    if(!textarea || !result){
+        return;
+    }
 
-        feed.innerHTML = `
 
-            <div class="empty">
+    const original =
+        textarea.value.trim();
 
-                <div class="empty-icon">
-                    🛡️
-                </div>
 
-                <strong>
-                    No threats detected
-                </strong>
+    if(!original){
 
-                <p>
-                    Threat events from
-                    connected TrustAI tools
-                    will appear here.
-                </p>
+        result.className =
+            "result show caution";
 
+
+        result.innerHTML = `
+
+            <div class="result-title">
+                ⚠️ No message provided
             </div>
+
+            <p>
+                Paste a message into the checker
+                before scanning.
+            </p>
 
         `;
 
         return;
-
     }
 
 
-    feed.innerHTML =
-        history
-        .slice(0,20)
-        .map(
-            event => {
-
-                const level =
-                    String(
-                        event.level ||
-                        "LOW"
-                    ).toUpperCase();
+    const text =
+        normalizeText(original);
 
 
-                let severityClass =
-                    "low";
+    let score = 0;
+
+    const detections = [];
+
+    const matchedCategories = [];
 
 
-                if(level === "CRITICAL"){
+    /* ==========================================
+       RUN DETECTION RULES
+    ========================================== */
 
-                    severityClass =
-                        "critical";
+    detectionRules.forEach(rule => {
 
-                }
-
-                else if(
-                    level === "HIGH" ||
-                    level === "VERY HIGH"
-                ){
-
-                    severityClass =
-                        "high";
-
-                }
-
-                else if(
-                    level === "CAUTION"
-                ){
-
-                    severityClass =
-                        "caution";
-
-                }
+        const matchedKeywords = [];
 
 
-                const time =
-                    event.timestamp
-                    ? new Date(
-                        event.timestamp
-                    ).toLocaleString()
-                    : "Unknown time";
+        rule.keywords.forEach(keyword => {
 
+            if(
+                text.includes(
+                    keyword.toLowerCase()
+                )
+            ){
 
-                return `
-
-                    <div class="threat">
-
-                        <div class="threat-top">
-
-                            <div>
-
-                                <div class="threat-id">
-
-                                    ${escapeHTML(
-                                        event.id ||
-                                        "UNKNOWN"
-                                    )}
-
-                                </div>
-
-                                <div class="threat-title">
-
-                                    ${escapeHTML(
-                                        event.category ||
-                                        "Unknown Threat"
-                                    )}
-
-                                </div>
-
-                            </div>
-
-
-                            <span
-                                class="severity ${severityClass}"
-                            >
-
-                                ${escapeHTML(
-                                    level
-                                )}
-
-                            </span>
-
-                        </div>
-
-
-                        <div class="threat-info">
-
-                            <span>
-                                Score:
-                                ${Number(
-                                    event.score || 0
-                                )}/100
-                            </span>
-
-                            <span>
-                                ${escapeHTML(
-                                    time
-                                )}
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `;
+                matchedKeywords.push(
+                    keyword
+                );
 
             }
-        )
-        .join("");
 
-}
+        });
 
 
-/* ==========================================
-   RENDER CATEGORIES
-========================================== */
+        if(
+            matchedKeywords.length > 0
+        ){
 
-function renderCategories(
-    history
-){
-
-    const categories =
-        document.getElementById(
-            "categories"
-        );
+            score += rule.score;
 
 
-    const counts = {};
+            detections.push({
+
+                category:
+                    rule.category,
+
+                keywords:
+                    matchedKeywords
+
+            });
 
 
-    history.forEach(
-        event => {
-
-            const category =
-                event.category ||
-                "Unknown";
-
-
-            counts[category] =
-                (counts[category] || 0)
-                + 1;
+            matchedCategories.push(
+                rule.category
+            );
 
         }
-    );
+
+    });
 
 
-    const sorted =
-        Object.entries(counts)
-        .sort(
-            (a,b) =>
-                b[1] - a[1]
+    /* ==========================================
+       CAP SCORE
+    ========================================== */
+
+    score =
+        Math.min(
+            100,
+            score
         );
 
 
-    if(sorted.length === 0){
+    /* ==========================================
+       DETERMINE RISK LEVEL
+    ========================================== */
 
-        categories.innerHTML = `
+    let level;
+    let cssClass;
+    let title;
+    let advice;
 
-            <div class="empty">
 
-                No categories yet.
+    if(score >= 80){
 
-            </div>
+        level = "CRITICAL";
 
-        `;
+        cssClass = "critical";
 
-        return;
+        title = "🚨 CRITICAL RISK";
+
+        advice =
+            "Do not click links, send money, share OTPs, passwords or personal information.";
+
+    }
+
+    else if(score >= 60){
+
+        level = "VERY HIGH";
+
+        cssClass = "very-high";
+
+        title = "🔴 VERY HIGH RISK";
+
+        advice =
+            "Treat this message as highly suspicious. Verify the sender independently before doing anything.";
+
+    }
+
+    else if(score >= 40){
+
+        level = "HIGH";
+
+        cssClass = "high";
+
+        title = "🟠 HIGH RISK";
+
+        advice =
+            "Be extremely careful. Do not provide sensitive information or make payments without verification.";
+
+    }
+
+    else if(score >= 20){
+
+        level = "CAUTION";
+
+        cssClass = "caution";
+
+        title = "🟡 CAUTION";
+
+        advice =
+            "Some suspicious indicators were detected. Verify the message before taking action.";
+
+    }
+
+    else{
+
+        level = "LOW";
+
+        cssClass = "low";
+
+        title = "🟢 LOW RISK";
+
+        advice =
+            "No major scam indicators were detected by the current rules. This does not guarantee the message is safe.";
 
     }
 
 
-    categories.innerHTML =
-        sorted
-        .slice(0,10)
-        .map(
-            ([name,count]) => `
+    /* ==========================================
+       BUILD FINDINGS
+    ========================================== */
 
-                <div class="category">
+    let detectionHTML = "";
 
-                    <span class="category-name">
+
+    if(detections.length > 0){
+
+        detectionHTML =
+            detections.map(
+                detection => `
+
+                    <li>
+
+                        <strong>
+                            ${escapeHTML(
+                                detection.category
+                            )}
+                        </strong>
+
+                        detected:
 
                         ${escapeHTML(
-                            name
+                            detection.keywords.join(", ")
+                        )}
+
+                    </li>
+
+                `
+            ).join("");
+
+    }
+
+    else{
+
+        detectionHTML = `
+
+            <li>
+                No known suspicious
+                indicators matched.
+            </li>
+
+        `;
+
+    }
+
+
+    /* ==========================================
+       CATEGORY TAGS
+    ========================================== */
+
+    const uniqueCategories =
+        [...new Set(
+            matchedCategories
+        )];
+
+
+    let tagsHTML;
+
+
+    if(uniqueCategories.length > 0){
+
+        tagsHTML =
+            uniqueCategories.map(
+                category => `
+
+                    <span class="category-tag">
+
+                        ${escapeHTML(
+                            category
                         )}
 
                     </span>
 
-                    <span class="category-count">
+                `
+            ).join("");
 
-                        ${count}
+    }
 
-                    </span>
+    else{
 
-                </div>
+        tagsHTML = `
 
-            `
-        )
-        .join("");
+            <span class="category-tag">
+                No threat category matched
+            </span>
 
-}
-
-
-/* ==========================================
-   CLEAR HISTORY
-========================================== */
-
-function clearThreatHistory(){
-
-    const confirmClear =
-        confirm(
-            "Clear all TrustAI threat history?"
-        );
-
-
-    if(!confirmClear){
-
-        return;
+        `;
 
     }
 
 
-    localStorage.removeItem(
-        "trustai_threat_history"
-    );
+    /* ==========================================
+       DISPLAY RESULT
+    ========================================== */
+
+    result.className =
+        "result show " +
+        cssClass;
 
 
-    localStorage.removeItem(
-        "trustai_last_threat"
-    );
+    result.innerHTML = `
+
+        <div class="result-title">
+            ${title}
+        </div>
 
 
-    loadMonitor();
+        <div class="score">
+            Risk Score: ${score}/100
+        </div>
+
+
+        <div class="risk-bar">
+
+            <div
+                class="risk-fill"
+                style="width:${score}%"
+            ></div>
+
+        </div>
+
+
+        <div class="detection-box">
+
+            <strong>
+                Detected Categories
+            </strong>
+
+            ${tagsHTML}
+
+        </div>
+
+
+        <div class="detection-box">
+
+            <strong>
+                🔎 Detection Findings
+            </strong>
+
+            <ul>
+                ${detectionHTML}
+            </ul>
+
+        </div>
+
+
+        <div class="warning-note">
+
+            🛡️ TrustAI Recommendation:
+
+            ${escapeHTML(
+                advice
+            )}
+
+        </div>
+
+    `;
+
+
+    /* ==========================================
+       SAVE TO THREAT MONITOR
+    ========================================== */
+
+    saveThreatEvent({
+
+        score: score,
+
+        level: level,
+
+        category:
+            uniqueCategories.length > 0
+            ? uniqueCategories.join(" + ")
+            : "No Threat Detected",
+
+        findings:
+            detections.map(
+                item =>
+                    item.category
+            ),
+
+        messagePreview:
+            original.substring(
+                0,
+                120
+            )
+
+    });
 
 }
 
 
-/* ==========================================
-   SECURITY: ESCAPE HTML
-========================================== */
+/* =====================================================
+   SAVE THREAT EVENT
+===================================================== */
 
-function escapeHTML(
-    value
-){
+function saveThreatEvent(data){
+
+    try{
+
+        const key =
+            "trustai_threat_history";
+
+
+        const history =
+            JSON.parse(
+                localStorage.getItem(key)
+                || "[]"
+            );
+
+
+        const event = {
+
+            id:
+                "THREAT-" +
+                Date.now()
+                .toString()
+                .slice(-8),
+
+            timestamp:
+                new Date().toISOString(),
+
+            score:
+                Number(
+                    data.score || 0
+                ),
+
+            level:
+                data.level || "LOW",
+
+            category:
+                data.category ||
+                "Unknown",
+
+            findings:
+                data.findings || [],
+
+            messagePreview:
+                data.messagePreview || ""
+
+        };
+
+
+        history.unshift(event);
+
+
+        /*
+         * Keep only the
+         * latest 100 events.
+         */
+
+        const limitedHistory =
+            history.slice(
+                0,
+                100
+            );
+
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(
+                limitedHistory
+            )
+        );
+
+
+        localStorage.setItem(
+            "trustai_last_threat",
+            JSON.stringify(event)
+        );
+
+
+    }
+    catch(error){
+
+        console.warn(
+            "TrustAI could not save threat event.",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CLEAR MESSAGE
+===================================================== */
+
+function clearMessage(){
+
+    const textarea =
+        document.getElementById(
+            "message"
+        );
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    if(textarea){
+
+        textarea.value = "";
+
+    }
+
+
+    if(result){
+
+        result.className =
+            "result";
+
+        result.innerHTML =
+            "";
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
 
     return String(value)
 
@@ -1521,24 +1971,8 @@ function escapeHTML(
 
 }
 
-
-/* ==========================================
-   START
-========================================== */
-
-loadMonitor();
-
-
-/* ==========================================
-   AUTO REFRESH
-========================================== */
-
-setInterval(
-    loadMonitor,
-    5000
-);
-
 </script>
 
 </body>
 </html>
+  
