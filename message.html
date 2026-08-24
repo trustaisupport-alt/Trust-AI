@@ -1533,15 +1533,949 @@ function ruleMatches(text, rule){
 }
 
 
-/* =====================================================
+/* ===/* =====================================================
    CHECK LEGITIMATE CONTEXT
-===========================================
+===================================================== */
+
+function checkLegitimateContext(text){
+
+    const legitimateRules = [
+
+        {
+            category:"Personal Chat",
+            keywords:[
+                "hello",
+                "hi",
+                "hey",
+                "good morning",
+                "good afternoon",
+                "good evening",
+                "how are you",
+                "how are you doing",
+                "what are you doing",
+                "where are you",
+                "see you later",
+                "see you tomorrow",
+                "take care",
+                "have a nice day",
+                "good night",
+                "thank you",
+                "thanks",
+                "you're welcome",
+                "welcome",
+                "sorry",
+                "no problem",
+                "okay",
+                "alright",
+                "i love you",
+                "love you",
+                "miss you",
+                "happy birthday",
+                "congratulations"
+            ]
+        },
+
+        {
+            category:"Personal Financial Favor",
+            keywords:[
+                "please help me with",
+                "can you lend me",
+                "lend me some money",
+                "borrow some money",
+                "i will pay you back",
+                "i'll pay you back",
+                "send me 3k",
+                "send me 2k",
+                "send me 5k",
+                "send me small money",
+                "help me with some money",
+                "i need a little money",
+                "i'll send it tomorrow",
+                "i will send it tomorrow",
+                "pay you back tomorrow"
+            ]
+        },
+
+        {
+            category:"Normal OTP / Security Notification",
+            keywords:[
+                "your otp is",
+                "your verification code is",
+                "your security code is",
+                "your confirmation code is",
+                "never share it with anyone",
+                "do not share this otp",
+                "do not share your otp",
+                "never share your otp",
+                "use this code to complete",
+                "verification code"
+            ]
+        },
+
+        {
+            category:"Appointment / Reminder",
+            keywords:[
+                "appointment",
+                "your appointment is",
+                "appointment reminder",
+                "reminder:",
+                "scheduled for",
+                "meeting is scheduled",
+                "your meeting is",
+                "see you at",
+                "don't forget",
+                "do not forget"
+            ]
+        },
+
+        {
+            category:"School / Education",
+            keywords:[
+                "class starts",
+                "lecture starts",
+                "assignment",
+                "test tomorrow",
+                "exam tomorrow",
+                "school fees",
+                "semester",
+                "course registration",
+                "lecture",
+                "class tomorrow",
+                "student portal"
+            ]
+        },
+
+        {
+            category:"Work / Business",
+            keywords:[
+                "meeting",
+                "project meeting",
+                "team meeting",
+                "work meeting",
+                "office",
+                "deadline",
+                "report is ready",
+                "document is ready",
+                "business meeting",
+                "invoice attached"
+            ]
+        },
+
+        {
+            category:"Delivery / Order Notification",
+            keywords:[
+                "your order has been confirmed",
+                "order confirmed",
+                "your order is ready",
+                "delivery is scheduled",
+                "your package will arrive",
+                "delivery scheduled",
+                "order has shipped",
+                "your order has shipped"
+            ]
+        }
+
+    ];
+
+    const matches = [];
+
+    legitimateRules.forEach(rule => {
+
+        const found = rule.keywords.filter(keyword =>
+            text.includes(keyword.toLowerCase())
+        );
+
+        if(found.length > 0){
+
+            matches.push({
+                category:rule.category,
+                keywords:found
+            });
+
+        }
+
+    });
+
+    return matches;
+}
+
+
+/* =====================================================
+   RANDOM SAMPLE LIBRARY
+===================================================== */
+
+const legitimateSamples = [
+
+    "Hey, how are you doing today?",
+
+    "Good morning bro, hope you slept well.",
+
+    "I love you ❤️",
+
+    "I miss you so much.",
+
+    "Are we still meeting at 4 PM today?",
+
+    "Please remind me about our meeting tomorrow.",
+
+    "Happy birthday! Wishing you many more years.",
+
+    "Thank you for helping me yesterday.",
+
+    "Please help me with 3k. I will send it tomorrow.",
+
+    "Can you lend me 2k? I will pay you back tomorrow.",
+
+    "Your OTP is 482910. Never share it with anyone.",
+
+    "Your verification code is 739201. Do not share this code.",
+
+    "Reminder: Your appointment is scheduled for tomorrow at 10 AM.",
+
+    "Your order has been confirmed and will arrive tomorrow.",
+
+    "Good afternoon, are you coming to class today?",
+
+    "The lecture starts by 10 AM tomorrow.",
+
+    "Please send me the assignment when you're done.",
+
+    "The team meeting is scheduled for 3 PM."
+
+];
+
+
+/* =====================================================
+   IMPROVED CHECK MESSAGE
+===================================================== */
+
+function checkMessage(){
+
+    const textarea =
+        document.getElementById("message");
+
+    const result =
+        document.getElementById("result");
+
+    if(!textarea || !result) return;
+
+    const original =
+        textarea.value.trim();
+
+    if(!original){
+
+        result.className =
+            "result show caution";
+
+        result.innerHTML = `
+            <div class="result-title">
+                ⚠️ No message provided
+            </div>
+
+            <p>
+                Paste a message into the checker
+                before scanning.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    const text =
+        normalizeText(original);
+
+
+    /* =================================================
+       THREAT DETECTION
+    ================================================= */
+
+    let score = 10;
+
+    const detections = [];
+
+    const matchedCategories = [];
+
+
+    detectionRules.forEach(rule => {
+
+        if(ruleMatches(text,rule)){
+
+            const matchedKeywords =
+                rule.keywords.filter(keyword =>
+                    text.includes(
+                        keyword.toLowerCase()
+                    )
+                );
+
+
+            score += rule.score;
+
+
+            detections.push({
+
+                category:rule.category,
+
+                type:rule.type,
+
+                keywords:matchedKeywords
+
+            });
+
+
+            matchedCategories.push(
+                rule.category
+            );
+
+        }
+
+    });
+
+
+    /* =================================================
+       LEGITIMATE CONTEXT
+    ================================================= */
+
+    const legitimateMatches =
+        checkLegitimateContext(text);
+
+
+    legitimateMatches.forEach(match => {
+
+        detections.push({
+
+            category:match.category,
+
+            type:"Legitimate",
+
+            keywords:match.keywords
+
+        });
+
+    });
+
+
+    /* =================================================
+       DETERMINE THREAT STATUS
+    ================================================= */
+
+    const hasThreat =
+        detections.some(
+            d => d.type === "Threat"
+        );
+
+
+    const hasLegitimate =
+        legitimateMatches.length > 0;
+
+
+    /* =================================================
+       SPECIAL OTP PROTECTION
+       
+       "Your OTP is 123456. Never share it"
+       must NOT be treated as OTP theft.
+    ================================================= */
+
+    const isSafeOTP =
+        (
+            text.includes("otp") ||
+            text.includes("verification code")
+        )
+        &&
+        (
+            text.includes("never share") ||
+            text.includes("do not share") ||
+            text.includes("don't share")
+        )
+        &&
+        !(
+            text.includes("send me the otp") ||
+            text.includes("send the otp") ||
+            text.includes("share the otp") ||
+            text.includes("give me the otp") ||
+            text.includes("tell me the otp") ||
+            text.includes("provide the otp")
+        );
+
+
+    if(isSafeOTP){
+
+        score = 5;
+
+        detections.length = 0;
+
+        matchedCategories.length = 0;
+
+        detections.push({
+
+            category:
+                "Normal OTP / Security Notification",
+
+            type:
+                "Legitimate",
+
+            keywords:[
+                "otp",
+                "never share"
+            ]
+
+        });
+
+    }
+
+
+    /* =================================================
+       NORMAL PERSONAL MESSAGE
+    ================================================= */
+
+    if(!hasThreat && hasLegitimate){
+
+        score = 5;
+
+        matchedCategories.length = 0;
+
+        legitimateMatches.forEach(match => {
+
+            matchedCategories.push(
+                match.category
+            );
+
+        });
+
+    }
+
+
+    /* =================================================
+       MESSAGE WITH NO SPECIAL PATTERN
+    ================================================= */
+
+    if(
+        !hasThreat &&
+        !hasLegitimate
+    ){
+
+        score = 10;
+
+        matchedCategories.push(
+            "General Communication"
+        );
+
+    }
+
+
+    /* =================================================
+       MULTIPLE THREAT SIGNALS
+    ================================================= */
+
+    const threatCount =
+        detections.filter(
+            d => d.type === "Threat"
+        ).length;
+
+
+    if(threatCount >= 2){
+
+        score += 15;
+
+    }
+
+
+    score =
+        Math.max(
+            0,
+            Math.min(100,score)
+        );
+
+
+    /* =================================================
+       RISK LEVEL
+    ================================================= */
+
+    let level;
+
+    let cssClass;
+
+    let title;
+
+    let advice;
+
+
+    if(hasThreat && score >= 70){
+
+        level =
+            "CRITICAL / THREAT";
+
+        cssClass =
+            "critical";
+
+        title =
+            "🚨 CRITICAL THREAT DETECTED";
+
+        advice =
+            "This message contains multiple strong scam indicators. Do not send money, passwords, OTPs, or personal information.";
+
+    }
+
+    else if(hasThreat && score >= 45){
+
+        level =
+            "HIGH RISK";
+
+        cssClass =
+            "high";
+
+        title =
+            "🟠 HIGH RISK / SUSPICIOUS";
+
+        advice =
+            "Exercise extreme caution. Verify the sender independently before taking any action.";
+
+    }
+
+    else if(hasThreat){
+
+        level =
+            "CAUTION";
+
+        cssClass =
+            "caution";
+
+        title =
+            "🟡 CAUTION REQUIRED";
+
+        advice =
+            "Some suspicious indicators were detected. Check the sender and context carefully.";
+
+    }
+
+    else if(hasLegitimate){
+
+        level =
+            "LOW RISK";
+
+        cssClass =
+            "low";
+
+        title =
+            "🟢 LOW RISK";
+
+        advice =
+            "No major scam indicators were detected by the current rules. This does not guarantee the message is safe.";
+
+    }
+
+    else{
+
+        level =
+            "LOW RISK";
+
+        cssClass =
+            "low";
+
+        title =
+            "🟢 LOW RISK";
+
+        advice =
+            "No major scam indicators were detected by the current rules. This does not guarantee the message is safe.";
+
+    }
+
+
+    /* =================================================
+       DETECTION BREAKDOWN
+    ================================================= */
+
+    let detectionHTML;
+
+
+    if(detections.length > 0){
+
+        detectionHTML =
+            detections.map(d => `
+
+                <li>
+
+                    <strong>
+                        ${escapeHTML(d.category)}
+                    </strong>
+
+                    <br>
+
+                    <span>
+                        ${escapeHTML(d.type)}
+                    </span>
+
+                    <br>
+
+                    <small>
+                        detected:
+                        ${escapeHTML(
+                            d.keywords.join(", ")
+                        )}
+                    </small>
+
+                </li>
+
+            `).join("");
+
+    }
+
+    else{
+
+        detectionHTML = `
+
+            <li>
+                No specific scam pattern was detected.
+            </li>
+
+        `;
+
+    }
+
+
+    /* =================================================
+       CATEGORY TAGS
+    ================================================= */
+
+    const uniqueCategories =
+        [...new Set(
+            matchedCategories
+        )];
+
+
+    let tagsHTML;
+
+
+    if(uniqueCategories.length > 0){
+
+        tagsHTML =
+            uniqueCategories.map(
+                category => {
+
+                    return `
+                        <span class="category-tag">
+                            ${escapeHTML(category)}
+                        </span>
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+    else{
+
+        tagsHTML = `
+            <span class="category-tag legitimate">
+                General Communication
+            </span>
+        `;
+
+    }
+
+
+    /* =================================================
+       DISPLAY RESULT
+    ================================================= */
+
+    result.className =
+        "result show " + cssClass;
+
+
+    result.innerHTML = `
+
+        <div class="result-title">
+            ${title}
+        </div>
+
+        <div class="score">
+            Risk Score: ${score}/100
+        </div>
+
+        <div class="risk-bar">
+
+            <div
+                class="risk-fill"
+                style="width:${score}%"
+            ></div>
+
+        </div>
+
+
+        <div class="detection-box">
+
+            <strong>
+                Detected Categories
+            </strong>
+
+            ${tagsHTML}
+
+        </div>
+
+
+        <div class="detection-box">
+
+            <strong>
+                🔎 Detection Findings
+            </strong>
+
+            <ul>
+                ${detectionHTML}
+            </ul>
+
+        </div>
+
+
+        <div class="warning-note">
+
+            🛡️ TrustAI Recommendation:
+            ${escapeHTML(advice)}
+
+        </div>
+
+    `;
+
+
+    /* =================================================
+       SAVE ANALYSIS
+    ================================================= */
+
+    saveThreatEvent({
+
+        score:score,
+
+        level:level,
+
+        category:
+            uniqueCategories.join(" + ") ||
+            "General Communication",
+
+        findings:
+            detections.map(
+                d => d.category
+            ),
+
+        messagePreview:
+            original.substring(0,120)
+
+    });
+
+}
+
+
+/* =====================================================
+   RANDOM SAMPLE
+===================================================== */
+
+function loadRandomSample(){
+
+    const textarea =
+        document.getElementById("message");
+
+    const result =
+        document.getElementById("result");
+
+
+    if(!textarea) return;
+
+
+    const allSamples = [
+
+        ...legitimateSamples,
+
+        ...sampleMessages.map(
+            sample => sample.text
+        )
+
+    ];
+
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            allSamples.length
+        );
+
+
+    textarea.value =
+        allSamples[randomIndex];
+
+
+    if(result){
+
+        result.className =
+            "result";
+
+        result.innerHTML =
+            "";
+
+    }
+
+}
+
+
+/* =====================================================
+   CLEAR MESSAGE
+===================================================== */
+
+function clearMessage(){
+
+    const textarea =
+        document.getElementById("message");
+
+    const result =
+        document.getElementById("result");
+
+
+    if(textarea){
+
+        textarea.value =
+            "";
+
+    }
+
+
+    if(result){
+
+        result.className =
+            "result";
+
+        result.innerHTML =
+            "";
+
+    }
+
+}
+
+
+/* =====================================================
+   SAVE THREAT EVENT
+===================================================== */
+
+function saveThreatEvent(data){
+
+    try{
+
+        const key =
+            "trustai_threat_history";
+
+
+        const history =
+            JSON.parse(
+                localStorage.getItem(key) ||
+                "[]"
+            );
+
+
+        const event = {
+
+            id:
+                "LOG-" +
+                Date.now()
+                .toString()
+                .slice(-8),
+
+            timestamp:
+                new Date().toISOString(),
+
+            score:
+                Number(
+                    data.score || 0
+                ),
+
+            level:
+                data.level ||
+                "LOW",
+
+            category:
+                data.category ||
+                "Unknown",
+
+            findings:
+                data.findings ||
+                [],
+
+            messagePreview:
+                data.messagePreview ||
+                ""
+
+        };
+
+
+        history.unshift(event);
+
+
+        localStorage.setItem(
+
+            key,
+
+            JSON.stringify(
+                history.slice(0,100)
+            )
+
+        );
+
+
+        localStorage.setItem(
+
+            "trustai_last_threat",
+
+            JSON.stringify(event)
+
+        );
+
+
+    }
+
+    catch(error){
+
+        console.warn(
+            "Could not save analysis log.",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
                             
-        
-    
-
-
-    
+     
     
 </script>
 
