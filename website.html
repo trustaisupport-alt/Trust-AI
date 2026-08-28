@@ -1,532 +1,1711 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trust AI - Global Website Fraud Checker</title>
-    <style>
-        :root {
-            --bg-color: #050b14;
-            --card-bg: #0f1d2f;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --border: #233e5f;
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Trust AI - Global Website Fraud Checker</title>
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+<style>
+    :root {
+        --bg-color: #050b14;
+        --card-bg: #0f1d2f;
+        --text-color: #f8fafc;
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --border: #233e5f;
+    }
 
-        /* Hamburger Menu */
-        .menu-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px;
-            cursor: pointer;
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
+    * {
+        box-sizing: border-box;
+    }
 
-        .menu-btn span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--text-color);
-            transition: 0.3s;
-        }
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont,
+            'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -280px;
-            width: 280px;
-            height: 100%;
-            background: #081220;
-            border-right: 1px solid var(--border);
-            transition: left 0.3s ease;
-            z-index: 1000;
-            padding-top: 80px;
-            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
-            overflow-y: auto;
-        }
+        background-color: var(--bg-color);
+        color: var(--text-color);
 
-        .sidebar.open { left: 0; }
+        margin: 0;
+        padding: 0;
 
-        .sidebar-brand { padding: 0 20px 20px 20px; border-bottom: 1px solid var(--border); margin-bottom: 15px; }
-        .sidebar-brand h2 { color: var(--accent); font-size: 20px; margin: 0 0 5px 0; display: flex; align-items: center; gap: 8px; }
-        .sidebar-brand p { color: var(--text-muted); font-size: 12px; margin: 0; }
+        min-height: 100vh;
+    }
 
-        .sidebar-links { list-style: none; padding: 0; margin: 0 0 30px 0; }
-        .sidebar-links li a { display: flex; align-items: center; gap: 12px; padding: 12px 20px; color: #cbd5e1; text-decoration: none; font-size: 14px; transition: background 0.2s, color 0.2s; }
-        .sidebar-links li a:hover { background: #112238; color: var(--accent); }
+    /* =========================
+       HAMBURGER MENU
+    ========================= */
 
-        .sidebar-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 10px 20px;
-        }
+    .menu-btn {
+        position: fixed;
 
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
-        .overlay.active { display: block; }
+        top: 20px;
+        left: 20px;
 
-        /* Content Container */
+        background: var(--card-bg);
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 12px;
+
+        cursor: pointer;
+
+        z-index: 1001;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 5px;
+
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .menu-btn span {
+        display: block;
+
+        width: 22px;
+        height: 2px;
+
+        background: var(--text-color);
+
+        transition: 0.3s;
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+
+    .sidebar {
+        position: fixed;
+
+        top: 0;
+        left: -280px;
+
+        width: 280px;
+        height: 100%;
+
+        background: #081220;
+
+        border-right: 1px solid var(--border);
+
+        transition: left 0.3s ease;
+
+        z-index: 1000;
+
+        padding-top: 80px;
+
+        box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+
+        overflow-y: auto;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .sidebar-brand {
+        padding: 0 20px 20px 20px;
+
+        border-bottom: 1px solid var(--border);
+
+        margin-bottom: 15px;
+    }
+
+    .sidebar-brand h2 {
+        color: var(--accent);
+
+        font-size: 20px;
+
+        margin: 0 0 5px 0;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+    }
+
+    .sidebar-brand p {
+        color: var(--text-muted);
+
+        font-size: 12px;
+
+        margin: 0;
+    }
+
+    .sidebar-links {
+        list-style: none;
+
+        padding: 0;
+
+        margin: 0 0 30px 0;
+    }
+
+    .sidebar-links li a {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 12px 20px;
+
+        color: #cbd5e1;
+
+        text-decoration: none;
+
+        font-size: 14px;
+
+        transition:
+            background 0.2s,
+            color 0.2s;
+    }
+
+    .sidebar-links li a:hover {
+        background: #112238;
+
+        color: var(--accent);
+    }
+
+    .sidebar-divider {
+        border: none;
+
+        border-top: 1px solid var(--border);
+
+        margin: 10px 20px;
+    }
+
+    .overlay {
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0,0,0,0.5);
+
+        display: none;
+
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+        width: 90%;
+
+        max-width: 600px;
+
+        margin: 100px auto 40px auto;
+
+        background-color: var(--card-bg);
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 24px;
+
+        box-shadow:
+            0 10px 25px -5px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+        font-size: 1.5rem;
+
+        margin-top: 0;
+
+        margin-bottom: 8px;
+
+        color: var(--accent);
+
+        text-align: center;
+    }
+
+    p.subtitle {
+        text-align: center;
+
+        color: var(--text-muted);
+
+        font-size: 0.9rem;
+
+        margin-bottom: 24px;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
+        display: flex;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        flex: 1;
+
+        padding: 12px 16px;
+
+        background-color: var(--bg-color);
+
+        border: 1px solid var(--border);
+
+        border-radius: 8px;
+
+        color: var(--text-color);
+
+        font-size: 1rem;
+
+        outline: none;
+
+        transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+        border-color: var(--accent);
+    }
+
+    button {
+        padding: 12px 20px;
+
+        background-color: var(--accent);
+
+        color: var(--bg-color);
+
+        border: none;
+
+        border-radius: 8px;
+
+        font-weight: 600;
+
+        font-size: 1rem;
+
+        cursor: pointer;
+
+        transition: opacity 0.2s;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    /* =========================
+       RESULT
+    ========================= */
+
+    .result {
+        margin-top: 20px;
+
+        padding: 16px;
+
+        border-radius: 8px;
+
+        background-color: var(--bg-color);
+
+        border: 1px solid var(--border);
+
+        display: none;
+    }
+
+    .result.show {
+        display: block;
+    }
+
+    .result.verified {
+        border-left: 5px solid #22c55e;
+    }
+
+    .result.critical {
+        border-left: 5px solid #ef4444;
+    }
+
+    .result.high {
+        border-left: 5px solid #f97316;
+    }
+
+    .result.caution {
+        border-left: 5px solid #eab308;
+    }
+
+    .result.unverified {
+        border-left: 5px solid #94a3b8;
+    }
+
+    .result.telegram {
+        border-left: 5px solid #ef4444;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(239,68,68,0.10),
+                var(--bg-color)
+            );
+    }
+
+    .status {
+        font-weight: bold;
+
+        font-size: 1.1rem;
+
+        margin-bottom: 8px;
+    }
+
+    .website-name {
+        font-family: monospace;
+
+        color: var(--accent);
+
+        margin-bottom: 12px;
+
+        word-break: break-all;
+    }
+
+    .message {
+        font-size: 0.95rem;
+
+        margin-bottom: 8px;
+    }
+
+    .reason {
+        font-size: 0.85rem;
+
+        color: var(--text-muted);
+
+        margin-bottom: 8px;
+    }
+
+    .action {
+        font-size: 0.9rem;
+
+        font-weight: 600;
+
+        color: var(--text-color);
+    }
+
+    /* =========================
+       TELEGRAM WARNING BOX
+    ========================= */
+
+    .telegram-warning {
+        margin-top: 15px;
+
+        padding: 14px;
+
+        border-radius: 8px;
+
+        background: rgba(239,68,68,0.08);
+
+        border: 1px solid rgba(239,68,68,0.25);
+
+        color: #f8fafc;
+    }
+
+    .telegram-warning strong {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #fca5a5;
+    }
+
+    .telegram-warning ul {
+        margin: 8px 0 0 18px;
+
+        padding: 0;
+    }
+
+    .telegram-warning li {
+        margin-bottom: 5px;
+
+        font-size: 0.88rem;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
         .container {
-            width: 90%;
-            max-width: 600px;
-            margin: 100px auto 40px auto;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
+            width: calc(100% - 28px);
 
-        h1 {
-            font-size: 1.5rem;
-            margin-top: 0;
-            margin-bottom: 8px;
-            color: var(--accent);
-            text-align: center;
-        }
+            padding: 20px;
 
-        p.subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 24px;
+            margin-top: 90px;
         }
 
         .form-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            flex-direction: column;
         }
 
-        input[type="text"] {
-            flex: 1;
-            padding: 12px 16px;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-color);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--accent);
-        }
-
+        input[type="text"],
         button {
-            padding: 12px 20px;
-            background-color: var(--accent);
-            color: var(--bg-color);
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: opacity 0.2s;
+            width: 100%;
         }
 
-        button:hover {
-            opacity: 0.9;
+        .sidebar {
+            width: 280px;
         }
+    }
+</style>
 
-        .result {
-            margin-top: 20px;
-            padding: 16px;
-            border-radius: 8px;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border);
-            display: none;
-        }
+</head><body><!-- =========================
+     HAMBURGER BUTTON
+========================= -->
 
-        .result.show {
-            display: block;
-        }
+<div
+    class="menu-btn"
+    onclick="toggleMenu()"
+    aria-label="Open navigation menu"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
-        .result.verified { border-left: 5px solid #22c55e; }
-        .result.critical { border-left: 5px solid #ef4444; }
-        .result.high { border-left: 5px solid #f97316; }
-        .result.caution { border-left: 5px solid #eab308; }
-        .result.unverified { border-left: 5px solid #94a3b8; }
 
-        .status {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
+<!-- =========================
+     OVERLAY
+========================= -->
 
-        .website-name {
-            font-family: monospace;
-            color: var(--accent);
-            margin-bottom: 12px;
-            word-break: break-all;
-        }
+<div
+    class="overlay"
+    id="menuOverlay"
+    onclick="toggleMenu()"
+></div>
 
-        .message {
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-        }
 
-        .reason {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-        .action {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-    </style>
-</head>
-<body>
+<nav
+    class="sidebar"
+    id="appSidebar"
+>
 
-    <!-- Hamburger Menu Button -->
-    <div class="menu-btn" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="sidebar-brand">
+
+        <h2>
+            🛡️ TrustAI
+        </h2>
+
+        <p>
+            Online Scam Protection
+        </p>
+
     </div>
 
-    <!-- Overlay Background -->
-    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
-    <!-- Slide-out Sidebar Navigation -->
-    <nav class="sidebar" id="appSidebar">
-        <div class="sidebar-brand">
-            <h2>🛡️ TrustAI</h2>
-            <p>Online Scam Protection</p>
+    <ul class="sidebar-links">
+
+        <li>
+            <a href="home.html">
+                🏠 Home
+            </a>
+        </li>
+
+        <li>
+            <a href="message.html">
+                🔍 Message Checker
+            </a>
+        </li>
+
+        <li>
+            <a href="conversation.html">
+                💬 Conversation Checker
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="website.html"
+                style="color: var(--accent); background: #112238;"
+            >
+                🌐 Website Checker
+            </a>
+        </li>
+
+        <li>
+            <a href="device.html">
+                📱 Device Security
+            </a>
+        </li>
+
+        <li>
+            <a href="security.html">
+                🛡️ Security Center
+            </a>
+        </li>
+
+    </ul>
+
+
+    <hr class="sidebar-divider">
+
+
+    <ul class="sidebar-links">
+
+        <li>
+            <a href="alerts.html">
+                🚨 Scam Alerts
+            </a>
+        </li>
+
+        <li>
+            <a href="report.html">
+                📢 Report a Scam
+            </a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                💬 Contact TrustAI
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="container">
+
+    <h1>
+        Trust AI
+    </h1>
+
+    <p class="subtitle">
+        Global Website & Phishing Fraud Defense System
+    </p>
+
+
+    <form id="websiteForm">
+
+        <div class="form-group">
+
+            <input
+                type="text"
+                id="website"
+                placeholder="Enter website URL (e.g., example.com)"
+                autocomplete="off"
+            >
+
+            <button type="submit">
+                Check
+            </button>
+
         </div>
-        <ul class="sidebar-links">
-            <li><a href="home.html">🏠 Home</a></li>
-            
-       <li><a href="message.html">🔍 Message Checker</a></li>
-            <li><a href="conversation.html">💬 Conversation Checker</a></li>
-            <li><a href="website.html" style="color: var(--accent); background: #112238;">🌐 Website Checker</a></li>
-            <li><a href="device.html">📱 Device Security</a></li>
-            <li><a href="security.html">🛡️ Security Center</a></li>
-        </ul>
 
-        <hr class="sidebar-divider">
+    </form>
 
-        <ul class="sidebar-links">
-            <li><a href="alerts.html">🚨 Scam Alerts</a></li>
-            <li><a href="report.html">📢 Report a Scam</a></li>
-            <li><a href="contact.html">💬 Contact TrustAI</a></li>
-        </ul>
-    </nav>
 
-    <!-- Main Container -->
-    <div class="container">
-        <h1>Trust AI</h1>
-        <p class="subtitle">Global Website & Phishing Fraud Defense System</p>
+    <div
+        id="result"
+        class="result"
+    >
 
-        <form id="websiteForm">
-            <div class="form-group">
-                <input type="text" id="website" placeholder="Enter website URL (e.g., example.com)" autocomplete="off">
-                <button type="submit">Check</button>
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+        <div
+            id="websiteName"
+            class="website-name"
+        ></div>
+
+        <div
+            id="resultMessage"
+            class="message"
+        ></div>
+
+        <div
+            id="reason"
+            class="reason"
+        ></div>
+
+        <div
+            id="action"
+            class="action"
+        ></div>
+
+        <div
+            id="telegramWarning"
+            class="telegram-warning"
+            style="display:none;"
+        >
+
+            <strong>
+                ⚠️ Telegram Account-Takeover Warning
+            </strong>
+
+            <div>
+                A legitimate Telegram domain does not automatically
+                mean that the specific bot or destination is trustworthy.
             </div>
-        </form>
 
-        <div id="result" class="result">
-            <div id="status" class="status"></div>
-            <div id="websiteName" class="website-name"></div>
-            <div id="resultMessage" class="message"></div>
-            <div id="reason" class="reason"></div>
-            <div id="action" class="action"></div>
+            <ul>
+
+                <li>
+                    Never give a bot your Telegram login code or OTP.
+                </li>
+
+                <li>
+                    Never provide your Telegram 2FA password.
+                </li>
+
+                <li>
+                    Never provide recovery codes.
+                </li>
+
+                <li>
+                    Do not approve an unfamiliar Telegram login or session.
+                </li>
+
+                <li>
+                    Verify the bot independently before trusting it.
+                </li>
+
+            </ul>
+
         </div>
+
     </div>
 
-    <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById('appSidebar');
-            const overlay = document.getElementById('menuOverlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
+</div>
+
+
+<script>
+
+    /* =========================
+       MENU
+    ========================= */
+
+    function toggleMenu() {
+
+        const sidebar =
+            document.getElementById("appSidebar");
+
+        const overlay =
+            document.getElementById("menuOverlay");
+
+        sidebar.classList.toggle("open");
+
+        overlay.classList.toggle("active");
+
+    }
+
+
+    /* =========================
+       WEBSITE CHECKER
+    ========================= */
+
+    document
+        .getElementById("websiteForm")
+        .addEventListener(
+            "submit",
+            checkWebsite
+        );
+
+
+    function checkWebsite(event) {
+
+        event.preventDefault();
+
+
+        const input =
+            document.getElementById("website");
+
+
+        let website =
+            input.value.trim();
+
+
+        if (website === "") {
+
+            showResult(
+                "caution",
+                "⚠️ ENTER A WEBSITE",
+                "",
+                "Please enter a website address.",
+                "",
+                "Action: Enter a domain and try again."
+            );
+
+            return;
         }
 
-        /* =========================  
-           WEBSITE CHECKER LOGIC  
-        ========================= */  
-        document.getElementById("websiteForm").addEventListener("submit", checkWebsite);  
 
-        function checkWebsite(event) {  
-            event.preventDefault();  
+        /* Remove spaces */
 
-            const input = document.getElementById("website");  
-            let website = input.value.trim();  
+        website =
+            website.replace(/\s+/g, "");
 
-            if (website === "") {  
-                showResult(  
-                    "caution",  
-                    "⚠️ ENTER A WEBSITE",  
-                    "",  
-                    "Please enter a website address.",  
-                    "",  
-                    "Action: Enter a domain and try again."  
-                );  
-                return;  
-            }  
 
-            website = website.replace(/\s+/g, "");  
-            let testURL = website;  
+        let testURL =
+            website;
 
-            if (!testURL.startsWith("http://") && !testURL.startsWith("https://")) {  
-                testURL = "https://" + testURL;  
-            }  
 
-            let url;  
-            try {  
-                url = new URL(testURL);  
-            } catch (error) {  
-                showResult(  
-                    "caution",  
-                    "⚠️ INVALID ADDRESS",  
-                    website,  
-                    "The website address could not be understood.",  
-                    "Check the spelling and format of the address.",  
-                    "Action: Enter something like example.com."  
-                );  
-                return;  
-            }  
+        /* Add HTTPS if missing */
 
-            const hostname = url.hostname.toLowerCase();  
-            const fullURL = testURL.toLowerCase();  
+        if (
+            !testURL.startsWith("http://") &&
+            !testURL.startsWith("https://")
+        ) {
 
-            let score = 0;  
-            let reasons = [];  
+            testURL =
+                "https://" + testURL;
 
-            // 1. GLOBAL TRUSTED DOMAINS
-            const trustedDomains = [  
-                "google.com", "microsoft.com", "apple.com", "amazon.com", "github.com",  
-                "stackoverflow.com", "reddit.com", "wikipedia.org", "yahoo.com", "outlook.com",  
-                "dropbox.com", "cloudflare.com", "wordpress.com", "adobe.com", "zoom.us",  
-                "canva.com", "notion.so", "figma.com", "heroku.com", "vercel.app", "netlify.app",
-                "gitlab.com", "bitbucket.org", "npmjs.com", "pypi.org", "godaddy.com", "namecheap.com",
-                "digitalocean.com", "aws.amazon.com", "azure.microsoft.com",
-                "facebook.com", "instagram.com", "linkedin.com", "youtube.com", "whatsapp.com",  
-                "twitter.com", "x.com", "spotify.com", "telegram.org", "tiktok.com",  
-                "snapchat.com", "discord.com", "pinterest.com", "twitch.tv", "telegram.me",
-                "signal.org", "viber.com", "skype.com", "slack.com", "t.me",
-                "paypal.com", "wise.com", "revolut.com", "stripe.com", "chase.com",  
-                "bankofamerica.com", "wellsfargo.com", "citibank.com", "hsbc.com",  
-                "barclays.co.uk", "binance.com", "coinbase.com", "kraken.com", "bybit.com", 
-                "okx.com", "blockchain.com", "trustwallet.com", "metamask.io", "paxos.com",
-                "mastercard.com", "visa.com", "americanexpress.com", "paypal.me", "skrill.com",
-                "neteller.com", "payoneer.com", "westernunion.com", "moneygram.com", "zellepay.com",
-                "santander.com", "bnpparibas.com", "ubs.com", "tdbank.com",
-                "ebay.com", "aliexpress.com", "alibaba.com", "shopify.com", "etsy.com", 
-                "walmart.com", "target.com", "bestbuy.com", "wayfair.com", "ikea.com",
-                "zara.com", "hm.com", "nike.com", "adidas.com", "asos.com", "shein.com",
-                "dhl.com", "fedex.com", "ups.com", "usps.com", "royalmail.com", "dpd.com",
-                "netflix.com", "hulu.com", "disneyplus.com", "primevideo.com", "hbomax.com",
-                "bbc.com", "cnn.com", "reuters.com", "apnews.com", "nytimes.com", "theguardian.com",
-                "edx.org", "coursera.org", "udemy.com", "harvard.edu", "mit.edu",
-                "gov.uk", "usa.gov", "europa.eu", "un.org", "who.int"
-            ];  
-
-            const isTrusted = trustedDomains.some(function(domain) {  
-                return hostname === domain || hostname.endsWith("." + domain);  
-            });  
-
-            // 2. BRAND IMPERSONATION & TYPOSQUATTING PATTERNS
-            const lookalikePatterns = [  
-                "g00gle", "goog1e", "gogle", "gogole", "googe", "goog-le", "google-", 
-                "micros0ft", "microsooft", "micosoft", "microsft", "microsoft-", 
-                "app1e", "appl3", "aple", "app-le", "apple-", "icloud-", "outlook-login",
-                "amaz0n", "amozon", "amazn", "am-azon", "amazon-", "dropb0x", "dropox",
-                "github-", "cloudflare-", "adobe-secure", "godaddy-verify",
-                "faceb00k", "facebok", "facbk", "face-book", "facebook-", "instargram", 
-                "instgram", "instagrm", "insta-gram", "instagram-", "linkediin", 
-                "linked-in", "linkdin", "linkedin-", "twiiter", "twiter", "twiter-", 
-                "x-login", "whats-app", "whatspp", "whatsup", "whatsapp-", "telegram-", 
-                "telegrAm", "tik-tok", "tikt0k", "snap-chat", "snapchat-", "discord-",
-                "paypa1", "paypai", "pay-pal", "paypl", "paypal-", "binance-", "binnance", 
-                "binance.co-", "coinbas", "coin-base", "coinbase-", "kraken-", "bybit-", 
-                "okx-", "wise-", "revolut-", "stripe-", "chss-", "chase-secure", 
-                "bofa-", "bankofamerica-", "metamask-", "trustwallet-", "paxos-",
-                "mastercard-", "visa-secure", "americanexpress-", "skrill-", "payoneer-",
-                "ebay-secure", "aliexpress-deal", "alibaba-vip", "walmart-reward", 
-                "dhl-delivery", "fedex-tracking", "ups-parcel", "usps-redelivery", 
-                "royalmail-track", "customs-fee", "package-pending"
-            ];  
-
-            for (const pattern of lookalikePatterns) {  
-                if (hostname.includes(pattern)) {  
-                    score += 8;  
-                    reasons.push("Strong match for a known brand lookalike/impersonation pattern.");  
-                    break;  
-                }  
-            }  
-
-            // 3. SUSPICIOUS TLDs
-            const riskyTLDs = [
-                ".zip", ".mov", ".click", ".top", ".gq", ".cf", ".ml", ".tk", ".cc", 
-                ".work", ".loan", ".party", ".gdn", ".trade", ".date", ".faith", ".racing", 
-                ".win", ".review", ".stream", ".download", ".accountant", ".cricket", 
-                ".space", ".site", ".online", ".tech", ".fun", ".icu", ".cam", ".bid"
-            ];
-
-            if (riskyTLDs.some(tld => hostname.endsWith(tld))) {  
-                score += 3;  
-                reasons.push("Domain uses an extension frequently associated with spam or phishing.");  
-            }  
-
-            // 4. PROTOCOL & TECHNICAL RED FLAGS
-            if (url.protocol === "http:") {  
-                score += 2;  
-                reasons.push("Website does not use a secure HTTPS connection.");  
-            }  
-
-            if (/^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)) {  
-                score += 4;  
-                reasons.push("Website uses raw IP numbers instead of a proper domain name.");  
-            }  
-
-            if (fullURL.includes("@")) {  
-                score += 3;  
-                reasons.push("URL contains an unusual '@' symbol used to mask true destinations.");  
-            }  
-
-            if (hostname.length > 45) {  
-                score += 2;  
-                reasons.push("Domain name is unusually long, hiding real subdomains.");  
-            }  
-
-            const hyphens = (hostname.match(/-/g) || []).length;  
-            if (hyphens >= 2) {  
-                score += 2;  
-                reasons.push("Domain contains multiple hyphens, a common trick for fake sites.");  
-            }  
-
-            // 5. PHISHING & SCAM KEYWORDS
-            const suspiciousWords = [  
-                "verify", "verification", "verifiy", "confirm", "confirmation", "update", 
-                "suspended", "suspend", "locked", "unlock", "restricted", "restriction", 
-                "security-check", "security-alert", "validate", "validation", "identity", 
-                "kyc", "reactivate", "restore", "recover", "login", "signin", "auth", 
-                "password", "reset", "credential", "pin-reset", "otp", "token", "2fa",
-                "account-alert", "billing-issue", "payment-failed", "card-expired",
-                "claim", "prize", "winner", "won", "reward", "bonus", "free-money", 
-                "cash", "cashback", "airdrop", "giveaway", "grant", "relief-fund", 
-                "subsidy", "loan", "instant-loan", "quick-loan", "stimulus", 
-                "compensation", "wealth", "rich", "profit", "invest", "investment", 
-                "crypto-mining", "doubler", "double-money", "trading-bot", "forex-signal",
-                "nft-drop", "mint-nft", "web3-airdrop", "eth-giveaway", "btc-giveaway",
-                "visa-lottery", "job-offer", "remote-job", "work-from-home", "scholarship", 
-                "recruitment", "employment", "travel-deal", "cheap-ticket", "urgent-notice",
-                "green-card", "work-visa", "express-entry", "free-shipping", "flash-sale"
-            ];  
-
-            for (const word of suspiciousWords) {  
-                if (fullURL.includes(word)) {  
-                    score += 3;  
-                    reasons.push("URL path contains high-risk scam/phishing phrasing (" + word + ").");  
-                    break;  
-                }  
-            }  
-
-            // 6. URL SHORTENERS
-            const shorteners = [  
-                "bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "buff.ly", 
-                "adf.ly", "ow.ly", "bl.ink", "shorte.st", "rb.gy", "rebrand.ly", "lnkd.in"
-            ];  
-
-            if (shorteners.includes(hostname)) {  
-                score += 3;  
-            }  
-
-            score = Math.min(score, 10);  
-
-            if (isTrusted && score === 0) {  
-                showResult(  
-                    "verified",  
-                    "🟢 RECOGNIZED DOMAIN",  
-                    website,  
-                    "This matches a known official global domain.",  
-                    "No major URL warning signs were detected.",  
-                    "Action: Still check the address before entering sensitive information."  
-                );  
-                return;  
-            }  
-
-            if (score >= 7) {  
-                showResult(  
-                    "critical",  
-                    "🔴 VERY HIGH RISK",  
-                    website,  
-                    "Strong scam or phishing indicators were detected.",  
-                    reasons[0],  
-                    "Action: Do not enter passwords, OTPs, PINs or payment details."  
-                );  
-                return;  
-            }  
-
-            if (score >= 4) {  
-                showResult(  
-                    "high",  
-                    "🟠 HIGH RISK",  
-                    website,  
-                    "Suspicious impersonation or structure characteristics were detected.",  
-                    reasons[0],  
-                    "Action: Avoid entering sensitive information until verified."  
-                );  
-                return;  
-            }  
-
-            if (score >= 2) {  
-                showResult(  
-                    "caution",  
-                    "🟡 CAUTION",  
-                    website,  
-                    "Some minor warning signs or irregularities were detected.",  
-                    reasons[0],  
-                    "Action: Verify the website independently before using it."  
-                );  
-                return;  
-            }  
-
-   showResult(  
-                "unverified",  
-                "⚪ UNVERIFIED",  
-                website,  
-                "No obvious scam patterns were found in the URL.",  
-                "TrustAI cannot confirm that this website is legitimate.",  
-                "Action: Verify important websites independently."  
-            );  
-        }  
-
-        function showResult(type, statusText, site, messageText, reasonText, actionText) {  
-            const result = document.getElementById("result");  
-
-            document.getElementById("status").textContent = statusText;  
-            document.getElementById("websiteName").textContent = site;  
-            document.getElementById("resultMessage").textContent = messageText;  
-            document.getElementById("reason").textContent = reasonText ? "Finding: " + reasonText : "";  
-            document.getElementById("action").textContent = actionText;  
-
-            result.className = "result show " + type;  
-            result.scrollIntoView({ behavior: "smooth", block: "nearest" });  
         }
-    </script>
+
+
+        let url;
+
+
+        try {
+
+            url =
+                new URL(testURL);
+
+        } catch (error) {
+
+            showResult(
+                "caution",
+                "⚠️ INVALID ADDRESS",
+                website,
+                "The website address could not be understood.",
+                "Check the spelling and format of the address.",
+                "Action: Enter something like example.com."
+            );
+
+            return;
+        }
+
+
+        const hostname =
+            url.hostname.toLowerCase();
+
+
+        const fullURL =
+            testURL.toLowerCase();
+
+
+        let score = 0;
+
+        let reasons = [];
+
+
+        /* =========================
+           TELEGRAM DETECTION
+        ========================= */
+
+        const isTelegramDomain =
+            hostname === "t.me" ||
+            hostname === "telegram.me" ||
+            hostname === "telegram.org" ||
+            hostname.endsWith(".telegram.org");
+
+
+        const path =
+            url.pathname.toLowerCase();
+
+
+        const isTelegramBot =
+            path.includes("bot") ||
+            /\/[a-z0-9_]+bot(?:\/|$)/i.test(path);
+
+
+        const hasStartApp =
+            url.searchParams.has("startapp");
+
+
+        const hasStartParameter =
+            url.searchParams.has("start");
+
+
+        const isTelegramBotLink =
+            isTelegramDomain &&
+            (
+                isTelegramBot ||
+                hasStartApp ||
+                hasStartParameter
+            );
+
+
+        /*
+            IMPORTANT:
+
+            Telegram links are NOT automatically treated
+            as safe merely because t.me is an official domain.
+        */
+
+
+        if (isTelegramBotLink) {
+
+            score = 10;
+
+            reasons.push(
+                "Telegram bot/startapp destination detected. The official Telegram domain does not verify that the specific bot is trustworthy."
+            );
+
+
+            showTelegramResult(
+                website,
+                reasons[0]
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           GLOBAL TRUSTED DOMAINS
+        ========================= */
+
+        const trustedDomains = [
+
+            "google.com",
+            "microsoft.com",
+            "apple.com",
+            "amazon.com",
+            "github.com",
+            "stackoverflow.com",
+            "reddit.com",
+            "wikipedia.org",
+            "yahoo.com",
+            "outlook.com",
+            "dropbox.com",
+            "cloudflare.com",
+            "wordpress.com",
+            "adobe.com",
+            "zoom.us",
+            "canva.com",
+            "notion.so",
+            "figma.com",
+            "heroku.com",
+            "vercel.app",
+            "netlify.app",
+            "gitlab.com",
+            "bitbucket.org",
+            "npmjs.com",
+            "pypi.org",
+            "godaddy.com",
+            "namecheap.com",
+            "digitalocean.com",
+            "aws.amazon.com",
+            "azure.microsoft.com",
+
+            "facebook.com",
+            "instagram.com",
+            "linkedin.com",
+            "youtube.com",
+            "whatsapp.com",
+            "twitter.com",
+            "x.com",
+            "spotify.com",
+            "telegram.org",
+            "tiktok.com",
+            "snapchat.com",
+            "discord.com",
+            "pinterest.com",
+            "twitch.tv",
+            "signal.org",
+            "viber.com",
+            "skype.com",
+            "slack.com",
+
+            "t.me",
+
+            "paypal.com",
+            "wise.com",
+            "revolut.com",
+            "stripe.com",
+            "chase.com",
+            "bankofamerica.com",
+            "wellsfargo.com",
+            "citibank.com",
+            "hsbc.com",
+            "barclays.co.uk",
+
+            "binance.com",
+            "coinbase.com",
+            "kraken.com",
+            "bybit.com",
+            "okx.com",
+            "blockchain.com",
+            "trustwallet.com",
+            "metamask.io",
+            "paxos.com",
+
+            "mastercard.com",
+            "visa.com",
+            "americanexpress.com",
+            "paypal.me",
+            "skrill.com",
+            "neteller.com",
+            "payoneer.com",
+            "westernunion.com",
+            "moneygram.com",
+            "zellepay.com",
+
+            "santander.com",
+            "bnpparibas.com",
+            "ubs.com",
+            "tdbank.com",
+
+            "ebay.com",
+            "aliexpress.com",
+            "alibaba.com",
+            "shopify.com",
+            "etsy.com",
+            "walmart.com",
+            "target.com",
+            "bestbuy.com",
+            "wayfair.com",
+            "ikea.com",
+            "zara.com",
+            "hm.com",
+            "nike.com",
+            "adidas.com",
+            "asos.com",
+            "shein.com",
+
+            "dhl.com",
+            "fedex.com",
+            "ups.com",
+            "usps.com",
+            "royalmail.com",
+            "dpd.com",
+
+            "netflix.com",
+            "hulu.com",
+            "disneyplus.com",
+            "primevideo.com",
+            "hbomax.com",
+
+            "bbc.com",
+            "cnn.com",
+            "reuters.com",
+            "apnews.com",
+            "nytimes.com",
+            "theguardian.com",
+
+            "edx.org",
+            "coursera.org",
+            "udemy.com",
+            "harvard.edu",
+            "mit.edu",
+
+            "gov.uk",
+            "usa.gov",
+            "europa.eu",
+            "un.org",
+            "who.int"
+        ];
+
+
+        const isTrusted =
+            trustedDomains.some(
+                function(domain) {
+
+                    return (
+                        hostname === domain ||
+                        hostname.endsWith("." + domain)
+                    );
+
+                }
+            );
+
+
+        /* =========================
+           BRAND IMPERSONATION
+        ========================= */
+
+        const lookalikePatterns = [
+
+            "g00gle",
+            "goog1e",
+            "gogle",
+            "gogole",
+            "googe",
+            "goog-le",
+            "google-",
+
+            "micros0ft",
+            "microsooft",
+            "micosoft",
+            "microsft",
+            "microsoft-",
+
+            "app1e",
+            "appl3",
+            "aple",
+            "app-le",
+            "apple-",
+            "icloud-",
+            "outlook-login",
+
+            "amaz0n",
+            "amozon",
+            "amazn",
+            "am-azon",
+            "amazon-",
+
+            "dropb0x",
+            "dropox",
+            "github-",
+            "cloudflare-",
+            "adobe-secure",
+            "godaddy-verify",
+
+            "faceb00k",
+            "facebok",
+            "facbk",
+            "face-book",
+            "facebook-",
+
+            "instargram",
+            "instgram",
+            "instagrm",
+            "insta-gram",
+            "instagram-",
+
+            "linkediin",
+            "linked-in",
+            "linkdin",
+            "linkedin-",
+
+            "twiiter",
+            "twiter",
+            "twiter-",
+            "x-login",
+
+           "whats-app",
+            "whatspp",
+            "whatsup",
+            "whatsapp-",
+
+            "telegram-",
+
+            "tik-tok",
+            "tikt0k",
+            "snap-chat",
+            "snapchat-",
+            "discord-",
+
+            "paypa1",
+            "paypai",
+            "pay-pal",
+            "paypl",
+            "paypal-",
+
+            "binance-",
+            "binnance",
+            "coinbas",
+            "coin-base",
+            "coinbase-",
+
+            "kraken-",
+            "bybit-",
+            "okx-",
+            "wise-",
+            "revolut-",
+            "stripe-",
+
+            "chss-",
+            "chase-secure",
+            "bofa-",
+            "bankofamerica-",
+
+            "metamask-",
+            "trustwallet-",
+            "paxos-",
+
+            "mastercard-",
+            "visa-secure",
+            "americanexpress-",
+
+            "skrill-",
+            "payoneer-",
+
+            "ebay-secure",
+            "aliexpress-deal",
+            "alibaba-vip",
+
+            "walmart-reward",
+            "dhl-delivery",
+            "fedex-tracking",
+            "ups-parcel",
+            "usps-redelivery",
+            "royalmail-track",
+            "customs-fee",
+            "package-pending"
+        ];
+
+
+        for (
+            const pattern
+            of lookalikePatterns
+        ) {
+
+            if (
+                hostname.includes(pattern)
+            ) {
+
+                score += 8;
+
+                reasons.push(
+                    "Strong match for a known brand lookalike/impersonation pattern."
+                );
+
+                break;
+            }
+        }
+
+
+        /* =========================
+           SUSPICIOUS TLDS
+        ========================= */
+
+        const riskyTLDs = [
+
+            ".zip",
+            ".mov",
+            ".click",
+            ".top",
+            ".gq",
+            ".cf",
+            ".ml",
+            ".tk",
+            ".cc",
+            ".work",
+            ".loan",
+            ".party",
+            ".gdn",
+            ".trade",
+            ".date",
+            ".faith",
+            ".racing",
+            ".win",
+            ".review",
+            ".stream",
+            ".download",
+            ".accountant",
+            ".cricket",
+            ".space",
+            ".site",
+            ".online",
+            ".tech",
+            ".fun",
+            ".icu",
+            ".cam",
+            ".bid"
+        ];
+
+
+        if (
+            riskyTLDs.some(
+                tld => hostname.endsWith(tld)
+            )
+        ) {
+
+            score += 3;
+
+            reasons.push(
+                "Domain uses an extension frequently associated with spam or phishing."
+            );
+        }
+
+
+        /* =========================
+           PROTOCOL
+        ========================= */
+
+        if (
+            url.protocol === "http:"
+        ) {
+
+            score += 2;
+
+            reasons.push(
+                "Website does not use a secure HTTPS connection."
+            );
+        }
+
+
+        /* =========================
+           RAW IP
+        ========================= */
+
+        if (
+            /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)
+        ) {
+
+            score += 4;
+
+            reasons.push(
+                "Website uses raw IP numbers instead of a proper domain name."
+            );
+        }
+
+
+        /* =========================
+           @ SYMBOL
+        ========================= */
+
+        if (
+            fullURL.includes("@")
+        ) {
+
+            score += 3;
+
+            reasons.push(
+                "URL contains an unusual '@' symbol used to mask the true destination."
+            );
+        }
+
+
+        /* =========================
+           LONG DOMAIN
+        ========================= */
+
+        if (
+            hostname.length > 45
+        ) {
+
+            score += 2;
+
+            reasons.push(
+                "Domain name is unusually long."
+            );
+        }
+
+
+        /* =========================
+           MULTIPLE HYPHENS
+        ========================= */
+
+        const hyphens =
+            (hostname.match(/-/g) || []).length;
+
+
+        if (
+            hyphens >= 2
+        ) {
+
+            score += 2;
+
+            reasons.push(
+                "Domain contains multiple hyphens, which can be used in fake domains."
+            );
+        }
+
+
+        /* =========================
+           SCAM KEYWORDS
+        ========================= */
+
+        const suspiciousWords = [
+
+            "verify",
+            "verification",
+            "verifiy",
+            "confirm",
+            "confirmation",
+            "update",
+            "suspended",
+            "suspend",
+            "locked",
+            "unlock",
+            "restricted",
+            "restriction",
+            "security-check",
+            "security-alert",
+            "validate",
+            "validation",
+            "identity",
+            "kyc",
+            "reactivate",
+            "restore",
+            "recover",
+            "login",
+            "signin",
+            "auth",
+            "password",
+            "reset",
+            "credential",
+            "pin-reset",
+            "otp",
+            "token",
+            "2fa",
+            "account-alert",
+            "billing-issue",
+            "payment-failed",
+            "card-expired",
+            "claim",
+            "prize",
+            "winner",
+            "won",
+            "reward",
+            "bonus",
+            "free-money",
+            "cash",
+            "cashback",
+            "airdrop",
+            "giveaway",
+            "grant",
+            "relief-fund",
+            "subsidy",
+            "loan",
+            "instant-loan",
+            "quick-loan",
+            "stimulus",
+            "compensation",
+            "wealth",
+            "rich",
+            "profit",
+            "invest",
+            "investment",
+            "crypto-mining",
+            "doubler",
+            "double-money",
+            "trading-bot",
+            "forex-signal",
+            "nft-drop",
+            "mint-nft",
+            "web3-airdrop",
+            "eth-giveaway",
+            "btc-giveaway",
+            "visa-lottery",
+            "job-offer",
+            "remote-job",
+            "work-from-home",
+            "scholarship",
+            "recruitment",
+            "employment",
+            "travel-deal",
+            "cheap-ticket",
+            "urgent-notice",
+            "green-card",
+            "work-visa",
+            "express-entry",
+            "free-shipping",
+            "flash-sale"
+        ];
+
+
+        for (
+            const word
+            of suspiciousWords
+        ) {
+
+            if (
+                fullURL.includes(word)
+            ) {
+
+                score += 3;
+
+                reasons.push(
+                    "URL contains high-risk scam/phishing phrasing (" +
+                    word +
+                    ")."
+                );
+
+                break;
+            }
+        }
+
+
+        /* =========================
+           URL SHORTENERS
+        ========================= */
+
+        const shorteners = [
+
+            "bit.ly",
+            "tinyurl.com",
+            "t.co",
+            "is.gd",
+            "cutt.ly",
+            "buff.ly",
+            "adf.ly",
+            "ow.ly",
+            "bl.ink",
+            "shorte.st",
+            "rb.gy",
+            "rebrand.ly",
+            "lnkd.in"
+        ];
+
+
+        if (
+            shorteners.includes(hostname)
+        ) {
+
+            score += 3;
+
+            reasons.push(
+                "URL uses a shortened-link service, which can hide the final destination."
+            );
+        }
+
+
+        /* =========================
+           CAP SCORE
+        ========================= */
+
+        score =
+            Math.min(score, 10);
+
+
+        /* =========================
+           TRUSTED DOMAIN
+        ========================= */
+
+        if (
+            isTrusted &&
+            score === 0
+        ) {
+
+            showResult(
+                "verified",
+                "🟢 RECOGNIZED DOMAIN",
+                website,
+                "This matches a known official global domain.",
+                "No major URL warning signs were detected.",
+                "Action: Still check the exact address before entering sensitive information."
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           VERY HIGH RISK
+        ========================= */
+
+        if (
+            score >= 7
+        ) {
+
+            showResult(
+                "critical",
+                "🔴 VERY HIGH RISK",
+                website,
+                "Strong scam or phishing indicators were detected.",
+                reasons[0] ||
+                "Multiple suspicious URL characteristics were detected.",
+                "Action: Do not enter passwords, OTPs, PINs or payment details."
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           HIGH RISK
+        ========================= */
+
+        if (
+            score >= 4
+        ) {
+
+            showResult(
+                "high",
+                "🟠 HIGH RISK",
+                website,
+                "Suspicious impersonation or URL characteristics were detected.",
+                reasons[0] ||
+                "Suspicious characteristics were detected.",
+                "Action: Avoid entering sensitive information until the destination is independently verified."
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           CAUTION
+        ========================= */
+
+        if (
+            score >= 2
+        ) {
+
+            showResult(
+                "caution",
+                "🟡 CAUTION",
+                website,
+                "Some warning signs or irregularities were detected.",
+                reasons[0] ||
+                "A minor URL warning sign was detected.",
+                "Action: Verify the website independently before using it."
+            );
+
+            return;
+        }
+
+
+        /* =========================
+           UNVERIFIED
+        ========================= */
+
+        showResult(
+            "unverified",
+            "⚪ UNVERIFIED",
+            website,
+            "No obvious scam patterns were found in the URL.",
+            "TrustAI cannot confirm that this website is legitimate.",
+            "Action: Verify important websites independently."
+        );
+
+    }
+
+
+    /* =========================
+       TELEGRAM RESULT
+    ========================= */
+
+    function showTelegramResult(
+        website,
+        reason
+    ) {
+
+        const result =
+            document.getElementById("result");
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "🔴 TELEGRAM ACCOUNT-TAKEOVER WARNING";
+
+
+        document.getElementById(
+            "websiteName"
+        ).textContent =
+            website;
+
+
+        document.getElementById(
+            "resultMessage"
+        ).textContent =
+            "This is a Telegram bot/startapp link. The t.me domain is legitimate, but that does not verify the specific bot or destination.";
+
+
+        document.getElementById(
+            "reason"
+        ).textContent =
+            "Finding: " + reason;
+
+
+        document.getElementById(
+            "action"
+        ).textContent =
+            "Action: Do not enter or share Telegram login codes, OTPs, 2FA passwords or recovery codes, and do not approve unfamiliar login sessions.";
+
+
+        document.getElementById(
+            "telegramWarning"
+        ).style.display =
+            "block";
+
+
+        result.className =
+            "result show telegram";
+
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+
+    }
+
+
+    /* =========================
+       NORMAL RESULT
+    ========================= */
+
+    function showResult(
+        type,
+        statusText,
+        site,
+        messageText,
+        reasonText,
+        actionText
+    ) {
+
+        const result =
+            document.getElementById("result");
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            statusText;
+
+
+        document.getElementById(
+            "websiteName"
+        ).textContent =
+            site;
+
+
+        document.getElementById(
+            "resultMessage"
+        ).textContent =
+            messageText;
+
+
+        document.getElementById(
+            "reason"
+        ).textContent =
+            reasonText
+                ? "Finding: " + reasonText
+                : "";
+
+
+        document.getElementById(
+            "action"
+        ).textContent =
+            actionText;
+
+
+        document.getElementById(
+            "telegramWarning"
+        ).style.display =
+            "none";
+
+
+        result.className =
+            "result show " + type;
+
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+
+    }
+
+</script>
+
 </body>
+
 </html>
