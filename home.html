@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI - Home</title>
-
-<style>
+<title>TrustAI - Home</title><style>
 
 :root {
     --primary: #6366f1;
@@ -755,439 +746,466 @@ footer {
     }
 }
 
-</style>
-
-</head>
-
-<body>
-
-<!-- SIDE MENU -->
-
-<nav id="sideMenu" class="side-menu">
-
-    <div class="menu-header">
-
-        <div>
-
-            <div class="menu-logo">
-                🛡️ TrustAI
-            </div>
-
-            <div class="menu-subtitle">
-                Online Scam Protection
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <a href="home.html" class="menu-link">
-
-        <span class="menu-icon">
-            🏠
-        </span>
-
-        Home
-
-    </a>
-
-
-    <a href="message.html" class="menu-link">
-
-        <span class="menu-icon">
-            🔍
-        </span>
-
-        Message Checker
-
-    </a>
-
-
-    <a href="conversation.html" class="menu-link">
-
-        <span class="menu-icon">
-            💬
-        </span>
-
-        Conversation Checker
-
-    </a>
-
-
-    <a href="website.html" class="menu-link">
-
-        <span class="menu-icon">
-            🌐
-        </span>
-
-        Website Checker
-
-    </a>
-
-
-    <a href="device.html" class="menu-link">
-
-        <span class="menu-icon">
-            📱
-        </span>
-
-        Device Security
-
-    </a>
-
-
-    <a href="./protection.html" class="menu-link">
-
-        <span class="menu-icon">
-            🛡️
-        </span>
-
-        TrustAI Protection
-
-    </a>
-
-    <a href="./plans.html" class="menu-link">
-    <span class="menu-icon">💎</span>
-    Upgrade Plans
-    </a>
-    
-    <a href="security.html" class="menu-link">
-
-        <span class="menu-icon">
-            🛡️
-        </span>
-
-        Security Center
-
-    </a>
-
-
-    <div class="menu-divider"></div>
-
-
-    <a href="alerts.html" class="menu-link">
-
-        <span class="menu-icon">
-            🚨
-        </span>
-
-        Scam Alerts
-
-    </a>
-
-
-    <a href="report.html" class="menu-link">
-
-        <span class="menu-icon">
-            📢
-        </span>
-
-        Report a Scam
-
-    </a>
-
-
-    <a href="contact.html" class="menu-link">
-
-        <span class="menu-icon">
-            💬
-        </span>
-
-        Contact TrustAI
-
-    </a>
-
-
-    <a href="./settings.html" class="menu-link">
-
-        <span class="menu-icon">
-            ⚙️
-        </span>
-
-        Settings & Privacy
-
-    </a>
-
-
-    <div class="menu-divider"></div>
-
-
-    <a
-        href="#"
-        class="menu-link"
-        onclick="handleLogout(); return false;"
-        style="color: #f87171;"
-    >
-
-        <span class="menu-icon">
-            🚪
-        </span>
-
-        Log Out
-
-    </a>
-
-</nav>
-
-
-<!-- MENU OVERLAY -->
-
-<div
-    id="menuOverlay"
-    class="menu-overlay">
-</div>
-
-
-<!-- MAIN PAGE -->
-
-<div class="page">
-
-    <!-- HEADER -->
-
-    <header class="header">
-
-        <button
-            id="menuButton"
-            class="menu-button"
-            type="button"
-            aria-label="Open menu"
-            aria-expanded="false"
-        >
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </button>
-
-
-        <div class="brand">
-
-            <div class="brand-shield">
-                🛡️
-            </div>
-
-            <div class="brand-name">
-                TrustAI
-            </div>
-
-        </div>
-
-
-        <button
-            class="profile-button"
-            type="button"
-            onclick="window.location.href='profile.html'"
-            aria-label="Open profile"
-        >
-
-            <div
-                class="default-avatar"
-                id="homeProfileAvatar"
-                aria-label="Profile"
-            >
-
-                <div class="avatar-head"></div>
-
-                <div class="avatar-body"></div>
-
-            </div>
-
-        </button>
-
-    </header>
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <h1>
-            Stay one step ahead of
-            <span>scams.</span>
-        </h1>
-
-        <p>
-            Check suspicious messages, conversations and
-            websites for common warning signs before you
-            take action. Explore TrustAI Protection for
-            additional security features.
-        </p>
-
-    </section>
-
-
-    <!-- CHECK SOMETHING -->
-
-    <h2 class="section-title">
-
-        <span class="section-icon">
-            🔎
-        </span>
-
-        Check Something
-
-    </h2>
-
-
-    <div class="cards">
-
-        <!-- MESSAGE CHECKER -->
-
-        <a
-            href="message.html"
-            class="card message-card"
-        >
-
-            <div class="card-icon">
-                🔍
-            </div>
-
-            <h2>
-                Message Checker
-            </h2>
-
-            <p>
-                Check a suspicious message for scam,
-                phishing, impersonation and payment
-                warning signs.
-            </p>
-
-        </a>
-
-
-        <!-- CONVERSATION CHECKER -->
-
-        <a
-            href="conversation.html"
-            class="card conversation-card"
-        >
-
-            <div class="card-icon">
-                💬
-            </div>
-
-            <h2>
-                Conversation Checker
-            </h2>
-
-            <p>
-                Analyze a conversation for suspicious
-                patterns that may develop over time.
-            </p>
-
-        </a>
-
-
-        <!-- WEBSITE CHECKER -->
-
-        <a
-            href="website.html"
-            class="card website-card"
-        >
-
-            <div class="card-icon">
-                🌐
-            </div>
-
-            <h2>
-                Website Checker
-            </h2>
-
-            <p>
-                Check a website address for common
-                suspicious website warning signs.
-            </p>
-
-        </a>
-
-
-        <!-- TRUSTAI PROTECTION -->
-
-        <a
-            href="protection.html"
-            class="card protection-card"
-        >
-
-            <div class="card-icon">
-                🛡️
-            </div>
-
-            <h2>
-                TrustAI Protection
-            </h2>
-
-            <p>
-                Explore TrustAI protection features
-                designed to help keep your accounts,
-                devices and online activity safer.
-            </p>
-
-        </a>
-
-    </div>
-
-
-    <!-- SECURITY -->
-
-    <h2 class="section-title">
-
-        <span class="section-icon">
-            🛡️
-        </span>
-
-        Security
-
-    </h2>
-
-
-    <div class="cards">
-
-        <a
-            href="device.html"
-            class="card security-card"
-        >
-
-            <div class="card-icon">
-                📱
-            </div>
-
-            <h2>
-                Device Security
-            </h2>
-
-            <p>
-                Review active permissions, device
-                status, and security configurations
-                to keep your phone protected.
-            </p>
-
-        </a>
-
-    </div>
-
-</div>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <div class="footer-brand">
-        TrustAI
-    </div>
+</style></head><body><!-- SIDE MENU --><nav id="sideMenu" class="side-menu"><div class="menu-header">
 
     <div>
-        Your real-time online scam and threat
-        protection assistant.
+
+        <div
+            class="menu-logo"
+            data-i18n="trustAIName">
+            🛡️ TrustAI
+        </div>
+
+        <div
+            class="menu-subtitle"
+            data-i18n="homeMenuSubtitle">
+            Online Scam Protection
+        </div>
+
     </div>
 
-</footer>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
+<a href="home.html" class="menu-link">
+
+    <span class="menu-icon">
+        🏠
+    </span>
+
+    <span data-i18n="home">
+        Home
+    </span>
+
+</a>
+
+
+<a href="message.html" class="menu-link">
+
+    <span class="menu-icon">
+        🔍
+    </span>
+
+    <span data-i18n="messageChecker">
+        Message Checker
+    </span>
+
+</a>
+
+
+<a href="conversation.html" class="menu-link">
+
+    <span class="menu-icon">
+        💬
+    </span>
+
+    <span data-i18n="conversationChecker">
+        Conversation Checker
+    </span>
+
+</a>
+
+
+<a href="website.html" class="menu-link">
+
+    <span class="menu-icon">
+        🌐
+    </span>
+
+    <span data-i18n="websiteChecker">
+        Website Checker
+    </span>
+
+</a>
+
+
+<a href="device.html" class="menu-link">
+
+    <span class="menu-icon">
+        📱
+    </span>
+
+    <span data-i18n="deviceSecurity">
+        Device Security
+    </span>
+
+</a>
+
+
+<a href="./protection.html" class="menu-link">
+
+    <span class="menu-icon">
+        🛡️
+    </span>
+
+    <span data-i18n="trustAIProtection">
+        TrustAI Protection
+    </span>
+
+</a>
+
+
+<a href="./plans.html" class="menu-link">
+
+    <span class="menu-icon">
+        💎
+    </span>
+
+    <span data-i18n="upgradePlans">
+        Upgrade Plans
+    </span>
+
+</a>
+
+
+<a href="security.html" class="menu-link">
+
+    <span class="menu-icon">
+        🛡️
+    </span>
+
+    <span data-i18n="securityCenter">
+        Security Center
+    </span>
+
+</a>
+
+
+<div class="menu-divider"></div>
+
+
+<a href="alerts.html" class="menu-link">
+
+    <span class="menu-icon">
+        🚨
+    </span>
+
+    <span data-i18n="scamAlerts">
+        Scam Alerts
+    </span>
+
+</a>
+
+
+<a href="report.html" class="menu-link">
+
+    <span class="menu-icon">
+        📢
+    </span>
+
+    <span data-i18n="reportScam">
+        Report a Scam
+    </span>
+
+</a>
+
+
+<a href="contact.html" class="menu-link">
+
+    <span class="menu-icon">
+        💬
+    </span>
+
+    <span data-i18n="contactTrustAI">
+        Contact TrustAI
+    </span>
+
+</a>
+
+
+<a href="./settings.html" class="menu-link">
+
+    <span class="menu-icon">
+        ⚙️
+    </span>
+
+    <span data-i18n="settingsPrivacy">
+        Settings & Privacy
+    </span>
+
+</a>
+
+
+<div class="menu-divider"></div>
+
+
+<a
+    href="#"
+    class="menu-link"
+    onclick="handleLogout(); return false;"
+    style="color: #f87171;"
+>
+
+    <span class="menu-icon">
+        🚪
+    </span>
+
+    <span data-i18n="logout">
+        Log Out
+    </span>
+
+</a>
+
+</nav><!-- MENU OVERLAY --><div
+    id="menuOverlay"
+    class="menu-overlay">
+</div><!-- MAIN PAGE --><div class="page"><!-- HEADER -->
+
+<header class="header">
+
+    <button
+        id="menuButton"
+        class="menu-button"
+        type="button"
+        aria-label="Open menu"
+        data-i18n-aria-label="openMenu"
+        aria-expanded="false"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+
+    <div class="brand">
+
+        <div class="brand-shield">
+            🛡️
+        </div>
+
+        <div
+            class="brand-name"
+            data-i18n="trustAIName">
+            TrustAI
+        </div>
+
+    </div>
+
+
+    <button
+        class="profile-button"
+        type="button"
+        onclick="window.location.href='profile.html'"
+        aria-label="Open profile"
+        data-i18n-aria-label="openProfile"
+    >
+
+        <div
+            class="default-avatar"
+            id="homeProfileAvatar"
+            aria-label="Profile"
+            data-i18n-aria-label="profile"
+        >
+
+            <div class="avatar-head"></div>
+
+            <div class="avatar-body"></div>
+
+        </div>
+
+    </button>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1 data-i18n="heroTitle">
+        Stay one step ahead of
+        <span data-i18n="heroScams">
+            scams.
+        </span>
+    </h1>
+
+    <p data-i18n="heroDescription">
+        Check suspicious messages, conversations and
+        websites for common warning signs before you
+        take action. Explore TrustAI Protection for
+        additional security features.
+    </p>
+
+</section>
+
+
+<!-- CHECK SOMETHING -->
+
+<h2
+    class="section-title"
+    data-i18n="checkSomething">
+
+    <span class="section-icon">
+        🔎
+    </span>
+
+    Check Something
+
+</h2>
+
+
+<div class="cards">
+
+    <!-- MESSAGE CHECKER -->
+
+    <a
+        href="message.html"
+        class="card message-card"
+    >
+
+        <div class="card-icon">
+            🔍
+        </div>
+
+        <h2 data-i18n="messageChecker">
+            Message Checker
+        </h2>
+
+        <p data-i18n="messageCheckerDescription">
+            Check a suspicious message for scam,
+            phishing, impersonation and payment
+            warning signs.
+        </p>
+
+    </a>
+
+
+    <!-- CONVERSATION CHECKER -->
+
+    <a
+        href="conversation.html"
+        class="card conversation-card"
+    >
+
+        <div class="card-icon">
+            💬
+        </div>
+
+        <h2 data-i18n="conversationChecker">
+            Conversation Checker
+        </h2>
+
+        <p data-i18n="conversationCheckerDescription">
+            Analyze a conversation for suspicious
+            patterns that may develop over time.
+        </p>
+
+    </a>
+
+
+    <!-- WEBSITE CHECKER -->
+
+    <a
+        href="website.html"
+        class="card website-card"
+    >
+
+        <div class="card-icon">
+            🌐
+        </div>
+
+        <h2 data-i18n="websiteChecker">
+            Website Checker
+        </h2>
+
+        <p data-i18n="websiteCheckerDescription">
+            Check a website address for common
+            suspicious website warning signs.
+        </p>
+
+    </a>
+
+
+    <!-- TRUSTAI PROTECTION -->
+
+    <a
+        href="protection.html"
+        class="card protection-card"
+    >
+
+        <div class="card-icon">
+            🛡️
+        </div>
+
+        <h2 data-i18n="trustAIProtection">
+            TrustAI Protection
+        </h2>
+
+        <p data-i18n="trustAIProtectionDescription">
+            Explore TrustAI protection features
+            designed to help keep your accounts,
+            devices and online activity safer.
+        </p>
+
+    </a>
+
+</div>
+
+
+<!-- SECURITY -->
+
+<h2
+    class="section-title"
+    data-i18n="security">
+
+    <span class="section-icon">
+        🛡️
+    </span>
+
+    Security
+
+</h2>
+
+
+<div class="cards">
+
+    <a
+        href="device.html"
+        class="card security-card"
+    >
+
+        <div class="card-icon">
+            📱
+        </div>
+
+        <h2 data-i18n="deviceSecurity">
+            Device Security
+        </h2>
+
+        <p data-i18n="deviceSecurityDescription">
+            Review active permissions, device
+            status, and security configurations
+            to keep your phone protected.
+        </p>
+
+    </a>
+
+</div>
+
+</div><!-- FOOTER --><footer><div
+    class="footer-brand"
+    data-i18n="trustAIName">
+    TrustAI
+</div>
+
+<div data-i18n="footerDescription">
+    Your real-time online scam and threat
+    protection assistant.
+</div>
+
+</footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+
+/* =====================================================
+   TRUSTAI HOME PAGE
+   GLOBAL LANGUAGE SYSTEM CONNECTION
+===================================================== */
+
+
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
     "https://opyjaljpowzgmkqlmjrb.supabase.co";
@@ -1202,18 +1220,179 @@ const supabaseClient =
     );
 
 
+/* =====================================================
+   LANGUAGE SYSTEM
+===================================================== */
+
+function applyHomeLanguage() {
+
+    if (
+        window.TrustAILanguage &&
+        typeof window.TrustAILanguage.applyTranslations === "function"
+    ) {
+
+        window.TrustAILanguage.applyTranslations();
+
+        document.documentElement.lang =
+            window.TrustAILanguage.languages[
+                window.TrustAILanguage.getLanguageCode()
+            ]?.locale || "en";
+
+    }
+
+}
+
+
+/*
+   Load the global language.js if it is not
+   already available.
+*/
+
+function loadTrustAILanguage() {
+
+    if (window.TrustAILanguage) {
+
+        applyHomeLanguage();
+
+        return;
+
+    }
+
+
+    const script =
+        document.createElement("script");
+
+    script.src =
+        "./language.js";
+
+    script.onload =
+        function() {
+
+            applyHomeLanguage();
+
+        };
+
+    script.onerror =
+        function() {
+
+            console.error(
+                "TrustAI: Could not load ./language.js"
+            );
+
+        };
+
+    document.head.appendChild(script);
+
+}
+
+
+/*
+   Start language system.
+*/
+
+loadTrustAILanguage();
+
+
+/*
+   React instantly when Settings changes
+   the TrustAI language.
+*/
+
+window.addEventListener(
+    "trustai-language-changed",
+    function() {
+
+        applyHomeLanguage();
+
+    }
+);
+
+
+/*
+   Also support pages where the language
+   system changes after this page loads.
+*/
+
+let homeLastLanguage = null;
+
+setInterval(
+    function() {
+
+        if (
+            !window.TrustAILanguage ||
+            typeof window.TrustAILanguage.getLanguageCode !== "function"
+        ) {
+            return;
+        }
+
+        const currentLanguage =
+            window.TrustAILanguage.getLanguageCode();
+
+        if (currentLanguage !== homeLastLanguage) {
+
+            homeLastLanguage =
+                currentLanguage;
+
+            applyHomeLanguage();
+
+        }
+
+    },
+    500
+);
+
+
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
+
 async function protectHomePage() {
 
-    const { data, error } =
-        await supabaseClient.auth.getSession();
+    try {
 
-    if (error || !data.session) {
+        const { data, error } =
+            await supabaseClient.auth.getSession();
+
+
+        if (error) {
+
+            console.error(
+                "Supabase session error:",
+                error
+            );
+
+            window.location.replace(
+                "./login.html"
+            );
+
+            return;
+
+        }
+
+
+        if (!data.session) {
+
+            window.location.replace(
+                "./login.html"
+            );
+
+            return;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Home authentication error:",
+            error
+        );
 
         window.location.replace(
             "./login.html"
         );
 
-        return;
     }
 
 }
@@ -1222,7 +1401,69 @@ async function protectHomePage() {
 protectHomePage();
 
 
-/* MENU */
+/*
+=====================================================
+   AUTHENTICATION
+===================================================== */
+
+async function protectHomePage() {
+
+    try {
+
+        const { data, error } =
+            await supabaseClient.auth.getSession();
+
+
+        if (error) {
+
+            console.error(
+                "Supabase session error:",
+                error
+            );
+
+            window.location.replace(
+                "./login.html"
+            );
+
+            return;
+
+        }
+
+
+        if (!data.session) {
+
+            window.location.replace(
+                "./login.html"
+            );
+
+            return;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Home authentication error:",
+            error
+        );
+
+        window.location.replace(
+            "./login.html"
+        );
+
+    }
+
+}
+
+
+protectHomePage();
+
+
+/* =====================================================
+   MENU
+===================================================== */
 
 const menuButton =
     document.getElementById("menuButton");
@@ -1235,6 +1476,10 @@ const menuOverlay =
 
 
 function openMenu() {
+
+    if (!sideMenu || !menuOverlay || !menuButton) {
+        return;
+    }
 
     sideMenu.classList.add("open");
 
@@ -1250,6 +1495,10 @@ function openMenu() {
 
 function closeMenu() {
 
+    if (!sideMenu || !menuOverlay || !menuButton) {
+        return;
+    }
+
     sideMenu.classList.remove("open");
 
     menuOverlay.classList.remove("show");
@@ -1262,30 +1511,38 @@ function closeMenu() {
 }
 
 
-menuButton.addEventListener(
-    "click",
-    function() {
+if (menuButton) {
 
-        if (
-            sideMenu.classList.contains("open")
-        ) {
+    menuButton.addEventListener(
+        "click",
+        function() {
 
-            closeMenu();
+            if (
+                sideMenu.classList.contains("open")
+            ) {
 
-        } else {
+                closeMenu();
 
-            openMenu();
+            } else {
+
+                openMenu();
+
+            }
 
         }
+    );
 
-    }
-);
+}
 
 
-menuOverlay.addEventListener(
-    "click",
-    closeMenu
-);
+if (menuOverlay) {
+
+    menuOverlay.addEventListener(
+        "click",
+        closeMenu
+    );
+
+}
 
 
 const menuLinks =
@@ -1318,7 +1575,9 @@ document.addEventListener(
 );
 
 
-/* PROFILE PICTURE */
+/* =====================================================
+   PROFILE PICTURE
+===================================================== */
 
 function loadHomeProfilePicture() {
 
@@ -1326,6 +1585,11 @@ function loadHomeProfilePicture() {
         document.getElementById(
             "homeProfileAvatar"
         );
+
+    if (!avatar) {
+        return;
+    }
+
 
     const savedPicture =
         localStorage.getItem(
@@ -1349,7 +1613,9 @@ function loadHomeProfilePicture() {
 
         avatar.innerHTML = "";
 
-    } else {
+    }
+
+    else {
 
         avatar.style.backgroundImage =
             "none";
@@ -1370,24 +1636,30 @@ function loadHomeProfilePicture() {
 loadHomeProfilePicture();
 
 
-/* LOGOUT */
+/* =====================================================
+   LOGOUT
+===================================================== */
 
 async function handleLogout() {
 
     try {
 
-        // Sign out from the real Supabase session
         const { error } =
             await supabaseClient.auth.signOut();
 
+
         if (error) {
+
             console.error(
                 "Supabase logout error:",
                 error
             );
+
         }
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(
             "Logout failed:",
@@ -1396,7 +1668,7 @@ async function handleLogout() {
 
     }
 
-    // Clear TrustAI local login data
+
     localStorage.removeItem(
         "trustai_loggedIn"
     );
@@ -1409,14 +1681,37 @@ async function handleLogout() {
         "trustai_account"
     );
 
-    // Prevent going back into the authenticated page
+
     window.location.replace(
         "./login.html"
     );
 
 }
+
+
+/* =====================================================
+   FINAL LANGUAGE APPLICATION
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        setTimeout(
+            function() {
+
+                applyHomeLanguage();
+
+            },
+            50
+        );
+
+    }
+);
+
 </script>
 
 </body>
 
 </html>
+    
