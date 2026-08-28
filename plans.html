@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI — Upgrade Plan</title>
 
 <meta name="description"
-content="Choose your TrustAI protection plan and upgrade your security.">
+content="Upgrade your TrustAI protection plan.">
 
 <style>
 
 /* =====================================================
-   GLOBAL
-=================================== */
+   RESET
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -40,14 +43,9 @@ body {
 
     background:
         radial-gradient(
-            circle at 15% 0%,
-            rgba(59,130,246,.13),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(124,92,255,.10),
-            transparent 35%
+            circle at 50% 0%,
+            rgba(59,130,246,.10),
+            transparent 40%
         ),
         #050b14;
 
@@ -58,17 +56,13 @@ button {
     font-family: inherit;
 }
 
-a {
-    color: inherit;
-}
-
 
 /* =====================================================
    PAGE
 ===================================================== */
 
 .page {
-    width: min(1100px, calc(100% - 24px));
+    width: min(900px, calc(100% - 28px));
     margin: auto;
     padding: 22px 0 50px;
 }
@@ -83,7 +77,7 @@ a {
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 45px;
+    margin-bottom: 50px;
 }
 
 .back-button {
@@ -99,13 +93,10 @@ a {
     font-size: 21px;
 
     cursor: pointer;
-
-    transition: .2s;
 }
 
-.back-button:hover {
-    border-color: #3b82f6;
-    transform: translateY(-1px);
+.back-button:active {
+    transform: scale(.96);
 }
 
 .logo {
@@ -117,6 +108,10 @@ a {
     color: #60a5fa;
 }
 
+.header-spacer {
+    width: 44px;
+}
+
 
 /* =====================================================
    HERO
@@ -125,17 +120,18 @@ a {
 .hero {
     text-align: center;
 
-    max-width: 760px;
+    max-width: 680px;
 
     margin: 0 auto 30px;
 }
 
-.hero-badge {
+.badge {
     display: inline-flex;
 
     padding: 7px 13px;
 
     border: 1px solid #24466a;
+
     border-radius: 999px;
 
     background: rgba(59,130,246,.08);
@@ -143,24 +139,24 @@ a {
     color: #7db5ff;
 
     font-size: 11px;
+
     font-weight: 800;
 
     letter-spacing: .5px;
 }
 
 .hero h1 {
-    margin: 17px 0 10px;
+    margin: 17px 0 12px;
 
-    font-size: clamp(34px, 7vw, 52px);
+    font-size:
+        clamp(34px, 8vw, 52px);
 
     line-height: 1.05;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -1.7px;
 }
 
 .hero p {
-    max-width: 650px;
-
     margin: auto;
 
     color: #8fa5bd;
@@ -177,13 +173,15 @@ a {
 
 .billing-area {
     display: flex;
+
     justify-content: center;
 
-    margin-bottom: 25px;
+    margin: 30px 0;
 }
 
 .billing-switch {
     display: inline-flex;
+
     align-items: center;
 
     gap: 4px;
@@ -202,7 +200,7 @@ a {
 
     border-radius: 10px;
 
-    padding: 10px 18px;
+    padding: 10px 17px;
 
     background: transparent;
 
@@ -213,12 +211,11 @@ a {
     font-weight: 800;
 
     cursor: pointer;
-
-    transition: .2s;
 }
 
 .billing-button.active {
     background: white;
+
     color: #07111d;
 }
 
@@ -234,197 +231,129 @@ a {
 
 
 /* =====================================================
-   PLAN SELECTOR
+   PLAN TABS
 ===================================================== */
 
-.plan-selector {
+.plan-tabs {
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
 
-    gap: 14px;
+    gap: 8px;
 
-    max-width: 760px;
+    max-width: 520px;
 
-    margin: 0 auto 25px;
-}
+    margin: 0 auto 20px;
 
-.plan-option {
-    position: relative;
-
-    padding: 20px;
-
-    border: 1px solid #263b52;
-
-    border-radius: 16px;
+    padding: 5px;
 
     background: #0b1726;
 
-    cursor: pointer;
+    border: 1px solid #263b52;
 
-    text-align: left;
+    border-radius: 14px;
+}
+
+.plan-tab {
+    border: 0;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    background: transparent;
+
+    color: #8197ad;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    cursor: pointer;
 
     transition: .2s;
 }
 
-.plan-option:hover {
-    border-color: #3b82f6;
-    transform: translateY(-2px);
+.plan-tab.active {
+    background: #ffffff;
+
+    color: #07111d;
 }
 
-.plan-option.selected {
-    border-color: #3b82f6;
-
-    box-shadow:
-        0 0 0 1px rgba(59,130,246,.18),
-        0 15px 35px rgba(0,0,0,.25);
-}
-
-.plan-option.premier.selected {
-    border-color: #7657ff;
-
-    box-shadow:
-        0 0 0 1px rgba(118,87,255,.18),
-        0 15px 35px rgba(0,0,0,.25);
-}
-
-.plan-option-top {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 12px;
-}
-
-.plan-option-name {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 18px;
-
-    font-weight: 900;
-}
-
-.plan-option-icon {
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 11px;
-
-    background: #13283f;
-
-    font-size: 19px;
-}
-
-.plan-option-price {
-    margin-top: 10px;
-
-    color: #9fb2c6;
-
-    font-size: 13px;
-}
-
-.selected-check {
-    width: 23px;
-    height: 23px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    border: 1px solid #38536e;
-
-    color: transparent;
-
-    font-size: 13px;
-
-    font-weight: 900;
-}
-
-.plan-option.selected .selected-check {
-    background: #3b82f6;
-    border-color: #3b82f6;
-    color: white;
-}
-
-.plan-option.premier.selected .selected-check {
-    background: #7657ff;
-    border-color: #7657ff;
+.plan-tab:active {
+    transform: scale(.98);
 }
 
 
 /* =====================================================
-   SELECTED PLAN
+   PLAN PANEL
 ===================================================== */
 
-.selected-plan {
-    max-width: 760px;
+.plan-panel {
+    display: none;
 
-    margin: 0 auto 25px;
+    max-width: 650px;
 
-    padding: 24px;
+    margin: auto;
+
+    padding: 28px;
+
+    background: #0b1726;
 
     border: 1px solid #263b52;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
-    background: #0b1726;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.25);
 }
 
-.selected-header {
+.plan-panel.active {
+    display: block;
+}
+
+
+/* =====================================================
+   PLAN TOP
+===================================================== */
+
+.plan-top {
     display: flex;
 
     align-items: center;
-
-    justify-content: space-between;
 
     gap: 15px;
+
+    margin-bottom: 18px;
 }
 
-.selected-title {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-.selected-icon {
-    width: 48px;
-    height: 48px;
+.plan-icon {
+    width: 52px;
+    height: 52px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    flex-shrink: 0;
 
     border-radius: 14px;
 
     background: #13283f;
 
-    font-size: 24px;
+    font-size: 25px;
 }
 
-.selected-title h2 {
+.plan-name {
     margin: 0;
 
-    font-size: 23px;
+    font-size: 25px;
+
+    font-weight: 900;
 }
 
-.selected-title p {
+.plan-label {
     margin: 3px 0 0;
 
     color: #8197ad;
@@ -432,106 +361,58 @@ a {
     font-size: 12px;
 }
 
-.selected-badge {
-    padding: 6px 10px;
-
-    border-radius: 999px;
-
-    background: rgba(59,130,246,.12);
-
-    border: 1px solid #315d8c;
-
-    color: #7db5ff;
-
-    font-size: 10px;
-
-    font-weight: 900;
-}
-
 
 /* =====================================================
    PRICE
 ===================================================== */
 
-.selected-price {
-    margin-top: 20px;
+.price {
+    margin-top: 22px;
 
-    font-size: 38px;
+    font-size: 42px;
 
     font-weight: 900;
 
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
 }
 
-.selected-price small {
+.price small {
     color: #8197ad;
 
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 500;
 
     letter-spacing: 0;
 }
 
-.selected-note {
+.price-note {
     margin-top: 4px;
 
-    color: #4ade80;
+    color: #71869c;
 
-    font-size: 11px;
+    font-size: 12px;
+}
+
+.save-note {
+    color: #4ade80;
 
     font-weight: 800;
 }
 
 
 /* =====================================================
-   FEATURES
+   DESCRIPTION
 ===================================================== */
 
-.get-title {
-    margin: 26px 0 10px;
+.description {
+    margin: 18px 0 0;
 
-    font-size: 13px;
+    color: #aebfd1;
 
-    font-weight: 900;
+    font-size: 14px;
 
-    text-transform: uppercase;
-
-    letter-spacing: .5px;
-}
-
-.features {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 0 20px;
-
-    list-style: none;
-
-    padding: 0;
-
-    margin: 0;
-}
-
-.features li {
-    padding: 10px 0;
-
-    border-bottom: 1px solid rgba(255,255,255,.06);
-
-    color: #b7c6d6;
-
-    font-size: 12px;
-}
-
-.features li::before {
-    content: "✓";
-
-    margin-right: 9px;
-
-    color: #4ade80;
-
-    font-weight: 900;
+    line-height: 1.65;
 }
 
 
@@ -542,13 +423,13 @@ a {
 .upgrade-button {
     width: 100%;
 
-    margin-top: 22px;
+    margin-top: 24px;
 
-    padding: 15px;
+    padding: 14px 18px;
 
     border: 0;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
     background: #3b82f6;
 
@@ -565,82 +446,122 @@ a {
 
 .upgrade-button:hover {
     background: #2563eb;
-
-    transform: translateY(-1px);
 }
 
-.upgrade-button.premier {
+.upgrade-button:active {
+    transform: scale(.98);
+}
+
+.premier-button {
     background: #7657ff;
 }
 
-.upgrade-button.premier:hover {
+.premier-button:hover {
     background: #6545e8;
 }
 
 
 /* =====================================================
-   FREE PLAN NOTE
+   FEATURES
 ===================================================== */
 
-.free-note {
-    max-width: 760px;
+.features-title {
+    margin: 28px 0 10px;
 
-    margin: 0 auto;
-
-    padding: 16px 18px;
-
-    border: 1px solid #263b52;
-
-    border-radius: 15px;
-
-    background: rgba(11,23,38,.75);
-
-    color: #8197ad;
+    color: #f1f5f9;
 
     font-size: 12px;
 
-    line-height: 1.6;
+    font-weight: 900;
 
-    text-align: center;
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+}
+
+.features {
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+.features li {
+    position: relative;
+
+    padding: 9px 0 9px 25px;
+
+    border-bottom: 1px solid rgba(255,255,255,.04);
+
+    color: #b3c2d1;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+}
+
+.features li:last-child {
+    border-bottom: 0;
+}
+
+.features li::before {
+    content: "✓";
+
+    position: absolute;
+
+    left: 0;
+
+    color: #4ade80;
+
+    font-weight: 900;
 }
 
 
 /* =====================================================
-   NOTICE
+   PLAN DIFFERENCE
 ===================================================== */
 
-.notice {
-    max-width: 760px;
+.difference {
+    margin-top: 20px;
 
-    margin: 20px auto 0;
+    padding: 16px;
 
-    padding: 17px;
+    border-radius: 14px;
 
-    border: 1px solid #5a4a18;
+    background: rgba(59,130,246,.06);
 
-    border-radius: 16px;
-
-    background: rgba(82,65,12,.12);
+    border: 1px solid rgba(59,130,246,.15);
 }
 
-.notice strong {
+.difference strong {
     display: block;
 
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 
-    color: #fde68a;
+    color: #93c5fd;
 
-    font-size: 13px;
+    font-size: 12px;
 }
 
-.notice p {
+.difference p {
     margin: 0;
 
-    color: #9da9b7;
+    color: #8fa5bd;
 
     font-size: 12px;
 
     line-height: 1.6;
+}
+
+.premier-difference {
+    background: rgba(118,87,255,.06);
+
+    border-color: rgba(118,87,255,.18);
+}
+
+.premier-difference strong {
+    color: #c4b5fd;
 }
 
 
@@ -675,59 +596,51 @@ footer {
    MOBILE
 ===================================================== */
 
-@media (max-width: 650px) {
-
-    .plan-selector {
-        grid-template-columns: 1fr;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-    .selected-header {
-        align-items: flex-start;
-    }
-
-    .selected-badge {
-        display: none;
-    }
-
-}
-
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     .page {
         width: calc(100% - 20px);
     }
 
     .header {
-        margin-bottom: 35px;
+        margin-bottom: 40px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero p {
+        font-size: 14px;
     }
 
     .billing-button {
-        padding: 10px 13px;
+        padding: 10px 12px;
     }
 
     .save {
         display: block;
+
         margin: 2px 0 0;
     }
 
-    .selected-plan {
-        padding: 20px;
+    .plan-panel {
+        padding: 22px;
     }
 
-    .selected-price {
-        font-size: 34px;
+    .price {
+        font-size: 36px;
     }
 
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <div class="page">
 
@@ -748,11 +661,15 @@ footer {
 
     </button>
 
+
     <div class="logo">
+
         🛡️ Trust<span>AI</span>
+
     </div>
 
-    <div style="width:44px;"></div>
+
+    <div class="header-spacer"></div>
 
 </header>
 
@@ -763,25 +680,33 @@ footer {
 
 <section class="hero">
 
-    <div class="hero-badge">
+    <div class="badge">
+
         🛡️ TRUSTAI PROTECTION
+
     </div>
 
+
     <h1>
-        Upgrade your plan.
+
+        Upgrade Plan
+
     </h1>
 
+
     <p>
-        Choose the protection level that fits your
-        needs. You can switch between plans and
-        billing periods before continuing to checkout.
+
+        Choose the protection level that fits
+        your needs. You can change your billing
+        period at any time.
+
     </p>
 
 </section>
 
 
 <!-- =====================================================
-     BILLING
+     BILLING SWITCH
 ===================================================== -->
 
 <div class="billing-area">
@@ -791,23 +716,24 @@ footer {
         <button
             id="monthlyButton"
             class="billing-button active"
-            type="button"
-            onclick="setBilling('monthly')">
+            type="button">
 
             Monthly
 
         </button>
 
+
         <button
             id="yearlyButton"
             class="billing-button"
-            type="button"
-            onclick="setBilling('yearly')">
+            type="button">
 
             Yearly
 
             <span class="save">
+
                 SAVE 2 MONTHS
+
             </span>
 
         </button>
@@ -818,207 +744,310 @@ footer {
 
 
 <!-- =====================================================
-     PLAN SELECTOR
+     PLAN TABS
 ===================================================== -->
 
-<section class="plan-selector">
-
-
-    <!-- PRO -->
+<div class="plan-tabs">
 
     <button
-        id="proOption"
-        class="plan-option selected"
-        type="button"
-        onclick="selectPlan('Pro')">
+        id="proTab"
+        class="plan-tab active"
+        type="button">
 
-        <div class="plan-option-top">
-
-            <div class="plan-option-name">
-
-                <div class="plan-option-icon">
-                    🛡️
-                </div>
-
-                Pro
-
-            </div>
-
-            <div class="selected-check">
-                ✓
-            </div>
-
-        </div>
-
-        <div
-            id="proOptionPrice"
-            class="plan-option-price">
-
-            ₦3,000 / month
-
-        </div>
+        🛡️ Pro
 
     </button>
 
 
-    <!-- PREMIER -->
-
     <button
-        id="premierOption"
-        class="plan-option premier"
-        type="button"
-        onclick="selectPlan('Premier')">
+        id="premierTab"
+        class="plan-tab"
+        type="button">
 
-        <div class="plan-option-top">
-
-            <div class="plan-option-name">
-
-                <div class="plan-option-icon">
-                    👑
-                </div>
-
-                Premier
-
-            </div>
-
-            <div class="selected-check">
-                ✓
-            </div>
-
-        </div>
-
-        <div
-            id="premierOptionPrice"
-            class="plan-option-price">
-
-            ₦7,500 / month
-
-        </div>
+        👑 Premier
 
     </button>
-
-</section>
-
-
-<!-- =====================================================
-     SELECTED PLAN DETAILS
-===================================================== -->
-
-<section class="selected-plan">
-
-    <div class="selected-header">
-
-        <div class="selected-title">
-
-            <div
-                id="selectedIcon"
-                class="selected-icon">
-
-                🛡️
-
-            </div>
-
-            <div>
-
-                <h2 id="selectedPlanName">
-                    Pro
-                </h2>
-
-                <p id="selectedDescription">
-                    Advanced protection for stronger
-                    everyday security.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div
-            id="selectedBadge"
-            class="selected-badge">
-
-            SELECTED
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="selectedPrice"
-        class="selected-price">
-
-        ₦3,000
-        <small>/ month</small>
-
-    </div>
-
-
-    <div
-        id="selectedNote"
-        class="selected-note">
-
-        ₦36,000/year when paid monthly
-
-    </div>
-
-
-    <div class="get-title">
-        What you get
-    </div>
-
-
-    <ul
-        id="featureList"
-        class="features">
-
-    </ul>
-
-
-    <button
-        id="upgradeButton"
-        class="upgrade-button"
-        type="button"
-        onclick="continueToCheckout()">
-
-        Upgrade to Pro
-
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     FREE NOTE
-===================================================== -->
-
-<div class="free-note">
-
-    🆓 Your Free TrustAI protection remains available.
-    Upgrading only adds the additional features shown
-    above.
 
 </div>
 
 
 <!-- =====================================================
-     NOTICE
+     PRO PANEL
 ===================================================== -->
 
-<section class="notice">
+<section
+    id="proContent"
+    class="plan-panel active">
 
-    <strong>
-        ⚠️ About advanced protection
-    </strong>
 
-    <p>
-        Some advanced TrustAI capabilities will require
-        a future TrustAI mobile app, appropriate device
-        permissions and/or official service integrations.
-        A normal website cannot independently monitor
-        incoming calls, device messages or gaming accounts
-        in real time.
+    <div class="plan-top">
+
+        <div class="plan-icon">
+
+            🛡️
+
+        </div>
+
+
+        <div>
+
+            <h2 class="plan-name">
+
+                Pro
+
+            </h2>
+
+
+            <p class="plan-label">
+
+                Advanced everyday protection
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="proPrice"
+        class="price">
+
+        ₦3,000
+
+        <small>
+            / month
+        </small>
+
+    </div>
+
+
+    <div
+        id="proNote"
+        class="price-note">
+
+        Billed monthly
+
+    </div>
+
+
+    <p class="description">
+
+        Pro gives you stronger scam detection,
+        phishing analysis and additional protection
+        tools for your everyday online activity.
+
     </p>
+
+
+    <button
+        id="upgradeProButton"
+        class="upgrade-button"
+        type="button">
+
+        Upgrade to Pro
+
+    </button>
+
+
+    <div class="features-title">
+
+        Everything in Free, plus
+
+    </div>
+
+
+    <ul class="features">
+
+        <li>
+            Advanced scam detection
+        </li>
+
+        <li>
+            Advanced phishing analysis
+        </li>
+
+        <li>
+            Telegram link warning tools
+        </li>
+
+        <li>
+            Account security monitoring tools
+        </li>
+
+        <li>
+            Gaming protection tools
+        </li>
+
+        <li>
+            Advanced scam alerts
+        </li>
+
+        <li>
+            Protection activity dashboard
+        </li>
+
+        <li>
+            Priority security guidance
+        </li>
+
+    </ul>
+
+
+    <div class="difference">
+
+        <strong>
+
+            Why choose Pro?
+
+        </strong>
+
+        <p>
+
+            A good choice if you want more
+            protection than the Free plan without
+            needing the maximum protection package.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PREMIER PANEL
+===================================================== -->
+
+<section
+    id="premierContent"
+    class="plan-panel">
+
+
+    <div class="plan-top">
+
+        <div class="plan-icon">
+
+            👑
+
+        </div>
+
+
+        <div>
+
+            <h2 class="plan-name">
+
+                Premier
+
+            </h2>
+
+
+            <p class="plan-label">
+
+                Maximum protection
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="premierPrice"
+        class="price">
+
+        ₦7,500
+
+        <small>
+            / month
+        </small>
+
+    </div>
+
+
+    <div
+        id="premierNote"
+        class="price-note">
+
+        Billed monthly
+
+    </div>
+
+
+    <p class="description">
+
+        Premier gives you the highest TrustAI
+        protection level, with advanced threat
+        intelligence, enhanced account protection
+        and priority security support.
+
+    </p>
+
+
+    <button
+        id="upgradePremierButton"
+        class="upgrade-button premier-button"
+        type="button">
+
+        Upgrade to Premier
+
+    </button>
+
+
+    <div class="features-title">
+
+        Everything in Pro, plus
+
+    </div>
+
+
+    <ul class="features">
+
+        <li>
+            Advanced threat intelligence
+        </li>
+
+        <li>
+            Enhanced account protection
+        </li>
+
+        <li>
+            Priority security support
+        </li>
+
+        <li>
+            Advanced protection monitoring
+        </li>
+
+        <li>
+            Expanded scam intelligence
+        </li>
+
+        <li>
+            Premium security guidance
+        </li>
+
+    </ul>
+
+
+    <div class="difference premier-difference">
+
+        <strong>
+
+            Why choose Premier?
+
+        </strong>
+
+        <p>
+
+            Designed for users who want the
+            highest available TrustAI protection
+            level and additional security capabilities.
+
+        </p>
+
+    </div>
 
 </section>
 
@@ -1030,7 +1059,9 @@ footer {
 <footer>
 
     <div class="footer-brand">
+
         🛡️ TrustAI
+
     </div>
 
     Online scam awareness and protection.
@@ -1052,1661 +1083,150 @@ footer {
 ===================================================== */
 
 
-/* -----------------------------------------------------
-   BILLING
------------------------------------------------------ */
-
-let billingPeriod =
-    localStorage.getItem(
-        "trustai_billing_period"
-    ) || "monthly";
-
-
-/* -----------------------------------------------------
-   SELECTED PLAN
------------------------------------------------------ */
-
-let selectedPlan =
-    localStorage.getItem(
-        "trustai_selected_plan"
-    ) || "Pro";
-
-
 /* =====================================================
    PLAN DATA
 ===================================================== */
 
-const plans = {
+const planData = {
 
     Pro: {
 
-        icon: "🛡️",
-
-        description:
-            "Advanced protection for stronger everyday security.",
-
         monthly: {
-
             amount: "₦3,000",
-
             suffix: "/ month",
-
-            note:
-                "₦36,000/year when paid monthly"
-
+            note: "Billed monthly"
         },
 
         yearly: {
-
             amount: "₦30,000",
-
             suffix: "/ year",
-
-            note:
-                "Save ₦6,000 with yearly billing"
-
-        },
-
-        features: [
-
-            "Everything in Free",
-
-            "Advanced scam detection",
-
-            "Advanced phishing analysis",
-
-            "Telegram-specific link warnings",
-
-            "Account security monitoring tools",
-
-            "Gaming protection tools",
-
-            "Advanced scam alerts",
-
-            "Protection activity dashboard",
-
-            "Priority security guidance"
-
-        ]
-
-    },
-
-
-    Premier: {
-
-        icon: "👑",
-
-        description:
-            "Maximum protection with advanced security intelligence and priority support.",
-
-        monthly: {
-
-            amount: "₦7,500",
-
-            suffix: "/ month",
-
-            note:
-                "₦90,000/year when paid monthly"
-
-        },
-
-        yearly: {
-
-            amount: "₦75,000",
-
-            suffix: "/ year",
-
-            note:
-                "Save ₦15,000 with yearly billing"
-
-        },
-
-        features: [
-
-            "Everything in Pro",
-
-            "Advanced threat intelligence",
-
-            "Enhanced account protection",
-
-            "Priority security support",
-
-            "Advanced protection monitoring",
-
-            "Expanded scam intelligence",
-
-            "Premium security guidance",
-
-            "Advanced scam alerts",
-
-            "Priority protection assistance"
-
-        ]
-
-    }
-
-};
-
-
-/* =====================================================
-   SET BILLING
-===================================================== */
-
-function setBilling(period) {
-
-    billingPeriod =
-        period === "yearly"
-            ? "yearly"
-            : "monthly";
-
-
-    localStorage.setItem(
-        "trustai_billing_period",
-        billingPeriod
-    );
-
-
-    document
-        .getElementById("monthlyButton")
-        .classList.toggle(
-            "active",
-            billingPeriod === "monthly"
-        );
-
-
-    document
-        .getElementById("yearlyButton")
-        .classList.toggle(
-            "active",
-            billingPeriod === "yearly"
-        );
-
-
-    updateSelectorPrices();
-
-    updateSelectedPlan();
-
-}
-
-
-/* =====================================================
-   UPDATE PLAN SELECTOR PRICES
-===================================================== */
-
-function updateSelectorPrices() {
-
-    const pro =
-        plans.Pro[billingPeriod];
-
-    const premier =
-        plans.Premier[billingPeriod];
-
-
-    document.getElementById(
-        "proOptionPrice"
-    ).textContent =
-
-        `${pro.amount} ${pro.suffix}`;
-
-
-    document.getElementById(
-        "premierOptionPrice"
-    ).textContent =
-
-        `${premier.amount} ${premier.suffix}`;
-
-}
-
-
-/* =====================================================
-   SELECT PLAN
-===================================================== */
-
-function selectPlan(plan) {
-
-    if (
-        plan !== "Pro" &&
-        plan !== "Premier"
-    ) {
-        return;
-    }
-
-
-    selectedPlan = plan;
-
-
-    localStorage.setItem(
-        "trustai_selected_plan",
-        selectedPlan
-    );
-
-
-    updateSelectedPlan();
-
-}
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TrustAI — Upgrade Plan</title>
-
-<meta name="description"
-content="Choose your TrustAI protection plan and upgrade your security.">
-
-<style>
-
-/* =====================================================
-   GLOBAL
-===================================================== */
-
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    background:
-        radial-gradient(
-            circle at 15% 0%,
-            rgba(59,130,246,.13),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(124,92,255,.10),
-            transparent 35%
-        ),
-        #050b14;
-
-    color: #f8fafc;
-}
-
-button {
-    font-family: inherit;
-}
-
-a {
-    color: inherit;
-}
-
-
-/* =====================================================
-   PAGE
-===================================================== */
-
-.page {
-    width: min(1100px, calc(100% - 24px));
-    margin: auto;
-    padding: 22px 0 50px;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 45px;
-}
-
-.back-button {
-    width: 44px;
-    height: 44px;
-
-    border: 1px solid #263b52;
-    border-radius: 12px;
-
-    background: #0b1726;
-    color: white;
-
-    font-size: 21px;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.back-button:hover {
-    border-color: #3b82f6;
-    transform: translateY(-1px);
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: 900;
-}
-
-.logo span {
-    color: #60a5fa;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-    text-align: center;
-
-    max-width: 760px;
-
-    margin: 0 auto 30px;
-}
-
-.hero-badge {
-    display: inline-flex;
-
-    padding: 7px 13px;
-
-    border: 1px solid #24466a;
-    border-radius: 999px;
-
-    background: rgba(59,130,246,.08);
-
-    color: #7db5ff;
-
-    font-size: 11px;
-    font-weight: 800;
-
-    letter-spacing: .5px;
-}
-
-.hero h1 {
-    margin: 17px 0 10px;
-
-    font-size: clamp(34px, 7vw, 52px);
-
-    line-height: 1.05;
-
-    letter-spacing: -1.5px;
-}
-
-.hero p {
-    max-width: 650px;
-
-    margin: auto;
-
-    color: #8fa5bd;
-
-    font-size: 15px;
-
-    line-height: 1.65;
-}
-
-
-/* =====================================================
-   BILLING
-===================================================== */
-
-.billing-area {
-    display: flex;
-    justify-content: center;
-
-    margin-bottom: 25px;
-}
-
-.billing-switch {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 4px;
-
-    padding: 5px;
-
-    background: #0b1726;
-
-    border: 1px solid #263b52;
-
-    border-radius: 14px;
-}
-
-.billing-button {
-    border: 0;
-
-    border-radius: 10px;
-
-    padding: 10px 18px;
-
-    background: transparent;
-
-    color: #8197ad;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.billing-button.active {
-    background: white;
-    color: #07111d;
-}
-
-.save {
-    margin-left: 5px;
-
-    color: #22c55e;
-
-    font-size: 10px;
-
-    font-weight: 900;
-}
-
-
-/* =====================================================
-   PLAN SELECTOR
-===================================================== */
-
-.plan-selector {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 14px;
-
-    max-width: 760px;
-
-    margin: 0 auto 25px;
-}
-
-.plan-option {
-    position: relative;
-
-    padding: 20px;
-
-    border: 1px solid #263b52;
-
-    border-radius: 16px;
-
-    background: #0b1726;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    transition: .2s;
-}
-
-.plan-option:hover {
-    border-color: #3b82f6;
-    transform: translateY(-2px);
-}
-
-.plan-option.selected {
-    border-color: #3b82f6;
-
-    box-shadow:
-        0 0 0 1px rgba(59,130,246,.18),
-        0 15px 35px rgba(0,0,0,.25);
-}
-
-.plan-option.premier.selected {
-    border-color: #7657ff;
-
-    box-shadow:
-        0 0 0 1px rgba(118,87,255,.18),
-        0 15px 35px rgba(0,0,0,.25);
-}
-
-.plan-option-top {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 12px;
-}
-
-.plan-option-name {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 18px;
-
-    font-weight: 900;
-}
-
-.plan-option-icon {
-    width: 38px;
-    height: 38px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 11px;
-
-    background: #13283f;
-
-    font-size: 19px;
-}
-
-.plan-option-price {
-    margin-top: 10px;
-
-    color: #9fb2c6;
-
-    font-size: 13px;
-}
-
-.selected-check {
-    width: 23px;
-    height: 23px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    border: 1px solid #38536e;
-
-    color: transparent;
-
-    font-size: 13px;
-
-    font-weight: 900;
-}
-
-.plan-option.selected .selected-check {
-    background: #3b82f6;
-    border-color: #3b82f6;
-    color: white;
-}
-
-.plan-option.premier.selected .selected-check {
-    background: #7657ff;
-    border-color: #7657ff;
-}
-
-
-/* =====================================================
-   SELECTED PLAN
-===================================================== */
-
-.selected-plan {
-    max-width: 760px;
-
-    margin: 0 auto 25px;
-
-    padding: 24px;
-
-    border: 1px solid #263b52;
-
-    border-radius: 18px;
-
-    background: #0b1726;
-}
-
-.selected-header {
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 15px;
-}
-
-.selected-title {
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-}
-
-.selected-icon {
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    background: #13283f;
-
-    font-size: 24px;
-}
-
-.selected-title h2 {
-    margin: 0;
-
-    font-size: 23px;
-}
-
-.selected-title p {
-    margin: 3px 0 0;
-
-    color: #8197ad;
-
-    font-size: 12px;
-}
-
-.selected-badge {
-    padding: 6px 10px;
-
-    border-radius: 999px;
-
-    background: rgba(59,130,246,.12);
-
-    border: 1px solid #315d8c;
-
-    color: #7db5ff;
-
-    font-size: 10px;
-
-    font-weight: 900;
-}
-
-
-/* =====================================================
-   PRICE
-===================================================== */
-
-.selected-price {
-    margin-top: 20px;
-
-    font-size: 38px;
-
-    font-weight: 900;
-
-    letter-spacing: -1px;
-}
-
-.selected-price small {
-    color: #8197ad;
-
-    font-size: 12px;
-
-    font-weight: 500;
-
-    letter-spacing: 0;
-}
-
-.selected-note {
-    margin-top: 4px;
-
-    color: #4ade80;
-
-    font-size: 11px;
-
-    font-weight: 800;
-}
-
-
-/* =====================================================
-   FEATURES
-===================================================== */
-
-.get-title {
-    margin: 26px 0 10px;
-
-    font-size: 13px;
-
-    font-weight: 900;
-
-    text-transform: uppercase;
-
-    letter-spacing: .5px;
-}
-
-.features {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 0 20px;
-
-    list-style: none;
-
-    padding: 0;
-
-    margin: 0;
-}
-
-.features li {
-    padding: 10px 0;
-
-    border-bottom: 1px solid rgba(255,255,255,.06);
-
-    color: #b7c6d6;
-
-    font-size: 12px;
-}
-
-.features li::before {
-    content: "✓";
-
-    margin-right: 9px;
-
-    color: #4ade80;
-
-    font-weight: 900;
-}
-
-
-/* =====================================================
-   UPGRADE BUTTON
-===================================================== */
-
-.upgrade-button {
-    width: 100%;
-
-    margin-top: 22px;
-
-    padding: 15px;
-
-    border: 0;
-
-    border-radius: 12px;
-
-    background: #3b82f6;
-
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.upgrade-button:hover {
-    background: #2563eb;
-
-    transform: translateY(-1px);
-}
-
-.upgrade-button.premier {
-    background: #7657ff;
-}
-
-.upgrade-button.premier:hover {
-    background: #6545e8;
-}
-
-
-/* =====================================================
-   FREE PLAN NOTE
-===================================================== */
-
-.free-note {
-    max-width: 760px;
-
-    margin: 0 auto;
-
-    padding: 16px 18px;
-
-    border: 1px solid #263b52;
-
-    border-radius: 15px;
-
-    background: rgba(11,23,38,.75);
-
-    color: #8197ad;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-    text-align: center;
-}
-
-
-/* =====================================================
-   NOTICE
-===================================================== */
-
-.notice {
-    max-width: 760px;
-
-    margin: 20px auto 0;
-
-    padding: 17px;
-
-    border: 1px solid #5a4a18;
-
-    border-radius: 16px;
-
-    background: rgba(82,65,12,.12);
-}
-
-.notice strong {
-    display: block;
-
-    margin-bottom: 6px;
-
-    color: #fde68a;
-
-    font-size: 13px;
-}
-
-.notice p {
-    margin: 0;
-
-    color: #9da9b7;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-    margin-top: 45px;
-
-    padding-top: 25px;
-
-    border-top: 1px solid #1c3044;
-
-    text-align: center;
-
-    color: #64788d;
-
-    font-size: 11px;
-}
-
-.footer-brand {
-    margin-bottom: 5px;
-
-    color: #aebfd1;
-
-    font-weight: 900;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 650px) {
-
-    .plan-selector {
-        grid-template-columns: 1fr;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-    .selected-header {
-        align-items: flex-start;
-    }
-
-    .selected-badge {
-        display: none;
-    }
-
-}
-
-@media (max-width: 500px) {
-
-    .page {
-        width: calc(100% - 20px);
-    }
-
-    .header {
-        margin-bottom: 35px;
-    }
-
-    .billing-button {
-        padding: 10px 13px;
-    }
-
-    .save {
-        display: block;
-        margin: 2px 0 0;
-    }
-
-    .selected-plan {
-        padding: 20px;
-    }
-
-    .selected-price {
-        font-size: 34px;
-    }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="page">
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header class="header">
-
-    <button
-        class="back-button"
-        type="button"
-        onclick="goBack()"
-        aria-label="Go back">
-
-        ←
-
-    </button>
-
-    <div class="logo">
-        🛡️ Trust<span>AI</span>
-    </div>
-
-    <div style="width:44px;"></div>
-
-</header>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-badge">
-        🛡️ TRUSTAI PROTECTION
-    </div>
-
-    <h1>
-        Upgrade your plan.
-    </h1>
-
-    <p>
-        Choose the protection level that fits your
-        needs. You can switch between plans and
-        billing periods before continuing to checkout.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     BILLING
-===================================================== -->
-
-<div class="billing-area">
-
-    <div class="billing-switch">
-
-        <button
-            id="monthlyButton"
-            class="billing-button active"
-            type="button"
-            onclick="setBilling('monthly')">
-
-            Monthly
-
-        </button>
-
-        <button
-            id="yearlyButton"
-            class="billing-button"
-            type="button"
-            onclick="setBilling('yearly')">
-
-            Yearly
-
-            <span class="save">
-                SAVE 2 MONTHS
-            </span>
-
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     PLAN SELECTOR
-===================================================== -->
-
-<section class="plan-selector">
-
-
-    <!-- PRO -->
-
-    <button
-        id="proOption"
-        class="plan-option selected"
-        type="button"
-        onclick="selectPlan('Pro')">
-
-        <div class="plan-option-top">
-
-            <div class="plan-option-name">
-
-                <div class="plan-option-icon">
-                    🛡️
-                </div>
-
-                Pro
-
-            </div>
-
-            <div class="selected-check">
-                ✓
-            </div>
-
-        </div>
-
-        <div
-            id="proOptionPrice"
-            class="plan-option-price">
-
-            ₦3,000 / month
-
-        </div>
-
-    </button>
-
-
-    <!-- PREMIER -->
-
-    <button
-        id="premierOption"
-        class="plan-option premier"
-        type="button"
-        onclick="selectPlan('Premier')">
-
-        <div class="plan-option-top">
-
-            <div class="plan-option-name">
-
-                <div class="plan-option-icon">
-                    👑
-                </div>
-
-                Premier
-
-            </div>
-
-            <div class="selected-check">
-                ✓
-            </div>
-
-        </div>
-
-        <div
-            id="premierOptionPrice"
-            class="plan-option-price">
-
-            ₦7,500 / month
-
-        </div>
-
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     SELECTED PLAN DETAILS
-===================================================== -->
-
-<section class="selected-plan">
-
-    <div class="selected-header">
-
-        <div class="selected-title">
-
-            <div
-                id="selectedIcon"
-                class="selected-icon">
-
-                🛡️
-
-            </div>
-
-            <div>
-
-                <h2 id="selectedPlanName">
-                    Pro
-                </h2>
-
-                <p id="selectedDescription">
-                    Advanced protection for stronger
-                    everyday security.
-                </p>
-
-            </div>
-
-        </div>
-
-        <div
-            id="selectedBadge"
-            class="selected-badge">
-
-            SELECTED
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="selectedPrice"
-        class="selected-price">
-
-        ₦3,000
-        <small>/ month</small>
-
-    </div>
-
-
-    <div
-        id="selectedNote"
-        class="selected-note">
-
-        ₦36,000/year when paid monthly
-
-    </div>
-
-
-    <div class="get-title">
-        What you get
-    </div>
-
-
-    <ul
-        id="featureList"
-        class="features">
-
-    </ul>
-
-
-    <button
-        id="upgradeButton"
-        class="upgrade-button"
-        type="button"
-        onclick="continueToCheckout()">
-
-        Upgrade to Pro
-
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     FREE NOTE
-===================================================== -->
-
-<div class="free-note">
-
-    🆓 Your Free TrustAI protection remains available.
-    Upgrading only adds the additional features shown
-    above.
-
-</div>
-
-
-<!-- =====================================================
-     NOTICE
-===================================================== -->
-
-<section class="notice">
-
-    <strong>
-        ⚠️ About advanced protection
-    </strong>
-
-    <p>
-        Some advanced TrustAI capabilities will require
-        a future TrustAI mobile app, appropriate device
-        permissions and/or official service integrations.
-        A normal website cannot independently monitor
-        incoming calls, device messages or gaming accounts
-        in real time.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    <div class="footer-brand">
-        🛡️ TrustAI
-    </div>
-
-    Online scam awareness and protection.
-
-    <br><br>
-
-    © 2026 TrustAI
-
-</footer>
-
-
-</div>
-
-
-<script>
-
-/* =====================================================
-   TRUSTAI UPGRADE PAGE
-===================================================== */
-
-
-/* -----------------------------------------------------
-   BILLING
------------------------------------------------------ */
-
-let billingPeriod =
-    localStorage.getItem(
-        "trustai_billing_period"
-    ) || "monthly";
-
-
-/* -----------------------------------------------------
-   SELECTED PLAN
------------------------------------------------------ */
-
-let selectedPlan =
-    localStorage.getItem(
-        "trustai_selected_plan"
-    ) || "Pro";
-
-
-/* =====================================================
-   PLAN DATA
-===================================================== */
-
-const plans = {
-
-    Pro: {
-
-        icon: "🛡️",
-
-        description:
-            "Advanced protection for stronger everyday security.",
-
-        monthly: {
-
-            amount: "₦3,000",
-
-            suffix: "/ month",
-
-            note:
-                "₦36,000/year when paid monthly"
-
-        },
-
-        yearly: {
-
-            amount: "₦30,000",
-
-            suffix: "/ year",
-
-            note:
-                "Save ₦6,000 with yearly billing"
-
-        },
-
-        features: [
-
-            "Everything in Free",
-
-            "Advanced scam detection",
-
-            "Advanced phishing analysis",
-
-            "Telegram-specific link warnings",
-
-            "Account security monitoring tools",
-
-            "Gaming protection tools",
-
-            "Advanced scam alerts",
-
-            "Protection activity dashboard",
-
-            "Priority security guidance"
-
-        ]
-
-    },
-
-
-    Premier: {
-
-        icon: "👑",
-
-        description:
-            "Maximum protection with advanced security intelligence and priority support.",
-
-        monthly: {
-
-            amount: "₦7,500",
-
-            suffix: "/ month",
-
-            note:
-                "₦90,000/year when paid monthly"
-
-        },
-
-        yearly: {
-
-            amount: "₦75,000",
-
-            suffix: "/ year",
-
-            note:
-                "Save ₦15,000 with yearly billing"
-
-        },
-
-        features: [
-
-            "Everything in Pro",
-
-            "Advanced threat intelligence",
-
-            "Enhanced account protection",
-
-            "Priority security support",
-
-            "Advanced protection monitoring",
-
-            "Expanded scam intelligence",
-
-            "Premium security guidance",
-
-            "Advanced scam alerts",
-
-            "Priority protection assistance"
-
-        ]
-
-    }
-
-};
-
-
-/* =====================================================
-   SET BILLING
-===================================================== */
-
-function setBilling(period) {
-
-    billingPeriod =
-        period === "yearly"
-            ? "yearly"
-            : "monthly";
-
-
-    localStorage.setItem(
-        "trustai_billing_period",
-        billingPeriod
-    );
-
-
-    document
-        .getElementById("monthlyButton")
-        .classList.toggle(
-            "active",
-            billingPeriod === "monthly"
-        );
-
-
-    document
-        .getElementById("yearlyButton")
-        .classList.toggle(
-            "active",
-            billingPeriod === "yearly"
-        );
-
-
-    updateSelectorPrices();
-
-    updateSelectedPlan();
-
-}
-
-
-/* =====================================================
-   UPDATE PLAN SELECTOR PRICES
-===================================================== */
-
-function updateSelectorPrices() {
-
-    const pro =
-        plans.Pro[billingPeriod];
-
-    const premier =
-        plans.Premier[billingPeriod];
-
-
-    document.getElementById(
-        "proOptionPrice"
-    ).textContent =
-
-        `${pro.amount} ${pro.suffix}`;
-
-
-    document.getElementById(
-        "premierOptionPrice"
-    ).textContent =
-
-        `${premier.amount} ${premier.suffix}`;
-
-}
-
-
-/* =====================================================
-   SELECT PLAN
-===================================================== */
-
-function selectPlan(plan) {
-
-    if (
-        plan !== "Pro" &&
-        plan !== "Premier"
-    ) {
-        return;
-    }
-
-
-    selectedPlan = plan;
-
-
-    localStorage.setItem(
-        "trustai_selected_plan",
-        selectedPlan
-    );
-
-
-    updateSelectedPlan();
-
-}
-
-
-/* =====================================================
-   UPDATE SELECTED PLAN
-===================================================== */
-
-function updateSelectedPlan() {
-
-    const data =
-        plans[selectedPlan][billingPeriod];
-
-
-    const planInfo =
-        plans[selectedPlan];
-
-
-    /* Plan selector */
-
-    document
-        .getElementById("proOption")
-        .classList.toggle(
-            "selected",
-            selectedPlan === "Pro"
-        );
-
-
-    document
-        .getElementById("premierOption")
-        .classList.toggle(
-            "selected",
-            selectedPlan === "Premier"
-        );
-
-
-    /* Icon */
-
-    document.getElementById(
-        "selectedIcon"
-    ).textContent =
-        planInfo.icon;
-
-
-    /* Name */
-
-    document.getElementById(
-        "selectedPlanName"
-    ).textContent =
-        selectedPlan;
-
-
-    /* Description */
-
-    document.getElementById(
-        "selectedDescription"
-    ).textContent =
-        planInfo.description;
-
-
-    /* Price */
-
-    document.getElementById(
-        "selectedPrice"
-    ).innerHTML =
-
-        `${data.amount}
-        <small>${data.suffix}</small>`;
-
-
-    /* Note */
-
-    document.getElementById(
-        "selectedNote"
-    ).textContent =
-        data.note;
-
-
-    /* Features */
-
-    const featureList =
-        document.getElementById(
-            "featureList"
-        );
-
-
-    featureList.innerHTML = "";
-
-
-    planInfo.features.forEach(
-        function(feature) {
-
-            const li =
-                document.createElement("li");
-
-            li.textContent =
-                feature;
-
-            featureList.appendChild(li);
-
+            note: "Save ₦6,000 with yearly billing"
         }
-    );
+
+    },
 
 
-    /* Upgrade button */
+    Premier: {
 
-    const button =
-        document.getElementById(
-            "upgradeButton"
-        );
+        monthly: {
+            amount: "₦7,500",
+            suffix: "/ month",
+            note: "Billed monthly"
+        },
+
+        yearly: {
+            amount: "₦75,000",
+            suffix: "/ year",
+            note: "Save ₦15,000 with yearly billing"
+        }
+
+    }
+
+};
 
 
-    button.textContent =
-        `Upgrade to ${selectedPlan}`;
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const proTab =
+    document.getElementById("proTab");
+
+const premierTab =
+    document.getElementById("premierTab");
 
 
-    button.classList.toggle(
-        "premier",
-        selectedPlan === "Premier"
-    );
+const proContent =
+    document.getElementById("proContent");
+
+const premierContent =
+    document.getElementById("premierContent");
+
+
+const monthlyButton =
+    document.getElementById("monthlyButton");
+
+const yearlyButton =
+    document.getElementById("yearlyButton");
+
+
+const proPrice =
+    document.getElementById("proPrice");
+
+const premierPrice =
+    document.getElementById("premierPrice");
+
+
+const proNote =
+    document.getElementById("proNote");
+
+const premierNote =
+    document.getElementById("premierNote");
+
+
+const upgradeProButton =
+    document.getElementById("upgradeProButton");
+
+const upgradePremierButton =
+    document.getElementById("upgradePremierButton");
+
+
+/* =====================================================
+   SAVED SETTINGS
+===================================================== */
+
+let billingPeriod =
+    localStorage.getItem(
+        "trustai_billing_period"
+    ) || "monthly";
+
+
+let selectedPlan =
+    localStorage.getItem(
+        "trustai_selected_plan"
+    ) || "Pro";
+
+
+/* Make sure only valid values are used */
+
+if (
+    billingPeriod !== "monthly" &&
+    billingPeriod !== "yearly"
+) {
+
+    billingPeriod = "monthly";
+
+}
+
+
+if (
+    selectedPlan !== "Pro" &&
+    selectedPlan !== "Premier"
+) {
+
+    selectedPlan = "Pro";
 
 }
 
 
 /* =====================================================
-   CONTINUE TO CHECKOUT
+   SHOW PLAN
 ===================================================== */
 
-function continueToCheckout() {
+function showPlan(plan) {
 
-    const data =
-        plans[selectedPlan][billingPeriod];
+    if (
+        plan !== "Pro" &&
+        plan !== "Premier"
+    ) {
+
+        plan = "Pro";
+
+    }
 
 
-    /*
-       Save the selected plan.
-    */
+    selectedPlan = plan;
+
 
     localStorage.setItem(
         "trustai_selected_plan",
@@ -2714,9 +1234,91 @@ function continueToCheckout() {
     );
 
 
-    /*
-       Save billing period.
-    */
+    /* PRO */
+
+    if (selectedPlan === "Pro") {
+
+        proTab.classList.add("active");
+
+        premierTab.classList.remove("active");
+
+
+        proContent.classList.add("active");
+
+        premierContent.classList.remove("active");
+
+    }
+
+
+    /* PREMIER */
+
+    else {
+
+        proTab.classList.remove("active");
+
+        premierTab.classList.add("active");
+
+
+        proContent.classList.remove("active");
+
+        premierContent.classList.add("active");
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE PRICES
+===================================================== */
+
+function updatePrices() {
+
+    const pro =
+        planData.Pro[billingPeriod];
+
+    const premier =
+        planData.Premier[billingPeriod];
+
+
+    proPrice.innerHTML =
+        `${pro.amount}
+        <small>${pro.suffix}</small>`;
+
+
+    proNote.textContent =
+        pro.note;
+
+
+    premierPrice.innerHTML =
+        `${premier.amount}
+        <small>${premier.suffix}</small>`;
+
+
+    premierNote.textContent =
+        premier.note;
+
+}
+
+
+/* =====================================================
+   BILLING
+===================================================== */
+
+function setBilling(period) {
+
+    if (
+        period !== "monthly" &&
+        period !== "yearly"
+    ) {
+
+        period = "monthly";
+
+    }
+
+
+    billingPeriod = period;
+
 
     localStorage.setItem(
         "trustai_billing_period",
@@ -2724,10 +1326,115 @@ function continueToCheckout() {
     );
 
 
-    /*
-       TrustAI currently displays Nigerian pricing
-       for the Nigerian checkout flow.
-    */
+    monthlyButton.classList.toggle(
+        "active",
+        billingPeriod === "monthly"
+    );
+
+
+    yearlyButton.classList.toggle(
+        "active",
+        billingPeriod === "yearly"
+    );
+
+
+    updatePrices();
+
+}
+
+
+/* =====================================================
+   PRO TAB
+===================================================== */
+
+proTab.addEventListener(
+    "click",
+    function() {
+
+        showPlan("Pro");
+
+    }
+);
+
+
+/* =====================================================
+   PREMIER TAB
+===================================================== */
+
+premierTab.addEventListener(
+    "click",
+    function() {
+
+        showPlan("Premier");
+
+    }
+);
+
+
+/* =====================================================
+   MONTHLY BUTTON
+===================================================== */
+
+monthlyButton.addEventListener(
+    "click",
+    function() {
+
+        setBilling("monthly");
+
+    }
+);
+
+/* =====================================================
+   YEARLY BUTTON
+===================================================== */
+
+yearlyButton.addEventListener(
+    "click",
+    function() {
+
+        setBilling("yearly");
+
+    }
+);
+
+
+/* =====================================================
+   CHECKOUT
+===================================================== */
+
+function upgradeTo(plan) {
+
+    if (
+        plan !== "Pro" &&
+        plan !== "Premier"
+    ) {
+
+        return;
+
+    }
+
+
+    const selected =
+        planData[plan][billingPeriod];
+
+
+    /* Save selected plan */
+
+    localStorage.setItem(
+        "trustai_selected_plan",
+        plan
+    );
+
+
+    /* Save billing period */
+
+    localStorage.setItem(
+        "trustai_billing_period",
+        billingPeriod
+    );
+
+
+    /* Save currency */
 
     localStorage.setItem(
         "trustai_selected_currency",
@@ -2741,14 +1448,13 @@ function continueToCheckout() {
     );
 
 
-    /*
-       Convert ₦3,000 → 3000.
-    */
+    /* Save numeric price */
 
     const numericPrice =
-        data.amount
+        selected.amount
             .replace("₦", "")
-            .replace(/,/g, "");
+            .replace(/,/g, "")
+            .trim();
 
 
     localStorage.setItem(
@@ -2757,9 +1463,15 @@ function continueToCheckout() {
     );
 
 
-    /*
-       Continue to checkout.
-    */
+    /* Save readable price */
+
+    localStorage.setItem(
+        "trustai_checkout_display_price",
+        selected.amount
+    );
+
+
+    /* Go to checkout */
 
     window.location.href =
         "./checkout.html";
@@ -2768,12 +1480,43 @@ function continueToCheckout() {
 
 
 /* =====================================================
-   BACK BUTTON
+   PRO UPGRADE BUTTON
+===================================================== */
+
+upgradeProButton.addEventListener(
+    "click",
+    function() {
+
+        upgradeTo("Pro");
+
+    }
+);
+
+
+/* =====================================================
+   PREMIER UPGRADE BUTTON
+===================================================== */
+
+upgradePremierButton.addEventListener(
+    "click",
+    function() {
+
+        upgradeTo("Premier");
+
+    }
+);
+
+
+/* =====================================================
+   BACK
 ===================================================== */
 
 function goBack() {
 
-    if (document.referrer) {
+    if (
+        document.referrer &&
+        document.referrer !== window.location.href
+    ) {
 
         window.history.back();
 
@@ -2788,33 +1531,16 @@ function goBack() {
 
 
 /* =====================================================
-   START PAGE
+   INITIALIZE
 ===================================================== */
 
 setBilling(billingPeriod);
 
-
-/*
-   Make sure the saved plan is valid.
-*/
-
-if (
-    selectedPlan !== "Pro" &&
-    selectedPlan !== "Premier"
-) {
-
-    selectedPlan = "Pro";
-
-}
-
-
-/*
-   Render selected plan.
-*/
-
-updateSelectedPlan();
+showPlan(selectedPlan);
 
 </script>
 
+
 </body>
+
 </html>
