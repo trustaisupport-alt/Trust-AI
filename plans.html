@@ -1,10 +1,16 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TrustAI Plans</title><meta
+name="description"
+content="Choose your TrustAI protection plan: Free, Pro or Premier."
 
-<title>TrustAI Plans</title><meta name="description"
-content="Choose your TrustAI protection plan: Free, Pro or Premier.">
+«»
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -17,8 +23,14 @@ html {
 
 body {
     margin: 0;
-    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
-                 "Segoe UI", Arial, sans-serif;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
     background:
         radial-gradient(
@@ -43,7 +55,7 @@ button {
 
 
 /* =====================================================
-   MENU
+   MENU BUTTON
 ===================================================== */
 
 .menu-button {
@@ -82,6 +94,11 @@ button {
 
     background: white;
 }
+
+
+/* =====================================================
+   SIDE MENU
+===================================================== */
 
 .side-menu {
 
@@ -239,7 +256,7 @@ button {
 
     text-align: center;
 
-    padding: 25px 15px 25px;
+    padding: 25px 15px;
 }
 
 .header-badge {
@@ -508,12 +525,16 @@ button {
         0 20px 45px rgba(0,0,0,.25);
 }
 
+
+/* =====================================================
+   PLAN BADGES
+===================================================== */
+
 .popular {
 
     position: absolute;
 
     top: -12px;
-
     left: 50%;
 
     transform: translateX(-50%);
@@ -538,6 +559,11 @@ button {
 .premier-label {
     background: #7c5cff;
 }
+
+
+/* =====================================================
+   PLAN ICON
+===================================================== */
 
 .plan-icon {
 
@@ -800,6 +826,7 @@ td {
 
 th:first-child,
 td:first-child {
+
     text-align: left;
 }
 
@@ -811,6 +838,7 @@ th {
 }
 
 td {
+
     color: #aebfd1;
 }
 
@@ -822,6 +850,7 @@ td {
 }
 
 .no {
+
     color: #64748b;
 }
 
@@ -897,6 +926,7 @@ td {
 }
 
 .modal-overlay.show {
+
     display: flex;
 }
 
@@ -933,7 +963,6 @@ td {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     font-size: 28px;
@@ -1044,7 +1073,6 @@ footer {
 
         margin: auto;
     }
-
 }
 
 @media (max-width: 500px) {
@@ -1085,6 +1113,20 @@ footer {
         margin: 3px 0 0;
     }
 
+    .current-plan {
+
+        flex-direction: column;
+    }
+
+    .current-badge {
+
+        align-self: flex-start;
+    }
+
+    .modal-actions {
+
+        flex-direction: column;
+    }
 }
 
 
@@ -1095,10 +1137,11 @@ footer {
 @media (prefers-reduced-motion: reduce) {
 
     * {
+
         scroll-behavior: auto !important;
+
         transition: none !important;
     }
-
 }
 
 </style></head><body><!-- =====================================================
@@ -1107,7 +1150,11 @@ footer {
 class="menu-button"
 type="button"
 onclick="toggleMenu()"
-aria-label="Open navigation menu">
+aria-label="Open navigation menu"
+aria-controls="sideMenu"
+aria-expanded="false"
+
+«»
 
 <span></span>
 <span></span>
@@ -1117,7 +1164,9 @@ aria-label="Open navigation menu">
      SIDE MENU
 ===================================================== --><nav
     id="sideMenu"
-    class="side-menu"><div class="menu-brand">
+    class="side-menu"
+    aria-label="TrustAI navigation"
+><div class="menu-brand">
 
     <strong>🛡️ TrustAI</strong>
 
@@ -1129,43 +1178,63 @@ aria-label="Open navigation menu">
 
 
 <a href="./home.html" class="menu-link">
+
     <span class="menu-icon">🏠</span>
+
     Home
+
 </a>
 
 
 <a href="./message.html" class="menu-link">
+
     <span class="menu-icon">🔍</span>
+
     Message Checker
+
 </a>
 
 
 <a href="./conversation.html" class="menu-link">
+
     <span class="menu-icon">💬</span>
+
     Conversation Checker
+
 </a>
 
 
 <a href="./website.html" class="menu-link">
+
     <span class="menu-icon">🌐</span>
+
     Website Checker
+
 </a>
 
 
 <a href="./device.html" class="menu-link">
+
     <span class="menu-icon">📱</span>
+
     Device Security
+
 </a>
 
 
 <a href="./protection.html" class="menu-link">
+
     <span class="menu-icon">🛡️</span>
+
     TrustAI Protection
+
 </a>
 
 
-<a href="./plans.html"
-   class="menu-link active">
+<a
+    href="./plans.html"
+    class="menu-link active"
+>
 
     <span class="menu-icon">💎</span>
 
@@ -1174,8 +1243,10 @@ aria-label="Open navigation menu">
 </a>
 
 
-<a href="./security.html"
-   class="menu-link">
+<a
+    href="./security.html"
+    class="menu-link"
+>
 
     <span class="menu-icon">🔐</span>
 
@@ -1187,8 +1258,10 @@ aria-label="Open navigation menu">
 <div class="menu-divider"></div>
 
 
-<a href="./alerts.html"
-   class="menu-link">
+<a
+    href="./alerts.html"
+    class="menu-link"
+>
 
     <span class="menu-icon">🚨</span>
 
@@ -1197,8 +1270,10 @@ aria-label="Open navigation menu">
 </a>
 
 
-<a href="./report.html"
-   class="menu-link">
+<a
+    href="./report.html"
+    class="menu-link"
+>
 
     <span class="menu-icon">📢</span>
 
@@ -1207,8 +1282,10 @@ aria-label="Open navigation menu">
 </a>
 
 
-<a href="./contact.html"
-   class="menu-link">
+<a
+    href="./contact.html"
+    class="menu-link"
+>
 
     <span class="menu-icon">💬</span>
 
@@ -1219,11 +1296,15 @@ aria-label="Open navigation menu">
 </nav><div
     id="menuOverlay"
     class="menu-overlay"
-    onclick="closeMenu()">
-</div><!-- =====================================================
+    onclick="closeMenu()"
+></div><!-- =====================================================
      PAGE
-===================================================== --><main class="page"><header class="header"><div class="header-badge">
+===================================================== --><main class="page"><!-- =====================================================
+     HEADER
+===================================================== --><header class="header"><div class="header-badge">
+
     💎 TRUSTAI PROTECTION PLANS
+
 </div>
 
 
@@ -1249,13 +1330,15 @@ aria-label="Open navigation menu">
 ===================================================== --><div class="billing-wrapper"><div
     class="billing-switch"
     role="group"
-    aria-label="Billing period">
+    aria-label="Billing period"
+>
 
     <button
         id="monthlyButton"
         class="billing-option active"
         type="button"
-        onclick="setBilling('monthly')">
+        onclick="setBilling('monthly')"
+    >
 
         Monthly
 
@@ -1266,12 +1349,15 @@ aria-label="Open navigation menu">
         id="yearlyButton"
         class="billing-option"
         type="button"
-        onclick="setBilling('yearly')">
+        onclick="setBilling('yearly')"
+    >
 
         Yearly
 
         <span class="save-badge">
+
             SAVE 2 MONTHS
+
         </span>
 
     </button>
@@ -1283,13 +1369,16 @@ aria-label="Open navigation menu">
 ===================================================== --><section class="current-plan"><div>
 
     <div class="current-plan-label">
+
         YOUR CURRENT PLAN
+
     </div>
 
 
     <div
         id="currentPlanName"
-        class="current-plan-name">
+        class="current-plan-name"
+    >
 
         Free
 
@@ -1299,20 +1388,26 @@ aria-label="Open navigation menu">
 
 
 <div class="current-badge">
+
     ACTIVE PLAN
+
 </div>
 
 </section><!-- =====================================================
-     PLANS
+     PLAN GRID
 ===================================================== --><section class="plan-grid"><!-- =====================================================
-     FREE
+     FREE PLAN
 ===================================================== --><article class="plan-card"><div class="plan-icon">
+
     🆓
+
 </div>
 
 
 <h2>
+
     Free
+
 </h2>
 
 
@@ -1326,7 +1421,8 @@ aria-label="Open navigation menu">
 
 <div
     class="price free-price"
-    id="freePrice">
+    id="freePrice"
+>
 
     ₦0
 
@@ -1338,14 +1434,18 @@ aria-label="Open navigation menu">
 
 
 <div class="yearly-note">
+
     Always free
+
 </div>
 
 
 <button
     id="freeButton"
     class="plan-button current"
-    onclick="selectPlan('Free')">
+    type="button"
+    onclick="selectPlan('Free')"
+>
 
     Current Plan
 
@@ -1353,56 +1453,50 @@ aria-label="Open navigation menu">
 
 
 <div class="feature-title">
+
     INCLUDED
+
 </div>
 
 
 <ul class="feature-list">
 
-    <li>
-        Message Checker
-    </li>
+    <li>Message Checker</li>
 
-    <li>
-        Conversation Checker
-    </li>
+    <li>Conversation Checker</li>
 
-    <li>
-        Website Checker
-    </li>
+    <li>Website Checker</li>
 
-    <li>
-        Basic scam alerts
-    </li>
+    <li>Basic scam alerts</li>
 
-    <li>
-        Basic security guidance
-    </li>
+    <li>Basic security guidance</li>
 
-    <li>
-        Manual link checking
-    </li>
+    <li>Manual link checking</li>
 
-    <li>
-        Basic protection dashboard
-    </li>
+    <li>Basic protection dashboard</li>
 
 </ul>
 
 </article><!-- =====================================================
-     PRO
+     PRO PLAN
 ===================================================== --><article class="plan-card pro"><div class="popular">
+
     MOST POPULAR
+
 </div>
 
 
 <div class="plan-icon">
+
     🛡️
+
 </div>
 
 
 <h2>
+
     Pro
+
 </h2>
 
 
@@ -1416,7 +1510,8 @@ aria-label="Open navigation menu">
 
 <div
     id="proPrice"
-    class="price pro-price">
+    class="price pro-price"
+>
 
     ₦3,000
 
@@ -1429,17 +1524,19 @@ aria-label="Open navigation menu">
 
 <div
     id="proYearlyNote"
-    class="yearly-note">
+    class="yearly-note"
+>
 
     Save ₦6,000 per year
-
-</div>
+    </div>
 
 
 <button
     id="proButton"
     class="plan-button"
-    onclick="selectPlan('Pro')">
+    type="button"
+    onclick="selectPlan('Pro')"
+>
 
     Upgrade to Pro
 
@@ -1447,61 +1544,275 @@ aria-label="Open navigation menu">
 
 
 <div class="feature-title">
+
     EVERYTHING IN FREE, PLUS
+
 </div>
 
 
 <ul class="feature-list">
 
-    <li>
-        Advanced scam detection
-    </li>
+    <li>Advanced scam detection</li>
 
-    <li>
-        Advanced phishing analysis
-    </li>
+    <li>Advanced phishing analysis</li>
 
-    <li>
-        Telegram-specific link warnings
-    </li>
+    <li>Telegram-specific link warnings</li>
 
-    <li>
-        Account security monitoring tools
-    </li>
+    <li>Account security monitoring tools</li>
 
-    <li>
-        Gaming protection tools
-    </li>
+    <li>Gaming protection tools</li>
 
-    <li>
-        Advanced scam alerts
-    </li>
+    <li>Advanced scam alerts</li>
 
-    <li>
-        Protection activity dashboard
-    </li>
+    <li>Protection activity dashboard</li>
 
-    <li>
-        Priority security guidance
-    </li>
+    <li>Priority security guidance</li>
 
 </ul>
 
-</article><!-- =====================================================
-     PREMIER
-===================================================== --><article class="plan-card premier"><div class="popular premier-label">
+</article>
+
+<!-- =====================================================
+     PREMIER PLAN
+===================================================== -->
+
+<article class="plan-card premier">
+
+<div class="popular premier-label">
+
     MAXIMUM PROTECTION
+
 </div>
 
 
 <div class="plan-icon">
+
     👑
+
 </div>
 
 
 <h2>
+
     Premier
+
 </h2>
+
+
+<p class="plan-description">
+
+    Maximum protection with advanced
+    security intelligence and priority support.
+
+</p>
+
+
+<div
+    id="premierPrice"
+    class="price premier-price"
+>
+
+    ₦7,500
+
+    <small>
+        / month
+    </small>
+
+</div>
+
+
+<div
+    id="premierYearlyNote"
+    class="yearly-note"
+>
+
+    Save ₦15,000 per year
+
+</div>
+
+
+<button
+    id="premierButton"
+    class="plan-button premier-button"
+    type="button"
+    onclick="selectPlan('Premier')"
+>
+
+    Upgrade to Premier
+
+</button>
+
+
+<div class="feature-title">
+
+    EVERYTHING IN PRO, PLUS
+
+</div>
+
+
+<ul class="feature-list">
+
+    <li>Advanced threat intelligence</li>
+
+    <li>Enhanced account protection</li>
+
+    <li>Priority security support</li>
+
+    <li>Advanced protection monitoring</li>
+
+    <li>Expanded scam intelligence</li>
+
+    <li>Premium security guidance</li>
+
+</ul>
+
+</article>
+
+</section>
+
+<!-- =====================================================
+     COMPARISON
+===================================================== -->
+
+<section class="comparison">
+
+<h2>
+
+    Compare TrustAI Plans
+
+</h2>
+
+
+<p>
+
+    See which level of protection is right for you.
+
+</p>
+
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>
+                Protection
+            </th>
+
+            <th>
+                Free
+            </th>
+
+            <th>
+                Pro
+            </th>
+
+            <th>
+                Premier
+            </th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+
+        <tr>
+
+            <td>
+                Message Checker
+            </td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Conversation Checker
+            </td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Website Checker
+            </td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Scam Alerts
+            </td>
+
+            <td class="partial">
+                Basic
+            </td>
+
+            <td class="yes">Advanced</td>
+
+            <td class="yes">Advanced+</td>
+
+        </tr>
+
+
+        <tr>
+            <td>
+                Scam Alerts
+            </td>
+
+            <td class="partial">
+                Basic
+            </td>
+
+            <td class="yes">Advanced</td>
+
+            <td class="yes">Advanced+</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Phishing Analysis
+            </td>
+
+            <td class="partial">
+                Basic
+            </td>
+
+            <td class="yes">✓</td>
+
+            <td class="yes">✓</td>
+
+        </tr>
 
 
         <tr>
@@ -1598,14 +1909,16 @@ aria-label="Open navigation menu">
 <section class="notice">
 
 <h3>
+
     ⚠️ Important about TrustAI protection
+
 </h3>
 
 
 <p>
 
-    Some advanced protection features shown in
-    these plans are planned capabilities and
+    Some advanced protection features shown
+    in these plans are planned capabilities and
     cannot be performed by a normal website alone.
 
     Real-time incoming-call monitoring,
@@ -1619,10 +1932,16 @@ aria-label="Open navigation menu">
 
 </section>
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
 
 <div class="footer-brand">
+
     🛡️ TrustAI
+
 </div>
 
 
@@ -1644,24 +1963,34 @@ Online scam awareness and protection.
 
 <div
     id="upgradeModal"
-    class="modal-overlay">
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+>
 
 <div class="modal">
 
 
     <div class="modal-icon">
+
         🛡️
+
     </div>
 
 
     <h2 id="modalTitle">
-        Upgrade to Pro
+
+        Continue with Pro
+
     </h2>
 
 
     <p id="modalText">
+
         Your selected plan will be prepared
         for secure checkout.
+
     </p>
 
 
@@ -1670,7 +1999,9 @@ Online scam awareness and protection.
 
         <button
             class="modal-primary"
-            onclick="confirmPlan()">
+            type="button"
+            onclick="confirmPlan()"
+        >
 
             Continue
 
@@ -1679,7 +2010,9 @@ Online scam awareness and protection.
 
         <button
             class="modal-secondary"
-            onclick="closeUpgradeModal()">
+            type="button"
+            onclick="closeUpgradeModal()"
+        >
 
             Cancel
 
@@ -1706,24 +2039,44 @@ function toggleMenu() {
     const overlay =
         document.getElementById("menuOverlay");
 
+    const button =
+        document.querySelector(".menu-button");
 
-    menu.classList.toggle("open");
+    const isOpen =
+        menu.classList.toggle("open");
 
-    overlay.classList.toggle("show");
+    overlay.classList.toggle(
+        "show",
+        isOpen
+    );
+
+    button.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+    );
 
 }
 
 
 function closeMenu() {
 
-    document
-        .getElementById("sideMenu")
-        .classList.remove("open");
+    const menu =
+        document.getElementById("sideMenu");
 
+    const overlay =
+        document.getElementById("menuOverlay");
 
-    document
-        .getElementById("menuOverlay")
-        .classList.remove("show");
+    const button =
+        document.querySelector(".menu-button");
+
+    menu.classList.remove("open");
+
+    overlay.classList.remove("show");
+
+    button.setAttribute(
+        "aria-expanded",
+        "false"
+    );
 
 }
 
@@ -1734,14 +2087,18 @@ function closeMenu() {
 
 /*
     Monthly:
+
     Pro = ₦3,000
     Premier = ₦7,500
 
+
     Yearly:
+
     Pro = ₦30,000
     Premier = ₦75,000
 
-    Yearly pricing gives the customer
+
+    Yearly pricing provides
     approximately 2 months free.
 */
 
@@ -1750,15 +2107,23 @@ const pricing = {
     monthly: {
 
         Pro: {
+
             amount: 3000,
+
             label: "₦3,000",
+
             period: "/ month"
+
         },
 
         Premier: {
+
             amount: 7500,
+
             label: "₦7,500",
+
             period: "/ month"
+
         }
 
     },
@@ -1767,15 +2132,23 @@ const pricing = {
     yearly: {
 
         Pro: {
+
             amount: 30000,
+
             label: "₦30,000",
+
             period: "/ year"
+
         },
 
         Premier: {
+
             amount: 75000,
+
             label: "₦75,000",
+
             period: "/ year"
+
         }
 
     }
@@ -1811,6 +2184,16 @@ let currentPlan =
 ===================================================== */
 
 function setBilling(period) {
+
+    if (
+        period !== "monthly" &&
+        period !== "yearly"
+    ) {
+
+        period = "monthly";
+
+    }
+
 
     billingPeriod = period;
 
@@ -1869,7 +2252,7 @@ function updateBillingUI() {
     ).innerHTML =
 
         `${pro.label}
-         <small>${pro.period}</small>`;
+        <small>${pro.period}</small>`;
 
 
     document.getElementById(
@@ -1877,7 +2260,7 @@ function updateBillingUI() {
     ).innerHTML =
 
         `${premier.label}
-         <small>${premier.period}</small>`;
+        <small>${premier.period}</small>`;
 
 
     const proNote =
@@ -1892,7 +2275,9 @@ function updateBillingUI() {
         );
 
 
-    if (billingPeriod === "yearly") {
+    if (
+        billingPeriod === "yearly"
+    ) {
 
         proNote.textContent =
             "Save ₦6,000 compared with monthly billing";
@@ -1963,11 +2348,15 @@ function updatePlanDisplay() {
 
 
             if (!button) {
+
                 return;
+
             }
 
 
-            if (plan === currentPlan) {
+            if (
+                plan === currentPlan
+            ) {
 
                 button.classList.add(
                     "current"
@@ -1977,6 +2366,12 @@ function updatePlanDisplay() {
                 button.textContent =
                     "Current Plan";
 
+
+                button.setAttribute(
+                    "aria-disabled",
+                    "true"
+                );
+
             } else {
 
                 button.classList.remove(
@@ -1984,7 +2379,14 @@ function updatePlanDisplay() {
                 );
 
 
-                if (plan === "Free") {
+                button.removeAttribute(
+                    "aria-disabled"
+                );
+
+
+                if (
+                    plan === "Free"
+                ) {
 
                     button.textContent =
                         "Select Free";
@@ -1992,7 +2394,9 @@ function updatePlanDisplay() {
                 }
 
 
-                if (plan === "Pro") {
+                if (
+                    plan === "Pro"
+                ) {
 
                     button.textContent =
                         "Upgrade to Pro";
@@ -2000,7 +2404,9 @@ function updatePlanDisplay() {
                 }
 
 
-                if (plan === "Premier") {
+                if (
+                    plan === "Premier"
+                ) {
 
                     button.textContent =
                         "Upgrade to Premier";
@@ -2021,7 +2427,23 @@ function updatePlanDisplay() {
 
 function selectPlan(plan) {
 
-    if (plan === currentPlan) {
+    if (
+        !pricing[billingPeriod][plan] &&
+        plan !== "Free"
+    ) {
+
+        alert(
+            "TrustAI pricing information is unavailable."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        plan === currentPlan
+    ) {
 
         alert(
             "🛡️ TrustAI\n\n" +
@@ -2055,26 +2477,42 @@ function selectPlan(plan) {
         );
 
 
-    const selectedPrice =
-        pricing[billingPeriod][plan];
+    if (
+        plan === "Free"
+    ) {
+
+        title.textContent =
+            "Switch to Free";
 
 
-    title.textContent =
-        "Continue with " +
-        plan;
+        text.textContent =
+            "You selected the TrustAI Free plan. " +
+            "Continue to switch your plan.";
+
+    } else {
+
+        const selectedPrice =
+            pricing[billingPeriod][plan];
 
 
-    text.textContent =
+        title.textContent =
+            "Continue with " +
+            plan;
 
-        "You selected TrustAI " +
-        plan +
-        " with " +
-        billingPeriod +
-        " billing at " +
-        selectedPrice.label +
-        " " +
-        selectedPrice.period +
-        ". Continue to checkout.";
+
+        text.textContent =
+
+            "You selected TrustAI " +
+            plan +
+            " with " +
+            billingPeriod +
+            " billing at " +
+            selectedPrice.label +
+            " " +
+            selectedPrice.period +
+            ". Continue to checkout.";
+
+    }
 
 
     modal.classList.add("show");
@@ -2089,7 +2527,7 @@ function selectPlan(plan) {
 function confirmPlan() {
 
     /*
-       Save the selected plan.
+       Save selected plan.
     */
 
     localStorage.setItem(
@@ -2099,7 +2537,7 @@ function confirmPlan() {
 
 
     /*
-       Save the billing period.
+       Save billing period.
     */
 
     localStorage.setItem(
@@ -2109,8 +2547,7 @@ function confirmPlan() {
 
 
     /*
-       Keep the selected currency
-       ready for checkout.
+       Save currency.
     */
 
     localStorage.setItem(
@@ -2120,25 +2557,18 @@ function confirmPlan() {
 
 
     /*
-       Save the selected price.
+       Free plan.
     */
 
-    const selectedPrice =
-        pricing[billingPeriod][selectedPlan];
+    if (
+        selectedPlan === "Free"
+    ) {
 
+        localStorage.setItem(
+            "trustai_selected_amount",
+            "0"
+        );
 
-    localStorage.setItem(
-        "trustai_selected_amount",
-        String(selectedPrice.amount)
-    );
-
-
-    /*
-       Free plan:
-       activate immediately.
-    */
-
-    if (selectedPlan === "Free") {
 
         currentPlan = "Free";
 
@@ -2166,8 +2596,27 @@ function confirmPlan() {
 
 
     /*
-       Pro / Premier:
-       go to checkout.
+       Paid plan.
+    */
+
+    const selectedPrice =
+        pricing[billingPeriod][selectedPlan];
+
+
+    localStorage.setItem(
+        "trustai_selected_amount",
+        String(selectedPrice.amount)
+    );
+
+
+    /*
+       IMPORTANT:
+
+       This does not process payment.
+
+       It sends the customer to
+       checkout.html where real payment
+       integration can be added.
     */
 
     closeUpgradeModal();
@@ -2186,14 +2635,16 @@ function confirmPlan() {
 function closeUpgradeModal() {
 
     document
-        .getElementById("upgradeModal")
+        .getElementById(
+            "upgradeModal"
+        )
         .classList.remove("show");
 
 }
 
 
 /* =====================================================
-   CLOSE MODAL OUTSIDE
+   CLICK OUTSIDE MODAL
 ===================================================== */
 
 document
@@ -2222,7 +2673,9 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Escape") {
+        if (
+            event.key === "Escape"
+        ) {
 
             closeUpgradeModal();
 
@@ -2246,6 +2699,5 @@ updatePlanDisplay();
 
 </body>
 
-    </html>
-
+</html>
     
