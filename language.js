@@ -1075,10 +1075,17 @@ ko: {
     upgradePlan: "플랜 업그레이드",
     securityCenter: "보안 센터",
     scamAlerts: "사기 알림"
-   reportScam: "사기 신고",
-    contactTrustAI: "TrustAI 문의",
-    settingsPrivacy: "설정 및 개인정보",
-    logout: "로그아웃",
+   reportScam:
+        "사기 신고",
+
+    contactTrustAI:
+        "TrustAI 문의",
+
+    settingsPrivacy:
+        "설정 및 개인정보",
+
+    logout:
+        "로그아웃",
 
     checkSomething:
         "검사하기",
@@ -1087,7 +1094,7 @@ ko: {
         "보안",
 
     stayAhead:
-        "사기보다 한발 앞서세요.",
+        "사기보다 한 발 앞서세요.",
 
     checkMessage:
         "메시지 검사",
@@ -1132,25 +1139,7 @@ ko: {
         "최대 보호",
 
     currentPlan:
-        "현재 플랜",
-
-    languageTitle:
-        "언어",
-
-    languageDescription:
-        "TrustAI에서 사용할 언어를 선택하세요.",
-
-    currentLanguage:
-        "현재 언어",
-
-    searchLanguages:
-        "언어 검색...",
-
-    languageNoticeTitle:
-        "🌍 TrustAI 언어",
-
-    languageNotice:
-        "언어 선택은 이 기기에 저장되며 지원되는 TrustAI 페이지에서 사용됩니다."
+        "현재 플랜"
 
 },
 
@@ -1159,21 +1148,62 @@ ko: {
    ITALIAN
 ===================================================== */
 
-it: {
+it:{
 
-    home: "Home",
-    messageChecker: "Controllo messaggi",
-    conversationChecker: "Controllo conversazioni",
-    websiteChecker: "Controllo siti web",
-    deviceSecurity: "Sicurezza del dispositivo",
-    protection: "Protezione TrustAI",
-    upgradePlan: "Aggiorna piano",
-    securityCenter: "Centro sicurezza",
-    scamAlerts: "Avvisi truffe",
-    reportScam: "Segnala una truffa",
-    contactTrustAI: "Contatta TrustAI",
-    settingsPrivacy: "Impostazioni e privacy",
-    logout: "Esci",
+    languageTitle:"Lingua",
+
+    languageDescription:
+        "Scegli la lingua che vuoi utilizzare con TrustAI.",
+
+    currentLanguage:
+        "Lingua attuale",
+
+    searchLanguages:
+        "Cerca lingue...",
+
+    languageNoticeTitle:
+        "🌍 Lingue TrustAI",
+
+    languageNotice:
+        "La scelta della lingua viene salvata su questo dispositivo e utilizzata nelle pagine TrustAI supportate.",
+
+    home:"Home",
+
+    messageChecker:
+        "Controllo messaggi",
+
+    conversationChecker:
+        "Controllo conversazioni",
+
+    websiteChecker:
+        "Controllo siti web",
+
+    deviceSecurity:
+        "Sicurezza dispositivo",
+
+    protection:
+        "Protezione TrustAI",
+
+    upgradePlan:
+        "Aggiorna piano",
+
+    securityCenter:
+        "Centro sicurezza",
+
+    scamAlerts:
+        "Avvisi truffe",
+
+    reportScam:
+        "Segnala una truffa",
+
+    contactTrustAI:
+        "Contatta TrustAI",
+
+    settingsPrivacy:
+        "Impostazioni e privacy",
+
+    logout:
+        "Disconnetti",
 
     checkSomething:
         "Controlla qualcosa",
@@ -1200,7 +1230,7 @@ it: {
         "Paese",
 
     free:
-        "Gratis",
+        "Gratuito",
 
     pro:
         "Pro",
@@ -1227,25 +1257,7 @@ it: {
         "PROTEZIONE MASSIMA",
 
     currentPlan:
-        "Piano attuale",
-
-    languageTitle:
-        "Lingua",
-
-    languageDescription:
-        "Scegli la lingua che TrustAI deve utilizzare.",
-
-    currentLanguage:
-        "Lingua attuale",
-
-    searchLanguages:
-        "Cerca lingue...",
-
-    languageNoticeTitle:
-        "🌍 Lingue TrustAI",
-
-    languageNotice:
-        "La tua scelta della lingua viene salvata su questo dispositivo e utilizzata nelle pagine TrustAI supportate."
+        "Piano attuale"
 
 },
 
@@ -1254,39 +1266,80 @@ it: {
    TURKISH
 ===================================================== */
 
-tr: {
+tr:{
 
-    home: "Ana Sayfa",
-    messageChecker: "Mesaj Denetleyici",
-    conversationChecker: "Konuşma Denetleyici",
-    websiteChecker: "Web Sitesi Denetleyici",
-    deviceSecurity: "Cihaz Güvenliği",
-    protection: "TrustAI Koruması",
-    upgradePlan: "Planı Yükselt",
-    securityCenter: "Güvenlik Merkezi",
-    scamAlerts: "Dolandırıcılık Uyarıları",
-    reportScam: "Dolandırıcılık Bildir",
-    contactTrustAI: "TrustAI ile İletişim",
-    settingsPrivacy: "Ayarlar ve Gizlilik",
-    logout: "Çıkış Yap",
+    languageTitle:"Dil",
+
+    languageDescription:
+        "TrustAI'nin kullanmasını istediğiniz dili seçin.",
+
+    currentLanguage:
+        "Mevcut dil",
+
+    searchLanguages:
+        "Dil ara...",
+
+    languageNoticeTitle:
+        "🌍 TrustAI dilleri",
+
+    languageNotice:
+        "Dil seçiminiz bu cihaza kaydedilir ve desteklenen TrustAI sayfalarında kullanılır.",
+
+    home:"Ana Sayfa",
+
+    messageChecker:
+        "Mesaj Denetleyici",
+
+    conversationChecker:
+        "Konuşma Denetleyici",
+
+    websiteChecker:
+        "Web Sitesi Denetleyici",
+
+    deviceSecurity:
+        "Cihaz Güvenliği",
+
+    protection:
+        "TrustAI Koruması",
+
+    upgradePlan:
+        "Planı Yükselt",
+
+    securityCenter:
+        "Güvenlik Merkezi",
+
+    scamAlerts:
+        "Dolandırıcılık Uyarıları",
+
+    reportScam:
+        "Dolandırıcılık Bildir",
+
+    contactTrustAI:
+        "TrustAI ile İletişim",
+
+    settingsPrivacy:
+        "Ayarlar ve Gizlilik",
+
+    logout:
+        "Çıkış Yap",
 
     checkSomething:
-        "Bir şeyi kontrol et",
+        "Bir Şeyi Kontrol Et",
 
     security:
         "Güvenlik",
 
     stayAhead:
-        "Dolandırıcılardan bir adım önde olun.",
+        "Dolandırıcılıkların bir adım önünde olun.",
 
     checkMessage:
-        "Mesajı kontrol et",
+        "Mesajı Kontrol Et",
 
     checkConversation:
-        "Konuşmayı kontrol et",
+        "Konuşmayı Kontrol Et",
 
     checkWebsite:
-        "Web sitesini kontrol et",
+        "Web Sitesini Kontrol Et",
 
     language:
         "Dil",
@@ -1304,10 +1357,10 @@ tr: {
         "Premier",
 
     upgradeToPro:
-        "Pro'ya yükselt",
+        "Pro'ya Yükselt",
 
     upgradeToPremier:
-        "Premier'a yükselt",
+        "Premier'e Yükselt",
 
     monthly:
         "Aylık",
@@ -1322,25 +1375,7 @@ tr: {
         "MAKSİMUM KORUMA",
 
     currentPlan:
-        "Mevcut plan",
-
-    languageTitle:
-        "Dil",
-
-    languageDescription:
-        "TrustAI'nin kullanmasını istediğiniz dili seçin.",
-
-    currentLanguage:
-        "Mevcut dil",
-
-    searchLanguages:
-        "Dilleri ara...",
-
-    languageNoticeTitle:
-        "🌍 TrustAI dilleri",
-
-    languageNotice:
-        "Dil seçiminiz bu cihaza kaydedilir ve desteklenen TrustAI sayfalarında kullanılır."
+        "Mevcut plan"
 
 },
 
@@ -1349,24 +1384,65 @@ tr: {
    INDONESIAN
 ===================================================== */
 
-id: {
+id:{
 
-    home: "Beranda",
-    messageChecker: "Pemeriksa Pesan",
-    conversationChecker: "Pemeriksa Percakapan",
-    websiteChecker: "Pemeriksa Situs Web",
-    deviceSecurity: "Keamanan Perangkat",
-    protection: "Perlindungan TrustAI",
-    upgradePlan: "Tingkatkan Paket",
-    securityCenter: "Pusat Keamanan",
-    scamAlerts: "Peringatan Penipuan",
-    reportScam: "Laporkan Penipuan",
-    contactTrustAI: "Hubungi TrustAI",
-    settingsPrivacy: "Pengaturan & Privasi",
-    logout: "Keluar",
+    languageTitle:"Bahasa",
+
+    languageDescription:
+        "Pilih bahasa yang ingin digunakan TrustAI.",
+
+    currentLanguage:
+        "Bahasa saat ini",
+
+    searchLanguages:
+        "Cari bahasa...",
+
+    languageNoticeTitle:
+        "🌍 Bahasa TrustAI",
+
+    languageNotice:
+        "Pilihan bahasa Anda disimpan di perangkat ini dan digunakan di halaman TrustAI yang didukung.",
+
+    home:"Beranda",
+
+    messageChecker:
+        "Pemeriksa Pesan",
+
+    conversationChecker:
+        "Pemeriksa Percakapan",
+
+    websiteChecker:
+        "Pemeriksa Situs Web",
+
+    deviceSecurity:
+        "Keamanan Perangkat",
+
+    protection:
+        "Perlindungan TrustAI",
+
+    upgradePlan:
+        "Tingkatkan Paket",
+
+    securityCenter:
+        "Pusat Keamanan",
+
+    scamAlerts:
+        "Peringatan Penipuan",
+
+    reportScam:
+        "Laporkan Penipuan",
+
+    contactTrustAI:
+        "Hubungi TrustAI",
+
+    settingsPrivacy:
+        "Pengaturan & Privasi",
+
+    logout:
+        "Keluar",
 
     checkSomething:
-        "Periksa sesuatu",
+        "Periksa Sesuatu",
 
     security:
         "Keamanan",
@@ -1414,28 +1490,10 @@ id: {
         "PALING POPULER",
 
     maximumProtection:
-        "PERLINDUNGAN MAKSIMUM",
+        "PERLINDUNGAN MAKSIMAL",
 
     currentPlan:
-        "Paket saat ini",
-
-    languageTitle:
-        "Bahasa",
-
-    languageDescription:
-        "Pilih bahasa yang ingin digunakan TrustAI.",
-
-    currentLanguage:
-        "Bahasa saat ini",
-
-    searchLanguages:
-        "Cari bahasa...",
-
-    languageNoticeTitle:
-        "🌍 Bahasa TrustAI",
-
-    languageNotice:
-        "Pilihan bahasa Anda disimpan di perangkat ini dan digunakan di halaman TrustAI yang didukung."
+        "Paket saat ini"
 
 },
 
@@ -1444,39 +1502,80 @@ id: {
    HAUSA
 ===================================================== */
 
-ha: {
+ha:{
 
-    home: "Gida",
-    messageChecker: "Mai duba saƙonni",
-    conversationChecker: "Mai duba tattaunawa",
-    websiteChecker: "Mai duba yanar gizo",
-    deviceSecurity: "Tsaron na'ura",
-    protection: "Kariyar TrustAI",
-    upgradePlan: "Haɓaka tsari",
-    securityCenter: "Cibiyar tsaro",
-    scamAlerts: "Faɗakarwar zamba",
-    reportScam: "Kai rahoton zamba",
-    contactTrustAI: "Tuntuɓi TrustAI",
-    settingsPrivacy: "Saituna da sirri",
-    logout: "Fita",
+    languageTitle:"Harshe",
+
+    languageDescription:
+        "Zaɓi harshen da kake son TrustAI ya yi amfani da shi.",
+
+    currentLanguage:
+        "Harshen yanzu",
+
+    searchLanguages:
+        "Nemo harsuna...",
+
+    languageNoticeTitle:
+        "🌍 Harsunan TrustAI",
+
+    languageNotice:
+        "Za a adana zaɓin harshenka a wannan na'urar kuma a yi amfani da shi a shafukan TrustAI da ke tallafawa.",
+
+    home:"Gida",
+
+    messageChecker:
+        "Mai Binciken Saƙo",
+
+    conversationChecker:
+        "Mai Binciken Tattaunawa",
+
+    websiteChecker:
+        "Mai Binciken Yanar Gizo",
+
+    deviceSecurity:
+        "Tsaron Na'ura",
+
+    protection:
+        "Kariyar TrustAI",
+
+    upgradePlan:
+        "Haɓaka Tsari",
+
+    securityCenter:
+        "Cibiyar Tsaro",
+
+    scamAlerts:
+        "Gargadin Damfara",
+
+    reportScam:
+        "Ba da Rahoton Damfara",
+
+    contactTrustAI:
+        "Tuntuɓi TrustAI",
+
+    settingsPrivacy:
+        "Saituna da Sirri",
+
+    logout:
+        "Fita",
 
     checkSomething:
-        "Duba wani abu",
+        "Duba Wani Abu",
 
     security:
         "Tsaro",
 
     stayAhead:
-        "Kasance mataki ɗaya gaba da masu zamba.",
+        "Kasance mataki ɗaya a gaban masu damfara.",
 
     checkMessage:
-        "Duba saƙo",
+        "Duba Saƙo",
 
     checkConversation:
-        "Duba tattaunawa",
+        "Duba Tattaunawa",
 
     checkWebsite:
-        "Duba yanar gizo",
+        "Duba Yanar Gizo",
 
     language:
         "Harshe",
@@ -1500,37 +1599,19 @@ ha: {
         "Haɓaka zuwa Premier",
 
     monthly:
-        "Kowane wata",
+        "Na wata",
 
     yearly:
-        "Kowace shekara",
+        "Na shekara",
 
     mostPopular:
-        "Mafi shahara",
+        "Mafi Shahara",
 
     maximumProtection:
-        "Matsakaicin kariya",
+        "Matsakaicin Kariya",
 
     currentPlan:
-        "Tsarin yanzu",
-
-    languageTitle:
-        "Harshe",
-
-    languageDescription:
-        "Zaɓi harshen da kake son TrustAI ya yi amfani da shi.",
-
-    currentLanguage:
-        "Harshen yanzu",
-
-    searchLanguages:
-        "Nemo harsuna...",
-
-    languageNoticeTitle:
-        "🌍 Harsunan TrustAI",
-
-    languageNotice:
-        "Za a adana zaɓin harshenka a wannan na'urar kuma a yi amfani da shi a shafukan TrustAI masu tallafi."
+        "Tsarin yanzu"
 
 },
 
@@ -1539,39 +1620,80 @@ ha: {
    YORUBA
 ===================================================== */
 
-yo: {
+yo:{
 
-    home: "Ilé",
-    messageChecker: "Olùṣàyẹ̀wò Ìránṣẹ́",
-    conversationChecker: "Olùṣàyẹ̀wò Ìjíròrò",
-    websiteChecker: "Olùṣàyẹ̀wò Ojúlé Ayelujara",
-    deviceSecurity: "Ààbò Ẹ̀rọ",
-    protection: "Ààbò TrustAI",
-    upgradePlan: "Gbé Ètò Ga",
-    securityCenter: "Àárín Ààbò",
-    scamAlerts: "Ìkìlọ̀ Àṣejù",
-    reportScam: "Ròyìn Àṣejù",
-    contactTrustAI: "Kàn sí TrustAI",
-    settingsPrivacy: "Ètò àti Àṣírí",
-    logout: "Jáde",
+    languageTitle:"Èdè",
+
+    languageDescription:
+        "Yan èdè tí o fẹ́ kí TrustAI máa lò.",
+
+    currentLanguage:
+        "Èdè tó wà báyìí",
+
+    searchLanguages:
+        "Wá àwọn èdè...",
+
+    languageNoticeTitle:
+        "🌍 Àwọn èdè TrustAI",
+
+    languageNotice:
+        "A óò fi yíyan èdè rẹ pamọ́ sínú ẹ̀rọ yìí, a ó sì lò ó lórí àwọn ojú-ìwé TrustAI tó ń ṣe àtìlẹ́yìn.",
+
+    home:"Ilé",
+
+    messageChecker:
+        "Olùṣàyẹ̀wò Ìfiranṣẹ́",
+
+    conversationChecker:
+        "Olùṣàyẹ̀wò Ìjíròrò",
+
+    websiteChecker:
+        "Olùṣàyẹ̀wò Ojú-òpó Wẹ́ẹ̀bù",
+
+    deviceSecurity:
+        "Ààbò Ẹ̀rọ",
+
+    protection:
+        "Ààbò TrustAI",
+
+    upgradePlan:
+        "Gbégbè Ètò Sókè",
+
+    securityCenter:
+        "Àárín Ààbò",
+
+    scamAlerts:
+        "Ìkìlọ̀ Ẹ̀tàn",
+
+    reportScam:
+        "Jábọ̀ Ẹ̀tàn",
+
+    contactTrustAI:
+        "Kàn sí TrustAI",
+
+    settingsPrivacy:
+        "Àwọn Ètò àti Àṣírí",
+
+    logout:
+        "Jáde",
 
     checkSomething:
-        "Ṣàyẹ̀wò Ohun Kan",
+        "Ṣàyẹ̀wò Ohunkóhun",
 
     security:
         "Ààbò",
 
     stayAhead:
-        "Máa wà ní ìgbésẹ̀ kan ṣáájú àwọn aṣejù.",
+        "Máa wà ní ìgbésẹ̀ kan ṣáájú àwọn ẹlẹ́tàn.",
 
     checkMessage:
-        "Ṣàyẹ̀wò Ìránṣẹ́",
+        "Ṣàyẹ̀wò Ìfiranṣẹ́",
 
     checkConversation:
         "Ṣàyẹ̀wò Ìjíròrò",
 
     checkWebsite:
-        "Ṣàyẹ̀wò Ojúlé",
+        "Ṣàyẹ̀wò Ojú-òpó Wẹ́ẹ̀bù",
 
     language:
         "Èdè",
@@ -1589,43 +1711,25 @@ yo: {
         "Premier",
 
     upgradeToPro:
-        "Gbé sí Pro",
+        "Gbégbè sí Pro",
 
     upgradeToPremier:
-        "Gbé sí Premier",
+        "Gbégbè sí Premier",
 
     monthly:
-        "Oṣooṣù",
+        "Oṣù",
 
     yearly:
-        "Ọdọọdún",
+        "Ọdún",
 
     mostPopular:
-        "ÈYÍ TÓ GBAYÌ JÙ",
+        "EYÍ TÓ GBAYÌ JÙ",
 
     maximumProtection:
-        "ÀÀBÒ PÍPAKÒ",
+        "ÀÀBÒ PÍPẸ̀",
 
     currentPlan:
-        "Ètò lọwọlọwọ",
-
-    languageTitle:
-        "Èdè",
-
-    languageDescription:
-        "Yan èdè tí o fẹ́ kí TrustAI máa lò.",
-
-    currentLanguage:
-        "Èdè lọwọlọwọ",
-
-    searchLanguages:
-        "Wa àwọn èdè...",
-
-    languageNoticeTitle:
-        "🌍 Àwọn èdè TrustAI",
-
-    languageNotice:
-        "A óò fi yíyan èdè rẹ pamọ́ sínú ẹ̀rọ yìí, a ó sì lò ó lórí àwọn ojúlé TrustAI tí ó ṣe àtìlẹ́yìn."
+        "Ètò tó wà báyìí"
 
 },
 
@@ -1634,36 +1738,77 @@ yo: {
    IGBO
 ===================================================== */
 
-ig: {
+ig:{
 
-    home: "Ụlọ",
-    messageChecker: "Onye Nyocha Ozi",
-    conversationChecker: "Onye Nyocha Mkparịtaụka",
-    websiteChecker: "Onye Nyocha Weebụsaịtị",
-    deviceSecurity: "Nchekwa Ngwaọrụ",
-    protection: "Nchekwa TrustAI",
-    upgradePlan: "Kwalite Atụmatụ",
-    securityCenter: "Ebe Nchekwa",
-    scamAlerts: "Ịdọ aka ná ntị aghụghọ",
-    reportScam: "Kọọ Aghụghọ",
-    contactTrustAI: "Kpọtụrụ TrustAI",
-    settingsPrivacy: "Ntọala na Nzuzo",
-    logout: "Pụọ",
+    languageTitle:"Asụsụ",
+
+    languageDescription:
+        "Họrọ asụsụ ịchọrọ TrustAI jiri.",
+
+    currentLanguage:
+        "Asụsụ dị ugbu a",
+
+    searchLanguages:
+        "Chọọ asụsụ...",
+
+    languageNoticeTitle:
+        "🌍 Asụsụ TrustAI",
+
+    languageNotice:
+        "A ga-echekwa nhọrọ asụsụ gị na ngwaọrụ a ma jiri ya na ibe TrustAI ndị na-akwado ya.",
+
+    home:"Ụlọ",
+
+    messageChecker:
+        "Onye Nyocha Ozi",
+
+    conversationChecker:
+        "Onye Nyocha Mkparịta ụka",
+
+    websiteChecker:
+        "Onye Nyocha Weebụsaịtị",
+
+    deviceSecurity:
+        "Nchekwa Ngwaọrụ",
+
+    protection:
+        "Nchekwa TrustAI",
+
+    upgradePlan:
+        "Bulie Atụmatụ",
+
+    securityCenter:
+        "Ebe Nchekwa",
+
+    scamAlerts:
+        "Ịdọ Aka ná Ntị Ọgbụgbọ",
+
+    reportScam:
+        "Kọọ Ọgbụgbọ",
+
+    contactTrustAI:
+        "Kpọtụrụ TrustAI",
+
+    settingsPrivacy:
+        "Ntọala na Nzuzo",
+
+    logout:
+        "Pụọ",
 
     checkSomething:
-        "Nyochaa ihe",
+        "Nyochaa Ihe",
 
     security:
         "Nchekwa",
 
     stayAhead:
-        "Nọrọ otu nzọụkwụ n'ihu ndị aghụghọ.",
+        "Nọgide n'ihu ndị aghụghọ otu nzọụkwụ.",
 
     checkMessage:
         "Nyochaa Ozi",
 
     checkConversation:
-        "Nyochaa Mkparịtaụka",
+        "Nyochaa Mkparịta ụka",
 
     checkWebsite:
         "Nyochaa Weebụsaịtị",
@@ -1672,7 +1817,7 @@ ig: {
         "Asụsụ",
 
     country:
-        "Mba",
+        "Obodo",
 
     free:
         "N'efu",
@@ -1684,10 +1829,10 @@ ig: {
         "Premier",
 
     upgradeToPro:
-        "Kwalite na Pro",
+        "Bulie gaa Pro",
 
     upgradeToPremier:
-        "Kwalite na Premier",
+        "Bulie gaa Premier",
 
     monthly:
         "Kwa ọnwa",
@@ -1696,31 +1841,13 @@ ig: {
         "Kwa afọ",
 
     mostPopular:
-        "NKE A KACHAM AMA",
+        "KACHASỊ ewu ewu",
 
     maximumProtection:
         "Nchekwa Kasị Elu",
 
     currentPlan:
-        "Atụmatụ ugbu a",
-
-    languageTitle:
-        "Asụsụ",
-
-    languageDescription:
-        "Họrọ asụsụ ịchọrọ ka TrustAI jiri.",
-
-    currentLanguage:
-        "Asụsụ ugbu a",
-
-    searchLanguages:
-        "Chọọ asụsụ...",
-
-    languageNoticeTitle:
-        "🌍 Asụsụ TrustAI",
-
-    languageNotice:
-        "A ga-echekwa nhọrọ asụsụ gị na ngwaọrụ a ma jiri ya na ibe TrustAI ndị na-akwado ya."
+        "Atụmatụ dị ugbu a"
 
 }
 
@@ -1731,23 +1858,126 @@ ig: {
    GET SAVED LANGUAGE
 ===================================================== */
 
-function getSavedLanguage() {
+function getSavedLanguage(){
 
     const saved =
         localStorage.getItem(
-            "trustai_language"
+            STORAGE_KEY
         );
 
-    if (
+    if(
         saved &&
         LANGUAGES[saved]
-    ) {
+    ){
 
         return saved;
 
     }
 
     return DEFAULT_LANGUAGE;
+}
+
+
+/* =====================================================
+   SET LANGUAGE
+===================================================== */
+
+function setLanguage(code){
+
+    if(
+        !LANGUAGES[code]
+    ){
+
+        return false;
+
+    }
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        code
+    );
+
+    applyLanguageAttributes(
+        code
+    );
+
+    applyTranslations();
+
+    window.dispatchEvent(
+        new CustomEvent(
+            "trustai-language-change",
+            {
+                detail:{
+                    code:code,
+                    language:
+                        LANGUAGES[code]
+                }
+            }
+        )
+    );
+
+    return true;
+}
+
+
+/* =====================================================
+   APPLY HTML LANGUAGE / DIRECTION
+===================================================== */
+
+function applyLanguageAttributes(code){
+
+    const language =
+        LANGUAGES[code];
+
+    if(!language){
+        return;
+    }
+
+    document.documentElement
+        .setAttribute(
+            "lang",
+            language.locale
+        );
+
+    document.documentElement
+        .setAttribute(
+            "data-language",
+            code
+        );
+
+
+    /*
+       Arabic uses right-to-left layout.
+    */
+
+    if(code === "ar"){
+
+        document.documentElement
+            .setAttribute(
+                "dir",
+                "rtl"
+            );
+
+    }else{
+
+        document.documentElement
+            .setAttribute(
+                "dir",
+                "ltr"
+            );
+
+    }
+
+}
+
+
+/* =====================================================
+   GET LANGUAGE CODE
+===================================================== */
+
+function getLanguageCode(){
+
+    return getSavedLanguage();
 
 }
 
@@ -1756,7 +1986,7 @@ function getSavedLanguage() {
    GET LANGUAGE
 ===================================================== */
 
-function getLanguage() {
+function getLanguage(){
 
     return LANGUAGES[
         getSavedLanguage()
@@ -1766,123 +1996,29 @@ function getLanguage() {
 
 
 /* =====================================================
-   GET LANGUAGE CODE
-===================================================== */
-
-function getLanguageCode() {
-
-    return getSavedLanguage();
-
-}
-
-
-/* =====================================================
-   SET LANGUAGE
-===================================================== */
-
-function setLanguage(languageCode) {
-
-    if (
-        !LANGUAGES[languageCode]
-    ) {
-
-        return false;
-
-    }
-
-
-    localStorage.setItem(
-        "trustai_language",
-        languageCode
-    );
-
-
-    const language =
-        LANGUAGES[languageCode];
-
-
-    document.documentElement.setAttribute(
-        "lang",
-        language.locale
-    );
-
-
-    document.documentElement.setAttribute(
-        "data-language",
-        languageCode
-    );
-
-
-    /*
-       Arabic and other RTL languages
-       automatically receive RTL direction.
-    */
-
-    const rtlLanguages = [
-        "ar"
-    ];
-
-
-    document.documentElement.setAttribute(
-        "dir",
-        rtlLanguages.includes(languageCode)
-            ? "rtl"
-            : "ltr"
-    );
-
-
-    applyTranslations();
-
-
-    /*
-       Tell other TrustAI pages that
-       the language has changed.
-    */
-
-    window.dispatchEvent(
-        new CustomEvent(
-            "trustai-language-changed",
-            {
-                detail: {
-                    language:
-                        languageCode
-                }
-            }
-        )
-    );
-
-
-    return true;
-
-}
-
-
-/* =====================================================
    TRANSLATE
 ===================================================== */
 
-function translate(key) {
+function translate(key){
 
-    const languageCode =
+    const code =
         getSavedLanguage();
 
 
-    if (
-        TRANSLATIONS[languageCode] &&
-        TRANSLATIONS[languageCode][key]
-    ) {
+    if(
+        TRANSLATIONS[code] &&
+        TRANSLATIONS[code][key]
+    ){
 
-        return TRANSLATIONS[
-            languageCode
-        ][key];
+        return TRANSLATIONS[code][key];
 
     }
 
 
-    if (
+    if(
         TRANSLATIONS.en &&
         TRANSLATIONS.en[key]
-    ) {
+    ){
 
         return TRANSLATIONS.en[key];
 
@@ -1898,59 +2034,38 @@ function translate(key) {
    APPLY TRANSLATIONS
 ===================================================== */
 
-function applyTranslations() {
-
-
-    /*
-       Normal text
-    */
+function applyTranslations(){
 
     document
         .querySelectorAll(
             "[data-i18n]"
         )
         .forEach(
-            function(element) {
+            function(element){
 
                 const key =
                     element.getAttribute(
                         "data-i18n"
                     );
 
-
-                const translated =
+                element.textContent =
                     translate(key);
-
-
-                if (
-                    translated
-                ) {
-
-                    element.textContent =
-                        translated;
-
-                }
 
             }
         );
 
-
-    /*
-       Placeholders
-    */
 
     document
         .querySelectorAll(
             "[data-i18n-placeholder]"
         )
         .forEach(
-            function(element) {
+            function(element){
 
                 const key =
                     element.getAttribute(
                         "data-i18n-placeholder"
                     );
-
 
                 element.placeholder =
                     translate(key);
@@ -1959,51 +2074,20 @@ function applyTranslations() {
         );
 
 
-    /*
-       Titles
-    */
-
     document
         .querySelectorAll(
             "[data-i18n-title]"
         )
         .forEach(
-            function(element) {
+            function(element){
 
                 const key =
                     element.getAttribute(
                         "data-i18n-title"
                     );
 
-
                 element.title =
                     translate(key);
-
-            }
-        );
-
-
-    /*
-       ARIA labels
-    */
-
-    document
-        .querySelectorAll(
-            "[data-i18n-aria-label]"
-        )
-        .forEach(
-            function(element) {
-
-                const key =
-                    element.getAttribute(
-                        "data-i18n-aria-label"
-                    );
-
-
-                element.setAttribute(
-                    "aria-label",
-                    translate(key)
-                );
 
             }
         );
@@ -2015,37 +2099,14 @@ function applyTranslations() {
    INITIALIZE
 ===================================================== */
 
-function initialize() {
+function initialize(){
 
-    const languageCode =
+    const code =
         getSavedLanguage();
 
-
-    const language =
-        LANGUAGES[
-            languageCode
-        ];
-
-
-    document.documentElement.setAttribute(
-        "lang",
-        language.locale
+    applyLanguageAttributes(
+        code
     );
-
-
-    document.documentElement.setAttribute(
-        "data-language",
-        languageCode
-    );
-
-
-    document.documentElement.setAttribute(
-        "dir",
-        languageCode === "ar"
-            ? "rtl"
-            : "ltr"
-    );
-
 
     applyTranslations();
 
@@ -2053,7 +2114,7 @@ function initialize() {
 
 
 /* =====================================================
-   EXPOSE GLOBAL SYSTEM
+   EXPOSE SYSTEM
 ===================================================== */
 
 window.TrustAILanguage = {
@@ -2086,19 +2147,19 @@ window.TrustAILanguage = {
    START
 ===================================================== */
 
-if (
+if(
     document.readyState === "loading"
-) {
+){
 
     document.addEventListener(
         "DOMContentLoaded",
         initialize
     );
 
-} else {
+}else{
 
     initialize();
 
 }
 
-})(),
+})();
