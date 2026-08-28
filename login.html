@@ -11,12 +11,7 @@
 <title>Log In / Create Account — TrustAI</title>
 
 <meta name="description"
-      content="Log in or create a TrustAI account.">
-
-<!-- Google Identity Services -->
-<script src="https://accounts.google.com/gsi/client"
-        async
-        defer></script>
+      content="Log in or create your TrustAI account.">
 
 <style>
 
@@ -32,15 +27,9 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-
     background: #f6f7f9;
-
     color: #111820;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
     display: flex;
     align-items: center;
@@ -56,7 +45,6 @@ body {
 
 .logo {
     text-align: center;
-
     margin-bottom: 25px;
 
     font-size: 27px;
@@ -178,7 +166,6 @@ body {
 
 .social-button:hover {
     background: #f8fafc;
-
     border-color: #aeb7c2;
 }
 
@@ -188,7 +175,6 @@ body {
 
 .social-icon {
     position: absolute;
-
     left: 15px;
 
     display: flex;
@@ -334,7 +320,7 @@ input:focus {
 
 
 /* ========================= */
-/* CONTINUE BUTTON */
+/* SUBMIT */
 /* ========================= */
 
 .continue-button {
@@ -365,6 +351,12 @@ input:focus {
 
 .continue-button:active {
     transform: scale(.99);
+}
+
+.continue-button:disabled {
+    opacity: .65;
+
+    cursor: not-allowed;
 }
 
 
@@ -398,157 +390,6 @@ input:focus {
 
 
 /* ========================= */
-/* FACE VERIFICATION */
-/* ========================= */
-
-#faceVerification {
-    display: none;
-}
-
-.face-title {
-    text-align: center;
-
-    font-size: 25px;
-
-    margin: 0;
-}
-
-.face-subtitle {
-    text-align: center;
-
-    color: #6b7280;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    margin: 10px 0 20px;
-}
-
-.camera-container {
-    position: relative;
-
-    width: 100%;
-
-    aspect-ratio: 3 / 4;
-
-    background: #111820;
-
-    border-radius: 14px;
-
-    overflow: hidden;
-}
-
-#cameraVideo {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transform: scaleX(-1);
-}
-
-.face-frame {
-    position: absolute;
-
-    width: 66%;
-    height: 72%;
-
-    left: 17%;
-    top: 14%;
-
-    border: 3px solid rgba(255,255,255,.9);
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    box-shadow:
-        0 0 0 9999px rgba(0,0,0,.18);
-}
-
-.camera-status {
-    text-align: center;
-
-    margin: 16px 0;
-
-    font-size: 14px;
-
-    color: #4b5563;
-
-    min-height: 21px;
-}
-
-.camera-status.success {
-    color: #18733b;
-
-    font-weight: 700;
-}
-
-.camera-status.error {
-    color: #b42318;
-
-    font-weight: 700;
-}
-
-.verify-button {
-    width: 100%;
-
-    height: 48px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background: #1687ff;
-
-    color: white;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.verify-button:disabled {
-    opacity: .5;
-
-    cursor: not-allowed;
-}
-
-.back-button {
-    width: 100%;
-
-    height: 44px;
-
-    margin-top: 10px;
-
-    border: 1px solid #cfd5dc;
-
-    border-radius: 8px;
-
-    background: white;
-
-    color: #374151;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-.security-note {
-    margin-top: 17px;
-
-    text-align: center;
-
-    font-size: 11px;
-
-    line-height: 1.5;
-
-    color: #8a939e;
-}
-
-
-/* ========================= */
 /* LEGAL */
 /* ========================= */
 
@@ -560,6 +401,8 @@ input:focus {
     color: #8a939e;
 
     font-size: 11px;
+
+    line-height: 1.6;
 }
 
 .legal a {
@@ -609,13 +452,10 @@ input:focus {
     </div>
 
 
-    <!-- ======================== -->
     <!-- LOGIN CARD -->
-    <!-- ======================== -->
 
-    <section
-        class="login-card"
-        id="loginCard">
+    <section class="login-card"
+             id="loginCard">
 
 
         <h1 id="pageTitle">
@@ -623,9 +463,8 @@ input:focus {
         </h1>
 
 
-        <p
-            class="subtitle"
-            id="pageSubtitle">
+        <p class="subtitle"
+           id="pageSubtitle">
 
             Access your TrustAI security dashboard
 
@@ -634,9 +473,8 @@ input:focus {
 
         <!-- MESSAGE -->
 
-        <div
-            id="message"
-            class="message">
+        <div id="message"
+             class="message">
         </div>
 
 
@@ -646,11 +484,9 @@ input:focus {
             type="button"
             id="googleBtn"
             class="social-button"
-            onclick="triggerGoogleLogin()">
+            onclick="loginWithGoogle()">
 
             <span class="social-icon">
-
-                <!-- ORIGINAL GOOGLE LOGO -->
 
                 <svg
                     width="18"
@@ -687,21 +523,17 @@ input:focus {
         </div>
 
 
-        <!-- ======================== -->
         <!-- FORM -->
-        <!-- ======================== -->
 
-        <form
-            id="loginForm"
-            onsubmit="handleAuth(event)">
+        <form id="loginForm"
+              onsubmit="handleAuth(event)">
 
 
             <!-- FULL NAME -->
 
-            <div
-                class="form-group"
-                id="nameGroup"
-                style="display:none;">
+            <div class="form-group"
+                 id="nameGroup"
+                 style="display:none;">
 
                 <label for="fullName">
                     Full Name
@@ -736,9 +568,7 @@ input:focus {
 
             <!-- PASSWORD -->
 
-            <div
-                class="form-group"
-                id="passwordGroup">
+            <div class="form-group">
 
                 <label for="password">
                     Password
@@ -824,85 +654,6 @@ input:focus {
     </section>
 
 
-    <!-- ======================== -->
-    <!-- FACE VERIFICATION -->
-    <!-- ======================== -->
-
-    <section
-        class="login-card"
-        id="faceVerification">
-
-
-        <h1 class="face-title">
-            Face Verification
-        </h1>
-
-
-        <p class="face-subtitle">
-
-            Please position your face inside
-            the circle to continue.
-
-        </p>
-
-
-        <div class="camera-container">
-
-            <video
-                id="cameraVideo"
-                autoplay
-                muted
-                playsinline>
-            </video>
-
-            <div class="face-frame"></div>
-
-        </div>
-
-
-        <div
-            id="cameraStatus"
-            class="camera-status">
-
-            Starting camera...
-
-        </div>
-
-
-        <button
-            id="verifyButton"
-            class="verify-button"
-            onclick="verifyFace()"
-            disabled>
-
-            Verify My Face
-
-        </button>
-
-
-        <button
-            class="back-button"
-            type="button"
-            onclick="returnToLogin()">
-
-            Back to Login
-
-        </button>
-
-
-        <div class="security-note">
-
-            🔒 TrustAI uses your browser camera
-            for the face-presence check on this page.
-            Camera access stops when you leave
-            verification.
-
-        </div>
-
-
-    </section>
-
-
     <!-- LEGAL -->
 
     <div class="legal">
@@ -930,13 +681,8 @@ input:focus {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-<!-- FACE API -->
-
-<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
-
-
 <script>
-console.log("TrustAI login JavaScript loaded");
+
 /* ================================= */
 /* SUPABASE CONFIGURATION */
 /* ================================= */
@@ -944,10 +690,8 @@ console.log("TrustAI login JavaScript loaded");
 const SUPABASE_URL =
     "https://opyjaljpowzgmkqlmjrb.supabase.co";
 
-
 const SUPABASE_KEY =
-    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
-
+    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEY";
 
 const supabaseClient =
     window.supabase.createClient(
@@ -961,16 +705,7 @@ const supabaseClient =
 /* ================================= */
 
 const TRUSTAI_HOME =
-    "./home.html";
-
-/*
-   Replace this with your real Google
-   OAuth Client ID when Google Sign-In
-   is configured.
-*/
-
-const GOOGLE_CLIENT_ID =
-    "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+    "./dashboard.html";
 
 
 /* ================================= */
@@ -979,27 +714,15 @@ const GOOGLE_CLIENT_ID =
 
 let isSignUp = false;
 
-let cameraStream = null;
-
-let cameraReady = false;
-
-let faceDetectionRunning = false;
-
-let faceCurrentlyDetected = false;
-
-let faceDetectionAnimation = null;
-
 
 /* ================================= */
-/* MESSAGE */
+/* MESSAGE SYSTEM */
 /* ================================= */
 
 function showMessage(text, type = "info") {
 
     const message =
         document.getElementById("message");
-
-    if (!message) return;
 
     message.textContent = text;
 
@@ -1021,15 +744,13 @@ function hideMessage() {
     const message =
         document.getElementById("message");
 
-    if (!message) return;
-
     message.className = "message";
 
 }
 
 
 /* ================================= */
-/* PASSWORD */
+/* PASSWORD VISIBILITY */
 /* ================================= */
 
 function togglePasswordVisibility() {
@@ -1040,9 +761,6 @@ function togglePasswordVisibility() {
     const button =
         document.getElementById("passwordToggle");
 
-    if (!password || !button) {
-        return;
-    }
 
     if (password.type === "password") {
 
@@ -1067,9 +785,7 @@ function togglePasswordVisibility() {
 
 function toggleAuthMode(event) {
 
-    if (event) {
-        event.preventDefault();
-    }
+    event.preventDefault();
 
     hideMessage();
 
@@ -1078,6 +794,9 @@ function toggleAuthMode(event) {
 
     const nameGroup =
         document.getElementById("nameGroup");
+
+    const fullName =
+        document.getElementById("fullName");
 
     const submitButton =
         document.getElementById("submitBtn");
@@ -1099,6 +818,8 @@ function toggleAuthMode(event) {
 
         nameGroup.style.display = "block";
 
+        fullName.required = true;
+
         submitButton.textContent =
             "Create Account";
 
@@ -1117,6 +838,8 @@ function toggleAuthMode(event) {
     } else {
 
         nameGroup.style.display = "none";
+
+        fullName.required = false;
 
         submitButton.textContent =
             "Log In";
@@ -1139,7 +862,7 @@ function toggleAuthMode(event) {
 
 
 /* ================================= */
-/* NORMAL LOGIN */
+/* EMAIL AUTHENTICATION */
 /* ================================= */
 
 async function handleAuth(event) {
@@ -1174,7 +897,7 @@ async function handleAuth(event) {
     if (password.length < 6) {
 
         showMessage(
-            "Your password must contain at least 6 characters.",
+            "Password must contain at least 6 characters.",
             "error"
         );
 
@@ -1217,10 +940,7 @@ async function handleAuth(event) {
                     "error"
                 );
 
-                submitButton.disabled = false;
-
-                submitButton.textContent =
-                    "Create Account";
+                resetSubmitButton();
 
                 return;
 
@@ -1230,58 +950,47 @@ async function handleAuth(event) {
             const {
                 data,
                 error
-            } = await supabaseClient.auth.signUp({
+            } =
+                await supabaseClient.auth.signUp({
 
-                email: email,
+                    email: email,
 
-                password: password,
+                    password: password,
 
-                options: {
+                    options: {
 
-                    data: {
-
-                        full_name: fullName
+                        data: {
+                            full_name: fullName
+                        }
 
                     }
 
-                }
-
-            });
+                });
 
 
             if (error) {
 
-                console.error(
-                    "Account creation error:",
-                    error
-                );
-
-                showMessage(
-                    error.message,
-                    "error"
-                );
-
-                submitButton.disabled = false;
-
-                submitButton.textContent =
-                    "Create Account";
-
-                return;
+                throw error;
 
             }
 
 
-            if (!data.user) {
+            /*
+             * Supabase may require email
+             * confirmation before login.
+             */
+
+            if (
+                data.user &&
+                !data.session
+            ) {
 
                 showMessage(
-                    "Account could not be created. Please try again.",
-                    "error"
+                    "Account created. Please check your email to confirm your account before logging in.",
+                    "success"
                 );
 
-                submitButton.disabled = false;
-
-                submitButton.textContent =
-                    "Create Account";
+                resetSubmitButton();
 
                 return;
 
@@ -1289,16 +998,18 @@ async function handleAuth(event) {
 
 
             showMessage(
-                "TrustAI account created successfully. Continue to face verification.",
+                "Account created successfully.",
                 "success"
             );
 
 
-            setTimeout(() => {
-
-                openFaceVerification();
-
-            }, 800);
+            setTimeout(
+                () => {
+                    window.location.href =
+                        TRUSTAI_HOME;
+                },
+                700
+            );
 
 
             return;
@@ -1313,1071 +1024,225 @@ async function handleAuth(event) {
         const {
             data,
             error
-        } = await supabaseClient.auth.signInWithPassword({
+        } =
+            await supabaseClient.auth.signInWithPassword({
 
-            email: email,
+                email: email,
 
-            password: password
+                password: password
 
-        });
+            });
 
 
         if (error) {
 
-            console.error(
-                "Login error:",
-                error
-            );
-
-            showMessage(
-                "Login failed: " + error.message,
-                "error"
-            );
-
-            submitButton.disabled = false;
-
-            submitButton.textContent =
-                "Log In";
-
-            return;
+            throw error;
 
         }
 
 
-        if (!data.user) {
+        if (!data.session) {
 
-            showMessage(
-                "Login failed. Please try again.",
-                "error"
+            throw new Error(
+                "Login session could not be created."
             );
-
-            submitButton.disabled = false;
-
-            submitButton.textContent =
-                "Log In";
-
-            return;
 
         }
 
 
         showMessage(
-            "Login successful. Continue to face verification.",
+            "Login successful. Opening TrustAI...",
             "success"
         );
 
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            openFaceVerification();
+                window.location.href =
+                    TRUSTAI_HOME;
 
-        }, 800);
+            },
+            500
+        );
 
 
     } catch (error) {
 
         console.error(
-            "Authentication error:",
+            "TrustAI authentication error:",
             error
         );
 
+
+        let errorMessage =
+            "Something went wrong. Please try again.";
+
+
+        if (
+            error.message
+                .toLowerCase()
+                .includes("invalid login credentials")
+        ) {
+
+            errorMessage =
+                "Incorrect email or password.";
+
+        } else if (
+            error.message
+                .toLowerCase()
+                .includes("email not confirmed")
+        ) {
+
+            errorMessage =
+                "Please confirm your email address before logging in.";
+
+        } else if (
+            error.message
+                .toLowerCase()
+                .includes("user already registered")
+        ) {
+
+            errorMessage =
+                "An account with this email already exists.";
+
+        } else if (error.message) {
+
+            errorMessage =
+                error.message;
+
+        }
+
+
         showMessage(
-            "Something went wrong during authentication. Please try again.",
+            errorMessage,
             "error"
         );
 
-        submitButton.disabled = false;
 
-        submitButton.textContent =
-            isSignUp
-                ? "Create Account"
-                : "Log In";
+        resetSubmitButton();
 
     }
 
-      }
+}
+
+
+/* ================================= */
+/* RESET BUTTON */
+/* ================================= */
+
+function resetSubmitButton() {
+
+    const submitButton =
+        document.getElementById("submitBtn");
+
+    submitButton.disabled = false;
+
+    submitButton.textContent =
+        isSignUp
+            ? "Create Account"
+            : "Log In";
+
+}
 
 
 /* ================================= */
 /* GOOGLE LOGIN */
 /* ================================= */
 
-function triggerGoogleLogin() {
+async function loginWithGoogle() {
 
     hideMessage();
 
-
-    if (
-        GOOGLE_CLIENT_ID ===
-        "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-    ) {
-
-        showMessage(
-            "Google Sign-In needs your real Google Client ID first. Normal email login is still available.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (
-        typeof google === "undefined" ||
-        !google.accounts ||
-        !google.accounts.id
-    ) {
-
-        showMessage(
-            "Google Sign-In is still loading. Please wait a moment and try again.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    try {
-
-        google.accounts.id.initialize({
-
-            client_id:
-                GOOGLE_CLIENT_ID,
-
-            callback:
-                handleGoogleResponse,
-
-            auto_select:
-                false
-
-        });
-
-
-        google.accounts.id.prompt();
-
-    } catch (error) {
-
-        console.error(
-            "Google Sign-In error:",
-            error
-        );
-
-        showMessage(
-            "Google Sign-In could not start. Please try again.",
-            "error"
-        );
-
-    }
-
-}
-
-
-/* ================================= */
-/* GOOGLE RESPONSE */
-/* ================================= */
-
-function handleGoogleResponse(response) {
-
-    hideMessage();
-
-
-    if (
-        !response ||
-        !response.credential
-    ) {
-
-        showMessage(
-            "Google authentication failed.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       The Google credential has been received.
-
-       A real production application should
-       verify the Google credential on a backend
-       before creating a session.
-    */
-
-    showMessage(
-        "Google authentication successful. Continue to face verification.",
-        "success"
-    );
-
-
-    setTimeout(() => {
-
-        openFaceVerification();
-
-    }, 800);
-
-}
-
-
-/* ================================= */
-/* FACE VERIFICATION */
-/* ================================= */
-
-async function openFaceVerification() {
-
-    stopCamera();
-
-
-    const loginCard =
-        document.getElementById("loginCard");
-
-    const faceVerification =
-        document.getElementById("faceVerification");
-
-
-    if (!loginCard || !faceVerification) {
-        return;
-    }
-
-
-    loginCard.style.display = "none";
-
-    faceVerification.style.display = "block";
-
-
-    const status =
-        document.getElementById("cameraStatus");
 
     const button =
-        document.getElementById("verifyButton");
+        document.getElementById("googleBtn");
 
 
     button.disabled = true;
 
     button.textContent =
-        "Verify My Face";
-
-
-    status.className =
-        "camera-status";
-
-    status.textContent =
-        "Loading face detection...";
+        "Connecting to Google...";
 
 
     try {
 
-        if (
-            typeof faceapi === "undefined"
-        ) {
-
-            throw new Error(
-                "Face API library failed to load."
-            );
-
-        }
-
-
-        const MODEL_URL =
-            "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
-
-
-        await Promise.all([
-
-    faceapi.nets.tinyFaceDetector
-        .loadFromUri(MODEL_URL),
-
-    faceapi.nets.faceLandmark68Net
-        .loadFromUri(MODEL_URL),
-
-    faceapi.nets.faceRecognitionNet
-        .loadFromUri(MODEL_URL)
-
-]);
-
-        status.textContent =
-            "Face detection ready. Starting camera...";
-
-
-        if (
-            !navigator.mediaDevices ||
-            !navigator.mediaDevices.getUserMedia
-        ) {
-
-            throw new Error(
-                "Camera access is not supported by this browser."
-            );
-
-        }
-
-
-        cameraStream =
-            await navigator.mediaDevices
-                .getUserMedia({
-
-                    video: {
-
-                        facingMode: "user",
-
-                        width: {
-                            ideal: 720
-                        },
-
-                        height: {
-                            ideal: 960
-                        }
-
-                    },
-
-                    audio: false
-
-                });
-
-
-        const video =
-            document.getElementById(
-                "cameraVideo"
-            );
-
-
-        video.srcObject =
-            cameraStream;
-
-
-        await video.play();
-
-
-        cameraReady = true;
-
-
-        status.textContent =
-            "Looking for your face...";
-
-
-        startFaceDetection();
-
-
-    } catch (error) {
-
-        console.error(
-            "Camera / face verification error:",
+        const {
+            data,
             error
-        );
+        } =
+            await supabaseClient.auth.signInWithOAuth({
 
+                provider: "google",
 
-        status.className =
-            "camera-status error";
+                options: {
 
+                    redirectTo:
+                        window.location.origin +
+                        window.location.pathname
 
-        status.textContent =
-            getCameraErrorMessage(error);
-
-    }
-
-}
-
-
-/* ================================= */
-/* CAMERA ERROR MESSAGE */
-/* ================================= */
-
-function getCameraErrorMessage(error) {
-
-    if (
-        error &&
-        (
-            error.name ===
-            "NotAllowedError" ||
-            error.name ===
-            "PermissionDeniedError"
-        )
-    ) {
-
-        return "Camera permission was denied. Allow camera access and try again.";
-
-    }
-
-
-    if (
-        error &&
-        error.name ===
-        "NotFoundError"
-    ) {
-
-        return "No camera was found on this device.";
-
-    }
-
-
-    if (
-        error &&
-        error.name ===
-        "NotReadableError"
-    ) {
-
-        return "The camera is already being used by another application.";
-
-    }
-
-
-    return "Unable to start the camera. Please check your browser permissions and try again.";
-
-}
-
-
-/* ================================= */
-/* FACE DETECTION */
-/* ================================= */
-
-function startFaceDetection() {
-
-    if (faceDetectionRunning) {
-        return;
-    }
-
-
-    faceDetectionRunning = true;
-
-
-    const video =
-        document.getElementById(
-            "cameraVideo"
-        );
-
-
-    const status =
-        document.getElementById(
-            "cameraStatus"
-        );
-
-
-    const button =
-        document.getElementById(
-            "verifyButton"
-        );
-
-
-    async function detect() {
-
-        if (
-            !cameraReady ||
-            !video ||
-            video.readyState < 2
-        ) {
-
-            faceDetectionAnimation =
-                requestAnimationFrame(detect);
-
-            return;
-
-        }
-
-
-        try {
-
-            const detection =
-                await faceapi.detectSingleFace(
-
-                    video,
-
-                    new faceapi
-                        .TinyFaceDetectorOptions({
-
-                            inputSize: 224,
-
-                            scoreThreshold: 0.5
-
-                        })
-
-                );
-
-
-            if (detection) {
-
-                faceCurrentlyDetected =
-                    true;
-
-
-                status.className =
-                    "camera-status success";
-
-
-                status.textContent =
-                    "Face detected ✓ Keep your face centered.";
-
-
-                button.disabled =
-                    false;
-
-            } else {
-
-                faceCurrentlyDetected =
-                    false;
-
-
-                status.className =
-                    "camera-status";
-
-
-                status.textContent =
-                    "Position your face inside the circle.";
-
-
-                button.disabled =
-                    true;
-
-            }
-
-
-        } catch (error) {
-
-            console.error(
-                "Face detection error:",
-                error
-            );
-
-        }
-
-
-        if (faceDetectionRunning) {
-
-            faceDetectionAnimation =
-                requestAnimationFrame(detect);
-
-        }
-
-    }
-
-
-    detect();
-
-}
-
-
-/* ================================= */
-/* VERIFY FACE */
-/* ================================= */
-
-async function verifyFace() {
-
-    if (!cameraReady) {
-        return;
-    }
-
-    const status =
-        document.getElementById("cameraStatus");
-
-    const button =
-        document.getElementById("verifyButton");
-
-    if (!faceCurrentlyDetected) {
-
-        status.className =
-            "camera-status error";
-
-        status.textContent =
-            "No face detected. Position your face inside the circle.";
-
-        return;
-    }
-
-    button.disabled = true;
-
-    button.textContent =
-        "Checking Face...";
-
-    status.className =
-        "camera-status";
-
-    status.textContent =
-        "Analyzing your face...";
-
-    try {
-
-        /* ============================= */
-        /* GET CURRENT TRUSTAI USER */
-        /* ============================= */
-
-        const {
-            data: sessionData,
-            error: sessionError
-        } = await supabaseClient.auth.getSession();
-
-        if (sessionError) {
-            throw sessionError;
-        }
-
-        const user =
-            sessionData &&
-            sessionData.session &&
-            sessionData.session.user;
-
-        if (!user) {
-
-            throw new Error(
-                "Your TrustAI session could not be found. Please log in again."
-            );
-
-        }
-
-
-        /* ============================= */
-        /* CAPTURE FACE DESCRIPTOR */
-        /* ============================= */
-
-        const video =
-            document.getElementById("cameraVideo");
-
-        const result =
-            await faceapi
-                .detectSingleFace(
-                    video,
-                    new faceapi.TinyFaceDetectorOptions({
-                        inputSize: 224,
-                        scoreThreshold: 0.5
-                    })
-                )
-                .withFaceLandmarks()
-                .withFaceDescriptor();
-
-
-        if (!result) {
-
-            throw new Error(
-                "Your face could not be detected clearly. Please center your face and try again."
-            );
-
-        }
-
-
-        const descriptor =
-            Array.from(result.descriptor);
-
-
-        /* ============================= */
-        /* CHECK EXISTING FACE RECORD */
-        /* ============================= */
-
-        const {
-            data: existingRecord,
-            error: fetchError
-        } = await supabaseClient
-            .from("face_verification")
-            .select(
-                "user_id, enrolled, face_descriptor"
-            )
-            .eq(
-                "user_id",
-                user.id
-            )
-            .maybeSingle();
-
-
-        if (fetchError) {
-            throw fetchError;
-        }
-
-/* ============================= */
-/* FIRST-TIME FACE ENROLLMENT */
-/* ============================= */
-
-if (
-    !existingRecord ||
-    existingRecord.enrolled !== true ||
-    !existingRecord.face_descriptor
-) {
-
-    status.className =
-        "camera-status";
-
-    status.textContent =
-        "Saving your face securely...";
-
-    /*
-       Make sure the descriptor is a normal
-       JavaScript array before sending it
-       to the Supabase JSONB column.
-    */
-
-    const faceDescriptor =
-        Array.from(result.descriptor);
-
-    if (
-        !Array.isArray(faceDescriptor) ||
-        faceDescriptor.length !== 128
-    ) {
-
-        throw new Error(
-            "A valid face descriptor could not be created. Please try again."
-        );
-
-    }
-
-
-    const now =
-        new Date().toISOString();
-
-
-    /*
-       Save the face enrollment.
-    */
-
-    const {
-        data: savedRecord,
-        error: saveError
-    } = await supabaseClient
-        .from("face_verification")
-        .upsert({
-
-            user_id:
-                user.id,
-
-            enrolled:
-                true,
-
-            face_descriptor:
-                faceDescriptor,
-
-            verification_provider:
-                "face-api.js",
-
-            enrolled_at:
-                now,
-
-            last_verified_at:
-                now
-
-        }, {
-
-            onConflict:
-                "user_id",
-
-            returning:
-                "representation"
-
-        })
-        .select()
-        .single();
-
-
-    if (saveError) {
-
-        console.error(
-            "Face enrollment save error:",
-            saveError
-        );
-
-        throw new Error(
-            "Your face could not be saved. " +
-            saveError.message
-        );
-
-    }
-
-
-    /*
-       Confirm that Supabase actually returned
-       the saved face record.
-    */
-
-    if (
-        !savedRecord ||
-        savedRecord.enrolled !== true ||
-        !savedRecord.face_descriptor
-    ) {
-
-        throw new Error(
-            "Face enrollment could not be confirmed in the database."
-        );
-
-    }
-
-
-    status.className =
-        "camera-status success";
-
-    status.textContent =
-        "Your face has been securely linked to your TrustAI account ✓";
-
-
-    button.textContent =
-        "Continue";
-
-    button.disabled =
-        false;
-
-    button.onclick =
-        finishVerification;
-
-
-    stopCamera();
-
-    return;
-              }
-        
-        /* ============================= */
-        /* FACE MATCHING */
-        /* ============================= */
-
-        const storedDescriptor =
-            new Float32Array(
-                existingRecord.face_descriptor
-            );
-
-
-        const distance =
-            faceapi.euclideanDistance(
-                descriptor,
-                storedDescriptor
-            );
-
-
-        /*
-           Lower distance = stronger match.
-
-           0.50 is a reasonably strict starting
-           threshold for this browser-based check.
-        */
-
-        const MATCH_THRESHOLD =
-            0.50;
-
-
-        if (distance > MATCH_THRESHOLD) {
-
-            stopCamera();
-
-            status.className =
-                "camera-status error";
-
-            status.textContent =
-                "Face does not match the face registered to this TrustAI account.";
-
-            button.textContent =
-                "Try Again";
-
-            button.disabled =
-                false;
-
-            button.onclick =
-                () => {
-
-                    openFaceVerification();
-
-                };
-
-            return;
-        }
-
-
-        /* ============================= */
-        /* MATCH SUCCESSFUL */
-        /* ============================= */
-
-        const {
-            error: updateError
-        } = await supabaseClient
-            .from("face_verification")
-            .update({
-
-                last_verified_at:
-                    new Date().toISOString()
-
-            })
-            .eq(
-                "user_id",
-                user.id
-            );
-
-
-        if (updateError) {
-            throw updateError;
-        }
-
-
-        status.className =
-            "camera-status success";
-
-        status.textContent =
-            "Face matched successfully ✓";
-
-        button.textContent =
-            "Continue";
-
-        button.disabled =
-            false;
-
-        button.onclick =
-            finishVerification;
-
-        stopCamera();
-
-
-    } catch (error) {
-
-        console.error(
-            "Face verification error:",
-            error
-        );
-
-
-        status.className =
-            "camera-status error";
-
-        status.textContent =
-            "Face verification failed: " +
-            (
-                error.message ||
-                "Please try again."
-            );
-
-
-        button.textContent =
-            "Try Again";
-
-        button.disabled =
-            false;
-
-        button.onclick =
-            () => {
-
-                openFaceVerification();
-
-            };
-
-    }
-
-}
-
-
-
-/* ================================= */
-/* FINISH VERIFICATION */
-/* ================================= */
-
-function finishVerification() {
-
-    stopCamera();
-
-
-    const status =
-        document.getElementById(
-            "cameraStatus"
-        );
-
-
-    status.className =
-        "camera-status success";
-
-
-    status.textContent =
-        "Verification complete ✓ Opening TrustAI...";
-
-
-    setTimeout(() => {
-
-        window.location.href =
-            TRUSTAI_HOME;
-
-    }, 800);
-
-}
-
-
-/* ================================= */
-/* RETURN TO LOGIN */
-/* ================================= */
-
-function returnToLogin() {
-
-    stopCamera();
-
-
-    document.getElementById(
-        "faceVerification"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "loginCard"
-    ).style.display = "block";
-
-
-    const button =
-        document.getElementById(
-            "verifyButton"
-        );
-
-
-    button.textContent =
-        "Verify My Face";
-
-
-    button.disabled =
-        true;
-
-
-    button.onclick =
-        verifyFace;
-
-
-    hideMessage();
-
-}
-
-
-/* ================================= */
-/* STOP CAMERA */
-/* ================================= */
-
-function stopCamera() {
-
-    if (faceDetectionAnimation) {
-
-        cancelAnimationFrame(
-            faceDetectionAnimation
-        );
-
-        faceDetectionAnimation =
-            null;
-
-    }
-
-
-    if (cameraStream) {
-
-        cameraStream
-            .getTracks()
-            .forEach(track => {
-
-                track.stop();
+                }
 
             });
 
-        cameraStream = null;
 
-    }
+        if (error) {
+
+            throw error;
+
+        }
 
 
-    const video =
-        document.getElementById(
-            "cameraVideo"
+    } catch (error) {
+
+        console.error(
+            "Google login error:",
+            error
         );
 
 
-    if (video) {
+        showMessage(
+            "Google sign-in is not configured yet. Configure Google OAuth in Supabase first.",
+            "error"
+        );
 
-        video.srcObject = null;
+
+        button.disabled = false;
+
+        button.innerHTML = `
+
+            <span class="social-icon">
+
+                <svg
+                    width="18"
+                    height="18"
+         viewBox="0 0 24 24">
+
+                    <path
+                        fill="#4285F4"
+                        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+
+                    <path
+                        fill="#34A853"
+                        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.14C3.15 21.36 7.23 24 12 24z"/>
+
+                    <path
+                        fill="#FBBC05"
+                        d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.62H1.18C.43 8.13 0 9.83 0 12s.43 3.87 1.18 5.38l4.09-3.14z"/>
+
+                    <path
+                        fill="#EA4335"
+                        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.15 2.64 1.18 6.62l4.09 3.14c.95-2.85 3.6-4.96 6.73-4.96z"/>
+
+                </svg>
+
+            </span>
+
+            Continue with Google
+
+        `;
 
     }
-
-
-    cameraReady = false;
-
-    faceDetectionRunning = false;
-
-    faceCurrentlyDetected = false;
 
 }
 
@@ -2386,7 +1251,10 @@ function stopCamera() {
 /* FORGOT PASSWORD */
 /* ================================= */
 
-function forgotPassword() {
+async function forgotPassword() {
+
+    hideMessage();
+
 
     const email =
         document.getElementById("email")
@@ -2397,7 +1265,7 @@ function forgotPassword() {
     if (!email) {
 
         showMessage(
-            "Enter your email address first.",
+            "Enter your email address first, then tap Forgot password.",
             "error"
         );
 
@@ -2406,24 +1274,131 @@ function forgotPassword() {
     }
 
 
-    showMessage(
-        "Password recovery will be connected to real email verification next.",
-        "success"
-    );
+    try {
+
+        const {
+            error
+        } =
+            await supabaseClient.auth
+                .resetPasswordForEmail(
+                    email,
+                    {
+                        redirectTo:
+                            window.location.origin +
+                            "/reset-password.html"
+                    }
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        showMessage(
+            "Password reset instructions have been sent to your email.",
+            "success"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Password reset error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to send password reset email.",
+            "error"
+        );
+
+    }
 
 }
 
 
 /* ================================= */
-/* PAGE EXIT */
+/* AUTH SESSION CHECK */
 /* ================================= */
 
-window.addEventListener(
-    "beforeunload",
-    stopCamera
+async function checkExistingSession() {
+
+    try {
+
+        const {
+            data
+        } =
+            await supabaseClient.auth.getSession();
+
+
+        if (
+            data &&
+            data.session
+        ) {
+
+            window.location.href =
+                TRUSTAI_HOME;
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Session check error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ================================= */
+/* AUTH STATE LISTENER */
+/* ================================= */
+
+supabaseClient.auth.onAuthStateChange(
+    (event, session) => {
+
+        if (
+            event === "SIGNED_IN" &&
+            session
+        ) {
+
+            /*
+             * Avoid forcing an immediate redirect
+             * during password recovery flows.
+             */
+
+            if (
+                !window.location.pathname
+                    .includes("reset-password")
+            ) {
+
+                window.location.href =
+                    TRUSTAI_HOME;
+
+            }
+
+        }
+
+    }
 );
 
+
+/* ================================= */
+/* START */
+/* ================================= */
+
+checkExistingSession();
+
 </script>
+
 
 </body>
 
