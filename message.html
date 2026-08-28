@@ -1,7 +1,12 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TrustAI — Message Checker</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI — Message Checker</title>
+
+<style>
 :root{
     --primary:#6366f1;
     --primary-dark:#4f46e5;
@@ -448,631 +453,300 @@ textarea::placeholder{
         width:100%;
     }
 }
-</style></head><body><!-- MENU BUTTON --><button
-class="menu-button"
-onclick="toggleMenu()"
-aria-label="Open menu">
+</style>
+</head>
 
-<span></span>
-<span></span>
-<span></span>
+<body>
 
-</button><!-- SIDE MENU --><nav id="sideMenu" class="side-menu"><div class="menu-title">
+<!-- ==========================================
+     MENU BUTTON
+========================================== -->
 
-    <strong>🛡️ TrustAI</strong>
+<button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open menu">
 
-    <span data-i18n="menuSubtitle">
-        Universal Message Analyzer
-    </span>
+    <span></span>
+    <span></span>
+    <span></span>
 
-</div>
+</button>
 
-<a href="./home.html" class="menu-link">
-    <span class="menu-icon">🏠</span>
-    <span data-i18n="home">Home</span>
-</a>
 
-<a href="./message.html" class="menu-link">
-    <span class="menu-icon">🔍</span>
-    <span data-i18n="messageChecker">Message Checker</span>
-</a>
+<!-- ==========================================
+     SIDE MENU
+========================================== -->
 
-<a href="./conversation.html" class="menu-link">
-    <span class="menu-icon">💬</span>
-    <span data-i18n="conversationChecker">
-        Conversation Checker
-    </span>
-</a>
+<nav id="sideMenu" class="side-menu">
 
-<a href="./website.html" class="menu-link">
-    <span class="menu-icon">🌐</span>
-    <span data-i18n="websiteChecker">
-        Website Checker
-    </span>
-</a>
+    <div class="menu-title">
 
-<a href="./device.html" class="menu-link">
-    <span class="menu-icon">📱</span>
-    <span data-i18n="deviceSecurity">
-        Device Security
-    </span>
-</a>
+        <strong>🛡️ TrustAI</strong>
 
-<a href="./security.html" class="menu-link">
-    <span class="menu-icon">🛡️</span>
-    <span data-i18n="securityCenter">
-        Security Center
-    </span>
-</a>
+        <span data-i18n="menuSubtitle">
+            Universal Message Analyzer
+        </span>
 
-<a href="./threat-monitor.html" class="menu-link">
-    <span class="menu-icon">📡</span>
-    <span data-i18n="threatMonitor">
-        Threat Monitor
-    </span>
-</a>
+    </div>
 
-<div class="menu-divider"></div>
 
-<a href="./alerts.html" class="menu-link">
-    <span class="menu-icon">🚨</span>
-    <span data-i18n="scamAlerts">
-        Scam Alerts
-    </span>
-</a>
+    <a href="./home.html" class="menu-link">
 
-<a href="./report.html" class="menu-link">
-    <span class="menu-icon">📢</span>
-    <span data-i18n="reportScam">
-        Report a Scam
-    </span>
-</a>
+        <span class="menu-icon">🏠</span>
 
-<a href="./contact.html" class="menu-link">
-    <span class="menu-icon">💬</span>
-    <span data-i18n="contactTrustAI">
-        Contact TrustAI
-    </span>
-</a>
+        <span data-i18n="home">
+            Home
+        </span>
 
-</nav><div
+    </a>
+
+
+    <a href="./message.html" class="menu-link">
+
+        <span class="menu-icon">🔍</span>
+
+        <span data-i18n="messageChecker">
+            Message Checker
+        </span>
+
+    </a>
+
+
+    <a href="./conversation.html" class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        <span data-i18n="conversationChecker">
+            Conversation Checker
+        </span>
+
+    </a>
+
+
+    <a href="./website.html" class="menu-link">
+
+        <span class="menu-icon">🌐</span>
+
+        <span data-i18n="websiteChecker">
+            Website Checker
+        </span>
+
+    </a>
+
+
+    <a href="./device.html" class="menu-link">
+
+        <span class="menu-icon">📱</span>
+
+        <span data-i18n="deviceSecurity">
+            Device Security
+        </span>
+
+    </a>
+
+
+    <a href="./security.html" class="menu-link">
+
+        <span class="menu-icon">🛡️</span>
+
+        <span data-i18n="securityCenter">
+            Security Center
+        </span>
+
+    </a>
+
+
+    <a href="./threat-monitor.html" class="menu-link">
+
+        <span class="menu-icon">📡</span>
+
+        <span data-i18n="threatMonitor">
+            Threat Monitor
+        </span>
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="./alerts.html" class="menu-link">
+
+        <span class="menu-icon">🚨</span>
+
+        <span data-i18n="scamAlerts">
+            Scam Alerts
+        </span>
+
+    </a>
+
+
+    <a href="./report.html" class="menu-link">
+
+        <span class="menu-icon">📢</span>
+
+        <span data-i18n="reportScam">
+            Report a Scam
+        </span>
+
+    </a>
+
+
+    <a href="./contact.html" class="menu-link">
+
+        <span class="menu-icon">💬</span>
+
+        <span data-i18n="contactTrustAI">
+            Contact TrustAI
+        </span>
+
+    </a>
+
+</nav>
+
+
+<div
     id="menuOverlay"
     class="menu-overlay"
     onclick="closeMenu()">
-</div><!-- LANGUAGE LOADING --><div
+</div>
+
+
+<!-- LANGUAGE LOADING -->
+
+<div
     id="languageLoading"
-    class="language-loading">
+    class="language-loading"
+    data-i18n="loadingLanguage">
+
     Loading language...
-</div><!-- PAGE --><div class="page"><!-- HEADER -->
 
-<section class="header">
-
-    <div
-        class="header-label"
-        data-i18n="classifierLabel">
-
-        TRUST AI UNIVERSAL CLASSIFIER
-
-    </div>
-
-    <h1 data-i18n="messageTitle">
-        🔍 Message & Type Analyzer
-    </h1>
-
-    <p data-i18n="messageDescription">
-        Analyze any message worldwide—from everyday personal
-        chats, friendly micro-loans, and automated OTPs to
-        complex scam vectors.
-    </p>
-
-</section>
+</div>
 
 
-<!-- CHECKER -->
+<!-- ==========================================
+     PAGE
+========================================== -->
 
-<section class="checker">
-
-    <h2 data-i18n="analyzeText">
-        Analyze Text
-    </h2>
-
-    <div
-        class="checker-subtitle"
-        data-i18n="analyzeSubtitle">
-
-        Paste any personal text, business email,
-        notification, or suspicious message below.
-
-    </div>
+<div class="page">
 
 
-    <textarea
-        id="message"
-        data-i18n-placeholder="messagePlaceholder"
-        placeholder="Paste message here...">
-    </textarea>
+    <!-- HEADER -->
+
+    <section class="header">
+
+        <div
+            class="header-label"
+            data-i18n="classifierLabel">
+
+            TRUST AI UNIVERSAL CLASSIFIER
+
+        </div>
 
 
-    <div class="buttons">
+        <h1 data-i18n="messageTitle">
 
-        <button
-            class="action-button check-button"
-            onclick="checkMessage()"
-            data-i18n="analyzeButton">
+            🔍 Message & Type Analyzer
 
-            🔍 Analyze Message
-
-        </button>
+        </h1>
 
 
-        <button
-            class="action-button clear-button"
-            onclick="clearMessage()"
-            data-i18n="clearButton">
+        <p data-i18n="messageDescription">
 
-            Clear
+            Analyze any message worldwide—from everyday personal
+            chats, friendly micro-loans, and automated OTPs to
+            complex scam vectors.
 
-        </button>
+        </p>
 
-
-        <button
-            class="action-button sample-button"
-            onclick="loadRandomSample()"
-            data-i18n="randomButton">
-
-            🎲 Random Sample
-
-        </button>
-
-    </div>
+    </section>
 
 
-    <!-- RESULT -->
+    <!-- CHECKER -->
 
-    <div
-        id="result"
-        class="result">
-    </div>
+    <section class="checker">
 
-</section>
+        <h2 data-i18n="analyzeText">
 
-</div><script>
+            Analyze Text
+
+        </h2>
+
+
+        <div
+            class="checker-subtitle"
+            data-i18n="analyzeSubtitle">
+
+            Paste any personal text, business email,
+            notification, or suspicious message below.
+
+        </div>
+
+
+        <textarea
+            id="message"
+            data-i18n-placeholder="messagePlaceholder"
+            placeholder="Paste message here...">
+        </textarea>
+
+
+        <div class="buttons">
+
+            <button
+                class="action-button check-button"
+                onclick="checkMessage()"
+                data-i18n="analyzeButton">
+
+                🔍 Analyze Message
+
+            </button>
+
+
+            <button
+                class="action-button clear-button"
+                onclick="clearMessage()"
+                data-i18n="clearButton">
+
+                Clear
+
+            </button>
+
+
+            <button
+                class="action-button sample-button"
+                onclick="loadRandomSample()"
+                data-i18n="randomButton">
+
+                🎲 Random Sample
+
+            </button>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div
+            id="result"
+            class="result">
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
 
 /* =====================================================
-   TRUSTAI MESSAGE PAGE + LANGUAGE SYSTEM
+   TRUSTAI MESSAGE CHECKER
+   30+ LANGUAGE SYSTEM COMPATIBLE
 ===================================================== */
 
 
 /* =====================================================
-   LANGUAGE TRANSLATIONS
-===================================================== */
-
-const messagePageTranslations = {
-
-    en: {
-
-        menuSubtitle:"Universal Message Analyzer",
-
-        home:"Home",
-        messageChecker:"Message Checker",
-        conversationChecker:"Conversation Checker",
-        websiteChecker:"Website Checker",
-        deviceSecurity:"Device Security",
-        securityCenter:"Security Center",
-        threatMonitor:"Threat Monitor",
-        scamAlerts:"Scam Alerts",
-        reportScam:"Report a Scam",
-        contactTrustAI:"Contact TrustAI",
-
-        classifierLabel:
-            "TRUST AI UNIVERSAL CLASSIFIER",
-
-        messageTitle:
-            "🔍 Message & Type Analyzer",
-
-        messageDescription:
-            "Analyze any message worldwide—from everyday personal chats, friendly micro-loans, and automated OTPs to complex scam vectors.",
-
-        analyzeText:
-            "Analyze Text",
-
-        analyzeSubtitle:
-            "Paste any personal text, business email, notification, or suspicious message below.",
-
-        messagePlaceholder:
-            "Paste message here (e.g., Please help me with 3k I will send it tomorrow)...",
-
-        analyzeButton:
-            "🔍 Analyze Message",
-
-        clearButton:
-            "Clear",
-
-        randomButton:
-            "🎲 Random Sample",
-
-        noMessageTitle:
-            "⚠️ No message provided",
-
-        noMessageText:
-            "Paste a message into the checker before scanning.",
-
-        criticalTitle:
-            "🚨 CRITICAL THREAT DETECTED",
-
-        highTitle:
-            "🟠 HIGH RISK / SUSPICIOUS",
-
-        cautionTitle:
-            "🟡 CAUTION REQUIRED",
-
-        lowTitle:
-            "🟢 LOW RISK",
-
-        riskScore:
-            "Risk Score",
-
-        detectedCategories:
-            "Detected Categories",
-
-        detectionFindings:
-            "🔎 Detection Findings",
-
-        detected:
-            "detected:",
-
-        legitimate:
-            "Legitimate",
-
-        threat:
-            "Threat",
-
-        noPattern:
-            "No specific scam pattern was detected.",
-
-        recommendation:
-            "🛡️ TrustAI Recommendation:",
-
-        criticalAdvice:
-            "This message contains multiple strong scam indicators. Do not send money, passwords, OTPs, or personal information.",
-
-        highAdvice:
-            "Exercise extreme caution. Verify the sender independently before taking any action.",
-
-        cautionAdvice:
-            "Some suspicious indicators were detected. Check the sender and context carefully.",
-
-        lowAdvice:
-            "No major scam indicators were detected by the current rules. This does not guarantee the message is safe.",
-
-        generalCommunication:
-            "General Communication",
-
-        loadingLanguage:
-            "Loading language..."
-
-    },
-
-
-    fr: {
-
-        menuSubtitle:
-            "Analyseur universel de messages",
-
-        home:"Accueil",
-        messageChecker:"Vérificateur de messages",
-        conversationChecker:"Vérificateur de conversations",
-        websiteChecker:"Vérificateur de sites",
-        deviceSecurity:"Sécurité de l'appareil",
-        securityCenter:"Centre de sécurité",
-        threatMonitor:"Surveillance des menaces",
-        scamAlerts:"Alertes aux arnaques",
-        reportScam:"Signaler une arnaque",
-        contactTrustAI:"Contacter TrustAI",
-
-        classifierLabel:
-            "CLASSIFICATEUR UNIVERSEL TRUST AI",
-
-        messageTitle:
-            "🔍 Analyseur de messages",
-
-        messageDescription:
-            "Analysez n'importe quel message dans le monde, des conversations personnelles aux OTP et aux tentatives d'arnaque complexes.",
-
-        analyzeText:
-            "Analyser le texte",
-
-        analyzeSubtitle:
-            "Collez ci-dessous un texte personnel, un e-mail professionnel, une notification ou un message suspect.",
-
-        messagePlaceholder:
-            "Collez le message ici...",
-
-        analyzeButton:
-            "🔍 Analyser le message",
-
-        clearButton:
-            "Effacer",
-
-        randomButton:
-            "🎲 Exemple aléatoire",
-
-        noMessageTitle:
-            "⚠️ Aucun message fourni",
-
-        noMessageText:
-            "Collez un message dans le vérificateur avant l'analyse.",
-
-        criticalTitle:
-            "🚨 MENACE CRITIQUE DÉTECTÉE",
-
-        highTitle:
-            "🟠 RISQUE ÉLEVÉ / SUSPECT",
-
-        cautionTitle:
-            "🟡 PRUDENCE REQUISE",
-
-        lowTitle:
-            "🟢 FAIBLE RISQUE",
-
-        riskScore:
-            "Score de risque",
-
-        detectedCategories:
-            "Catégories détectées",
-
-        detectionFindings:
-            "🔎 Résultats de détection",
-
-        detected:
-            "détecté :",
-
-        legitimate:
-            "Légitime",
-
-        threat:
-            "Menace",
-
-        noPattern:
-            "Aucun modèle d'arnaque spécifique n'a été détecté.",
-
-        recommendation:
-            "🛡️ Recommandation TrustAI :",
-
-        criticalAdvice:
-            "Ce message contient plusieurs indicateurs forts d'arnaque. N'envoyez pas d'argent, de mots de passe, d'OTP ou d'informations personnelles.",
-
-        highAdvice:
-            "Soyez extrêmement prudent. Vérifiez l'expéditeur indépendamment avant toute action.",
-
-        cautionAdvice:
-            "Certains indicateurs suspects ont été détectés. Vérifiez soigneusement l'expéditeur et le contexte.",
-
-        lowAdvice:
-            "Aucun indicateur majeur d'arnaque n'a été détecté par les règles actuelles. Cela ne garantit pas que le message est sûr.",
-
-        generalCommunication:
-            "Communication générale",
-
-        loadingLanguage:
-            "Chargement de la langue..."
-    },
-
-
-    es: {
-
-        menuSubtitle:
-            "Analizador universal de mensajes",
-
-        home:"Inicio",
-        messageChecker:"Verificador de mensajes",
-        conversationChecker:"Verificador de conversaciones",
-        websiteChecker:"Verificador de sitios web",
-        deviceSecurity:"Seguridad del dispositivo",
-        securityCenter:"Centro de seguridad",
-        threatMonitor:"Monitor de amenazas",
-        scamAlerts:"Alertas de estafas",
-        reportScam:"Reportar una estafa",
-        contactTrustAI:"Contactar con TrustAI",
-
-        classifierLabel:
-            "CLASIFICADOR UNIVERSAL TRUST AI",
-
-        messageTitle:
-            "🔍 Analizador de mensajes",
-
-        messageDescription:
-            "Analiza cualquier mensaje del mundo, desde conversaciones personales y OTP hasta complejas estafas.",
-
-        analyzeText:
-            "Analizar texto",
-
-        analyzeSubtitle:
-            "Pega cualquier texto personal, correo empresarial, notificación o mensaje sospechoso.",
-
-        messagePlaceholder:
-            "Pega el mensaje aquí...",
-
-        analyzeButton:
-            "🔍 Analizar mensaje",
-
-        clearButton:
-            "Borrar",
-
-        randomButton:
-            "🎲 Ejemplo aleatorio",
-
-        noMessageTitle:
-            "⚠️ No se proporcionó ningún mensaje",
-
-        noMessageText:
-            "Pega un mensaje en el verificador antes de analizarlo.",
-
-        criticalTitle:
-            "🚨 AMENAZA CRÍTICA DETECTADA",
-
-        highTitle:
-            "🟠 ALTO RIESGO / SOSPECHOSO",
-
-        cautionTitle:
-            "🟡 SE REQUIERE PRECAUCIÓN",
-
-        lowTitle:
-            "🟢 BAJO RIESGO",
-
-        riskScore:
-            "Puntuación de riesgo",
-
-        detectedCategories:
-            "Categorías detectadas",
-
-        detectionFindings:
-            "🔎 Resultados de detección",
-
-        detected:
-            "detectado:",
-
-        legitimate:
-            "Legítimo",
-
-        threat:
-            "Amenaza",
-
-        noPattern:
-            "No se detectó ningún patrón específico de estafa.",
-
-        recommendation:
-            "🛡️ Recomendación de TrustAI:",
-
-        criticalAdvice:
-            "Este mensaje contiene varios indicadores fuertes de estafa. No envíes dinero, contraseñas, OTP ni información personal.",
-
-        highAdvice:
-            "Ten mucho cuidado. Verifica al remitente de forma independiente antes de actuar.",
-
-        cautionAdvice:
-            "Se detectaron algunos indicadores sospechosos. Comprueba cuidadosamente el remitente y el contexto.",
-
-        lowAdvice:
-            "Las reglas actuales no detectaron indicadores importantes de estafa. Esto no garantiza que el mensaje sea seguro.",
-
-        generalCommunication:
-            "Comunicación general",
-
-        loadingLanguage:
-            "Cargando idioma..."
-    },
-
-
-    pt: {
-
-        menuSubtitle:
-            "Analisador universal de mensagens",
-
-        home:"Início",
-        messageChecker:"Verificador de mensagens",
-        conversationChecker:"Verificador de conversas",
-        websiteChecker:"Verificador de sites",
-        deviceSecurity:"Segurança do dispositivo",
-        securityCenter:"Central de segurança",
-        threatMonitor:"Monitor de ameaças",
-        scamAlerts:"Alertas de golpes",
-        reportScam:"Denunciar golpe",
-        contactTrustAI:"Contactar TrustAI",
-
-        classifierLabel:
-            "CLASSIFICADOR UNIVERSAL TRUST AI",
-
-        messageTitle:
-            "🔍 Analisador de mensagens",
-
-        messageDescription:
-            "Analise qualquer mensagem do mundo, desde conversas pessoais e OTPs até golpes complexos.",
-
-        analyzeText:
-            "Analisar texto",
-
-        analyzeSubtitle:
-            "Cole qualquer texto pessoal, e-mail comercial, notificação ou mensagem suspeita abaixo.",
-
-        messagePlaceholder:
-            "Cole a mensagem aqui...",
-
-        analyzeButton:
-            "🔍 Analisar mensagem",
-
-        clearButton:
-            "Limpar",
-
-        randomButton:
-            "🎲 Exemplo aleatório",
-
-        noMessageTitle:
-            "⚠️ Nenhuma mensagem fornecida",
-
-        noMessageText:
-            "Cole uma mensagem no verificador antes de analisar.",
-
-        criticalTitle:
-            "🚨 AMEAÇA CRÍTICA DETECTADA",
-
-        highTitle:
-            "🟠 ALTO RISCO / SUSPEITO",
-
-        cautionTitle:
-            "🟡 É NECESSÁRIO CUIDADO",
-
-        lowTitle:
-            "🟢 BAIXO RISCO",
-
-        riskScore:
-            "Pontuação de risco",
-
-        detectedCategories:
-            "Categorias detectadas",
-
-        detectionFindings:
-            "🔎 Resultados da detecção",
-
-        detected:
-            "detectado:",
-
-        legitimate:
-            "Legítimo",
-
-        threat:
-            "Ameaça",
-
-        noPattern:
-            "Nenhum padrão específico de golpe foi detectado.",
-
-        recommendation:
-            "🛡️ Recomendação do TrustAI:",
-
-        criticalAdvice:
-            "Esta mensagem contém vários indicadores fortes de golpe. Não envie dinheiro, senhas, OTPs ou informações pessoais.",
-
-        highAdvice:
-            "Tenha muito cuidado. Verifique o remetente de forma independente antes de tomar qualquer ação.",
-
-        cautionAdvice:
-            "Alguns indicadores suspeitos foram detectados. Verifique cuidadosamente o remetente e o contexto.",
-
-        lowAdvice:
-            "Nenhum indicador importante de golpe foi detectado pelas regras atuais. Isso não garante que a mensagem seja segura.",
-
-        generalCommunication:
-            "Comunicação geral",
-
-        loadingLanguage:
-            "Carregando idioma..."
-    }
-
-};
-
-
-/* =====================================================
-   CONNECT TO EXISTING LANGUAGE.JS
+   LANGUAGE SYSTEM
 ===================================================== */
 
 function getLanguageSystem(){
@@ -1082,133 +756,113 @@ function getLanguageSystem(){
 }
 
 
-function installPageTranslations(){
+function getCurrentLanguage(){
 
-    const system =
-        getLanguageSystem();
+    const system = getLanguageSystem();
 
-    if(!system || !system.translations){
-        return;
+    if(
+        system &&
+        typeof system.getLanguageCode === "function"
+    ){
+
+        return system.getLanguageCode() || "en";
+
     }
 
-    Object.keys(messagePageTranslations).forEach(code => {
-
-        if(!system.translations[code]){
-            system.translations[code] = {};
-        }
-
-        Object.assign(
-            system.translations[code],
-            messagePageTranslations[code]
-        );
-
-    });
+    return "en";
 
 }
 
-
-/* =====================================================
-   GET CURRENT TRANSLATION
-===================================================== */
 
 function t(key){
 
-    const system =
-        getLanguageSystem();
+    const system = getLanguageSystem();
 
-    let code = "en";
+    /*
+       Use the global TrustAI language system.
+    */
 
-    if(system && typeof system.getLanguageCode === "function"){
-        code = system.getLanguageCode() || "en";
+    if(
+        system &&
+        typeof system.t === "function"
+    ){
+
+        return system.t(key);
+
     }
 
-    const language =
-        messagePageTranslations[code] ||
-        messagePageTranslations.en;
+    /*
+       Safe fallback.
+    */
 
-    return language[key] ||
-        messagePageTranslations.en[key] ||
-        key;
+    return key;
+
 }
 
 
 /* =====================================================
-   APPLY PAGE TRANSLATIONS
+   PAGE TRANSLATION
 ===================================================== */
 
 function applyMessageTranslations(){
 
-    const system =
-        getLanguageSystem();
+    const system = getLanguageSystem();
 
-    if(!system){
-        return;
-    }
+    if(
+        system &&
+        typeof system.applyTranslations === "function"
+    ){
 
-    /*
-       First let the main TrustAI language system
-       translate the page.
-    */
-
-    if(typeof system.applyTranslations === "function"){
         system.applyTranslations();
+
     }
 
     /*
-       Then explicitly translate this page.
-       This guarantees the page updates even if
-       message.html was opened directly.
+       The global language.js handles every
+       data-i18n and data-i18n-placeholder
+       element on this page.
     */
 
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(element => {
-
-            const key =
-                element.getAttribute("data-i18n");
-
-            const value =
-                t(key);
-
-            if(value){
-                element.textContent = value;
-            }
-
-        });
+}
 
 
-    document
-        .querySelectorAll("[data-i18n-placeholder]")
-        .forEach(element => {
+function watchForLanguageChanges(){
 
-            const key =
-                element.getAttribute(
-                    "data-i18n-placeholder"
-                );
-
-            element.placeholder =
-                t(key);
-
-        });
+    let lastLanguage = getCurrentLanguage();
 
 
-    const code =
-        system.getLanguageCode
-            ? system.getLanguageCode()
-            : "en";
+    window.addEventListener(
+        "trustai-language-changed",
+        function(){
+
+            applyMessageTranslations();
+
+            lastLanguage =
+                getCurrentLanguage();
+
+        }
+    );
 
 
-    const language =
-        system.languages &&
-        system.languages[code];
+    /*
+       Fallback watcher in case another page
+       changes localStorage directly.
+    */
 
+    setInterval(function(){
 
-    if(language){
+        const current =
+            getCurrentLanguage();
 
-        document.documentElement.lang =
-            language.locale || code;
+        if(current !== lastLanguage){
 
-    }
+            lastLanguage = current;
+
+            applyMessageTranslations();
+
+        }
+
+    },500);
 
 }
 
@@ -1225,7 +879,14 @@ function toggleMenu(){
     const overlay =
         document.getElementById("menuOverlay");
 
+
+    if(!menu || !overlay){
+        return;
+    }
+
+
     menu.classList.toggle("open");
+
     overlay.classList.toggle("show");
 
 }
@@ -1233,13 +894,25 @@ function toggleMenu(){
 
 function closeMenu(){
 
-    document
-        .getElementById("sideMenu")
-        .classList.remove("open");
+    const menu =
+        document.getElementById("sideMenu");
 
-    document
-        .getElementById("menuOverlay")
-        .classList.remove("show");
+    const overlay =
+        document.getElementById("menuOverlay");
+
+
+    if(menu){
+
+        menu.classList.remove("open");
+
+    }
+
+
+    if(overlay){
+
+        overlay.classList.remove("show");
+
+    }
 
 }
 
@@ -1355,6 +1028,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Password Theft",
         score:45,
@@ -1375,6 +1049,7 @@ const detectionRules = [
             "forward"
         ]
     },
+
 
     {
         category:"Banking Scam",
@@ -1404,6 +1079,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Phishing",
         score:35,
@@ -1432,6 +1108,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Investment Scam",
         score:40,
@@ -1448,6 +1125,7 @@ const detectionRules = [
             "risk free investment"
         ]
     },
+
 
     {
         category:"Crypto Scam",
@@ -1474,6 +1152,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Fake Job Scam",
         score:40,
@@ -1499,6 +1178,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Prize / Giveaway Scam",
         score:40,
@@ -1522,6 +1202,7 @@ const detectionRules = [
             "payment"
         ]
     },
+
 
     {
         category:"Delivery / Customs Scam",
@@ -1547,6 +1228,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Loan Scam",
         score:40,
@@ -1570,6 +1252,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Marketplace Scam",
         score:30,
@@ -1590,6 +1273,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Rental Scam",
         score:35,
@@ -1609,6 +1293,7 @@ const detectionRules = [
             "inspection fee"
         ]
     },
+
 
     {
         category:"Romance Scam",
@@ -1635,6 +1320,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Emergency Money Scam",
         score:40,
@@ -1657,6 +1343,7 @@ const detectionRules = [
             "send me money"
         ]
     },
+
 
     {
         category:"Impersonation Scam",
@@ -1682,6 +1369,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Social Media Scam",
         score:35,
@@ -1703,6 +1391,7 @@ const detectionRules = [
             "send code"
         ]
     },
+
 
     {
         category:"Tech Support Scam",
@@ -1726,6 +1415,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Suspicious Payment Request",
         score:25,
@@ -1748,6 +1438,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Blackmail / Extortion",
         score:50,
@@ -1763,6 +1454,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Threatening Message",
         score:45,
@@ -1776,6 +1468,7 @@ const detectionRules = [
             "watch your back"
         ]
     },
+
 
     {
         category:"Suspicious Link",
@@ -1792,6 +1485,7 @@ const detectionRules = [
         ]
     },
 
+
     {
         category:"Government / Official Impersonation",
         score:40,
@@ -1806,7 +1500,6 @@ const detectionRules = [
         ],
         requiredAny:[
             "pay",
-           
             "fee",
             "send money",
             "click",
@@ -1814,6 +1507,7 @@ const detectionRules = [
             "transfer"
         ]
     },
+
 
     {
         category:"Gift Card Scam",
@@ -1878,6 +1572,7 @@ const legitimateRules = [
         ]
     },
 
+
     {
         category:"Personal Financial Favor",
         keywords:[
@@ -1899,6 +1594,7 @@ const legitimateRules = [
         ]
     },
 
+
     {
         category:"Normal OTP / Security Notification",
         keywords:[
@@ -1915,6 +1611,7 @@ const legitimateRules = [
         ]
     },
 
+
     {
         category:"Appointment / Reminder",
         keywords:[
@@ -1930,6 +1627,7 @@ const legitimateRules = [
             "do not forget"
         ]
     },
+
 
     {
         category:"School / Education",
@@ -1948,6 +1646,7 @@ const legitimateRules = [
         ]
     },
 
+
     {
         category:"Work / Business",
         keywords:[
@@ -1963,6 +1662,7 @@ const legitimateRules = [
             "invoice attached"
         ]
     },
+
 
     {
         category:"Delivery / Order Notification",
@@ -2012,9 +1712,13 @@ function ruleMatches(text,rule){
                 )
         );
 
+
     if(!keywordMatch){
+
         return false;
+
     }
+
 
     if(rule.requiredAny){
 
@@ -2026,6 +1730,7 @@ function ruleMatches(text,rule){
         );
 
     }
+
 
     return true;
 
@@ -2040,6 +1745,7 @@ function checkLegitimateContext(text){
 
     const matches = [];
 
+
     legitimateRules.forEach(rule => {
 
         const found =
@@ -2049,6 +1755,7 @@ function checkLegitimateContext(text){
                         keyword.toLowerCase()
                     )
             );
+
 
         if(found.length > 0){
 
@@ -2063,6 +1770,7 @@ function checkLegitimateContext(text){
         }
 
     });
+
 
     return matches;
 
@@ -2081,29 +1789,45 @@ function checkMessage(){
     const result =
         document.getElementById("result");
 
+
     if(!textarea || !result){
+
         return;
+
     }
+
 
     const original =
         textarea.value.trim();
+
 
     if(!original){
 
         result.className =
             "result show caution";
 
+
         result.innerHTML = `
 
             <div class="result-title">
-                ${escapeHTML(t("noMessageTitle"))}
+
+                ${escapeHTML(
+                    t("noMessageTitle")
+                )}
+
             </div>
 
+
             <p>
-                ${escapeHTML(t("noMessageText"))}
+
+                ${escapeHTML(
+                    t("noMessageText")
+                )}
+
             </p>
 
         `;
+
 
         return;
 
@@ -2116,12 +1840,15 @@ function checkMessage(){
 
     let score = 10;
 
+
     const detections = [];
 
     const matchedCategories = [];
 
 
-    /* THREAT RULES */
+    /* ==========================================
+       THREAT RULES
+    ========================================== */
 
     detectionRules.forEach(rule => {
 
@@ -2135,7 +1862,9 @@ function checkMessage(){
                         )
                 );
 
+
             score += rule.score;
+
 
             detections.push({
 
@@ -2147,6 +1876,7 @@ function checkMessage(){
 
             });
 
+
             matchedCategories.push(
                 rule.category
             );
@@ -2156,7 +1886,9 @@ function checkMessage(){
     });
 
 
-    /* LEGITIMATE RULES */
+    /* ==========================================
+       LEGITIMATE RULES
+    ========================================== */
 
     const legitimateMatches =
         checkLegitimateContext(text);
@@ -2177,20 +1909,27 @@ function checkMessage(){
     });
 
 
-    /* SAFE OTP */
+    /* ==========================================
+       SAFE OTP
+    ========================================== */
 
     const isSafeOTP =
+
         (
             text.includes("otp") ||
             text.includes("verification code")
         )
+
         &&
+
         (
             text.includes("never share") ||
             text.includes("do not share") ||
             text.includes("don't share")
         )
+
         &&
+
         !(
             text.includes("send me the otp") ||
             text.includes("send the otp") ||
@@ -2209,6 +1948,7 @@ function checkMessage(){
 
         matchedCategories.length = 0;
 
+
         detections.push({
 
             category:
@@ -2226,6 +1966,10 @@ function checkMessage(){
     }
 
 
+    /* ==========================================
+       THREAT STATUS
+    ========================================== */
+
     const hasThreat =
         detections.some(
             d => d.type === "Threat"
@@ -2242,6 +1986,7 @@ function checkMessage(){
 
         matchedCategories.length = 0;
 
+
         legitimateMatches.forEach(match => {
 
             matchedCategories.push(
@@ -2256,6 +2001,7 @@ function checkMessage(){
     if(!hasThreat && !hasLegitimate){
 
         score = 10;
+
 
         matchedCategories.push(
             "General Communication"
@@ -2287,11 +2033,16 @@ function checkMessage(){
         );
 
 
-    /* RISK */
+    /* ==========================================
+       RISK LEVEL
+    ========================================== */
 
     let cssClass;
+
     let title;
+
     let advice;
+
     let level;
 
 
@@ -2344,7 +2095,9 @@ function checkMessage(){
     }
 
 
-    /* FINDINGS */
+    /* ==========================================
+       FINDINGS
+    ========================================== */
 
     let detectionHTML;
 
@@ -2357,26 +2110,39 @@ function checkMessage(){
                 <li>
 
                     <strong>
-                        ${escapeHTML(d.category)}
+
+                        ${escapeHTML(
+                            d.category
+                        )}
+
                     </strong>
 
                     <br>
 
+
                     <span>
+
                         ${escapeHTML(
                             d.type === "Threat"
                                 ? t("threat")
                                 : t("legitimate")
                         )}
+
                     </span>
 
                     <br>
 
+
                     <small>
-                        ${escapeHTML(t("detected"))}
+
+                        ${escapeHTML(
+                            t("detected")
+                        )}
+
                         ${escapeHTML(
                             d.keywords.join(", ")
                         )}
+
                     </small>
 
                 </li>
@@ -2390,9 +2156,11 @@ function checkMessage(){
         detectionHTML = `
 
             <li>
+
                 ${escapeHTML(
                     t("noPattern")
                 )}
+
             </li>
 
         `;
@@ -2400,7 +2168,9 @@ function checkMessage(){
     }
 
 
-    /* CATEGORY TAGS */
+    /* ==========================================
+       CATEGORY TAGS
+    ========================================== */
 
     const uniqueCategories =
         [...new Set(
@@ -2418,7 +2188,11 @@ function checkMessage(){
                 category => `
 
                     <span class="category-tag">
-                        ${escapeHTML(category)}
+
+                        ${escapeHTML(
+                            category
+                        )}
+
                     </span>
 
                 `
@@ -2431,9 +2205,11 @@ function checkMessage(){
         tagsHTML = `
 
             <span class="category-tag legitimate">
+
                 ${escapeHTML(
                     t("generalCommunication")
                 )}
+
             </span>
 
         `;
@@ -2441,7 +2217,9 @@ function checkMessage(){
     }
 
 
-    /* DISPLAY */
+    /* ==========================================
+       DISPLAY RESULT
+    ========================================== */
 
     result.className =
         "result show " + cssClass;
@@ -2450,18 +2228,27 @@ function checkMessage(){
     result.innerHTML = `
 
         <div class="result-title">
+
             ${escapeHTML(title)}
+
         </div>
 
+
         <div class="score">
-            ${escapeHTML(t("riskScore"))}: ${score}/100
+
+            ${escapeHTML(
+                t("riskScore")
+            )}: ${score}/100
+
         </div>
+
 
         <div class="risk-bar">
 
             <div
                 class="risk-fill"
                 style="width:${score}%">
+
             </div>
 
         </div>
@@ -2470,10 +2257,13 @@ function checkMessage(){
         <div class="detection-box">
 
             <strong>
+
                 ${escapeHTML(
                     t("detectedCategories")
                 )}
+
             </strong>
+
 
             ${tagsHTML}
 
@@ -2483,13 +2273,18 @@ function checkMessage(){
         <div class="detection-box">
 
             <strong>
+
                 ${escapeHTML(
                     t("detectionFindings")
                 )}
+
             </strong>
 
+
             <ul>
+
                 ${detectionHTML}
+
             </ul>
 
         </div>
@@ -2507,6 +2302,10 @@ function checkMessage(){
 
     `;
 
+
+    /* ==========================================
+       SAVE HISTORY
+    ========================================== */
 
     saveThreatEvent({
 
@@ -2543,8 +2342,11 @@ function loadRandomSample(){
     const result =
         document.getElementById("result");
 
+
     if(!textarea){
+
         return;
+
     }
 
 
@@ -2595,8 +2397,11 @@ function clearMessage(){
 
 
     if(textarea){
+
         textarea.value = "";
+
     }
+
 
     if(result){
 
@@ -2712,45 +2517,7 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   LANGUAGE CHANGE DETECTION
-===================================================== */
-
-function watchForLanguageChanges(){
-
-    let lastLanguage = null;
-
-
-    setInterval(function(){
-
-        const system =
-            getLanguageSystem();
-
-        if(!system ||
-           typeof system.getLanguageCode !== "function"){
-            return;
-        }
-
-
-        const currentLanguage =
-            system.getLanguageCode();
-
-
-        if(currentLanguage !== lastLanguage){
-
-            lastLanguage =
-                currentLanguage;
-
-            applyMessageTranslations();
-
-        }
-
-    },500);
-
-}
-
-
-/* =====================================================
-   INITIALIZE
+   INITIALIZATION
 ===================================================== */
 
 function initializeMessagePage(){
@@ -2762,41 +2529,35 @@ function initializeMessagePage(){
 
 
     /*
-       Install our page translations into
-       the main TrustAI language system.
-    */
-
-    installPageTranslations();
-
-
-    /*
-       Apply the saved language.
+       Apply the global TrustAI language system.
     */
 
     applyMessageTranslations();
 
 
     /*
-       Hide loading message.
-    */
-
-    if(loading){
-        loading.style.display = "none";
-    }
-
-
-    /*
-       Keep watching for a language change
-       made from Settings.
+       Start language-change listener.
     */
 
     watchForLanguageChanges();
+
+
+    /*
+       Hide loading indicator.
+    */
+
+    if(loading){
+
+        loading.style.display =
+            "none";
+
+    }
 
 }
 
 
 /* =====================================================
-   LOAD LANGUAGE.JS
+   LOAD GLOBAL LANGUAGE.JS
 ===================================================== */
 
 (function loadLanguageSystem(){
@@ -2819,8 +2580,8 @@ function initializeMessagePage(){
 
 
     /*
-       If language.js has already been loaded,
-       use it immediately.
+       If language.js already exists,
+       initialize immediately.
     */
 
     if(window.TrustAILanguage){
@@ -2833,8 +2594,8 @@ function initializeMessagePage(){
 
 
     /*
-       Otherwise load language.js from the
-       same folder as message.html.
+       Otherwise load language.js from
+       the same folder as message.html.
     */
 
     const script =
@@ -2863,14 +2624,10 @@ function initializeMessagePage(){
 
             }
 
+
             console.error(
                 "TrustAI: Could not load ./language.js"
             );
-
-            /*
-               The Message Checker still works
-               even if language.js fails.
-            */
 
         };
 
