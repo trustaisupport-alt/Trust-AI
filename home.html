@@ -1181,8 +1181,42 @@ footer {
 
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+const SUPABASE_URL =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function protectHomePage() {
+
+    const { data, error } =
+        await supabaseClient.auth.getSession();
+
+    if (error || !data.session) {
+
+        window.location.replace(
+            "./login.html"
+        );
+
+        return;
+    }
+
+}
+
+
+protectHomePage();
+
 
 /* MENU */
 
