@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Settings — TrustAI</title>
-
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Settings — TrustAI</title><script src="./country.js"></script><script src="./language.js"></script><style>
 
 * {
     box-sizing: border-box;
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -45,13 +36,18 @@ body.light-mode {
     display: flex;
     align-items: center;
     justify-content: center;
+
     width: 42px;
     height: 42px;
+
     border-radius: 12px;
+
     background: #0b1420;
     border: 1px solid #1b2b3d;
+
     color: #8998aa;
     text-decoration: none;
+
     cursor: pointer;
 }
 
@@ -123,15 +119,17 @@ body.light-mode .title p {
 body.light-mode .card {
     background: #f8fafc;
     border-color: #dfe3e8;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0,0,0,.04);
 }
 
 .setting {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 15px;
     padding: 17px;
+
     border-bottom: 1px solid #1b2b3d;
 }
 
@@ -166,11 +164,16 @@ body.light-mode .setting-info span {
 
 .setting-button {
     border: 1px solid #26384d;
+
     background: #101c2b;
     color: white;
+
     border-radius: 9px;
+
     padding: 9px 13px;
+
     cursor: pointer;
+
     font-size: 12px;
     font-weight: bold;
 }
@@ -186,10 +189,63 @@ body.light-mode .setting-button {
     color: #1687ff;
 }
 
+/* SELECT */
+
+.setting-select {
+    min-width: 155px;
+
+    padding: 10px 12px;
+
+    border-radius: 9px;
+
+    border: 1px solid #26384d;
+
+    background: #101c2b;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    outline: none;
+    cursor: pointer;
+}
+
+body.light-mode .setting-select {
+    background: #ffffff;
+    color: #111820;
+    border-color: #cfd5dc;
+}
+
+.setting-select:focus {
+    border-color: #1687ff;
+}
+
+/* CURRENT COUNTRY */
+
+.country-display {
+    margin-top: 10px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    background: rgba(22,135,255,.08);
+
+    border: 1px solid rgba(22,135,255,.18);
+
+    color: #8ebfff;
+
+    font-size: 12px;
+}
+
+/* TOGGLE */
+
 .toggle {
     position: relative;
+
     width: 46px;
     height: 25px;
+
     flex-shrink: 0;
 }
 
@@ -200,10 +256,12 @@ body.light-mode .setting-button {
 .slider {
     position: absolute;
     inset: 0;
+
     background: #26384d;
+
     border-radius: 30px;
+
     cursor: pointer;
-    transition: 0.2s;
 }
 
 body.light-mode .slider {
@@ -212,14 +270,20 @@ body.light-mode .slider {
 
 .slider:before {
     content: "";
+
     position: absolute;
+
     width: 19px;
     height: 19px;
+
     left: 3px;
     top: 3px;
+
     background: white;
+
     border-radius: 50%;
-    transition: 0.2s;
+
+    transition: .2s;
 }
 
 .toggle input:checked + .slider {
@@ -241,10 +305,14 @@ body.light-mode .slider {
 
 .footer {
     text-align: center;
+
     color: #657386;
+
     font-size: 12px;
+
     margin-top: 35px;
     padding-top: 20px;
+
     border-top: 1px solid #182536;
 }
 
@@ -265,376 +333,424 @@ body.light-mode .footer {
 
     .setting {
         padding: 15px;
+        align-items: flex-start;
+    }
+
+    .setting-select {
+        min-width: 135px;
+        max-width: 150px;
     }
 
 }
 
-</style>
+</style></head><body><div class="page"><header class="header"><a
+    href="./home.html"
+    class="nav-back-button"
+    aria-label="Return to Home">
 
-</head>
+    <span class="back-arrow-icon">
+        ←
+    </span>
 
-<body>
+</a>
 
-<div class="page">
+<div class="logo">
+    🛡️ Trust<span>AI</span>
+</div>
 
-<header class="header">
+</header><section class="title"><h1 data-i18n="settingsTitle">
+    Settings
+</h1>
 
-    <a href="https://trustaisupport-alt.github.io/Trust-AI/home.html" class="nav-back-button" aria-label="Return to Home">
-        <span class="back-arrow-icon">←</span>
-    </a>
+<p data-i18n="settingsDescription">
+    Manage your TrustAI preferences,
+    security and account settings.
+</p>
 
-    <div class="logo">
-        🛡️ Trust<span>AI</span>
-    </div>
+</section><!-- =====================================================
+     ACCOUNT
+===================================================== --><section class="section"><h2 class="section-title">
+    Account
+</h2>
 
-</header>
+<div class="card">
 
-<section class="title">
+    <div class="setting">
 
-    <h1>
-        Settings
-    </h1>
+        <div class="setting-info">
 
-    <p>
-        Manage your TrustAI preferences,
-        security and account settings.
-    </p>
+            <strong>
+                👤 Profile
+            </strong>
 
-</section>
+            <span>
+                Manage your TrustAI profile information.
+            </span>
 
-<!-- ACCOUNT -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        Account
-    </h2>
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>👤 Profile</strong>
-
-                <span>
-                    Manage your TrustAI profile information.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="window.location.href='./profile.html'">
-
-                Manage
-
-            </button>
         </div>
+
+        <button
+            class="setting-button"
+            onclick="window.location.href='./profile.html'">
+
+            Manage
+
+        </button>
 
     </div>
-
-</section>
-
-<!-- NOTIFICATIONS -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        Notifications
-    </h2>
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🔔 Security alerts
-                </strong>
-
-                <span>
-                    Receive important TrustAI security alerts.
-                </span>
-
-            </div>
-
-            <label class="toggle">
-
-                <input
-                    type="checkbox"
-                    id="securityAlerts"
-                    checked
-                    onchange="saveSetting(
-                        'securityAlerts',
-                        this.checked
-                    )">
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🚨 Scam alerts
-                </strong>
-
-                <span>
-                    Receive notifications about important scam warnings.
-                </span>
-
-            </div>
-
-            <label class="toggle">
-
-                <input
-                    type="checkbox"
-                    id="scamAlerts"
-                    checked
-                    onchange="saveSetting(
-                        'scamAlerts',
-                        this.checked
-                    )">
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- SECURITY -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        Security
-    </h2>
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🛡️ Security settings
-                </strong>
-
-                <span>
-                    Manage your account security options.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="window.location.href='./security-settings.html'">
-
-                Manage
-
-            </button>
-
-        </div>
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    📱 Login sessions
-                </strong>
-
-                <span>
-                    Review devices currently connected to your account.
-                </span>
-
-            </div>
-
-          <button
-                class="setting-button"
-                onclick="window.location.href='./login-sessions.html'">
-
-                View
-
-          </button>  
-        </div>
-
-    </div>
-
-</section>
-
-<!-- APP PREFERENCES -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        App Preferences
-    </h2>
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    🌙 Dark mode
-                </strong>
-
-                <span>
-                    Use TrustAI's dark appearance.
-                </span>
-
-            </div>
-
-            <label class="toggle">
-
-                <input
-                    type="checkbox"
-                    id="darkMode"
-                    checked
-                    onchange="toggleDarkMode(this.checked)">
-
-                <span class="slider"></span>
-
-            </label>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- LEGAL -->
-
-<section class="section">
-
-    <h2 class="section-title">
-        Legal
-    </h2>
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    📄 Privacy Policy
-                </strong>
-
-                <span>
-                    Read how TrustAI handles information.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="window.location.href='./privacy.html'">
-
-                View
-
-            </button>
-
-        </div>
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong>
-                    📜 Terms of Service
-                </strong>
-
-                <span>
-                    Review the rules for using TrustAI.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button"
-                onclick="window.location.href='./terms.html'">
-
-                View
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- LOGOUT -->
-
-<section class="section">
-
-    <div class="card">
-
-        <div class="setting">
-
-            <div class="setting-info">
-
-                <strong class="danger">
-                    🚪 Log out
-                </strong>
-
-                <span>
-                    Sign out of your TrustAI account.
-                </span>
-
-            </div>
-
-            <button
-                class="setting-button danger"
-                onclick="logout()">
-
-                Log out
-
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-<footer class="footer">
-
-    <strong>
-        🛡️ TrustAI
-    </strong>
-
-    <br><br>
-
-    Online scam awareness and protection.
-
-    <br><br>
-
-    © 2026 TrustAI
-
-</footer>
 
 </div>
 
-<script>
+</section><!-- =====================================================
+     COUNTRY & LANGUAGE
+===================================================== --><section class="section"><h2 class="section-title">
+    🌍 Region & Language
+</h2>
 
-/* =========================
+<div class="card">
+
+    <!-- COUNTRY -->
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                🌍 Country
+            </strong>
+
+            <span>
+                Choose your country. TrustAI uses this
+                setting to determine your currency.
+            </span>
+
+        </div>
+
+        <select
+            id="countrySelect"
+            class="setting-select"
+            aria-label="Country"
+            onchange="changeCountry(this.value)">
+        </select>
+
+    </div>
+
+
+    <!-- LANGUAGE -->
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                🗣️ Language
+            </strong>
+
+            <span>
+                Choose the language used by the
+                TrustAI interface.
+            </span>
+
+        </div>
+
+        <select
+            id="languageSelect"
+            class="setting-select"
+            aria-label="Language"
+            onchange="changeLanguage(this.value)">
+        </select>
+
+    </div>
+
+
+    <!-- REGION DISPLAY -->
+
+    <div
+        id="regionDisplay"
+        class="country-display">
+
+        🌍 Nigeria • ₦ NGN
+
+    </div>
+
+</div>
+
+</section><!-- =====================================================
+     NOTIFICATIONS
+===================================================== --><section class="section"><h2 class="section-title">
+    Notifications
+</h2>
+
+<div class="card">
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                🔔 Security alerts
+            </strong>
+
+            <span>
+                Receive important TrustAI security alerts.
+            </span>
+
+        </div>
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="securityAlerts"
+                checked
+                onchange="saveSetting(
+                    'securityAlerts',
+                    this.checked
+                )">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                🚨 Scam alerts
+            </strong>
+
+            <span>
+                Receive notifications about important scam warnings.
+            </span>
+
+        </div>
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="scamAlerts"
+                checked
+                onchange="saveSetting(
+                    'scamAlerts',
+                    this.checked
+                )">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+</div>
+
+</section><!-- =====================================================
+     SECURITY
+===================================================== --><section class="section"><h2 class="section-title">
+    Security
+</h2>
+
+<div class="card">
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                🛡️ Security settings
+            </strong>
+
+            <span>
+                Manage your account security options.
+            </span>
+
+        </div>
+
+        <button
+            class="setting-button"
+            onclick="window.location.href='./security-settings.html'">
+
+            Manage
+
+        </button>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                📱 Login sessions
+            </strong>
+
+            <span>
+                Review devices currently connected to your account.
+            </span>
+
+        </div>
+
+        <button
+            class="setting-button"
+            onclick="window.location.href='./login-sessions.html'">
+
+            View
+
+        </button>
+
+    </div>
+
+</div>
+
+</section><!-- =====================================================
+     APP PREFERENCES
+===================================================== --><section class="section"><h2 class="section-title">
+    App Preferences
+</h2>
+
+<div class="card">
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                🌙 Dark mode
+            </strong>
+
+            <span>
+                Use TrustAI's dark appearance.
+            </span>
+
+        </div>
+
+        <label class="toggle">
+
+            <input
+                type="checkbox"
+                id="darkMode"
+                checked
+                onchange="toggleDarkMode(this.checked)">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+</div>
+
+</section><!-- =====================================================
+     LEGAL
+===================================================== --><section class="section"><h2 class="section-title">
+    Legal
+</h2>
+
+<div class="card">
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                📄 Privacy Policy
+            </strong>
+
+            <span>
+                Read how TrustAI handles information.
+            </span>
+
+        </div>
+
+        <button
+            class="setting-button"
+            onclick="window.location.href='./privacy.html'">
+
+            View
+
+        </button>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong>
+                📜 Terms of Service
+            </strong>
+
+            <span>
+                Review the rules for using TrustAI.
+            </span>
+
+        </div>
+
+        <button
+            class="setting-button"
+            onclick="window.location.href='./terms.html'">
+
+            View
+
+        </button>
+
+    </div>
+
+</div>
+
+</section><!-- =====================================================
+     LOGOUT
+===================================================== --><section class="section"><div class="card">
+
+    <div class="setting">
+
+        <div class="setting-info">
+
+            <strong class="danger">
+                🚪 Log out
+            </strong>
+
+            <span>
+                Sign out of your TrustAI account.
+            </span>
+
+        </div>
+
+        <button
+            class="setting-button danger"
+            onclick="logout()">
+
+            Log out
+
+        </button>
+
+    </div>
+
+</div>
+
+</section><footer class="footer"><strong>
+    🛡️ TrustAI
+</strong>
+
+<br><br>
+
+Online scam awareness and protection.
+
+<br><br>
+
+© 2026 TrustAI
+
+</footer></div><script>
+
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
 function showMessage(message) {
 
@@ -643,9 +759,9 @@ function showMessage(message) {
 }
 
 
-/* =========================
-   SAVE NORMAL SETTINGS
-========================= */
+/* =====================================================
+   NORMAL SETTINGS
+===================================================== */
 
 function saveSetting(name, value) {
 
@@ -657,9 +773,235 @@ function saveSetting(name, value) {
 }
 
 
-/* =========================
+/* =====================================================
+   COUNTRY SELECTOR
+===================================================== */
+
+function loadCountries() {
+
+    const select =
+        document.getElementById(
+            "countrySelect"
+        );
+
+    if (
+        !select ||
+        !window.TrustAICountry
+    ) {
+        return;
+    }
+
+    const countries =
+        window.TrustAICountry.countries;
+
+    const currentCountry =
+        window.TrustAICountry.getCountryCode();
+
+
+    select.innerHTML = "";
+
+
+    Object.keys(countries).forEach(
+        function(code) {
+
+            const country =
+                countries[code];
+
+            const option =
+                document.createElement("option");
+
+            option.value = code;
+
+            option.textContent =
+                country.name +
+                " (" +
+                country.currency +
+                ")";
+
+            if (
+                code === currentCountry
+            ) {
+                option.selected = true;
+            }
+
+            select.appendChild(option);
+
+        }
+    );
+
+    updateRegionDisplay();
+
+}
+
+
+/* =====================================================
+   CHANGE COUNTRY
+===================================================== */
+
+function changeCountry(countryCode) {
+
+    if (
+        !window.TrustAICountry
+    ) {
+        return;
+    }
+
+    const success =
+        window.TrustAICountry.setCountry(
+            countryCode
+        );
+
+    if (!success) {
+        return;
+    }
+
+    updateRegionDisplay();
+
+    /*
+       Tell other TrustAI components that
+       the country/currency changed.
+    */
+
+    window.dispatchEvent(
+        new CustomEvent(
+            "trustai-country-changed",
+            {
+                detail: {
+                    country:
+                        window.TrustAICountry.getCountry()
+                }
+            }
+        )
+    );
+
+}
+
+
+/* =====================================================
+   REGION DISPLAY
+===================================================== */
+
+function updateRegionDisplay() {
+
+    const display =
+        document.getElementById(
+            "regionDisplay"
+        );
+
+    if (
+        !display ||
+        !window.TrustAICountry
+    ) {
+        return;
+    }
+
+    const country =
+        window.TrustAICountry.getCountry();
+
+
+    display.textContent =
+        "🌍 " +
+        country.name +
+        " • " +
+        country.symbol +
+        " " +
+        country.currency;
+
+}
+
+
+/* =====================================================
+   LANGUAGE SELECTOR
+===================================================== */
+
+function loadLanguages() {
+
+    const select =
+        document.getElementById(
+            "languageSelect"
+        );
+
+    if (
+        !select ||
+        !window.TrustAILanguage
+    ) {
+        return;
+    }
+
+    const languages =
+        window.TrustAILanguage.languages;
+
+    const currentLanguage =
+        window.TrustAILanguage.getLanguageCode();
+
+
+    select.innerHTML = "";
+
+
+    Object.keys(languages).forEach(
+        function(code) {
+
+            const language =
+                languages[code];
+
+            const option =
+                document.createElement("option");
+
+            option.value = code;
+
+            option.textContent =
+                language.flag +
+                " " +
+                language.nativeName;
+
+            if (
+                code === currentLanguage
+            ) {
+                option.selected = true;
+            }
+
+            select.appendChild(option);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CHANGE LANGUAGE
+===================================================== */
+
+function changeLanguage(languageCode) {
+
+    if (
+        !window.TrustAILanguage
+    ) {
+        return;
+    }
+
+    const success =
+        window.TrustAILanguage.setLanguage(
+            languageCode
+        );
+
+    if (!success) {
+        return;
+    }
+
+    /*
+       Refresh the selector so the chosen
+       language remains selected.
+    */
+
+    loadLanguages();
+
+}
+
+
+/* =====================================================
    DARK MODE
-========================= */
+===================================================== */
 
 function toggleDarkMode(enabled) {
 
@@ -673,28 +1015,32 @@ function toggleDarkMode(enabled) {
 }
 
 
-/* =========================
-   APPLY DARK MODE / LIGHT MODE
-========================= */
+/* =====================================================
+   APPLY DARK/LIGHT MODE
+===================================================== */
 
 function applyDarkMode(enabled) {
 
     if (enabled) {
 
-        document.body.classList.remove("light-mode");
+        document.body.classList.remove(
+            "light-mode"
+        );
 
     } else {
 
-        document.body.classList.add("light-mode");
+        document.body.classList.add(
+            "light-mode"
+        );
 
     }
 
 }
 
 
-/* =========================
+/* =====================================================
    LOAD SETTINGS
-========================= */
+===================================================== */
 
 function loadSettings() {
 
@@ -714,7 +1060,9 @@ function loadSettings() {
         );
 
 
-    if (securityAlerts !== null) {
+    if (
+        securityAlerts !== null
+    ) {
 
         document.getElementById(
             "securityAlerts"
@@ -724,7 +1072,9 @@ function loadSettings() {
     }
 
 
-    if (scamAlerts !== null) {
+    if (
+        scamAlerts !== null
+    ) {
 
         document.getElementById(
             "scamAlerts"
@@ -733,8 +1083,6 @@ function loadSettings() {
 
     }
 
-
-    /* DARK MODE */
 
     const enabled =
         darkMode === null
@@ -752,9 +1100,9 @@ function loadSettings() {
 }
 
 
-/* =========================
+/* =====================================================
    LOGOUT
-========================= */
+===================================================== */
 
 function logout() {
 
@@ -765,23 +1113,81 @@ function logout() {
 
 
     if (!confirmed) {
-
         return;
-
     }
 
 
-    window.location.href =
-        "./login.html";
+    /*
+       Use Supabase logout when available.
+       Otherwise fall back to the local login page.
+    */
+
+    if (
+        window.supabaseClient &&
+        window.supabaseClient.auth
+    ) {
+
+        window.supabaseClient.auth
+            .signOut()
+            .finally(
+                function() {
+
+                    localStorage.removeItem(
+                        "trustai_loggedIn"
+                    );
+
+                    window.location.href =
+                        "./login.html";
+
+                }
+            );
+
+    } else {
+
+        localStorage.removeItem(
+            "trustai_loggedIn"
+        );
+
+        window.location.href =
+            "./login.html";
+
+    }
 
 }
 
 
-/* =========================
+/* =====================================================
    START
-========================= */
+===================================================== */
 
-loadSettings();
+function initializeSettingsPage() {
+
+    loadSettings();
+
+    loadCountries();
+
+    loadLanguages();
+
+}
+
+/*
+   Wait until the page is ready.
+*/
+
+if (
+    document.readyState === "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeSettingsPage
+    );
+
+} else {
+
+    initializeSettingsPage();
+
+}
 
 </script>
 
