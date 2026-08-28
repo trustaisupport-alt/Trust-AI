@@ -1,377 +1,536 @@
-/* =====================================================
-   TRUSTAI COUNTRY & CURRENCY SYSTEM
-   ===================================================== */
+/* ============================================================
+   TRUSTAI GLOBAL COUNTRY & CURRENCY SYSTEM
+   Version: 2.0
+
+   GLOBAL ACCESS
+   Priority markets:
+   🇺🇸 USA
+   🇬🇧 United Kingdom
+   🇨🇦 Canada
+   🇩🇪 Germany
+   🇦🇺 Australia
+   🇪🇸 Spain
+   🇵🇹 Portugal
+
+   TrustAI remains accessible worldwide.
+   ============================================================ */
 
 (function () {
+
     "use strict";
 
-    const COUNTRIES = {
-        NG: {
-            name: "Nigeria",
-            currency: "NGN",
-            symbol: "₦",
-            locale: "en-NG"
-        },
+
+    /* ============================================================
+       STORAGE
+    ============================================================ */
+
+    const STORAGE_KEY =
+        "trustai_country";
+
+
+    const DEFAULT_COUNTRY =
+        "US";
+
+
+    /* ============================================================
+       COUNTRY DEFINITIONS
+    ============================================================ */
+
+    const countries = {
 
         US: {
+            code: "US",
             name: "United States",
+            flag: "🇺🇸",
             currency: "USD",
             symbol: "$",
-            locale: "en-US"
+            locale: "en-US",
+            priority: true
         },
 
         GB: {
+            code: "GB",
             name: "United Kingdom",
+            flag: "🇬🇧",
             currency: "GBP",
             symbol: "£",
-            locale: "en-GB"
+            locale: "en-GB",
+            priority: true
         },
 
         CA: {
+            code: "CA",
             name: "Canada",
+            flag: "🇨🇦",
             currency: "CAD",
             symbol: "C$",
-            locale: "en-CA"
-        },
-
-        AU: {
-            name: "Australia",
-            currency: "AUD",
-            symbol: "A$",
-            locale: "en-AU"
-        },
-
-        IN: {
-            name: "India",
-            currency: "INR",
-            symbol: "₹",
-            locale: "en-IN"
-        },
-
-        GH: {
-            name: "Ghana",
-            currency: "GHS",
-            symbol: "GH₵",
-            locale: "en-GH"
-        },
-
-        ZA: {
-            name: "South Africa",
-            currency: "ZAR",
-            symbol: "R",
-            locale: "en-ZA"
-        },
-
-        KE: {
-            name: "Kenya",
-            currency: "KES",
-            symbol: "KSh",
-            locale: "en-KE"
+            locale: "en-CA",
+            priority: true
         },
 
         DE: {
+            code: "DE",
             name: "Germany",
+            flag: "🇩🇪",
             currency: "EUR",
             symbol: "€",
-            locale: "de-DE"
+            locale: "de-DE",
+            priority: true
         },
 
-        FR: {
-            name: "France",
-            currency: "EUR",
-            symbol: "€",
-            locale: "fr-FR"
+        AU: {
+            code: "AU",
+            name: "Australia",
+            flag: "🇦🇺",
+            currency: "AUD",
+            symbol: "A$",
+            locale: "en-AU",
+            priority: true
         },
 
         ES: {
+            code: "ES",
             name: "Spain",
+            flag: "🇪🇸",
             currency: "EUR",
             symbol: "€",
-            locale: "es-ES"
-        },
-
-        IT: {
-            name: "Italy",
-            currency: "EUR",
-            symbol: "€",
-            locale: "it-IT"
-        },
-
-        NL: {
-            name: "Netherlands",
-            currency: "EUR",
-            symbol: "€",
-            locale: "nl-NL"
+            locale: "es-ES",
+            priority: true
         },
 
         PT: {
+            code: "PT",
             name: "Portugal",
+            flag: "🇵🇹",
             currency: "EUR",
             symbol: "€",
-            locale: "pt-PT"
+            locale: "pt-PT",
+            priority: true
         },
 
-        BR: {
-            name: "Brazil",
-            currency: "BRL",
-            symbol: "R$",
-            locale: "pt-BR"
+
+        /* ========================================================
+           OTHER COUNTRIES
+           ======================================================== */
+
+        NG: {
+            code: "NG",
+            name: "Nigeria",
+            flag: "🇳🇬",
+            currency: "NGN",
+            symbol: "₦",
+            locale: "en-NG",
+            priority: false
         },
 
-        MX: {
-            name: "Mexico",
-            currency: "MXN",
-            symbol: "MX$",
-            locale: "es-MX"
+        FR: {
+            code: "FR",
+            name: "France",
+            flag: "🇫🇷",
+            currency: "EUR",
+            symbol: "€",
+            locale: "fr-FR",
+            priority: false
         },
 
-        AE: {
-            name: "United Arab Emirates",
-            currency: "AED",
-            symbol: "د.إ",
-            locale: "ar-AE"
+        IT: {
+            code: "IT",
+            name: "Italy",
+            flag: "🇮🇹",
+            currency: "EUR",
+            symbol: "€",
+            locale: "it-IT",
+            priority: false
         },
 
-        SA: {
-            name: "Saudi Arabia",
-            currency: "SAR",
-            symbol: "﷼",
-            locale: "ar-SA"
+        NL: {
+            code: "NL",
+            name: "Netherlands",
+            flag: "🇳🇱",
+            currency: "EUR",
+            symbol: "€",
+            locale: "nl-NL",
+            priority: false
         },
 
-        JP: {
-            name: "Japan",
-            currency: "JPY",
-            symbol: "¥",
-            locale: "ja-JP"
+        BE: {
+            code: "BE",
+            name: "Belgium",
+            flag: "🇧🇪",
+            currency: "EUR",
+            symbol: "€",
+            locale: "nl-BE",
+            priority: false
         },
 
-        CN: {
-            name: "China",
-            currency: "CNY",
-            symbol: "¥",
-            locale: "zh-CN"
-        },
-
-        KR: {
-            name: "South Korea",
-            currency: "KRW",
-            symbol: "₩",
-            locale: "ko-KR"
-        },
-
-        SG: {
-            name: "Singapore",
-            currency: "SGD",
-            symbol: "S$",
-            locale: "en-SG"
-        },
-
-        MY: {
-            name: "Malaysia",
-            currency: "MYR",
-            symbol: "RM",
-            locale: "ms-MY"
-        },
-
-        ID: {
-            name: "Indonesia",
-            currency: "IDR",
-            symbol: "Rp",
-            locale: "id-ID"
-        },
-
-        PH: {
-            name: "Philippines",
-            currency: "PHP",
-            symbol: "₱",
-            locale: "en-PH"
-        },
-
-        NZ: {
-            name: "New Zealand",
-            currency: "NZD",
-            symbol: "NZ$",
-            locale: "en-NZ"
+        IE: {
+            code: "IE",
+            name: "Ireland",
+            flag: "🇮🇪",
+            currency: "EUR",
+            symbol: "€",
+            locale: "en-IE",
+            priority: false
         },
 
         CH: {
+            code: "CH",
             name: "Switzerland",
+            flag: "🇨🇭",
             currency: "CHF",
             symbol: "CHF",
-            locale: "de-CH"
+            locale: "de-CH",
+            priority: false
         },
 
         SE: {
+            code: "SE",
             name: "Sweden",
+            flag: "🇸🇪",
             currency: "SEK",
             symbol: "kr",
-            locale: "sv-SE"
+            locale: "sv-SE",
+            priority: false
         },
 
         NO: {
+            code: "NO",
             name: "Norway",
+            flag: "🇳🇴",
             currency: "NOK",
             symbol: "kr",
-            locale: "nb-NO"
+            locale: "nb-NO",
+            priority: false
         },
 
         DK: {
+            code: "DK",
             name: "Denmark",
+            flag: "🇩🇰",
             currency: "DKK",
             symbol: "kr",
-            locale: "da-DK"
+            locale: "da-DK",
+            priority: false
+        },
+
+        FI: {
+            code: "FI",
+            name: "Finland",
+            flag: "🇫🇮",
+            currency: "EUR",
+            symbol: "€",
+            locale: "fi-FI",
+            priority: false
         },
 
         PL: {
+            code: "PL",
             name: "Poland",
+            flag: "🇵🇱",
             currency: "PLN",
             symbol: "zł",
-            locale: "pl-PL"
+            locale: "pl-PL",
+            priority: false
         },
 
-        TR: {
-            name: "Türkiye",
-            currency: "TRY",
-            symbol: "₺",
-            locale: "tr-TR"
+        IN: {
+            code: "IN",
+            name: "India",
+            flag: "🇮🇳",
+            currency: "INR",
+            symbol: "₹",
+            locale: "en-IN",
+            priority: false
+        },
+
+        BR: {
+            code: "BR",
+            name: "Brazil",
+            flag: "🇧🇷",
+            currency: "BRL",
+            symbol: "R$",
+            locale: "pt-BR",
+            priority: false
+        },
+
+        MX: {
+            code: "MX",
+            name: "Mexico",
+            flag: "🇲🇽",
+            currency: "MXN",
+            symbol: "$",
+            locale: "es-MX",
+            priority: false
+        },
+
+        ZA: {
+            code: "ZA",
+            name: "South Africa",
+            flag: "🇿🇦",
+            currency: "ZAR",
+            symbol: "R",
+            locale: "en-ZA",
+            priority: false
+        },
+
+        GH: {
+            code: "GH",
+            name: "Ghana",
+            flag: "🇬🇭",
+            currency: "GHS",
+            symbol: "GH₵",
+            locale: "en-GH",
+            priority: false
+        },
+
+        KE: {
+            code: "KE",
+            name: "Kenya",
+            flag: "🇰🇪",
+            currency: "KES",
+            symbol: "KSh",
+            locale: "en-KE",
+            priority: false
+        },
+
+        JP: {
+            code: "JP",
+            name: "Japan",
+            flag: "🇯🇵",
+            currency: "JPY",
+            symbol: "¥",
+            locale: "ja-JP",
+            priority: false
+        },
+
+        KR: {
+            code: "KR",
+            name: "South Korea",
+            flag: "🇰🇷",
+            currency: "KRW",
+            symbol: "₩",
+            locale: "ko-KR",
+            priority: false
+        },
+
+        SG: {
+            code: "SG",
+            name: "Singapore",
+            flag: "🇸🇬",
+            currency: "SGD",
+            symbol: "S$",
+            locale: "en-SG",
+            priority: false
+        },
+
+        NZ: {
+            code: "NZ",
+            name: "New Zealand",
+            flag: "🇳🇿",
+            currency: "NZD",
+            symbol: "NZ$",
+            locale: "en-NZ",
+            priority: false
         }
+
     };
 
 
-    /* =====================================================
-       DEFAULT COUNTRY
-       ===================================================== */
-
-    const DEFAULT_COUNTRY = "NG";
-
-
-    /* =====================================================
-       GET SAVED COUNTRY
-       ===================================================== */
-
-    function getSavedCountry() {
-
-        const saved =
-            localStorage.getItem(
-                "trustai_country"
-            );
-
-        if (
-            saved &&
-            COUNTRIES[saved]
-        ) {
-            return saved;
-        }
-
-        return DEFAULT_COUNTRY;
-    }
-
-
-    /* =====================================================
-       SET COUNTRY
-       ===================================================== */
-
-    function setCountry(countryCode) {
-
-        if (!COUNTRIES[countryCode]) {
-            return false;
-        }
-
-        localStorage.setItem(
-            "trustai_country",
-            countryCode
-        );
-
-        localStorage.setItem(
-            "trustai_currency",
-            COUNTRIES[countryCode].currency
-        );
-
-        localStorage.setItem(
-            "trustai_currency_symbol",
-            COUNTRIES[countryCode].symbol
-        );
-
-        localStorage.setItem(
-            "trustai_locale",
-            COUNTRIES[countryCode].locale
-        );
-
-        document.documentElement.setAttribute(
-            "data-country",
-            countryCode
-        );
-
-        document.documentElement.setAttribute(
-            "data-currency",
-            COUNTRIES[countryCode].currency
-        );
-
-        return true;
-    }
-
-
-    /* =====================================================
-       GET COUNTRY
-       ===================================================== */
-
-    function getCountry() {
-
-        return COUNTRIES[
-            getSavedCountry()
-        ];
-    }
-
-
-    /* =====================================================
+    /* ============================================================
        GET COUNTRY CODE
-       ===================================================== */
+       ============================================================ */
 
     function getCountryCode() {
 
-        return getSavedCountry();
+        try {
+
+            const saved =
+                localStorage.getItem(
+                    STORAGE_KEY
+                );
+
+            if (
+                saved &&
+                countries[saved]
+            ) {
+
+                return saved;
+
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "TrustAI: Unable to read country.",
+                error
+            );
+
+        }
+
+        return DEFAULT_COUNTRY;
+
     }
 
 
-    /* =====================================================
+    /* ============================================================
+       GET COUNTRY
+       ============================================================ */
+
+    function getCountry() {
+
+        const code =
+            getCountryCode();
+
+        return (
+            countries[code] ||
+            countries[DEFAULT_COUNTRY]
+        );
+
+    }
+
+
+    /* ============================================================
+       SET COUNTRY
+       ============================================================ */
+
+    function setCountry(code) {
+
+        if (
+            !countries[code]
+        ) {
+
+            console.warn(
+                "TrustAI: Unsupported country:",
+                code
+            );
+
+            return false;
+
+        }
+
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                code
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "TrustAI: Unable to save country.",
+                error
+            );
+
+        }
+
+
+        document.documentElement.lang =
+            countries[code].locale;
+
+
+        /*
+           Notify the TrustAI application.
+        */
+
+        window.dispatchEvent(
+            new CustomEvent(
+                "trustai-country-changed",
+                {
+                    detail: {
+                        country:
+                            countries[code]
+                    }
+                }
+            )
+        );
+
+
+        return true;
+
+    }
+
+
+    /* ============================================================
+       GET ALL COUNTRIES
+       ============================================================ */
+
+    function getCountries() {
+
+        return countries;
+
+    }
+
+
+    /* ============================================================
+       GET COUNTRY LIST
+       ============================================================ */
+
+    function getCountryList() {
+
+        return Object.keys(countries)
+            .map(function (code) {
+
+                return countries[code];
+
+            });
+
+    }
+
+
+    /* ============================================================
+       GET PRIORITY COUNTRIES
+       ============================================================ */
+
+    function getPriorityCountries() {
+
+        return Object.keys(countries)
+            .filter(function (code) {
+
+                return countries[code].priority === true;
+
+            })
+            .map(function (code) {
+
+                return countries[code];
+
+            });
+
+    }
+
+
+    /* ============================================================
        GET CURRENCY
-       ===================================================== */
+       ============================================================ */
 
     function getCurrency() {
 
         return getCountry().currency;
+
     }
 
 
-    /* =====================================================
+    /* ============================================================
        GET CURRENCY SYMBOL
-       ===================================================== */
+       ============================================================ */
 
     function getCurrencySymbol() {
 
         return getCountry().symbol;
+
     }
 
 
-    /* =====================================================
-       GET LOCALE
-       ===================================================== */
+    /* ============================================================
+       FORMAT PRICE
+       ============================================================ */
 
-    function getLocale() {
-
-        return getCountry().locale;
-    }
-
-
-    /* =====================================================
-       FORMAT MONEY
-       ===================================================== */
-
-    function formatMoney(amount) {
+    function formatPrice(amount) {
 
         const country =
             getCountry();
+
 
         try {
 
@@ -380,11 +539,7 @@
                 {
                     style: "currency",
                     currency: country.currency,
-                    maximumFractionDigits:
-                        country.currency === "JPY" ||
-                        country.currency === "KRW"
-                            ? 0
-                            : 2
+                    maximumFractionDigits: 2
                 }
             ).format(amount);
 
@@ -396,52 +551,138 @@
             );
 
         }
+
     }
 
 
-    /* =====================================================
+    /* ============================================================
+       SAVE CHECKOUT CURRENCY
+       ============================================================ */
+
+    function prepareCheckoutCurrency() {
+
+        const country =
+            getCountry();
+
+
+        try {
+
+            localStorage.setItem(
+                "trustai_selected_currency",
+                country.currency
+            );
+
+
+            localStorage.setItem(
+                "trustai_checkout_currency",
+                country.currency
+            );
+
+
+            localStorage.setItem(
+                "trustai_checkout_country",
+                country.code
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "TrustAI: Unable to save checkout currency.",
+                error
+            );
+
+        }
+
+
+        return country;
+
+    }
+
+
+    /* ============================================================
        INITIALIZE
-       ===================================================== */
+       ============================================================ */
 
     function initialize() {
 
-        const countryCode =
-            getSavedCountry();
+        const country =
+            getCountry();
 
-        setCountry(countryCode);
+
+        document.documentElement.lang =
+            country.locale;
+
+
+        /*
+           Save the currently selected
+           currency for checkout.
+        */
+
+        prepareCheckoutCurrency();
+
     }
 
 
-    /* =====================================================
-       EXPOSE TRUSTAI COUNTRY SYSTEM
-       ===================================================== */
+    /* ============================================================
+       PUBLIC TRUSTAI COUNTRY API
+       ============================================================ */
 
     window.TrustAICountry = {
 
-        countries: COUNTRIES,
+        countries: countries,
 
-        getCountry: getCountry,
+        getCountryCode:
+            getCountryCode,
 
-        getCountryCode: getCountryCode,
+        getCountry:
+            getCountry,
 
-        setCountry: setCountry,
+        getCountries:
+            getCountries,
 
-        getCurrency: getCurrency,
+        getCountryList:
+            getCountryList,
+
+        getPriorityCountries:
+            getPriorityCountries,
+
+        setCountry:
+            setCountry,
+
+        getCurrency:
+            getCurrency,
 
         getCurrencySymbol:
             getCurrencySymbol,
 
-        getLocale: getLocale,
+        formatPrice:
+            formatPrice,
 
-        formatMoney: formatMoney
+        prepareCheckoutCurrency:
+            prepareCheckoutCurrency
 
     };
 
 
-    /* =====================================================
+    /* ============================================================
        START
-       ===================================================== */
+       ============================================================ */
 
-    initialize();
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialize
+        );
+
+    } else {
+
+        initialize();
+
+    }
+
 
 })();
