@@ -1334,8 +1334,31 @@ loadHomeProfilePicture();
 
 /* LOGOUT */
 
-function handleLogout() {
+async function handleLogout() {
 
+    try {
+
+        // Sign out from the real Supabase session
+        const { error } =
+            await supabaseClient.auth.signOut();
+
+        if (error) {
+            console.error(
+                "Supabase logout error:",
+                error
+            );
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Logout failed:",
+            error
+        );
+
+    }
+
+    // Clear TrustAI local login data
     localStorage.removeItem(
         "trustai_loggedIn"
     );
@@ -1344,11 +1367,16 @@ function handleLogout() {
         "trustai_userName"
     );
 
-    window.location.href =
-        "./login.html";
+    localStorage.removeItem(
+        "trustai_account"
+    );
+
+    // Prevent going back into the authenticated page
+    window.location.replace(
+        "./login.html"
+    );
 
 }
-
 </script>
 
 </body>
