@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI — Language</title>
 
-<meta
-    name="description"
-    content="Choose your preferred TrustAI language."
->
+<meta name="description"
+content="Choose the language you want TrustAI to use.">
+
+<!-- =====================================================
+     TRUSTAI LANGUAGE SYSTEM
+===================================================== -->
+
+<script src="./language.js"></script>
+
 
 <style>
 
-/* ============================================================
-   TRUSTAI LANGUAGE PAGE
-============================================================ */
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
     box-sizing: border-box;
@@ -28,8 +36,25 @@ html {
 }
 
 body {
+
     margin: 0;
+
     min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(59,130,246,.14),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(124,92,255,.10),
+            transparent 35%
+        ),
+        #050b14;
+
+    color: #f8fafc;
 
     font-family:
         Inter,
@@ -40,166 +65,201 @@ body {
         Arial,
         sans-serif;
 
-    background:
-        radial-gradient(
-            circle at 15% 0%,
-            rgba(59,130,246,.14),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(124,92,255,.11),
-            transparent 35%
-        ),
-        #050b14;
-
-    color: #f8fafc;
 }
 
 
-/* ============================================================
+/* =====================================================
    PAGE
-============================================================ */
+===================================================== */
 
 .page {
-    width: min(760px, calc(100% - 24px));
+
+    width: min(
+        760px,
+        calc(100% - 24px)
+    );
 
     margin: auto;
 
-    padding: 22px 0 45px;
+    padding:
+        20px
+        0
+        50px;
+
 }
 
 
-/* ============================================================
+/* =====================================================
    HEADER
-============================================================ */
+===================================================== */
 
 .header {
+
     display: flex;
 
     align-items: center;
 
-    justify-content: space-between;
+    gap: 14px;
 
-    margin-bottom: 45px;
+    margin-bottom: 35px;
+
 }
 
 .back-button {
-    width: 44px;
-    height: 44px;
 
-    border: 1px solid #263b52;
+    width: 45px;
+    height: 45px;
+
+    border:
+        1px solid
+        #263b52;
 
     border-radius: 12px;
 
-    background: #0b1726;
+    background:
+        #0b1726;
 
     color: white;
 
-    font-size: 21px;
+    font-size: 22px;
 
     cursor: pointer;
 
     transition: .2s;
+
 }
 
 .back-button:hover {
-    border-color: #3b82f6;
 
-    transform: translateY(-1px);
+    border-color:
+        #3b82f6;
+
+    transform:
+        translateY(-1px);
+
 }
 
 .logo {
-    font-size: 22px;
+
+    font-size: 23px;
 
     font-weight: 900;
+
 }
 
 .logo span {
-    color: #60a5fa;
+
+    color:
+        #60a5fa;
+
 }
 
-.header-spacer {
-    width: 44px;
-}
 
-
-/* ============================================================
+/* =====================================================
    HERO
-============================================================ */
+===================================================== */
 
 .hero {
+
     text-align: center;
 
-    margin-bottom: 30px;
+    margin-bottom: 28px;
+
 }
 
-.hero-badge {
-    display: inline-flex;
+.hero-icon {
 
-    padding: 7px 13px;
+    width: 64px;
+    height: 64px;
 
-    border: 1px solid #24466a;
+    margin:
+        0 auto
+        15px;
 
-    border-radius: 999px;
+    display: flex;
 
-    background: rgba(59,130,246,.08);
+    align-items: center;
+    justify-content: center;
 
-    color: #7db5ff;
+    border-radius: 18px;
 
-    font-size: 11px;
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
 
-    font-weight: 800;
+    font-size: 29px;
 
-    letter-spacing: .5px;
 }
 
 .hero h1 {
-    margin: 17px 0 10px;
 
-    font-size: clamp(34px, 8vw, 48px);
+    margin:
+        0 0 8px;
 
-    line-height: 1.05;
+    font-size:
+        clamp(
+            29px,
+            7vw,
+            42px
+        );
 
-    letter-spacing: -1.5px;
 }
 
 .hero p {
-    max-width: 600px;
+
+    max-width: 580px;
 
     margin: auto;
 
-    color: #8fa5bd;
+    color:
+        #91a7bf;
 
     font-size: 14px;
 
-    line-height: 1.65;
+    line-height: 1.6;
+
 }
 
 
-/* ============================================================
+/* =====================================================
    LANGUAGE CARD
-============================================================ */
+===================================================== */
 
 .language-card {
-    padding: 22px;
 
-    border: 1px solid #263b52;
+    padding: 24px;
+
+    border:
+        1px solid
+        #263b52;
 
     border-radius: 20px;
 
-    background: #0b1726;
+    background:
+        linear-gradient(
+            145deg,
+            #0d2034,
+            #091522
+        );
 
     box-shadow:
-        0 20px 50px rgba(0,0,0,.25);
+        0
+        15px
+        40px
+        rgba(0,0,0,.25);
+
 }
 
 
-/* ============================================================
+/* =====================================================
    CURRENT LANGUAGE
-============================================================ */
+===================================================== */
 
-.current-language {
+.current-box {
+
     display: flex;
 
     align-items: center;
@@ -208,136 +268,195 @@ body {
 
     gap: 15px;
 
-    margin-bottom: 22px;
-
     padding: 16px;
 
-    border: 1px solid #29445f;
+    margin-bottom: 22px;
 
-    border-radius: 15px;
+    border:
+        1px solid
+        #31506c;
 
-    background: #0f1e30;
+    border-radius: 14px;
+
+    background:
+        rgba(
+            59,
+            130,
+            246,
+            .07
+        );
+
 }
 
 .current-left {
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
+
 }
 
 .current-flag {
-    font-size: 28px;
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        #13283f;
+
+    font-size: 24px;
+
 }
 
 .current-label {
-    color: #8197ad;
 
-    font-size: 11px;
+    color:
+        #8197ad;
 
-    font-weight: 700;
+    font-size: 10px;
+
+    font-weight: 800;
 
     text-transform: uppercase;
 
     letter-spacing: .5px;
+
 }
 
 .current-name {
+
     margin-top: 3px;
 
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: 900;
+
 }
 
-.current-status {
-    padding: 6px 9px;
+.current-code {
 
-    border: 1px solid #315d8c;
+    color:
+        #60a5fa;
 
-    border-radius: 999px;
+    font-size: 11px;
 
-    background: rgba(59,130,246,.10);
+    font-weight: 800;
 
-    color: #7db5ff;
-
-    font-size: 9px;
-
-    font-weight: 900;
 }
 
 
-/* ============================================================
+/* =====================================================
    SEARCH
-============================================================ */
+===================================================== */
 
 .search-box {
-    margin-bottom: 18px;
+
+    margin-bottom: 17px;
+
 }
 
 .search-input {
+
     width: 100%;
 
-    padding: 14px 15px;
+    height: 48px;
 
-    border: 1px solid #263b52;
+    padding:
+        0
+        15px;
 
-    border-radius: 12px;
+    border:
+        1px solid
+        #31506c;
 
-    outline: none;
+    border-radius: 11px;
 
-    background: #07111d;
+    background:
+        #07111d;
 
     color: white;
 
-    font-family: inherit;
+    outline: none;
 
-    font-size: 13px;
+    font-size: 14px;
 
-    transition: .2s;
 }
 
 .search-input::placeholder {
-    color: #60758b;
+
+    color:
+        #64788d;
+
 }
 
 .search-input:focus {
-    border-color: #3b82f6;
+
+    border-color:
+        #3b82f6;
 
     box-shadow:
-        0 0 0 3px rgba(59,130,246,.10);
+        0
+        0
+        0
+        3px
+        rgba(
+            59,
+            130,
+            246,
+            .12
+        );
+
 }
 
 
-/* ============================================================
+/* =====================================================
    LANGUAGE LIST
-============================================================ */
+===================================================== */
 
 .language-list {
+
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
-
     gap: 10px;
+
 }
 
+
+/* =====================================================
+   LANGUAGE OPTION
+===================================================== */
+
 .language-option {
+
     width: 100%;
 
     display: flex;
 
     align-items: center;
+
+    justify-content: space-between;
 
     gap: 12px;
 
     padding: 14px;
 
-    border: 1px solid #263b52;
+    border:
+        1px solid
+        #263b52;
 
-    border-radius: 14px;
+    border-radius: 13px;
 
-    background: #07111d;
+    background:
+        #091522;
 
     color: white;
 
@@ -346,193 +465,254 @@ body {
     cursor: pointer;
 
     transition: .2s;
+
 }
 
 .language-option:hover {
-    border-color: #3b82f6;
 
-    background: #0c1b2d;
+    border-color:
+        #3b82f6;
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
+
 }
 
 .language-option.selected {
-    border-color: #3b82f6;
+
+    border-color:
+        #3b82f6;
 
     background:
-        rgba(59,130,246,.10);
+        rgba(
+            59,
+            130,
+            246,
+            .09
+        );
 
     box-shadow:
-        0 0 0 1px rgba(59,130,246,.12);
+        0
+        0
+        0
+        1px
+        rgba(
+            59,
+            130,
+            246,
+            .12
+        );
+
+}
+
+.language-main {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
 }
 
 .language-flag {
-    width: 38px;
-    height: 38px;
+
+    width: 43px;
+    height: 43px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
-
-    flex-shrink: 0;
 
     border-radius: 11px;
 
-    background: #13283f;
+    background:
+        #13283f;
 
-    font-size: 21px;
-}
+    font-size: 23px;
 
-.language-text {
-    min-width: 0;
 }
 
 .language-name {
-    font-size: 14px;
+
+    font-size: 15px;
 
     font-weight: 900;
+
 }
 
 .language-native {
-    margin-top: 3px;
 
-    color: #8197ad;
+    margin-top: 2px;
+
+    color:
+        #8197ad;
 
     font-size: 11px;
+
 }
 
 .language-check {
-    width: 22px;
-    height: 22px;
+
+    width: 25px;
+    height: 25px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    margin-left: auto;
-
-    flex-shrink: 0;
-
-    border: 1px solid #38536e;
-
     border-radius: 50%;
 
-    color: transparent;
+    border:
+        1px solid
+        #38536e;
 
-    font-size: 12px;
+    color:
+        transparent;
+
+    font-size: 13px;
 
     font-weight: 900;
+
 }
 
 .language-option.selected
 .language-check {
-    background: #3b82f6;
 
-    border-color: #3b82f6;
+    background:
+        #3b82f6;
+
+    border-color:
+        #3b82f6;
 
     color: white;
+
 }
 
 
-/* ============================================================
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty {
+
+    display: none;
+
+    padding: 25px;
+
+    color:
+        #8197ad;
+
+    text-align: center;
+
+    font-size: 13px;
+
+}
+
+.empty.show {
+
+    display: block;
+
+}
+
+
+/* =====================================================
    NOTICE
-============================================================ */
+===================================================== */
 
 .notice {
+
     margin-top: 18px;
 
     padding: 16px;
 
-    border: 1px solid #263b52;
+    border:
+        1px solid
+        #263b52;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
-    background: rgba(11,23,38,.75);
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .025
+        );
 
-    color: #8197ad;
+    color:
+        #8197ad;
+
+    text-align: center;
 
     font-size: 11px;
 
     line-height: 1.6;
 
-    text-align: center;
 }
 
 
-/* ============================================================
-   EMPTY SEARCH
-============================================================ */
-
-.no-results {
-    display: none;
-
-    padding: 25px;
-
-    color: #8197ad;
-
-    font-size: 13px;
-
-    text-align: center;
-}
-
-
-/* ============================================================
+/* =====================================================
    FOOTER
-============================================================ */
+===================================================== */
 
 footer {
-    margin-top: 40px;
 
-    padding-top: 23px;
+    margin-top: 35px;
 
-    border-top: 1px solid #1c3044;
+    padding-top: 22px;
 
-    color: #64788d;
+    border-top:
+        1px solid
+        #1c3044;
 
-    font-size: 10px;
+    color:
+        #64788d;
 
     text-align: center;
+
+    font-size: 11px;
+
 }
 
 .footer-brand {
+
     margin-bottom: 5px;
 
-    color: #aebfd1;
+    color:
+        #aebfd1;
 
     font-weight: 900;
+
 }
 
 
-/* ============================================================
+/* =====================================================
    MOBILE
-============================================================ */
+===================================================== */
 
 @media (max-width: 600px) {
 
-    .language-list {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-@media (max-width: 500px) {
-
     .page {
-        width: calc(100% - 20px);
-    }
 
-    .header {
-        margin-bottom: 35px;
+        width:
+            calc(100% - 20px);
+
     }
 
     .language-card {
-        padding: 16px;
+
+        padding: 18px;
+
     }
 
-    .current-status {
-        display: none;
+    .current-box {
+
+        align-items:
+            flex-start;
+
     }
 
 }
@@ -541,14 +721,16 @@ footer {
 
 </head>
 
+
 <body>
+
 
 <div class="page">
 
 
-<!-- ============================================================
+<!-- =====================================================
      HEADER
-============================================================ -->
+===================================================== -->
 
 <header class="header">
 
@@ -562,147 +744,183 @@ footer {
 
     </button>
 
-    <div class="logo">
-        🛡️ Trust<span>AI</span>
-    </div>
 
-    <div class="header-spacer"></div>
+    <div class="logo">
+
+        🛡️ Trust<span>AI</span>
+
+    </div>
 
 </header>
 
 
-<!-- ============================================================
+<!-- =====================================================
      HERO
-============================================================ -->
+===================================================== -->
 
 <section class="hero">
 
-    <div class="hero-badge">
-        🌍 TRUSTAI LANGUAGE
+    <div class="hero-icon">
+
+        🌍
+
     </div>
 
-    <h1 id="pageTitle">
+
+    <h1 data-i18n="languageTitle">
+
         Language
+
     </h1>
 
-    <p id="pageDescription">
+
+    <p data-i18n="languageDescription">
+
         Choose the language you want TrustAI to use.
+
     </p>
 
 </section>
 
 
-<!-- ============================================================
+<!-- =====================================================
      LANGUAGE CARD
-============================================================ -->
+===================================================== -->
 
-<section class="language-card">
+<main class="language-card">
 
 
-    <!-- CURRENT LANGUAGE -->
+<!-- =====================================================
+     CURRENT LANGUAGE
+===================================================== -->
 
-    <div class="current-language">
+<section class="current-box">
 
-        <div class="current-left">
 
-            <div
-                id="currentFlag"
-                class="current-flag">
-
-                🇺🇸
-
-            </div>
-
-            <div>
-
-                <div
-                    id="currentLabel"
-                    class="current-label">
-
-                    Current language
-
-                </div>
-
-                <div
-                    id="currentName"
-                    class="current-name">
-
-                    English
-
-                </div>
-
-            </div>
-
-        </div>
+    <div class="current-left">
 
 
         <div
-            id="currentStatus"
-            class="current-status">
+            id="currentFlag"
+            class="current-flag">
 
-            SELECTED
+            🇬🇧
 
         </div>
 
-    </div>
+
+        <div>
+
+            <div
+                class="current-label"
+                data-i18n="currentLanguage">
+
+                Current language
+
+            </div>
 
 
-    <!-- SEARCH -->
+            <div
+                id="currentName"
+                class="current-name">
 
-    <div class="search-box">
+                English
 
-        <input
-            id="languageSearch"
-            class="search-input"
-            type="search"
-            autocomplete="off"
-            placeholder="Search languages..."
-            aria-label="Search languages"
-        >
+            </div>
 
-    </div>
+        </div>
 
-
-    <!-- LANGUAGE LIST -->
-
-    <div
-        id="languageList"
-        class="language-list">
 
     </div>
 
 
     <div
-        id="noResults"
-        class="no-results">
+        id="currentCode"
+        class="current-code">
 
-        No languages found.
-
-    </div>
-
-
-    <!-- NOTICE -->
-
-    <div
-        id="languageNotice"
-        class="notice">
-
-        🌍 Your language selection is saved on this
-        device and used across supported TrustAI pages.
+        EN
 
     </div>
+
 
 </section>
 
 
-<!-- ============================================================
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-box">
+
+    <input
+        id="languageSearch"
+        class="search-input"
+        type="search"
+        data-i18n-placeholder="searchLanguages"
+        placeholder="Search languages..."
+        autocomplete="off">
+
+</div>
+
+
+<!-- =====================================================
+     LANGUAGE LIST
+===================================================== -->
+
+<div
+    id="languageList"
+    class="language-list">
+</div>
+
+
+<div
+    id="emptyState"
+    class="empty">
+
+    No language found.
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     NOTICE
+===================================================== -->
+
+<section class="notice">
+
+    <strong
+        data-i18n="languageNoticeTitle">
+
+        🌍 TrustAI languages
+
+    </strong>
+
+    <br>
+
+    <span
+        data-i18n="languageNotice">
+
+        Your language selection is saved on this device
+        and used across supported TrustAI pages.
+
+    </span>
+
+</section>
+
+
+<!-- =====================================================
      FOOTER
-============================================================ -->
+===================================================== -->
 
 <footer>
 
     <div class="footer-brand">
+
         🛡️ TrustAI
+
     </div>
 
     Online scam awareness and protection.
@@ -717,343 +935,112 @@ footer {
 </div>
 
 
-<!-- ============================================================
-     EXISTING TRUSTAI LANGUAGE SYSTEM
-     
-     IMPORTANT:
-     Keep your existing 7-language language.js file.
-============================================================ -->
-
-<script src="./language.js"></script>
-
-
 <script>
 
-/* ============================================================
+/* =====================================================
    TRUSTAI LANGUAGE PAGE
-   Works with the existing language.js
-============================================================ */
+===================================================== */
+
+(function () {
 
 "use strict";
 
 
-/* ============================================================
-   THE ONLY 7 LANGUAGES SHOWN ON THIS PAGE
-============================================================ */
+/* =====================================================
+   WAIT FOR LANGUAGE SYSTEM
+===================================================== */
 
-const TRUSTAI_SEVEN_LANGUAGES = [
+function getLanguageSystem() {
 
-    {
-        code: "en",
-        name: "English",
-        nativeName: "English",
-        flag: "🇺🇸"
-    },
-
-    {
-        code: "fr",
-        name: "French",
-        nativeName: "Français",
-        flag: "🇫🇷"
-    },
-
-    {
-        code: "es",
-        name: "Spanish",
-        nativeName: "Español",
-        flag: "🇪🇸"
-    },
-
-    {
-        code: "de",
-        name: "German",
-        nativeName: "Deutsch",
-        flag: "🇩🇪"
-    },
-
-    {
-        code: "sv",
-        name: "Swedish",
-        nativeName: "Svenska",
-        flag: "🇸🇪"
-    },
-
-    {
-        code: "fi",
-        name: "Finnish",
-        nativeName: "Suomi",
-        flag: "🇫🇮"
-    },
-
-    {
-        code: "pt",
-        name: "Portuguese",
-        nativeName: "Português",
-        flag: "🇵🇹"
-    }
-
-];
-
-
-/* ============================================================
-   DOM
-============================================================ */
-
-const languageList =
-    document.getElementById("languageList");
-
-const languageSearch =
-    document.getElementById("languageSearch");
-
-const noResults =
-    document.getElementById("noResults");
-
-const currentFlag =
-    document.getElementById("currentFlag");
-
-const currentName =
-    document.getElementById("currentName");
-
-const pageTitle =
-    document.getElementById("pageTitle");
-
-const pageDescription =
-    document.getElementById("pageDescription");
-
-const currentLabel =
-    document.getElementById("currentLabel");
-
-const languageNotice =
-    document.getElementById("languageNotice");
-
-
-/* ============================================================
-   STORAGE KEY
-============================================================ */
-
-const LANGUAGE_STORAGE_KEY =
-    "trustai_language";
-
-
-/* ============================================================
-   GET CURRENT LANGUAGE
-============================================================ */
-
-function getCurrentLanguage() {
-
-    let saved = "en";
-
-    try {
-
-        saved =
-            localStorage.getItem(
-                LANGUAGE_STORAGE_KEY
-            ) || "en";
-
-    } catch (error) {
-
-        console.warn(
-            "TrustAI: Unable to read language.",
-            error
-        );
-
-    }
-
-
-    const valid =
-        TRUSTAI_SEVEN_LANGUAGES.some(
-            function (language) {
-
-                return language.code === saved;
-
-            }
-        );
-
-
-    return valid ? saved : "en";
+    return window.TrustAILanguage || null;
 
 }
 
 
-/* ============================================================
-   TRANSLATION HELPER
-============================================================ */
+/* =====================================================
+   GET LANGUAGES
+===================================================== */
 
-function translate(key, fallback) {
+function getLanguages() {
 
-    try {
+    const system =
+        getLanguageSystem();
 
-        if (
-            window.TrustAILanguage &&
-            typeof window.TrustAILanguage.t === "function"
-        ) {
 
-            const value =
-                window.TrustAILanguage.t(key);
+    if (
+        !system ||
+        !system.languages
+    ) {
 
-            if (value) {
-
-                return value;
-
-            }
-
-        }
-
-    } catch (error) {
-
-        console.warn(
-            "TrustAI language translation error:",
-            error
-        );
+        return {};
 
     }
 
 
-    return fallback;
+    /*
+       Only these 7 languages are displayed.
+    */
 
-}
+    const allowed = [
 
+        "en",
+        "fr",
+        "es",
+        "pt",
+        "zh",
+        "de",
+        "ar"
 
-/* ============================================================
-   RENDER LANGUAGE LIST
-============================================================ */
-
-function renderLanguages(filter = "") {
-
-    const current =
-        getCurrentLanguage();
-
-
-    const query =
-        filter
-            .trim()
-            .toLowerCase();
+    ];
 
 
-    languageList.innerHTML = "";
+    const result = {};
 
 
-    let visibleCount = 0;
-
-
-    TRUSTAI_SEVEN_LANGUAGES.forEach(
-        function(language) {
-
-            const searchable =
-                (
-                    language.name +
-                    " " +
-                    language.nativeName +
-                    " " +
-                    language.code
-                ).toLowerCase();
-
+    allowed.forEach(
+        function (code) {
 
             if (
-                query &&
-                !searchable.includes(query)
+                system.languages[code]
             ) {
 
-                return;
+                result[code] =
+                    system.languages[code];
 
             }
-
-
-            visibleCount++;
-
-
-            const button =
-                document.createElement("button");
-
-
-            button.type = "button";
-
-            button.className =
-                "language-option";
-
-
-            if (
-                language.code === current
-            ) {
-
-                button.classList.add(
-                    "selected"
-                );
-
-            }
-
-
-            button.dataset.language =
-                language.code;
-
-
-            button.innerHTML = `
-
-                <div class="language-flag">
-                    ${language.flag}
-                </div>
-
-                <div class="language-text">
-
-                    <div class="language-name">
-                        ${escapeHTML(language.name)}
-                    </div>
-
-                    <div class="language-native">
-                        ${escapeHTML(language.nativeName)}
-                    </div>
-
-                </div>
-
-                <div class="language-check">
-                    ✓
-                </div>
-
-            `;
-
-
-            button.addEventListener(
-                "click",
-                function() {
-
-                    selectLanguage(
-                        language.code
-                    );
-
-                }
-            );
-
-
-            languageList.appendChild(
-                button
-            );
 
         }
     );
 
 
-    noResults.style.display =
-        visibleCount === 0
-            ? "block"
-            : "none";
+    return result;
 
 }
 
 
-/* ============================================================
-   SELECT LANGUAGE
-============================================================ */
+/* =====================================================
+   RENDER CURRENT LANGUAGE
+===================================================== */
 
-function selectLanguage(code) {
+function renderCurrentLanguage() {
+
+    const system =
+        getLanguageSystem();
+
+
+    if (!system) {
+
+        return;
+
+    }
+
+
+    const code =
+        system.getLanguageCode();
+
 
     const language =
-        TRUSTAI_SEVEN_LANGUAGES.find(
-            function(item) {
-
-                return item.code === code;
-
-            }
-        );
+        system.languages[code];
 
 
     if (!language) {
@@ -1063,237 +1050,389 @@ function selectLanguage(code) {
     }
 
 
-    /*
-       Use the existing language.js API
-       when available.
-    */
+    document.getElementById(
+        "currentFlag"
+    ).textContent =
+        language.flag;
 
-    try {
 
-        if (
-            window.TrustAILanguage &&
-            typeof window.TrustAILanguage.setLanguage === "function"
-        ) {
+    document.getElementById(
+        "currentName"
+    ).textContent =
+        language.nativeName;
 
-            window.TrustAILanguage.setLanguage(
-                code
-            );
 
-        } else {
+    document.getElementById(
+        "currentCode"
+    ).textContent =
+        code.toUpperCase();
 
-            localStorage.setItem(
-                LANGUAGE_STORAGE_KEY,
-                code
-            );
+}
 
-        }
 
-    } catch (error) {
+/* =====================================================
+   RENDER LANGUAGES
+===================================================== */
 
-        console.warn(
-            "TrustAI: Unable to change language.",
-            error
+function renderLanguages(
+    search = ""
+) {
+
+    const list =
+        document.getElementById(
+            "languageList"
         );
 
 
-        try {
+    const empty =
+        document.getElementById(
+            "emptyState"
+        );
 
-            localStorage.setItem(
-                LANGUAGE_STORAGE_KEY,
-                code
-            );
 
-        } catch (storageError) {}
+    const languages =
+        getLanguages();
+
+
+    list.innerHTML = "";
+
+
+    const query =
+        search
+            .trim()
+            .toLowerCase();
+
+
+    let visibleCount = 0;
+
+
+    Object.keys(languages)
+        .forEach(
+            function (code) {
+
+                const language =
+                    languages[code];
+
+
+                const searchableText =
+
+                    (
+                        language.name +
+                        " " +
+                        language.nativeName +
+                        " " +
+                        code
+                    )
+                    .toLowerCase();
+
+
+                if (
+                    query &&
+                    !searchableText.includes(
+                        query
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                visibleCount++;
+
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.type =
+                    "button";
+
+
+                button.className =
+                    "language-option";
+
+
+                button.dataset.code =
+                    code;
+
+
+                button.innerHTML = `
+
+                    <div class="language-main">
+
+                        <div class="language-flag">
+
+                            ${language.flag}
+
+                        </div>
+
+                        <div>
+
+                            <div class="language-name">
+
+                                ${language.name}
+
+                            </div>
+
+                            <div class="language-native">
+
+                                ${language.nativeName}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="language-check">
+
+                        ✓
+
+                    </div>
+
+                `;
+
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        selectLanguage(
+                            code
+                        );
+
+                    }
+                );
+
+
+                list.appendChild(
+                    button
+                );
+
+            }
+        );
+
+
+    empty.classList.toggle(
+        "show",
+        visibleCount === 0
+    );
+
+
+    updateSelectedState();
+
+}
+
+
+/* =====================================================
+   UPDATE SELECTED STATE
+===================================================== */
+
+function updateSelectedState() {
+
+    const system =
+        getLanguageSystem();
+
+
+    if (!system) {
+
+        return;
+
+    }
+
+
+    const current =
+        system.getLanguageCode();
+
+
+    document
+        .querySelectorAll(
+            ".language-option"
+        )
+        .forEach(
+            function (button) {
+
+                button.classList.toggle(
+                    "selected",
+                    button.dataset.code === current
+                );
+
+            }
+        );
+
+
+    renderCurrentLanguage();
+
+}
+
+
+/* =====================================================
+   SELECT LANGUAGE
+===================================================== */
+
+function selectLanguage(
+    code
+) {
+
+    const system =
+        getLanguageSystem();
+
+
+    if (!system) {
+
+        alert(
+            "TrustAI language system is not available."
+        );
+
+        return;
+
+    }
+
+
+    const success =
+        system.setLanguage(code);
+
+
+    if (!success) {
+
+        return;
 
     }
 
 
     /*
-       Keep the page synchronized.
+       Re-render the page so the
+       selected language updates immediately.
     */
-
-    updateCurrentLanguage();
 
     renderLanguages(
-        languageSearch.value
+        document.getElementById(
+            "languageSearch"
+        ).value
     );
 
 
     /*
-       Notify other TrustAI pages/components.
+       Update the page title.
     */
 
-    window.dispatchEvent(
-        new CustomEvent(
-            "trustai-language-changed",
-            {
-                detail: {
-                    language: code
-                }
-            }
-        )
-    );
+    document.title =
+        "TrustAI — " +
+        system.languages[code].nativeName;
 
 }
 
 
-/* ============================================================
-   UPDATE CURRENT LANGUAGE
-============================================================ */
-
-function updateCurrentLanguage() {
-
-    const current =
-        getCurrentLanguage();
-
-
-    const language =
-        TRUSTAI_SEVEN_LANGUAGES.find(
-            function(item) {
-
-                return item.code === current;
-
-            }
-        ) ||
-        TRUSTAI_SEVEN_LANGUAGES[0];
-
-
-    currentFlag.textContent =
-        language.flag;
-
-
-    currentName.textContent =
-        language.nativeName;
-
-
-    /*
-       Translate page text when
-       the existing language system
-       exposes its translation API.
-    */
-
-    pageTitle.textContent =
-        translate(
-            "languageTitle",
-            "Language"
-        );
-
-
-    pageDescription.textContent =
-        translate(
-            "languageDescription",
-            "Choose the language you want TrustAI to use."
-        );
-
-
-    currentLabel.textContent =
-        translate(
-            "currentLanguage",
-            "Current language"
-        );
-
-
-    languageSearch.placeholder =
-        translate(
-            "searchLanguages",
-            "Search languages..."
-        );
-
-
-    languageNotice.textContent =
-        translate(
-            "languageNotice",
-            "🌍 Your language selection is saved on this device and used across supported TrustAI pages."
-        );
-
-}
-
-
-/* ============================================================
-   ESCAPE HTML
-============================================================ */
-
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-/* ============================================================
+/* =====================================================
    SEARCH
-============================================================ */
+===================================================== */
 
-languageSearch.addEventListener(
-    "input",
-    function() {
+document
+    .getElementById(
+        "languageSearch"
+    )
+    .addEventListener(
+        "input",
+        function () {
+
+            renderLanguages(
+                this.value
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   LANGUAGE CHANGE EVENT
+===================================================== */
+
+window.addEventListener(
+    "trustai-language-changed",
+    function () {
+
+        /*
+           The language.js system has already
+           applied data-i18n translations.
+
+           Refresh the language list.
+        */
 
         renderLanguages(
-            languageSearch.value
+            document.getElementById(
+                "languageSearch"
+            ).value
         );
 
     }
 );
 
 
-/* ============================================================
-   BACK
-============================================================ */
+/* =====================================================
+   BACK BUTTON
+===================================================== */
 
-function goBack() {
+window.goBack =
+function () {
 
-    if (document.referrer) {
+    if (
+        document.referrer
+    ) {
 
         window.history.back();
 
     } else {
 
         window.location.href =
-            "./index.html";
+            "./settings.html";
 
     }
+
+};
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+function initialize() {
+
+    renderLanguages();
+
+    renderCurrentLanguage();
 
 }
 
 
-/* ============================================================
-   LANGUAGE CHANGE EVENT
-============================================================ */
+/*
+   language.js loads before this script.
+*/
 
-window.addEventListener(
-    "trustai-language-changed",
-    function() {
+if (
+    document.readyState ===
+    "loading"
+) {
 
-        updateCurrentLanguage();
+    document.addEventListener(
+        "DOMContentLoaded",
+        initialize
+    );
 
-        renderLanguages(
-            languageSearch.value
-        );
+} else {
 
-    }
-);
+    initialize();
+
+}
 
 
-/* ============================================================
-   START
-============================================================ */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        updateCurrentLanguage();
-
-        renderLanguages();
-
-    }
-);
+})();
 
 </script>
 
+
 </body>
+
 </html>
