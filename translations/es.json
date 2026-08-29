@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "message": "Verificador de Mensajes",
+    "conversation": "Verificador de Conversaciones",
+    "website": "Verificador de Sitios Web",
+    "device": "Seguridad del Dispositivo",
+    "protection": "Protección TrustAI",
+    "plans": "Mejorar Plan",
+    "security": "Centro de Seguridad",
+    "alerts": "Alertas de Estafas",
+    "report": "Reportar una Estafa",
+    "contact": "Contactar con TrustAI",
+    "settings": "Configuración y Privacidad",
+    "logout": "Cerrar Sesión"
+  },
+
+  "menu": {
+    "subtitle": "Protección contra Estafas en Línea"
+  },
+
+  "home": {
+    "titleStart": "Mantente un paso por delante de las",
+    "titleEnd": "estafas.",
+    "description": "Comprueba mensajes, conversaciones y sitios web sospechosos en busca de señales comunes de estafa antes de actuar. Explora la Protección TrustAI para obtener funciones de seguridad adicionales.",
+    "checkSomething": "Comprobar Algo",
+    "security": "Seguridad",
+
+    "messageTitle": "Verificador de Mensajes",
+    "messageDescription": "Comprueba un mensaje sospechoso en busca de señales de estafa, phishing, suplantación de identidad y fraude de pagos.",
+
+    "conversationTitle": "Verificador de Conversaciones",
+    "conversationDescription": "Analiza una conversación en busca de patrones sospechosos que puedan desarrollarse con el tiempo.",
+
+    "websiteTitle": "Verificador de Sitios Web",
+    "websiteDescription": "Comprueba una dirección web en busca de señales comunes de sitios web sospechosos.",
+
+    "protectionTitle": "Protección TrustAI",
+    "protectionDescription": "Explora las funciones de protección de TrustAI diseñadas para ayudar a mantener tus cuentas, dispositivos y actividades en línea más seguros.",
+
+    "deviceTitle": "Seguridad del Dispositivo",
+    "deviceDescription": "Revisa los permisos activos, el estado del dispositivo y las configuraciones de seguridad para mantener tu teléfono protegido."
+  },
+
+  "footer": {
+    "description": "Tu asistente de protección en tiempo real contra estafas y amenazas en línea.",
+    "copyright": "© 2026 TrustAI. Todos los derechos reservados."
+  },
+
+  "accessibility": {
+    "openMenu": "Abrir menú",
+    "openProfile": "Abrir perfil",
+    "profile": "Perfil",
+    "language": "Idioma"
+  }
+}
