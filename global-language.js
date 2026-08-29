@@ -10,9 +10,9 @@
     const LANGUAGES = {
 
         en: {
-            country: "United Kingdom",
-            flag: "🇬🇧",
-            name: "English"
+            country: "English",
+            flag: "🇺🇸",
+            name: "EN"
         },
 
         fr: {
