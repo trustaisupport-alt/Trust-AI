@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "message": "Vérificateur de messages",
+    "conversation": "Vérificateur de conversations",
+    "website": "Vérificateur de sites web",
+    "device": "Sécurité de l'appareil",
+    "protection": "Protection TrustAI",
+    "plans": "Passer aux offres supérieures",
+    "security": "Centre de sécurité",
+    "alerts": "Alertes aux arnaques",
+    "report": "Signaler une arnaque",
+    "contact": "Contacter TrustAI",
+    "settings": "Paramètres et confidentialité",
+    "logout": "Se déconnecter"
+  },
+
+  "menu": {
+    "subtitle": "Protection contre les arnaques en ligne"
+  },
+
+  "home": {
+    "titleStart": "Gardez une longueur d'avance sur les",
+    "titleEnd": "arnaques.",
+    "description": "Vérifiez les messages, conversations et sites web suspects pour détecter les signes courants d'une arnaque avant d'agir. Découvrez la protection TrustAI pour bénéficier de fonctionnalités de sécurité supplémentaires.",
+    "checkSomething": "Vérifier quelque chose",
+    "security": "Sécurité",
+
+    "messageTitle": "Vérificateur de messages",
+    "messageDescription": "Vérifiez un message suspect pour détecter les signes d'arnaque, d'hameçonnage, d'usurpation d'identité et de fraude au paiement.",
+
+    "conversationTitle": "Vérificateur de conversations",
+    "conversationDescription": "Analysez une conversation pour détecter les comportements suspects qui peuvent apparaître au fil du temps.",
+
+    "websiteTitle": "Vérificateur de sites web",
+    "websiteDescription": "Vérifiez une adresse de site web pour détecter les signes courants d'un site suspect.",
+
+    "protectionTitle": "Protection TrustAI",
+    "protectionDescription": "Découvrez les fonctionnalités de protection TrustAI conçues pour contribuer à sécuriser vos comptes, vos appareils et vos activités en ligne.",
+
+    "deviceTitle": "Sécurité de l'appareil",
+    "deviceDescription": "Examinez les autorisations actives, l'état de l'appareil et les paramètres de sécurité afin de garder votre téléphone protégé."
+  },
+
+  "footer": {
+    "description": "Votre assistant de protection en temps réel contre les arnaques et les menaces en ligne.",
+    "copyright": "© 2026 TrustAI. Tous droits réservés."
+  },
+
+  "accessibility": {
+    "openMenu": "Ouvrir le menu",
+    "openProfile": "Ouvrir le profil",
+    "profile": "Profil",
+    "language": "Langue"
+  }
+}
