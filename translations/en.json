@@ -1,144 +1,56 @@
 {
-  "siteName": "Trust AI",
-
   "navigation": {
     "home": "Home",
     "message": "Message Checker",
     "conversation": "Conversation Checker",
     "website": "Website Checker",
-    "report": "Report a Scam",
-    "alerts": "Scam Alerts",
-    "security": "Security Center",
     "device": "Device Security",
-    "contact": "Contact"
+    "protection": "TrustAI Protection",
+    "plans": "Upgrade Plans",
+    "security": "Security Center",
+    "alerts": "Scam Alerts",
+    "report": "Report a Scam",
+    "contact": "Contact TrustAI",
+    "settings": "Settings & Privacy",
+    "logout": "Log Out"
   },
 
-  "common": {
-    "check": "Check",
-    "scan": "Scan",
-    "submit": "Submit",
-    "continue": "Continue",
-    "cancel": "Cancel",
-    "back": "Back",
-    "next": "Next",
-    "save": "Save",
-    "close": "Close",
-    "search": "Search",
-    "loading": "Loading...",
-    "language": "Language"
+  "menu": {
+    "subtitle": "Online Scam Protection"
   },
 
   "home": {
-    "title": "Stay Safe. Stay Protected.",
-    "subtitle": "Trust AI helps detect scams, phishing, suspicious messages and dangerous websites before they can harm you.",
-    "messageProtection": "Message Protection",
-    "websiteProtection": "Website Protection",
-    "conversationProtection": "Conversation Protection",
-    "deviceProtection": "Device Protection",
-    "paymentProtection": "Payment & Banking Protection",
-    "gamingProtection": "Gaming Protection",
-    "getStarted": "Get Started"
-  },
+    "titleStart": "Stay one step ahead of",
+    "titleEnd": "scams.",
+    "description": "Check suspicious messages, conversations and websites for common warning signs before you take action. Explore TrustAI Protection for additional security features.",
+    "checkSomething": "Check Something",
+    "security": "Security",
 
-  "message": {
-    "title": "Message Checker",
-    "subtitle": "Check a suspicious message for possible scam indicators.",
-    "placeholder": "Paste the suspicious message here...",
-    "checkMessage": "Check Message",
-    "clear": "Clear",
-    "result": "Analysis Result",
-    "safe": "No major scam indicators detected.",
-    "suspicious": "This message contains suspicious indicators.",
-    "dangerous": "This message shows strong signs of a scam.",
-    "riskScore": "Risk Score",
-    "reasons": "Reasons",
-    "recommendation": "Recommendation"
-  },
+    "messageTitle": "Message Checker",
+    "messageDescription": "Check a suspicious message for scam, phishing, impersonation and payment warning signs.",
 
-  "conversation": {
-    "title": "Conversation Checker",
-    "subtitle": "Analyze a conversation for suspicious behavior and scam patterns.",
-    "placeholder": "Paste the conversation here...",
-    "checkConversation": "Analyze Conversation",
-    "riskScore": "Risk Score",
-    "warning": "Warning",
-    "recommendation": "Recommendation"
-  },
+    "conversationTitle": "Conversation Checker",
+    "conversationDescription": "Analyze a conversation for suspicious patterns that may develop over time.",
 
-  "website": {
-    "title": "Website Checker",
-    "subtitle": "Check a website address for suspicious indicators.",
-    "placeholder": "Enter website URL...",
-    "checkWebsite": "Check Website",
-    "safe": "No obvious suspicious indicators detected.",
-    "suspicious": "This website contains suspicious indicators.",
-    "dangerous": "This website may be dangerous.",
-    "riskScore": "Risk Score",
-    "reasons": "Reasons"
-  },
+    "websiteTitle": "Website Checker",
+    "websiteDescription": "Check a website address for common suspicious website warning signs.",
 
-  "report": {
-    "title": "Report a Scam",
-    "subtitle": "Help protect other people by reporting suspicious activity.",
-    "name": "Your Name",
-    "email": "Email Address",
-    "scammer": "Scammer Information",
-    "description": "Description",
-    "submitReport": "Submit Report",
-    "success": "Your report has been submitted successfully.",
-    "error": "Something went wrong. Please try again."
-  },
+    "protectionTitle": "TrustAI Protection",
+    "protectionDescription": "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.",
 
-  "alerts": {
-    "title": "Scam Alerts",
-    "subtitle": "Stay informed about current scam threats.",
-    "latest": "Latest Alerts",
-    "highRisk": "High Risk",
-    "mediumRisk": "Medium Risk",
-    "lowRisk": "Low Risk"
-  },
-
-  "security": {
-    "title": "Security Center",
-    "password": "Password Security",
-    "otp": "OTP Security",
-    "links": "Suspicious Link Safety",
-    "banking": "Payment & Banking Safety",
-    "recovery": "Account Recovery",
-    "tip": "Security Tip"
-  },
-
-  "device": {
-    "title": "Device Security",
-    "subtitle": "Monitor important security signals on your device.",
-    "securityStatus": "Security Status",
-    "protected": "Protected",
-    "attention": "Attention Required",
-    "checkDevice": "Check Device"
-  },
-
-  "contact": {
-    "title": "Contact Trust AI",
-    "subtitle": "Have a question or need help?",
-    "name": "Name",
-    "email": "Email",
-    "message": "Message",
-    "send": "Send Message",
-    "success": "Your message has been sent."
-  },
-
-  "risk": {
-    "safe": "Safe",
-    "low": "Low Risk",
-    "medium": "Medium Risk",
-    "high": "High Risk",
-    "critical": "Critical Risk"
+    "deviceTitle": "Device Security",
+    "deviceDescription": "Review active permissions, device status, and security configurations to keep your phone protected."
   },
 
   "footer": {
-    "copyright": "© 2026 Trust AI. All rights reserved.",
-    "privacy": "Privacy",
-    "terms": "Terms",
-    "security": "Security"
+    "description": "Your real-time online scam and threat protection assistant.",
+    "copyright": "© 2026 TrustAI. All rights reserved."
+  },
+
+  "accessibility": {
+    "openMenu": "Open menu",
+    "openProfile": "Open profile",
+    "profile": "Profile",
+    "language": "Language"
   }
 }
