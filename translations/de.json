@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "message": "Nachrichtenprüfung",
+    "conversation": "Gesprächsprüfung",
+    "website": "Website-Prüfung",
+    "device": "Gerätesicherheit",
+    "protection": "TrustAI-Schutz",
+    "plans": "Tarif upgraden",
+    "security": "Sicherheitscenter",
+    "alerts": "Betrugswarnungen",
+    "report": "Betrug melden",
+    "contact": "TrustAI kontaktieren",
+    "settings": "Einstellungen & Datenschutz",
+    "logout": "Abmelden"
+  },
+
+  "menu": {
+    "subtitle": "Schutz vor Online-Betrug"
+  },
+
+  "home": {
+    "titleStart": "Betrügern immer einen Schritt",
+    "titleEnd": "voraus.",
+    "description": "Überprüfe verdächtige Nachrichten, Gespräche und Websites auf typische Warnsignale, bevor du handelst. Entdecke den TrustAI-Schutz für zusätzliche Sicherheitsfunktionen.",
+    "checkSomething": "Etwas überprüfen",
+    "security": "Sicherheit",
+
+    "messageTitle": "Nachrichtenprüfung",
+    "messageDescription": "Überprüfe eine verdächtige Nachricht auf Anzeichen von Betrug, Phishing, Identitätsmissbrauch und Zahlungsbetrug.",
+
+    "conversationTitle": "Gesprächsprüfung",
+    "conversationDescription": "Analysiere ein Gespräch auf verdächtige Muster, die sich im Laufe der Zeit entwickeln können.",
+
+    "websiteTitle": "Website-Prüfung",
+    "websiteDescription": "Überprüfe eine Website-Adresse auf typische Warnsignale verdächtiger Websites.",
+
+    "protectionTitle": "TrustAI-Schutz",
+    "protectionDescription": "Entdecke die TrustAI-Sicherheitsfunktionen, die dazu beitragen, deine Konten, Geräte und Online-Aktivitäten besser zu schützen.",
+
+    "deviceTitle": "Gerätesicherheit",
+    "deviceDescription": "Überprüfe aktive Berechtigungen, den Gerätestatus und Sicherheitseinstellungen, um dein Telefon zu schützen."
+  },
+
+  "footer": {
+    "description": "Dein Echtzeit-Assistent zum Schutz vor Online-Betrug und Bedrohungen.",
+    "copyright": "© 2026 TrustAI. Alle Rechte vorbehalten."
+  },
+
+  "accessibility": {
+    "openMenu": "Menü öffnen",
+    "openProfile": "Profil öffnen",
+    "profile": "Profil",
+    "language": "Sprache"
+  }
+}
