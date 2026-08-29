@@ -31,36 +31,36 @@
 
         en: {
             name: "English",
-            flag: "🇬🇧"
+            flag: "🇺🇸"
         },
 
         fr: {
-            name: "Français",
+            name: "France",
             flag: "🇫🇷"
         },
 
         de: {
-            name: "Deutsch",
+            name: "Germany",
             flag: "🇩🇪"
         },
 
         es: {
-            name: "Español",
+            name: "Spain",
             flag: "🇪🇸"
         },
 
         it: {
-            name: "Italiano",
+            name: "Italian",
             flag: "🇮🇹"
         },
 
         pt: {
-            name: "Português",
+            name: "Portugal",
             flag: "🇵🇹"
         },
 
         nl: {
-            name: "Nederlands",
+            name: "Nederland",
             flag: "🇳🇱"
         }
 
