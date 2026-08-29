@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Home",
+    "message": "Berichtencontrole",
+    "conversation": "Gesprekscontrole",
+    "website": "Websitecontrole",
+    "device": "Apparaatbeveiliging",
+    "protection": "TrustAI-bescherming",
+    "plans": "Abonnement upgraden",
+    "security": "Beveiligingscentrum",
+    "alerts": "Fraudewaarschuwingen",
+    "report": "Fraude melden",
+    "contact": "Contact opnemen met TrustAI",
+    "settings": "Instellingen en privacy",
+    "logout": "Uitloggen"
+  },
+
+  "menu": {
+    "subtitle": "Online bescherming tegen fraude"
+  },
+
+  "home": {
+    "titleStart": "Blijf fraude een stap voor",
+    "titleEnd": "met TrustAI.",
+    "description": "Controleer verdachte berichten, gesprekken en websites op veelvoorkomende waarschuwingssignalen voordat je actie onderneemt. Ontdek TrustAI-bescherming voor extra beveiligingsfuncties.",
+    "checkSomething": "Iets controleren",
+    "security": "Beveiliging",
+
+    "messageTitle": "Berichtencontrole",
+    "messageDescription": "Controleer een verdacht bericht op signalen van fraude, phishing, imitatie en betalingsfraude.",
+
+    "conversationTitle": "Gesprekscontrole",
+    "conversationDescription": "Analyseer een gesprek op verdachte patronen die zich in de loop van de tijd kunnen ontwikkelen.",
+
+    "websiteTitle": "Websitecontrole",
+    "websiteDescription": "Controleer een websiteadres op veelvoorkomende waarschuwingssignalen van verdachte websites.",
+
+    "protectionTitle": "TrustAI-bescherming",
+    "protectionDescription": "Ontdek de beveiligingsfuncties van TrustAI die zijn ontworpen om je accounts, apparaten en online activiteiten beter te beschermen.",
+
+    "deviceTitle": "Apparaatbeveiliging",
+    "deviceDescription": "Controleer actieve machtigingen, de status van je apparaat en beveiligingsinstellingen om je telefoon te beschermen."
+  },
+
+  "footer": {
+    "description": "Je realtime assistent voor bescherming tegen online fraude en bedreigingen.",
+    "copyright": "© 2026 TrustAI. Alle rechten voorbehouden."
+  },
+
+  "accessibility": {
+    "openMenu": "Menu openen",
+    "openProfile": "Profiel openen",
+    "profile": "Profiel",
+    "language": "Taal"
+  }
+}
