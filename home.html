@@ -1,1382 +1,2144 @@
-<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
-content="width=device-width, initial-scale=1.0">
-
-<title>TrustAI - Home</title>  <style>  
-  
-:root {  
-    --primary: #6366f1;  
-    --primary-glow: rgba(99, 102, 241, 0.15);  
-    --bg-main: #090d16;  
-    --bg-card: rgba(17, 24, 39, 0.75);  
-    --bg-side: #0f172a;  
-    --text-main: #f8fafc;  
-    --text-muted: #94a3b8;  
-    --border-color: rgba(255, 255, 255, 0.08);  
-    --radius-lg: 20px;  
-    --radius-md: 14px;  
-}  
-  
-* {  
-    box-sizing: border-box;  
-    -webkit-tap-highlight-color: transparent;  
-}  
-  
-html {  
-    scroll-behavior: smooth;  
-}  
-  
-body {  
-    margin: 0;  
-    font-family: Inter, system-ui, -apple-system,  
-        BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;  
-  
-    background:  
-        radial-gradient(  
-            circle at 10% 0%,  
-            rgba(99, 102, 241, 0.12),  
-            transparent 40%  
-        ),  
-        radial-gradient(  
-            circle at 90% 20%,  
-            rgba(14, 165, 233, 0.08),  
-            transparent 40%  
-        ),  
-        var(--bg-main);  
-  
-    color: var(--text-main);  
-    line-height: 1.6;  
-    min-height: 100vh;  
-}  
-  
-.page {  
-    width: min(1050px, calc(100% - 32px));  
-    margin: auto;  
-    padding-bottom: 40px;  
-}  
-  
-/* HEADER */  
-  
-.header {  
-    display: flex;  
-    align-items: center;  
-    justify-content: space-between;  
-    gap: 16px;  
-    padding: 24px 0 16px;  
-}  
-  
-/* PROFILE */  
-  
-.profile-button {  
-    width: 48px;  
-    height: 48px;  
-    padding: 0;  
-  
-    border: 1px solid var(--border-color);  
-    border-radius: 50%;  
-  
-    background: transparent;  
-    cursor: pointer;  
-    overflow: hidden;  
-    flex-shrink: 0;  
-  
-    transition:  
-        transform 0.2s ease,  
-        border-color 0.2s ease;  
-}  
-  
-.profile-button:hover {  
-    transform: scale(1.05);  
-    border-color: var(--primary);  
-}  
-  
-.default-avatar {  
-    width: 100%;  
-    height: 100%;  
-  
-    background: #ffffff;  
-  
-    display: flex;  
-    flex-direction: column;  
-    align-items: center;  
-    justify-content: flex-end;  
-  
-    overflow: hidden;  
-  
-    background-size: cover;  
-    background-position: center;  
-    background-repeat: no-repeat;  
-}  
-  
-.avatar-head {  
-    width: 15px;  
-    height: 15px;  
-  
-    background: #000000;  
-    border-radius: 50%;  
-  
-    margin-bottom: 3px;  
-}  
-  
-.avatar-body {  
-    width: 30px;  
-    height: 18px;  
-  
-    background: #000000;  
-    border-radius: 16px 16px 0 0;  
-}  
-  
-/* BRAND */  
-  
-.brand {  
-    display: flex;  
-    align-items: center;  
-    gap: 12px;  
-}  
-  
-.brand-shield {  
-    width: 48px;  
-    height: 48px;  
-  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-  
-    border-radius: 14px;  
-  
-    background:  
-        linear-gradient(  
-            135deg,  
-            #6366f1,  
-            #3b82f6  
-        );  
-  
-    color: white;  
-    font-size: 24px;  
-  
-    box-shadow:  
-        0 10px 25px -5px  
-        rgba(99, 102, 241, 0.4);  
-}  
-  
-.brand-name {  
-    font-size: 26px;  
-    font-weight: 900;  
-    letter-spacing: -0.5px;  
-  
-    background:  
-        linear-gradient(  
-            135deg,  
-            #f8fafc,  
-            #94a3b8  
-        );  
-  
-    -webkit-background-clip: text;  
-    -webkit-text-fill-color: transparent;  
-}  
-  
-/* MENU BUTTON */  
-  
-.menu-button {  
-    width: 48px;  
-    height: 48px;  
-  
-    border: 1px solid var(--border-color);  
-    border-radius: 14px;  
-  
-    background: rgba(15, 23, 42, 0.95);  
-  
-    display: flex;  
-    flex-direction: column;  
-    justify-content: center;  
-    align-items: center;  
-  
-    gap: 5px;  
-  
-    cursor: pointer;  
-  
-    box-shadow:  
-        0 10px 25px -5px rgba(0,0,0,0.5);  
-  
-    transition:  
-        transform 0.2s ease,  
-        border-color 0.2s ease;  
-  
-    flex-shrink: 0;  
-  
-    position: relative;  
-    z-index: 1101;  
-  
-    padding: 0;  
-  
-    appearance: none;  
-    -webkit-appearance: none;  
-}  
-  
-.menu-button:hover {  
-    border-color: var(--primary);  
-    transform: translateY(-2px);  
-}  
-  
-.menu-button:active {  
-    transform: scale(0.96);  
-}  
-  
-.menu-button span {  
-    display: block;  
-  
-    width: 22px;  
-    height: 3px;  
-  
-    border-radius: 3px;  
-  
-    background: #ffffff;  
-  
-    transition:  
-        transform 0.2s ease,  
-        opacity 0.2s ease;  
-}  
-  
-/* SIDE MENU */  
-  
-.side-menu {  
-    position: fixed;  
-  
-    top: 0;  
-    left: 0;  
-  
-    width: 300px;  
-    height: 100vh;  
-    height: 100dvh;  
-  
-    background: var(--bg-side);  
-  
-    border-right: 1px solid var(--border-color);  
-  
-    z-index: 1100;  
-  
-    padding: 30px 20px;  
-  
-    overflow-y: auto;  
-  
-    box-shadow:  
-        15px 0 30px rgba(0,0,0,0.3);  
-  
-    transform: translateX(-105%);  
-  
-    transition:  
-        transform 0.3s ease;  
-  
-    visibility: hidden;  
-    pointer-events: none;  
-}  
-  
-.side-menu.open {  
-    transform: translateX(0);  
-  
-    visibility: visible;  
-    pointer-events: auto;  
-}  
-  
-.menu-header {  
-    display: flex;  
-    align-items: center;  
-  
-    gap: 12px;  
-  
-    padding-bottom: 20px;  
-  
-    border-bottom:  
-        1px solid var(--border-color);  
-  
-    margin-bottom: 16px;  
-}  
-  
-.menu-logo {  
-    font-size: 22px;  
-    font-weight: 800;  
-  
-    background:  
-        linear-gradient(  
-            135deg,  
-            #818cf8,  
-            #38bdf8  
-        );  
-  
-    -webkit-background-clip: text;  
-    -webkit-text-fill-color: transparent;  
-}  
-  
-.menu-subtitle {  
-    color: var(--text-muted);  
-    font-size: 12px;  
-}  
-  
-.menu-link {  
-    display: flex;  
-    align-items: center;  
-  
-    gap: 14px;  
-  
-    width: 100%;  
-  
-    padding: 13px 14px;  
-  
-    margin-bottom: 6px;  
-  
-    border-radius: var(--radius-md);  
-  
-    text-decoration: none;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 14px;  
-    font-weight: 600;  
-  
-    transition:  
-        background 0.2s ease,  
-        color 0.2s ease,  
-        transform 0.2s ease;  
-}  
-  
-.menu-link:hover {  
-    background:  
-        rgba(255, 255, 255, 0.05);  
-  
-    color: var(--text-main);  
-  
-    transform: translateX(4px);  
-}  
-  
-.menu-icon {  
-    width: 24px;  
-    text-align: center;  
-    font-size: 17px;  
-}  
-  
-.menu-divider {  
-    height: 1px;  
-  
-    background:  
-        var(--border-color);  
-  
-    margin: 18px 0;  
-}  
-  
-/* MENU OVERLAY */  
-  
-.menu-overlay {  
-    position: fixed;  
-  
-    inset: 0;  
-  
-    background:  
-        rgba(0,0,0,0.7);  
-  
-    backdrop-filter: blur(4px);  
-    -webkit-backdrop-filter: blur(4px);  
-  
-    z-index: 1050;  
-  
-    opacity: 0;  
-  
-    visibility: hidden;  
-  
-    pointer-events: none;  
-  
-    transition:  
-        opacity 0.3s ease,  
-        visibility 0.3s ease;  
-}  
-  
-.menu-overlay.show {  
-    opacity: 1;  
-  
-    visibility: visible;  
-  
-    pointer-events: auto;  
-}  
-  
-/* HERO */  
-  
-.hero {  
-    position: relative;  
-  
-    overflow: hidden;  
-  
-    margin-top: 12px;  
-  
-    padding: 40px 32px;  
-  
-    border:  
-        1px solid var(--border-color);  
-  
-    border-radius:  
-        var(--radius-lg);  
-  
-    background:  
-        var(--bg-card);  
-  
-    backdrop-filter: blur(16px);  
-    -webkit-backdrop-filter: blur(16px);  
-  
-    box-shadow:  
-        0 20px 40px -15px  
-        rgba(0,0,0,0.4);  
-}  
-  
-.hero::after {  
-    content: "";  
-  
-    position: absolute;  
-  
-    width: 200px;  
-    height: 200px;  
-  
-    right: -60px;  
-    top: -60px;  
-  
-    border-radius: 50%;  
-  
-    background:  
-        radial-gradient(  
-            circle,  
-            rgba(99, 102, 241, 0.18),  
-            transparent 70%  
-        );  
-}  
-  
-.hero h1 {  
-    position: relative;  
-    z-index: 1;  
-  
-    max-width: 650px;  
-  
-    margin: 0 0 16px;  
-  
-    font-size:  
-        clamp(32px, 5.5vw, 46px);  
-  
-    line-height: 1.15;  
-  
-    letter-spacing: -1px;  
-  
-    color: var(--text-main);  
-  
-    font-weight: 800;  
-}  
-  
-.hero h1 span {  
-    background:  
-        linear-gradient(  
-            135deg,  
-            #818cf8,  
-            #38bdf8  
-        );  
-  
-    -webkit-background-clip: text;  
-    -webkit-text-fill-color: transparent;  
-}  
-  
-.hero p {  
-    position: relative;  
-    z-index: 1;  
-  
-    max-width: 720px;  
-  
-    margin: 0;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 15.5px;  
-  
-    line-height: 1.65;  
-}  
-  
-/* SECTION TITLE */  
-  
-.section-title {  
-    display: flex;  
-    align-items: center;  
-  
-    gap: 12px;  
-  
-    margin: 40px 0 20px;  
-  
-    font-size: 22px;  
-  
-    font-weight: 800;  
-  
-    color: var(--text-main);  
-  
-    letter-spacing: -0.3px;  
-}  
-  
-.section-icon {  
-    width: 38px;  
-    height: 38px;  
-  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-  
-    border-radius: 12px;  
-  
-    background:  
-        var(--primary-glow);  
-  
-    color: var(--primary);  
-  
-    font-size: 18px;  
-  
-    border:  
-        1px solid  
-        rgba(99, 102, 241, 0.2);  
-}  
-  
-/* CARDS */  
-  
-.cards {  
-    display: grid;  
-  
-    grid-template-columns:  
-        repeat(  
-            auto-fit,  
-            minmax(280px, 1fr)  
-        );  
-  
-    gap: 20px;  
-}  
-  
-.card {  
-    position: relative;  
-  
-    overflow: hidden;  
-  
-    padding: 28px;  
-  
-    min-height: 200px;  
-  
-    border:  
-        1px solid var(--border-color);  
-  
-    border-radius:  
-        var(--radius-lg);  
-  
-    background:  
-        var(--bg-card);  
-  
-    backdrop-filter: blur(16px);  
-    -webkit-backdrop-filter: blur(16px);  
-  
-    text-decoration: none;  
-  
-    box-shadow:  
-        0 10px 30px  
-        rgba(0,0,0,0.2);  
-  
-    transition:  
-        transform 0.25s ease,  
-        box-shadow 0.25s ease,  
-        border-color 0.25s ease;  
-}  
-  
-.card:hover {  
-    transform: translateY(-5px);  
-  
-    border-color:  
-        rgba(99, 102, 241, 0.4);  
-  
-    box-shadow:  
-        0 20px 40px -10px  
-        rgba(0,0,0,0.4);  
-}  
-  
-.card::before {  
-    content: "";  
-  
-    position: absolute;  
-  
-    left: 0;  
-    top: 0;  
-  
-    width: 100%;  
-    height: 3px;  
-  
-    background:  
-        var(--primary);  
-}  
-  
-/* CARD COLORS */  
-  
-.message-card::before {  
-    background: #6366f1;  
-}  
-  
-.conversation-card::before {  
-    background: #3b82f6;  
-}  
-  
-.website-card::before {  
-    background: #06b6d4;  
-}  
-  
-.protection-card::before {  
-    background: #8b5cf6;  
-}  
-  
-.security-card::before {  
-    background: #10b981;  
-}  
-  
-/* CARD ICON */  
-  
-.card-icon {  
-    width: 48px;  
-    height: 48px;  
-  
-    display: flex;  
-    align-items: center;  
-    justify-content: center;  
-  
-    margin-bottom: 18px;  
-  
-    border-radius:  
-        var(--radius-md);  
-  
-    background:  
-        rgba(255,255,255,0.04);  
-  
-    border:  
-        1px solid var(--border-color);  
-  
-    font-size: 22px;  
-}  
-  
-.card h2 {  
-    margin: 0 0 8px;  
-  
-    color: var(--text-main);  
-  
-    font-size: 19px;  
-  
-    font-weight: 750;  
-  
-    letter-spacing: -0.2px;  
-}  
-  
-.card p {  
-    margin: 0;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 14.5px;  
-  
-    line-height: 1.6;  
-}  
-  
-/* FOOTER */  
-  
-footer {  
-    margin-top: 48px;  
-  
-    padding:  
-        28px 0 35px;  
-  
-    border-top:  
-        1px solid var(--border-color);  
-  
-    text-align: center;  
-  
-    color: var(--text-muted);  
-  
-    font-size: 13.5px;  
-}  
-  
-.footer-brand {  
-    font-weight: 800;  
-  
-    color: var(--text-main);  
-  
-    margin-bottom: 4px;  
-}  
-  
-/* MOBILE */  
-  
-@media (max-width: 700px) {  
-  
-    .page {  
-        width:  
-            calc(100% - 28px);  
-    }  
-  
-    .header {  
-        padding-top: 20px;  
-    }  
-  
-    .brand-name {  
-        font-size: 24px;  
-    }  
-  
-    .hero {  
-        padding: 28px 22px;  
-  
-        border-radius: 18px;  
-    }  
-  
-    .hero h1 {  
-        font-size: 32px;  
-    }  
-  
-    .hero p {  
-        font-size: 14.5px;  
-    }  
-  
-    .cards {  
-        grid-template-columns: 1fr;  
-    }  
-  
-    .card {  
-        min-height: 180px;  
-  
-        padding: 22px;  
-    }  
-  
-    .side-menu {  
-        width: 280px;  
-    }  
-}  
-  
-</style>  </head>  <body>  <!-- SIDE MENU -->  <nav id="sideMenu" class="side-menu">  <div class="menu-header">  
-
-    <div>  
-
-        <div class="menu-logo">  
-            🛡️ TrustAI  
-        </div>  
-
-        <div class="menu-subtitle">  
-            Online Scam Protection  
-        </div>  
-
-    </div>  
-
-</div>  
-
-
-<a href="home.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        🏠  
-    </span>  
-
-    Home  
-
-</a>  
-
-
-<a href="message.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        🔍  
-    </span>  
-
-    Message Checker  
-
-</a>  
-
-
-<a href="conversation.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        💬  
-    </span>  
-
-    Conversation Checker  
-
-</a>  
-
-
-<a href="website.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        🌐  
-    </span>  
-
-    Website Checker  
-
-</a>  
-
-
-<a href="device.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        📱  
-    </span>  
-
-    Device Security  
-
-</a>  
-
-
-<a href="./protection.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        🛡️  
-    </span>  
-
-    TrustAI Protection  
-
-</a>  
-
-<a href="./plans.html" class="menu-link">  
-<span class="menu-icon">💎</span>  
-Upgrade Plans  
-</a>  
-  
-<a href="security.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        🛡️  
-    </span>  
-
-    Security Center  
-
-</a>  
-
-
-<div class="menu-divider"></div>  
-
-
-<a href="alerts.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        🚨  
-    </span>  
-
-    Scam Alerts  
-
-</a>  
-
-
-<a href="report.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        📢  
-    </span>  
-
-    Report a Scam  
-
-</a>  
-
-
-<a href="contact.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        💬  
-    </span>  
-
-    Contact TrustAI  
-
-</a>  
-
-
-<a href="./settings.html" class="menu-link">  
-
-    <span class="menu-icon">  
-        ⚙️  
-    </span>  
-
-    Settings & Privacy  
-
-</a>  
-
-
-<div class="menu-divider"></div>  
-
-
-<a  
-    href="#"  
-    class="menu-link"  
-    onclick="handleLogout(); return false;"  
-    style="color: #f87171;"  
->  
-
-    <span class="menu-icon">  
-        🚪  
-    </span>  
-
-    Log Out  
-
-</a>
-
-</nav>  <!-- MENU OVERLAY -->  <div  
-    id="menuOverlay"  
-    class="menu-overlay">  
-</div>  <!-- MAIN PAGE -->  <div class="page">  <!-- HEADER -->  
-
-<header class="header">  
-
-    <button  
-        id="menuButton"  
-        class="menu-button"  
-        type="button"  
-        aria-label="Open menu"  
-        aria-expanded="false"  
-    >  
-
-        <span></span>  
-        <span></span>  
-        <span></span>  
-
-    </button>  
-
-
-    <div class="brand">  
-
-        <div class="brand-shield">  
-            🛡️  
-        </div>  
-
-        <div class="brand-name">  
-            TrustAI  
-        </div>  
-
-    </div>  
-
-
-    <button  
-        class="profile-button"  
-        type="button"  
-        onclick="window.location.href='profile.html'"  
-        aria-label="Open profile"  
-    >  
-
-        <div  
-            class="default-avatar"  
-            id="homeProfileAvatar"  
-            aria-label="Profile"  
-        >  
-
-            <div class="avatar-head"></div>  
-
-            <div class="avatar-body"></div>  
-
-        </div>  
-
-    </button>  
-
-</header>  
-
-
-<!-- HERO -->  
-
-<section class="hero">  
-
-    <h1>  
-        Stay one step ahead of  
-        <span>scams.</span>  
-    </h1>  
-
-    <p>  
-        Check suspicious messages, conversations and  
-        websites for common warning signs before you  
-        take action. Explore TrustAI Protection for  
-        additional security features.  
-    </p>  
-
-</section>  
-
-
-<!-- CHECK SOMETHING -->  
-
-<h2 class="section-title">  
-
-    <span class="section-icon">  
-        🔎  
-    </span>  
-
-    Check Something  
-
-</h2>  
-
-
-<div class="cards">  
-
-    <!-- MESSAGE CHECKER -->  
-
-    <a  
-        href="message.html"  
-        class="card message-card"  
-    >  
-
-        <div class="card-icon">  
-            🔍  
-        </div>  
-
-        <h2>  
-            Message Checker  
-        </h2>  
-
-        <p>  
-            Check a suspicious message for scam,  
-            phishing, impersonation and payment  
-            warning signs.  
-        </p>  
-
-    </a>  
-
-
-    <!-- CONVERSATION CHECKER -->  
-
-    <a  
-        href="conversation.html"  
-        class="card conversation-card"  
-    >  
-
-        <div class="card-icon">  
-            💬  
-        </div>  
-
-        <h2>  
-            Conversation Checker  
-        </h2>  
-
-        <p>  
-            Analyze a conversation for suspicious  
-            patterns that may develop over time.  
-        </p>  
-
-    </a>  
-
-
-    <!-- WEBSITE CHECKER -->  
-
-    <a  
-        href="website.html"  
-        class="card website-card"  
-    >  
-
-        <div class="card-icon">  
-            🌐  
-        </div>  
-
-        <h2>  
-            Website Checker  
-        </h2>  
-
-        <p>  
-            Check a website address for common  
-            suspicious website warning signs.  
-        </p>  
-
-    </a>  
-
-
-    <!-- TRUSTAI PROTECTION -->  
-
-    <a  
-        href="protection.html"  
-        class="card protection-card"  
-    >  
-
-        <div class="card-icon">  
-            🛡️  
-        </div>  
-
-        <h2>  
-            TrustAI Protection  
-        </h2>  
-
-        <p>  
-            Explore TrustAI protection features  
-            designed to help keep your accounts,  
-            devices and online activity safer.  
-        </p>  
-
-    </a>  
-
-</div>  
-
-
-<!-- SECURITY -->  
-
-<h2 class="section-title">  
-
-    <span class="section-icon">  
-        🛡️  
-    </span>  
-
-    Security  
-
-</h2>  
-
-
-<div class="cards">  
-
-    <a  
-        href="device.html"  
-        class="card security-card"  
-    >  
-
-        <div class="card-icon">  
-            📱  
-        </div>  
-
-        <h2>  
-            Device Security  
-        </h2>  
-
-        <p>  
-            Review active permissions, device  
-            status, and security configurations  
-            to keep your phone protected.  
-        </p>  
-
-    </a>  
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>TrustAI - Home</title>
+
+<style>
+
+/* =====================================================
+   TRUSTAI HOME
+   ===================================================== */
+
+:root {
+
+    --primary: #6366f1;
+    --primary-glow: rgba(99, 102, 241, 0.15);
+
+    --bg-main: #090d16;
+    --bg-card: rgba(17, 24, 39, 0.75);
+    --bg-side: #0f172a;
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+
+    --border-color: rgba(255, 255, 255, 0.08);
+
+    --radius-lg: 20px;
+    --radius-md: 14px;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(99, 102, 241, 0.12),
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(14, 165, 233, 0.08),
+            transparent 40%
+        ),
+
+        var(--bg-main);
+
+    color: var(--text-main);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+}
+
+.page {
+
+    width:
+        min(
+            1050px,
+            calc(100% - 32px)
+        );
+
+    margin: auto;
+
+    padding-bottom: 40px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding: 24px 0 16px;
+}
+
+
+/* =====================================================
+   PROFILE
+   ===================================================== */
+
+.profile-button {
+
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.profile-button:hover {
+
+    transform: scale(1.05);
+
+    border-color:
+        var(--primary);
+}
+
+.default-avatar {
+
+    width: 100%;
+    height: 100%;
+
+    background: #ffffff;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    overflow: hidden;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+.avatar-head {
+
+    width: 15px;
+    height: 15px;
+
+    background: #000000;
+
+    border-radius: 50%;
+
+    margin-bottom: 3px;
+}
+
+.avatar-body {
+
+    width: 30px;
+    height: 18px;
+
+    background: #000000;
+
+    border-radius:
+        16px 16px 0 0;
+}
+
+
+/* =====================================================
+   BRAND
+   ===================================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.brand-shield {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #3b82f6
+        );
+
+    color: white;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 10px 25px -5px
+        rgba(99, 102, 241, 0.4);
+}
+
+.brand-name {
+
+    font-size: 26px;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc,
+            #94a3b8
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* =====================================================
+   MENU BUTTON
+   ===================================================== */
+
+.menu-button {
+
+    width: 48px;
+    height: 48px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius: 14px;
+
+    background:
+        rgba(15, 23, 42, 0.95);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px -5px
+        rgba(0,0,0,0.5);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    z-index: 1101;
+
+    padding: 0;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+}
+
+.menu-button:hover {
+
+    border-color:
+        var(--primary);
+
+    transform:
+        translateY(-2px);
+}
+
+.menu-button:active {
+
+    transform:
+        scale(0.96);
+}
+
+.menu-button span {
+
+    display: block;
+
+    width: 22px;
+    height: 3px;
+
+    border-radius: 3px;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* =====================================================
+   SIDE MENU
+   ===================================================== */
+
+.side-menu {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 300px;
+
+    height: 100vh;
+    height: 100dvh;
+
+    background:
+        var(--bg-side);
+
+    border-right:
+        1px solid var(--border-color);
+
+    z-index: 1100;
+
+    padding: 30px 20px;
+
+    overflow-y: auto;
+
+    box-shadow:
+        15px 0 30px
+        rgba(0,0,0,0.3);
+
+    transform:
+        translateX(-105%);
+
+    transition:
+        transform 0.3s ease;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.side-menu.open {
+
+    transform:
+        translateX(0);
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+.menu-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-bottom: 20px;
+
+    border-bottom:
+        1px solid var(--border-color);
+
+    margin-bottom: 16px;
+}
+
+.menu-logo {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.menu-subtitle {
+
+    color:
+        var(--text-muted);
+
+    font-size: 12px;
+}
+
+.menu-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: 100%;
+
+    padding: 13px 14px;
+
+    margin-bottom: 6px;
+
+    border-radius:
+        var(--radius-md);
+
+    text-decoration: none;
+
+    color:
+        var(--text-muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.menu-link:hover {
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color:
+        var(--text-main);
+
+    transform:
+        translateX(4px);
+}
+
+.menu-icon {
+
+    width: 24px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+.menu-divider {
+
+    height: 1px;
+
+    background:
+        var(--border-color);
+
+    margin: 18px 0;
+}
+
+
+/* =====================================================
+   MENU OVERLAY
+   ===================================================== */
+
+.menu-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,0.7);
+
+    backdrop-filter:
+        blur(4px);
+
+    -webkit-backdrop-filter:
+        blur(4px);
+
+    z-index: 1050;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.menu-overlay.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    margin-top: 12px;
+
+    padding: 40px 32px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-card);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        0 20px 40px -15px
+        rgba(0,0,0,0.4);
+}
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -60px;
+    top: -60px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,0.18),
+            transparent 70%
+        );
+}
+
+.hero h1 {
+
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 650px;
+
+    margin:
+        0 0 16px;
+
+    font-size:
+        clamp(
+            32px,
+            5.5vw,
+            46px
+        );
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+
+    color:
+        var(--text-main);
+
+    font-weight: 800;
+}
+
+.hero h1 span {
+
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #38bdf8
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 720px;
+
+    margin: 0;
+
+    color:
+        var(--text-muted);
+
+    font-size: 15.5px;
+
+    line-height: 1.65;
+}
+
+
+/* =====================================================
+   UPGRADE PLAN
+   ===================================================== */
+
+.upgrade-section {
+
+    position: relative;
+
+    overflow: hidden;
+
+    margin-top: 26px;
+
+    padding: 28px;
+
+    border:
+        1px solid
+        rgba(129,140,248,0.35);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+
+        radial-gradient(
+            circle at 90% 0%,
+            rgba(99,102,241,0.20),
+            transparent 45%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(30,41,59,0.92),
+            rgba(15,23,42,0.96)
+        );
+
+    box-shadow:
+        0 20px 45px
+        rgba(0,0,0,0.30);
+}
+
+.upgrade-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6366f1,
+            #38bdf8,
+            #8b5cf6
+        );
+}
+
+.upgrade-content {
+
+    position: relative;
+
+    z-index: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.upgrade-text {
+
+    flex: 1;
+}
+
+.upgrade-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        6px 11px;
+
+    margin-bottom: 12px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(99,102,241,0.14);
+
+    border:
+        1px solid
+        rgba(129,140,248,0.28);
+
+    color:
+        #a5b4fc;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    text-transform: uppercase;
+}
+
+.upgrade-section h2 {
+
+    margin:
+        0 0 8px;
+
+    font-size: 25px;
+
+    line-height: 1.2;
+
+    color:
+        var(--text-main);
+
+    font-weight: 800;
+}
+
+.upgrade-section p {
+
+    margin: 0;
+
+    max-width: 650px;
+
+    color:
+        var(--text-muted);
+
+    font-size: 14.5px;
+
+    line-height: 1.6;
+}
+
+.upgrade-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 165px;
+
+    padding:
+        13px 20px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #3b82f6
+        );
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 25px
+        rgba(59,130,246,0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.upgrade-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 16px 30px
+        rgba(59,130,246,0.35);
+}
+
+.upgrade-button:active {
+
+    transform:
+        scale(0.97);
+}
+
+.upgrade-features {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px 16px;
+
+    margin-top: 16px;
+
+    color:
+        #cbd5e1;
+
+    font-size: 12.5px;
+
+    font-weight: 600;
+}
+
+.upgrade-feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.upgrade-feature span {
+
+    color:
+        #34d399;
+
+    font-weight: 900;
+}
+
+
+/* =====================================================
+   SECTION TITLE
+   ===================================================== */
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin:
+        40px 0 20px;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    color:
+        var(--text-main);
+
+    letter-spacing: -0.3px;
+}
+
+.section-icon {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        var(--primary-glow);
+
+    color:
+        var(--primary);
+
+    font-size: 18px;
+
+    border:
+        1px solid
+        rgba(99,102,241,0.2);
+}
+
+
+/* =====================================================
+   CARDS
+   ===================================================== */
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 28px;
+
+    min-height: 200px;
+
+    border:
+        1px solid var(--border-color);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--bg-card);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.card:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(99,102,241,0.4);
+
+    box-shadow:
+        0 20px 40px -10px
+        rgba(0,0,0,0.4);
+}
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        var(--primary);
+}
+
+
+/* CARD COLORS */
+
+.message-card::before {
+    background: #6366f1;
+}
+
+.conversation-card::before {
+    background: #3b82f6;
+}
+
+.website-card::before {
+    background: #06b6d4;
+}
+
+.protection-card::before {
+    background: #8b5cf6;
+}
+
+.security-card::before {
+    background: #10b981;
+}
+
+
+/* CARD ICON */
+
+.card-icon {
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid var(--border-color);
+
+    font-size: 22px;
+}
+
+.card h2 {
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--text-main);
+
+    font-size: 19px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.2px;
+}
+
+.card p {
+
+    margin: 0;
+
+    color:
+        var(--text-muted);
+
+    font-size: 14.5px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+
+    margin-top: 48px;
+
+    padding:
+        28px 0 35px;
+
+    border-top:
+        1px solid var(--border-color);
+
+    text-align: center;
+
+    color:
+        var(--text-muted);
+
+    font-size: 13.5px;
+}
+
+.footer-brand {
+
+    font-weight: 800;
+
+    color:
+        var(--text-main);
+
+    margin-bottom: 4px;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+    .page {
+
+        width:
+            calc(100% - 28px);
+    }
+
+    .header {
+
+        padding-top: 20px;
+    }
+
+    .brand-name {
+
+        font-size: 24px;
+    }
+
+    .hero {
+
+        padding:
+            28px 22px;
+
+        border-radius: 18px;
+    }
+
+    .hero h1 {
+
+        font-size: 32px;
+    }
+
+    .hero p {
+
+        font-size: 14.5px;
+    }
+
+    .upgrade-section {
+
+        padding: 22px;
+    }
+
+    .upgrade-content {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 20px;
+    }
+
+    .upgrade-section h2 {
+
+        font-size: 22px;
+    }
+
+    .upgrade-button {
+
+        width: 100%;
+    }
+
+    .upgrade-features {
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .cards {
+
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+
+        min-height: 180px;
+
+        padding: 22px;
+    }
+
+    .side-menu {
+
+        width: 280px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDE MENU
+     ===================================================== -->
+
+<nav id="sideMenu" class="side-menu">
+
+    <div class="menu-header">
+
+        <div>
+
+            <div class="menu-logo">
+                🛡️ TrustAI
+            </div>
+
+            <div class="menu-subtitle">
+                Online Scam Protection
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <a href="home.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            🏠
+        </span>
+
+        Home
+
+    </a>
+
+
+    <a href="message.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            🔍
+        </span>
+
+        Message Checker
+
+    </a>
+
+
+    <a href="conversation.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            💬
+        </span>
+
+        Conversation Checker
+
+    </a>
+
+
+    <a href="website.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            🌐
+        </span>
+
+        Website Checker
+
+    </a>
+
+
+    <a href="device.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            📱
+        </span>
+
+        Device Security
+
+    </a>
+
+
+    <a href="./protection.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            🛡️
+        </span>
+
+        TrustAI Protection
+
+    </a>
+
+
+    <a href="./plans.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            💎
+        </span>
+
+        Upgrade Plans
+
+    </a>
+
+
+    <a href="security.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            🛡️
+        </span>
+
+        Security Center
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a href="alerts.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            🚨
+        </span>
+
+        Scam Alerts
+
+    </a>
+
+
+    <a href="report.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            📢
+        </span>
+
+        Report a Scam
+
+    </a>
+
+
+    <a href="contact.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            💬
+        </span>
+
+        Contact TrustAI
+
+    </a>
+
+
+    <a href="./settings.html"
+       class="menu-link">
+
+        <span class="menu-icon">
+            ⚙️
+        </span>
+
+        Settings & Privacy
+
+    </a>
+
+
+    <div class="menu-divider"></div>
+
+
+    <a
+        href="#"
+        class="menu-link"
+        onclick="handleLogout(); return false;"
+        style="color:#f87171;"
+    >
+
+        <span class="menu-icon">
+            🚪
+        </span>
+
+        Log Out
+
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     MENU OVERLAY
+     ===================================================== -->
+
+<div
+    id="menuOverlay"
+    class="menu-overlay">
+</div>
+
+
+<!-- =====================================================
+     MAIN PAGE
+     ===================================================== -->
+
+<div class="page">
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+
+    <button
+        id="menuButton"
+        class="menu-button"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+
+    <div class="brand">
+
+        <div class="brand-shield">
+            🛡️
+        </div>
+
+        <div class="brand-name">
+            TrustAI
+        </div>
+
+    </div>
+
+
+    <button
+        class="profile-button"
+        type="button"
+        onclick="window.location.href='profile.html'"
+        aria-label="Open profile"
+    >
+
+        <div
+            class="default-avatar"
+            id="homeProfileAvatar"
+            aria-label="Profile"
+        >
+
+            <div class="avatar-head"></div>
+
+            <div class="avatar-body"></div>
+
+        </div>
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="hero">
+
+    <h1>
+
+        Stay one step ahead of
+
+        <span>
+            scams.
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        Check suspicious messages,
+        conversations and websites
+        for common warning signs before
+        you take action. Explore TrustAI
+        Protection for additional security
+        features.
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     UPGRADE PLAN
+     ===================================================== -->
+
+<section class="upgrade-section">
+
+    <div class="upgrade-content">
+
+
+        <div class="upgrade-text">
+
+
+            <div class="upgrade-badge">
+
+                💎
+
+                TRUSTAI PRO
+
+            </div>
+
+
+            <h2>
+
+                Upgrade your protection.
+
+            </h2>
+
+
+            <p>
+
+                Unlock enhanced TrustAI protection
+                features and get more tools to help
+                you stay safer against online scams,
+                suspicious activity and digital threats.
+
+            </p>
+
+
+            <div class="upgrade-features">
+
+                <div class="upgrade-feature">
+
+                    <span>✓</span>
+
+                    Advanced Protection
+
+                </div>
+
+
+                <div class="upgrade-feature">
+
+                    <span>✓</span>
+
+                    More Security Tools
+
+                </div>
+
+
+                <div class="upgrade-feature">
+
+                    <span>✓</span>
+
+                    Priority Protection
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <a
+            href="plans.html"
+            class="upgrade-button"
+        >
+
+            💎 Upgrade Plan
+
+            <span>→</span>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CHECK SOMETHING
+     ===================================================== -->
+
+<h2 class="section-title">
+
+    <span class="section-icon">
+        🔎
+    </span>
+
+    Check Something
+
+</h2>
+
+
+<div class="cards">
+
+
+    <!-- MESSAGE CHECKER -->
+
+    <a
+        href="message.html"
+        class="card message-card"
+    >
+
+        <div class="card-icon">
+            🔍
+        </div>
+
+
+        <h2>
+            Message Checker
+        </h2>
+
+
+        <p>
+
+            Check a suspicious message
+            for scam, phishing,
+            impersonation and payment
+            warning signs.
+
+        </p>
+
+    </a>
+
+
+    <!-- CONVERSATION CHECKER -->
+
+    <a
+        href="conversation.html"
+        class="card conversation-card"
+    >
+
+        <div class="card-icon">
+            💬
+        </div>
+
+
+        <h2>
+            Conversation Checker
+        </h2>
+
+
+        <p>
+
+            Analyze a conversation
+            for suspicious patterns
+            that may develop over time.
+
+        </p>
+
+    </a>
+
+
+    <!-- WEBSITE CHECKER -->
+
+    <a
+        href="website.html"
+        class="card website-card"
+    >
+
+        <div class="card-icon">
+            🌐
+        </div>
+
+
+        <h2>
+            Website Checker
+        </h2>
+
+
+        <p>
+
+            Check a website address
+            for common suspicious
+            website warning signs.
+
+        </p>
+
+    </a>
+
+
+    <!-- TRUSTAI PROTECTION -->
+
+    <a
+        href="protection.html"
+        class="card protection-card"
+    >
+
+        <div class="card-icon">
+            🛡️
+        </div>
+
+
+        <h2>
+            TrustAI Protection
+        </h2>
+
+
+        <p>
+
+            Explore TrustAI protection
+            features designed to help
+            keep your accounts, devices
+            and online activity safer.
+
+        </p>
+
+    </a>
 
 </div>
 
-</div>  <!-- FOOTER -->  <footer>  <div class="footer-brand">  
-    TrustAI  
-</div>  
 
-<div>  
-    Your real-time online scam and threat  
-    protection assistant.  
+<!-- =====================================================
+     SECURITY
+     ===================================================== -->
+
+<h2 class="section-title">
+
+    <span class="section-icon">
+        🛡️
+    </span>
+
+    Security
+
+</h2>
+
+
+<div class="cards">
+
+
+    <a
+        href="device.html"
+        class="card security-card"
+    >
+
+        <div class="card-icon">
+            📱
+        </div>
+
+
+        <h2>
+            Device Security
+        </h2>
+
+
+        <p>
+
+            Review active permissions,
+            device status, and security
+            configurations to keep your
+            phone protected.
+
+        </p>
+
+    </a>
+
 </div>
 
-</footer>  
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <div class="footer-brand">
+        TrustAI
+    </div>
+
+
+    <div>
+
+        Your real-time online scam
+        and threat protection assistant.
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     SUPABASE
+     ===================================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="global-language.js"></script>
 
+
 <script>
-    // Your Supabase and page JavaScript goes here
-const SUPABASE_URL =  
-    "https://opyjaljpowzgmkqlmjrb.supabase.co";  
-  
-const SUPABASE_KEY =  
-    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";  
-  
-const supabaseClient =  
-    window.supabase.createClient(  
-        SUPABASE_URL,  
-        SUPABASE_KEY  
-    );  
-  
-  
-async function protectHomePage() {  
-  
-    const { data, error } =  
-        await supabaseClient.auth.getSession();  
-  
-    if (error || !data.session) {  
-  
-        window.location.replace(  
-            "./login.html"  
-        );  
-  
-        return;  
-    }  
-  
-}  
-  
-  
-protectHomePage();  
-  
-  
-/* MENU */  
-  
-const menuButton =  
-    document.getElementById("menuButton");  
-  
-const sideMenu =  
-    document.getElementById("sideMenu");  
-  
-const menuOverlay =  
-    document.getElementById("menuOverlay");  
-  
-  
-function openMenu() {  
-  
-    sideMenu.classList.add("open");  
-  
-    menuOverlay.classList.add("show");  
-  
-    menuButton.setAttribute(  
-        "aria-expanded",  
-        "true"  
-    );  
-  
-}  
-  
-  
-function closeMenu() {  
-  
-    sideMenu.classList.remove("open");  
-  
-    menuOverlay.classList.remove("show");  
-  
-    menuButton.setAttribute(  
-        "aria-expanded",  
-        "false"  
-    );  
-  
-}  
-  
-  menuButton.addEventListener(  
-    "click",  
-    function() {  
-  
-        if (  
-            sideMenu.classList.contains("open")  
-        ) {  
-  
-            closeMenu();  
-  
-        } else {  
-  
-            openMenu();  
-  
-        }  
-  
-    }  
-);  
-  
-  
-menuOverlay.addEventListener(  
-    "click",  
-    closeMenu  
-);  
-  
-  
-const menuLinks =  
-    document.querySelectorAll(".menu-link");  
-  
-  
-menuLinks.forEach(  
-    function(link) {  
-  
-        link.addEventListener(  
-            "click",  
-            closeMenu  
-        );  
-  
-    }  
-);  
-  
-  
-document.addEventListener(  
-    "keydown",  
-    function(event) {  
-  
-        if (event.key === "Escape") {  
-  
-            closeMenu();  
-  
-        }  
-  
-    }  
-);  
-  
-  
-/* PROFILE PICTURE */  
-  
-function loadHomeProfilePicture() {  
-  
-    const avatar =  
-        document.getElementById(  
-            "homeProfileAvatar"  
-        );  
-  
-    const savedPicture =  
-        localStorage.getItem(  
-            "trustai_profilePicture"  
-        );  
-  
-  
-    if (savedPicture) {  
-  
-        avatar.style.backgroundImage =  
-            `url("${savedPicture}")`;  
-  
-        avatar.style.backgroundSize =  
-            "cover";  
-  
-        avatar.style.backgroundPosition =  
-            "center";  
-  
-        avatar.style.backgroundRepeat =  
-            "no-repeat";  
-  
-        avatar.innerHTML = "";  
-  
-    } else {  
-  
-        avatar.style.backgroundImage =  
-            "none";  
-  
-        avatar.innerHTML = `  
-  
-            <div class="avatar-head"></div>  
-  
-            <div class="avatar-body"></div>  
-  
-        `;  
-  
-    }  
-  
-}  
-  
-  
-loadHomeProfilePicture();  
-  
-  
-/* LOGOUT */  
-  
-async function handleLogout() {  
-  
-    try {  
-  
-        // Sign out from the real Supabase session  
-        const { error } =  
-            await supabaseClient.auth.signOut();  
-  
-        if (error) {  
-            console.error(  
-                "Supabase logout error:",  
-                error  
-            );  
-        }  
-    } catch (error) {  
-  
-        console.error(  
-            "Logout failed:",  
-            error  
-        );  
-  
-    }  
-  
-    // Clear TrustAI local login data  
-    localStorage.removeItem(  
-        "trustai_loggedIn"  
-    );  
-  
-    localStorage.removeItem(  
-        "trustai_userName"  
-    );  
-  
-    localStorage.removeItem(  
-        "trustai_account"  
-    );  
-  
-    // Prevent going back into the authenticated page  
-    window.location.replace(  
-        "./login.html"  
-    );  
-  
-}  
-</script>  
-  
-</body>  
-  
+
+/* =====================================================
+   SUPABASE CONFIGURATION
+   ===================================================== */
+
+const SUPABASE_URL =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   PROTECT HOME PAGE
+   ===================================================== */
+
+async function protectHomePage() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (
+        error ||
+        !data.session
+    ) {
+
+        window.location.replace(
+            "./login.html"
+        );
+
+        return;
+
+    }
+
+}
+
+
+protectHomePage();
+
+
+/* =====================================================
+   MENU
+   ===================================================== */
+
+const menuButton =
+    document.getElementById(
+        "menuButton"
+    );
+
+
+const sideMenu =
+    document.getElementById(
+        "sideMenu"
+    );
+
+
+const menuOverlay =
+    document.getElementById(
+        "menuOverlay"
+    );
+
+
+function openMenu() {
+
+    sideMenu.classList.add(
+        "open"
+    );
+
+
+    menuOverlay.classList.add(
+        "show"
+    );
+
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
+
+
+function closeMenu() {
+
+    sideMenu.classList.remove(
+        "open"
+    );
+
+
+    menuOverlay.classList.remove(
+        "show"
+    );
+
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+
+menuButton.addEventListener(
+    "click",
+    function() {
+
+        if (
+            sideMenu.classList.contains(
+                "open"
+            )
+        ) {
+
+            closeMenu();
+
+        } else {
+
+            openMenu();
+
+        }
+
+    }
+);
+
+
+menuOverlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+const menuLinks =
+    document.querySelectorAll(
+        ".menu-link"
+    );
+
+
+menuLinks.forEach(
+    function(link) {
+
+        link.addEventListener(
+            "click",
+            closeMenu
+        );
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PROFILE PICTURE
+   ===================================================== */
+
+function loadHomeProfilePicture() {
+
+    const avatar =
+        document.getElementById(
+            "homeProfileAvatar"
+        );
+
+
+    const savedPicture =
+        localStorage.getItem(
+            "trustai_profilePicture"
+        );
+
+
+    if (savedPicture) {
+
+        avatar.style.backgroundImage =
+            `url("${savedPicture}")`;
+
+
+        avatar.style.backgroundSize =
+            "cover";
+
+
+        avatar.style.backgroundPosition =
+            "center";
+
+
+        avatar.style.backgroundRepeat =
+            "no-repeat";
+
+
+        avatar.innerHTML = "";
+
+    } else {
+
+        avatar.style.backgroundImage =
+            "none";
+
+
+        avatar.innerHTML = `
+
+            <div class="avatar-head"></div>
+
+            <div class="avatar-body"></div>
+
+        `;
+
+    }
+
+}
+
+
+loadHomeProfilePicture();
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+async function handleLogout() {
+
+    try {
+
+        const {
+            error
+        } =
+            await supabaseClient.auth.signOut();
+
+
+        if (error) {
+
+            console.error(
+                "Supabase logout error:",
+                error
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Logout failed:",
+            error
+        );
+
+    }
+
+
+    /* Clear TrustAI local login data */
+
+    localStorage.removeItem(
+        "trustai_loggedIn"
+    );
+
+
+    localStorage.removeItem(
+        "trustai_userName"
+    );
+
+
+    localStorage.removeItem(
+        "trustai_account"
+    );
+
+
+    /* Prevent going back */
+
+    window.location.replace(
+        "./login.html"
+    );
+
+}
+
+</script>
+
+
+</body>
+
 </html>
