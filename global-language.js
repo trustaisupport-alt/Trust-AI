@@ -50,7 +50,7 @@
         },
 
         it: {
-            name: "Italian",
+            name: "Italy",
             flag: "🇮🇹"
         },
 
