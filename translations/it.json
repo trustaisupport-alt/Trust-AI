@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Home",
+    "message": "Controllo Messaggi",
+    "conversation": "Controllo Conversazioni",
+    "website": "Controllo Siti Web",
+    "device": "Sicurezza del Dispositivo",
+    "protection": "Protezione TrustAI",
+    "plans": "Aggiorna Piano",
+    "security": "Centro Sicurezza",
+    "alerts": "Avvisi sulle Truffe",
+    "report": "Segnala una Truffa",
+    "contact": "Contatta TrustAI",
+    "settings": "Impostazioni e Privacy",
+    "logout": "Esci"
+  },
+
+  "menu": {
+    "subtitle": "Protezione dalle Truffe Online"
+  },
+
+  "home": {
+    "titleStart": "Resta un passo avanti alle",
+    "titleEnd": "truffe.",
+    "description": "Controlla messaggi, conversazioni e siti web sospetti alla ricerca di segnali comuni di truffa prima di agire. Scopri la Protezione TrustAI per ulteriori funzionalità di sicurezza.",
+    "checkSomething": "Controlla Qualcosa",
+    "security": "Sicurezza",
+
+    "messageTitle": "Controllo Messaggi",
+    "messageDescription": "Controlla un messaggio sospetto per individuare segnali di truffa, phishing, furto d'identità e frode nei pagamenti.",
+
+    "conversationTitle": "Controllo Conversazioni",
+    "conversationDescription": "Analizza una conversazione per individuare schemi sospetti che possono svilupparsi nel tempo.",
+
+    "websiteTitle": "Controllo Siti Web",
+    "websiteDescription": "Controlla un indirizzo web per individuare i comuni segnali di un sito sospetto.",
+
+    "protectionTitle": "Protezione TrustAI",
+    "protectionDescription": "Scopri le funzionalità di protezione TrustAI progettate per aiutare a mantenere più sicuri i tuoi account, dispositivi e attività online.",
+
+    "deviceTitle": "Sicurezza del Dispositivo",
+    "deviceDescription": "Controlla le autorizzazioni attive, lo stato del dispositivo e le configurazioni di sicurezza per mantenere protetto il tuo telefono."
+  },
+
+  "footer": {
+    "description": "Il tuo assistente in tempo reale per la protezione da truffe e minacce online.",
+    "copyright": "© 2026 TrustAI. Tutti i diritti riservati."
+  },
+
+  "accessibility": {
+    "openMenu": "Apri menu",
+    "openProfile": "Apri profilo",
+    "profile": "Profilo",
+    "language": "Lingua"
+  }
+}
