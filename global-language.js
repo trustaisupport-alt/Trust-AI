@@ -1,95 +1,84 @@
-/* =========================================================
+/* ============================================================
    TRUSTAI GLOBAL LANGUAGE SYSTEM
-   🌍 Global Language Selector
    Version 2.0
+   ------------------------------------------------------------
+   Supports:
+   English, French, German, Spanish, Italian,
+   Portuguese and Dutch.
 
-   FEATURES
-   ---------------------------------------------------------
-   • Floating Global button
-   • English — EN 🇺🇸
-   • French — FR 🇫🇷
-   • German — DE 🇩🇪
-   • Spanish — ES 🇪🇸
-   • Italian — IT 🇮🇹
-   • Portuguese — PT 🇵🇹
-   • Dutch — NL 🇳🇱
-   • Saves language across TrustAI pages
-   • Translates page text
-   • Translates buttons and placeholders
-   • Automatically detects common pasted languages
-   • Public TrustAI language API
-   ========================================================= */
+   File:
+   global-language.js
+
+   Add to every TrustAI page:
+   <script src="global-language.js"></script>
+   ============================================================ */
 
 (function () {
 
     "use strict";
 
 
-    /* =====================================================
-       TRUSTAI LANGUAGES
-       ===================================================== */
+    /* ========================================================
+       CONFIGURATION
+       ======================================================== */
+
+    const STORAGE_KEY = "trustai_language";
+
+    const DEFAULT_LANGUAGE = "en";
+
 
     const LANGUAGES = {
 
         en: {
-            code: "EN",
             name: "English",
-            native: "English",
-            flag: "🇺🇸"
+            flag: "🇬🇧"
         },
 
         fr: {
-            code: "FR",
-            name: "French",
-            native: "Français",
+            name: "Français",
             flag: "🇫🇷"
         },
 
         de: {
-            code: "DE",
-            name: "German",
-            native: "Deutsch",
+            name: "Deutsch",
             flag: "🇩🇪"
         },
 
         es: {
-            code: "ES",
-            name: "Spanish",
-            native: "Español",
+            name: "Español",
             flag: "🇪🇸"
         },
 
         it: {
-            code: "IT",
-            name: "Italian",
-            native: "Italiano",
+            name: "Italiano",
             flag: "🇮🇹"
         },
 
         pt: {
-            code: "PT",
-            name: "Portuguese",
-            native: "Português",
+            name: "Português",
             flag: "🇵🇹"
         },
 
         nl: {
-            code: "NL",
-            name: "Dutch",
-            native: "Nederlands",
+            name: "Nederlands",
             flag: "🇳🇱"
         }
 
     };
 
 
-    /* =====================================================
-       TRANSLATION DICTIONARY
-       ===================================================== */
+    /* ========================================================
+       TRANSLATIONS
+       ======================================================== */
 
-    const TRANSLATIONS = {
+    const translations = {
 
         en: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Online Scam Protection",
 
             "Home":
                 "Home",
@@ -127,11 +116,11 @@
             "Settings & Privacy":
                 "Settings & Privacy",
 
+            "Profile":
+                "Profile",
+
             "Log Out":
                 "Log Out",
-
-            "Online Scam Protection":
-                "Online Scam Protection",
 
             "Stay one step ahead of":
                 "Stay one step ahead of",
@@ -145,61 +134,63 @@
             "Security":
                 "Security",
 
+            "Upgrade your protection.":
+                "Upgrade your protection.",
+
+            "Upgrade Plan":
+                "Upgrade Plan",
+
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
+
+            "Advanced Protection":
+                "Advanced Protection",
+
+            "More Security Tools":
+                "More Security Tools",
+
+            "Priority Protection":
+                "Priority Protection",
+
+            "Message Checker":
+                "Message Checker",
+
+            "Conversation Checker":
+                "Conversation Checker",
+
+            "Website Checker":
+                "Website Checker",
+
             "Your real-time online scam and threat protection assistant.":
                 "Your real-time online scam and threat protection assistant.",
 
-            "Upgrade to Pro":
-                "Upgrade to Pro",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Check a suspicious message for scam, phishing, impersonation and payment warning signs.",
 
-            "Choose your language":
-                "Choose your language",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analyze a conversation for suspicious patterns that may develop over time.",
 
-            "Global":
-                "Global",
+            "Check a website address for common suspicious website warning signs.":
+                "Check a website address for common suspicious website warning signs.",
 
-            "Language":
-                "Language",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.",
 
-            "Detecting language":
-                "Detecting language",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Review active permissions, device status, and security configurations to keep your phone protected.",
 
-            "Detected language":
-                "Detected language",
-
-            "Unknown language":
-                "Unknown language",
-
-            "Analyze":
-                "Analyze",
-
-            "Check":
-                "Check",
-
-            "Submit":
-                "Submit",
-
-            "Continue":
-                "Continue",
-
-            "Cancel":
-                "Cancel",
-
-            "Save":
-                "Save",
-
-            "Settings":
-                "Settings",
-
-            "Profile":
-                "Profile",
-
-            "Welcome to TrustAI":
-                "Welcome to TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats."
 
         },
 
 
         fr: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Protection contre les arnaques en ligne",
 
             "Home":
                 "Accueil",
@@ -220,7 +211,7 @@
                 "Protection TrustAI",
 
             "Upgrade Plans":
-                "Plans Premium",
+                "Forfaits",
 
             "Security Center":
                 "Centre de sécurité",
@@ -237,17 +228,17 @@
             "Settings & Privacy":
                 "Paramètres et confidentialité",
 
+            "Profile":
+                "Profil",
+
             "Log Out":
                 "Se déconnecter",
 
-            "Online Scam Protection":
-                "Protection contre les arnaques en ligne",
-
             "Stay one step ahead of":
-                "Gardez une longueur d'avance sur",
+                "Gardez une longueur d'avance sur les",
 
             "scams.":
-                "les arnaques.",
+                "arnaques.",
 
             "Check Something":
                 "Vérifier quelque chose",
@@ -255,61 +246,54 @@
             "Security":
                 "Sécurité",
 
+            "Upgrade your protection.":
+                "Améliorez votre protection.",
+
+            "Upgrade Plan":
+                "Améliorer le forfait",
+
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
+
+            "Advanced Protection":
+                "Protection avancée",
+
+            "More Security Tools":
+                "Plus d'outils de sécurité",
+
+            "Priority Protection":
+                "Protection prioritaire",
+
             "Your real-time online scam and threat protection assistant.":
-                "Votre assistant de protection en temps réel contre les arnaques et les menaces en ligne.",
+                "Votre assistant de protection en temps réel contre les arnaques et menaces en ligne.",
 
-            "Upgrade to Pro":
-                "Passer à Pro",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Vérifiez les messages suspects pour détecter les signes d'arnaque, d'hameçonnage, d'usurpation d'identité et de fraude au paiement.",
 
-            "Choose your language":
-                "Choisissez votre langue",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analysez une conversation pour détecter les comportements suspects qui peuvent apparaître avec le temps.",
 
-            "Global":
-                "Global",
+            "Check a website address for common suspicious website warning signs.":
+                "Vérifiez une adresse web pour détecter les signes courants d'un site suspect.",
 
-            "Language":
-                "Langue",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Découvrez les fonctions de protection TrustAI conçues pour mieux protéger vos comptes, appareils et activités en ligne.",
 
-            "Detecting language":
-                "Détection de la langue",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Examinez les autorisations actives, l'état de l'appareil et les paramètres de sécurité pour protéger votre téléphone.",
 
-            "Detected language":
-                "Langue détectée",
-
-            "Unknown language":
-                "Langue inconnue",
-
-            "Analyze":
-                "Analyser",
-
-            "Check":
-                "Vérifier",
-
-            "Submit":
-                "Envoyer",
-
-            "Continue":
-                "Continuer",
-
-            "Cancel":
-                "Annuler",
-
-            "Save":
-                "Enregistrer",
-
-            "Settings":
-                "Paramètres",
-
-            "Profile":
-                "Profil",
-
-            "Welcome to TrustAI":
-                "Bienvenue sur TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Débloquez des fonctions de protection TrustAI avancées et obtenez davantage d'outils pour mieux vous protéger contre les arnaques, activités suspectes et menaces numériques."
 
         },
 
 
         de: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Schutz vor Online-Betrug",
 
             "Home":
                 "Startseite",
@@ -330,7 +314,7 @@
                 "TrustAI-Schutz",
 
             "Upgrade Plans":
-                "Upgrade-Pläne",
+                "Tarife",
 
             "Security Center":
                 "Sicherheitscenter",
@@ -347,14 +331,14 @@
             "Settings & Privacy":
                 "Einstellungen & Datenschutz",
 
+            "Profile":
+                "Profil",
+
             "Log Out":
                 "Abmelden",
 
-            "Online Scam Protection":
-                "Schutz vor Online-Betrug",
-
             "Stay one step ahead of":
-                "Seien Sie Betrügern immer einen Schritt voraus",
+                "Betrügern immer einen Schritt voraus",
 
             "scams.":
                 "Betrug.",
@@ -365,61 +349,54 @@
             "Security":
                 "Sicherheit",
 
+            "Upgrade your protection.":
+                "Verbessern Sie Ihren Schutz.",
+
+            "Upgrade Plan":
+                "Tarif upgraden",
+
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
+
+            "Advanced Protection":
+                "Erweiterter Schutz",
+
+            "More Security Tools":
+                "Mehr Sicherheitstools",
+
+            "Priority Protection":
+                "Prioritätsschutz",
+
             "Your real-time online scam and threat protection assistant.":
-                "Ihr Echtzeit-Assistent zum Schutz vor Online-Betrug und Bedrohungen.",
+                "Ihr Echtzeit-Assistent zum Schutz vor Online-Betrug und digitalen Bedrohungen.",
 
-            "Upgrade to Pro":
-                "Auf Pro upgraden",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Prüfen Sie verdächtige Nachrichten auf Betrug, Phishing, Identitätsmissbrauch und Zahlungswarnzeichen.",
 
-            "Choose your language":
-                "Wählen Sie Ihre Sprache",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analysieren Sie Gespräche auf verdächtige Muster, die sich im Laufe der Zeit entwickeln können.",
 
-            "Global":
-                "Global",
+            "Check a website address for common suspicious website warning signs.":
+                "Prüfen Sie eine Website-Adresse auf typische Warnzeichen verdächtiger Websites.",
 
-            "Language":
-                "Sprache",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Entdecken Sie TrustAI-Schutzfunktionen, die Ihre Konten, Geräte und Online-Aktivitäten sicherer machen.",
 
-            "Detecting language":
-                "Sprache wird erkannt",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Überprüfen Sie aktive Berechtigungen, Gerätestatus und Sicherheitseinstellungen, um Ihr Telefon zu schützen.",
 
-            "Detected language":
-                "Erkannte Sprache",
-
-            "Unknown language":
-                "Unbekannte Sprache",
-
-            "Analyze":
-                "Analysieren",
-
-            "Check":
-                "Prüfen",
-
-            "Submit":
-                "Senden",
-
-            "Continue":
-                "Weiter",
-
-            "Cancel":
-                "Abbrechen",
-
-            "Save":
-                "Speichern",
-
-            "Settings":
-                "Einstellungen",
-
-            "Profile":
-                "Profil",
-
-            "Welcome to TrustAI":
-                "Willkommen bei TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Schalten Sie erweiterte TrustAI-Schutzfunktionen frei und erhalten Sie mehr Werkzeuge gegen Online-Betrug, verdächtige Aktivitäten und digitale Bedrohungen."
 
         },
 
 
         es: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Protección contra estafas en línea",
 
             "Home":
                 "Inicio",
@@ -440,7 +417,7 @@
                 "Protección TrustAI",
 
             "Upgrade Plans":
-                "Planes de mejora",
+                "Planes",
 
             "Security Center":
                 "Centro de seguridad",
@@ -449,7 +426,7 @@
                 "Alertas de estafas",
 
             "Report a Scam":
-                "Denunciar una estafa",
+                "Reportar una estafa",
 
             "Contact TrustAI":
                 "Contactar con TrustAI",
@@ -457,11 +434,11 @@
             "Settings & Privacy":
                 "Configuración y privacidad",
 
+            "Profile":
+                "Perfil",
+
             "Log Out":
                 "Cerrar sesión",
-
-            "Online Scam Protection":
-                "Protección contra estafas en línea",
 
             "Stay one step ahead of":
                 "Mantente un paso por delante de las",
@@ -475,61 +452,54 @@
             "Security":
                 "Seguridad",
 
+            "Upgrade your protection.":
+                "Mejora tu protección.",
+
+            "Upgrade Plan":
+                "Mejorar plan",
+
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
+
+            "Advanced Protection":
+                "Protección avanzada",
+
+            "More Security Tools":
+                "Más herramientas de seguridad",
+
+            "Priority Protection":
+                "Protección prioritaria",
+
             "Your real-time online scam and threat protection assistant.":
                 "Tu asistente de protección en tiempo real contra estafas y amenazas en línea.",
 
-            "Upgrade to Pro":
-                "Actualizar a Pro",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Comprueba un mensaje sospechoso para detectar estafas, phishing, suplantación de identidad y señales de fraude en pagos.",
 
-            "Choose your language":
-                "Elige tu idioma",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analiza una conversación para detectar patrones sospechosos que pueden aparecer con el tiempo.",
 
-            "Global":
-                "Global",
+            "Check a website address for common suspicious website warning signs.":
+                "Comprueba una dirección web para detectar señales comunes de sitios sospechosos.",
 
-            "Language":
-                "Idioma",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Explora las funciones de protección de TrustAI diseñadas para mantener tus cuentas, dispositivos y actividad en línea más seguros.",
 
-            "Detecting language":
-                "Detectando idioma",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Revisa los permisos activos, el estado del dispositivo y las configuraciones de seguridad para proteger tu teléfono.",
 
-            "Detected language":
-                "Idioma detectado",
-
-            "Unknown language":
-                "Idioma desconocido",
-
-            "Analyze":
-                "Analizar",
-
-            "Check":
-                "Comprobar",
-
-            "Submit":
-                "Enviar",
-
-            "Continue":
-                "Continuar",
-
-            "Cancel":
-                "Cancelar",
-
-            "Save":
-                "Guardar",
-
-            "Settings":
-                "Configuración",
-
-            "Profile":
-                "Perfil",
-
-            "Welcome to TrustAI":
-                "Bienvenido a TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Desbloquea funciones avanzadas de protección de TrustAI y obtén más herramientas contra estafas, actividades sospechosas y amenazas digitales."
 
         },
 
 
         it: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Protezione dalle truffe online",
 
             "Home":
                 "Home",
@@ -550,7 +520,7 @@
                 "Protezione TrustAI",
 
             "Upgrade Plans":
-                "Piani di upgrade",
+                "Piani",
 
             "Security Center":
                 "Centro sicurezza",
@@ -567,11 +537,11 @@
             "Settings & Privacy":
                 "Impostazioni e privacy",
 
+            "Profile":
+                "Profilo",
+
             "Log Out":
                 "Esci",
-
-            "Online Scam Protection":
-                "Protezione dalle truffe online",
 
             "Stay one step ahead of":
                 "Resta un passo avanti alle",
@@ -585,61 +555,54 @@
             "Security":
                 "Sicurezza",
 
+            "Upgrade your protection.":
+                "Migliora la tua protezione.",
+
+            "Upgrade Plan":
+                "Migliora piano",
+
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
+
+            "Advanced Protection":
+                "Protezione avanzata",
+
+            "More Security Tools":
+                "Più strumenti di sicurezza",
+
+            "Priority Protection":
+                "Protezione prioritaria",
+
             "Your real-time online scam and threat protection assistant.":
                 "Il tuo assistente di protezione in tempo reale contro truffe e minacce online.",
 
-            "Upgrade to Pro":
-                "Passa a Pro",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Controlla un messaggio sospetto per individuare truffe, phishing, impersonazioni e segnali di frode nei pagamenti.",
 
-            "Choose your language":
-                "Scegli la tua lingua",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analizza una conversazione per individuare schemi sospetti che possono svilupparsi nel tempo.",
 
-            "Global":
-                "Globale",
+            "Check a website address for common suspicious website warning signs.":
+                "Controlla un indirizzo web per individuare i comuni segnali di un sito sospetto.",
 
-            "Language":
-                "Lingua",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Scopri le funzioni di protezione TrustAI progettate per mantenere più sicuri account, dispositivi e attività online.",
 
-            "Detecting language":
-                "Rilevamento della lingua",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Controlla le autorizzazioni attive, lo stato del dispositivo e le configurazioni di sicurezza per proteggere il telefono.",
 
-            "Detected language":
-                "Lingua rilevata",
-
-            "Unknown language":
-                "Lingua sconosciuta",
-
-            "Analyze":
-                "Analizza",
-
-            "Check":
-                "Controlla",
-
-            "Submit":
-                "Invia",
-
-            "Continue":
-                "Continua",
-
-            "Cancel":
-                "Annulla",
-
-            "Save":
-                "Salva",
-
-            "Settings":
-                "Impostazioni",
-
-            "Profile":
-                "Profilo",
-
-            "Welcome to TrustAI":
-                "Benvenuto su TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Sblocca le funzioni avanzate di protezione TrustAI e ottieni più strumenti contro truffe online, attività sospette e minacce digitali."
 
         },
 
 
         pt: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Proteção contra golpes online",
 
             "Home":
                 "Início",
@@ -660,7 +623,7 @@
                 "Proteção TrustAI",
 
             "Upgrade Plans":
-                "Planos de upgrade",
+                "Planos",
 
             "Security Center":
                 "Central de segurança",
@@ -672,16 +635,16 @@
                 "Denunciar golpe",
 
             "Contact TrustAI":
-                "Contactar a TrustAI",
+                "Contactar TrustAI",
 
             "Settings & Privacy":
                 "Configurações e privacidade",
 
+            "Profile":
+                "Perfil",
+
             "Log Out":
                 "Sair",
-
-            "Online Scam Protection":
-                "Proteção contra golpes online",
 
             "Stay one step ahead of":
                 "Fique um passo à frente dos",
@@ -690,66 +653,59 @@
                 "golpes.",
 
             "Check Something":
-                "Verificar algo",
+   "Verificar algo",
 
             "Security":
                 "Segurança",
 
+            "Upgrade your protection.":
+                "Melhore sua proteção.",
+
+            "Upgrade Plan":
+                "Melhorar plano",
+
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
+
+            "Advanced Protection":
+                "Proteção avançada",
+
+            "More Security Tools":
+                "Mais ferramentas de segurança",
+
+            "Priority Protection":
+                "Proteção prioritária",
+
             "Your real-time online scam and threat protection assistant.":
                 "Seu assistente de proteção em tempo real contra golpes e ameaças online.",
 
-            "Upgrade to Pro":
-                "Fazer upgrade para Pro",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Verifique uma mensagem suspeita em busca de golpes, phishing, falsificação de identidade e sinais de fraude de pagamento.",
 
-            "Choose your language":
-                "Escolha seu idioma",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analise uma conversa em busca de padrões suspeitos que podem surgir com o tempo.",
 
-            "Global":
-                "Global",
+            "Check a website address for common suspicious website warning signs.":
+                "Verifique um endereço de site em busca de sinais comuns de sites suspeitos.",
 
-            "Language":
-                "Idioma",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Explore os recursos de proteção TrustAI criados para manter suas contas, dispositivos e atividades online mais seguros.",
 
-            "Detecting language":
-                "Detectando idioma",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Revise as permissões ativas, o status do dispositivo e as configurações de segurança para manter seu telefone protegido.",
 
-            "Detected language":
-                "Idioma detectado",
-
-            "Unknown language":
-                "Idioma desconhecido",
-
-            "Analyze":
-                "Analisar",
-
-            "Check":
-                "Verificar",
-
-            "Submit":
-                "Enviar",
-
-            "Continue":
-                "Continuar",
-
-            "Cancel":
-                "Cancelar",
-
-            "Save":
-                "Salvar",
-
-            "Settings":
-                "Configurações",
-
-            "Profile":
-                "Perfil",
-
-            "Welcome to TrustAI":
-                "Bem-vindo à TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Desbloqueie recursos avançados de proteção TrustAI e tenha mais ferramentas contra golpes online, atividades suspeitas e ameaças digitais."
 
         },
 
 
         nl: {
+
+            "TrustAI": "TrustAI",
+
+            "Online Scam Protection":
+                "Bescherming tegen online oplichting",
 
             "Home":
                 "Home",
@@ -770,7 +726,7 @@
                 "TrustAI-bescherming",
 
             "Upgrade Plans":
-                "Upgrade-abonnementen",
+                "Abonnementen",
 
             "Security Center":
                 "Beveiligingscentrum",
@@ -782,16 +738,16 @@
                 "Oplichting melden",
 
             "Contact TrustAI":
-                "Contact opnemen met TrustAI",
+                "Contact met TrustAI",
 
             "Settings & Privacy":
                 "Instellingen en privacy",
 
+            "Profile":
+                "Profiel",
+
             "Log Out":
                 "Uitloggen",
-
-            "Online Scam Protection":
-                "Bescherming tegen online oplichting",
 
             "Stay one step ahead of":
                 "Blijf oplichters een stap voor",
@@ -805,183 +761,143 @@
             "Security":
                 "Beveiliging",
 
-            "Your real-time online scam and threat protection assistant.":
-                "Uw realtime assistent voor bescherming tegen online oplichting en bedreigingen.",
+            "Upgrade your protection.":
+                "Verbeter je bescherming.",
 
-            "Upgrade to Pro":
-                "Upgraden naar Pro",
+            "Upgrade Plan":
+                "Abonnement upgraden",
 
-            "Choose your language":
-                "Kies uw taal",
+            "TRUSTAI PRO":
+                "TRUSTAI PRO",
 
-            "Global":
-                "Globaal",
+            "Advanced Protection":
+                "Geavanceerde bescherming",
 
-            "Language":
-                "Taal",
+            "More Security Tools":
+                "Meer beveiligingstools",
 
-            "Detecting language":
-                "Taal wordt gedetecteerd",
+            "Priority Protection":
+                "Prioriteitsbescherming",
+           "Your real-time online scam and threat protection assistant.":
+                "Je realtime assistent voor bescherming tegen online oplichting en digitale bedreigingen.",
 
-            "Detected language":
-                "Gedetecteerde taal",
+            "Check a suspicious message for scam, phishing, impersonation and payment warning signs.":
+                "Controleer een verdacht bericht op signalen van oplichting, phishing, identiteitsfraude en betalingsfraude.",
 
-            "Unknown language":
-                "Onbekende taal",
+            "Analyze a conversation for suspicious patterns that may develop over time.":
+                "Analyseer een gesprek op verdachte patronen die zich in de loop van de tijd kunnen ontwikkelen.",
 
-            "Analyze":
-                "Analyseren",
+            "Check a website address for common suspicious website warning signs.":
+                "Controleer een websiteadres op veelvoorkomende signalen van een verdachte website.",
 
-            "Check":
-                "Controleren",
+            "Explore TrustAI protection features designed to help keep your accounts, devices and online activity safer.":
+                "Ontdek TrustAI-beveiligingsfuncties die zijn ontworpen om je accounts, apparaten en online activiteiten veiliger te houden.",
 
-            "Submit":
-                "Verzenden",
+            "Review active permissions, device status, and security configurations to keep your phone protected.":
+                "Controleer actieve machtigingen, de apparaatstatus en beveiligingsinstellingen om je telefoon te beschermen.",
 
-            "Continue":
-                "Doorgaan",
-
-            "Cancel":
-                "Annuleren",
-
-            "Save":
-                "Opslaan",
-
-            "Settings":
-                "Instellingen",
-
-            "Profile":
-                "Profiel",
-
-            "Welcome to TrustAI":
-                "Welkom bij TrustAI"
+            "Unlock enhanced TrustAI protection features and get more tools to help you stay safer against online scams, suspicious activity and digital threats.":
+                "Ontgrendel geavanceerde TrustAI-beschermingsfuncties en krijg meer hulpmiddelen tegen online oplichting, verdachte activiteiten en digitale bedreigingen."
 
         }
 
     };
 
 
-    /* =====================================================
-       GET CURRENT LANGUAGE
-       ===================================================== */
+    /* ========================================================
+       GET SAVED LANGUAGE
+       ======================================================== */
 
     function getLanguage() {
 
         const saved =
             localStorage.getItem(
-                "trustai_language"
+                STORAGE_KEY
             );
 
-        if (saved && LANGUAGES[saved]) {
+
+        if (
+            saved &&
+            LANGUAGES[saved]
+        ) {
+
             return saved;
+
         }
 
-        return "en";
+
+        return DEFAULT_LANGUAGE;
+
     }
 
 
-    /* =====================================================
-       SET LANGUAGE
-       ===================================================== */
+    /* ========================================================
+       TRANSLATE TEXT
+       ======================================================== */
 
-    function setLanguage(language) {
+    function translateText(text, language) {
 
-        if (!LANGUAGES[language]) {
-            language = "en";
-        }
+        if (
+            !text ||
+            !translations[language]
+        ) {
 
-        localStorage.setItem(
-            "trustai_language",
-            language
-        );
-
-        /*
-         * Tell the page that the language changed.
-         */
-
-        window.dispatchEvent(
-            new CustomEvent(
-                "trustaiLanguageChanged",
-                {
-                    detail: {
-                        language: language
-                    }
-                }
-            )
-        );
-
-        /*
-         * Reload so every page component
-         * starts in the selected language.
-         */
-
-        window.location.reload();
-
-    }
-=====================================================
-       TRANSLATE SINGLE TEXT
-       ===================================================== */
-
-    function translateText(text) {
-
-        if (!text) {
             return text;
+
         }
 
-        const language =
-            getLanguage();
 
         const dictionary =
-            TRANSLATIONS[language] ||
-            TRANSLATIONS.en;
+            translations[language];
+
 
         const cleanText =
             text.trim();
 
+
         if (
-            dictionary[
-                cleanText
-            ]
+            dictionary[cleanText]
         ) {
 
-            return text.replace(
-                cleanText,
-                dictionary[cleanText]
-            );
+            return dictionary[cleanText];
 
         }
+
 
         return text;
 
     }
 
 
-    /* =====================================================
+    /* ========================================================
        TRANSLATE PAGE
-       ===================================================== */
+       ======================================================== */
 
-    function translatePage() {
+    function translatePage(language) {
 
-        const language =
-            getLanguage();
+        if (
+            !LANGUAGES[language]
+        ) {
 
-        const dictionary =
-            TRANSLATIONS[language] ||
-            TRANSLATIONS.en;
+            language =
+                DEFAULT_LANGUAGE;
+
+        }
 
 
         document.documentElement.lang =
             language;
 
 
-        /*
-         * Translate visible text nodes.
-         */
+        /* ---------------------------------------------
+           NORMAL TEXT
+           --------------------------------------------- */
 
         const walker =
             document.createTreeWalker(
                 document.body,
-                NodeFilter.SHOW_TEXT
+                NodeFilter.SHOW_TEXT,
+                null
             );
 
 
@@ -989,9 +905,10 @@
 
         let node;
 
+
         while (
             node =
-            walker.nextNode()
+                walker.nextNode()
         ) {
 
             nodes.push(node);
@@ -1000,7 +917,7 @@
 
 
         nodes.forEach(
-            function (textNode) {
+            function(textNode) {
 
                 const parent =
                     textNode.parentElement;
@@ -1011,35 +928,14 @@
                 }
 
 
-                /*
-                 * Don't translate the
-                 * language selector itself.
-                 */
-
-                if (
-                    parent.closest(
-                        "#trustaiGlobalLanguage"
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                /*
-                 * Don't modify script,
-                 * style or code.
-                 */
-
                 const tag =
                     parent.tagName;
+
 
                 if (
                     tag === "SCRIPT" ||
                     tag === "STYLE" ||
-                    tag === "CODE" ||
-                    tag === "PRE"
+                    tag === "NOSCRIPT"
                 ) {
 
                     return;
@@ -1048,64 +944,66 @@
 
 
                 const original =
-                    textNode.nodeValue;
-
-                const trimmed =
-                    original.trim();
+                    textNode.textContent.trim();
 
 
-                if (!trimmed) {
+                if (!original) {
                     return;
                 }
 
 
+                const translated =
+                    translateText(
+                        original,
+                        language
+                    );
+
+
                 if (
-                    dictionary[
-                        trimmed
-                    ]
+                    translated !== original
                 ) {
 
-                    textNode.nodeValue =
-                        original.replace(
-                            trimmed,
-                            dictionary[
-                                trimmed
-                            ]
+                    textNode.textContent =
+                        textNode.textContent.replace(
+                            original,
+                            translated
                         );
 
                 }
 
             }
         );
-
-
-        /*
-         * Translate placeholders.
-         */
+/* ---------------------------------------------
+           PLACEHOLDERS
+           --------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[placeholder]"
             )
             .forEach(
-                function (element) {
+                function(element) {
 
                     const original =
                         element.getAttribute(
                             "placeholder"
                         );
 
+
+                    const translated =
+                        translateText(
+                            original,
+                            language
+                        );
+
+
                     if (
-                        dictionary[
-                            original
-                        ]
+                        translated !== original
                     ) {
 
                         element.setAttribute(
                             "placeholder",
-                            dictionary[
-                                original
-                            ]
+                            translated
                         );
 
                     }
@@ -1114,68 +1012,67 @@
             );
 
 
-        /*
-         * Translate title attributes.
-         */
+        /* ---------------------------------------------
+           TITLE
+           --------------------------------------------- */
 
-        document
-            .querySelectorAll(
-                "[title]"
-            )
-            .forEach(
-                function (element) {
+        if (document.title) {
 
-                    const original =
-                        element.getAttribute(
-                            "title"
-                        );
-
-                    if (
-                        dictionary[
-                            original
-                        ]
-                    ) {
-
-                        element.setAttribute(
-                            "title",
-                            dictionary[
-                                original
-                            ]
-                        );
-
-                    }
-
-                }
-            );
+            const originalTitle =
+                document.title;
 
 
-        /*
-         * Translate aria-label.
-         */
+            const translatedTitle =
+                translateText(
+                    originalTitle,
+                    language
+                );
+
+
+            if (
+                translatedTitle !==
+                originalTitle
+            ) {
+
+                document.title =
+                    translatedTitle;
+
+            }
+
+        }
+
+
+        /* ---------------------------------------------
+           ARIA LABELS
+           --------------------------------------------- */
 
         document
             .querySelectorAll(
                 "[aria-label]"
             )
             .forEach(
-                function (element) {
+                function(element) {
 
                     const original =
                         element.getAttribute(
                             "aria-label"
                         );
 
+
+                    const translated =
+                        translateText(
+                            original,
+                            language
+                        );
+
+
                     if (
-                        dictionary[
-                            original
-                        ]
+                        translated !== original
                     ) {
 
                         element.setAttribute(
                             "aria-label",
-                            dictionary[
-                                original
-                            ]
+                            translated
                         );
 
                     }
@@ -1183,17 +1080,23 @@
                 }
             );
 
+
+        updateLanguageSelector(
+            language
+        );
+
     }
 
-/* =====================================================
-       CREATE GLOBAL LANGUAGE BUTTON
-       ===================================================== */
 
-    function createGlobalLanguage() {
+    /* ========================================================
+       LANGUAGE SELECTOR
+       ======================================================== */
+
+    function createLanguageSelector() {
 
         if (
             document.getElementById(
-                "trustaiGlobalLanguage"
+                "trustaiLanguageSelector"
             )
         ) {
 
@@ -1202,66 +1105,60 @@
         }
 
 
-        const container =
+        const wrapper =
             document.createElement(
                 "div"
             );
 
 
-        container.id =
-            "trustaiGlobalLanguage";
+        wrapper.id =
+            "trustaiLanguageSelector";
 
 
-        container.innerHTML = `
+        wrapper.innerHTML = `
 
             <button
-                id="trustaiGlobalButton"
-                class="trustai-global-button"
+                id="trustaiLanguageButton"
                 type="button"
-                aria-label="Choose your language"
-                aria-expanded="false"
+                aria-label="Change language"
             >
-
-                <span class="global-symbol">
-                    🌐
+                🌐
+                <span id="trustaiLanguageCurrent">
+                    English
                 </span>
-
-                <span class="global-text">
-                    Global
-                </span>
-
+                <span>⌄</span>
             </button>
 
-
             <div
-                id="trustaiLanguagePanel"
-                class="trustai-language-panel"
+                id="trustaiLanguageMenu"
                 aria-hidden="true"
             >
 
-                <div
-                    class="language-panel-header"
-                >
+                ${Object.keys(LANGUAGES)
+                    .map(function(code) {
 
-                    <div
-                        class="language-title"
-                    >
-                        🌍 Global
-                    </div>
+                        return `
 
-                    <div
-                        class="language-subtitle"
-                    >
-                        Choose your language
-                    </div>
+                            <button
+                                type="button"
+                                class="trustai-language-option"
+                                data-language="${code}"
+                            >
 
-                </div>
+                                <span>
+                                    ${LANGUAGES[code].flag}
+                                </span>
 
+                                <span>
+                                    ${LANGUAGES[code].name}
+                                </span>
 
-                <div
-                    id="trustaiLanguageList"
-                    class="trustai-language-list"
-                ></div>
+                            </button>
+
+                        `;
+
+                    })
+                    .join("")}
 
             </div>
 
@@ -1269,686 +1166,91 @@
 
 
         document.body.appendChild(
-            container
+            wrapper
         );
 
 
-        addLanguageStyles();
+        injectLanguageStyles();
 
-        buildLanguageList();
-
-        setupLanguageButton();
-
-    }
-
-
-    /* =====================================================
-       BUILD LANGUAGE LIST
-       ===================================================== */
-
-    function buildLanguageList() {
-
-        const list =
-            document.getElementById(
-                "trustaiLanguageList"
-            );
-
-
-        if (!list) {
-            return;
-        }
-
-
-        const currentLanguage =
-            getLanguage();
-
-
-        list.innerHTML = "";
-
-
-        Object.keys(
-            LANGUAGES
-        ).forEach(
-            function (code) {
-
-                const language =
-                    LANGUAGES[code];
-
-
-                const item =
-                    document.createElement(
-                        "button"
-                    );
-
-
-                item.type =
-                    "button";
-
-
-                item.className =
-                    "trustai-language-item";
-
-
-                if (
-                    code ===
-                    currentLanguage
-                ) {
-
-                    item.classList.add(
-                        "selected"
-                    );
-
-                }
-
-
-                item.innerHTML = `
-
-                    <span
-                        class="country-flag"
-                    >
-                        ${language.flag}
-                    </span>
-
-                    <span
-                        class="country-info"
-                    >
-
-                        <strong>
-                            ${language.native}
-                        </strong>
-
-                        <small>
-                            ${language.name} — ${language.code}
-                        </small>
-
-                    </span>
-
-                    <span
-                        class="country-check"
-                    >
-                        ${
-                            code ===
-                            currentLanguage
-                                ? "✓"
-                                : ""
-                        }
-                    </span>
-
-                `;
-
-
-                item.addEventListener(
-                    "click",
-                    function () {
-
-                        setLanguage(
-                            code
-                        );
-
-                    }
-                );
-
-
-                list.appendChild(
-                    item
-                );
-
-            }
-        );
-
-      }
-
-/* =====================================================
-       LANGUAGE BUTTON BEHAVIOUR
-       ===================================================== */
-
-    function setupLanguageButton() {
 
         const button =
             document.getElementById(
-                "trustaiGlobalButton"
+                "trustaiLanguageButton"
             );
 
 
-        const panel =
+        const menu =
             document.getElementById(
-                "trustaiLanguagePanel"
+                "trustaiLanguageMenu"
             );
-
-
-        if (
-            !button ||
-            !panel
-        ) {
-
-            return;
-
-        }
 
 
         button.addEventListener(
             "click",
-            function (event) {
+            function(event) {
 
                 event.stopPropagation();
 
-
-                const isOpen =
-                    panel.classList.contains(
-                        "show"
-                    );
-
-
-                if (isOpen) {
-
-                    closeLanguagePanel();
-
-                } else {
-
-                    openLanguagePanel();
-
-                }
-
-            }
-        );
-
-
-        panel.addEventListener(
-            "click",
-            function (event) {
-
-                event.stopPropagation();
-
-            }
-        );
-
-
-        document.addEventListener(
-            "click",
-            function () {
-
-                closeLanguagePanel();
-
-            }
-        );
-
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key ===
-                    "Escape"
-                ) {
-
-                    closeLanguagePanel();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       OPEN PANEL
-       ===================================================== */
-
-    function openLanguagePanel() {
-
-        const button =
-            document.getElementById(
-                "trustaiGlobalButton"
-            );
-
-        const panel =
-            document.getElementById(
-                "trustaiLanguagePanel"
-            );
-
-
-        if (!button || !panel) {
-            return;
-        }
-
-
-        panel.classList.add(
-            "show"
-        );
-
-
-        button.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-
-        panel.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-    }
-
-   /* =====================================================
-       CLOSE PANEL
-       ===================================================== */
-
-    function closeLanguagePanel() {
-
-        const button =
-            document.getElementById(
-                "trustaiGlobalButton"
-            );
-
-        const panel =
-            document.getElementById(
-                "trustaiLanguagePanel"
-            );
-
-
-        if (!button || !panel) {
-            return;
-        }
-
-
-        panel.classList.remove(
-            "show"
-        );
-
-
-        button.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-
-        panel.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-
-
-    /* =====================================================
-       LANGUAGE DETECTION
-       =====================================================
-
-       This is a lightweight browser-side detector.
-
-       It does NOT claim perfect language recognition.
-
-       It looks for common words and patterns and returns
-       the most likely language.
-
-       Later, TrustAI can connect this to a stronger
-       language-detection/AI service.
-       ===================================================== */
-
-    function detectLanguage(text) {
-
-        if (
-            !text ||
-            typeof text !== "string"
-        ) {
-
-            return {
-                code: "unknown",
-                name: "Unknown language",
-                confidence: 0
-            };
-
-        }
-
-
-        const value =
-            text
-                .toLowerCase()
-                .replace(
-                    /[^\p{L}\p{N}\s]/gu,
-                    " "
+                menu.classList.toggle(
+                    "open"
                 );
 
+            }
+        );
+       document
+            .querySelectorAll(
+                ".trustai-language-option"
+            )
+            .forEach(
+                function(option) {
 
-        const scores = {
+                    option.addEventListener(
+                        "click",
+                        function() {
 
-            en: 0,
-            fr: 0,
-            de: 0,
-            es: 0,
-            it: 0,
-            pt: 0,
-            nl: 0
-
-        };
-
-
-        const WORDS = {
-
-            en: [
-                "the",
-                "and",
-                "you",
-                "your",
-                "this",
-                "that",
-                "please",
-                "account",
-                "money",
-                "bank",
-                "payment",
-                "click",
-                "verify",
-                "password",
-                "security"
-            ],
-
-            fr: [
-                "le",
-                "la",
-                "les",
-                "et",
-                "vous",
-                "votre",
-                "avec",
-                "pour",
-                "dans",
-                "bonjour",
-                "compte",
-                "argent",
-                "banque",
-                "paiement",
-                "cliquez",
-                "vérifier"
-            ],
-
-            de: [
-                "der",
-                "die",
-                "das",
-                "und",
-                "sie",
-                "ihr",
-                "mit",
-                "für",
-                "nicht",
-                "hallo",
-                "konto",
-                "geld",
-                "bank",
-                "zahlung",
-                "passwort",
-                "sicherheit"
-            ],
-
-            es: [
-                "el",
-                "la",
-                "los",
-                "las",
-                "y",
-                "usted",
-                "tu",
-                "su",
-                "para",
-                "con",
-                "hola",
-                "cuenta",
-                "dinero",
-                "banco",
-                "pago",
-                "contraseña"
-            ],
-
-            it: [
-                "il",
-                "lo",
-                "la",
-                "gli",
-                "le",
-                "e",
-                "tu",
-                "suo",
-                "per",
-                "con",
-                "ciao",
-                "conto",
-                "soldi",
-                "banca",
-                "pagamento",
-                "password"
-            ],
-
-            pt: [
-                "o",
-                "a",
-                "os",
-                "as",
-                "e",
-                "você",
-                "voce",
-                "seu",
-                "sua",
-                "para",
-                "com",
-                "olá",
-                "ola",
-                "conta",
-                "dinheiro",
-                "banco",
-                "pagamento",
-                "senha"
-            ],
-
-            nl: [
-                "de",
-                "het",
-                "een",
-                "en",
-                "je",
-                "jouw",
-                "uw",
-                "voor",
-                "met",
-                "niet",
-                "hallo",
-                "rekening",
-                "geld",
-                "bank",
-                "betaling",
-                "wachtwoord"
-            ]
-
-        };
-               
-const words =
-            value.split(
-                /\s+/
-            );
+                            const language =
+                                option.dataset.language;
 
 
-        words.forEach(
-            function (word) {
-
-                if (!word) {
-                    return;
-                }
-
-
-                Object.keys(
-                    WORDS
-                ).forEach(
-                    function (language) {
-
-                        if (
-                            WORDS[
+                            setLanguage(
                                 language
-                            ].includes(
-                                word
-                            )
-                        ) {
+                            );
 
-                            scores[
-                                language
-                            ]++;
+
+                            menu.classList.remove(
+                                "open"
+                            );
 
                         }
+                    );
 
-                    }
+                }
+            );
+
+
+        document.addEventListener(
+            "click",
+            function() {
+
+                menu.classList.remove(
+                    "open"
                 );
 
             }
         );
 
-
-        /*
-         * Extra language clues.
-         */
-
-        if (
-            /[àâçéèêëîïôûùüÿœ]/i.test(
-                text
-            )
-        ) {
-
-            scores.fr += 2;
-
-        }
-
-
-        if (
-            /[äöüß]/i.test(
-                text
-            )
-        ) {
-
-            scores.de += 3;
-
-        }
-
-
-        if (
-            /[ñ¿¡]/i.test(
-                text
-            )
-        ) {
-
-            scores.es += 3;
-
-        }
-
-
-        if (
-            /[ãõ]/i.test(
-                text
-            )
-        ) {
-
-            scores.pt += 2;
-
-        }
-
-
-        if (
-            /[àèéìíîòóù]/i.test(
-                text
-            )
-        ) {
-
-            scores.it += 1;
-
-        }
-
-
-        let detected =
-            "en";
-
-
-        let highest =
-            0;
-
-
-        Object.keys(
-            scores
-        ).forEach(
-            function (language) {
-
-                if (
-                    scores[
-                        language
-                    ] > highest
-                ) {
-
-                    highest =
-                        scores[
-                            language
-                        ];
-
-                    detected =
-                        language;
-
-                }
-
-            }
-        );
-
-
-        if (
-            highest === 0
-        ) {
-
-            return {
-                code: "unknown",
-                name: "Unknown language",
-                confidence: 0
-            };
-
-        }
-
-
-        const confidence =
-            Math.min(
-                100,
-                Math.round(
-                    (
-                        highest /
-                        Math.max(
-                            1,
-                            words.length
-                        )
-                    ) * 100
-                )
-            );
-
-
-        return {
-
-            code:
-                detected,
-
-            name:
-                LANGUAGES[
-                    detected
-                ].native,
-
-            confidence:
-                confidence
-
-        };
-
     }
-/* =====================================================
-       STYLES
-       ===================================================== */
 
-    function addLanguageStyles() {
+
+    /* ========================================================
+       LANGUAGE SELECTOR STYLES
+       ======================================================== */
+
+    function injectLanguageStyles() {
 
         if (
             document.getElementById(
-                "trustai-global-language-style"
+                "trustaiLanguageStyles"
             )
         ) {
 
@@ -1964,24 +1266,20 @@ const words =
 
 
         style.id =
-            "trustai-global-language-style";
+            "trustaiLanguageStyles";
 
 
         style.textContent = `
 
-            /* =========================================
-               GLOBAL CONTAINER
-               ========================================= */
-
-            #trustaiGlobalLanguage {
+            #trustaiLanguageSelector {
 
                 position: fixed;
 
-                right: 18px;
+                right: 16px;
 
-                bottom: 18px;
+                bottom: 16px;
 
-                z-index: 999999;
+                z-index: 99999;
 
                 font-family:
                     Inter,
@@ -1995,487 +1293,176 @@ const words =
             }
 
 
-            /* =========================================
-               GLOBAL BUTTON
-               ========================================= */
-
-            .trustai-global-button {
+            #trustaiLanguageButton {
 
                 display: flex;
 
                 align-items: center;
 
-                justify-content: center;
+                gap: 7px;
 
-                gap: 8px;
-
-                min-height: 48px;
+                min-height: 44px;
 
                 padding:
-                    0 16px;
+                    10px 13px;
 
                 border:
                     1px solid
-                    rgba(255,255,255,.14);
+                    rgba(255,255,255,0.12);
 
-                border-radius:
-                    16px;
+                border-radius: 12px;
 
                 background:
-                    rgba(15,23,42,.96);
+                    rgba(15,23,42,0.96);
 
                 color:
                     #f8fafc;
 
+                font-size: 13px;
+
+                font-weight: 700;
+
+                cursor: pointer;
+
                 box-shadow:
-                    0 12px 35px
-                    rgba(0,0,0,.45);
+                    0 12px 30px
+                    rgba(0,0,0,0.35);
 
                 backdrop-filter:
-                    blur(16px);
+                    blur(14px);
 
                 -webkit-backdrop-filter:
-                    blur(16px);
-
-                cursor:
-                    pointer;
-
-                font-size:
-                    14px;
-
-                font-weight:
-                    750;
-
-                transition:
-                    transform .2s ease,
-                    border-color .2s ease,
-                    box-shadow .2s ease;
+                    blur(14px);
 
             }
 
 
-            .trustai-global-button:hover {
-
-                transform:
-                    translateY(-3px);
+            #trustaiLanguageButton:hover {
 
                 border-color:
-                    rgba(99,102,241,.65);
-
-                box-shadow:
-                    0 16px 40px
-                    rgba(0,0,0,.55);
+                    rgba(99,102,241,0.6);
 
             }
 
 
-            .trustai-global-button:active {
+            #trustaiLanguageMenu {
 
-                transform:
-                    scale(.96);
+                position: absolute;
 
-            }
+                right: 0;
 
+                bottom: 52px;
 
-            .global-symbol {
+                width: 185px;
 
-                font-size:
-                    21px;
-
-            }
-
-
-            .global-text {
-
-                letter-spacing:
-                    .2px;
-
-            }
-
-
-            /* =========================================
-               LANGUAGE PANEL
-               ========================================= */
-
-            .trustai-language-panel {
-
-                position:
-                    absolute;
-
-                right:
-                    0;
-
-                bottom:
-                    60px;
-
-                width:
-                    300px;
-
-                max-width:
-                    calc(100vw - 24px);
-
-                padding:
-                    14px;
+                padding: 7px;
 
                 border:
                     1px solid
-                    rgba(255,255,255,.12);
+                    rgba(255,255,255,0.10);
 
-                border-radius:
-                    20px;
+                border-radius: 14px;
 
                 background:
-                    rgba(15,23,42,.98);
-
-                color:
-                    #f8fafc;
+                    rgba(15,23,42,0.98);
 
                 box-shadow:
-                    0 20px 60px
-                    rgba(0,0,0,.55);
+                    0 18px 40px
+                    rgba(0,0,0,0.45);
 
                 backdrop-filter:
-                    blur(20px);
+                    blur(16px);
 
                 -webkit-backdrop-filter:
-                    blur(20px);
+                    blur(16px);
 
-                opacity:
-                    0;
+                opacity: 0;
 
-                visibility:
-                    hidden;
-
-                pointer-events:
-                    none;
+                visibility: hidden;
 
                 transform:
-                    translateY(10px)
-                    scale(.96);
-
-                transform-origin:
-                    bottom right;
+                    translateY(8px);
 
                 transition:
                     opacity .2s ease,
-                    visibility .2s ease,
-                    transform .2s ease;
+                    transform .2s ease,
+                    visibility .2s ease;
 
             }
 
 
-            .trustai-language-panel.show {
+            #trustaiLanguageMenu.open {
 
-                opacity:
-                    1;
+                opacity: 1;
 
-                visibility:
-                    visible;
-
-                pointer-events:
-                    auto;
+                visibility: visible;
 
                 transform:
-                    translateY(0)
-                    scale(1);
+                    translateY(0);
 
             }
-            
-          /* =========================================
-               PANEL HEADER
-               ========================================= */
 
-            .language-panel-header {
+
+            .trustai-language-option {
+
+                width: 100%;
+
+                display: flex;
+
+                align-items: center;
+
+                gap: 10px;
 
                 padding:
-                    6px 8px 13px;
+                    10px 11px;
 
-                border-bottom:
-                    1px solid
-                    rgba(255,255,255,.08);
+                border: 0;
 
-                margin-bottom:
-                    8px;
-
-            }
-
-
-            .language-title {
-
-                color:
-                    #f8fafc;
-
-                font-size:
-                    17px;
-
-                font-weight:
-                    850;
-
-            }
-
-
-            .language-subtitle {
-
-                margin-top:
-                    3px;
-
-                color:
-                    #94a3b8;
-
-                font-size:
-                    12px;
-
-            }
-
-
-            /* =========================================
-               LANGUAGE LIST
-               ========================================= */
-
-            .trustai-language-list {
-
-                display:
-                    flex;
-
-                flex-direction:
-                    column;
-
-                gap:
-                    5px;
-
-                max-height:
-                    420px;
-
-                overflow-y:
-                    auto;
-
-            }
-
-
-            /* =========================================
-               LANGUAGE ITEM
-               ========================================= */
-
-            .trustai-language-item {
-
-                width:
-                    100%;
-
-                display:
-                    flex;
-
-                align-items:
-                    center;
-
-                gap:
-                    11px;
-
-                padding:
-                    10px;
-
-                border:
-                    1px solid
-                    transparent;
-
-                border-radius:
-                    13px;
+                border-radius: 9px;
 
                 background:
                     transparent;
 
                 color:
-                    #f8fafc;
+                    #e2e8f0;
 
-                text-align:
-                    left;
+                text-align: left;
 
-                cursor:
-                    pointer;
+                font-size: 13px;
 
-                transition:
-                    background .18s ease,
-                    border-color .18s ease,
-                    transform .18s ease;
+                cursor: pointer;
 
             }
 
 
-            .trustai-language-item:hover {
+            .trustai-language-option:hover {
 
                 background:
-                    rgba(255,255,255,.06);
-
-                border-color:
-                    rgba(99,102,241,.25);
-
-                transform:
-                    translateX(-2px);
-
-            }
-
-
-            .trustai-language-item.selected {
-
-                background:
-                    rgba(99,102,241,.13);
-
-                border-color:
-                    rgba(99,102,241,.35);
-
-            }
-
-
-            /* =========================================
-               FLAG
-               ========================================= */
-
-            .country-flag {
-
-                width:
-                    40px;
-
-                height:
-                    40px;
-
-                display:
-                    flex;
-
-                align-items:
-                    center;
-
-                justify-content:
-                    center;
-
-                border-radius:
-                    11px;
-
-                background:
-                    rgba(255,255,255,.06);
-
-                font-size:
-                    25px;
-
-                flex-shrink:
-                    0;
-
-            }
-            /* =========================================
-               LANGUAGE INFORMATION
-               ========================================= */
-
-            .country-info {
-
-                display:
-                    flex;
-
-                flex-direction:
-                    column;
-
-                min-width:
-                    0;
-
-                flex:
-                    1;
-
-            }
-
-
-            .country-info strong {
+                    rgba(99,102,241,0.15);
 
                 color:
-                    #f8fafc;
-
-                font-size:
-                    14px;
-
-                font-weight:
-                    750;
+                    #ffffff;
 
             }
 
 
-            .country-info small {
+            @media (max-width: 600px) {
 
-                margin-top:
-                    1px;
+                #trustaiLanguageSelector {
 
-                color:
-                    #94a3b8;
+                    right: 12px;
 
-                font-size:
-                    11px;
-
-            }
-
-
-            /* =========================================
-               CHECK
-               ========================================= */
-
-            .country-check {
-
-                width:
-                    22px;
-
-                color:
-                    #818cf8;
-
-                font-size:
-                    17px;
-
-                font-weight:
-                    900;
-
-                text-align:
-                    center;
-
-            }
-
-
-            /* =========================================
-               MOBILE
-               ========================================= */
-
-            @media (max-width:500px) {
-
-                #trustaiGlobalLanguage {
-
-                    right:
-                        12px;
-
-                    bottom:
-                        12px;
+                    bottom: 12px;
 
                 }
 
 
-                .trustai-global-button {
+                #trustaiLanguageButton {
 
-                    min-height:
-                        46px;
+                    min-height: 42px;
 
                     padding:
-                        0 13px;
-
-                    border-radius:
-                        15px;
-
-                }
-
-
-                .trustai-language-panel {
-
-                    width:
-                        min(
-                            300px,
-                            calc(100vw - 24px)
-                        );
-
-                    right:
-                        0;
-
-                    bottom:
-                        58px;
+                        9px 11px;
 
                 }
 
@@ -2489,40 +1476,121 @@ const words =
         );
 
     }
+   /* ========================================================
+       UPDATE SELECTOR
+       ======================================================== */
+
+    function updateLanguageSelector(
+        language
+    ) {
+
+        const current =
+            document.getElementById(
+                "trustaiLanguageCurrent"
+            );
 
 
-    /* =====================================================
-       START TRUSTAI LANGUAGE SYSTEM
-       ===================================================== */
-
-    function start() {
-
-        /*
-         * Create styles first.
-         */
-
-        addLanguageStyles();
+        if (!current) {
+            return;
+        }
 
 
-        /*
-         * Translate existing page.
-         */
+        if (
+            LANGUAGES[language]
+        ) {
 
-        translatePage();
+            current.textContent =
+                LANGUAGES[language].name;
 
-
-        /*
-         * Add Global button.
-         */
-
-        createGlobalLanguage();
+        }
 
     }
 
 
-    /* =====================================================
-       DOM READY
-       ===================================================== */
+    /* ========================================================
+       SET LANGUAGE
+       ======================================================== */
+
+    function setLanguage(language) {
+
+        if (
+            !LANGUAGES[language]
+        ) {
+
+            language =
+                DEFAULT_LANGUAGE;
+
+        }
+
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            language
+        );
+
+
+        translatePage(
+            language
+        );
+
+
+        window.dispatchEvent(
+            new CustomEvent(
+                "trustaiLanguageChanged",
+                {
+                    detail: {
+                        language: language
+                    }
+                }
+            )
+        );
+
+    }
+
+
+    /* ========================================================
+       PUBLIC API
+       ======================================================== */
+
+    window.TrustAILanguage = {
+
+        getLanguage:
+            getLanguage,
+
+        setLanguage:
+            setLanguage,
+
+        translatePage:
+            translatePage,
+
+        translateText:
+            translateText,
+
+        languages:
+            LANGUAGES
+
+    };
+
+
+    /* ========================================================
+       START
+       ======================================================== */
+
+    function initialize() {
+
+        createLanguageSelector();
+
+
+        const language =
+            getLanguage();
+
+
+        translatePage(
+            language
+        );
+
+    }
+
 
     if (
         document.readyState ===
@@ -2531,43 +1599,15 @@ const words =
 
         document.addEventListener(
             "DOMContentLoaded",
-            start
+            initialize
         );
 
     } else {
 
-        start();
+        initialize();
 
     }
-/* =====================================================
-       PUBLIC TRUSTAI LANGUAGE API
-       ===================================================== */
-
-    window.TrustAILanguage = {
-
-        setLanguage:
-            setLanguage,
-
-        getLanguage:
-            getLanguage,
-
-        translate:
-            translateText,
-
-        translatePage:
-            translatePage,
-
-        detectLanguage:
-            detectLanguage,
-
-        languages:
-            LANGUAGES,
-
-        translations:
-            TRANSLATIONS
-
-    };
 
 
 })();
-    
+       
