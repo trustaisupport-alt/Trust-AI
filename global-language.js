@@ -60,7 +60,7 @@
         },
 
         nl: {
-            name: "Nederland",
+            name: "Netherlands",
             flag: "🇳🇱"
         }
 
