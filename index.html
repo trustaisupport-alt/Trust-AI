@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>TrustAI — Advanced Threat Protection</title>
+<title>TrustAI — Scam & Threat Detection</title>
 
 <style>
 
@@ -239,7 +239,6 @@ body.page-exit {
     inset: 8px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(56, 189, 248, 0.15), transparent 70%);
-    animation: logoGlow 3s ease-in-out infinite alternate;
 }
 
 .logo-wrapper::after {
@@ -248,17 +247,6 @@ body.page-exit {
     inset: 0;
     border-radius: 50%;
     border: 1px solid rgba(56, 189, 248, 0.12);
-    border-top-color: rgba(56, 189, 248, 0.6);
-    animation: rotateRing 5s linear infinite;
-}
-
-@keyframes logoGlow {
-    from { transform: scale(0.9); opacity: 0.4; }
-    to { transform: scale(1.08); opacity: 0.9; }
-}
-
-@keyframes rotateRing {
-    to { transform: rotate(360deg); }
 }
 
 
@@ -272,12 +260,6 @@ body.page-exit {
     width: 96px;
     height: 96px;
     filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.35));
-    animation: shieldPulse 3s ease-in-out infinite alternate;
-}
-
-@keyframes shieldPulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.025); }
 }
 
 
@@ -328,12 +310,35 @@ body.page-exit {
     font-size: 13.5px;
     font-weight: 400;
     letter-spacing: 0.2px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.status.hidden {
-    opacity: 0;
-    transform: translateY(4px);
+
+/* =====================================================
+   ACTION BUTTON (HONEST USER ENTRY)
+   ===================================================== */
+
+.action-area {
+    margin-top: 20px;
+}
+
+.btn-enter {
+    display: inline-block;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(29, 78, 216, 0.35);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-enter:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
 }
 
 
@@ -362,12 +367,6 @@ body.page-exit {
     border-radius: 50%;
     background: var(--success);
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12), 0 0 10px rgba(16, 185, 129, 0.6);
-    animation: statusPulse 2s infinite;
-}
-
-@keyframes statusPulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
 }
 
 
@@ -434,20 +433,25 @@ body.page-exit {
     </h1>
 
     <div class="tagline">
-        Autonomous Threat Protection
+        Autonomous Scam & Threat Analysis
     </div>
 
-    <!-- DYNAMIC STATUS -->
+    <!-- STATIC HONEST STATUS -->
     <div class="status-area">
         <div class="status" id="statusText">
-            Initializing secure runtime...
+            System ready. Paste text or links to check for scams.
         </div>
+    </div>
+
+    <!-- ACTION BUTTON TO PROCEED -->
+    <div class="action-area">
+        <a href="login.html" class="btn-enter" id="enterBtn">Launch Portal</a>
     </div>
 
     <!-- SECURITY STATE BADGE -->
     <div class="security-state">
         <span class="security-dot"></span>
-        Zero-Trust Protocols Active
+        Platform Online
     </div>
 
 </main>
@@ -459,41 +463,15 @@ body.page-exit {
 
 <script>
 /* =====================================================
-   REFINED TRUSTAI LOAD SEQUENCE
+   CLEAN TRANSITION HANDLER (NO FAKE RUNTIME LOOPS)
    ===================================================== */
-
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-async function initializeSecuritySequence() {
-    const status = document.getElementById("statusText");
-
-    await delay(1200);
-    status.classList.add("hidden");
-    await delay(300);
-    status.textContent = "Verifying client integrity...";
-    status.classList.remove("hidden");
-
-    await delay(1300);
-    status.classList.add("hidden");
-    await delay(300);
-    status.textContent = "Establishing encrypted handshake...";
-    status.classList.remove("hidden");
-
-    await delay(1300);
-    status.classList.add("hidden");
-    await delay(300);
-    status.textContent = "Environment verified and secured.";
-    status.classList.remove("hidden");
-
-    await delay(1400);
-
+document.getElementById("enterBtn").addEventListener("click", async (e) => {
+    e.preventDefault();
     document.body.classList.add("page-exit");
-    await delay(700);
-
-    window.location.href = "login.html";
-}
-
-document.addEventListener("DOMContentLoaded", initializeSecuritySequence);
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 700);
+});
 </script>
 
 </body>
