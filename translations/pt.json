@@ -1,0 +1,56 @@
+{
+  "navigation": {
+    "home": "Início",
+    "message": "Verificador de Mensagens",
+    "conversation": "Verificador de Conversas",
+    "website": "Verificador de Sites",
+    "device": "Segurança do Dispositivo",
+    "protection": "Proteção TrustAI",
+    "plans": "Atualizar Plano",
+    "security": "Central de Segurança",
+    "alerts": "Alertas de Golpes",
+    "report": "Denunciar um Golpe",
+    "contact": "Contactar a TrustAI",
+    "settings": "Definições e Privacidade",
+    "logout": "Terminar Sessão"
+  },
+
+  "menu": {
+    "subtitle": "Proteção contra Golpes Online"
+  },
+
+  "home": {
+    "titleStart": "Fique um passo à frente dos",
+    "titleEnd": "golpes.",
+    "description": "Verifique mensagens, conversas e sites suspeitos em busca de sinais comuns de golpes antes de tomar qualquer ação. Explore a Proteção TrustAI para obter recursos de segurança adicionais.",
+    "checkSomething": "Verificar Algo",
+    "security": "Segurança",
+
+    "messageTitle": "Verificador de Mensagens",
+    "messageDescription": "Verifique uma mensagem suspeita em busca de sinais de golpe, phishing, falsificação de identidade e fraude de pagamento.",
+
+    "conversationTitle": "Verificador de Conversas",
+    "conversationDescription": "Analise uma conversa em busca de padrões suspeitos que possam surgir ao longo do tempo.",
+
+    "websiteTitle": "Verificador de Sites",
+    "websiteDescription": "Verifique um endereço de site em busca de sinais comuns de sites suspeitos.",
+
+    "protectionTitle": "Proteção TrustAI",
+    "protectionDescription": "Explore os recursos de proteção da TrustAI desenvolvidos para ajudar a manter suas contas, dispositivos e atividades online mais seguros.",
+
+    "deviceTitle": "Segurança do Dispositivo",
+    "deviceDescription": "Revise as permissões ativas, o estado do dispositivo e as configurações de segurança para manter seu telefone protegido."
+  },
+
+  "footer": {
+    "description": "Seu assistente de proteção contra golpes e ameaças online em tempo real.",
+    "copyright": "© 2026 TrustAI. Todos os direitos reservados."
+  },
+
+  "accessibility": {
+    "openMenu": "Abrir menu",
+    "openProfile": "Abrir perfil",
+    "profile": "Perfil",
+    "language": "Idioma"
+  }
+}
