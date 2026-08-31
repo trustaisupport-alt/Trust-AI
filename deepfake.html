@@ -1,56 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>Trust AI — AI & Deepfake Protection</title>
+<title>TrustAI — AI & Deepfake Protection</title><meta name="description"
+content="TrustAI AI and Deepfake Protection for preliminary media authenticity and identity verification.">
 
 <style>
+
 :root{
-    --bg:#07111f;
-    --card:#0d1b2d;
+    --bg:#050b14;
+    --card:#0b192a;
     --card2:#10243a;
-    --text:#f4f7fb;
-    --muted:#9fb0c5;
-    --primary:#36a3ff;
-    --success:#20d18b;
-    --warning:#ffb020;
-    --danger:#ff4d67;
-    --border:rgba(255,255,255,.08);
+    --text:#f1f5f9;
+    --muted:#8fa5bd;
+    --primary:#1687ff;
+    --primary2:#38bdf8;
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+    --border:#1d3852;
 }
 
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Inter,Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:
-        radial-gradient(circle at top right,rgba(54,163,255,.15),transparent 35%),
-        var(--bg);
-    color:var(--text);
     min-height:100vh;
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(37,99,235,.17),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(14,165,233,.12),
+            transparent 35%
+        ),
+        var(--bg);
 }
 
+button,
+input{
+    font-family:inherit;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
 header{
-    padding:20px;
-    border-bottom:1px solid var(--border);
-    background:rgba(7,17,31,.92);
     position:sticky;
     top:0;
-    z-index:10;
-    backdrop-filter:blur(12px);
+    z-index:100;
+
+    padding:16px;
+
+    background:rgba(5,11,20,.92);
+
+    border-bottom:1px solid var(--border);
+
+    backdrop-filter:blur(14px);
 }
 
 .header-inner{
-    max-width:1100px;
+    width:min(1100px,100%);
     margin:auto;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:15px;
 }
 
@@ -58,164 +84,533 @@ header{
     display:flex;
     align-items:center;
     gap:10px;
-    font-size:21px;
-    font-weight:bold;
+
+    font-size:20px;
+    font-weight:900;
 }
 
 .logo-icon{
-    width:38px;
-    height:38px;
-    border-radius:12px;
+    width:40px;
+    height:40px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#36a3ff,#7b61ff);
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1687ff,
+            #6256e8
+        );
 }
 
 .back{
-    color:white;
+    color:#dbeafe;
+
     text-decoration:none;
-    border:1px solid var(--border);
+
     padding:10px 14px;
+
+    border:1px solid var(--border);
+
     border-radius:10px;
-    font-size:14px;
+
+    font-size:13px;
+
+    transition:.2s;
 }
 
-main{
-    max-width:1100px;
-    margin:auto;
-    padding:30px 18px 60px;
+.back:hover{
+    border-color:var(--primary);
+    background:rgba(22,135,255,.08);
 }
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+main{
+    width:min(1100px,100%);
+
+    margin:auto;
+
+    padding:28px 16px 60px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
     text-align:center;
-    padding:25px 10px 35px;
+
+    padding:25px 10px 28px;
 }
 
 .badge{
-    display:inline-block;
-    background:rgba(54,163,255,.12);
-    border:1px solid rgba(54,163,255,.25);
-    color:#69baff;
-    padding:8px 13px;
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px 14px;
+
+    border:1px solid #21476c;
+
     border-radius:30px;
-    font-size:13px;
-    margin-bottom:15px;
+
+    background:rgba(22,135,255,.09);
+
+    color:#62a9ff;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    letter-spacing:.7px;
 }
 
-h1{
-    font-size:34px;
-    margin-bottom:12px;
+.hero h1{
+    margin:18px 0 10px;
+
+    font-size:clamp(30px,7vw,48px);
+
+    line-height:1.1;
+}
+
+.hero h1 span{
+    color:#62a9ff;
 }
 
 .hero p{
-    max-width:700px;
+    max-width:720px;
+
     margin:auto;
+
     color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   IMPORTANT NOTICE
+===================================================== */
+
+.notice{
+    max-width:900px;
+
+    margin:0 auto 22px;
+
+    padding:16px;
+
+    border:1px solid #665218;
+
+    border-radius:15px;
+
+    background:rgba(82,65,12,.12);
+
+    color:#f6d77b;
+
+    font-size:13px;
+
     line-height:1.6;
 }
 
-.notice{
-    margin:0 auto 25px;
-    max-width:850px;
-    background:rgba(255,176,32,.08);
-    border:1px solid rgba(255,176,32,.25);
-    border-radius:14px;
-    padding:15px;
-    color:#ffd27a;
-    line-height:1.5;
-    font-size:14px;
-}
 
-.grid{
+/* =====================================================
+   VERIFICATION MODES
+===================================================== */
+
+.mode-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:12px;
+
+    margin-bottom:20px;
 }
 
-.card{
-    background:linear-gradient(145deg,var(--card),var(--card2));
+.mode-button{
+    padding:18px 12px;
+
     border:1px solid var(--border);
-    border-radius:18px;
-    padding:22px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b1b2e,
+            #0c2136
+        );
+
+    color:#b9c8d8;
+
+    cursor:pointer;
+
+    text-align:center;
+
+    transition:.2s;
 }
 
-.icon{
-    width:52px;
-    height:52px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:14px;
-    background:rgba(54,163,255,.12);
-    font-size:25px;
-    margin-bottom:15px;
+.mode-button:hover{
+    transform:translateY(-2px);
+
+    border-color:#2874ad;
 }
 
-.card h2{
-    font-size:19px;
+.mode-button.active{
+    border-color:var(--primary);
+
+    background:rgba(22,135,255,.10);
+
+    color:white;
+
+    box-shadow:
+        0 0 0 1px rgba(22,135,255,.12);
+}
+
+.mode-icon{
+    font-size:27px;
+
     margin-bottom:8px;
 }
 
-.card p{
-    color:var(--muted);
-    line-height:1.5;
-    font-size:14px;
-    margin-bottom:18px;
+.mode-button strong{
+    display:block;
+
+    font-size:13px;
 }
+
+.mode-button small{
+    display:block;
+
+    margin-top:5px;
+
+    color:#71869c;
+
+    font-size:10px;
+}
+
+
+/* =====================================================
+   CHECKER PANEL
+===================================================== */
+
+.checker{
+    padding:22px;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0c2035,
+            #081522
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.22);
+}
+
+.panel-title{
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.panel-title h2{
+    font-size:21px;
+
+    margin-bottom:5px;
+}
+
+.panel-title p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.5;
+}
+
+.demo-label{
+    padding:6px 9px;
+
+    border-radius:15px;
+
+    background:rgba(245,158,11,.09);
+
+    border:1px solid #604b17;
+
+    color:#fcd34d;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    white-space:nowrap;
+}
+
+
+/* =====================================================
+   UPLOAD
+===================================================== */
 
 input[type=file]{
     display:none;
 }
 
-.upload{
-    display:block;
+.upload-area{
+    border:1px dashed #31516e;
+
+    border-radius:16px;
+
+    padding:28px 15px;
+
     text-align:center;
-    border:1px dashed rgba(255,255,255,.2);
-    border-radius:12px;
-    padding:13px;
-    cursor:pointer;
-    color:#b9dfff;
+
+    background:rgba(255,255,255,.018);
+
     transition:.2s;
 }
 
-.upload:hover{
+.upload-area:hover{
     border-color:var(--primary);
-    background:rgba(54,163,255,.06);
+
+    background:rgba(22,135,255,.04);
+}
+
+.upload-icon{
+    font-size:38px;
+
+    margin-bottom:10px;
+}
+
+.upload-area h3{
+    font-size:16px;
+
+    margin-bottom:6px;
+}
+
+.upload-area p{
+    color:#71869c;
+
+    font-size:12px;
+
+    margin-bottom:15px;
+}
+
+.choose-button{
+    display:inline-block;
+
+    padding:11px 16px;
+
+    border-radius:10px;
+
+    background:#1687ff;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+    font-weight:800;
 }
 
 .file-name{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:10px;
-    min-height:16px;
+    margin-top:12px;
+
+    min-height:17px;
+
+    color:#9fb0c5;
+
+    font-size:11px;
+
     word-break:break-word;
 }
 
-.analyze{
-    width:100%;
-    border:0;
-    margin-top:14px;
-    padding:13px;
-    border-radius:11px;
-    cursor:pointer;
-    color:white;
-    font-weight:bold;
-    background:linear-gradient(135deg,#1688e8,#6256e8);
+
+/* =====================================================
+   LIVE VERIFY
+===================================================== */
+
+.live-box{
+    display:none;
+
+    padding:24px;
+
+    border:1px solid #214362;
+
+    border-radius:17px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(22,135,255,.10),
+            transparent 60%
+        ),
+        #081522;
+
+    text-align:center;
 }
 
-.analyze:hover{
-    opacity:.9;
+.live-box.show{
+    display:block;
 }
+
+.live-icon{
+    width:78px;
+    height:78px;
+
+    margin:0 auto 15px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#102d49;
+
+    font-size:34px;
+}
+
+.live-box h3{
+    margin-bottom:8px;
+
+    font-size:20px;
+}
+
+.live-box p{
+    max-width:600px;
+
+    margin:0 auto 18px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+.challenge{
+    display:none;
+
+    max-width:500px;
+
+    margin:20px auto 0;
+
+    padding:17px;
+
+    border:1px solid #214362;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.035);
+}
+
+.challenge.show{
+    display:block;
+}
+
+.challenge strong{
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#62a9ff;
+}
+
+.challenge span{
+    color:#d7e2ee;
+
+    font-size:14px;
+
+    font-weight:700;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.primary-button{
+    width:100%;
+
+    margin-top:16px;
+
+    padding:14px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1687ff,
+            #6256e8
+        );
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.primary-button:hover{
+    transform:translateY(-1px);
+
+    opacity:.92;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
 
 .result{
     display:none;
-    margin-top:30px;
-    background:linear-gradient(145deg,#0d1b2d,#10243a);
+
+    margin-top:20px;
+
+    padding:23px;
+
     border:1px solid var(--border);
+
     border-radius:20px;
-    padding:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0c2035,
+            #081522
+        );
 }
 
 .result.show{
@@ -224,50 +619,65 @@ input[type=file]{
 
 .result-header{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
-    margin-bottom:20px;
+
+    margin-bottom:22px;
 }
 
-.status{
-    padding:9px 13px;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:bold;
+.result-header h2{
+    font-size:20px;
 }
 
-.status.low{
-    background:rgba(32,209,139,.12);
-    color:#52e8aa;
+.result-status{
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    background:rgba(245,158,11,.10);
+
+    border:1px solid #6b5518;
+
+    color:#fcd34d;
 }
 
-.status.medium{
-    background:rgba(255,176,32,.12);
-    color:#ffc75b;
-}
-
-.status.high{
-    background:rgba(255,77,103,.12);
-    color:#ff7185;
-}
-
-.score-area{
+.result-main{
     display:flex;
+
     align-items:center;
+
     gap:25px;
+
     flex-wrap:wrap;
 }
 
 .score{
-    width:120px;
-    height:120px;
+    width:125px;
+    height:125px;
+
+    flex:none;
+
     border-radius:50%;
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:center;
+
     align-items:center;
-    border:8px solid rgba(54,163,255,.2);
+
+    border:8px solid #173653;
+
+    background:#081522;
 }
 
 .score strong{
@@ -275,461 +685,1308 @@ input[type=file]{
 }
 
 .score span{
-    color:var(--muted);
-    font-size:12px;
+    margin-top:2px;
+
+    color:#71869c;
+
+    font-size:11px;
 }
 
-.details{
+.result-description{
     flex:1;
+
     min-width:230px;
 }
 
-.details h3{
-    margin-bottom:8px;
+.result-description h3{
+    margin-bottom:7px;
+
+    font-size:19px;
 }
 
-.details p{
+.result-description p{
     color:var(--muted);
-    line-height:1.5;
+
+    font-size:13px;
+
+    line-height:1.6;
 }
+
+
+/* =====================================================
+   INDICATORS
+===================================================== */
 
 .indicators{
-    margin-top:22px;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:10px;
+
+    margin-top:22px;
 }
 
 .indicator{
-    padding:13px;
-    background:rgba(255,255,255,.035);
-    border-radius:10px;
-    color:#c7d3e1;
+    padding:14px;
+
+    border:1px solid #1d354c;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.025);
+
+    font-size:12px;
+
+    color:#aebfd1;
+}
+
+.indicator strong{
+    display:block;
+
+    margin-top:5px;
+
+    color:#f1f5f9;
+
     font-size:13px;
 }
 
+
+/* =====================================================
+   IDENTITY WARNING
+===================================================== */
+
+.identity-note{
+    margin-top:15px;
+
+    padding:15px;
+
+    border-left:3px solid var(--warning);
+
+    border-radius:9px;
+
+    background:rgba(245,158,11,.06);
+
+    color:#cbd5e1;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+
+/* =====================================================
+   FEATURES
+===================================================== */
+
 .section-title{
+    margin:40px 0 17px;
+
     text-align:center;
-    margin:40px 0 18px;
+
+    font-size:21px;
 }
 
 .features{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:12px;
 }
 
 .feature{
     padding:18px;
-    background:rgba(255,255,255,.035);
+
     border:1px solid var(--border);
-    border-radius:14px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.feature-icon{
+    font-size:24px;
+
+    margin-bottom:9px;
 }
 
 .feature strong{
     display:block;
-    margin-bottom:7px;
+
+    font-size:14px;
+
+    margin-bottom:6px;
 }
 
 .feature span{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.4;
+    color:#7f95ab;
+
+    font-size:11px;
+
+    line-height:1.5;
 }
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer{
+    padding:28px 15px;
+
+    border-top:1px solid #1c334a;
+
     text-align:center;
-    padding:30px 15px;
-    color:#718197;
-    font-size:12px;
-    border-top:1px solid var(--border);
-    margin-top:30px;
+
+    color:#667c93;
+
+    font-size:11px;
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:850px){
-    .grid{
-        grid-template-columns:1fr;
+
+    .mode-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .features{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    h1{
-        font-size:28px;
-    }
 }
 
-@media(max-width:500px){
+@media(max-width:560px){
+
     main{
-        padding-left:13px;
-        padding-right:13px;
+        padding-left:11px;
+        padding-right:11px;
     }
 
-    .features{
-        grid-template-columns:1fr;
+    .panel-title{
+        flex-direction:column;
+    }
+
+    .demo-label{
+        align-self:flex-start;
+    }
+
+    .mode-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .checker{
+        padding:17px;
     }
 
     .indicators{
         grid-template-columns:1fr;
     }
 
+    .features{
+        grid-template-columns:1fr;
+    }
+
     .result-header{
         align-items:flex-start;
+
         flex-direction:column;
     }
+
 }
-</style>
-</head>
 
-<body>
+</style></head><body><header><div class="header-inner">
 
-<header>
-    <div class="header-inner">
-        <div class="logo">
-            <div class="logo-icon">🛡️</div>
-            <span>Trust AI</span>
+    <div class="logo">
+
+        <div class="logo-icon">
+            🛡️
         </div>
 
-        <a href="index.html" class="back">← Dashboard</a>
+        <span>
+            TrustAI
+        </span>
+
     </div>
-</header>
 
-<main>
 
-<section class="hero">
-    <div class="badge">🤖 AI SECURITY LAYER</div>
+    <a
+        href="./protection.html"
+        class="back">
 
-    <h1>AI & Deepfake Protection</h1>
+        ← Protection Center
 
-    <p>
-        Analyze suspicious images, videos and audio for potential
-        AI manipulation, impersonation and digital deception.
-    </p>
-</section>
+    </a>
 
-<div class="notice">
-    ⚠️ <strong>Important:</strong>
-    This version provides a preliminary Trust AI risk assessment.
-    A genuine forensic deepfake detector requires a trained AI model
-    and secure backend connection, which will be added in the next stage.
 </div>
 
-<section class="grid">
+</header><main><!-- =====================================================
+     HERO
+===================================================== --><section class="hero"><div class="badge">
+    🤖 AI & DEEPFAKE PROTECTION
+</div>
 
-    <!-- IMAGE -->
-    <div class="card">
-        <div class="icon">🖼️</div>
+<h1>
+    Verify the media.<br>
+    <span>Question the identity.</span>
+</h1>
 
-        <h2>Image Check</h2>
+<p>
+    TrustAI helps you investigate suspicious photos,
+    videos and voice recordings while keeping media
+    authenticity separate from identity verification.
+</p>
 
-        <p>
-            Check a suspicious photo for potential AI generation,
-            manipulation or impersonation indicators.
+</section><!-- =====================================================
+     NOTICE
+===================================================== --><div class="notice">⚠️ <strong>Important:</strong>
+A real photo, video or voice recording does not
+automatically prove that the person communicating
+with you is the person they claim to be. TrustAI
+should combine media analysis, context and live
+verification instead of treating one signal as proof.
+
+</div><!-- =====================================================
+     MODES
+===================================================== --><section class="mode-grid"><button
+    class="mode-button active"
+    id="modeImage"
+    onclick="selectMode('image')">
+
+    <div class="mode-icon">
+        📸
+    </div>
+
+    <strong>
+        Photo Check
+    </strong>
+
+    <small>
+        Analyze an image
+    </small>
+
+</button>
+
+
+<button
+    class="mode-button"
+    id="modeVideo"
+    onclick="selectMode('video')">
+
+    <div class="mode-icon">
+        🎥
+    </div>
+
+    <strong>
+        Video Check
+    </strong>
+
+    <small>
+        Analyze recorded media
+    </small>
+
+</button>
+
+
+<button
+    class="mode-button"
+    id="modeVoice"
+    onclick="selectMode('voice')">
+
+    <div class="mode-icon">
+        🎙️
+    </div>
+
+    <strong>
+        Voice Check
+    </strong>
+
+    <small>
+        Analyze voice recording
+    </small>
+
+</button>
+
+
+<button
+    class="mode-button"
+    id="modeLive"
+    onclick="selectMode('live')">
+
+    <div class="mode-icon">
+        🔴
+    </div>
+
+    <strong>
+        Live Verify
+    </strong>
+
+    <small>
+        Challenge during a call
+    </small>
+
+</button>
+
+</section><!-- =====================================================
+     CHECKER
+===================================================== --><section class="checker"><div
+    class="panel-title"
+    id="panelTitle">
+
+    <div>
+
+        <h2 id="checkerTitle">
+            📸 Photo Check
+        </h2>
+
+        <p id="checkerDescription">
+
+            Upload a suspicious image for a
+            preliminary TrustAI assessment.
+
         </p>
 
-        <label class="upload">
-            Choose Image
-            <input type="file"
-                   id="imageInput"
-                   accept="image/*"
-                   onchange="showFile('imageInput','imageName')">
-        </label>
-
-        <div class="file-name" id="imageName">
-            No image selected
-        </div>
-
-        <button class="analyze" onclick="analyze('image')">
-            Analyze Image
-        </button>
     </div>
 
-    <!-- VIDEO -->
-    <div class="card">
-        <div class="icon">🎥</div>
+    <div class="demo-label">
+        FRONTEND DEMO
+    </div>
 
-        <h2>Video Check</h2>
+</div>
 
-        <p>
-            Examine suspicious video content for possible manipulation,
-            synthetic media or impersonation.
+
+<!-- MEDIA CHECK -->
+
+<div id="mediaChecker">
+
+    <div class="upload-area">
+
+        <div
+            class="upload-icon"
+            id="uploadIcon">
+
+            📸
+
+        </div>
+
+        <h3 id="uploadTitle">
+            Select a photo
+        </h3>
+
+        <p id="uploadDescription">
+            Supported image files can be selected
+            from your device.
         </p>
 
-        <label class="upload">
-            Choose Video
-            <input type="file"
-                   id="videoInput"
-                   accept="video/*"
-                   onchange="showFile('videoInput','videoName')">
+
+        <label
+            for="mediaInput"
+            class="choose-button"
+            id="chooseButton">
+
+            Choose Photo
+
         </label>
 
-        <div class="file-name" id="videoName">
-            No video selected
+
+        <input
+            type="file"
+            id="mediaInput"
+            onchange="handleFile()">
+
+
+        <div
+            class="file-name"
+            id="fileName">
+
+            No file selected
+
         </div>
 
-        <button class="analyze" onclick="analyze('video')">
-            Analyze Video
-        </button>
     </div>
 
-    <!-- AUDIO -->
-    <div class="card">
-        <div class="icon">🎙️</div>
 
-        <h2>Voice Check</h2>
+    <button
+        class="primary-button"
+        onclick="analyzeMedia()">
 
-        <p>
-            Check suspicious audio for possible synthetic voice
-            or voice impersonation indicators.
+        🔍 Analyze with TrustAI
+
+    </button>
+
+</div>
+
+
+<!-- LIVE VERIFICATION -->
+
+<div
+    class="live-box"
+    id="liveBox">
+
+    <div class="live-icon">
+        🔴
+    </div>
+
+    <h3>
+        TrustAI Live Verification
+    </h3>
+
+    <p>
+        This mode is designed for a future TrustAI
+        mobile application that can participate in
+        a live video call and issue a fresh challenge
+        to the person being verified.
+    </p>
+
+    <button
+        class="primary-button"
+        onclick="startLiveVerification()">
+
+        🔐 Start Live Verification
+
+    </button>
+
+
+    <div
+        class="challenge"
+        id="challenge">
+
+        <strong>
+            RANDOM LIVE CHALLENGE
+        </strong>
+
+        <span id="challengeText">
+            —
+        </span>
+
+    </div>
+
+</div>
+
+</section><!-- =====================================================
+     RESULT
+===================================================== --><section
+    class="result"
+    id="result"><div class="result-header">
+
+    <h2>
+        TrustAI Verification Result
+    </h2>
+
+    <div
+        class="result-status"
+        id="resultStatus">
+
+        PRELIMINARY
+
+    </div>
+
+</div>
+
+
+<div class="result-main">
+
+    <div class="score">
+
+        <strong id="riskScore">
+            —
+        </strong>
+
+        <span>
+            Risk Score
+        </span>
+
+    </div>
+
+
+    <div class="result-description">
+
+        <h3 id="resultTitle">
+            Assessment
+        </h3>
+
+        <p id="resultText">
+            —
         </p>
 
-        <label class="upload">
-            Choose Audio
-            <input type="file"
-                   id="audioInput"
-                   accept="audio/*"
-                   onchange="showFile('audioInput','audioName')">
-        </label>
-
-        <div class="file-name" id="audioName">
-            No audio selected
-        </div>
-
-        <button class="analyze" onclick="analyze('audio')">
-            Analyze Audio
-        </button>
     </div>
 
-</section>
+</div>
 
-<section id="result" class="result">
 
-    <div class="result-header">
-        <h2>Trust AI Analysis</h2>
-        <div id="status" class="status low">
-            PRELIMINARY
-        </div>
-    </div>
+<div class="indicators">
 
-    <div class="score-area">
 
-        <div class="score">
-            <strong id="score">0%</strong>
-            <span>Risk Score</span>
-        </div>
+    <div class="indicator">
 
-        <div class="details">
-            <h3 id="resultTitle">
-                Analysis Complete
-            </h3>
+        📁 Media authenticity
 
-            <p id="resultText">
-                Trust AI has completed a preliminary assessment.
-            </p>
-        </div>
+        <strong id="authenticity">
+            Not determined
+        </strong>
 
     </div>
 
-    <div class="indicators">
 
-        <div class="indicator">
-            🔍 Media type:
-            <strong id="mediaType">—</strong>
-        </div>
+    <div class="indicator">
 
-        <div class="indicator">
-            🧠 AI manipulation:
-            <strong id="manipulation">Not confirmed</strong>
-        </div>
+        🧠 AI manipulation
 
-        <div class="indicator">
-            👤 Impersonation risk:
-            <strong id="impersonation">Not confirmed</strong>
-        </div>
-
-        <div class="indicator">
-            ⚠️ Recommendation:
-            <strong id="recommendation">Review carefully</strong>
-        </div>
+        <strong id="manipulation">
+            Not determined
+        </strong>
 
     </div>
 
-</section>
 
-<h2 class="section-title">
-    What Trust AI Looks For
-</h2>
+    <div class="indicator">
 
-<section class="features">
+        👤 Identity confidence
 
-    <div class="feature">
-        <strong>🧠 AI Manipulation</strong>
-        <span>
-            Potential signs that media may have been generated
-            or altered using AI.
-        </span>
+        <strong id="identity">
+            Not established
+        </strong>
+
     </div>
 
-    <div class="feature">
-        <strong>👤 Impersonation</strong>
-        <span>
-            Signals that someone may be pretending to be another
-            person or organization.
-        </span>
+
+    <div class="indicator">
+
+        🔄 Replay / reuse risk
+
+        <strong id="replay">
+            Not determined
+        </strong>
+
     </div>
 
-    <div class="feature">
-        <strong>📱 Scam Context</strong>
-        <span>
-            Media can be evaluated together with suspicious
-            messages, links and requests.
-        </span>
+
+    <div class="indicator">
+
+        💬 Context risk
+
+        <strong id="contextRisk">
+            Not determined
+        </strong>
+
     </div>
 
-    <div class="feature">
-        <strong>🚨 Risk Assessment</strong>
-        <span>
-            Trust AI converts multiple warning signals into a
-            simple security risk level.
-        </span>
+
+    <div class="indicator">
+
+        🚨 Recommended action
+
+        <strong id="recommendation">
+            Review carefully
+        </strong>
+
     </div>
+
+</div>
+
+
+<div class="identity-note">
+
+    👤 <strong>Identity reminder:</strong>
+    Even if TrustAI determines that a recording
+    appears genuine, that does not prove the person
+    behind the account is the person shown or heard.
+    Identity verification requires additional trusted
+    evidence and, for live verification, appropriate
+    security infrastructure.
+
+</div>
+
+</section><!-- =====================================================
+     WHAT TRUSTAI CHECKS
+===================================================== --><h2 class="section-title">
+    What TrustAI Looks For
+</h2><section class="features"><div class="feature">
+
+    <div class="feature-icon">
+        🧠
+    </div>
+
+    <strong>
+        AI Manipulation
+    </strong>
+
+    <span>
+        Potential indicators of generated,
+        altered or synthetic media.
+    </span>
+
+</div>
+
+
+<div class="feature">
+
+    <div class="feature-icon">
+        👤
+    </div>
+
+    <strong>
+        Impersonation
+    </strong>
+
+    <span>
+        Signals that the media may be used
+        to impersonate another person.
+    </span>
+
+</div>
+
+
+<div class="feature">
+
+    <div class="feature-icon">
+        🔄
+    </div>
+
+    <strong>
+        Reused Media
+    </strong>
+
+    <span>
+        Future backend systems can compare
+        media fingerprints against known sources.
+    </span>
+
+</div>
+
+
+<div class="feature">
+
+  <div class="feature-icon">
+        🔄
+    </div>
+    <strong>
+        Reused Media
+    </strong>
+
+    <span>
+        Future backend systems can compare
+        media fingerprints against known sources.
+    </span>
+
+</div>
+
+
+<div class="feature">
+
+    <div class="feature-icon">
+        🔴
+    </div>
+
+    <strong>
+        Live Challenge
+    </strong>
+
+    <span>
+        Future mobile integration can use
+        unpredictable challenges during calls.
+    </span>
+
+</div>
 
 </section>
 
 </main>
 
 <footer>
-    Trust AI © 2026 — Protection against digital deception
+
+🛡️ TrustAI © 2026
+
+<br><br>
+
+Digital deception awareness and protection.
+
 </footer>
 
 <script>
 
-function showFile(inputId, outputId){
+/* =====================================================
+   STATE
+===================================================== */
 
-    const input = document.getElementById(inputId);
-    const output = document.getElementById(outputId);
+let currentMode = "image";
 
-    if(input.files.length > 0){
-        output.textContent = input.files[0].name;
-    }else{
-        output.textContent = "No file selected";
+let selectedFile = null;
+
+
+/* =====================================================
+   MODE CONFIGURATION
+===================================================== */
+
+const modeConfig = {
+
+    image: {
+
+        title: "📸 Photo Check",
+
+        description:
+            "Upload a suspicious image for a preliminary TrustAI assessment.",
+
+        icon: "📸",
+
+        uploadTitle:
+            "Select a photo",
+
+        uploadDescription:
+            "Supported image files can be selected from your device.",
+
+        choose:
+            "Choose Photo",
+
+        accept:
+            "image/*"
+
+    },
+
+
+    video: {
+
+        title: "🎥 Video Check",
+
+        description:
+            "Upload a recorded video for a preliminary synthetic-media assessment.",
+
+        icon: "🎥",
+
+        uploadTitle:
+            "Select a video",
+
+        uploadDescription:
+            "Choose a recorded video from your device.",
+
+        choose:
+            "Choose Video",
+
+        accept:
+            "video/*"
+
+    },
+
+
+    voice: {
+
+        title: "🎙️ Voice Check",
+
+        description:
+            "Upload a voice recording for a preliminary synthetic-voice assessment.",
+
+        icon: "🎙️",
+
+        uploadTitle:
+            "Select an audio recording",
+
+        uploadDescription:
+            "Choose a voice note or supported audio file.",
+
+        choose:
+            "Choose Audio",
+
+        accept:
+            "audio/*"
+
     }
+
+};
+
+
+/* =====================================================
+   SELECT MODE
+===================================================== */
+
+function selectMode(mode){
+
+    currentMode = mode;
+
+    document
+        .querySelectorAll(".mode-button")
+        .forEach(function(button){
+
+            button.classList.remove("active");
+
+        });
+
+
+    const activeButton =
+        document.getElementById(
+            "mode" +
+            mode.charAt(0).toUpperCase() +
+            mode.slice(1)
+        );
+
+
+    if(activeButton){
+
+        activeButton.classList.add("active");
+
+    }
+
+
+    const mediaChecker =
+        document.getElementById("mediaChecker");
+
+    const liveBox =
+        document.getElementById("liveBox");
+
+
+    if(mode === "live"){
+
+        mediaChecker.style.display = "none";
+
+        liveBox.classList.add("show");
+
+        document.getElementById("panelTitle").innerHTML = `
+
+            <div>
+
+                <h2>
+                    🔴 Live Verify
+                </h2>
+
+                <p>
+                    Designed for real-time verification
+                    during a supported video call.
+                </p>
+
+            </div>
+
+            <div class="demo-label">
+                FUTURE MOBILE FEATURE
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    mediaChecker.style.display = "block";
+
+    liveBox.classList.remove("show");
+
+
+    const config =
+        modeConfig[mode];
+
+
+    document.getElementById("panelTitle").innerHTML = `
+
+        <div>
+
+            <h2>
+                ${config.title}
+            </h2>
+
+            <p>
+                ${config.description}
+            </p>
+
+        </div>
+
+        <div class="demo-label">
+            FRONTEND DEMO
+        </div>
+
+    `;
+
+
+    document.getElementById("uploadIcon")
+        .textContent = config.icon;
+
+
+    document.getElementById("uploadTitle")
+        .textContent = config.uploadTitle;
+
+
+    document.getElementById("uploadDescription")
+        .textContent = config.uploadDescription;
+
+
+    document.getElementById("chooseButton")
+        .textContent = config.choose;
+
+
+    document.getElementById("mediaInput")
+        .accept = config.accept;
+
+
+    selectedFile = null;
+
+    document.getElementById("mediaInput").value = "";
+
+    document.getElementById("fileName")
+        .textContent = "No file selected";
+
 }
 
 
-function analyze(type){
+/* =====================================================
+   HANDLE FILE
+===================================================== */
 
-    let inputId = "";
+function handleFile(){
 
-    if(type === "image"){
-        inputId = "imageInput";
-    }
+    const input =
+        document.getElementById("mediaInput");
 
-    if(type === "video"){
-        inputId = "videoInput";
-    }
-
-    if(type === "audio"){
-        inputId = "audioInput";
-    }
-
-    const input = document.getElementById(inputId);
 
     if(!input.files.length){
 
+        selectedFile = null;
+
+        document.getElementById("fileName")
+            .textContent = "No file selected";
+
+        return;
+
+    }
+
+
+    selectedFile =
+        input.files[0];
+
+
+    document.getElementById("fileName")
+        .textContent =
+            selectedFile.name +
+            " • " +
+            formatBytes(selectedFile.size);
+
+}
+
+
+/* =====================================================
+   FORMAT FILE SIZE
+===================================================== */
+
+function formatBytes(bytes){
+
+    if(bytes === 0){
+        return "0 Bytes";
+    }
+
+
+    const units = [
+        "Bytes",
+        "KB",
+        "MB",
+        "GB"
+    ];
+
+
+    const index =
+        Math.floor(
+            Math.log(bytes) /
+            Math.log(1024)
+        );
+
+
+    return (
+        parseFloat(
+            (bytes /
+            Math.pow(1024,index))
+            .toFixed(2)
+        ) +
+        " " +
+        units[index]
+    );
+
+}
+
+
+/* =====================================================
+   ANALYZE MEDIA
+===================================================== */
+
+function analyzeMedia(){
+
+    if(!selectedFile){
+
         alert(
             "Please choose a " +
-            type +
-            " file before starting the analysis."
+            currentMode +
+            " file first."
         );
 
         return;
+
     }
+
 
     /*
-       FRONTEND DEMONSTRATION ONLY
+       IMPORTANT
 
-       This does NOT claim to perform genuine deepfake
-       forensic detection.
+       This is a FRONTEND DEMONSTRATION.
 
-       The random score below will later be replaced
-       by the result from the Trust AI backend/model.
+       No genuine forensic AI detection is
+       happening here.
+
+       The values below intentionally remain
+       conservative and must eventually come
+       from the TrustAI backend/model.
     */
 
-    const score = Math.floor(Math.random() * 71) + 15;
 
-    let level = "low";
-    let title = "Low Risk";
+    const demoScore =
+        Math.floor(
+            Math.random() * 36
+        ) + 10;
+
+
+    let title =
+        "Low preliminary risk";
+
     let text =
-        "No strong warning was produced by this preliminary assessment.";
-    let manipulation = "Low indication";
-    let impersonation = "Low indication";
-    let recommendation = "Continue carefully";
+        "The current frontend demonstration did not identify a strong warning signal. This is not proof that the media is authentic.";
 
-    if(score >= 70){
+    let status =
+        "LOW PRELIMINARY RISK";
 
-        level = "high";
-        title = "High Risk";
+    let authenticity =
+        "Requires AI analysis";
+
+    let manipulation =
+        "Not confirmed";
+
+    let identity =
+        "Not established";
+
+    let replay =
+        "Not checked";
+
+    let contextRisk =
+        "Requires context";
+
+    let recommendation =
+        "Verify the source";
+
+
+    if(demoScore >= 30){
+
+        title =
+            "Review recommended";
+
         text =
-            "Several warning signals require further investigation. " +
-            "Do not trust the media alone when making security-sensitive decisions.";
-        manipulation = "Possible";
-        impersonation = "Possible";
-        recommendation = "Do not trust without verification";
+            "The demonstration result indicates that additional verification would be appropriate. A real TrustAI backend would analyze the media itself.";
 
-    }else if(score >= 40){
+        status =
+            "REVIEW";
 
-        level = "medium";
-        title = "Medium Risk";
-        text =
-            "Some suspicious characteristics were detected by the " +
-            "preliminary assessment. Additional verification is recommended.";
-        manipulation = "Requires review";
-        impersonation = "Requires review";
-        recommendation = "Verify the source";
+        authenticity =
+            "Cannot determine";
+
+        manipulation =
+            "Requires analysis";
+
+        replay =
+            "Requires media matching";
+
+        contextRisk =
+            "Requires context";
+
+        recommendation =
+            "Verify independently";
 
     }
 
-    document.getElementById("score").textContent =
-        score + "%";
 
-    document.getElementById("resultTitle").textContent =
-        title;
+    showResult(
+        demoScore,
+        status,
+        title,
+        text,
+        authenticity,
+        manipulation,
+        identity,
+        replay,
+        contextRisk,
+        recommendation
+    );
 
-    document.getElementById("resultText").textContent =
-        text;
+}
 
-    document.getElementById("mediaType").textContent =
-        type.toUpperCase();
 
-    document.getElementById("manipulation").textContent =
-        manipulation;
+/* =====================================================
+   SHOW RESULT
+===================================================== */
 
-    document.getElementById("impersonation").textContent =
-        impersonation;
+function showResult(
+    score,
+    status,
+    title,
+    text,
+    authenticity,
+    manipulation,
+    identity,
+    replay,
+    contextRisk,
+    recommendation
+){
 
-    document.getElementById("recommendation").textContent =
-        recommendation;
+    document.getElementById("riskScore")
+        .textContent =
+            score + "%";
 
-    const status =
-        document.getElementById("status");
 
-    status.className =
-        "status " + level;
+    document.getElementById("resultStatus")
+        .textContent =
+            status;
 
-    status.textContent =
-        level.toUpperCase() + " RISK";
 
-    document.getElementById("result").classList.add("show");
+    document.getElementById("resultTitle")
+        .textContent =
+            title;
 
-    document.getElementById("result").scrollIntoView({
+
+    document.getElementById("resultText")
+        .textContent =
+            text;
+
+
+    document.getElementById("authenticity")
+        .textContent =
+            authenticity;
+
+
+    document.getElementById("manipulation")
+        .textContent =
+            manipulation;
+
+
+    document.getElementById("identity")
+        .textContent =
+            identity;
+
+
+    document.getElementById("replay")
+        .textContent =
+            replay;
+
+
+    document.getElementById("contextRisk")
+        .textContent =
+            contextRisk;
+
+
+    document.getElementById("recommendation")
+        .textContent =
+            recommendation;
+
+
+    const result =
+        document.getElementById("result");
+
+
+    result.classList.add("show");
+
+
+    result.scrollIntoView({
         behavior:"smooth",
         block:"start"
     });
+
 }
+
+
+/* =====================================================
+   LIVE VERIFICATION
+===================================================== */
+
+function startLiveVerification(){
+
+    const challenges = [
+
+        "Turn your head slowly to the left, then back to the center.",
+
+        "Raise one hand and hold it up for three seconds.",
+
+        "Look directly at the camera and say the random word: BLUE.",
+
+        "Blink twice, then move slightly closer to the camera.",
+
+        "Turn your head to the right and then return to the camera."
+
+    ];
+
+
+    const randomChallenge =
+        challenges[
+            Math.floor(
+                Math.random() *
+                challenges.length
+            )
+        ];
+
+
+    document.getElementById(
+        "challengeText"
+    ).textContent =
+        randomChallenge;
+
+
+    document.getElementById(
+        "challenge"
+    ).classList.add("show");
+
+
+    /*
+       This does NOT verify identity.
+
+       It only demonstrates the interface
+       that the future TrustAI mobile app
+       could use during a real call.
+    */
+
+
+    showResult(
+
+        0,
+
+        "LIVE CHALLENGE READY",
+
+        "Live verification challenge created",
+
+        "A fresh challenge has been generated. In the future TrustAI mobile application, the live camera response would be securely analyzed for replay, manipulation and liveness signals.",
+
+        "Not determined",
+
+        "Not determined",
+
+        "Not established",
+
+        "Requires live analysis",
+
+        "Requires conversation context",
+
+        "Complete the challenge and verify independently"
+
+    );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+selectMode("image");
 
 </script>
 
 </body>
-  </html>
+
+</html>
