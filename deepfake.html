@@ -1412,298 +1412,66 @@ Digital deception awareness and protection.
 
 </footer>
 
+
 <script>
 
 /* =====================================================
-   STATE
+   TRUSTAI DEEPFAKE API
 ===================================================== */
 
-let currentMode = "image";
-
-let selectedFile = null;
+const TRUSTAI_API =
+    "https://opyjaljpowzgmkqlmjrb.supabase.co/functions/v1/deepfake-analyze";
 
 
 /* =====================================================
-   MODE CONFIGURATION
+   SHOW SELECTED FILE
 ===================================================== */
 
-const modeConfig = {
-
-    image: {
-
-        title: "📸 Photo Check",
-
-        description:
-            "Upload a suspicious image for a preliminary TrustAI assessment.",
-
-        icon: "📸",
-
-        uploadTitle:
-            "Select a photo",
-
-        uploadDescription:
-            "Supported image files can be selected from your device.",
-
-        choose:
-            "Choose Photo",
-
-        accept:
-            "image/*"
-
-    },
-
-
-    video: {
-
-        title: "🎥 Video Check",
-
-        description:
-            "Upload a recorded video for a preliminary synthetic-media assessment.",
-
-        icon: "🎥",
-
-        uploadTitle:
-            "Select a video",
-
-        uploadDescription:
-            "Choose a recorded video from your device.",
-
-        choose:
-            "Choose Video",
-
-        accept:
-            "video/*"
-
-    },
-
-
-    voice: {
-
-        title: "🎙️ Voice Check",
-
-        description:
-            "Upload a voice recording for a preliminary synthetic-voice assessment.",
-
-        icon: "🎙️",
-
-        uploadTitle:
-            "Select an audio recording",
-
-        uploadDescription:
-            "Choose a voice note or supported audio file.",
-
-        choose:
-            "Choose Audio",
-
-        accept:
-            "audio/*"
-
-    }
-
-};
-
-
-/* =====================================================
-   SELECT MODE
-===================================================== */
-
-function selectMode(mode){
-
-    currentMode = mode;
-
-    document
-        .querySelectorAll(".mode-button")
-        .forEach(function(button){
-
-            button.classList.remove("active");
-
-        });
-
-
-    const activeButton =
-        document.getElementById(
-            "mode" +
-            mode.charAt(0).toUpperCase() +
-            mode.slice(1)
-        );
-
-
-    if(activeButton){
-
-        activeButton.classList.add("active");
-
-    }
-
-
-    const mediaChecker =
-        document.getElementById("mediaChecker");
-
-    const liveBox =
-        document.getElementById("liveBox");
-
-
-    if(mode === "live"){
-
-        mediaChecker.style.display = "none";
-
-        liveBox.classList.add("show");
-
-        document.getElementById("panelTitle").innerHTML = `
-
-            <div>
-
-                <h2>
-                    🔴 Live Verify
-                </h2>
-
-                <p>
-                    Designed for real-time verification
-                    during a supported video call.
-                </p>
-
-            </div>
-
-            <div class="demo-label">
-                FUTURE MOBILE FEATURE
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    mediaChecker.style.display = "block";
-
-    liveBox.classList.remove("show");
-
-
-    const config =
-        modeConfig[mode];
-
-
-    document.getElementById("panelTitle").innerHTML = `
-
-        <div>
-
-            <h2>
-                ${config.title}
-            </h2>
-
-            <p>
-                ${config.description}
-            </p>
-
-        </div>
-
-        <div class="demo-label">
-            FRONTEND DEMO
-        </div>
-
-    `;
-
-
-    document.getElementById("uploadIcon")
-        .textContent = config.icon;
-
-
-    document.getElementById("uploadTitle")
-        .textContent = config.uploadTitle;
-
-
-    document.getElementById("uploadDescription")
-        .textContent = config.uploadDescription;
-
-
-    document.getElementById("chooseButton")
-        .textContent = config.choose;
-
-
-    document.getElementById("mediaInput")
-        .accept = config.accept;
-
-
-    selectedFile = null;
-
-    document.getElementById("mediaInput").value = "";
-
-    document.getElementById("fileName")
-        .textContent = "No file selected";
-
-}
-
-
-/* =====================================================
-   HANDLE FILE
-===================================================== */
-
-function handleFile(){
+function showFile(inputId, outputId) {
 
     const input =
-        document.getElementById("mediaInput");
+        document.getElementById(inputId);
 
+    const output =
+        document.getElementById(outputId);
 
-    if(!input.files.length){
+    if (!input || !output) return;
 
-        selectedFile = null;
+    if (input.files.length > 0) {
 
-        document.getElementById("fileName")
-            .textContent = "No file selected";
+        const file = input.files[0];
 
-        return;
+        output.textContent =
+            file.name +
+            " • " +
+            formatFileSize(file.size);
+
+    } else {
+
+        output.textContent =
+            "No file selected";
 
     }
-
-
-    selectedFile =
-        input.files[0];
-
-
-    document.getElementById("fileName")
-        .textContent =
-            selectedFile.name +
-            " • " +
-            formatBytes(selectedFile.size);
 
 }
 
 
 /* =====================================================
-   FORMAT FILE SIZE
+   FILE SIZE
 ===================================================== */
 
-function formatBytes(bytes){
+function formatFileSize(bytes) {
 
-    if(bytes === 0){
-        return "0 Bytes";
-    }
+    if (bytes < 1024)
+        return bytes + " B";
 
-
-    const units = [
-        "Bytes",
-        "KB",
-        "MB",
-        "GB"
-    ];
-
-
-    const index =
-        Math.floor(
-            Math.log(bytes) /
-            Math.log(1024)
-        );
-
+    if (bytes < 1024 * 1024)
+        return (bytes / 1024).toFixed(1) + " KB";
 
     return (
-        parseFloat(
-            (bytes /
-            Math.pow(1024,index))
-            .toFixed(2)
-        ) +
-        " " +
-        units[index]
-    );
+        bytes /
+        (1024 * 1024)
+    ).toFixed(1) + " MB";
 
 }
 
@@ -1712,13 +1480,42 @@ function formatBytes(bytes){
    ANALYZE MEDIA
 ===================================================== */
 
-function analyzeMedia(){
+async function analyze(type) {
 
-    if(!selectedFile){
+    let inputId = "";
+
+    if (type === "image") {
+        inputId = "imageInput";
+    }
+
+    if (type === "video") {
+        inputId = "videoInput";
+    }
+
+    if (type === "audio") {
+        inputId = "audioInput";
+    }
+
+
+    const input =
+        document.getElementById(inputId);
+
+    if (!input) {
+
+        alert(
+            "TrustAI could not find the upload field."
+        );
+
+        return;
+
+    }
+
+
+    if (!input.files.length) {
 
         alert(
             "Please choose a " +
-            currentMode +
+            type +
             " file first."
         );
 
@@ -1727,265 +1524,409 @@ function analyzeMedia(){
     }
 
 
+    const file =
+        input.files[0];
+
+
     /*
-       IMPORTANT
-
-       This is a FRONTEND DEMONSTRATION.
-
-       No genuine forensic AI detection is
-       happening here.
-
-       The values below intentionally remain
-       conservative and must eventually come
-       from the TrustAI backend/model.
+       25 MB frontend safety limit.
+       The backend also checks this.
     */
 
+    if (
+        file.size >
+        25 * 1024 * 1024
+    ) {
 
-    const demoScore =
-        Math.floor(
-            Math.random() * 36
-        ) + 10;
+        alert(
+            "This file is too large.\n\n" +
+            "TrustAI currently accepts files up to 25 MB."
+        );
 
-
-    let title =
-        "Low preliminary risk";
-
-    let text =
-        "The current frontend demonstration did not identify a strong warning signal. This is not proof that the media is authentic.";
-
-    let status =
-        "LOW PRELIMINARY RISK";
-
-    let authenticity =
-        "Requires AI analysis";
-
-    let manipulation =
-        "Not confirmed";
-
-    let identity =
-        "Not established";
-
-    let replay =
-        "Not checked";
-
-    let contextRisk =
-        "Requires context";
-
-    let recommendation =
-        "Verify the source";
-
-
-    if(demoScore >= 30){
-
-        title =
-            "Review recommended";
-
-        text =
-            "The demonstration result indicates that additional verification would be appropriate. A real TrustAI backend would analyze the media itself.";
-
-        status =
-            "REVIEW";
-
-        authenticity =
-            "Cannot determine";
-
-        manipulation =
-            "Requires analysis";
-
-        replay =
-            "Requires media matching";
-
-        contextRisk =
-            "Requires context";
-
-        recommendation =
-            "Verify independently";
+        return;
 
     }
 
 
-    showResult(
-        demoScore,
-        status,
-        title,
-        text,
-        authenticity,
-        manipulation,
-        identity,
-        replay,
-        contextRisk,
-        recommendation
-    );
-
-}
-
-
-/* =====================================================
-   SHOW RESULT
-===================================================== */
-
-function showResult(
-    score,
-    status,
-    title,
-    text,
-    authenticity,
-    manipulation,
-    identity,
-    replay,
-    contextRisk,
-    recommendation
-){
-
-    document.getElementById("riskScore")
-        .textContent =
-            score + "%";
-
-
-    document.getElementById("resultStatus")
-        .textContent =
-            status;
-
-
-    document.getElementById("resultTitle")
-        .textContent =
-            title;
-
-
-    document.getElementById("resultText")
-        .textContent =
-            text;
-
-
-    document.getElementById("authenticity")
-        .textContent =
-            authenticity;
-
-
-    document.getElementById("manipulation")
-        .textContent =
-            manipulation;
-
-
-    document.getElementById("identity")
-        .textContent =
-            identity;
-
-
-    document.getElementById("replay")
-        .textContent =
-            replay;
-
-
-    document.getElementById("contextRisk")
-        .textContent =
-            contextRisk;
-
-
-    document.getElementById("recommendation")
-        .textContent =
-            recommendation;
-
+    /* =================================================
+       SHOW LOADING RESULT
+    ================================================= */
 
     const result =
         document.getElementById("result");
+
+    const status =
+        document.getElementById("status");
+
+    const score =
+        document.getElementById("score");
+
+    const resultTitle =
+        document.getElementById("resultTitle");
+
+    const resultText =
+        document.getElementById("resultText");
 
 
     result.classList.add("show");
 
 
+    status.className =
+        "status medium";
+
+    status.textContent =
+        "ANALYZING";
+
+
+    score.textContent =
+        "•••";
+
+
+    resultTitle.textContent =
+        "TrustAI is analyzing the media";
+
+
+    resultText.textContent =
+        "Your file is being securely sent to the TrustAI analysis service. Please wait.";
+
+
+    document.getElementById(
+        "mediaType"
+    ).textContent =
+        type.toUpperCase();
+
+
+    document.getElementById(
+        "manipulation"
+    ).textContent =
+        "Analyzing...";
+
+
+    document.getElementById(
+        "impersonation"
+    ).textContent =
+        "Analyzing...";
+
+
+    document.getElementById(
+        "recommendation"
+    ).textContent =
+        "Please wait";
+
+
     result.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        behavior: "smooth",
+        block: "start"
     });
 
-}
+
+    /* =================================================
+       PREPARE UPLOAD
+    ================================================= */
+
+    const formData =
+        new FormData();
 
 
-/* =====================================================
-   LIVE VERIFICATION
-===================================================== */
-
-function startLiveVerification(){
-
-    const challenges = [
-
-        "Turn your head slowly to the left, then back to the center.",
-
-        "Raise one hand and hold it up for three seconds.",
-
-        "Look directly at the camera and say the random word: BLUE.",
-
-        "Blink twice, then move slightly closer to the camera.",
-
-        "Turn your head to the right and then return to the camera."
-
-    ];
-
-
-    const randomChallenge =
-        challenges[
-            Math.floor(
-                Math.random() *
-                challenges.length
-            )
-        ];
-
-
-    document.getElementById(
-        "challengeText"
-    ).textContent =
-        randomChallenge;
-
-
-    document.getElementById(
-        "challenge"
-    ).classList.add("show");
-
-
-    /*
-       This does NOT verify identity.
-
-       It only demonstrates the interface
-       that the future TrustAI mobile app
-       could use during a real call.
-    */
-
-
-    showResult(
-
-        0,
-
-        "LIVE CHALLENGE READY",
-
-        "Live verification challenge created",
-
-        "A fresh challenge has been generated. In the future TrustAI mobile application, the live camera response would be securely analyzed for replay, manipulation and liveness signals.",
-
-        "Not determined",
-
-        "Not determined",
-
-        "Not established",
-
-        "Requires live analysis",
-
-        "Requires conversation context",
-
-        "Complete the challenge and verify independently"
-
+    formData.append(
+        "file",
+        file
     );
 
+
+    formData.append(
+        "type",
+        type
+    );
+
+
+    try {
+
+        /* =============================================
+           SEND TO SUPABASE EDGE FUNCTION
+        ============================================= */
+
+        const response =
+            await fetch(
+                TRUSTAI_API,
+                {
+                    method: "POST",
+
+                    body: formData
+                }
+            );
+
+
+        /* =============================================
+           READ SERVER RESPONSE
+        ============================================= */
+
+        let data = null;
+
+        try {
+
+            data =
+                await response.json();
+
+        } catch {
+
+            data = null;
+
+        }
+
+
+        /* =============================================
+           SERVER ERROR
+        ============================================= */
+
+        if (!response.ok) {
+
+            console.error(
+                "TrustAI API error:",
+                response.status,
+                data
+            );
+
+
+            if (
+                response.status === 401
+            ) {
+
+                throw new Error(
+                    "TrustAI API requires authorization. The Supabase Edge Function is currently protected."
+                );
+
+            }
+
+
+            throw new Error(
+                data?.error ||
+                "TrustAI server returned an error."
+            );
+
+        }
+
+
+        /* =============================================
+           SUCCESS
+        ============================================= */
+
+        if (
+            !data ||
+            data.success !== true
+        ) {
+
+            throw new Error(
+                "TrustAI returned an invalid analysis response."
+            );
+
+        }
+
+
+        const analysis =
+            data.analysis || {};
+
+
+        const riskScore =
+            Number(
+                analysis.riskScore || 0
+            );
+
+
+        const riskLevel =
+            String(
+                analysis.riskLevel ||
+                "low"
+            ).toLowerCase();
+
+
+        /* =============================================
+           DISPLAY SCORE
+        ============================================= */
+
+        score.textContent =
+            riskScore + "%";
+
+
+        /* =============================================
+           DISPLAY RESULT
+        ============================================= */
+
+        if (
+            riskLevel === "high"
+        ) {
+
+            status.className =
+                "status high";
+
+            status.textContent =
+                "HIGH RISK";
+
+            resultTitle.textContent =
+                "⚠️ High Risk";
+
+
+            resultText.textContent =
+                "TrustAI found warning signals that require further investigation. Do not rely on this media alone.";
+
+        }
+
+        else if (
+            riskLevel === "medium"
+        ) {
+
+            status.className =
+                "status medium";
+
+            status.textContent =
+                "MEDIUM RISK";
+
+            resultTitle.textContent =
+                "⚠️ Medium Risk";
+
+
+            resultText.textContent =
+                "TrustAI found some warning signals. Verify the source and identity before trusting the media.";
+
+        }
+
+        else {
+
+            status.className =
+                "status low";
+
+            status.textContent =
+                "LOW RISK";
+
+            resultTitle.textContent =
+                "✓ Low Risk";
+
+
+            resultText.textContent =
+                "TrustAI found no major basic file-level warning. This does NOT prove that the media or identity is genuine.";
+
+        }
+
+
+        /* =============================================
+           INDICATORS
+        ============================================= */
+
+        document.getElementById(
+            "mediaType"
+        ).textContent =
+            (
+                analysis.mediaType ||
+                type
+            ).toUpperCase();
+
+
+        document.getElementById(
+            "manipulation"
+        ).textContent =
+            analysis.aiManipulation ||
+            "Not determined";
+
+
+        document.getElementById(
+            "impersonation"
+        ).textContent =
+            analysis.impersonationRisk ||
+            "Not determined";
+
+
+        document.getElementById(
+            "recommendation"
+        ).textContent =
+            analysis.recommendation ||
+            "Verify the source";
+
+
+        /* =============================================
+           SHOW SERVER INDICATORS
+        ============================================= */
+
+        if (
+            Array.isArray(
+                analysis.indicators
+            ) &&
+            analysis.indicators.length > 0
+        ) {
+
+            const indicatorText =
+                analysis.indicators.join(
+                    " "
+                );
+
+
+            resultText.textContent +=
+                " " +
+                indicatorText;
+
+        }
+
+
+        console.log(
+            "TrustAI analysis:",
+            data
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "TrustAI connection error:",
+            error
+        );
+
+
+        status.className =
+            "status high";
+
+        status.textContent =
+            "ANALYSIS ERROR";
+
+
+        score.textContent =
+            "—";
+
+
+        resultTitle.textContent =
+            "TrustAI could not complete the analysis";
+
+
+        resultText.textContent =
+            error.message ||
+            "Please check your connection and try again.";
+
+
+        document.getElementById(
+            "manipulation"
+        ).textContent =
+            "Unavailable";
+
+
+        document.getElementById(
+            "impersonation"
+        ).textContent =
+            "Unavailable";
+
+
+        document.getElementById(
+            "recommendation"
+        ).textContent =
+            "Try again";
+
+
+    }
+
 }
 
+        </script>
 
-/* =====================================================
-   INITIALIZE
-===================================================== */
 
-selectMode("image");
-
-</script>
+                
+            
 
 </body>
 
