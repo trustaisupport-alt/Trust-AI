@@ -3078,7 +3078,137 @@ async function analyzeMedia() {
     }
         
 
-    
+            if (manipulation) {
+            manipulation.textContent = "Not determined";
+        }
+
+        if (impersonation) {
+            impersonation.textContent = "Not determined";
+        }
+
+        if (replay) {
+            replay.textContent = "Not determined";
+        }
+
+        if (contextRisk) {
+            contextRisk.textContent = "Not determined";
+        }
+
+        if (recommendation) {
+            recommendation.textContent = "Try again later";
+        }
+
+        if (mediaType) {
+            mediaType.textContent = currentMode;
+        }
+
+        console.error(
+            "TrustAI Deepfake API error:",
+            error
+        );
+
+    } finally {
+
+        const loading =
+            document.getElementById("loading");
+
+        const analyzeButton =
+            document.getElementById("analyzeButton");
+
+        if (loading) {
+            loading.style.display = "none";
+        }
+
+        if (analyzeButton) {
+            analyzeButton.disabled = false;
+            analyzeButton.textContent =
+                "Analyze with TrustAI";
+        }
+    }
+
+}
+
+
+/* =====================================================
+   INITIALIZE TRUSTAI DEEPFAKE CHECKER
+   PHOTO / VIDEO / VOICE ONLY
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const mediaInput =
+            document.getElementById("mediaInput");
+
+        const analyzeButton =
+            document.getElementById("analyzeButton");
+
+        /*
+           Start with Photo mode.
+           NO LIVE VERIFICATION.
+        */
+
+        selectMode("image");
+
+        /*
+           Detect selected file.
+        */
+
+        if (mediaInput) {
+
+            mediaInput.addEventListener(
+                "change",
+                handleFile
+            );
+
+        }
+
+        /*
+           Analyze button.
+        */
+
+        if (analyzeButton) {
+
+            analyzeButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    analyzeMedia();
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PREVENT ACCIDENTAL FORM SUBMISSION
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Enter" &&
+            event.target &&
+            event.target.tagName === "INPUT"
+        ) {
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+</script>
 
                         
                     
