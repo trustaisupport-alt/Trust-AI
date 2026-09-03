@@ -2636,7 +2636,37 @@ function initializeMessagePage(){
 
 })();
 
+<script>
+async function trustAIAnalyze(message) {
+    const SUPABASE_URL = "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+    try {
+        const response = await fetch(
+            SUPABASE_URL + "/functions/v1/trust-ai",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: message
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "AI analysis failed");
+        }
+
+        return data.reply || "No AI response was returned.";
+
+    } catch (error) {
+        console.error("Trust AI error:", error);
+        return "Unable to connect to Trust AI AI analysis right now.";
+    }
+}
 </script>
-<script src="global-language.js"></script>
 </body>
 </html>
