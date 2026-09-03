@@ -2789,7 +2789,59 @@ async function handleLogout() {
     );
 
 }
+/* =====================================================
+   TRUSTAI MENU
+   ===================================================== */
 
+const menuButton = document.getElementById("menuButton");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function openMenu() {
+    if (!sideMenu || !menuOverlay || !menuButton) return;
+
+    sideMenu.classList.add("open");
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute("aria-expanded", "true");
+}
+
+function closeMenu() {
+    if (!sideMenu || !menuOverlay || !menuButton) return;
+
+    sideMenu.classList.remove("open");
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute("aria-expanded", "false");
+}
+
+if (menuButton) {
+    menuButton.addEventListener("click", function () {
+
+        if (sideMenu.classList.contains("open")) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+
+    });
+}
+
+if (menuOverlay) {
+    menuOverlay.addEventListener("click", closeMenu);
+}
+
+document.querySelectorAll(".menu-link").forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        if (!link.getAttribute("onclick")) {
+            closeMenu();
+        }
+
+    });
+
+});
 </script>
             
 </body>
