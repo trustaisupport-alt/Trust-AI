@@ -2090,10 +2090,7 @@ function loadHomeProfilePicture() {
 
         <div>
             <h2>Aisha</h2>
-
-            <p>
-                Your TrustAI assistant
-            </p>
+            <p>Your TrustAI assistant</p>
         </div>
 
     </div>
@@ -2110,84 +2107,50 @@ function loadHomeProfilePicture() {
 
     <div class="aisha-questions">
 
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('What is TrustAI?')">
-
             What is TrustAI?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('How does TrustAI work?')">
-
             How does TrustAI work?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('How do I check a message?')">
-
             How do I check a message?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('How do I check a website?')">
-
             How do I check a website?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('How do I report a scam?')">
-
             How do I report a scam?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('What does my risk score mean?')">
-
             What does my risk score mean?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('How does TrustAI protect me?')">
-
             How does TrustAI protect me?
-
         </button>
 
-
-        <button
-            class="aisha-question"
+        <button class="aisha-question"
             onclick="askAishaQuestion('What can you help me with?')">
-
             What can you help me with?
-
         </button>
 
     </div>
 
 
-    <div
-        id="aishaChat"
-        class="aisha-chat">
-    </div>
+    <div id="aishaChat" class="aisha-chat"></div>
 
 
     <div class="aisha-input-row">
@@ -2203,20 +2166,14 @@ function loadHomeProfilePicture() {
             id="aishaSend"
             type="button"
             onclick="sendAishaMessage()">
-
             ➤
-
         </button>
 
     </div>
 
 
-    <div
-        id="aishaStatus"
-        class="aisha-status">
-
+    <div id="aishaStatus" class="aisha-status">
         Aisha is ready to help.
-
     </div>
 
 </section>
@@ -2245,254 +2202,145 @@ function loadHomeProfilePicture() {
 <style>
 
 .aisha-section {
-
     margin-top: 30px;
-
     padding: 25px;
-
     border-radius: 20px;
-
-    background:
-        rgba(17,24,39,0.75);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
+    background: rgba(17,24,39,0.75);
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 .aisha-header {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     margin-bottom: 18px;
-
 }
 
 .aisha-icon {
-
     width: 48px;
     height: 48px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     border-radius: 14px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #6366f1,
-            #3b82f6
-        );
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #3b82f6
+    );
 
     color: white;
-
     font-size: 21px;
-
     font-weight: 800;
-
 }
 
 .aisha-header h2 {
-
     margin: 0;
-
     color: #f8fafc;
-
 }
 
 .aisha-header p {
-
     margin: 2px 0 0;
-
     color: #94a3b8;
-
     font-size: 13px;
-
 }
 
 .aisha-welcome {
-
     padding: 15px;
-
     margin-bottom: 15px;
-
     border-radius: 12px;
-
-    background:
-        rgba(255,255,255,0.04);
-
+    background: rgba(255,255,255,0.04);
     color: #cbd5e1;
-
 }
 
 .aisha-questions {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns: repeat(2,1fr);
     gap: 9px;
-
 }
 
 .aisha-question {
-
     padding: 12px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 11px;
-
-    background:
-        rgba(255,255,255,0.03);
-
+    background: rgba(255,255,255,0.03);
     color: #cbd5e1;
-
     text-align: left;
-
     cursor: pointer;
-
 }
 
 .aisha-question:hover {
-
-    background:
-        rgba(99,102,241,0.15);
-
+    background: rgba(99,102,241,0.15);
     color: white;
-
 }
 
 .aisha-chat {
-
     display: none;
-
     max-height: 350px;
-
     overflow-y: auto;
-
     margin-top: 18px;
-
 }
 
 .aisha-message {
-
     max-width: 85%;
-
     padding: 12px 14px;
-
     margin-bottom: 10px;
-
     border-radius: 14px;
-
     line-height: 1.55;
-
     font-size: 14px;
-
     white-space: pre-wrap;
-
 }
 
 .aisha-message.user {
-
     margin-left: auto;
-
     background: #6366f1;
-
     color: white;
-
 }
 
 .aisha-message.ai {
-
     margin-right: auto;
-
-    background:
-        rgba(255,255,255,0.07);
-
+    background: rgba(255,255,255,0.07);
     color: #cbd5e1;
-
 }
 
 .aisha-input-row {
-
     display: flex;
-
     gap: 8px;
-
     margin-top: 15px;
-
 }
 
 #aishaInput {
-
     flex: 1;
-
     min-width: 0;
-
     padding: 13px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
-
+    border: 1px solid rgba(255,255,255,0.08);
     border-radius: 12px;
-
     outline: none;
-
-    background:
-        rgba(0,0,0,0.25);
-
+    background: rgba(0,0,0,0.25);
     color: white;
-
 }
 
 #aishaSend {
-
     width: 50px;
-
     border: none;
-
     border-radius: 12px;
-
     background: #6366f1;
-
     color: white;
-
     cursor: pointer;
-
     font-size: 18px;
-
 }
 
 .aisha-status {
-
     margin-top: 9px;
-
     color: #94a3b8;
-
     font-size: 12px;
-
 }
 
 @media (max-width: 600px) {
 
     .aisha-questions {
-
         grid-template-columns: 1fr;
-
     }
 
 }
@@ -2511,93 +2359,54 @@ const AISHA_SUPABASE_URL =
 
 
 const aishaInput =
-    document.getElementById(
-        "aishaInput"
-    );
-
+    document.getElementById("aishaInput");
 
 const aishaChat =
-    document.getElementById(
-        "aishaChat"
-    );
-
+    document.getElementById("aishaChat");
 
 const aishaStatus =
-    document.getElementById(
-        "aishaStatus"
-    );
+    document.getElementById("aishaStatus");
 
 
-function addAishaMessage(
-    text,
-    type
-) {
+function addAishaMessage(text, type) {
 
-    if (!aishaChat) {
-        return;
-    }
+    if (!aishaChat) return;
 
-    aishaChat.style.display =
-        "block";
-
+    aishaChat.style.display = "block";
 
     const message =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     message.className =
         "aisha-message " + type;
 
+    message.textContent = text;
 
-    message.textContent =
-        text;
-
-
-    aishaChat.appendChild(
-        message
-    );
-
+    aishaChat.appendChild(message);
 
     aishaChat.scrollTop =
         aishaChat.scrollHeight;
-
 }
 
 
-async function askAishaQuestion(
-    question
-) {
+async function askAishaQuestion(question) {
 
-    if (!aishaInput) {
-        return;
-    }
+    if (!aishaInput) return;
 
-
-    aishaInput.value =
-        question;
-
+    aishaInput.value = question;
 
     await sendAishaMessage();
-
 }
 
 
 async function sendAishaMessage() {
 
-    if (!aishaInput) {
-        return;
-    }
-
+    if (!aishaInput) return;
 
     const message =
         aishaInput.value.trim();
 
-
-    if (!message) {
-        return;
-    }
+    if (!message) return;
 
 
     addAishaMessage(
@@ -2605,9 +2414,7 @@ async function sendAishaMessage() {
         "user"
     );
 
-
-    aishaInput.value =
-        "";
+    aishaInput.value = "";
 
 
     if (aishaStatus) {
@@ -2622,31 +2429,20 @@ async function sendAishaMessage() {
 
         const response =
             await fetch(
-
                 AISHA_SUPABASE_URL +
                 "/functions/v1/trust-ai",
-
                 {
-
                     method: "POST",
 
                     headers: {
-
                         "Content-Type":
                             "application/json"
-
                     },
 
-                    body:
-                        JSON.stringify({
-
-                            message:
-                                message
-
-                        })
-
+                    body: JSON.stringify({
+                        message: message
+                    })
                 }
-
             );
 
 
@@ -2732,11 +2528,124 @@ if (aishaInput) {
 </script>
 
 
+<!-- =====================================================
+     TRUSTAI MENU JAVASCRIPT
+     ===================================================== -->
+
 <script>
 
-/* =====================================================
-   LOGOUT
-   ===================================================== */
+const menuButton =
+    document.getElementById("menuButton");
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const menuOverlay =
+    document.getElementById("menuOverlay");
+
+
+function openMenu() {
+
+    if (
+        !sideMenu ||
+        !menuOverlay ||
+        !menuButton
+    ) return;
+
+    sideMenu.classList.add("open");
+
+    menuOverlay.classList.add("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+}
+
+
+function closeMenu() {
+
+    if (
+        !sideMenu ||
+        !menuOverlay ||
+        !menuButton
+    ) return;
+
+    sideMenu.classList.remove("open");
+
+    menuOverlay.classList.remove("show");
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+}
+
+
+if (menuButton) {
+
+    menuButton.addEventListener(
+        "click",
+        function() {
+
+            if (
+                sideMenu &&
+                sideMenu.classList.contains("open")
+            ) {
+
+                closeMenu();
+
+            } else {
+
+                openMenu();
+
+            }
+
+        }
+    );
+
+}
+
+
+if (menuOverlay) {
+
+    menuOverlay.addEventListener(
+        "click",
+        closeMenu
+    );
+
+}
+
+
+document
+    .querySelectorAll(".menu-link")
+    .forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+                if (
+                    !link.getAttribute("onclick")
+                ) {
+
+                    closeMenu();
+
+                }
+
+            }
+        );
+
+    });
+
+</script>
+
+
+<!-- =====================================================
+     LOGOUT
+     ===================================================== -->
+
+<script>
 
 async function handleLogout() {
 
@@ -2744,10 +2653,9 @@ async function handleLogout() {
 
         const {
             error
-        } =
-            await supabaseClient
-                .auth
-                .signOut();
+        } = await supabaseClient
+            .auth
+            .signOut();
 
 
         if (error) {
@@ -2789,61 +2697,17 @@ async function handleLogout() {
     );
 
 }
-/* =====================================================
-   TRUSTAI MENU
-   ===================================================== */
 
-const menuButton = document.getElementById("menuButton");
-const sideMenu = document.getElementById("sideMenu");
-const menuOverlay = document.getElementById("menuOverlay");
-
-function openMenu() {
-    if (!sideMenu || !menuOverlay || !menuButton) return;
-
-    sideMenu.classList.add("open");
-    menuOverlay.classList.add("show");
-
-    menuButton.setAttribute("aria-expanded", "true");
-}
-
-function closeMenu() {
-    if (!sideMenu || !menuOverlay || !menuButton) return;
-
-    sideMenu.classList.remove("open");
-    menuOverlay.classList.remove("show");
-
-    menuButton.setAttribute("aria-expanded", "false");
-}
-
-if (menuButton) {
-    menuButton.addEventListener("click", function () {
-
-        if (sideMenu.classList.contains("open")) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-
-    });
-}
-
-if (menuOverlay) {
-    menuOverlay.addEventListener("click", closeMenu);
-}
-
-document.querySelectorAll(".menu-link").forEach(function(link) {
-
-    link.addEventListener("click", function() {
-
-        if (!link.getAttribute("onclick")) {
-            closeMenu();
-        }
-
-    });
-
-});
 </script>
-            
+
+</div>
+
 </body>
 
 </html>
+
+        
+    
+    
+    
+                        
