@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>TrustAI — Secure Checkout</title>
 
 <meta name="description"
-content="Complete your TrustAI Protection subscription securely.">
+      content="Complete your TrustAI subscription securely.">
 
 
 <!-- =====================================================
@@ -31,10 +31,6 @@ content="Complete your TrustAI Protection subscription securely.">
 
 <style>
 
-/* =====================================================
-   GLOBAL
-===================================================== */
-
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
@@ -47,7 +43,6 @@ html {
 body {
 
     margin: 0;
-
     min-height: 100vh;
 
     background:
@@ -75,23 +70,20 @@ body {
 
 button,
 input {
-
     font-family: inherit;
-
 }
 
 button {
-
     -webkit-appearance: none;
-
 }
 
 .page {
 
-    width: min(
-        700px,
-        calc(100% - 24px)
-    );
+    width:
+        min(
+            700px,
+            calc(100% - 24px)
+        );
 
     margin: auto;
 
@@ -99,7 +91,6 @@ button {
         20px
         0
         50px;
-
 }
 
 
@@ -116,7 +107,6 @@ button {
     gap: 14px;
 
     margin-bottom: 28px;
-
 }
 
 .back-button {
@@ -139,7 +129,6 @@ button {
     cursor: pointer;
 
     transition: .2s;
-
 }
 
 .back-button:hover {
@@ -149,7 +138,6 @@ button {
 
     transform:
         translateY(-1px);
-
 }
 
 .logo {
@@ -157,14 +145,12 @@ button {
     font-size: 23px;
 
     font-weight: 900;
-
 }
 
 .logo span {
 
     color:
         #38bdf8;
-
 }
 
 
@@ -177,7 +163,6 @@ button {
     text-align: center;
 
     margin-bottom: 25px;
-
 }
 
 .hero-icon {
@@ -204,7 +189,6 @@ button {
         );
 
     font-size: 30px;
-
 }
 
 .hero h1 {
@@ -220,17 +204,16 @@ button {
         );
 
     line-height: 1.1;
-
 }
 
 .hero p {
 
     margin: 0;
 
-    color: #91a7bf;
+    color:
+        #91a7bf;
 
     font-size: 14px;
-
 }
 
 
@@ -260,7 +243,6 @@ button {
         15px
         40px
         rgba(0,0,0,.25);
-
 }
 
 
@@ -280,42 +262,45 @@ button {
 
     border-radius: 10px;
 
-    background: #10253a;
+    background:
+        #10253a;
 
     border:
         1px solid
         #31506c;
 
-    color: #cbd5e1;
+    color:
+        #cbd5e1;
 
     font-size: 13px;
-
 }
 
 .message.show {
-
     display: block;
-
 }
 
 .message.error {
 
-    background: #351719;
+    background:
+        #351719;
 
-    border-color: #713238;
+    border-color:
+        #713238;
 
-    color: #ffb4b4;
-
+    color:
+        #ffb4b4;
 }
 
 .message.success {
 
-    background: #102b20;
+    background:
+        #102b20;
 
-    border-color: #286b4a;
+    border-color:
+        #286b4a;
 
-    color: #a7f3c6;
-
+    color:
+        #a7f3c6;
 }
 
 
@@ -342,7 +327,6 @@ button {
         );
 
     margin-bottom: 22px;
-
 }
 
 .summary-top {
@@ -356,7 +340,6 @@ button {
         flex-start;
 
     gap: 15px;
-
 }
 
 .summary-title {
@@ -364,7 +347,6 @@ button {
     font-size: 20px;
 
     font-weight: 900;
-
 }
 
 .summary-badge {
@@ -383,14 +365,14 @@ button {
             .12
         );
 
-    color: #62a9ff;
+    color:
+        #62a9ff;
 
     font-size: 10px;
 
     font-weight: 800;
 
     white-space: nowrap;
-
 }
 
 .summary-description {
@@ -398,10 +380,10 @@ button {
     margin:
         8px 0 0;
 
-    color: #91a7bf;
+    color:
+        #91a7bf;
 
     font-size: 13px;
-
 }
 
 .price {
@@ -412,18 +394,18 @@ button {
 
     font-weight: 900;
 
-    color: #62a9ff;
-
+    color:
+        #62a9ff;
 }
 
 .price small {
 
-    color: #8197ad;
+    color:
+        #8197ad;
 
     font-size: 12px;
 
     font-weight: normal;
-
 }
 
 .billing-label {
@@ -450,17 +432,17 @@ button {
         1px solid
         #286b4a;
 
-    color: #86efac;
+    color:
+        #86efac;
 
     font-size: 11px;
 
     font-weight: 800;
-
 }
 
 
 /* =====================================================
-   COUNTRY DISPLAY
+   COUNTRY
 ===================================================== */
 
 .country-info {
@@ -490,16 +472,16 @@ button {
             .07
         );
 
-    color: #91a7bf;
+    color:
+        #91a7bf;
 
     font-size: 11px;
-
 }
 
 .country-info strong {
 
-    color: #dbeafe;
-
+    color:
+        #dbeafe;
 }
 
 
@@ -515,13 +497,11 @@ button {
     font-size: 16px;
 
     font-weight: 800;
-
 }
 
 .form-group {
 
     margin-bottom: 17px;
-
 }
 
 .form-group label {
@@ -533,7 +513,6 @@ button {
     font-size: 13px;
 
     font-weight: 700;
-
 }
 
 input[type="email"] {
@@ -551,14 +530,14 @@ input[type="email"] {
 
     border-radius: 10px;
 
-    background: #07111d;
+    background:
+        #07111d;
 
     color: white;
 
     font-size: 14px;
 
     outline: none;
-
 }
 
 input[type="email"]:focus {
@@ -577,7 +556,6 @@ input[type="email"]:focus {
             255,
             .12
         );
-
 }
 
 
@@ -590,7 +568,6 @@ input[type="email"]:focus {
     display: grid;
 
     gap: 10px;
-
 }
 
 .payment-option {
@@ -609,12 +586,12 @@ input[type="email"]:focus {
 
     border-radius: 12px;
 
-    background: #091522;
+    background:
+        #091522;
 
     cursor: pointer;
 
     transition: .2s;
-
 }
 
 .payment-option:hover {
@@ -624,18 +601,15 @@ input[type="email"]:focus {
 
     transform:
         translateY(-1px);
-
 }
 
 .payment-option input {
 
     width: auto;
-
     height: auto;
 
     accent-color:
         #1687ff;
-
 }
 
 .payment-name {
@@ -643,15 +617,14 @@ input[type="email"]:focus {
     font-size: 14px;
 
     font-weight: 700;
-
 }
 
 .payment-description {
 
-    color: #8197ad;
+    color:
+        #8197ad;
 
     font-size: 11px;
-
 }
 
 
@@ -687,7 +660,6 @@ input[type="email"]:focus {
     cursor: pointer;
 
     transition: .2s;
-
 }
 
 .checkout-button:hover {
@@ -696,7 +668,6 @@ input[type="email"]:focus {
 
     transform:
         translateY(-1px);
-
 }
 
 .checkout-button:disabled {
@@ -707,7 +678,6 @@ input[type="email"]:focus {
         not-allowed;
 
     transform: none;
-
 }
 
 
@@ -731,14 +701,14 @@ input[type="email"]:focus {
             .03
         );
 
-    color: #8197ad;
+    color:
+        #8197ad;
 
     text-align: center;
 
     font-size: 11px;
 
     line-height: 1.6;
-
 }
 
 
@@ -758,10 +728,10 @@ input[type="email"]:focus {
 
     text-align: center;
 
-    color: #71869c;
+    color:
+        #71869c;
 
     font-size: 11px;
-
 }
 
 
@@ -774,26 +744,17 @@ input[type="email"]:focus {
     .checkout-card {
 
         padding: 20px;
-
     }
 
     .summary-top {
 
         align-items:
             flex-start;
-
     }
 
     .summary-badge {
 
         font-size: 9px;
-
-    }
-
-    .country-info {
-
-        line-height: 1.5;
-
     }
 
 }
@@ -842,23 +803,15 @@ input[type="email"]:focus {
 <section class="hero">
 
     <div class="hero-icon">
-
         🔒
-
     </div>
 
-
     <h1>
-
         Secure checkout
-
     </h1>
 
-
     <p>
-
-        Complete your TrustAI Protection subscription.
-
+        Review your TrustAI protection plan before payment.
     </p>
 
 </section>
@@ -871,232 +824,215 @@ input[type="email"]:focus {
 <main class="checkout-card">
 
 
-<!-- =====================================================
-     MESSAGE
-===================================================== -->
+    <!-- MESSAGE -->
 
-<div
-    id="message"
-    class="message">
-</div>
+    <div
+        id="message"
+        class="message">
+    </div>
 
 
-<!-- =====================================================
-     PLAN SUMMARY
-===================================================== -->
+    <!-- PLAN SUMMARY -->
 
-<section class="plan-summary">
+    <section class="plan-summary">
 
 
-    <div class="summary-top">
+        <div class="summary-top">
+
+            <div
+                class="summary-title"
+                id="planName">
+
+                Loading...
+
+            </div>
+
+
+            <div
+                class="summary-badge"
+                id="planBadge">
+
+                PLAN
+
+            </div>
+
+        </div>
+
+
+        <p
+            class="summary-description"
+            id="planDescription">
+
+            Loading your selected TrustAI plan...
+
+        </p>
 
 
         <div
-            class="summary-title"
-            id="planName">
+            class="price"
+            id="checkoutPrice">
 
-            Loading...
+            —
 
         </div>
 
 
         <div
-            class="summary-badge"
-            id="planBadge">
+            class="billing-label"
+            id="billingLabel">
 
-            PROTECTION
+            Loading billing...
 
         </div>
 
 
-    </div>
+        <div
+            class="country-info"
+            id="countryInfo">
+
+            🌍 Loading country and currency...
+
+        </div>
 
 
-    <p
-        class="summary-description"
-        id="planDescription">
-
-        Loading your selected TrustAI plan...
-
-    </p>
+    </section>
 
 
-    <div
-        class="price"
-        id="checkoutPrice">
+    <!-- CUSTOMER -->
 
-        Loading...
+    <div class="section-title">
 
-    </div>
-
-
-    <div
-        class="billing-label"
-        id="billingLabel">
-
-        Loading billing period...
+        Customer information
 
     </div>
 
 
-    <div
-        class="country-info"
-        id="countryInfo">
+    <div class="form-group">
 
-        🌍 Loading your country and currency...
+        <label for="email">
 
-    </div>
+            Email address
 
+        </label>
 
-</section>
-
-
-<!-- =====================================================
-     CUSTOMER INFORMATION
-===================================================== -->
-
-<div class="section-title">
-
-    Customer information
-
-</div>
-
-
-<div class="form-group">
-
-    <label for="email">
-
-        Email address
-
-    </label>
-
-
-    <input
-        type="email"
-        id="email"
-        placeholder="you@example.com"
-        autocomplete="email"
-        required>
-
-</div>
-
-
-<!-- =====================================================
-     PAYMENT
-===================================================== -->
-
-<div class="section-title">
-
-    Payment method
-
-</div>
-
-
-<div class="payment-methods">
-
-
-    <label class="payment-option">
 
         <input
-            type="radio"
-            name="paymentMethod"
-            value="card"
-            checked>
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            autocomplete="email">
+
+    </div>
 
 
-        <div>
+    <!-- PAYMENT -->
 
-            <div class="payment-name">
+    <div class="section-title">
 
-                💳 Debit / Credit Card
+        Payment method
 
-            </div>
-
-
-            <div class="payment-description">
-
-                Secure card payment through the supported payment provider.
-
-            </div>
-
-        </div>
-
-    </label>
+    </div>
 
 
-    <label class="payment-option">
-
-        <input
-            type="radio"
-            name="paymentMethod"
-            value="international">
+    <div class="payment-methods">
 
 
-        <div>
+        <label class="payment-option">
 
-            <div class="payment-name">
+            <input
+                type="radio"
+                name="paymentMethod"
+                value="card"
+                checked>
 
-                🌍 International Payment
 
-            </div>
+            <div>
+
+                <div class="payment-name">
+
+                    💳 Debit / Credit Card
+
+                </div>
 
 
-            <div class="payment-description">
+                <div class="payment-description">
 
-                Available payment options depend on your country and payment provider.
+                    Secure card payment through the payment provider.
+
+                </div>
 
             </div>
 
-        </div>
-
-    </label>
+        </label>
 
 
-</div>
+        <label class="payment-option">
+
+            <input
+                type="radio"
+                name="paymentMethod"
+                value="international">
 
 
-<!-- =====================================================
-     CHECKOUT BUTTON
-===================================================== -->
+            <div>
 
-<button
-    id="checkoutButton"
-    class="checkout-button"
-    type="button"
-    onclick="startCheckout()">
+                <div class="payment-name">
 
-    Continue to Secure Payment
+                    🌍 International Payment
 
-</button>
+                </div>
 
 
-<!-- =====================================================
-     SECURITY
-===================================================== -->
+                <div class="payment-description">
 
-<div class="security-note">
+                    Available options depend on your country and payment provider.
 
-    🔒 TrustAI does not store your card details.
+                </div>
 
-    <br>
+            </div>
 
-    Payment should be handled by the selected
-    payment provider.
+        </label>
 
-    <br>
 
-    Your TrustAI plan will only be activated
-    after successful payment verification.
+    </div>
 
-</div>
+
+    <!-- CHECKOUT -->
+
+    <button
+        id="checkoutButton"
+        class="checkout-button"
+        type="button"
+        onclick="startCheckout()">
+
+        Continue to Secure Payment
+
+    </button>
+
+
+    <!-- SECURITY -->
+
+    <div class="security-note">
+
+        🔒 TrustAI does not store your card details.
+
+        <br>
+
+        Payment will be handled by the selected
+        payment provider.
+
+        <br>
+
+        Your plan will only be activated after
+        successful payment verification.
+
+    </div>
 
 
 </main>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- FOOTER -->
 
 <footer class="footer">
 
@@ -1119,370 +1055,109 @@ input[type="email"]:focus {
 <script>
 
 /* =====================================================
-   TRUSTAI SUPABASE CONFIGURATION
+   TRUSTAI CHECKOUT SYSTEM
 ===================================================== */
 
-const SUPABASE_URL =
-    "https://opyjaljpowzgmkqlmjrb.supabase.co";
+
+/* -----------------------------------------------------
+   COUNTRY SYSTEM
+----------------------------------------------------- */
+
+const Country =
+    window.TrustAICountry;
 
 
-const SUPABASE_KEY =
-    "sb_publishable_ZcLyZffGbvjfp5twtbsI_Q_ni8ARBEy";
+/* -----------------------------------------------------
+   CHECK COUNTRY.JS
+----------------------------------------------------- */
 
+if (!Country) {
 
-/* =====================================================
-   INITIALIZE SUPABASE
-===================================================== */
-
-let supabaseClient =
-    window.supabaseClient || null;
-
-
-if (
-    !supabaseClient &&
-    window.supabase &&
-    typeof window.supabase.createClient === "function"
-) {
-
-    supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-
-    window.supabaseClient =
-        supabaseClient;
+    console.error(
+        "TrustAICountry is not available."
+    );
 
 }
 
 
 /* =====================================================
-   PLAN PRICES
-=====================================================
-
-   IMPORTANT:
-
-   Currency is determined by country.js.
-
-   NGN is ONLY used when the actual selected
-   country currency is NGN.
-
-   Foreign countries NEVER silently fall back
-   to Nigerian Naira.
-
+   PLAN NAMES
 ===================================================== */
 
-const prices = {
+const PLAN_NAMES = {
 
+    pro: "TrustAI Pro",
 
-    Pro: {
-
-
-        monthly: {
-
-            NGN: {
-                symbol: "₦",
-                amount: "3,000"
-            },
-
-            USD: {
-                symbol: "$",
-                amount: "3.00"
-            },
-
-            GBP: {
-                symbol: "£",
-                amount: "2.50"
-            },
-
-            EUR: {
-                symbol: "€",
-                amount: "3.00"
-            },
-
-            CAD: {
-                symbol: "C$",
-                amount: "3.00"
-            },
-
-            AUD: {
-                symbol: "A$",
-                amount: "4.50"
-            },
-
-            SEK: {
-                symbol: "kr",
-                amount: "32"
-            }
-
-        },
-
-
-        yearly: {
-
-            NGN: {
-                symbol: "₦",
-                amount: "30,000"
-            },
-
-            USD: {
-                symbol: "$",
-                amount: "30.00"
-            },
-
-            GBP: {
-                symbol: "£",
-                amount: "24.00"
-            },
-
-            EUR: {
-                symbol: "€",
-                amount: "30.00"
-            },
-
-            CAD: {
-                symbol: "C$",
-                amount: "30.00"
-            },
-
-            AUD: {
-                symbol: "A$",
-                amount: "45.00"
-            },
-
-            SEK: {
-                symbol: "kr",
-                amount: "320"
-            }
-
-        }
-
-    },
-
-
-    Premium: {
-
-
-        monthly: {
-
-            NGN: {
-                symbol: "₦",
-                amount: "7,500"
-            },
-
-            USD: {
-                symbol: "$",
-                amount: "8.00"
-            },
-
-            GBP: {
-                symbol: "£",
-                amount: "6.00"
-            },
-
-            EUR: {
-                symbol: "€",
-                amount: "7.50"
-            },
-
-            CAD: {
-                symbol: "C$",
-                amount: "7.50"
-            },
-
-            AUD: {
-                symbol: "A$",
-                amount: "11.00"
-            },
-
-            SEK: {
-                symbol: "kr",
-                amount: "80"
-            }
-
-        },
-
-
-        yearly: {
-
-            NGN: {
-                symbol: "₦",
-                amount: "75,000"
-            },
-
-            USD: {
-                symbol: "$",
-                amount: "75.00"
-            },
-
-            GBP: {
-                symbol: "£",
-                amount: "60.00"
-            },
-
-            EUR: {
-                symbol: "€",
-                amount: "75.00"
-            },
-
-            CAD: {
-                symbol: "C$",
-                amount: "75.00"
-            },
-
-            AUD: {
-                symbol: "A$",
-                amount: "110.00"
-            },
-
-            SEK: {
-                symbol: "kr",
-                amount: "800"
-            }
-
-        }
-
-    }
+    premium: "TrustAI Premium"
 
 };
 
 
 /* =====================================================
-   PLAN INFORMATION
+   PLAN DESCRIPTIONS
 ===================================================== */
 
-const planInfo = {
+const PLAN_DESCRIPTIONS = {
 
+    pro:
+        "Advanced protection for users who want stronger everyday online security.",
 
-    Pro: {
-
-        description:
-            "Advanced protection for users who want stronger everyday security."
-
-    },
-
-
-    Premium: {
-
-        description:
-            "Maximum TrustAI protection with advanced security capabilities."
-
-    }
+    premium:
+        "Maximum TrustAI protection with advanced security capabilities."
 
 };
 
 
 /* =====================================================
-   CURRENCY INFORMATION
+   GET SELECTED PLAN
 ===================================================== */
 
-const currencyNames = {
+function getSelectedPlan() {
 
-    NGN: "Nigerian Naira",
-
-    USD: "US Dollar",
-
-    GBP: "British Pound",
-
-    EUR: "Euro",
-
-    CAD: "Canadian Dollar",
-
-    AUD: "Australian Dollar",
-
-    SEK: "Swedish Krona"
-
-};
+    if (!Country) return null;
 
 
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function showMessage(
-    text,
-    type = "info"
-) {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
-
-    message.className =
-        "message show " +
-        (
-            type === "error"
-                ? "error"
-                : type === "success"
-                    ? "success"
-                    : ""
-        );
-
-}
-
-
-/* =====================================================
-   GET COUNTRY FROM EXISTING COUNTRY.JS
-===================================================== */
-
-function getTrustAICountry() {
-
-    /*
-       TrustAI country.js is expected to expose:
-
-       window.TrustAICountry.getCountry()
-
-       The returned object should contain:
-
-       name
-       currency
-       symbol
-
-       Example:
-    {
-    name: "Nigeria",
-           currency: "NGN",
-           symbol: "₦"
-       }
-    */
+    let plan = null;
 
 
     if (
-        window.TrustAICountry &&
-        typeof
-        window.TrustAICountry.getCountry ===
+        typeof Country.getSavedPlan ===
         "function"
     ) {
 
-        const country =
-            window.TrustAICountry.getCountry();
-
-
-        if (
-            country &&
-            country.currency
-        ) {
-
-            return country;
-
-        }
+        plan =
+            Country.getSavedPlan();
 
     }
 
 
-    /*
-       No country.js result.
+    if (!plan) {
 
-       Do NOT silently use NGN.
+        plan =
+            localStorage.getItem(
+                "trustai_selected_plan"
+            );
 
-    */
+    }
+
+
+    if (!plan) return null;
+
+
+    plan =
+        String(plan)
+        .toLowerCase();
+
+
+    if (
+        plan === "pro" ||
+        plan === "premium"
+    ) {
+
+        return plan;
+
+    }
+
 
     return null;
 
@@ -1490,13 +1165,87 @@ function getTrustAICountry() {
 
 
 /* =====================================================
-   GET COUNTRY CURRENCY
+   GET BILLING
 ===================================================== */
 
-function getSelectedCurrency() {
+function getBilling() {
+
+    if (!Country) return "monthly";
+
+
+    let billing = null;
+
+
+    if (
+        typeof Country.getSavedBilling ===
+        "function"
+    ) {
+
+        billing =
+            Country.getSavedBilling();
+
+    }
+
+
+    if (!billing) {
+
+        billing =
+            localStorage.getItem(
+                "trustai_selected_billing"
+            );
+
+    }
+
+
+    if (!billing) {
+
+        billing =
+            localStorage.getItem(
+                "trustai_billing_period"
+            );
+
+    }
+
+
+    return billing === "yearly"
+        ? "yearly"
+        : "monthly";
+
+}
+
+
+/* =====================================================
+   GET COUNTRY
+===================================================== */
+
+function getCountry() {
+
+    if (!Country) return null;
+
+
+    if (
+        typeof Country.getCountry ===
+        "function"
+    ) {
+
+        return Country.getCountry();
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   GET CURRENCY
+===================================================== */
+
+function getCurrency() {
 
     const country =
-        getTrustAICountry();
+        getCountry();
 
 
     if (
@@ -1511,37 +1260,73 @@ function getSelectedCurrency() {
     }
 
 
-    /*
-       Check previously saved currency.
-
-       This is useful if country.js has saved the
-       selection but has not initialized completely.
-    */
-
-    const savedCurrency =
-        localStorage.getItem(
-            "trustai_selected_currency"
-        );
-
-
     if (
-        savedCurrency &&
-        prices.Pro.monthly[savedCurrency]
+        typeof Country.getCurrency ===
+        "function"
     ) {
 
-        return savedCurrency.toUpperCase();
+        const currency =
+            Country.getCurrency();
+
+
+        if (currency) {
+
+            return String(
+                currency
+            ).toUpperCase();
+
+        }
 
     }
 
 
+    return null;
+
+}
+
+
+/* =====================================================
+   GET PLAN PRICE
+===================================================== */
+
+function getPlanPrice(
+    plan,
+    billing
+) {
+
+    if (!Country) return null;
+
+
     /*
-       IMPORTANT:
-
-       We return null rather than NGN.
-
-       This prevents foreign users from
-       accidentally seeing Nigerian Naira.
+       country.js is the single source
+       of truth for pricing.
     */
+
+    if (
+        typeof Country.getPlanPrice ===
+        "function"
+    ) {
+
+        return Country.getPlanPrice(
+            plan,
+            billing
+        );
+
+    }
+
+
+    if (
+        typeof Country.getCurrentPlanPrice ===
+        "function"
+    ) {
+
+        return Country.getCurrentPlanPrice(
+            plan,
+            billing
+        );
+
+    }
+
 
     return null;
 
@@ -1552,10 +1337,10 @@ function getSelectedCurrency() {
    GET COUNTRY NAME
 ===================================================== */
 
-function getSelectedCountryName() {
+function getCountryName() {
 
     const country =
-        getTrustAICountry();
+        getCountry();
 
 
     if (
@@ -1568,139 +1353,13 @@ function getSelectedCountryName() {
     }
 
 
-    return (
-        localStorage.getItem(
-            "trustai_country_name"
-        ) ||
-        "Country not detected"
-    );
+    return "Selected country";
 
 }
 
 
 /* =====================================================
-   GET CURRENCY SYMBOL
-===================================================== */
-
-function getCurrencySymbol(
-    currency
-) {
-
-    const country =
-        getTrustAICountry();
-
-
-    if (
-        country &&
-        country.currency &&
-        String(
-            country.currency
-        ).toUpperCase() === currency &&
-        country.symbol
-    ) {
-
-        return country.symbol;
-
-    }
-
-
-    if (
-        prices.Pro.monthly[currency]
-    ) {
-
-        return prices.Pro.monthly[currency].symbol;
-
-    }
-
-
-    return "";
-
-}
-
-
-/* =====================================================
-   NORMALIZE BILLING
-===================================================== */
-
-function getBillingPeriod() {
-
-    const billing =
-        localStorage.getItem(
-            "trustai_billing_period"
-        );
-
-
-    return billing === "yearly"
-        ? "yearly"
-        : "monthly";
-
-}
-
-
-/* =====================================================
-   GET SELECTED PLAN
-===================================================== */
-
-function getSelectedPlan() {
-
-    const plan =
-        localStorage.getItem(
-            "trustai_selected_plan"
-        );
-
-
-    if (
-        plan === "Pro" ||
-        plan === "Premium"
-    ) {
-
-        return plan;
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =====================================================
-   GET PRICE
-===================================================== */
-
-function getSelectedPrice(
-    plan,
-    period,
-    currency
-) {
-
-    if (
-        !prices[plan] ||
-        !prices[plan][period]
-    ) {
-
-        return null;
-
-    }
-
-
-    /*
-       NEVER use NGN as a foreign fallback.
-
-       If the currency isn't supported,
-       return null instead.
-    */
-
-    return (
-        prices[plan][period][currency]
-        || null
-    );
-
-}
-
-
-/* =====================================================
-   LOAD CHECKOUT
+   DISPLAY CHECKOUT
 ===================================================== */
 
 function loadCheckout() {
@@ -1709,12 +1368,12 @@ function loadCheckout() {
         getSelectedPlan();
 
 
-    const period =
-        getBillingPeriod();
+    const billing =
+        getBilling();
 
 
     const currency =
-        getSelectedCurrency();
+        getCurrency();
 
 
     const button =
@@ -1723,17 +1382,11 @@ function loadCheckout() {
         );
 
 
-    /*
-       Validate plan.
-    */
+    /* -------------------------------------------------
+       NO PLAN
+    ------------------------------------------------- */
 
     if (!plan) {
-
-        showMessage(
-            "No valid TrustAI subscription was selected. Please return to Plans and choose a plan.",
-            "error"
-        );
-
 
         document.getElementById(
             "planName"
@@ -1744,56 +1397,35 @@ function loadCheckout() {
         document.getElementById(
             "planDescription"
         ).textContent =
-            "Please return to the TrustAI Plans page.";
-
-
-        button.disabled =
-            true;
-
-
-        return;
-
-    }
-
-
-    /*
-       Validate country/currency.
-    */
-
-    if (!currency) {
-
-        showMessage(
-            "TrustAI could not determine your selected country or currency. Please return to Settings and select your country.",
-            "error"
-        );
-
-
-        document.getElementById(
-            "planName"
-        ).textContent =
-            "Currency unavailable";
-
-
-        document.getElementById(
-            "planDescription"
-        ).textContent =
-            "Please select your country before continuing.";
+            "Please return to the plans page and select Pro or Premium.";
 
 
         document.getElementById(
             "checkoutPrice"
         ).textContent =
-            "Currency required";
+            "—";
+
+
+        document.getElementById(
+            "billingLabel"
+        ).textContent =
+            "PLAN REQUIRED";
 
 
         document.getElementById(
             "countryInfo"
         ).textContent =
-            "🌍 Please select your country in TrustAI Settings.";
+            "🌍 Please select a plan first.";
 
 
         button.disabled =
             true;
+
+
+        showMessage(
+            "No valid TrustAI subscription was selected.",
+            "error"
+        );
 
 
         return;
@@ -1801,581 +1433,19 @@ function loadCheckout() {
     }
 
 
-    /*
-       Get price.
+    /* -------------------------------------------------
+       NO COUNTRY / CURRENCY
+    ------------------------------------------------- */
 
-       No foreign → NGN fallback.
-    */
-
-    const selected =
-        getSelectedPrice(
-            plan,
-            period,
-            currency
-        );
-
-
-    if (!selected) {
-
-        showMessage(
-            `TrustAI does not currently have a checkout price configured for ${currency}. Please select a supported country or contact TrustAI support.`,
-            "error"
-        );
-
+    if (!currency) {
 
         document.getElementById(
             "planName"
         ).textContent =
-            "Currency not supported";
+            PLAN_NAMES[plan];
 
 
         document.getElementById(
-            "checkoutPrice"
+            "planDescription"
         ).textContent =
-            currency;
-
-
-        button.disabled =
-            true;
-
-
-        return;
-
-    }
-
-
-    const countryName =
-        getSelectedCountryName();
-
-
-    const currencyName =
-        currencyNames[currency]
-        || currency;
-
-
-    /*
-       Plan.
-    */
-
-    document.getElementById(
-        "planName"
-    ).textContent =
-        "TrustAI " + plan;
-
-
-    /*
-       Description.
-    */
-
-    document.getElementById(
-        "planDescription"
-    ).textContent =
-        planInfo[plan].description;
-
-
-    /*
-       Price.
-    */
-
-    document.getElementById(
-        "checkoutPrice"
-    ).innerHTML =
-
-        `${selected.symbol}${selected.amount}
-        <small>/
-        ${
-            period === "yearly"
-                ? "year"
-                : "month"
-        }
-        </small>`;
-
-
-    /*
-       Billing.
-    */
-
-    document.getElementById(
-        "billingLabel"
-    ).textContent =
-
-        period === "yearly"
-
-            ? "YEARLY BILLING • ANNUAL PLAN"
-
-            : "MONTHLY BILLING";
-
-
-    /*
-       Country and currency.
-
-       Example:
-
-       🌍 United States • US Dollar (USD)
-    */
-
-    document.getElementById(
-        "countryInfo"
-    ).innerHTML =
-
-        `🌍 <strong>${countryName}</strong>
-        • ${currencyName}
-        (${currency})`;
-
-
-    /*
-       Save normalized checkout information.
-    */
-
-    localStorage.setItem(
-        "trustai_selected_plan",
-        plan
-    );
-
-
-    localStorage.setItem(
-        "trustai_billing_period",
-        period
-    );
-
-
-    localStorage.setItem(
-        "trustai_selected_currency",
-        currency
-    );
-
-
-    localStorage.setItem(
-        "trustai_checkout_currency",
-        currency
-    );
-
-
-    localStorage.setItem(
-        "trustai_checkout_price",
-        selected.amount
-    );
-
-
-    localStorage.setItem(
-        "trustai_country_name",
-        countryName
-    );
-
-
-    /*
-       Restore saved email.
-    */
-
-    const savedEmail =
-        localStorage.getItem(
-            "trustai_checkout_email"
-        );
-
-
-    if (savedEmail) {
-
-        document.getElementById(
-            "email"
-        ).value =
-            savedEmail;
-
-    }
-
-
-    /*
-       Restore saved payment method.
-    */
-
-    const savedPaymentMethod =
-        localStorage.getItem(
-            "trustai_payment_method"
-        );
-
-
-    if (
-        savedPaymentMethod
-    ) {
-
-        const paymentRadio =
-            document.querySelector(
-                `input[name="paymentMethod"][value="${savedPaymentMethod}"]`
-            );
-
-
-        if (paymentRadio) {
-
-            paymentRadio.checked =
-                true;
-
-        }
-
-    }
-
-}
-
-
-/* =====================================================
-   START CHECKOUT
-===================================================== */
-
-async function startCheckout() {
-
-    const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
-
-
-    /*
-       Email validation.
-    */
-
-    if (!email) {
-
-        showMessage(
-            "Please enter your email address.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !email.includes("@") ||
-        !email.includes(".")
-    ) {
-
-        showMessage(
-            "Please enter a valid email address.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Read current checkout state.
-    */
-    const plan =
-        getSelectedPlan();
-
-
-    const period =
-        getBillingPeriod();
-
-
-    const currency =
-        getSelectedCurrency();
-
-
-    /*
-       Validate plan.
-    */
-
-    if (!plan) {
-
-        showMessage(
-            "Your TrustAI plan selection is invalid. Please return to Plans.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       IMPORTANT:
-
-       Do not allow checkout without a
-       real currency.
-    */
-
-    if (!currency) {
-
-        showMessage(
-            "Your country and currency could not be determined. Please select your country in TrustAI Settings.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Get selected price.
-
-       There is NO NGN fallback here.
-    */
-
-    const selected =
-        getSelectedPrice(
-            plan,
-            period,
-            currency
-        );
-
-
-    if (!selected) {
-
-        showMessage(
-            `Checkout is not available for ${currency} yet.`,
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Payment method.
-    */
-
-    const paymentMethod =
-        document.querySelector(
-            'input[name="paymentMethod"]:checked'
-        );
-
-
-    if (!paymentMethod) {
-
-        showMessage(
-            "Please select a payment method.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Save checkout information.
-    */
-
-    localStorage.setItem(
-        "trustai_checkout_email",
-        email
-    );
-
-
-    localStorage.setItem(
-        "trustai_payment_method",
-        paymentMethod.value
-    );
-
-
-    localStorage.setItem(
-        "trustai_checkout_plan",
-        plan
-    );
-
-
-    localStorage.setItem(
-        "trustai_checkout_billing",
-        period
-    );
-
-
-    localStorage.setItem(
-        "trustai_checkout_price",
-        selected.amount
-    );
-
-
-    localStorage.setItem(
-        "trustai_checkout_currency",
-        currency
-    );
-
-
-    /*
-       Save country.
-    */
-
-    const country =
-        getTrustAICountry();
-
-
-    if (country) {
-
-        localStorage.setItem(
-            "trustai_checkout_country",
-            country.name || ""
-        );
-
-    }
-
-
-    /*
-       Display preparation status.
-    */
-
-    showMessage(
-        `Checkout prepared for TrustAI ${plan} — ${selected.symbol}${selected.amount}/${period === "yearly" ? "year" : "month"}.`,
-        "success"
-    );
-
-
-    const button =
-        document.getElementById(
-            "checkoutButton"
-        );
-
-
-    button.disabled =
-        true;
-
-
-    button.textContent =
-        "Preparing secure payment...";
-
-
-    /*
-       =====================================================
-       PAYMENT PROVIDER CONNECTION
-       =====================================================
-
-       This section is intentionally NOT pretending
-       that payment has succeeded.
-
-       Your actual provider should create the payment
-       transaction on a secure backend.
-
-       Never put secret payment-provider keys inside
-       this HTML file.
-
-    =====================================================
-    */
-
-
-    /*
-       Give the application a moment to prepare.
-
-       Replace this section later with your real
-       payment-provider redirect/session creation.
-    */
-
-    setTimeout(
-        function() {
-
-            button.disabled =
-                false;
-
-
-            button.textContent =
-                "Continue to Secure Payment";
-
-
-            showMessage(
-                "Your checkout details are ready, but the live payment provider has not been connected yet. No payment has been taken and your plan has not been activated.",
-                "info"
-            );
-
-        },
-        1000
-    );
-
-}
-
-
-/* =====================================================
-   COUNTRY CHANGE LISTENER
-===================================================== */
-
-window.addEventListener(
-    "trustai-country-changed",
-    function() {
-
-        /*
-           Rebuild checkout immediately if the
-           country is changed elsewhere.
-        */
-
-        loadCheckout();
-
-    }
-);
-
-
-/* =====================================================
-   STORAGE CHANGE
-===================================================== */
-
-window.addEventListener(
-    "storage",
-    function(event) {
-
-        if (
-            event.key ===
-                "trustai_selected_currency" ||
-
-            event.key ===
-                "trustai_selected_plan" ||
-
-            event.key ===
-                "trustai_billing_period"
-        ) {
-
-            loadCheckout();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   BACK
-===================================================== */
-
-function goBack() {
-
-    if (document.referrer) {
-
-        window.history.back();
-
-    } else {
-
-        window.location.href =
-            "./plans.html";
-
-    }
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-if (
-    document.readyState ===
-    "loading"
-) {
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        loadCheckout
-    );
-
-} else {
-
-    loadCheckout();
-
-}
-
-</script>
-
-<script src="global-language.js"></script>
-</body>
-
-</html>
-   
+        
