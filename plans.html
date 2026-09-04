@@ -764,7 +764,7 @@ footer {
         class="plan-tab"
         type="button">
 
-        👑 Premier
+        👑 Premium
 
     </button>
 
@@ -813,7 +813,7 @@ footer {
         id="proPrice"
         class="price">
 
-         $3.00
+         $4.00
 
         <small>
             / month
@@ -916,7 +916,7 @@ footer {
 
 
 <!-- =====================================================
-     PREMIER PANEL
+     PREMIUM PANEL
 ===================================================== -->
 
 <section
@@ -937,7 +937,7 @@ footer {
 
             <h2 class="plan-name">
 
-                Premier
+                Premium
 
             </h2>
 
@@ -954,10 +954,10 @@ footer {
 
 
     <div
-        id="premierPrice"
+        id="premiumPrice"
         class="price">
 
-         $7.00
+         $8.00
 
         <small>
             / month
@@ -967,7 +967,7 @@ footer {
 
 
     <div
-        id="premierNote"
+        id="premiumNote"
         class="price-note">
 
         Billed monthly
@@ -986,11 +986,11 @@ footer {
 
 
     <button
-        id="upgradePremierButton"
-        class="upgrade-button premier-button"
+        id="upgradePremiumButton"
+        class="upgrade-button premium-button"
         type="button">
 
-        Upgrade to Premier
+        Upgrade to Premium 
 
     </button>
 
@@ -1031,11 +1031,11 @@ footer {
     </ul>
 
 
-    <div class="difference premier-difference">
+    <div class="difference premium-difference">
 
         <strong>
 
-            Why choose Premier?
+            Why choose Premium?
 
         </strong>
 
@@ -1092,13 +1092,13 @@ const planData = {
     Pro: {
 
         monthly: {
-            amount: " $3.00",
+            amount: " $4.00",
             suffix: "/ month",
             note: "Billed monthly"
         },
 
         yearly: {
-            amount: "$25.00",
+            amount: "$26.00",
             suffix: "/ year",
             
         }
@@ -1106,16 +1106,16 @@ const planData = {
     },
 
 
-    Premier: {
+    Premium: {
 
         monthly: {
-            amount: " $7.00",
+            amount: " $8.00",
             suffix: "/ month",
             note: "Billed monthly"
         },
 
         yearly: {
-            amount: "$70.00",
+            amount: "$72.00",
             suffix: "/ year",
             
         }
@@ -1201,7 +1201,7 @@ if (
 
 if (
     selectedPlan !== "Pro" &&
-    selectedPlan !== "Premier"
+    selectedPlan !== "Premium"
 ) {
 
     selectedPlan = "Pro";
@@ -1217,7 +1217,7 @@ function showPlan(plan) {
 
     if (
         plan !== "Pro" &&
-        plan !== "Premier"
+        plan !== "Premium"
     ) {
 
         plan = "Pro";
@@ -1250,7 +1250,7 @@ function showPlan(plan) {
     }
 
 
-    /* PREMIER */
+    /* PREMIUM */
 
     else {
 
@@ -1278,7 +1278,7 @@ function updatePrices() {
         planData.Pro[billingPeriod];
 
     const premier =
-        planData.Premier[billingPeriod];
+        planData.Premium[billingPeriod];
 
 
     proPrice.innerHTML =
@@ -1290,13 +1290,13 @@ function updatePrices() {
         pro.note;
 
 
-    premierPrice.innerHTML =
-        `${premier.amount}
+    premiumPrice.innerHTML =
+        `${premium.amount}
         <small>${premier.suffix}</small>`;
 
 
-    premierNote.textContent =
-        premier.note;
+    premiumNote.textContent =
+        premium.note;
 
 }
 
@@ -1361,11 +1361,11 @@ proTab.addEventListener(
    PREMIER TAB
 ===================================================== */
 
-premierTab.addEventListener(
+premiumTab.addEventListener(
     "click",
     function() {
 
-        showPlan("Premier");
+        showPlan("Premium");
 
     }
 );
@@ -1406,7 +1406,7 @@ function upgradeTo(plan) {
 
     if (
         plan !== "Pro" &&
-        plan !== "Premier"
+        plan !== "Premium"
     ) {
 
         return;
@@ -1501,7 +1501,7 @@ upgradePremierButton.addEventListener(
     "click",
     function() {
 
-        upgradeTo("Premier");
+        upgradeTo("Premium");
 
     }
 );
