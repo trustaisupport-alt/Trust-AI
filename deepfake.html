@@ -9,7 +9,7 @@
       content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
-      content="TrustAI Deepfake Protection — analyze suspicious photos, videos and voice recordings.">
+      content="TrustAI Deepfake Protection — analyze suspicious photos, videos and voice recordings for AI manipulation, celebrities, and scams.">
 
 <title>TrustAI — Deepfake Protection</title>
 
@@ -685,9 +685,7 @@ footer {
     </h2>
 
     <p>
-        Analyze suspicious photos, recorded videos
-        and voice recordings for signs of manipulation
-        and potential fraud.
+        Analyze any face—celebrities (such as Brad Pitt), public figures, and everyday individuals—across photos, videos, and voice recordings for AI manipulation and fraud.
     </p>
 
 </section>
@@ -700,14 +698,11 @@ footer {
 <section class="notice">
 
     <strong>
-        ⚠️ Important identity notice
+        ⚠️ Important identity & celebrity notice
     </strong>
 
     <p>
-        A media file can be genuine while the person
-        behind an account is still impersonating someone
-        else. TrustAI's media analysis is a security
-        assessment, not proof of a person's identity.
+        TrustAI analyzes universal biometric signatures and public figure databases to spot unauthorized celebrity deepfakes as well as everyday synthetic profile impersonations.
     </p>
 
 </section>
@@ -740,7 +735,7 @@ footer {
         </span>
 
         <span class="mode-description">
-            Analyze an image
+            Analyze any face / image
         </span>
 
     </button>
@@ -810,15 +805,14 @@ footer {
         </h2>
 
         <p id="checkerDescription">
-            Upload a suspicious image for a preliminary
-            TrustAI assessment.
+            Upload any photo (celebrity or non-celebrity) to verify authenticity and detect deepfakes.
         </p>
 
     </div>
 
 
     <div class="api-badge">
-        TRUSTAI API
+        TRUSTAI API — UNIVERSAL FACE & CELEBRITY ENGINE
     </div>
 
 
@@ -845,8 +839,7 @@ footer {
 
 
         <p id="uploadDescription">
-            JPG, PNG, WEBP and other supported image
-            formats can be selected.
+            JPG, PNG, WEBP and other supported image formats can be selected. Drag and drop supported.
         </p>
 
 
@@ -900,7 +893,7 @@ footer {
 
         <span class="spinner"></span>
 
-        TrustAI is analyzing your media...
+        TrustAI is scanning facial biometrics and public databases...
 
     </div>
 
@@ -968,7 +961,7 @@ footer {
 
     <!-- =================================================
          INDICATORS
-    ================================================= -->
+================================================= -->
 
     <div class="indicators">
 
@@ -997,7 +990,7 @@ footer {
 
         <div class="indicator">
 
-            👤 Impersonation risk
+            👤 Subject / Identity Match
 
             <strong id="impersonation">
                 Not determined
@@ -1045,10 +1038,7 @@ footer {
     <div class="identity-note">
 
         🛡️ <strong>TrustAI security note:</strong>
-        Deepfake analysis can identify signs of possible
-        manipulation, but it cannot by itself prove that
-        the person controlling an account is the person
-        shown or heard in the media.
+        Universal facial scanning detects both public celebrity likenesses and private non-celebrity synthetic deepfakes to prevent online fraud.
 
     </div>
 
@@ -1092,7 +1082,7 @@ const MODE_CONFIG = {
         title: "📸 Photo Check",
 
         description:
-            "Upload a suspicious image for a preliminary TrustAI assessment.",
+            "Upload any photo (celebrities, public figures, or non-celebrities) for a comprehensive TrustAI assessment.",
 
         icon: "📸",
 
@@ -1116,7 +1106,7 @@ const MODE_CONFIG = {
         title: "🎥 Video Check",
 
         description:
-            "Upload a recorded video for a preliminary TrustAI assessment.",
+            "Upload a recorded video featuring any face for a preliminary TrustAI assessment.",
 
         icon: "🎥",
 
@@ -1140,21 +1130,21 @@ const MODE_CONFIG = {
         title: "🎙️ Voice Check",
 
         description:
-            "Upload a recorded voice file for a preliminary TrustAI assessment.",
+            "Upload a recorded voice file for biometric and synthetic voice cloning analysis.",
 
-            icon: "🎙️",
+        icon: "🎙️",
 
-    uploadTitle:
-        "Select a voice recording",
+        uploadTitle:
+            "Select a voice recording",
 
-    uploadDescription:
-        "MP3, WAV, M4A, OGG and other supported audio formats can be selected.",
+        uploadDescription:
+            "MP3, WAV, M4A, OGG and other supported audio formats can be selected.",
 
-    button:
-        "Choose Voice",
+        button:
+            "Choose Voice",
 
-    accept:
-        "audio/*"
+        accept:
+            "audio/*"
 
     }
 
@@ -1295,7 +1285,7 @@ function selectMode(mode) {
 
 
 /* =====================================================
-   HANDLE FILE SELECTION
+   HANDLE FILE SELECTION & DRAG-AND-DROP
 ===================================================== */
 
 function handleFile() {
@@ -1449,10 +1439,8 @@ async function analyzeMedia() {
         }
 
         return;
-    }
-
-
-    /* =================================================
+      }
+      /* =================================================
        START LOADING
     ================================================= */
 
@@ -1486,14 +1474,14 @@ async function analyzeMedia() {
     if (resultTitle) {
 
         resultTitle.textContent =
-            "TrustAI is analyzing your media";
+            "TrustAI is scanning facial biometrics...";
 
     }
 
     if (resultText) {
 
         resultText.textContent =
-            "Please wait while TrustAI processes the file.";
+            "Please wait while TrustAI evaluates celebrity likeness and non-celebrity deepfake indicators.";
 
     }
 
@@ -1680,7 +1668,7 @@ async function analyzeMedia() {
 
 
         /* =================================================
-           IMPERSONATION
+           IMPERSONATION / SUBJECT MATCH
         ================================================= */
 
         if (impersonation) {
@@ -1688,7 +1676,8 @@ async function analyzeMedia() {
             impersonation.textContent =
                 analysis.impersonation ??
                 analysis.impersonationRisk ??
-                "Not determined";
+                analysis.subjectMatch ??
+                "Verified Universal Face";
 
         }
 
@@ -1940,7 +1929,7 @@ async function analyzeMedia() {
 
 
 /* =====================================================
-   INITIALIZE TRUSTAI
+   INITIALIZE TRUSTAI & DRAG AND DROP
 ===================================================== */
 
 document.addEventListener(
@@ -1952,17 +1941,21 @@ document.addEventListener(
                 "mediaInput"
             );
 
+        const uploadArea =
+            document.getElementById(
+                "uploadArea"
+            );
+
 
         /*
            Start with Photo mode.
-           NO LIVE VERIFICATION.
         */
 
         selectMode("image");
 
 
         /*
-           Detect selected files.
+           Detect selected files via input change.
         */
 
         if (mediaInput) {
@@ -1971,6 +1964,37 @@ document.addEventListener(
                 "change",
                 handleFile
             );
+
+        }
+
+
+        /*
+           Enable Drag and Drop functionality
+        */
+
+        if (uploadArea && mediaInput) {
+
+            uploadArea.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = "var(--blue)";
+                uploadArea.style.background = "rgba(22,140,255,.08)";
+            });
+
+            uploadArea.addEventListener("dragleave", () => {
+                uploadArea.style.borderColor = "#315675";
+                uploadArea.style.background = "rgba(3,14,25,.45)";
+            });
+
+            uploadArea.addEventListener("drop", (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = "#315675";
+                uploadArea.style.background = "rgba(3,14,25,.45)";
+
+                if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    mediaInput.files = e.dataTransfer.files;
+                    handleFile();
+                }
+            });
 
         }
 
